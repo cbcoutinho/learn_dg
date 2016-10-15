@@ -8,8 +8,8 @@ FORTRANLIB_SRC=$(current_dir)/src/fortranlib/src
 
 # Compiler
 FF = gfortran
-#FFlags = -Wall -fbounds-check
-#FLIBS = -lblas -llapack
+# FFlags = -Wall -fbounds-check
+# FLIBS = -lblas -llapack
 
 # Dependencies of main program
 objects=$(OBJ)/base_types.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/misc.o
@@ -34,7 +34,8 @@ $(OBJ)/base_types.o: $(FORTRANLIB_SRC)/base_types.f90
 
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main
+
 # run: $(BIN)/main
-	# mpiexec $(BIN)/main
+#		mpiexec $(BIN)/main
 run: $(BIN)/main
 	$(BIN)/main

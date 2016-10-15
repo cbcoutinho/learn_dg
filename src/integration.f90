@@ -23,7 +23,6 @@ contains
 
     ! Local variables
     integer:: N
-
     real(dp):: result_old
     real(dp), parameter:: eps=sqrt(epsilon(1.0d0))
     real(dp), dimension(:), allocatable:: x, w

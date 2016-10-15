@@ -2,6 +2,16 @@ module misc
   use base_types, only: dp
   implicit none
 
+  abstract interface
+    pure function func(xx) result(yy)
+      import
+      real(dp), intent(in), dimension(:):: xx
+      real(dp), dimension(:), allocatable:: yy
+    end function func
+  end interface
+
+  procedure(func), pointer :: ptr => null()
+
 contains
   pure function myfun(x) result(y)
     real(dp), intent(in), dimension(:):: x
