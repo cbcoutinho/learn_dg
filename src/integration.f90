@@ -3,12 +3,42 @@ module integration
   use lib_array, only: linspace
   implicit none
 
-  ! private lgwt
+  private :: lgwt
+  public :: integrate
 
 contains
+  subroutine integrate(func, a, b, result)
+    ! This routine uses gauss-legendre quadrature to integrate a 1D function
+
+    integer:: N
+    real(dp), intent(in):: a, b
+    real(dp), intent(out):: result
+    real(dp), dimension(:), allocatable:: x, w
+
+    interface AFunc
+        function func(y)
+          import
+          real(dp), intent(in), dimension(:)::y
+          real(dp), dimension(:), allocatable:: func
+        end function func
+    end interface AFunc
+
+    N = 3
+    result = 0.0d0
+
+    allocate(x(N), w(N))
+
+    call lgwt(a, b, N, x, w)
+
+    write(*,*) func(x)
+
+  end subroutine integrate
+
+
   subroutine lgwt(a, b, num_pts, x, w)
-    ! This function is a fortran port of the matlab function, lgwt.m,
-    ! originally found at:
+    ! This function is a fortran90 port of the matlab function, lgwt.m
+    ! The source code of lgwt.m was originally found at:
+    !
     ! http://www.mathworks.com/matlabcentral/fileexchange/4540
 
     ! Variables in/out

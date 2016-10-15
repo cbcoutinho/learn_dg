@@ -4,48 +4,52 @@ module misc
   implicit none
 
 contains
-  function myfun(x)
-    real(dp), intent(in):: x
-    real(dp):: myfun
+  function myfun(x) result(y)
+    real(dp), intent(in), dimension(:):: x
+    real(dp), dimension(:), allocatable:: y
 
-    myfun = x**2.0d0
+    allocate(y(size(x)))
+    y = x**2.0d0
+
   end function myfun
 
 
-  function f1 (x)
-    real(dp):: f1
-    real(dp), intent(in):: x
+  function f1(x) result(y)
+    real(dp), intent(in), dimension(:):: x
+    real(dp), dimension(:), allocatable:: y
 
-    f1 = 2.0 * x
+    allocate(y(size(x)))
+    y = 2.0d0 * x
 
     return
   end function f1
 
 
-  function f2 (x)
-    real(dp):: f2
-    real(dp), intent(in):: x
+  function f2(x) result(y)
+    real(dp), intent(in), dimension(:):: x
+    real(dp), dimension(:), allocatable:: y
 
-    f2 = 3.0 * x**2
+    allocate(y(size(x)))
+    y = 3.0d0 * x**2.0d0
 
     return
   end function f2
 
 
-  function fancy (func, x)
+  function fancy (func, x) result(y)
+    real(dp), intent(in), dimension(:):: x
+    real(dp), dimension(:), allocatable:: y
 
-    real(dp):: fancy
-    real(dp), intent(in):: x
-
-    interface AFunc
-        function func(y)
-          import
-          real(dp):: func
-          real(dp), intent(in)::y
-        end function func
+    interface   AFunc
+      function func(xx) result(yy)
+        import
+        real(dp), intent(in), dimension(:):: xx
+        real(dp), dimension(:), allocatable:: yy
+      end function func
     end interface AFunc
 
-    fancy = func(x) + 3.3d0 * x
+    allocate(y(size(x)))
+    y = func(x) + 3.3d0 * x
 
   end function fancy
 

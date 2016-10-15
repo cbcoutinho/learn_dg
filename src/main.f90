@@ -1,35 +1,30 @@
 program main
   use base_types, only: dp
   use misc, only: myfun, f1, f2, fancy
-  use integration, only: lgwt
+  use integration, only: integrate
+  use lib_array, only: linspace
   implicit none
 
-  integer:: N
-  real(dp):: a, b
-  real(dp), dimension(:), allocatable:: x, w
+  real(dp):: a, b, result
 
   abstract interface
-    function func(z)
+    function func(xx) result(yy)
       import
-      real(dp):: func
-      real(dp), intent(in):: z
+      real(dp), intent(in), dimension(:):: xx
+      real(dp), dimension(:), allocatable:: yy
     end function func
   end interface
 
   procedure(func), pointer :: f_ptr => null()
 
-  f_ptr => f1
-  write (*, *) f_ptr(2.0d0)
-  write (*, *) fancy(f_ptr, 2.0d0)
+  f_ptr => myfun
+  write(*,*) f_ptr([0.2d0])
+  write(*,*) fancy(f_ptr, [0.2d0])
 
-  N = 3
-  a = -1.0d0
-  b = 1.0d0
+  a = 0.0d0
+  b = 0.0d0
 
-  allocate(x(N), w(N))
-
-  call lgwt(a, b, N, x, w)
-
-  ! write(0, *) x, w
+  call integrate(f_ptr, a, b, result)
+  write(*,*) result
 
 end program main
