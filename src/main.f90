@@ -7,7 +7,7 @@ program main
   real(dp):: a, b
   real(dp), dimension(:), allocatable:: x, w
 
-  N = 3
+  N = 5
   a = -1.0d0
   b = 1.0d0
 

@@ -4,7 +4,7 @@ current_dir = $(shell pwd)
 SRC=$(current_dir)/src
 OBJ=$(current_dir)/obj
 BIN=$(current_dir)/bin
-FORTRANLIB_SRC=$(current_dir)/fortranlib/src
+FORTRANLIB_SRC=$(current_dir)/src/fortranlib/src
 
 # Compiler
 FF = gfortran
