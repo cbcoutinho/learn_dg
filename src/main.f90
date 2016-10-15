@@ -18,11 +18,8 @@ program main
   procedure(func), pointer :: f_ptr => null()
 
   f_ptr => myfun
-  write(*,*) f_ptr([0.2d0, 1.0d0])
-  write(*,*) fancy(f_ptr, [0.2d0, 1.0d0])
-
-  a = 0.0d0
-  b = 0.0d0
+  a = -1.0d0
+  b = 1.0d0
 
   call integrate(f_ptr, a, b, result)
   write(*,*) result

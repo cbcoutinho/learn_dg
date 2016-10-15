@@ -10,27 +10,46 @@ contains
   subroutine integrate(func, a, b, result)
     ! This routine uses gauss-legendre quadrature to integrate a 1D function
 
-    integer:: N
+    ! Input/Output variables
     real(dp), intent(in):: a, b
     real(dp), intent(out):: result
-    real(dp), dimension(:), allocatable:: x, w
-
     interface AFunc
-        function func(y)
-          import
-          real(dp), intent(in), dimension(:)::y
-          real(dp), dimension(:), allocatable:: func
-        end function func
+      function func(y)
+        import
+        real(dp), intent(in), dimension(:)::y
+        real(dp), dimension(:), allocatable:: func
+      end function func
     end interface AFunc
+
+    ! Local variables
+    integer:: N
+
+    real(dp):: result_old
+    real(dp), parameter:: eps=sqrt(epsilon(1.0d0))
+    real(dp), dimension(:), allocatable:: x, w
 
     N = 3
     result = 0.0d0
 
-    allocate(x(N), w(N))
+    do
+      result_old = result
 
-    call lgwt(a, b, N, x, w)
+      allocate(x(N), w(N))
+      call lgwt(a, b, N, x, w)
 
-    write(*,*) func(x)
+      result = sum(func(x)*w)
+      deallocate(x, w)
+
+      write(*,*) N, result, abs(result-result_old)
+
+      if ( abs(result-result_old) .lt. eps ) then
+        exit
+      else
+        N = N + 1
+      end if
+
+
+    end do
 
   end subroutine integrate
 
@@ -48,7 +67,7 @@ contains
 
     ! Local variables
     integer:: ii, jj, N, N1, N2
-    real(dp), parameter:: eps=epsilon(1.0)
+    real(dp), parameter:: eps=sqrt(epsilon(1.0d0))
     real(dp), dimension(:), allocatable:: xu, array1, y, y0, Lpp
     real(dp), dimension(:, :), allocatable:: L, Lp
     real(dp), parameter:: pi = 4.0_dp*datan(1.0_dp)
@@ -86,7 +105,7 @@ contains
       y0 = y
       y = y0-L(:,N2)/Lpp
 
-      if ( maxval(abs(y-y0)) .gt. 0 ) then
+      if ( maxval(abs(y-y0)) .lt. eps ) then
         exit
       end if
     end do
