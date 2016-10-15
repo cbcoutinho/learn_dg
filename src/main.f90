@@ -7,12 +7,14 @@ program main
   real(dp):: a, b
   real(dp), dimension(:), allocatable:: x, w
 
-  N = 5
+  N = 3
   a = -1.0d0
   b = 1.0d0
 
   allocate(x(N), w(N))
 
   call lgwt(a, b, N, x, w)
+
+  write(0, *) x, w
 
 end program main
