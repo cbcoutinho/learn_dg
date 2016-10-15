@@ -1,10 +1,9 @@
 module misc
   use base_types, only: dp
-
   implicit none
 
 contains
-  function myfun(x) result(y)
+  pure function myfun(x) result(y)
     real(dp), intent(in), dimension(:):: x
     real(dp), dimension(:), allocatable:: y
 
@@ -14,7 +13,7 @@ contains
   end function myfun
 
 
-  function f1(x) result(y)
+  pure function f1(x) result(y)
     real(dp), intent(in), dimension(:):: x
     real(dp), dimension(:), allocatable:: y
 
@@ -25,7 +24,7 @@ contains
   end function f1
 
 
-  function f2(x) result(y)
+  pure function f2(x) result(y)
     real(dp), intent(in), dimension(:):: x
     real(dp), dimension(:), allocatable:: y
 
@@ -36,12 +35,12 @@ contains
   end function f2
 
 
-  function fancy (func, x) result(y)
+  pure function fancy (func, x) result(y)
     real(dp), intent(in), dimension(:):: x
     real(dp), dimension(:), allocatable:: y
 
     interface   AFunc
-      function func(xx) result(yy)
+        pure function func(xx) result(yy)
         import
         real(dp), intent(in), dimension(:):: xx
         real(dp), dimension(:), allocatable:: yy

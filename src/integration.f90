@@ -14,7 +14,7 @@ contains
     real(dp), intent(in):: a, b
     real(dp), intent(out):: result
     interface AFunc
-      function func(y)
+      pure function func(y)
         import
         real(dp), intent(in), dimension(:)::y
         real(dp), dimension(:), allocatable:: func
@@ -40,15 +40,11 @@ contains
       result = sum(func(x)*w)
       deallocate(x, w)
 
-      write(*,*) N, result, abs(result-result_old)
-
       if ( abs(result-result_old) .lt. eps ) then
         exit
       else
         N = N + 1
       end if
-
-
     end do
 
   end subroutine integrate

@@ -8,7 +8,7 @@ program main
   real(dp):: a, b, result
 
   abstract interface
-    function func(xx) result(yy)
+    pure function func(xx) result(yy)
       import
       real(dp), intent(in), dimension(:):: xx
       real(dp), dimension(:), allocatable:: yy
@@ -17,7 +17,8 @@ program main
 
   procedure(func), pointer :: f_ptr => null()
 
-  f_ptr => myfun
+  f_ptr => f2
+
   a = -1.0d0
   b = 1.0d0
 
