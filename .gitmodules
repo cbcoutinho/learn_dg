@@ -1,0 +1,3 @@
+[submodule "fortranlib"]
+	path = fortranlib
+	url = git@github.com:cbcoutinho/fortranlib.git
