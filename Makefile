@@ -12,7 +12,7 @@ FF = gfortran
 #FLIBS = -lblas -llapack
 
 # Dependencies of main program
-objects=$(OBJ)/base_types.o $(OBJ)/integration.o
+objects=$(OBJ)/base_types.o $(OBJ)/lib_array.o $(OBJ)/integration.o
 
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFlags) -o $@ $+ $(FLIBS)

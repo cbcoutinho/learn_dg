@@ -10,11 +10,16 @@ contains
     real(dp), dimension(:):: x, w
 
     integer:: N1, N2
+    real(dp) ::x_array(N)
 
     ! write(*,*) a, b, N, x, w
 
     N1 = N
     N2 = N + 1
+
+    call linspace(a, b, x_array)
+
+    write(*,*) x_array
 
   end subroutine lgwt
 
