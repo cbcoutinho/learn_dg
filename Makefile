@@ -8,7 +8,7 @@ FORTRANLIB_SRC=$(current_dir)/src/fortranlib/src
 
 # Compiler
 FF = gfortran
-# FFlags = -Wall -fbounds-check
+FFlags = -Wall -fbounds-check
 # FLIBS = -lblas -llapack
 
 # Dependencies of main program
