@@ -44,7 +44,7 @@ program main
 
   call linspace(-1.0d0, 1.0d0, xx)
 
-  write(format_string, 100) '(', order+2, '(f10.6))'
+  write(format_string, 100) order+2
 
   ptr2 => basis_1D
   do ii = 1, NN
@@ -52,6 +52,6 @@ program main
   end do
   deallocate(xx)
 
-  100 format(a,i2,a)
+  100 format('(',i2,'(f10.6))')
 
 end program main
