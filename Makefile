@@ -12,7 +12,7 @@ FF = gfortran
 # FLIBS = -lblas -llapack
 
 # Dependencies of main program
-objects=$(OBJ)/base_types.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/misc.o
+objects=$(OBJ)/base_types.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/misc.o $(OBJ)/legendre.o
 
 # Main program
 $(BIN)/main: $(OBJ)/main.o $(objects)
@@ -22,6 +22,8 @@ $(OBJ)/main.o: $(SRC)/main.f90 $(objects)
 
 # Modules
 $(OBJ)/misc.o: $(SRC)/misc.f90 $(OBJ)/base_types.o
+	$(FF) $(FFlags) -J$(OBJ) -c -o $@ $<
+$(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/lib_array.o $(OBJ)/base_types.o
 	$(FF) $(FFlags) -J$(OBJ) -c -o $@ $<
 $(OBJ)/integration.o: $(SRC)/integration.f90 $(OBJ)/lib_array.o $(OBJ)/base_types.o
 	$(FF) $(FFlags) -J$(OBJ) -c -o $@ $<

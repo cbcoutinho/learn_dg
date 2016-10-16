@@ -8,38 +8,15 @@ module misc
       real(dp), intent(in), dimension(:):: xx
       real(dp), dimension(:), allocatable:: yy
     end function func1
-  end interface
 
-  procedure(func1), pointer :: ptr1 => null()
-
-  abstract interface
     pure function func2(xx, aa) result(yy)
       import
-      integer:: i, N
       real(dp), intent(in), dimension(:):: xx, aa
       real(dp), dimension(:), allocatable:: yy
     end function func2
   end interface
 
-  procedure(func2), pointer :: ptr2 => null()
-
 contains
-
-  pure function basis_1D(x, alpha) result(y)
-    integer:: ii, N
-    real(dp), intent(in), dimension(:):: x, alpha
-    real(dp), dimension(:), allocatable:: y
-
-    N = size(alpha)
-    allocate(y(size(x)))
-    y = 0.0d0
-
-    do ii = 1, N
-      y = y + alpha(ii)*x**real(ii-1, dp)
-    end do
-
-  end function basis_1D
-
 
   pure function myfun(x) result(y)
     real(dp), intent(in), dimension(:):: x
@@ -48,6 +25,7 @@ contains
     allocate(y(size(x)))
     y = x**2.0d0
 
+    return
   end function myfun
 
 
@@ -88,6 +66,7 @@ contains
     allocate(y(size(x)))
     y = func(x) + 3.3d0 * x
 
+    return
   end function fancy
 
 end module misc
