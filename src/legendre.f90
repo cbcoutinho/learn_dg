@@ -1,20 +1,42 @@
 module legendre
   use base_types, only: dp
+  use misc, only: func1, func2
   use lib_array, only: linspace, invert_matrix
   implicit none
 
 contains
 
+  pure subroutine basis_1D_ptr(order, basis_num, ptr)
+    ! Input/output variables
+    integer, intent(in):: order, basis_num
+
+    function local_basis_1D(x) result(y)
+      real(dp), dimension(:), intent(in):: x
+      real(dp), dimension(:), allocatable:: y
+
+      real(dp), dimension(:, :), allocatable:: V, Vinv
+      call vandermonde(order, V, Vinv)
+
+      allocate(y(size(x)))
+      allocate(y(size(x)))
+
+      y = basis_1D([x], Vinv(:, basis_num))
+
+      return
+    end function local_basis_1D
+
+    return
+  end subroutine basis_1D_ptr
+
   pure function basis_1D(x, alpha) result(y)
     ! Input/output variables
     real(dp), intent(in), dimension(:):: x, alpha
-    real(dp), dimension(:), allocatable:: y
+    real(dp), dimension(:):: y
 
     ! Local variables
     integer:: ii, N
 
     N = size(alpha)
-    allocate(y(size(x)))
     y = 0.0d0
 
     do ii = 1, N
@@ -24,7 +46,7 @@ contains
   end function basis_1D
 
 
-  subroutine vandermonde(order, V, Vinv)
+  pure subroutine vandermonde(order, V, Vinv)
     integer:: ii, jj, order
     real(dp), dimension(order+1):: x
     real(dp), dimension(:, :), allocatable:: V, Vinv

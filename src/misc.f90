@@ -55,7 +55,7 @@ contains
     real(dp), intent(in), dimension(:):: x
     real(dp), dimension(:), allocatable:: y
 
-    interface   AFunc
+    interface AFunc
         pure function func(xx) result(yy)
         import
         real(dp), intent(in), dimension(:):: xx
