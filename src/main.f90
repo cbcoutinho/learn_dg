@@ -9,7 +9,7 @@ program main
   procedure(func1), pointer :: ptr1 => null()
   procedure(func2), pointer :: ptr2 => null()
 
-  integer:: order = 2, NN = 15
+  integer:: order = 6, NN = 15
   integer:: ii, jj
   real(dp), dimension(:), allocatable:: xx
   real(dp), dimension(:, :), allocatable:: V, Vinv
@@ -28,6 +28,6 @@ program main
   end do
   deallocate(xx)
 
-  100 format('(',i2,'(f10.6))')
+  100 format('(',i2,'(f10.5))')
 
 end program main
