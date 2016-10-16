@@ -15,22 +15,23 @@ program main
   ! call integrate(ptr, a, b, result)
   ! write(*,*) result
 
-  integer:: order = 2, s = 1, N=2, NN = 25
+  integer:: order = 5, s = 1, N=2, NN = 15
   integer:: ii, jj
   real(dp):: mysum
   real(dp), dimension(:), allocatable:: x, xx
   real(dp), dimension(:,:), allocatable:: V, Vinv
 
+  character(50):: format_string
+
   allocate(V(order+1, order+1), Vinv(order+1, order+1))
   allocate(x(order+1), xx(NN))
 
-  V = 0.0d0
   call linspace(-1.0d0, 1.0d0, x)
-  write(*,*) x
-  write(*,*)
 
-  V = reshape([ ((x(ii)**real(jj-1,dp), ii = 1, order+1), jj = 1, order+1) ], [ order+1, order+1 ])
+  V = reshape([((x(ii)**real(jj-1,dp), ii = 1, order+1), jj = 1, order+1) ], [ order+1, order+1 ])
+
   call invert_matrix(order+1, V, Vinv)
+  deallocate(x)
 
   ! do ii = 1, order+1
   !   write(*,*) (V(ii, jj), jj = 1, order+1)
@@ -43,10 +44,14 @@ program main
 
   call linspace(-1.0d0, 1.0d0, xx)
 
+  write(format_string, 100) '(', order+2, '(f10.6))'
+
   ptr2 => basis_1D
   do ii = 1, NN
-    write(*,100) xx(ii), (ptr2([xx(ii)], Vinv(:,jj)), jj = 1, order+1)
+    write(*,format_string) xx(ii), (ptr2([xx(ii)], Vinv(:,jj)), jj = 1, order+1)
   end do
+  deallocate(xx)
 
-  100 format (4(f10.6))
+  100 format(a,i2,a)
+
 end program main
