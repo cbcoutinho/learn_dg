@@ -9,11 +9,11 @@ program main
   procedure(func1), pointer :: ptr1 => null()
   procedure(func2), pointer :: ptr2 => null()
 
-  integer:: order = 6, NN = 15
+  integer:: order = 6, NN = 50
   integer:: ii, jj
   real(dp), dimension(:), allocatable:: xx
   real(dp), dimension(:, :), allocatable:: V, Vinv
-  character(50):: format_string
+  character(100):: format_string
 
   call vandermonde(order, V, Vinv)
 

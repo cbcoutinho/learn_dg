@@ -47,4 +47,4 @@ clean:
 # run: $(BIN)/main
 #		mpiexec $(BIN)/main
 run: $(BIN)/main
-	$(BIN)/main
+	$(BIN)/main 2>&1 | tee data.out
