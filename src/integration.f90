@@ -15,7 +15,7 @@ contains
     real(dp), intent(out):: result
     interface AFunc
       pure function func(y)
-        import
+        import dp
         real(dp), intent(in), dimension(:)::y
         real(dp), dimension(:), allocatable:: func
       end function func

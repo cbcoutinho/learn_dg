@@ -4,13 +4,13 @@ module misc
 
   abstract interface
     pure function func1(xx) result(yy)
-      import
+      import dp
       real(dp), intent(in), dimension(:):: xx
       real(dp), dimension(:), allocatable:: yy
     end function func1
 
     pure function func2(xx, aa) result(yy)
-      import
+      import dp
       real(dp), intent(in), dimension(:):: xx, aa
       real(dp), dimension(:), allocatable:: yy
     end function func2
@@ -57,7 +57,7 @@ contains
 
     interface AFunc
         pure function func(xx) result(yy)
-        import
+        import dp
         real(dp), intent(in), dimension(:):: xx
         real(dp), dimension(:), allocatable:: yy
       end function func

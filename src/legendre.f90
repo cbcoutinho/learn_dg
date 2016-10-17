@@ -6,7 +6,7 @@ module legendre
 
 contains
 
-  ! subroutine basis_1D_ptr(order, basis_num, ptr)
+  ! subroutine basis_1D_sub(order, basis_num, ptr)
   !   ! Input/output variables
   !   integer, intent(in):: order, basis_num
   !
@@ -25,7 +25,8 @@ contains
   !   end function local_basis_1D
   !
   !   return
-  ! end subroutine basis_1D_ptr
+  ! end subroutine basis_1D_sub
+
 
   pure function basis_1D(x, alpha) result(y)
     ! Input/output variables
