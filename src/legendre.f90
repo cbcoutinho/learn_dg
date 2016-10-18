@@ -63,7 +63,7 @@ contains
 
     call linspace(-1.0d0, 1.0d0, x)
 
-    V_flat(:) = [([([x(ii)**real(jj-1,dp)], ii = 1, order+1)], jj = 1, order+1)]
+    V_flat = [( [( [x(ii)**real(jj-1,dp)], ii = 1, order+1)], jj = 1, order+1)]
 
     V = reshape([ V_flat ], [ order+1, order+1 ])
 
