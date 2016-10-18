@@ -1,6 +1,6 @@
 module legendre
   use base_types, only: dp
-  use misc, only: func1, func2
+  use misc, only: func1, func2, r8mat_print
   use lib_array, only: linspace, invert_matrix
   implicit none
 
@@ -48,17 +48,82 @@ contains
 
 
   subroutine vandermonde(order, V, Vinv)
-    integer:: ii, jj, order
+    integer:: ii, jj, order, info
+    integer, dimension(order+1):: permunation
     real(dp), dimension(order+1):: x
-    real(dp), dimension(:, :), allocatable:: V, Vinv
+    real(dp), dimension((order+1)**2):: V_flat
+    real(dp), dimension(:, :), allocatable:: V, Vinv, eye, lower, upper, LU
 
-    allocate(V(order+1, order+1), Vinv(order+1, order+1))
+    allocate(V(order+1, order+1))
+    allocate(Vinv(order+1, order+1))
+    allocate(eye(order+1, order+1))
+    allocate(lower(order+1, order+1))
+    allocate(upper(order+1, order+1))
+    allocate(LU(order+1, order+1))
 
     call linspace(-1.0d0, 1.0d0, x)
 
-    V = reshape([ ( (x(ii)**real(jj-1,dp), ii = 1, order+1), jj = 1, order+1) ], [ order+1, order+1 ])
+    V_flat(:) = [([([x(ii)**real(jj-1,dp)], ii = 1, order+1)], jj = 1, order+1)]
+
+    V = reshape([ V_flat ], [ order+1, order+1 ])
+
+    call r8mat_print(order+1, order+1, V, 'Original V Matrix: ')
 
     call invert_matrix(order+1, V, Vinv)
+
+    ! call r8mat_print(order+1, order+1, V, 'V Matrix after inverse: ')
+    ! call r8mat_print(order+1, order+1, Vinv, 'Inverse of V Matrix: ')
+
+    eye = 0.0d0
+    do ii = 1, order+1
+      eye(ii,ii) = 1.0d0
+    end do
+
+    ! call r8mat_print(order+1, order+1, eye, 'Identity matrix: ')
+
+    ! call dgesv (order+1, order+1, V, order+1, permunation, eye, order+1, info)
+    ! call r8mat_print(order+1, order+1, V, 'V Matrix after dgesv: ')
+    ! call r8mat_print(order+1, order+1, eye, 'dgesv Output: ')
+
+    call dgetrf (order+1, order+1, V, order+1, permunation, info)
+    call r8mat_print(order+1, order+1, V, 'V Matrix after dgetrf: ')
+
+    ! write(*,*) permunation(:)
+    !
+    ! lower = 0.0d0
+    ! upper = 0.0d0
+    ! do ii = 1, order+1
+    !   lower(ii,ii) = 1.0d0
+    !   upper(ii,ii) = V(ii,ii)
+    !   if ( ii > 1 ) then
+    !     lower(ii, 1:ii-1) = V(ii, 1:ii-1)
+    !   end if
+    !   if ( ii < order+1 ) then
+    !     upper(ii, ii+1:order+1) = V(ii, ii+1:order+1)
+    !   end if
+    ! end do
+    !
+    ! call r8mat_print(order+1, order+1, lower, 'Lower unitriangular matrix: ')
+    ! call r8mat_print(order+1, order+1, upper, 'Upper triangular matrix: ')
+    !
+    ! LU = matmul(lower, upper)
+    ! do ii = 1, order+1
+    !   if (permunation(ii) /= ii) then
+    !     swap = LU(ii, :)
+    !     LU(ii, :) = LU(permunation(ii), :)
+    !     LU(permunation(ii), :) = swap
+    !   end if
+    ! end do
+    !
+    ! call r8mat_print(order+1, order+1, LU, 'P*L*U: ')
+
+    call dgetrs ('No transpose', order+1, order+1, V, order+1, permunation, eye, order+1, info)
+    call r8mat_print(order+1, order+1, V, 'V Matrix after dgetrs: ')
+    call r8mat_print(order+1, order+1, eye, 'dgetrs output: ')
+
+    Vinv = eye
+
+    ! stop
 
     return
   end subroutine vandermonde

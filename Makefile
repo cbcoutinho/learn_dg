@@ -9,8 +9,8 @@ FORTRANLIB_SRC=$(current_dir)/src/fortranlib/src
 # Compiler
 FF = gfortran
 RM = rm -f
-# FFlags = -Wall -fbounds-check
-# FLIBS = -lblas -llapack
+FFlags = -Wall -fbounds-check
+FLIBS = -lblas -llapack
 
 .DEFAULT_GOAL := $(BIN)/main
 
@@ -31,7 +31,7 @@ $(OBJ)/base_types.o: $(FORTRANLIB_SRC)/base_types.f90
 $(OBJ)/misc.o: $(SRC)/misc.f90 $(OBJ)/base_types.o
 	$(FF) $(FFlags) -J$(OBJ) -c -o $@ $<
 $(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/base_types.o
-	$(FF) $(FFlags) -J$(OBJ) -c -o $@ $<
+	$(FF) $(FFlags) -J$(OBJ) -c -o $@ $< $(FLIBS)
 $(OBJ)/integration.o: $(SRC)/integration.f90 $(OBJ)/lib_array.o $(OBJ)/base_types.o
 	$(FF) $(FFlags) -J$(OBJ) -c -o $@ $<
 
@@ -47,4 +47,4 @@ clean:
 # run: $(BIN)/main
 #		mpiexec $(BIN)/main
 run: $(BIN)/main
-	$(BIN)/main 2>&1 | tee data.out
+	$(BIN)/main

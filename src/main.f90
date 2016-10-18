@@ -9,22 +9,27 @@ program main
   procedure(func1), pointer :: ptr1 => null()
   procedure(func2), pointer :: ptr2 => null()
 
-  integer:: order = 6, NN = 50
+
+  integer:: order = 4, NN = 50
   integer:: ii, jj
   real(dp), dimension(:), allocatable:: xx
   real(dp), dimension(:, :), allocatable:: V, Vinv
   character(100):: format_string
 
   call vandermonde(order, V, Vinv)
-
   allocate(xx(NN))
   call linspace(-1.0d0, 1.0d0, xx)
 
-  write(format_string, 100) order+2
-
   ptr2 => basis_1D
+
+
+
+  write(format_string, 100) order+2
+  open(unit=101, file='data.out', status="replace", action="write")
+
   do ii = 1, NN
-    write(*,format_string) xx(ii), (ptr2([xx(ii)], Vinv(:,jj)), jj = 1, order+1)
+    write(101,format_string) xx(ii), (ptr2([xx(ii)], Vinv(:,jj)), jj = 1, order+1)
+    write(*, format_string) xx(ii), (ptr2([xx(ii)], Vinv(:,jj)), jj = 1, order+1)
   end do
   deallocate(xx)
 
