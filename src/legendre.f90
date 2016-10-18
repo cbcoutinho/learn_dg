@@ -47,85 +47,102 @@ contains
   end function basis_1D
 
 
-  subroutine vandermonde(order, V, Vinv)
-    integer:: ii, jj, order, info
-    integer, dimension(order+1):: permunation
-    real(dp), dimension(order+1):: x
-    real(dp), dimension((order+1)**2):: V_flat
-    real(dp), dimension(:, :), allocatable:: V, Vinv, eye, lower, upper, LU
-
-    allocate(V(order+1, order+1))
-    allocate(Vinv(order+1, order+1))
-    allocate(eye(order+1, order+1))
-    allocate(lower(order+1, order+1))
-    allocate(upper(order+1, order+1))
-    allocate(LU(order+1, order+1))
+  subroutine vandermonde(n, V, Vinv)
+    integer:: ii, jj
+    integer:: n
+    real(dp), dimension(n):: x
+    real(dp), dimension((n)**2):: V_flat
+    real(dp), dimension(n, n):: V, Vinv, eye
 
     call linspace(-1.0d0, 1.0d0, x)
 
-    V_flat = [( [( [x(ii)**real(jj-1,dp)], ii = 1, order+1)], jj = 1, order+1)]
+    V_flat = [( [( [x(ii)**real(jj-1, dp)], ii = 1, n)], jj = 1, n)]
+    V = reshape([ V_flat ], [ n, n ])
 
-    V = reshape([ V_flat ], [ order+1, order+1 ])
-
-    call r8mat_print(order+1, order+1, V, 'Original V Matrix: ')
-
-    call invert_matrix(order+1, V, Vinv)
-
-    ! call r8mat_print(order+1, order+1, V, 'V Matrix after inverse: ')
-    ! call r8mat_print(order+1, order+1, Vinv, 'Inverse of V Matrix: ')
+    ! call r8mat_print(n, n, V, 'Original V Matrix: ')
 
     eye = 0.0d0
-    do ii = 1, order+1
+    do ii = 1, n
       eye(ii,ii) = 1.0d0
     end do
 
-    ! call r8mat_print(order+1, order+1, eye, 'Identity matrix: ')
-
-    ! call dgesv (order+1, order+1, V, order+1, permunation, eye, order+1, info)
-    ! call r8mat_print(order+1, order+1, V, 'V Matrix after dgesv: ')
-    ! call r8mat_print(order+1, order+1, eye, 'dgesv Output: ')
-
-    call dgetrf (order+1, order+1, V, order+1, permunation, info)
-    call r8mat_print(order+1, order+1, V, 'V Matrix after dgetrf: ')
-
-    ! write(*,*) permunation(:)
-    !
-    ! lower = 0.0d0
-    ! upper = 0.0d0
-    ! do ii = 1, order+1
-    !   lower(ii,ii) = 1.0d0
-    !   upper(ii,ii) = V(ii,ii)
-    !   if ( ii > 1 ) then
-    !     lower(ii, 1:ii-1) = V(ii, 1:ii-1)
-    !   end if
-    !   if ( ii < order+1 ) then
-    !     upper(ii, ii+1:order+1) = V(ii, ii+1:order+1)
-    !   end if
-    ! end do
-    !
-    ! call r8mat_print(order+1, order+1, lower, 'Lower unitriangular matrix: ')
-    ! call r8mat_print(order+1, order+1, upper, 'Upper triangular matrix: ')
-    !
-    ! LU = matmul(lower, upper)
-    ! do ii = 1, order+1
-    !   if (permunation(ii) /= ii) then
-    !     swap = LU(ii, :)
-    !     LU(ii, :) = LU(permunation(ii), :)
-    !     LU(permunation(ii), :) = swap
-    !   end if
-    ! end do
-    !
-    ! call r8mat_print(order+1, order+1, LU, 'P*L*U: ')
-
-    call dgetrs ('No transpose', order+1, order+1, V, order+1, permunation, eye, order+1, info)
-    call r8mat_print(order+1, order+1, V, 'V Matrix after dgetrs: ')
-    call r8mat_print(order+1, order+1, eye, 'dgetrs output: ')
-
-    Vinv = eye
-
-    ! stop
+    call linsolve_quick (n, V, n, eye, Vinv)
 
     return
   end subroutine vandermonde
+
+  subroutine linsolve_quick (n, a, nrhs, b, x)
+
+    ! Quick wrapper around linsolve
+
+    integer,  intent(in)                          :: n, nrhs
+    real(dp), intent(in),     dimension(n, n)     :: a
+    real(dp), intent(in),     dimension(n, nrhs)  :: b
+    real(dp), intent(out),    dimension(n, nrhs)  :: x
+
+    integer,                  dimension(n)        :: P
+    real(dp),                 dimension(n, n)     :: LU
+
+    call linsolve (n, a, n, b, x, LU, P, .False.)
+    return
+  end subroutine linsolve_quick
+
+  subroutine linsolve (n, a, nrhs, b, x, LU, P, toggle)
+    ! This routine is a wrapper dgesv, splitting it into its two primary
+    ! components:
+    !             dgetrf - Decomposes A into P*L*U
+    !             dgetrs - Uses P*L*U to solve for x (Ax=b => (P*L*U)x=b)
+    !
+    ! Splitting these two up like this allows you to save the decomposed
+    ! version of 'a' so that you don't have to do it again. If 'toggle' is
+    ! equal to true, then the decomposition has already occured and LU can be
+    ! trusted - OK to skip dgetrf
+
+    ! Dummy variables
+    integer,  intent(in)                          :: n, nrhs
+    integer,  intent(inout),  dimension(n)        :: P
+    real(dp), intent(in),     dimension(n, nrhs)  :: b
+    real(dp), intent(in),     dimension(n, n)     :: a
+    real(dp), intent(out),    dimension(n, nrhs)  :: x
+    real(dp), intent(inout),  dimension(n, n)     :: LU
+    logical,  intent(in)                          :: toggle
+
+    ! Local variables
+    integer                                       :: info
+    integer,                  dimension(n)        :: my_P
+    real(dp),                 dimension(n, n)     :: my_a
+    real(dp),                 dimension(n, nrhs)  :: my_b
+
+    my_a = a
+    my_b = b
+
+    if ( .not. toggle ) then
+      call dgetrf (n, n, my_a, n, my_P, info)
+
+      if ( info /= 0 ) then
+        write ( *, '(a)' ) ' '
+        write ( *, '(a)' ) 'DGETRF'
+        write ( *, '(a,i8)' ) '  Factorization failed, INFO = ', info
+        stop
+      end if
+
+      LU  = my_a
+      P   = my_P
+
+    end if
+
+    call dgetrs ('No transpose', n, nrhs, LU, n, P, my_b, n, info)
+
+    if ( info /= 0 ) then
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'DGETRS'
+      write ( *, '(a,i8)' ) '  Back substitution failed, INFO = ', info
+      stop
+    end if
+
+    x = my_b
+
+    return
+  end subroutine linsolve
 
 end module legendre

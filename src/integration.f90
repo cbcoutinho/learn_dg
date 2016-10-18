@@ -14,10 +14,10 @@ contains
     real(dp), intent(in):: a, b
     real(dp), intent(out):: result
     interface AFunc
-      pure function func(y)
+      pure function func(xx) result(yy)
         import dp
-        real(dp), intent(in), dimension(:)::y
-        real(dp), dimension(:), allocatable:: func
+        real(dp), intent(in), dimension(:) ::xx
+        real(dp), dimension(:), allocatable :: yy
       end function func
     end interface AFunc
 
