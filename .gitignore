@@ -1,1 +1,12 @@
+# Object files
+*.o
+*.mod
+
+# Executable files
+main
+main.exe
+a.out
+a.exe
+
+# File out
 data.out
