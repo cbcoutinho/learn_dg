@@ -42,7 +42,9 @@ contains
 
       allocate(x(N), w(N), y(N))
 
+      ! call cgwt(a, b, N, x, w)
       call lgwt(a, b, N, x, w)
+
       call sub(x, y)
       result = sum(y * w)
 
@@ -53,8 +55,8 @@ contains
 
       ! Check if error is acceptable, as well as whether the loop was gone
       ! through at least twice (N = 3, 4, 5...)
-      if ( error < eps .or. &
-            (abs(result) < eps .and. N > 5) ) then
+      if ( (error < eps .or. abs(result) < eps) &
+           .and. N > 5 ) then
         exit
       else
         N = N + 1
@@ -71,9 +73,9 @@ contains
     ! http://www.mathworks.com/matlabcentral/fileexchange/4540
 
     ! Variables in/out
-    integer, intent(in):: num_pts
-    real(wp), intent(in):: a, b
-    real(wp), dimension(:):: x, w
+    integer, intent(in) :: num_pts
+    real(wp), intent(in) :: a, b
+    real(wp), intent(out), dimension(:) :: x, w
 
     ! Local variables
     integer:: ii, jj, N, N1, N2
@@ -101,7 +103,7 @@ contains
 
     y0 = 2.0_wp
 
-    do ii = 1, 100
+    do
       L(:, 1) = 1.0_wp
       Lp(:, 1) = 0.0_wp
 
@@ -116,7 +118,7 @@ contains
       Lpp = real(N2,wp) * (L(:,N1) - y * L(:,N2)) / (1.0_wp - y**2.0_wp)
 
       y0 = y
-      y = y - L(:,N2)/Lpp
+      y = y0 - L(:,N2)/Lpp
 
       if ( maxval(abs(y-y0)) < eps ) then
         exit
@@ -128,5 +130,28 @@ contains
         (real(N2,wp) / real(N1,wp))**2.0_wp
 
   end subroutine lgwt
+
+
+  subroutine cgwt(a, b, num_pts, x, w)
+    ! This function is a function to determine the points and weights associated with Chebyshev-Gauss quadrature
+
+    ! Variables in/out
+    integer, intent(in) :: num_pts
+    real(wp), intent(in) :: a, b
+    real(wp), intent(out), dimension(:) :: x, w
+
+    ! Local variables
+    integer:: ii
+    real(wp), parameter:: pi = 4.0_wp*datan(1.0_wp)
+
+    x = dcos((real(2*[( ii, ii = 1, num_pts )]-1,wp))/real(2*num_pts, wp) * pi)
+
+    w = pi/real(num_pts,wp) / ((1.0_wp - x**2.0_wp)**(-0.5_wp))
+
+    ! write(*,*) x
+    ! write(*,*) w
+    ! stop
+
+  end subroutine cgwt
 
 end module integration
