@@ -133,7 +133,7 @@ contains
 
 
   subroutine cgwt(a, b, num_pts, x, w)
-    ! This function is a function to determine the points and weights associated with Chebyshev-Gauss quadrature
+    ! This function  determines the points and weights associated with Chebyshev-Gauss quadrature
 
     ! Variables in/out
     integer, intent(in) :: num_pts
