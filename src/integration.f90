@@ -14,12 +14,6 @@ contains
     real(wp), intent(in):: a, b
     real(wp), intent(out):: result
     interface
-      ! pure function func(xx) result(yy)
-      !   import wp
-      !   real(wp), intent(in), dimension(:) :: xx
-      !   real(wp), dimension(:), allocatable :: yy
-      ! end function func
-
       subroutine sub(xx, yy)
         import wp
         real(wp), intent(in), dimension(:) :: xx
@@ -111,7 +105,7 @@ contains
       Lp(:, 2) = 1.0_wp
 
       do jj = 2, N1
-        L(:, jj+1) = ((2.0_wp*real(jj,wp)-1.0_wp)*y*L(:, jj) - &
+        L(:, jj+1) = ( (2.0_wp*real(jj,wp)-1.0_wp) * y * L(:, jj) - &
                       real(jj-1, wp) * L(:, jj-1)) / real(jj, wp)
       end do
 
