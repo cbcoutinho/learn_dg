@@ -10,7 +10,7 @@ FORTRANLIB_SRC=$(current_dir)/src/fortranlib/src
 FF = gfortran
 RM = rm -f
 FFlags = -Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1 -g -fcheck=all -fbacktrace
-# FFlags = -O3
+# FFlags = -Wall -Wextra -Wimplicit-interface -fPIC -Werror -fmax-errors=1 -O3 -march=native -ffast-math -funroll-loops
 FLIBS = -lblas -llapack
 
 .DEFAULT_GOAL := $(BIN)/main
