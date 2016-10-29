@@ -68,7 +68,6 @@ contains
 
     do ii = 1+dx, N
 
-      ! y = y + real(dx, wp) * alpha(ii)*x**real(ii-1, wp)
       if (dx == 0) then
         yx = alpha(ii)*x**real(ii-1, wp)
       else ! Hoping for the best that dx == 1
