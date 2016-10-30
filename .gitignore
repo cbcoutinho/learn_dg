@@ -10,3 +10,6 @@ a.exe
 
 # File out
 data.out
+
+__pycache__
+.ipynb_checkpoints
