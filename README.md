@@ -5,6 +5,8 @@ from scratch.
 First download lapack/blas from here:
 'http://www.netlib.org/lapack/#_lapack_for_windows'
 
+
+
 Install using CMAKE, and then move the libblas.dll.a and liblapack.dll.a
 libraries into wherever mingw expects to find libraries:
 
