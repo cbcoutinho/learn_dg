@@ -74,6 +74,7 @@ contains
     ! Local variables
     integer:: ii, jj, N, N1, N2
     real(wp), parameter:: eps=sqrt(epsilon(1.0_wp))
+    ! real(wp), parameter:: eps=1d-10
     real(wp), dimension(:), allocatable:: xu, array1, y, y0, Lpp
     real(wp), dimension(:, :), allocatable:: L, Lp
     real(wp), parameter:: pi = 4.0_wp*datan(1.0_wp)
@@ -114,7 +115,7 @@ contains
       y0 = y
       y = y0 - L(:,N2)/Lpp
 
-      if ( maxval(abs(y-y0)) < eps ) then
+      if ( norm2(y-y0) < eps ) then
         exit
       end if
     end do
