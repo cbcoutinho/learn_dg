@@ -211,7 +211,7 @@ contains
     integer,                  dimension(n)        :: P
     real(wp),                 dimension(n, n)     :: LU
 
-    call linsolve (n, a, n, b, x, LU, P, .False.)
+    call linsolve (n, a, nrhs, b, x, LU, P, .False.)
     return
   end subroutine linsolve_quick
 
