@@ -59,27 +59,18 @@ program main
     deallocate(IeN)
   end do
 
-  call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')
+  ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')
 
-  ! GlobalA(1,1) = 1.0_wp
-  ! GlobalA(1, 2:num_nodes) = 0.0_wp
-  ! GlobalA(num_nodes, num_nodes) = 1.0_wp
-  ! GlobalA(num_nodes, 1:num_nodes-1) = 0.0_wp
   GlobalA(1,:) = 0.0_wp
   GlobalA(1,1) = 1.0_wp
   GlobalA(2,:) = 0.0_wp
   GlobalA(2,2) = 1.0_wp
 
-  call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness matrix:')
+  ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness matrix:')
 
   call linsolve_quick(num_nodes, GlobalA, 1, GlobalB, GlobalX)
 
-  call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
-
-  write(*,*) shape(GlobalA)
-  write(*,*) shape(GlobalB)
-  write(*,*) shape(GlobalX)
-
+  ! call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
   call r8mat_print(num_nodes, 1, GlobalX, 'Global Solution Vector:')
 
 
