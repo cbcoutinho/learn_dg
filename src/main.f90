@@ -45,8 +45,8 @@ program main
 
   GlobalA(:,:)  = 0.0_wp
   GlobalB(:)    = 0.0_wp
-  GlobalB(1)    = 1.0_wp
-  GlobalB(2)    = 2.0_wp
+  GlobalB(1)    = 0.0_wp
+  GlobalB(2)    = 1.0_wp
   GlobalX(:)    = 0.0_wp
 
   call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
@@ -91,10 +91,18 @@ program main
   open(unit=21, file='data.out', iostat=ios, status="replace", action="write")
   if ( ios /= 0 ) stop "Error opening file 21"
   r = vel/diff
-  analytical = ( 1.0_wp - dexp ( r * xcoordsN ) / ( 1.0_wp - dexp ( r ) ) )
+
+  ! do ii = 1, num_nodes
+  !   write(*,*) (1.0_wp-exp(xcoordsN(ii))) / (1.0_wp - exp(1.0_wp))
+  ! end do
+  ! stop
+
+  analytical = ( 1.0_wp - dexp ( r * xcoordsN )) / ( 1.0_wp - dexp ( r ) )
   do ii = 1, num_nodes
     write(21,*) xcoordsN(ii), GlobalX(ii), analytical(ii)
   end do
+  write(*,*)
+  write(*,*) norm2([GlobalX - analytical])
   close(unit=21, iostat=ios)
   if ( ios /= 0 ) stop "Error closing file unit 21"
 
