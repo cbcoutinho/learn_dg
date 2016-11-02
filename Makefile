@@ -21,7 +21,8 @@ FLIBS = -lblas -llapack
 objects=$(OBJ)/lib_array.o \
 	$(OBJ)/integration.o \
 	$(OBJ)/misc.o \
-	$(OBJ)/legendre.o
+	$(OBJ)/legendre.o \
+	$(OBJ)/io.o
 
 # Fortran library
 $(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
@@ -34,6 +35,8 @@ $(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/i
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
 $(OBJ)/integration.o: $(SRC)/integration.f90 $(OBJ)/lib_array.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
+$(OBJ)/io.o: $(SRC)/io.f90
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Main program
 $(OBJ)/main.o: $(SRC)/main.f90 $(objects)
@@ -41,10 +44,13 @@ $(OBJ)/main.o: $(SRC)/main.f90 $(objects)
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
+mesh:
+	gmsh $(BIN)/test1D.geo -order 1 -1 $(BIN)/test1D.msh > /dev/null 2>&1
+
 clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main
+	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main $(BIN)/test1D.msh
 
 # run: $(BIN)/main
 #		mpiexec $(BIN)/main
-run: $(BIN)/main
-	$(BIN)/main
+run: $(BIN)/main mesh
+	$(BIN)/main $(BIN)/test1D.msh
