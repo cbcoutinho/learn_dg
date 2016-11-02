@@ -45,14 +45,12 @@ $(OBJ)/main.o: $(SRC)/main.f90 $(objects)
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
-mesh:
+mesh: $(BIN)/test1D.geo
 	gmsh $(BIN)/test1D.geo -order 1 -1 $(BIN)/test1D.msh > /dev/null 2>&1
 
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main $(BIN)/test1D.msh
 
-# run: $(BIN)/main
-#		mpiexec $(BIN)/main
 run: $(BIN)/main mesh
 	$(BIN)/main $(BIN)/test1D.msh
 

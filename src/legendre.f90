@@ -21,7 +21,7 @@ contains
     order = size(xcoords)-1
 
     do ii = 1, size(xcoords)
-      Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, 1, 1, xcoords), jj = 1, order+1 )]
+      Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, dx1, dx2, xcoords), jj = 1, order+1 )]
     end do
     return
   end subroutine getIe
@@ -91,10 +91,14 @@ contains
       allocate(J(size(s)))
       call XorJ(s, 1, J)
 
+      ! write(*,*) dx1, dx2
+
       y = 1.0_wp
 
-      y = y * basis_1D(s, Vinv(:, basis_num1), dx1) / J
-      y = y * basis_1D(s, Vinv(:, basis_num2), dx2) / J
+      ! Here we have to be careful because J is not always needed in the first
+      ! two function calls. Instead of using if statements, we can use an exponent so that when dx_ = 0, J is 1
+      y = y * basis_1D(s, Vinv(:, basis_num1), dx1) / (J**real(dx1,wp))
+      y = y * basis_1D(s, Vinv(:, basis_num2), dx2) / (J**real(dx2,wp))
       y = y * J
 
       deallocate(J)

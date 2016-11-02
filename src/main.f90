@@ -5,7 +5,7 @@ program main
   use io, only: get_command_argument_wrapper, read_gmsh_file_1D
   implicit none
 
-  integer :: ii, jj, num_nodes
+  integer :: ii, jj, num_nodes, ios
   ! integer :: order = 4
   ! real(wp), dimension(:),   allocatable :: xcoords
   ! real(wp), dimension(:,:), allocatable :: Ie
@@ -47,7 +47,6 @@ program main
 
   ! Add elemental stiffness matrices to Global Stiffness Matrix
   do ii = 1, size(orderN)
-
     ! Reallocate elemental stiffness matrix
     allocate(IeN(orderN(ii)+1, orderN(ii)+1))
     call getIe(1, 1, xcoordsN(elem_connN(ii,:)), IeN)
@@ -55,8 +54,18 @@ program main
 
     GlobalA(elem_connN(ii,:), elem_connN(ii,:)) = &
         GlobalA(elem_connN(ii,:), elem_connN(ii,:)) + (-IeN)
+    ! deallocate(IeN)
+
+    ! allocate(IeN(orderN(ii)+1, orderN(ii)+1))
+    call getIe(0, 1, xcoordsN(elem_connN(ii,:)), IeN)
+    ! call r8mat_print(orderN(ii)+1, orderN(ii)+1, IeN, 'Elemental Stiffness Matrix:')
+
+    GlobalA(elem_connN(ii,:), elem_connN(ii,:)) = &
+        GlobalA(elem_connN(ii,:), elem_connN(ii,:)) + 1.0_wp*IeN
+
     ! Deallocate elemental stiffness matrix after every loop
     deallocate(IeN)
+    ! stop
   end do
 
   ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')
@@ -73,6 +82,13 @@ program main
   ! call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
   call r8mat_print(num_nodes, 1, GlobalX, 'Global Solution Vector:')
 
+  open(unit=21, file='data.out', iostat=ios, status="replace", action="write")
+  if ( ios /= 0 ) stop "Error opening file 21"
+  do ii = 1, num_nodes
+    write(21,*) xcoordsN(ii), GlobalX(ii)
+  end do
+  close(unit=21, iostat=ios)
+  if ( ios /= 0 ) stop "Error closing file unit 21"
 
   if ( allocated(orderN) )    deallocate(orderN)
   if ( allocated(elem_connN) ) deallocate(elem_connN)
