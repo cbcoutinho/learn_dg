@@ -10,9 +10,10 @@ FORTRANLIB_SRC=$(current_dir)/src/fortranlib/src
 FF = gfortran
 FFLAGS = -Wall -std=f2008 -Wextra -fPIC -fmax-errors=1 -Wimplicit-interface
 # Debug flags:
-FFLAGS += -g -fcheck=all -fbacktrace # -ffpe-trap=zero,overflow,underflow
+FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 # Release flags:
 # FFLAGS += -O3 -march=native -ffast-math -funroll-loops
+
 FLIBS = -lblas -llapack
 
 .DEFAULT_GOAL := $(BIN)/main
@@ -54,3 +55,6 @@ clean:
 #		mpiexec $(BIN)/main
 run: $(BIN)/main mesh
 	$(BIN)/main $(BIN)/test1D.msh
+
+debug: clean $(BIN)/main mesh
+	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(BIN)/test1D.msh

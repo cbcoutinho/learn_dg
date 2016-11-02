@@ -88,6 +88,7 @@ contains
     close(unit=21, iostat=ios, status="delete")
     if ( ios /= 0 ) stop "Error closing file unit 21"
 
+    return
   end subroutine read_gmsh_file_1D
 
 end module io

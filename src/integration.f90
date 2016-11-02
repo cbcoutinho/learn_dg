@@ -35,11 +35,10 @@ contains
       result_old = result
 
       allocate(x(N), w(N), y(N))
-      write(*,*) N, result, result_old, error, eps
 
       ! call cgwt(N, x, w)
-      call lgwt(a, b, N, x, w)
-      ! call gaussquad(N, x, w)
+      ! call lgwt(a, b, N, x, w)
+      call gaussquad(N, x, w)
 
       call sub(x, y)
       result = sum(y * w)
@@ -50,6 +49,7 @@ contains
       error = sqrt((result-result_old)**2.0_wp)
       ! error = abs((result-result_old)/(result_old+eps))
       ! write(*,*) N, result, error
+      ! write(*,*) N, result, result_old, error, eps
 
       ! Check if error is acceptable, as well as whether the loop was gone
       ! through at least twice (N = 3, 4, 5...)

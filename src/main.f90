@@ -38,10 +38,10 @@ program main
   allocate(GlobalB(num_nodes))
   allocate(GlobalX(num_nodes))
 
-  GlobalA = 0.0_wp
-  GlobalB = 0.0_wp
-  GlobalB(1) = 1.0_wp
-  GlobalX = 0.0_wp
+  GlobalA(:,:)  = 0.0_wp
+  GlobalB(:)    = 0.0_wp
+  GlobalB(1)    = 1.0_wp
+  GlobalX(:)    = 0.0_wp
 
   call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
 
@@ -51,34 +51,40 @@ program main
     ! Reallocate elemental stiffness matrix
     allocate(IeN(orderN(ii)+1, orderN(ii)+1))
     call getIe(1, 1, xcoordsN(elem_connN(ii,:)), IeN)
-    call r8mat_print(orderN(ii)+1, orderN(ii)+1, IeN, 'Elemental Stiffness Matrix:')
+    ! call r8mat_print(orderN(ii)+1, orderN(ii)+1, IeN, 'Elemental Stiffness Matrix:')
 
     GlobalA(elem_connN(ii,:), elem_connN(ii,:)) = &
-        GlobalA(elem_connN(ii,:), elem_connN(ii,:)) + IeN
+        GlobalA(elem_connN(ii,:), elem_connN(ii,:)) + (-IeN)
     ! Deallocate elemental stiffness matrix after every loop
     deallocate(IeN)
   end do
 
+  call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')
+
+  ! GlobalA(1,1) = 1.0_wp
+  ! GlobalA(1, 2:num_nodes) = 0.0_wp
+  ! GlobalA(num_nodes, num_nodes) = 1.0_wp
+  ! GlobalA(num_nodes, 1:num_nodes-1) = 0.0_wp
+  GlobalA(1,:) = 0.0_wp
   GlobalA(1,1) = 1.0_wp
-  GlobalA(1, 2:num_nodes) = 0.0_wp
-  GlobalA(num_nodes, num_nodes) = 1.0_wp
-  GlobalA(num_nodes, 1:num_nodes-1) = 0.0_wp
+  GlobalA(2,:) = 0.0_wp
+  GlobalA(2,2) = 1.0_wp
 
   call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness matrix:')
 
-  write(*,*) num_nodes
   call linsolve_quick(num_nodes, GlobalA, 1, GlobalB, GlobalX)
 
-  ! write(*,*) shape(GlobalA)
-  ! write(*,*) shape(GlobalB)
-  ! write(*,*) shape(GlobalX)
-
   call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
+
+  write(*,*) shape(GlobalA)
+  write(*,*) shape(GlobalB)
+  write(*,*) shape(GlobalX)
+
   call r8mat_print(num_nodes, 1, GlobalX, 'Global Solution Vector:')
 
 
-  if ( allocated(elem_connN) ) deallocate(elem_connN)
   if ( allocated(orderN) )    deallocate(orderN)
+  if ( allocated(elem_connN) ) deallocate(elem_connN)
   if ( allocated(xcoordsN) )  deallocate(xcoordsN)
   if ( allocated(GlobalA) )  deallocate(GlobalA)
   if ( allocated(GlobalB) )  deallocate(GlobalB)
