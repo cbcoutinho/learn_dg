@@ -31,30 +31,24 @@ def polyders(N):
         p.append(polyder(i, N))
     return p
 
-def getX(coords):
+def getXorJ(coords, dx):
     N = len(coords)
-    def x(s):
+    def XorJ(s):
         y = 0
-        p = polys(N)
-        for ii in range(N):
-            y += p[ii](s)*coords[ii]
-        return y
-    return x
+        if dx == 0:
+            p = polys(N)
+        elif dx == 1:
+            p = polyders(N)
 
-def getJ(coords):
-    N = len(coords)
-    def j(s):
-        y = 0
-        p = polyders(N)
         for ii in range(N):
             y += p[ii](s)*coords[ii]
         return y
-    return j
+    return XorJ
 
 def getIe(coords):
     N = len(coords)
-    X = getX(coords)
-    J = getJ(coords)
+    X = getXorJ(coords, 0)
+    J = getXorJ(coords, 1)
     p0 = polys(N)
     p1 = polyders(N)
 

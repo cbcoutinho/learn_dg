@@ -7,8 +7,11 @@ import matplotlib.pyplot as plt
 filename = 'data.out'
 
 df = pd.read_csv(filename,
-                 index_col=0,
+                 names=['x', 'FEM', 'analytical'],
                  delim_whitespace=True)
 
-df.plot()
+df.sort_values(by='x', inplace=True)
+
+df.plot('x', ['FEM', 'analytical'], marker='o')
+# df.plot('x', 'analytical', marker='s')
 plt.show()
