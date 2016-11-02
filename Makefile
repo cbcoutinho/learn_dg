@@ -4,7 +4,7 @@ current_dir = $(shell pwd)
 SRC=$(current_dir)/src
 OBJ=$(current_dir)/obj
 BIN=$(current_dir)/bin
-DOC=$(current_dir)/doc
+DOCS=$(current_dir)/docs
 FORTRANLIB_SRC=$(current_dir)/src/fortranlib/src
 
 # Compiler
@@ -58,5 +58,5 @@ run: $(BIN)/main mesh
 debug: clean $(BIN)/main mesh
 	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(BIN)/test1D.msh
 
-docs: example-project.md
-	ford -d ./src -o ./doc --exclude_dir ./src/fortranlib example-project.md
+docs: learn_dg.md
+	ford learn_dg.md
