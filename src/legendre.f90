@@ -6,10 +6,25 @@ module legendre
   implicit none
 
   private :: basis_1D, vandermonde
-  public  :: integrate_basis_1d, integrate_basis_1d_Ie
+  private :: integrate_basis_1d, integrate_basis_1d_Ie
+  public  :: getIe
   public  :: linsolve_quick, linsolve
 
 contains
+
+  subroutine getIe(dx1, dx2, xcoords, Ie)
+    integer, intent(in) :: dx1, dx2
+    real(wp), intent(in), dimension(:) :: xcoords
+    real(wp), intent(out), dimension(:,:) :: Ie
+
+    integer :: ii, jj, order
+    order = size(xcoords)-1
+
+    do ii = 1, size(xcoords)
+      Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, 1, 1, xcoords), jj = 1, order+1 )]
+    end do
+    return
+  end subroutine getIe
 
   function integrate_basis_1d_Ie(N, ii, jj, dx1, dx2, xcoords) result(integral)
     integer, intent(in)                     :: N, ii, jj, dx1, dx2
@@ -51,6 +66,7 @@ contains
 
     call integrate(local_wrapper, -1.0_wp, 1.0_wp, integral)
 
+    return
   contains
     subroutine XorJ(s, dx, out)
       integer, intent(in)                  :: dx
@@ -129,7 +145,7 @@ contains
 
       return
     end subroutine local_basis_1D
-
+    
   end function integrate_basis_1d
 
   function basis_1D(x, alpha, dx) result(y)
@@ -184,7 +200,7 @@ contains
     return
   end subroutine vandermonde
 
-  subroutine linsolve_quick (n, a, nrhs, b, x)
+  subroutine linsolve_quick(n, a, nrhs, b, x)
 
     ! Quick wrapper around linsolve
 

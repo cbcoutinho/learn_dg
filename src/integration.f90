@@ -35,17 +35,20 @@ contains
       result_old = result
 
       allocate(x(N), w(N), y(N))
+      write(*,*) N, error, eps
 
       ! call cgwt(N, x, w)
-      ! call lgwt(a, b, N, x, w)
-      call gaussquad(N, x, w)
+      call lgwt(a, b, N, x, w)
+      ! call gaussquad(N, x, w)
 
       call sub(x, y)
       result = sum(y * w)
 
       deallocate(x, w, y)
 
-      error = abs((result-result_old)/result_old)
+      error = norm2([result, result_old])
+      ! error = norm2(result-result_old)
+      ! error = abs((result-result_old)/(result_old+eps))
       ! write(*,*) N, result, error
 
       ! Check if error is acceptable, as well as whether the loop was gone
