@@ -35,7 +35,7 @@ contains
       result_old = result
 
       allocate(x(N), w(N), y(N))
-      write(*,*) N, error, eps
+      write(*,*) N, result, result_old, error, eps
 
       ! call cgwt(N, x, w)
       call lgwt(a, b, N, x, w)
@@ -46,8 +46,8 @@ contains
 
       deallocate(x, w, y)
 
-      error = norm2([result, result_old])
-      ! error = norm2(result-result_old)
+      ! error = norm2([result, result_old])
+      error = sqrt((result-result_old)**2.0_wp)
       ! error = abs((result-result_old)/(result_old+eps))
       ! write(*,*) N, result, error
 

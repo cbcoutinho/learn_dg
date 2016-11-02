@@ -145,7 +145,7 @@ contains
 
       return
     end subroutine local_basis_1D
-    
+
   end function integrate_basis_1d
 
   function basis_1D(x, alpha, dx) result(y)
@@ -157,7 +157,6 @@ contains
 
     ! Local variables
     integer                                         :: ii, N
-    ! real(wp),                           parameter   :: eps=sqrt(epsilon(1.0_wp))
 
     allocate(y(size(x)), yx(size(x)))
     N = size(alpha)

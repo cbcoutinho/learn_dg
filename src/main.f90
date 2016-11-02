@@ -47,7 +47,7 @@ program main
 
   ! Add elemental stiffness matrices to Global Stiffness Matrix
   do ii = 1, size(orderN)
-    
+
     ! Reallocate elemental stiffness matrix
     allocate(IeN(orderN(ii)+1, orderN(ii)+1))
     call getIe(1, 1, xcoordsN(elem_connN(ii,:)), IeN)
@@ -67,7 +67,6 @@ program main
   call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness matrix:')
 
   write(*,*) num_nodes
-  stop
   call linsolve_quick(num_nodes, GlobalA, 1, GlobalB, GlobalX)
 
   ! write(*,*) shape(GlobalA)
