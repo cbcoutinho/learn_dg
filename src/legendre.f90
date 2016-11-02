@@ -6,9 +6,88 @@ module legendre
   implicit none
 
   private :: basis_1D, vandermonde
-  public  :: integrate_basis_1d, linsolve_quick, linsolve
+  public  :: integrate_basis_1d, integrate_basis_1d_Ie
+  public  :: linsolve_quick, linsolve
 
 contains
+
+  function integrate_basis_1d_Ie(N, ii, jj, dx1, dx2, xcoords) result(integral)
+    integer, intent(in)                     :: N, ii, jj, dx1, dx2
+    real(wp), intent(in), dimension(:)      :: xcoords
+    real(wp)                                :: integral
+
+    integer                                 :: order, basis_num1, basis_num2
+    real(wp), dimension(:, :), allocatable  :: Vinv
+
+    order = N
+    basis_num1 = ii
+    basis_num2 = jj
+    allocate(Vinv(order+1, order+1))
+    call vandermonde(order+1, Vinv)
+
+    ! Check to make sure xcoords is an array of size (N+1)
+    if ( size(xcoords) /=  order+1 ) then
+      write(*,*) 'The shape of `xcoords` is outside the acceptable range for a'
+      write(*,*) '1D basis function.'
+      write(*,*) 'Shape(xcoords) should be [', 2, order+1, '], not ', shape(xcoords)
+    end if
+
+    ! Check to make sure requested basis number is within available basis
+    ! if ( basis_num > order+1 ) then
+    !   write(*,*) 'The basis_num input is larger than number of available basis'
+    !   write(*,*) 'nodes (order+1). Make sure order and basis_num are correctly'
+    !   write(*,*) 'set before calling'
+    !   stop
+    ! end if
+
+    ! Check to make sure differentiation(s) is either 0 or 1
+    ! if ( (dx1 < 0 .or. dx1 > 1) .and. &
+    !      (dx2 < 0 .or. dx2 > 1) ) then
+    !   write(*,*) 'Derivatives of order lower than 0 or higher than 1 are not allowed'
+    !   write(*,*) 'integrate_basis_1d_Ie was called with dx1, dx2 = ', dx1, dx2
+    !   write(*,*) 'Check to make sure that the function was called correctly'
+    !   stop
+    ! end if
+
+    call integrate(local_wrapper, -1.0_wp, 1.0_wp, integral)
+
+  contains
+    subroutine XorJ(s, dx, out)
+      integer, intent(in)                  :: dx
+      real(wp), intent(in),   dimension(:) :: s
+      real(wp), intent(out),  dimension(:) :: out
+
+      integer                              :: ii
+
+      out = 0.0_wp
+      do ii = 1, size(xcoords)
+        out = out + basis_1D(s, Vinv(:, ii), dx) * xcoords(ii)
+      end do
+
+    end subroutine XorJ
+
+    subroutine local_wrapper(s, y)
+      real(wp), intent(in),   dimension(:)  :: s
+      real(wp), intent(out),  dimension(:)  :: y
+
+      real(wp), dimension(:), allocatable   :: J
+
+      allocate(J(size(s)))
+      call XorJ(s, 1, J)
+
+      y = 1.0_wp
+
+      y = y * basis_1D(s, Vinv(:, basis_num1), dx1) / J
+      y = y * basis_1D(s, Vinv(:, basis_num2), dx2) / J
+      y = y * J
+
+      deallocate(J)
+
+      return
+    end subroutine local_wrapper
+
+  end function integrate_basis_1d_Ie
+
   function integrate_basis_1d(order, basis_num, dx) result(integral)
     integer, intent(in) :: order, basis_num, dx
     real(wp)            :: integral
@@ -20,12 +99,14 @@ contains
 
     ! call r8mat_print(order+1, order+1, Vinv, 'Inverse Vandermonde')
 
+    ! Check to make sure requested basis number is within available basis
     if ( basis_num > order+1 ) then
       write(*,*) 'The basis_num input is larger than number of available basis nodes (order+1)'
       write(*,*) 'Make sure order and basis_num are correctly set before calling'
       stop
     end if
 
+    ! Check to make sure differentiation is either 0 or 1
     if ( dx < 0 .or. dx > 1 ) then
       write(*,*) 'Derivatives of order lower than 0 or higher than 1 are not allowed'
       write(*,*) 'integrate_basis_1d was called with dx = ', dx
@@ -60,7 +141,7 @@ contains
 
     ! Local variables
     integer                                         :: ii, N
-    real(wp),                           parameter   :: eps=sqrt(epsilon(1.0_wp))
+    ! real(wp),                           parameter   :: eps=sqrt(epsilon(1.0_wp))
 
     allocate(y(size(x)), yx(size(x)))
     N = size(alpha)

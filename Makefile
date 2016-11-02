@@ -8,7 +8,7 @@ FORTRANLIB_SRC=$(current_dir)/src/fortranlib/src
 
 # Compiler
 FF = gfortran
-FFLAGS = -Wall -std=f2008 -Wextra -Wimplicit-interface -fPIC -fmax-errors=1
+FFLAGS = -Wall -std=f2008 -Wextra -fPIC -fmax-errors=1 -Wimplicit-interface
 # Debug flags:
 FFLAGS += -g -fcheck=all -fbacktrace
 # Release flags:

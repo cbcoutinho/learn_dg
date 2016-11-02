@@ -36,8 +36,9 @@ contains
 
       allocate(x(N), w(N), y(N))
 
-      ! call cgwt(a, b, N, x, w)
-      call lgwt(a, b, N, x, w)
+      ! call cgwt(N, x, w)
+      ! call lgwt(a, b, N, x, w)
+      call gaussquad(N, x, w)
 
       call sub(x, y)
       result = sum(y * w)
@@ -56,7 +57,7 @@ contains
         N = N + 1
       end if
     end do
-
+    return
   end subroutine integrate
 
 
@@ -73,8 +74,8 @@ contains
 
     ! Local variables
     integer:: ii, jj, N, N1, N2
-    real(wp), parameter:: eps=sqrt(epsilon(1.0_wp))
-    ! real(wp), parameter:: eps=1d-10
+    ! real(wp), parameter:: eps=sqrt(epsilon(1.0_wp))
+    real(wp), parameter:: eps=1d-10
     real(wp), dimension(:), allocatable:: xu, array1, y, y0, Lpp
     real(wp), dimension(:, :), allocatable:: L, Lp
     real(wp), parameter:: pi = 4.0_wp*datan(1.0_wp)
@@ -124,15 +125,15 @@ contains
     w = ( b-a ) / ((1.0_wp - y**2.0_wp)*Lpp**2.0_wp) * &
         (real(N2,wp) / real(N1,wp))**2.0_wp
 
+    return
   end subroutine lgwt
 
 
-  subroutine cgwt(a, b, num_pts, x, w)
+  subroutine cgwt(num_pts, x, w)
     ! This function  determines the points and weights associated with Chebyshev-Gauss quadrature
 
     ! Variables in/out
     integer, intent(in) :: num_pts
-    real(wp), intent(in) :: a, b
     real(wp), intent(out), dimension(:) :: x, w
 
     ! Local variables
@@ -146,7 +147,42 @@ contains
     ! write(*,*) x
     ! write(*,*) w
     ! stop
-
+    return
   end subroutine cgwt
+
+  subroutine gaussquad(n, r1, r2)
+    ! This code was originally found at the following website:
+    !  http://rosettacode.org/wiki/Numerical_integration/Gauss-Legendre_Quadrature#Fortran
+
+    integer                 :: n, k
+    real(wp), parameter     :: pi = 4*atan(1._wp)
+    real(wp)                :: r1(:), r2(:), x, f, df, dx
+    integer                 :: i,  iter
+    real(wp), allocatable   :: p0(:), p1(:), tmp(:)
+
+    p0 = [1._wp]
+    p1 = [1._wp, 0._wp]
+
+    do k = 2, n
+       tmp = ((2*k-1)*[p1,0._wp]-(k-1)*[0._wp, 0._wp,p0])/k
+       p0 = p1; p1 = tmp
+    end do
+    do i = 1, n
+      x = cos(pi*(i-0.25_wp)/(n+0.5_wp))
+      do iter = 1, 10
+        f = p1(1); df = 0._wp
+        do k = 2, size(p1)
+          df = f + x*df
+          f  = p1(k) + x * f
+        end do
+        dx =  f / df
+        x = x - dx
+        if (abs(dx)<10*epsilon(dx)) exit
+      end do
+      r1(i) = x
+      r2(i) = 2/((1-x**2)*df**2)
+    end do
+    return
+  end subroutine
 
 end module integration
