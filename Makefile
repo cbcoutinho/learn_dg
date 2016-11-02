@@ -40,7 +40,7 @@ $(OBJ)/io.o: $(SRC)/io.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Main program
-$(OBJ)/main.o: $(SRC)/main.f90 $(objects)
+$(OBJ)/main.o: $(SRC)/main.f90 $(objects) mesh
 	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $<
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)

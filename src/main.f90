@@ -6,7 +6,7 @@ program main
   implicit none
 
   integer   :: ii, jj, num_nodes, ios
-  real(wp)  :: vel = 1.0_wp, diff = 0.1_wp
+  real(wp)  :: vel = -1.0_wp, diff = 0.5_wp
   real(wp)  :: r
 
   ! integer :: order = 4
