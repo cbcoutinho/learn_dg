@@ -11,5 +11,6 @@ a.exe
 # File out
 data.out
 
+# Test folder related stuff
 __pycache__
 .ipynb_checkpoints
