@@ -1,31 +1,28 @@
 import numpy as np
 from scipy.integrate import quadrature
 
-def A(N):
-    return np.vander(np.linspace(-1,1,N), increasing=True)
-
-def B(N):
-    return np.eye(N)
-
 def coefs(N):
-    return np.linalg.solve(A(N), B(N))
-
-def poly(ii, N):
-    alpha = coefs(N)
-    return np.poly1d(alpha.T[ii][::-1])
+    A = np.vander(np.linspace(-1,1,N), increasing=True)
+    B = np.eye(N)
+    return np.linalg.solve(A, B)
 
 def polys(N):
+    def poly(ii, N):
+        alpha = coefs(N)
+        return np.poly1d(alpha.T[ii][::-1])
+
     p = []
     for i in range(N):
         p.append(poly(i, N))
     return p
 
-def polyder(ii, N):
-    alpha = coefs(N)
-    p = np.poly1d(alpha.T[ii][::-1])
-    return np.polyder(p)
 
 def polyders(N):
+    def polyder(ii, N):
+        alpha = coefs(N)
+        p = np.poly1d(alpha.T[ii][::-1])
+        return np.polyder(p)
+
     p = []
     for i in range(N):
         p.append(polyder(i, N))
