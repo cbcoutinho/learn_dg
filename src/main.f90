@@ -9,14 +9,14 @@ program main
   integer             :: ii, num_nodes, ios
   real(wp), parameter :: diff = 0.1_wp, vel = -1.0_wp
 
-  integer,  dimension(:),   allocatable :: orderN
-  integer,  dimension(:,:), allocatable :: elem_connN
-  real(wp), dimension(:),   allocatable :: xcoordsN, GlobalB, GlobalX
-  real(wp), dimension(:,:), allocatable :: IeN, GlobalA
+  integer,  dimension(:),   allocatable :: order
+  integer,  dimension(:,:), allocatable :: elem_conn
+  real(wp), dimension(:),   allocatable :: xcoords, GlobalB, GlobalX
+  real(wp), dimension(:,:), allocatable :: Ie, GlobalA
   character(len=50) :: arg
 
   call get_command_argument_wrapper(arg)
-  call read_gmsh_file_1D(arg, num_nodes, orderN, elem_connN, xcoordsN)
+  call read_gmsh_file_1D(arg, num_nodes, order, elem_conn, xcoords)
 
   allocate(GlobalA(num_nodes, num_nodes))
   allocate(GlobalB(num_nodes))
@@ -31,23 +31,23 @@ program main
   call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
 
   ! Add elemental stiffness matrices to Global Stiffness Matrix
-  do ii = 1, size(orderN)
+  do ii = 1, size(order)
     ! Reallocate elemental stiffness matrix
-    allocate(IeN(orderN(ii)+1, orderN(ii)+1))
-    call getIe(1, 1, xcoordsN(elem_connN(ii,:)), IeN)
-    ! call r8mat_print(orderN(ii)+1, orderN(ii)+1, IeN, 'Elemental Stiffness Matrix:')
+    allocate(Ie(order(ii)+1, order(ii)+1))
+    call getIe(1, 1, xcoords(elem_conn(ii,:)), Ie)
+    ! call r8mat_print(order(ii)+1, order(ii)+1, Ie, 'Elemental Stiffness Matrix:')
 
-    GlobalA(elem_connN(ii,:), elem_connN(ii,:)) = &
-        GlobalA(elem_connN(ii,:), elem_connN(ii,:)) - diff*IeN
+    GlobalA(elem_conn(ii,:), elem_conn(ii,:)) = &
+        GlobalA(elem_conn(ii,:), elem_conn(ii,:)) - diff*Ie
 
-    call getIe(0, 1, xcoordsN(elem_connN(ii,:)), IeN)
-    ! call r8mat_print(orderN(ii)+1, orderN(ii)+1, IeN, 'Elemental Stiffness Matrix:')
+    call getIe(0, 1, xcoords(elem_conn(ii,:)), Ie)
+    ! call r8mat_print(order(ii)+1, order(ii)+1, Ie, 'Elemental Stiffness Matrix:')
 
-    GlobalA(elem_connN(ii,:), elem_connN(ii,:)) = &
-        GlobalA(elem_connN(ii,:), elem_connN(ii,:)) - vel*IeN
+    GlobalA(elem_conn(ii,:), elem_conn(ii,:)) = &
+        GlobalA(elem_conn(ii,:), elem_conn(ii,:)) - vel*Ie
 
     ! Deallocate elemental stiffness matrix after every loop
-    deallocate(IeN)
+    deallocate(Ie)
     ! stop
   end do
 
@@ -67,14 +67,14 @@ program main
   if ( ios /= 0 ) stop "Error opening file 21"
 
   do ii = 1, num_nodes
-    write(21,*) xcoordsN(ii), GlobalX(ii)
+    write(21,*) xcoords(ii), GlobalX(ii)
   end do
   close(unit=21, iostat=ios)
   if ( ios /= 0 ) stop "Error closing file unit 21"
 
-  if ( allocated(orderN) )    deallocate(orderN)
-  if ( allocated(elem_connN) ) deallocate(elem_connN)
-  if ( allocated(xcoordsN) )  deallocate(xcoordsN)
+  if ( allocated(order) )    deallocate(order)
+  if ( allocated(elem_conn) ) deallocate(elem_conn)
+  if ( allocated(xcoords) )  deallocate(xcoords)
   if ( allocated(GlobalA) )  deallocate(GlobalA)
   if ( allocated(GlobalB) )  deallocate(GlobalB)
   if ( allocated(GlobalX) )  deallocate(GlobalX)
