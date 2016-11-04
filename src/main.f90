@@ -7,7 +7,7 @@ program main
   implicit none
 
   integer             :: ii, num_nodes, ios
-  real(wp), parameter :: diff = 0.1_wp, vel = -1.0_wp
+  real(wp), parameter :: diff = 0.1_wp, vel = -5.0_wp
 
   integer,  dimension(:),   allocatable :: order
   integer,  dimension(:,:), allocatable :: elem_conn

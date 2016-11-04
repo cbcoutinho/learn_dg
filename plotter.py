@@ -15,7 +15,7 @@ df.sort_values(by='x', inplace=True)
 #df.plot('x', ['FEM', 'analytical'], marker='o')
 # df.plot('x', 'analytical', marker='s')
 
-r = -1.0/0.1
+r = -5.0/0.1
 x = np.linspace(0, 1, 100)
 
 def analytical(x):
