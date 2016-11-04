@@ -24,7 +24,8 @@ objects=$(OBJ)/lib_array.o \
 	$(OBJ)/integration.o \
 	$(OBJ)/misc.o \
 	$(OBJ)/legendre.o \
-	$(OBJ)/io.o
+	$(OBJ)/io.o \
+	$(OBJ)/linalg.o
 
 # Fortran library
 $(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
@@ -33,8 +34,10 @@ $(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
 # Modules
 $(OBJ)/misc.o: $(SRC)/misc.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-$(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/integration.o
+$(OBJ)/linalg.o: $(SRC)/linalg.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
+$(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/linalg.o
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 $(OBJ)/integration.o: $(SRC)/integration.f90 $(OBJ)/lib_array.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 $(OBJ)/io.o: $(SRC)/io.f90

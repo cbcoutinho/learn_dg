@@ -1,6 +1,7 @@
 program main
   use iso_fortran_env, only: wp => real64
-  use legendre, only: getIe, linsolve_quick
+  use legendre, only: getIe
+  use linalg, only: linsolve_quick
   use misc, only: r8mat_print
   use io, only: get_command_argument_wrapper, read_gmsh_file_1D
   implicit none
