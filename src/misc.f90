@@ -2,54 +2,53 @@ module misc
   use iso_fortran_env, only: wp => real64
   implicit none
 
-  abstract interface
-    pure function func1(xx) result(yy)
-      import wp
-      real(wp), intent(in), dimension(:):: xx
-      real(wp), dimension(:), allocatable:: yy
-    end function func1
-
-    pure function func2(xx, aa) result(yy)
-      import wp
-      real(wp), intent(in), dimension(:):: xx, aa
-      real(wp), dimension(:), allocatable:: yy
-    end function func2
-  end interface
+  ! abstract interface
+  !   pure function func1(xx) result(yy)
+  !     import wp
+  !     real(wp), intent(in), dimension(:):: xx
+  !     real(wp), dimension(:), allocatable:: yy
+  !   end function func1
+  !
+  !   pure function func2(xx, aa) result(yy)
+  !     import wp
+  !     real(wp), intent(in), dimension(:):: xx, aa
+  !     real(wp), dimension(:), allocatable:: yy
+  !   end function func2
+  ! end interface
 
 contains
 
   subroutine r8mat_print ( m, n, a, title )
-
-  !*****************************************************************************80
-  !
-  !! R8MAT_PRINT prints an R8MAT.
-  !
-  !  Discussion:
-  !
-  !    An R8MAT is a two dimensional matrix of double precision real values.
-  !
-  !  Licensing:
-  !
-  !    This code is distributed under the GNU LGPL license.
-  !
-  !  Modified:
-  !
-  !    12 September 2004
-  !
-  !  Author:
-  !
-  !    John Burkardt
-  !
-  !  Parameters:
-  !
-  !    Input, integer M, the number of rows in A.
-  !
-  !    Input, integer N, the number of columns in A.
-  !
-  !    Input, real ( kind = 8 ) A(M,N), the matrix.
-  !
-  !    Input, character ( len = * ) TITLE, a title to be printed.
-  !
+    !*****************************************************************************80
+    !
+    !! R8MAT_PRINT prints an R8MAT.
+    !
+    !  Discussion:
+    !
+    !    An R8MAT is a two dimensional matrix of double precision real values.
+    !
+    !  Licensing:
+    !
+    !    This code is distributed under the GNU LGPL license.
+    !
+    !  Modified:
+    !
+    !    12 September 2004
+    !
+    !  Author:
+    !
+    !    John Burkardt
+    !
+    !  Parameters:
+    !
+    !    Input, integer M, the number of rows in A.
+    !
+    !    Input, integer N, the number of columns in A.
+    !
+    !    Input, real ( kind = 8 ) A(M,N), the matrix.
+    !
+    !    Input, character ( len = * ) TITLE, a title to be printed.
+    !
     implicit none
 
     integer ( kind = 4 ) m
@@ -65,38 +64,38 @@ contains
 
   subroutine r8mat_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
 
-  !*****************************************************************************80
-  !
-  !! R8MAT_PRINT_SOME prints some of an R8MAT.
-  !
-  !  Discussion:
-  !
-  !    An R8MAT is a two dimensional matrix of double precision real values.
-  !
-  !  Licensing:
-  !
-  !    This code is distributed under the GNU LGPL license.
-  !
-  !  Modified:
-  !
-  !    26 March 2005
-  !
-  !  Author:
-  !
-  !    John Burkardt
-  !
-  !  Parameters:
-  !
-  !    Input, integer M, N, the number of rows and columns.
-  !
-  !    Input, real ( kind = 8 ) A(M,N), an M by N matrix to be printed.
-  !
-  !    Input, integer ILO, JLO, the first row and column to print.
-  !
-  !    Input, integer IHI, JHI, the last row and column to print.
-  !
-  !    Input, character ( len = * ) TITLE, an optional title.
-  !
+    !*****************************************************************************80
+    !
+    !! R8MAT_PRINT_SOME prints some of an R8MAT.
+    !
+    !  Discussion:
+    !
+    !    An R8MAT is a two dimensional matrix of double precision real values.
+    !
+    !  Licensing:
+    !
+    !    This code is distributed under the GNU LGPL license.
+    !
+    !  Modified:
+    !
+    !    26 March 2005
+    !
+    !  Author:
+    !
+    !    John Burkardt
+    !
+    !  Parameters:
+    !
+    !    Input, integer M, N, the number of rows and columns.
+    !
+    !    Input, real ( kind = 8 ) A(M,N), an M by N matrix to be printed.
+    !
+    !    Input, integer ILO, JLO, the first row and column to print.
+    !
+    !    Input, integer IHI, JHI, the last row and column to print.
+    !
+    !    Input, character ( len = * ) TITLE, an optional title.
+    !
     implicit none
 
     integer ( kind = 4 ), parameter :: incx = 5
