@@ -40,7 +40,7 @@ $(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/i
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 $(OBJ)/integration.o: $(SRC)/integration.f90 $(OBJ)/lib_array.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-$(OBJ)/io.o: $(SRC)/io.f90
+$(OBJ)/io.o: $(SRC)/io.f90 $(OBJ)/lib_array.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Main program

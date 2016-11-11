@@ -1,5 +1,6 @@
 module io
   use iso_fortran_env, only: wp => real64
+  use lib_array, only: linspace
   implicit none
 
 contains
@@ -85,10 +86,40 @@ contains
     ! end do
     ! write(*,*)
 
-    close(unit=21, iostat=ios, status="delete")
+    close(unit=21, iostat=ios)
     if ( ios /= 0 ) stop "Error closing file unit 21"
 
     return
   end subroutine read_gmsh_file_1D
+
+  subroutine fake_data(num_nodes, order, elem_conn, xcoords)
+    integer,  intent(out)                               :: num_nodes
+    integer,  intent(out),  dimension(:),   allocatable :: order
+    integer,  intent(out),  dimension(:,:), allocatable :: elem_conn
+    real(wp), intent(out),  dimension(:),   allocatable :: xcoords
+
+    integer :: ii, num_elements
+
+    num_nodes = 11
+    num_elements = num_nodes-1
+
+    allocate(xcoords(num_nodes))
+    allocate(order(num_elements))
+    allocate(elem_conn(num_elements,2))
+
+    call linspace(0._wp, 1._wp, xcoords)
+
+    ! print*, xcoords
+
+    order = 1
+
+    do ii = 1, num_elements
+      elem_conn(ii,:) = [ii, ii+1]
+      ! print*, elem_conn(ii,:)
+    end do
+
+    ! stop
+
+  end subroutine fake_data
 
 end module io

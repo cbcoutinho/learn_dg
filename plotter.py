@@ -30,7 +30,7 @@ plt.plot(df.x, df.FEM, 'o-', x, analytical(x), '-')
 plt.subplot(212)
 plt.bar(df.x, error, width=0.01, align='center')
 
-print(np.linalg.norm(error))
+# print(np.linalg.norm(error))
 
 
 

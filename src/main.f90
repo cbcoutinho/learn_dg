@@ -3,32 +3,34 @@ program main
   use legendre, only: getIe
   use linalg, only: linsolve_quick
   use misc, only: r8mat_print
-  use io, only: get_command_argument_wrapper, read_gmsh_file_1D
+  use io, only: get_command_argument_wrapper, read_gmsh_file_1D, fake_data
   implicit none
 
   integer             :: ii, num_nodes, ios
-  real(wp), parameter :: diff = 0.1_wp, vel = -5.0_wp
+  real(wp), parameter :: diff = 0.1_wp, vel = -5._wp
 
   integer,  dimension(:),   allocatable :: order
   integer,  dimension(:,:), allocatable :: elem_conn
   real(wp), dimension(:),   allocatable :: xcoords, GlobalB, GlobalX
   real(wp), dimension(:,:), allocatable :: Ie, GlobalA
-  character(len=50) :: arg
 
-  call get_command_argument_wrapper(arg)
-  call read_gmsh_file_1D(arg, num_nodes, order, elem_conn, xcoords)
+  ! character(len=50) :: arg
+  ! call get_command_argument_wrapper(arg)
+  ! call read_gmsh_file_1D(arg, num_nodes, order, elem_conn, xcoords)
+  call fake_data(num_nodes, order, elem_conn, xcoords)
 
   allocate(GlobalA(num_nodes, num_nodes))
   allocate(GlobalB(num_nodes))
   allocate(GlobalX(num_nodes))
 
-  GlobalA(:,:)  = 0.0_wp
-  GlobalB(:)    = 0.0_wp
-  GlobalB(1)    = 0.0_wp
-  GlobalB(2)    = 1.0_wp
-  GlobalX(:)    = 0.0_wp
+  GlobalA(:,:)  = 0._wp
+  GlobalB(:)    = 0._wp
+  GlobalB(1)    = 0._wp
+  ! GlobalB(2)    = 1._wp
+  GlobalB(num_nodes)    = 1._wp
+  GlobalX(:)    = 0._wp
 
-  call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
+  ! call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
 
   ! Add elemental stiffness matrices to Global Stiffness Matrix
   do ii = 1, size(order)
@@ -53,15 +55,17 @@ program main
 
   ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')
 
-  GlobalA(1,:) = 0.0_wp
-  GlobalA(1,1) = 1.0_wp
-  GlobalA(2,:) = 0.0_wp
-  GlobalA(2,2) = 1.0_wp
+  GlobalA(1,:) = 0._wp
+  GlobalA(1,1) = 1._wp
+  ! GlobalA(2,:) = 0._wp
+  ! GlobalA(2,2) = 1._wp
+  GlobalA(num_nodes,:) = 0._wp
+  GlobalA(num_nodes,num_nodes) = 1._wp
 
   ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness matrix:')
   call linsolve_quick(num_nodes, GlobalA, 1, GlobalB, GlobalX)
   ! call r8mat_print(num_nodes, 1, GlobalB, 'Global RHS:')
-  call r8mat_print(num_nodes, 1, GlobalX, 'Global Solution Vector:')
+  ! call r8mat_print(num_nodes, 1, GlobalX, 'Global Solution Vector:')
 
   open(unit=21, file='data.out', iostat=ios, status="replace", action="write")
   if ( ios /= 0 ) stop "Error opening file 21"
@@ -69,6 +73,7 @@ program main
   do ii = 1, num_nodes
     write(21,*) xcoords(ii), GlobalX(ii)
   end do
+
   close(unit=21, iostat=ios)
   if ( ios /= 0 ) stop "Error closing file unit 21"
 
