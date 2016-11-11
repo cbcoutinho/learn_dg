@@ -17,7 +17,7 @@ FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 
 FLIBS = -lblas -llapack
 
-.DEFAULT_GOAL := $(BIN)/main
+default: clean run
 
 # Dependencies of main program
 objects=$(OBJ)/lib_array.o \
@@ -60,6 +60,9 @@ run: $(BIN)/main mesh
 
 debug: clean $(BIN)/main mesh
 	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(BIN)/test1D.msh
+
+plot: run
+	python plotter.py
 
 docs: learn_dg.md
 	ford learn_dg.md

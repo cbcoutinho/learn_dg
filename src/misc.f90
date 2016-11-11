@@ -60,7 +60,7 @@ contains
     call r8mat_print_some ( m, n, a, 1, 1, m, n, title )
 
     return
-  end
+  end subroutine r8mat_print
 
   subroutine r8mat_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
 
@@ -168,6 +168,6 @@ contains
     write ( *, '(a)' ) ' '
 
     return
-  end
+  end subroutine r8mat_print_some
 
 end module misc
