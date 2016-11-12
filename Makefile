@@ -25,6 +25,7 @@ objects=$(OBJ)/lib_array.o \
 	$(OBJ)/misc.o \
 	$(OBJ)/legendre.o \
 	$(OBJ)/io.o \
+	$(OBJ)/assembly.o \
 	$(OBJ)/linalg.o
 
 # Fortran library
@@ -33,6 +34,8 @@ $(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
 
 # Modules
 $(OBJ)/misc.o: $(SRC)/misc.f90
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
+$(OBJ)/assembly.o: $(SRC)/assembly.f90 $(OBJ)/legendre.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 $(OBJ)/linalg.o: $(SRC)/linalg.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
@@ -49,17 +52,17 @@ $(OBJ)/main.o: $(SRC)/main.f90 $(objects) mesh
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
-mesh: $(BIN)/test1D.geo
-	gmsh $(BIN)/test1D.geo -order 1 -1 $(BIN)/test1D.msh > /dev/null 2>&1
+mesh: test1D.geo
+	gmsh test1D.geo -order 1 -1 test1D.msh > /dev/null 2>&1
 
 clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main $(BIN)/test1D.msh
+	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main test1D.msh
 
 run: $(BIN)/main mesh
-	$(BIN)/main $(BIN)/test1D.msh
+	$(BIN)/main test1D.msh
 
 debug: clean $(BIN)/main mesh
-	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(BIN)/test1D.msh
+	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main test1D.msh
 
 plot: run
 	python plotter.py
