@@ -53,7 +53,7 @@ $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
 mesh: test1D.geo
-	gmsh test1D.geo -order 1 -1 test1D.msh > /dev/null 2>&1
+	gmsh test1D.geo -order 1 -1 -o test1D.msh > /dev/null 2>&1
 
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main test1D.msh
