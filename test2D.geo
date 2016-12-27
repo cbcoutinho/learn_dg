@@ -1,7 +1,7 @@
 // Inputs
 length = 2;
 width  = 2;
-meshSize = 1;
+meshSize = 0.5;
 //+
 Point(1) = {0,      0,      0, meshSize};
 Point(2) = {width,  0,      0, meshSize};
@@ -13,10 +13,10 @@ Line(2) = {2, 3};
 Line(3) = {3, 4};
 Line(4) = {4, 1};
 //+
-Physical Line( "lower" )  = { 1 };
-Physical Line( "right" )  = { 2 };
-Physical Line( "upper" )  = { 3 };
-Physical Line( "left" )   = { 4 };
+//Physical Line( "lower" )  = { 1 };
+//Physical Line( "right" )  = { 2 };
+//Physical Line( "upper" )  = { 3 };
+//Physical Line( "left" )   = { 4 };
 //+
 Line Loop(1) = {1, 2, 3, 4};
 //+

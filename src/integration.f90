@@ -3,8 +3,17 @@ module integration
   use lib_array, only: linspace
   implicit none
 
-  private :: lgwt
-  public :: integrate
+  private :: lgwt, gaussquad, cgwt
+  ! public :: lgwt, gaussquad, cgwt
+  public :: integrate, integrate2D
+
+  interface
+    function fun2d_interf(x, y) result(z)
+      import wp
+      real(wp), intent(in), dimension(:,:)  :: x, y
+      real(wp), dimension(:,:), allocatable :: z
+    end function
+  end interface
 
 contains
   subroutine integrate(sub, a, b, result)
@@ -62,6 +71,64 @@ contains
     end do
     return
   end subroutine integrate
+
+  function integrate2D(fun) result(out)
+    procedure(fun2d_interf) :: fun
+    real(wp)                :: out
+
+    integer   :: ii, N
+    real(wp)  :: out_old, eps = epsilon(0e0)
+    real(wp), dimension(:), allocatable :: x, w
+    real(wp), dimension(:,:), allocatable :: xx, yy, wx, wy, out_spread
+
+    ! Adaptive integration based on 2D Gauss-Legendre Quadrature
+    ii  = 1 ! Iteration number
+    N   = 3 ! Number of points to use
+
+    do
+      ! Allocate x (positions) and w (weights) based on roots of the Legendre
+      ! polynomial of order 'N'
+      allocate(x(N), w(N))
+      allocate(xx(N,N), yy(N,N))
+      allocate(wx(N,N), wy(N,N))
+      allocate(out_spread(N,N))
+
+      call gaussquad(N, x, w)
+
+      ! Copy the 'x' array along both the x and y axes
+      xx = spread(x, dim=1, ncopies=N)
+      yy = spread(x, dim=2, ncopies=N)
+
+      ! Copy the weights along both the x and y axes as well
+      wx = spread(w, dim=1, ncopies=N)
+      wy = spread(w, dim=2, ncopies=N)
+
+      ! Calculate the function at the xx and yy nodes, and multiply the result
+      ! with the weights: wx and wy
+      out_spread = fun(xx, yy) * wx * wy
+
+      ! Sum up the resulting array into a single scalar output
+      out = sum(reshape(out_spread, [N*N, 1]))
+      ! print*, out
+
+      ! Deallocate all arrays no longer needed. They will change size in each
+      ! iteration anyway
+      deallocate(x, w, xx, yy, wx, wy, out_spread)
+
+      ! If iteration counter is more than 1 then check exit criteria
+      if ( ( ii>1 ) .and. &
+          & norm2( [out - out_old] ) <= eps ) then
+        exit
+      else
+        out_old = out
+        ii = ii + 1
+        N = N + 1
+      end if
+
+    end do
+
+    return
+  end function
 
 
   subroutine lgwt(a, b, num_pts, x, w)

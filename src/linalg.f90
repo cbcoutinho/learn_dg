@@ -5,6 +5,38 @@ module linalg
   public  :: linsolve_quick, linsolve
 
 contains
+
+  pure function eye(N)
+    integer, intent(in)       :: N
+    real(wp), dimension(N,N)  :: eye
+
+    integer                   :: ii
+
+    eye = 0._wp; forall(ii = 1:N) eye(ii,ii) = 1._wp
+
+    return
+  end function eye
+
+  pure function inv2(J) result(invJ)
+    real(wp), dimension(2,2), intent(in)  :: J
+    real(wp), dimension(2,2)              :: invJ
+
+    invJ  = reshape( [J(2,2), -J(2,1), -J(1,2), J(1,1)], [2,2] )
+    invJ  = invJ / det2(J)
+
+    return
+  end function inv2
+
+  pure function det2(A) result(det)
+    ! Computes the determinant of a 2x2 matrix
+    real(wp), dimension(2,2), intent(in)  :: A
+    real(wp)                              :: det
+
+    det = A(1,1)*A(2,2) - A(1,2)*A(2,1)
+
+    return
+  end function det2
+
   subroutine linsolve_quick(n, a, nrhs, b, x)
 
     ! Quick wrapper around linsolve
@@ -78,4 +110,5 @@ contains
 
     return
   end subroutine linsolve
+
 end module linalg

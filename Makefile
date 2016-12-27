@@ -17,10 +17,11 @@ FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 
 FLIBS = -lblas -llapack
 
-default: clean run
+default: all
 
 # Dependencies of main program
 objects=$(OBJ)/lib_array.o \
+	$(OBJ)/lib_algebra.o \
 	$(OBJ)/integration.o \
 	$(OBJ)/misc.o \
 	$(OBJ)/legendre.o \
@@ -30,6 +31,8 @@ objects=$(OBJ)/lib_array.o \
 
 # Fortran library
 $(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
+$(OBJ)/lib_algebra.o: $(FORTRANLIB_SRC)/lib_algebra.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Modules
@@ -52,13 +55,16 @@ $(OBJ)/main.o: $(SRC)/main.f90 $(objects) mesh
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
-mesh: test1D.geo
+all: $(BIN)/main
+
+mesh: test1D.geo test2D.geo
 	gmsh test1D.geo -order 1 -1 -o test1D.msh > /dev/null 2>&1
+	gmsh test2D.geo -order 1 -2 -o test2D.msh > /dev/null 2>&1
 
 clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main test1D.msh
+	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main test1D.msh test2D.msh
 
-run: $(BIN)/main mesh
+run: all mesh
 	$(BIN)/main test1D.msh
 
 debug: clean $(BIN)/main mesh

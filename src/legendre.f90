@@ -79,7 +79,7 @@ contains
       y = 1.0_wp
 
       ! Here we have to be careful because J is not always needed in the first
-      ! two function calls. Instead of using if statements, we can use an exponent so that when dx_ = 0, J is 1
+      ! two function calls. Instead of using if statements, we can use an exponent so that when dx_ == 0, J is 1
       y = y * basis_1D(s, Vinv(:, basis_num1), dx1) / (J**real(dx1,wp))
       y = y * basis_1D(s, Vinv(:, basis_num2), dx2) / (J**real(dx2,wp))
       y = y * J
@@ -144,7 +144,7 @@ contains
 
     allocate(y(size(x)), yx(size(x)))
     N = size(alpha)
-    y = 0.0d0
+    y = 0._wp
 
     do ii = 1+dx, N
 
@@ -166,16 +166,16 @@ contains
     real(wp), dimension((n)**2):: V_flat
     real(wp), dimension(n, n):: V, Vinv, eye
 
-    call linspace(-1.0d0, 1.0d0, x)
+    call linspace(-1._wp, 1._wp, x)
 
     V_flat = [( [( [x(ii)**real(jj-1, wp)], ii = 1, n)], jj = 1, n)]
     V = reshape([ V_flat ], [ n, n ])
 
     ! call r8mat_print(n, n, V, 'Original V Matrix: ')
 
-    eye = 0.0d0
+    eye = 0._wp
     do ii = 1, n
-      eye(ii,ii) = 1.0d0
+      eye(ii,ii) = 1._wp
     end do
 
     call linsolve_quick (n, V, n, eye, Vinv)
