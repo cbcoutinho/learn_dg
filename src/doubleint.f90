@@ -1,10 +1,8 @@
 program doubleint
   use iso_fortran_env, only: wp => real64
-  use integration, only: integrate2D
-  use linalg, only: linsolve_quick, inv2, det2, eye
+  use linalg, only: linsolve_quick, eye
   use misc, only: r8mat_print
   use legendre, only: assembleElementalMatrix
-
   implicit none
 
   integer :: ii
