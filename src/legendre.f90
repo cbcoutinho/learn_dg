@@ -2,15 +2,19 @@ module legendre
   use iso_fortran_env, only: wp => real64
   use misc, only: r8mat_print
   use lib_array, only: linspace
-  use integration, only: integrate
-  use linalg, only: linsolve_quick, linsolve
+  use integration, only: integrate, integrate2D
+  use linalg, only: linsolve_quick, linsolve, inv2, det2, eye
   implicit none
 
   private :: basis_1D, vandermonde
   private :: integrate_basis_1d, integrate_basis_1d_Ie
-  public  :: getIe
+  public  :: getIe, assembleElementalMatrix
 
 contains
+
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !!!!!!! Elemental Matrix Routines 1-D !!!!!!!
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   subroutine getIe(dx1, dx2, xcoords, Ie)
     integer, intent(in) :: dx1, dx2
@@ -182,5 +186,225 @@ contains
 
     return
   end subroutine vandermonde
+
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !!!!!!! Elemental Matrix Routines 2-D !!!!!!!
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  pure function getxy(N) result(xy)
+    integer, intent(in)       :: N
+    real(wp), dimension(N,2)  :: xy
+
+    if ( N==4 ) then
+
+      xy(:,1) = [-1._wp, 1._wp, 1._wp, -1._wp]
+      xy(:,2) = [-1._wp, -1._wp, 1._wp, 1._wp]
+
+    elseif ( N==9 ) then
+
+      xy(:,1) = [-1._wp, 1._wp, 1._wp, -1._wp, 0._wp, 1._wp, 0._wp, -1._wp, 0._wp]
+      xy(:,2) = [-1._wp, -1._wp, 1._wp, 1._wp, -1._wp, 0._wp, 1._wp, 0._wp, 0._wp]
+
+    endif
+
+    return
+  end function getxy
+
+  pure function getArow(N, xi, eta) result(row)
+    integer, intent(in)     :: N
+    real(wp), intent(in)    :: xi, eta
+    real(wp), dimension(N)  :: row
+
+    if ( N == 4 ) then
+      row = [1._wp, &
+          & xi, eta, &
+          & xi*eta]
+
+    elseif ( N == 9 ) then
+      row = [1._wp, &
+          & xi, eta, &
+          & xi**2._wp, xi*eta, eta**2._wp, &
+          & xi**2._wp * eta, xi * eta**2._wp, &
+          & xi**2._wp * eta**2._wp]
+
+    endif
+
+    return
+  end function getArow
+
+  function getAlpha(N) result(alpha)
+    integer, intent(in)       :: N
+    real(wp), dimension(N,N)  :: alpha
+
+    integer                   :: ii
+    real(wp), dimension(N,N)  :: A, B
+
+    A = getA(N)
+    B = eye(N)
+
+    call linsolve_quick(N, A, N, B, alpha)
+
+    return
+
+  contains
+
+    pure function getA(N) result(A)
+      integer, intent(in)       :: N
+      real(wp), dimension(N,N)  :: A
+
+      integer                   :: ii
+      real(wp), dimension(N,2)  :: xy
+
+      xy = getxy(N)
+
+      do ii = 1,N
+        A(ii,:) = getArow(N, xy(ii,1), xy(ii,2))
+      end do
+
+      return
+    end function getA
+
+  end function getAlpha
+
+  function getJacobian(N, xi, eta, xy, alpha) result(J)
+    integer,                  intent(in)  :: N
+    real(wp),                 intent(in)  :: xi, eta
+    real(wp), dimension(N,2), intent(in)  :: xy
+    real(wp), dimension(N,N), intent(in)  :: alpha
+    real(wp), dimension(2,2)              :: J
+
+    integer                               :: ii
+    real(wp), parameter                   :: eps = epsilon(0e0)
+    real(wp), dimension(2,N)              :: P
+    real(wp), dimension(N)                :: x
+
+    ! P is a matrix containing derivatives of each basis function at (xi,eta)
+    ! P = [dN_1/dxi, dN_2/dxi, dN_3/dxi, ...
+    !      dN_1/deta, dN_2/deta, dN_3/deta, ...]
+
+    do ii = 1,N
+      x = alpha(:,ii)
+      P(1,ii) = dot_product(x, getArow(N, xi+eps, eta     )) - &
+              & dot_product(x, getArow(N, xi-eps, eta     ))
+      P(2,ii) = dot_product(x, getArow(N, xi,     eta+eps )) - &
+              & dot_product(x, getArow(N, xi,     eta-eps ))
+    end do
+
+    P = P / ( 2._wp*eps )
+
+    J = matmul(P,xy)
+
+    return
+  end function getJacobian
+
+  function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
+    ! Dummy variables
+    integer,                  intent(in)  :: N, d1, d2
+    real(wp), dimension(N,2), intent(in)  :: xy
+    real(wp), dimension(N,N)              :: Ie
+
+    ! Local variables
+    integer                   :: N1, N2
+    real(wp), dimension(N,N)  :: alpha
+
+    ! Get the locations of the nodes of an isoparametric quadrilateral (xy),
+    ! and the coefficients of the basis functions (alpha)
+    ! (both bi-linear and bi-quadratic are supported)
+    alpha = getAlpha(N)
+
+    Ie = 0._wp
+
+    do N1 = 1, N
+      do N2 = 1, N
+
+        ! fun is now implicitly defined using the following: N1, N2, d1, and d2
+        Ie(N1,N2) = Ie(N1,N2) + integrate2D(fun)
+
+      end do
+    end do
+
+  contains
+
+    function fun(xi, eta) result(out)
+      ! Dummy variables
+      real(wp), dimension(:,:), intent(in)  :: xi, eta
+      real(wp), dimension(:,:), allocatable :: out
+
+      ! Local variables
+      integer                   :: ii, jj, num_pts
+      real(wp), parameter       :: eps = epsilon(0e0)
+      real(wp)                  :: fun1, fun2
+      real(wp), dimension(2)    :: dfun1, dfun2
+      real(wp)                  :: detJ
+      real(wp), dimension(2,2)  :: J, invJ
+
+      ! Initialize function output. Actual number of pts is num_pts*num_pts,
+      ! because the meshgrid goes in both x and y directions. Only need one.
+      num_pts = size(xi,1)
+      allocate(out(num_pts,num_pts))
+      out = 0._wp
+
+      do ii = 1, num_pts
+        do jj = 1, num_pts
+
+          ! Calculate Jacobian, inverse Jacobian, and determinant of finite
+          ! element at (xi,eta),
+          J     = getJacobian(N, xi(ii,jj), eta(ii,jj), xy, alpha)
+          invJ  = inv2(J)
+          detJ  = det2(J)
+
+          ! If fun1 is just N_i, use dot_product to determine N_i
+          if ( d1 == 0 ) then
+            fun1 = dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)))
+          else
+
+            ! If fun1 contains a derivative, need to calc N_i,xi and N_i,eta
+            dfun1(1) = ( &
+            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+            & ) / ( 2._wp*eps )
+
+            dfun1(2) = ( &
+            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+            & ) / ( 2._wp*eps )
+
+            ! N_i,x = dxi/dx * N_i,xi + deta/dx * N_i,eta
+            fun1 = dot_product(invJ(d1,:), dfun1)
+
+          endif
+
+          ! If fun2 is just N_i, use dot_product to determine N_i
+          if ( d2 == 0 ) then
+            fun2 = dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)))
+          else
+
+            ! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta
+            dfun2(1) = ( &
+            & dot_product(alpha(:,N2), &
+                        & getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+            & dot_product(alpha(:,N2), &
+                        & getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+            & ) / ( 2._wp*eps )
+
+            dfun2(2) = ( &
+            & dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+            & dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+            & ) / ( 2._wp*eps )
+
+            ! N_i,y = dxi/dy * N_i,xi + deta/dy * N_i,eta
+            fun2 = dot_product(invJ(d2,:), dfun2)
+
+          endif
+
+          out(ii,jj) = fun1 * fun2 * detJ
+
+        end do
+      end do
+
+      return
+    end function fun
+
+  end function assembleElementalMatrix
 
 end module legendre
