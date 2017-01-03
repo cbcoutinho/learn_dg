@@ -60,7 +60,7 @@ all: $(BIN)/main mesh
 
 mesh: test1D.geo test2D.geo
 	gmsh test1D.geo -order 1 -1 -o test1D.msh > /dev/null 2>&1
-	gmsh test2D.geo -order 2 -2 -o test2D.msh > /dev/null 2>&1
+	gmsh test2D.geo -order 3 -2 -o test2D.msh > /dev/null 2>&1
 
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main test1D.msh test2D.msh
