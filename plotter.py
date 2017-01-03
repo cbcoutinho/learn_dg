@@ -1,8 +1,15 @@
 #!/usr/bin/python3
 
+import os, sys
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# sys.path.append(os.path.join(os.getcwd(),'src','meshio'))
+# import meshio
+# points, cells, point_data, cell_data, field_data = meshio.read('test2D.msh')
+
 
 filename = 'data.out'
 
