@@ -1,3 +1,6 @@
 [submodule "fortranlib"]
 	path = src/fortranlib
 	url = https://github.com/cbcoutinho/fortranlib.git
+[submodule "src/meshio"]
+	path = src/meshio
+	url = git@github.com:cbcoutinho/meshio.git
