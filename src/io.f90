@@ -20,10 +20,10 @@ contains
         arg = trim(arg)
       else
         exit
-      end if
+      endif
 
       ii = ii + 1
-    end do
+    enddo
 
     return
   end subroutine get_command_argument_wrapper
@@ -57,7 +57,7 @@ contains
     do
       read(21,*) blank_string
       if (trim(blank_string) == '$Nodes') exit
-    end do
+    enddo
 
     ! Read number of nodes
     read(21,*) num_vertexes
@@ -67,12 +67,12 @@ contains
       num_nodes = num_vertexes
     else
       num_nodes = 2*num_vertexes-2
-    end if
+    endif
 
     ! Read coordinate information for each vertex
     do ii = 1, num_vertexes
       read(21,*) d_int, xcoords(ii), d_real, d_real
-    end do
+    enddo
 
 
     allocate(nodes2vertex(num_nodes))
@@ -87,16 +87,16 @@ contains
           vertex = vertex+1
         elseif ( mod(ii, 2) == 0 ) then
           vertex = vertex+1
-        end if
+        endif
 
-      end do
+      enddo
     else
       nodes2vertex = [( ii, ii = 1, num_nodes )]
-    end if
+    endif
 
     do ii = 1, num_nodes
       print*, ii, nodes2vertex(ii), xcoords(nodes2vertex(ii))
-    end do
+    enddo
     print*,
     ! stop
 
@@ -123,7 +123,7 @@ contains
     do ii = 1, num_elements
       read(21,*) d_int, d_int, d_int, d_int, d_int, vertex_conn(ii,1:2)
       ! print*, pack(vertex_conn, vertex_conn == nodes2vertex)
-    end do
+    enddo
     ! print*, pack([( ii, ii = 1, num_nodes )], &
     !       & nodes2vertex == nodes2vertex(3) &
     !       & .or. nodes2vertex == nodes2vertex(5))
@@ -139,13 +139,13 @@ contains
         ! print*, loc(nodes2vertex == vertex_conn(ii,2))
         print*,  order(ii), vertex_conn(ii,:), elem_conn(ii,:)
         print*,
-      end do
-    end if
+      enddo
+    endif
     print*,
 
     do ii = 1, size(xcoords)
       print*, xcoords(ii)
-    end do
+    enddo
     print*,
 
     close(unit=21, iostat=ios)
@@ -165,7 +165,7 @@ contains
 
     do ii = 1, num_nodes
       write(21,*) xcoords(ii), GlobalX(ii)
-    end do
+    enddo
 
     close(unit=21, iostat=ios)
     if ( ios /= 0 ) stop "Error closing file unit data.out"

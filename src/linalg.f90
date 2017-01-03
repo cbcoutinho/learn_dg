@@ -90,12 +90,12 @@ contains
         write ( *, '(a)' ) 'DGETRF'
         write ( *, '(a,i8)' ) '  Factorization failed, INFO = ', info
         stop
-      end if
+      endif
 
       LU  = my_a
       P   = my_P
 
-    end if
+    endif
 
     call dgetrs ('No transpose', n, nrhs, LU, n, P, my_b, n, info)
 
@@ -104,7 +104,7 @@ contains
       write ( *, '(a)' ) 'DGETRS'
       write ( *, '(a,i8)' ) '  Back substitution failed, INFO = ', info
       stop
-    end if
+    endif
 
     x = my_b
 

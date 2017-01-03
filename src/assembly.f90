@@ -57,7 +57,7 @@ contains
       ! Deallocate elemental stiffness matrix after every loop
       deallocate(Ie)
       ! stop
-    end do
+    enddo
 
     ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')
     ! stop

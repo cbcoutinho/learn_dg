@@ -8,7 +8,7 @@ module legendre
 
   private :: basis_1D, vandermonde
   private :: integrate_basis_1d, integrate_basis_1d_Ie
-  public  :: getIe, assembleElementalMatrix
+  public  :: getIe, assembleElementalMatrix, getxy
 
 contains
 
@@ -26,7 +26,7 @@ contains
 
     do ii = 1, size(xcoords)
       Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, dx1, dx2, xcoords), jj = 1, order+1 )]
-    end do
+    enddo
     return
   end subroutine getIe
 
@@ -49,7 +49,7 @@ contains
       write(*,*) 'The shape of `xcoords` is outside the acceptable range for a'
       write(*,*) '1D basis function.'
       write(*,*) 'Shape(xcoords) should be [', 2, order+1, '], not ', shape(xcoords)
-    end if
+    endif
 
     call integrate(local_wrapper, -1.0_wp, 1.0_wp, integral)
 
@@ -65,7 +65,7 @@ contains
       out = 0.0_wp
       do ii = 1, size(xcoords)
         out = out + basis_1D(s, Vinv(:, ii), dx) * xcoords(ii)
-      end do
+      enddo
 
     end subroutine XorJ
 
@@ -110,7 +110,7 @@ contains
       write(*,*) 'The basis_num input is larger than number of available basis nodes (order+1)'
       write(*,*) 'Make sure order and basis_num are correctly set before calling'
       stop
-    end if
+    endif
 
     ! Check to make sure differentiation is either 0 or 1
     if ( dx < 0 .or. dx > 1 ) then
@@ -118,7 +118,7 @@ contains
       write(*,*) 'integrate_basis_1d was called with dx = ', dx
       write(*,*) 'Check to make sure that the function was called correctly'
       stop
-    end if
+    endif
 
     call integrate(local_basis_1D, -1.0_wp, 1.0_wp, integral)
 
@@ -156,10 +156,10 @@ contains
         yx = alpha(ii)*x**real(ii-1, wp)
       else ! Hoping for the best that dx == 1
         yx = real(ii-1, wp) * alpha(ii)*(x)**(real(ii-1-dx, wp))
-      end if
+      endif
 
       y = y + yx
-    end do
+    enddo
     return
   end function basis_1D
 
@@ -180,7 +180,7 @@ contains
     eye = 0._wp
     do ii = 1, n
       eye(ii,ii) = 1._wp
-    end do
+    enddo
 
     call linsolve_quick (n, V, n, eye, Vinv)
 
@@ -192,18 +192,44 @@ contains
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   pure function getxy(N) result(xy)
-    integer, intent(in)       :: N
+    integer,  intent(in)      :: N
     real(wp), dimension(N,2)  :: xy
 
-    if ( N==4 ) then
+    ! Keep a copy of 1/3 handy so no need to retype it all the time
+    real(wp), parameter :: zero = 0._wp
+    real(wp), parameter :: one = 1._wp
+    real(wp), parameter :: third = 1._wp/3._wp
 
-      xy(:,1) = [-1._wp, 1._wp, 1._wp, -1._wp]
-      xy(:,2) = [-1._wp, -1._wp, 1._wp, 1._wp]
+    if ( N == 4 ) then
 
-    elseif ( N==9 ) then
+      xy(:,1) = [-one, one, one, -one]          ! Four corner nodes
+      xy(:,2) = [-one, -one, one, one]          ! Four corner nodes
 
-      xy(:,1) = [-1._wp, 1._wp, 1._wp, -1._wp, 0._wp, 1._wp, 0._wp, -1._wp, 0._wp]
-      xy(:,2) = [-1._wp, -1._wp, 1._wp, 1._wp, -1._wp, 0._wp, 1._wp, 0._wp, 0._wp]
+    elseif ( N == 9 ) then
+
+      xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
+              & zero, one, zero, -one, &        ! Four edge nodes
+              & zero]                           ! Center node
+
+      xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
+              & -one, zero, one, zero, &        ! Four edge nodes
+              & zero]                           ! Center node
+
+    elseif ( N == 16 ) then
+
+      xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
+              & -third, third, &                ! Two edge nodes on each
+              & one, one, &                     !     of the four edges
+              & third, -third, &
+              & -one, -one, &
+              & -third, third, third, -third]   ! Four internal nodes
+
+      xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
+              & -one, -one, &                   ! Two edge nodes on each
+              & -third, third, &                !     of the four edges
+              & one, one, &
+              & third, -third, &
+              & -third, -third, third, third]  ! Four internal nodes
 
     endif
 
@@ -226,6 +252,15 @@ contains
           & xi**2._wp, xi*eta, eta**2._wp, &
           & xi**2._wp * eta, xi * eta**2._wp, &
           & xi**2._wp * eta**2._wp]
+
+    elseif ( N == 16 ) then
+      row = [1._wp, &
+          & xi, eta, &
+          & xi**2._wp, xi*eta, eta**2._wp, &
+          & xi**3._wp, xi**2._wp * eta, xi * eta**2._wp, eta**3._wp, &
+          & xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
+          & xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
+          & xi**3._wp * eta**3._wp]
 
     endif
 
@@ -259,14 +294,14 @@ contains
 
       do ii = 1,N
         A(ii,:) = getArow(N, xy(ii,1), xy(ii,2))
-      end do
+      enddo
 
       return
     end function getA
 
   end function getAlpha
 
-  function getJacobian(N, xi, eta, xy, alpha) result(J)
+  pure function getJacobian(N, xi, eta, xy, alpha) result(J)
     integer,                  intent(in)  :: N
     real(wp),                 intent(in)  :: xi, eta
     real(wp), dimension(N,2), intent(in)  :: xy
@@ -288,7 +323,7 @@ contains
               & dot_product(x, getArow(N, xi-eps, eta     ))
       P(2,ii) = dot_product(x, getArow(N, xi,     eta+eps )) - &
               & dot_product(x, getArow(N, xi,     eta-eps ))
-    end do
+    enddo
 
     P = P / ( 2._wp*eps )
 
@@ -307,9 +342,8 @@ contains
     integer                   :: N1, N2
     real(wp), dimension(N,N)  :: alpha
 
-    ! Get the locations of the nodes of an isoparametric quadrilateral (xy),
-    ! and the coefficients of the basis functions (alpha)
-    ! (both bi-linear and bi-quadratic are supported)
+    ! Get the coefficients of the basis functions (alpha). Both bi-linear (N=4)
+    ! and bi-quadratic (N=9) quadrilaterals are supported.
     alpha = getAlpha(N)
 
     Ie = 0._wp
@@ -320,8 +354,8 @@ contains
         ! fun is now implicitly defined using the following: N1, N2, d1, and d2
         Ie(N1,N2) = Ie(N1,N2) + integrate2D(fun)
 
-      end do
-    end do
+      enddo
+    enddo
 
   contains
 
@@ -348,7 +382,7 @@ contains
         do jj = 1, num_pts
 
           ! Calculate Jacobian, inverse Jacobian, and determinant of finite
-          ! element at (xi,eta),
+          ! element at (xi,eta)
           J     = getJacobian(N, xi(ii,jj), eta(ii,jj), xy, alpha)
           invJ  = inv2(J)
           detJ  = det2(J)
@@ -399,8 +433,8 @@ contains
 
           out(ii,jj) = fun1 * fun2 * detJ
 
-        end do
-      end do
+        enddo
+      enddo
 
       return
     end function fun

@@ -16,6 +16,7 @@ FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 # FFLAGS += -O3 -march=native -ffast-math -funroll-loops
 
 FLIBS = -lblas -llapack
+# FLIBS += -fopenmp
 
 default: all
 
@@ -43,15 +44,15 @@ $(OBJ)/assembly.o: $(SRC)/assembly.f90 $(OBJ)/legendre.o
 $(OBJ)/linalg.o: $(SRC)/linalg.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
 $(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/linalg.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
 $(OBJ)/integration.o: $(SRC)/integration.f90 $(OBJ)/lib_array.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
 $(OBJ)/io.o: $(SRC)/io.f90 $(OBJ)/lib_array.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Main program
 $(OBJ)/main.o: $(SRC)/main.f90 $(objects) mesh
-	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $<
+	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $< $(FLIBS)
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
