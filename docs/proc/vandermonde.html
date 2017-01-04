@@ -69,12 +69,10 @@
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
-				
-            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
 				
-            <li><a href="../program/main.html">Program</a></li>
-	    
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
             </ul>
             </li>
 
@@ -87,11 +85,9 @@
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
                              
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../program/main.html">Program</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
           </ul>
         
@@ -130,7 +126,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 4.1% of total for procedures.">16 statements</a>
+	  title=" 2.3% of total for procedures.">16 statements</a>
      </li> 
      
      
@@ -197,21 +193,47 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
+      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
+      <a class="list-group-item" href="../proc/det2.html">det2</a>
+      
+      <a class="list-group-item" href="../proc/eye.html">eye</a>
+      
+      <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
+      
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
+      <a class="list-group-item" href="../proc/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../proc/getarow.html">getArow</a>
+      
       <a class="list-group-item" href="../proc/getie.html">getIe</a>
       
+      <a class="list-group-item" href="../proc/getjacobian.html">getJacobian</a>
+      
+      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      
+      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
+      
+      <a class="list-group-item" href="../proc/inv2.html">inv2</a>
       
       <a class="list-group-item" href="../proc/lgwt.html">lgwt</a>
       
@@ -225,7 +247,11 @@
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
+      <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
+      
+      <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
   </div>
@@ -351,23 +377,23 @@ private subroutine vandermonde(n, Vinv)
 <path fill="none" stroke="#00ffff" d="M193.069,-33C201.475,-33 210.344,-33 218.661,-33"/>
 <polygon fill="#00ffff" stroke="#00ffff" points="218.824,-36.5001 228.824,-33 218.824,-29.5001 218.824,-36.5001"/>
 </g>
-<!-- dgetrf -->
-<g id="proc~~vandermonde~~CallsGraph_node5" class="node"><title>dgetrf</title>
+<!-- dgetrs -->
+<g id="proc~~vandermonde~~CallsGraph_node5" class="node"><title>dgetrs</title>
 <polygon fill="#777777" stroke="#777777" points="373,-66 319,-66 319,-42 373,-42 373,-66"/>
-<text text-anchor="middle" x="346" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+<text text-anchor="middle" x="346" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrf -->
-<g id="proc~~vandermonde~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<!-- proc~linsolve&#45;&gt;dgetrs -->
+<g id="proc~~vandermonde~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
 <path fill="none" stroke="#ff0000" d="M283.403,-39.3007C291.481,-41.2284 300.507,-43.3823 309.105,-45.4341"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="308.38,-48.8593 318.919,-47.7761 310.005,-42.0505 308.38,-48.8593"/>
 </g>
-<!-- dgetrs -->
-<g id="proc~~vandermonde~~CallsGraph_node6" class="node"><title>dgetrs</title>
+<!-- dgetrf -->
+<g id="proc~~vandermonde~~CallsGraph_node6" class="node"><title>dgetrf</title>
 <polygon fill="#777777" stroke="#777777" points="373,-24 319,-24 319,-0 373,-0 373,-24"/>
-<text text-anchor="middle" x="346" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+<text text-anchor="middle" x="346" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="proc~~vandermonde~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
+<!-- proc~linsolve&#45;&gt;dgetrf -->
+<g id="proc~~vandermonde~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
 <path fill="none" stroke="#ff0000" d="M283.403,-26.6993C291.481,-24.7716 300.507,-22.6177 309.105,-20.5659"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="310.005,-23.9495 318.919,-18.2239 308.38,-17.1407 310.005,-23.9495"/>
 </g>
@@ -391,40 +417,40 @@ private subroutine vandermonde(n, Vinv)
 <!-- Generated by graphviz version 2.38.0 (20140413.2041)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="558pt" height="32pt"
- viewBox="0.00 0.00 557.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="567pt" height="32pt"
+ viewBox="0.00 0.00 567.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 553.5,-28 553.5,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 563,-28 563,4 -4,4"/>
 <!-- Subroutine -->
 <g id="node1" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="64,-24 0,-24 0,-0 64,-0 64,-24"/>
-<text text-anchor="middle" x="32" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="65,-24 0,-24 0,-0 65,-0 65,-24"/>
+<text text-anchor="middle" x="32.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
 </g>
 <!-- Function -->
 <g id="node2" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 82,-24 82,-0 136,-0 136,-24"/>
-<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="137.5,-24 83.5,-24 83.5,-0 137.5,-0 137.5,-24"/>
+<text text-anchor="middle" x="110.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
 </g>
 <!-- Interface -->
 <g id="node3" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="208,-24 154,-24 154,-0 208,-0 208,-24"/>
-<text text-anchor="middle" x="181" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+<polygon fill="#a7506f" stroke="#a7506f" points="211.5,-24 155.5,-24 155.5,-0 211.5,-0 211.5,-24"/>
+<text text-anchor="middle" x="183.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
 </g>
 <!-- Unknown Procedure Type -->
 <g id="node4" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="361.5,-24 226.5,-24 226.5,-0 361.5,-0 361.5,-24"/>
-<text text-anchor="middle" x="294" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+<polygon fill="#777777" stroke="#777777" points="367,-24 230,-24 230,-0 367,-0 367,-24"/>
+<text text-anchor="middle" x="298.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
 </g>
 <!-- Program -->
 <g id="node5" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="434,-24 380,-24 380,-0 434,-0 434,-24"/>
-<text text-anchor="middle" x="407" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="439.5,-24 385.5,-24 385.5,-0 439.5,-0 439.5,-24"/>
+<text text-anchor="middle" x="412.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
 <g id="node6" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="549.5,-24 452.5,-24 452.5,-0 549.5,-0 549.5,-24"/>
-<text text-anchor="middle" x="501" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<polygon fill="none" stroke="black" points="559,-24 458,-24 458,-0 559,-0 559,-24"/>
+<text text-anchor="middle" x="508.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
@@ -451,54 +477,54 @@ private subroutine vandermonde(n, Vinv)
 <!-- Generated by graphviz version 2.38.0 (20140413.2041)
  -->
 <!-- Title: proc~~vandermonde~~CalledByGraph Pages: 1 -->
-<svg id="procvandermondeCalledByGraph" width="330pt" height="74pt"
- viewBox="0.00 0.00 330.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="procvandermondeCalledByGraph" width="333pt" height="74pt"
+ viewBox="0.00 0.00 333.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="proc~~vandermonde~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
 <title>proc~~vandermonde~~CalledByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-70 326,-70 326,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-70 329,-70 329,4 -4,4"/>
 <!-- proc~vandermonde -->
 <g id="proc~~vandermonde~~CalledByGraph_node1" class="node"><title>proc~vandermonde</title>
-<polygon fill="none" stroke="black" points="322,-45 244,-45 244,-21 322,-21 322,-45"/>
-<text text-anchor="middle" x="283" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">vandermonde</text>
-</g>
-<!-- proc~integrate_basis_1d_ie -->
-<g id="proc~~vandermonde~~CalledByGraph_node2" class="node"><title>proc~integrate_basis_1d_ie</title>
-<g id="a_proc~~vandermonde~~CalledByGraph_node2"><a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="208,-66 90,-66 90,-42 208,-42 208,-66"/>
-<text text-anchor="middle" x="149" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
-</a>
-</g>
-</g>
-<!-- proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde -->
-<g id="proc~~vandermonde~~CalledByGraph_edge2" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde</title>
-<path fill="none" stroke="#ff0000" d="M208.281,-44.728C216.825,-43.3688 225.543,-41.9818 233.853,-40.6597"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="234.422,-44.1133 243.748,-39.0855 233.322,-37.2002 234.422,-44.1133"/>
+<polygon fill="none" stroke="black" points="325,-45 247,-45 247,-21 325,-21 325,-45"/>
+<text text-anchor="middle" x="286" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">vandermonde</text>
 </g>
 <!-- proc~integrate_basis_1d -->
-<g id="proc~~vandermonde~~CalledByGraph_node3" class="node"><title>proc~integrate_basis_1d</title>
-<g id="a_proc~~vandermonde~~CalledByGraph_node3"><a xlink:href="../proc/integrate_basis_1d.html" xlink:title="integrate_basis_1d">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="200.5,-24 97.5,-24 97.5,-0 200.5,-0 200.5,-24"/>
-<text text-anchor="middle" x="149" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d</text>
+<g id="proc~~vandermonde~~CalledByGraph_node2" class="node"><title>proc~integrate_basis_1d</title>
+<g id="a_proc~~vandermonde~~CalledByGraph_node2"><a xlink:href="../proc/integrate_basis_1d.html" xlink:title="integrate_basis_1d">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="203.5,-66 97.5,-66 97.5,-42 203.5,-42 203.5,-66"/>
+<text text-anchor="middle" x="150.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d</text>
 </a>
 </g>
 </g>
 <!-- proc~integrate_basis_1d&#45;&gt;proc~vandermonde -->
-<g id="proc~~vandermonde~~CalledByGraph_edge3" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~vandermonde</title>
-<path fill="none" stroke="#ff0000" d="M200.657,-20.0591C211.566,-21.7946 223.067,-23.6243 233.877,-25.344"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="233.56,-28.8376 243.986,-26.9523 234.66,-21.9246 233.56,-28.8376"/>
+<g id="proc~~vandermonde~~CalledByGraph_edge2" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~vandermonde</title>
+<path fill="none" stroke="#ff0000" d="M203.88,-45.7605C214.73,-44.0538 226.111,-42.2634 236.803,-40.5815"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="237.468,-44.02 246.803,-39.0085 236.38,-37.1051 237.468,-44.02"/>
+</g>
+<!-- proc~integrate_basis_1d_ie -->
+<g id="proc~~vandermonde~~CalledByGraph_node3" class="node"><title>proc~integrate_basis_1d_ie</title>
+<g id="a_proc~~vandermonde~~CalledByGraph_node3"><a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="211,-24 90,-24 90,-0 211,-0 211,-24"/>
+<text text-anchor="middle" x="150.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
+</a>
+</g>
+</g>
+<!-- proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde -->
+<g id="proc~~vandermonde~~CalledByGraph_edge3" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde</title>
+<path fill="none" stroke="#ff0000" d="M211.222,-21.3944C219.81,-22.7453 228.554,-24.1209 236.879,-25.4304"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="236.364,-28.8923 246.786,-26.9888 237.452,-21.9773 236.364,-28.8923"/>
 </g>
 <!-- proc~getie -->
 <g id="proc~~vandermonde~~CalledByGraph_node4" class="node"><title>proc~getie</title>
 <g id="a_proc~~vandermonde~~CalledByGraph_node4"><a xlink:href="../proc/getie.html" xlink:title="getIe">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-66 0,-66 0,-42 54,-42 54,-66"/>
-<text text-anchor="middle" x="27" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-24 0,-24 0,-0 54,-0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
 </a>
 </g>
 </g>
 <!-- proc~getie&#45;&gt;proc~integrate_basis_1d_ie -->
 <g id="proc~~vandermonde~~CalledByGraph_edge1" class="edge"><title>proc~getie&#45;&gt;proc~integrate_basis_1d_ie</title>
-<path fill="none" stroke="#ff0000" d="M54.0382,-54C61.8339,-54 70.7702,-54 79.9628,-54"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="79.9965,-57.5001 89.9964,-54 79.9964,-50.5001 79.9965,-57.5001"/>
+<path fill="none" stroke="#00ffff" d="M54.0648,-12C61.6641,-12 70.3523,-12 79.3215,-12"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="79.5245,-15.5001 89.5245,-12 79.5244,-8.5001 79.5245,-15.5001"/>
 </g>
 </g>
 </svg>
@@ -520,40 +546,40 @@ private subroutine vandermonde(n, Vinv)
 <!-- Generated by graphviz version 2.38.0 (20140413.2041)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="558pt" height="32pt"
- viewBox="0.00 0.00 557.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="567pt" height="32pt"
+ viewBox="0.00 0.00 567.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 553.5,-28 553.5,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 563,-28 563,4 -4,4"/>
 <!-- Subroutine -->
 <g id="node1" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="64,-24 0,-24 0,-0 64,-0 64,-24"/>
-<text text-anchor="middle" x="32" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="65,-24 0,-24 0,-0 65,-0 65,-24"/>
+<text text-anchor="middle" x="32.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
 </g>
 <!-- Function -->
 <g id="node2" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 82,-24 82,-0 136,-0 136,-24"/>
-<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="137.5,-24 83.5,-24 83.5,-0 137.5,-0 137.5,-24"/>
+<text text-anchor="middle" x="110.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
 </g>
 <!-- Interface -->
 <g id="node3" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="208,-24 154,-24 154,-0 208,-0 208,-24"/>
-<text text-anchor="middle" x="181" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+<polygon fill="#a7506f" stroke="#a7506f" points="211.5,-24 155.5,-24 155.5,-0 211.5,-0 211.5,-24"/>
+<text text-anchor="middle" x="183.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
 </g>
 <!-- Unknown Procedure Type -->
 <g id="node4" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="361.5,-24 226.5,-24 226.5,-0 361.5,-0 361.5,-24"/>
-<text text-anchor="middle" x="294" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+<polygon fill="#777777" stroke="#777777" points="367,-24 230,-24 230,-0 367,-0 367,-24"/>
+<text text-anchor="middle" x="298.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
 </g>
 <!-- Program -->
 <g id="node5" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="434,-24 380,-24 380,-0 434,-0 434,-24"/>
-<text text-anchor="middle" x="407" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="439.5,-24 385.5,-24 385.5,-0 439.5,-0 439.5,-24"/>
+<text text-anchor="middle" x="412.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
 <g id="node6" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="549.5,-24 452.5,-24 452.5,-0 549.5,-0 549.5,-24"/>
-<text text-anchor="middle" x="501" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<polygon fill="none" stroke="black" points="559,-24 458,-24 458,-0 559,-0 559,-24"/>
+<text text-anchor="middle" x="508.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
@@ -633,19 +659,19 @@ private subroutine vandermonde(n, Vinv)
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">((</span><span class="n">n</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="kd">::</span> <span class="n">V_flat</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="kd">::</span> <span class="n">V</span><span class="p">,</span> <span class="n">Vinv</span><span class="p">,</span> <span class="n">eye</span>
 
-    <span class="k">call </span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="n">d0</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">d0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">call </span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1._wp</span><span class="p">,</span> <span class="mf">1._wp</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 
     <span class="n">V_flat</span> <span class="o">=</span> <span class="p">[(</span> <span class="p">[(</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">**</span><span class="kt">real</span><span class="p">(</span><span class="n">jj</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wp</span><span class="p">)],</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)],</span> <span class="n">jj</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)]</span>
     <span class="n">V</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">([</span> <span class="n">V_flat</span> <span class="p">],</span> <span class="p">[</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="p">])</span>
 
     <span class="c">! call r8mat_print(n, n, V, &#39;Original V Matrix: &#39;)</span>
 
-    <span class="n">eye</span> <span class="o">=</span> <span class="mf">0.0</span><span class="n">d0</span>
+    <span class="n">eye</span> <span class="o">=</span> <span class="mf">0._wp</span>
     <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span>
-      <span class="n">eye</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">ii</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1.0</span><span class="n">d0</span>
-    <span class="k">end do</span>
+      <span class="n">eye</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">ii</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1._wp</span>
+    <span class="n">enddo</span>
 
-<span class="k">    call </span><span class="n">linsolve_quick</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">eye</span><span class="p">,</span> <span class="n">Vinv</span><span class="p">)</span>
+    <span class="k">call </span><span class="n">linsolve_quick</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">eye</span><span class="p">,</span> <span class="n">Vinv</span><span class="p">)</span>
 
     <span class="k">return</span>
 <span class="k">  end subroutine </span><span class="n">vandermonde</span>
@@ -667,21 +693,47 @@ private subroutine vandermonde(n, Vinv)
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
+      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
+      <a class="list-group-item" href="../proc/det2.html">det2</a>
+      
+      <a class="list-group-item" href="../proc/eye.html">eye</a>
+      
+      <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
+      
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
+      <a class="list-group-item" href="../proc/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../proc/getarow.html">getArow</a>
+      
       <a class="list-group-item" href="../proc/getie.html">getIe</a>
       
+      <a class="list-group-item" href="../proc/getjacobian.html">getJacobian</a>
+      
+      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      
+      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
+      
+      <a class="list-group-item" href="../proc/inv2.html">inv2</a>
       
       <a class="list-group-item" href="../proc/lgwt.html">lgwt</a>
       
@@ -695,7 +747,11 @@ private subroutine vandermonde(n, Vinv)
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
+      <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
+      
+      <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
   </div>
@@ -709,12 +765,12 @@ private subroutine vandermonde(n, Vinv)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2016 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2016-11-02 14:52  
+             on 2017-01-04 18:42  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

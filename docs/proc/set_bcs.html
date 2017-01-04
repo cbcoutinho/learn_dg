@@ -10,7 +10,7 @@
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
 
-    <title>basis_1D &ndash; learn_dg</title>
+    <title>set_BCs &ndash; learn_dg</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -108,8 +108,8 @@
     
   
   <div class="row">
-    <h1>basis_1D
-      <small>Function</small>
+    <h1>set_BCs
+      <small>Subroutine</small>
     
     </h1>
     
@@ -126,20 +126,20 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.7% of total for procedures.">19 statements</a>
+	  title=" 2.1% of total for procedures.">15 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/legendre.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/assembly.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/legendre.f90.html'>legendre.f90</a></li>
+     <li><a href='../sourcefile/assembly.f90.html'>assembly.f90</a></li>
   
-     <li><a href='../module/legendre.html'>legendre</a></li>
+     <li><a href='../module/assembly.html'>assembly</a></li>
   
-     <li class="active">basis_1D</li>
+     <li class="active">set_BCs</li>
   </ol>
 </div>
 </div>
@@ -180,7 +180,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/basis_1d.html#src">basis_1D</a>
+    <a class="list-group-item" href="../proc/set_bcs.html#src">set_BCs</a>
   </div>
 </div>
 
@@ -264,7 +264,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private function basis_1D(x, alpha, dx) result(y)
+public subroutine set_BCs(xcoords, GlobalB, GlobalA)
     
     
 	 
@@ -293,12 +293,12 @@ private function basis_1D(x, alpha, dx) result(y)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E7"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-xcoords%7E3"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td></td>
+  <td><strong>xcoords</strong></td><td></td>
   
 </tr>
 
@@ -308,12 +308,12 @@ private function basis_1D(x, alpha, dx) result(y)
   
 <tr>
   
-  <td><span class="anchor" id="variable-alpha"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
+  <td><span class="anchor" id="variable-globalb%7E2"></span>real(kind=wp),</td>
+  <td>intent(out),</td>
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>alpha</strong></td><td></td>
+  <td><strong>GlobalB</strong></td><td></td>
   
 </tr>
 
@@ -323,27 +323,18 @@ private function basis_1D(x, alpha, dx) result(y)
   
 <tr>
   
-  <td><span class="anchor" id="variable-dx"></span>integer,</td>
-  <td>intent(in)</td>
+  <td><span class="anchor" id="variable-globala%7E3"></span>real(kind=wp),</td>
+  <td>intent(out),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>dx</strong></td><td></td>
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>GlobalA</strong></td><td></td>
   
 </tr>
 
 </tbody>
 </table>
 
-    
-    
-    
-    
-    
-    
-    
-	 <h3>Return Value <small><span class="anchor" id="variable-y%7E2"></span>real(kind=wp),
-  dimension(:),allocatable</small></h3>
     
     
     
@@ -375,7 +366,7 @@ private function basis_1D(x, alpha, dx) result(y)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/basis_1d.html#src">basis_1D</a>
+    <a class="list-group-item" href="../proc/set_bcs.html#src">set_BCs</a>
   </div>
 </div>
 
@@ -403,32 +394,32 @@ private function basis_1D(x, alpha, dx) result(y)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">basis_1D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="c">! Input/output variables</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                            <span class="kd">::</span> <span class="n">dx</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:)</span>              <span class="kd">::</span> <span class="n">x</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:)</span>              <span class="kd">::</span> <span class="n">alpha</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>             <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">y</span><span class="p">,</span> <span class="n">yx</span>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">set_BCs</span><span class="p">(</span><span class="n">xcoords</span><span class="p">,</span> <span class="n">GlobalB</span><span class="p">,</span> <span class="n">GlobalA</span><span class="p">)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">xcoords</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">GlobalB</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">GlobalA</span>
 
-    <span class="c">! Local variables</span>
-    <span class="kt">integer</span>                                         <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">N</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">iloc</span>
 
-    <span class="k">allocate</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">yx</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">minloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
+    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span> <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1._wp</span>
 
-    <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span> <span class="n">N</span>
+    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">maxloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
+    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span> <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1._wp</span>
 
-      <span class="k">if</span> <span class="p">(</span><span class="n">dx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">        </span><span class="n">yx</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="kt">real</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span>
-      <span class="k">else</span> <span class="c">! Hoping for the best that dx == 1</span>
-        <span class="n">yx</span> <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span> <span class="n">wp</span><span class="p">))</span>
-      <span class="n">endif</span>
+    <span class="c">! Left Boundary Dirchlet BC</span>
+    <span class="n">GlobalB</span><span class="p">(:)</span>    <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="c">! Right Boundary Dirchlet BC</span>
+    <span class="n">GlobalB</span><span class="p">(</span><span class="nb">maxloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">))</span>    <span class="o">=</span> <span class="mf">1._wp</span>
 
-      <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">yx</span>
-    <span class="n">enddo</span>
+    <span class="c">! call r8mat_print(num_nodes, 1, GlobalB, &#39;Global RHS:&#39;)</span>
+    <span class="c">! stop</span>
+
+
     <span class="k">return</span>
-<span class="k">  end function </span><span class="n">basis_1D</span>
+<span class="k">  end subroutine </span><span class="n">set_BCs</span>
 </pre></div>
 
     </section>
