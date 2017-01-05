@@ -1,6 +1,6 @@
 // Inputs
-length = 2;
-width  = 2;
+length = 3;
+width  = 3;
 meshSize = 1;
 //+
 Point(1) = {0,      0,      0, meshSize};
