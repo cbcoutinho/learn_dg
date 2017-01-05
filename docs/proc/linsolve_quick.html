@@ -69,12 +69,10 @@
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
-				
-            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
 				
-            <li><a href="../program/main.html">Program</a></li>
-	    
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
             </ul>
             </li>
 
@@ -87,11 +85,9 @@
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
                              
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../program/main.html">Program</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
           </ul>
         
@@ -130,18 +126,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.6% of total for procedures.">10 statements</a>
+	  title=" 1.4% of total for procedures.">10 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/legendre.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/linalg.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/legendre.f90.html'>legendre.f90</a></li>
+     <li><a href='../sourcefile/linalg.f90.html'>linalg.f90</a></li>
   
-     <li><a href='../module/legendre.html'>legendre</a></li>
+     <li><a href='../module/linalg.html'>linalg</a></li>
   
      <li class="active">linsolve_quick</li>
   </ol>
@@ -197,21 +193,47 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
+      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
+      <a class="list-group-item" href="../proc/det2.html">det2</a>
+      
+      <a class="list-group-item" href="../proc/eye.html">eye</a>
+      
+      <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
+      
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
+      <a class="list-group-item" href="../proc/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../proc/getarow.html">getArow</a>
+      
       <a class="list-group-item" href="../proc/getie.html">getIe</a>
       
+      <a class="list-group-item" href="../proc/getjacobian.html">getJacobian</a>
+      
+      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      
+      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
+      
+      <a class="list-group-item" href="../proc/inv2.html">inv2</a>
       
       <a class="list-group-item" href="../proc/lgwt.html">lgwt</a>
       
@@ -225,7 +247,11 @@
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
+      <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
+      
+      <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
   </div>
@@ -327,7 +353,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-x%7E6"></span>real(kind=wp),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -357,7 +383,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <polygon fill="white" stroke="none" points="-4,4 -4,-70 263,-70 263,4 -4,4"/>
 <!-- proc~linsolve_quick -->
 <g id="proc~~linsolve_quick~~CallsGraph_node1" class="node"><title>proc~linsolve_quick</title>
-<polygon fill="none" stroke="black" points="79,-45 0,-45 0,-21 79,-21 79,-45"/>
+<polygon fill="none" stroke="black" points="79,-45 7.10543e-15,-45 7.10543e-15,-21 79,-21 79,-45"/>
 <text text-anchor="middle" x="39.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">linsolve_quick</text>
 </g>
 <!-- proc~linsolve -->
@@ -373,23 +399,23 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <path fill="none" stroke="#ff0000" d="M79.0685,-33C87.4755,-33 96.3443,-33 104.661,-33"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="104.824,-36.5001 114.824,-33 104.824,-29.5001 104.824,-36.5001"/>
 </g>
-<!-- dgetrf -->
-<g id="proc~~linsolve_quick~~CallsGraph_node3" class="node"><title>dgetrf</title>
+<!-- dgetrs -->
+<g id="proc~~linsolve_quick~~CallsGraph_node3" class="node"><title>dgetrs</title>
 <polygon fill="#777777" stroke="#777777" points="259,-66 205,-66 205,-42 259,-42 259,-66"/>
-<text text-anchor="middle" x="232" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+<text text-anchor="middle" x="232" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrf -->
-<g id="proc~~linsolve_quick~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<!-- proc~linsolve&#45;&gt;dgetrs -->
+<g id="proc~~linsolve_quick~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
 <path fill="none" stroke="#ff0000" d="M169.403,-39.3007C177.481,-41.2284 186.507,-43.3823 195.105,-45.4341"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="194.38,-48.8593 204.919,-47.7761 196.005,-42.0505 194.38,-48.8593"/>
 </g>
-<!-- dgetrs -->
-<g id="proc~~linsolve_quick~~CallsGraph_node4" class="node"><title>dgetrs</title>
+<!-- dgetrf -->
+<g id="proc~~linsolve_quick~~CallsGraph_node4" class="node"><title>dgetrf</title>
 <polygon fill="#777777" stroke="#777777" points="259,-24 205,-24 205,-0 259,-0 259,-24"/>
-<text text-anchor="middle" x="232" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+<text text-anchor="middle" x="232" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="proc~~linsolve_quick~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
+<!-- proc~linsolve&#45;&gt;dgetrf -->
+<g id="proc~~linsolve_quick~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
 <path fill="none" stroke="#ff0000" d="M169.403,-26.6993C177.481,-24.7716 186.507,-22.6177 195.105,-20.5659"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="196.005,-23.9495 204.919,-18.2239 194.38,-17.1407 196.005,-23.9495"/>
 </g>
@@ -413,40 +439,40 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <!-- Generated by graphviz version 2.38.0 (20140413.2041)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="558pt" height="32pt"
- viewBox="0.00 0.00 557.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="567pt" height="32pt"
+ viewBox="0.00 0.00 567.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 553.5,-28 553.5,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 563,-28 563,4 -4,4"/>
 <!-- Subroutine -->
 <g id="node1" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="64,-24 0,-24 0,-0 64,-0 64,-24"/>
-<text text-anchor="middle" x="32" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="65,-24 0,-24 0,-0 65,-0 65,-24"/>
+<text text-anchor="middle" x="32.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
 </g>
 <!-- Function -->
 <g id="node2" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 82,-24 82,-0 136,-0 136,-24"/>
-<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="137.5,-24 83.5,-24 83.5,-0 137.5,-0 137.5,-24"/>
+<text text-anchor="middle" x="110.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
 </g>
 <!-- Interface -->
 <g id="node3" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="208,-24 154,-24 154,-0 208,-0 208,-24"/>
-<text text-anchor="middle" x="181" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+<polygon fill="#a7506f" stroke="#a7506f" points="211.5,-24 155.5,-24 155.5,-0 211.5,-0 211.5,-24"/>
+<text text-anchor="middle" x="183.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
 </g>
 <!-- Unknown Procedure Type -->
 <g id="node4" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="361.5,-24 226.5,-24 226.5,-0 361.5,-0 361.5,-24"/>
-<text text-anchor="middle" x="294" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+<polygon fill="#777777" stroke="#777777" points="367,-24 230,-24 230,-0 367,-0 367,-24"/>
+<text text-anchor="middle" x="298.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
 </g>
 <!-- Program -->
 <g id="node5" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="434,-24 380,-24 380,-0 434,-0 434,-24"/>
-<text text-anchor="middle" x="407" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="439.5,-24 385.5,-24 385.5,-0 439.5,-0 439.5,-24"/>
+<text text-anchor="middle" x="412.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
 <g id="node6" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="549.5,-24 452.5,-24 452.5,-0 549.5,-0 549.5,-24"/>
-<text text-anchor="middle" x="501" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<polygon fill="none" stroke="black" points="559,-24 458,-24 458,-0 559,-0 559,-24"/>
+<text text-anchor="middle" x="508.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
@@ -473,80 +499,119 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <!-- Generated by graphviz version 2.38.0 (20140413.2041)
  -->
 <!-- Title: proc~~linsolve_quick~~CalledByGraph Pages: 1 -->
-<svg id="proclinsolve_quickCalledByGraph" width="445pt" height="95pt"
- viewBox="0.00 0.00 445.00 95.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~linsolve_quick~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 91)">
+<svg id="proclinsolve_quickCalledByGraph" width="463pt" height="179pt"
+ viewBox="0.00 0.00 463.00 179.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~linsolve_quick~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 175)">
 <title>proc~~linsolve_quick~~CalledByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-91 441,-91 441,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-175 459,-175 459,4 -4,4"/>
 <!-- proc~linsolve_quick -->
 <g id="proc~~linsolve_quick~~CalledByGraph_node1" class="node"><title>proc~linsolve_quick</title>
-<polygon fill="none" stroke="black" points="437,-45 358,-45 358,-21 437,-21 437,-45"/>
-<text text-anchor="middle" x="397.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">linsolve_quick</text>
+<polygon fill="none" stroke="black" points="455,-87 376,-87 376,-63 455,-63 455,-87"/>
+<text text-anchor="middle" x="415.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">linsolve_quick</text>
 </g>
 <!-- proc~vandermonde -->
 <g id="proc~~linsolve_quick~~CalledByGraph_node2" class="node"><title>proc~vandermonde</title>
 <g id="a_proc~~linsolve_quick~~CalledByGraph_node2"><a xlink:href="../proc/vandermonde.html" xlink:title="vandermonde">
-<polygon fill="#d9534f" stroke="#d9534f" points="322,-66 244,-66 244,-42 322,-42 322,-66"/>
-<text text-anchor="middle" x="283" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vandermonde</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="340,-150 262,-150 262,-126 340,-126 340,-150"/>
+<text text-anchor="middle" x="301" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vandermonde</text>
 </a>
 </g>
 </g>
 <!-- proc~vandermonde&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge4" class="edge"><title>proc~vandermonde&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M322.087,-46.8904C330.334,-45.3509 339.165,-43.7026 347.757,-42.0987"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="348.498,-45.521 357.685,-40.2454 347.213,-38.6399 348.498,-45.521"/>
+<g id="proc~~linsolve_quick~~CalledByGraph_edge5" class="edge"><title>proc~vandermonde&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M324.121,-125.817C329.333,-122.934 334.866,-119.866 340,-117 354.537,-108.886 370.631,-99.8224 384.13,-92.1979"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="386.027,-95.1464 393.01,-87.1786 382.582,-89.0525 386.027,-95.1464"/>
 </g>
 <!-- program~main -->
 <g id="proc~~linsolve_quick~~CalledByGraph_node3" class="node"><title>program~main</title>
 <g id="a_proc~~linsolve_quick~~CalledByGraph_node3"><a xlink:href="../program/main.html" xlink:title="main">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="310,-24 256,-24 256,-0 310,-0 310,-24"/>
-<text text-anchor="middle" x="283" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="328,-108 274,-108 274,-84 328,-84 328,-108"/>
+<text text-anchor="middle" x="301" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
 </a>
 </g>
 </g>
 <!-- program~main&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge5" class="edge"><title>program~main&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M310.093,-16.8706C321.258,-18.9548 334.674,-21.4592 347.568,-23.8661"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="347.272,-27.3712 357.745,-25.7656 348.557,-20.49 347.272,-27.3712"/>
+<g id="proc~~linsolve_quick~~CalledByGraph_edge6" class="edge"><title>program~main&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M328.093,-91.1294C339.258,-89.0452 352.674,-86.5408 365.568,-84.1339"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="366.557,-87.51 375.745,-82.2344 365.272,-80.6288 366.557,-87.51"/>
 </g>
-<!-- proc~integrate_basis_1d_ie -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node4" class="node"><title>proc~integrate_basis_1d_ie</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node4"><a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="208,-87 90,-87 90,-63 208,-63 208,-87"/>
-<text text-anchor="middle" x="149" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
+<!-- proc~getalpha -->
+<g id="proc~~linsolve_quick~~CalledByGraph_node4" class="node"><title>proc~getalpha</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node4"><a xlink:href="../proc/getalpha.html" xlink:title="getAlpha">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="328.5,-66 273.5,-66 273.5,-42 328.5,-42 328.5,-66"/>
+<text text-anchor="middle" x="301" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha</text>
 </a>
 </g>
 </g>
-<!-- proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge2" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde</title>
-<path fill="none" stroke="#ff0000" d="M208.281,-65.728C216.825,-64.3688 225.543,-62.9818 233.853,-61.6597"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="234.422,-65.1133 243.748,-60.0855 233.322,-58.2002 234.422,-65.1133"/>
+<!-- proc~getalpha&#45;&gt;proc~linsolve_quick -->
+<g id="proc~~linsolve_quick~~CalledByGraph_edge7" class="edge"><title>proc~getalpha&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M328.661,-58.9767C339.735,-61.0439 352.949,-63.5104 365.65,-65.8813"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="365.203,-69.3583 375.676,-67.7528 366.488,-62.4772 365.203,-69.3583"/>
+</g>
+<!-- program~doubleint -->
+<g id="proc~~linsolve_quick~~CalledByGraph_node5" class="node"><title>program~doubleint</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node5"><a xlink:href="../program/doubleint.html" xlink:title="doubleint">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="329.5,-24 272.5,-24 272.5,-0 329.5,-0 329.5,-24"/>
+<text text-anchor="middle" x="301" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">doubleint</text>
+</a>
+</g>
+</g>
+<!-- program~doubleint&#45;&gt;proc~linsolve_quick -->
+<g id="proc~~linsolve_quick~~CalledByGraph_edge8" class="edge"><title>program~doubleint&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M324.121,-24.1833C329.333,-27.0656 334.866,-30.1344 340,-33 354.537,-41.1142 370.631,-50.1776 384.13,-57.8021"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="382.582,-60.9475 393.01,-62.8214 386.027,-54.8536 382.582,-60.9475"/>
 </g>
 <!-- proc~integrate_basis_1d -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node5" class="node"><title>proc~integrate_basis_1d</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node5"><a xlink:href="../proc/integrate_basis_1d.html" xlink:title="integrate_basis_1d">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="200.5,-45 97.5,-45 97.5,-21 200.5,-21 200.5,-45"/>
-<text text-anchor="middle" x="149" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d</text>
+<g id="proc~~linsolve_quick~~CalledByGraph_node6" class="node"><title>proc~integrate_basis_1d</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node6"><a xlink:href="../proc/integrate_basis_1d.html" xlink:title="integrate_basis_1d">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="211,-171 105,-171 105,-147 211,-147 211,-171"/>
+<text text-anchor="middle" x="158" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d</text>
 </a>
 </g>
 </g>
 <!-- proc~integrate_basis_1d&#45;&gt;proc~vandermonde -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge3" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~vandermonde</title>
-<path fill="none" stroke="#ff0000" d="M200.657,-41.0591C211.566,-42.7946 223.067,-44.6243 233.877,-46.344"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="233.56,-49.8376 243.986,-47.9523 234.66,-42.9246 233.56,-49.8376"/>
+<g id="proc~~linsolve_quick~~CalledByGraph_edge2" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~vandermonde</title>
+<path fill="none" stroke="#ff0000" d="M211.103,-151.24C224.349,-149.267 238.528,-147.155 251.583,-145.211"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="252.397,-148.629 261.772,-143.694 251.366,-141.705 252.397,-148.629"/>
+</g>
+<!-- proc~integrate_basis_1d_ie -->
+<g id="proc~~linsolve_quick~~CalledByGraph_node7" class="node"><title>proc~integrate_basis_1d_ie</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node7"><a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="218.5,-129 97.5,-129 97.5,-105 218.5,-105 218.5,-129"/>
+<text text-anchor="middle" x="158" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
+</a>
+</g>
+</g>
+<!-- proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde -->
+<g id="proc~~linsolve_quick~~CalledByGraph_edge3" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde</title>
+<path fill="none" stroke="#ff0000" d="M218.797,-125.906C229.831,-127.549 241.224,-129.246 251.86,-130.83"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="251.382,-134.297 261.788,-132.309 252.413,-127.374 251.382,-134.297"/>
 </g>
 <!-- proc~getie -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node6" class="node"><title>proc~getie</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node6"><a xlink:href="../proc/getie.html" xlink:title="getIe">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-87 0,-87 0,-63 54,-63 54,-87"/>
-<text text-anchor="middle" x="27" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
+<g id="proc~~linsolve_quick~~CalledByGraph_node8" class="node"><title>proc~getie</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node8"><a xlink:href="../proc/getie.html" xlink:title="getIe">
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-129 0,-129 0,-105 54,-105 54,-129"/>
+<text text-anchor="middle" x="27" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
 </a>
 </g>
 </g>
 <!-- proc~getie&#45;&gt;proc~integrate_basis_1d_ie -->
 <g id="proc~~linsolve_quick~~CalledByGraph_edge1" class="edge"><title>proc~getie&#45;&gt;proc~integrate_basis_1d_ie</title>
-<path fill="none" stroke="#ff0000" d="M54.0382,-75C61.8339,-75 70.7702,-75 79.9628,-75"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="79.9965,-78.5001 89.9964,-75 79.9964,-71.5001 79.9965,-78.5001"/>
+<path fill="none" stroke="#00ffff" d="M54.1051,-117C63.7851,-117 75.2792,-117 87.0173,-117"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="87.3559,-120.5 97.3559,-117 87.3558,-113.5 87.3559,-120.5"/>
+</g>
+<!-- proc~assembleelementalmatrix -->
+<g id="proc~~linsolve_quick~~CalledByGraph_node9" class="node"><title>proc~assembleelementalmatrix</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node9"><a xlink:href="../proc/assembleelementalmatrix.html" xlink:title="assembleElementalMatrix">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="226,-66 90,-66 90,-42 226,-42 226,-66"/>
+<text text-anchor="middle" x="158" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix</text>
+</a>
+</g>
+</g>
+<!-- proc~assembleelementalmatrix&#45;&gt;proc~getalpha -->
+<g id="proc~~linsolve_quick~~CalledByGraph_edge4" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;proc~getalpha</title>
+<path fill="none" stroke="#00ffff" d="M226.196,-54C238.882,-54 251.71,-54 263.034,-54"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="263.375,-57.5001 273.375,-54 263.375,-50.5001 263.375,-57.5001"/>
 </g>
 </g>
 </svg>
@@ -568,40 +633,40 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <!-- Generated by graphviz version 2.38.0 (20140413.2041)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="558pt" height="32pt"
- viewBox="0.00 0.00 557.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="567pt" height="32pt"
+ viewBox="0.00 0.00 567.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 553.5,-28 553.5,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 563,-28 563,4 -4,4"/>
 <!-- Subroutine -->
 <g id="node1" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="64,-24 0,-24 0,-0 64,-0 64,-24"/>
-<text text-anchor="middle" x="32" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="65,-24 0,-24 0,-0 65,-0 65,-24"/>
+<text text-anchor="middle" x="32.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
 </g>
 <!-- Function -->
 <g id="node2" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 82,-24 82,-0 136,-0 136,-24"/>
-<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="137.5,-24 83.5,-24 83.5,-0 137.5,-0 137.5,-24"/>
+<text text-anchor="middle" x="110.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
 </g>
 <!-- Interface -->
 <g id="node3" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="208,-24 154,-24 154,-0 208,-0 208,-24"/>
-<text text-anchor="middle" x="181" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+<polygon fill="#a7506f" stroke="#a7506f" points="211.5,-24 155.5,-24 155.5,-0 211.5,-0 211.5,-24"/>
+<text text-anchor="middle" x="183.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
 </g>
 <!-- Unknown Procedure Type -->
 <g id="node4" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="361.5,-24 226.5,-24 226.5,-0 361.5,-0 361.5,-24"/>
-<text text-anchor="middle" x="294" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+<polygon fill="#777777" stroke="#777777" points="367,-24 230,-24 230,-0 367,-0 367,-24"/>
+<text text-anchor="middle" x="298.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
 </g>
 <!-- Program -->
 <g id="node5" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="434,-24 380,-24 380,-0 434,-0 434,-24"/>
-<text text-anchor="middle" x="407" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="439.5,-24 385.5,-24 385.5,-0 439.5,-0 439.5,-24"/>
+<text text-anchor="middle" x="412.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
 <g id="node6" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="549.5,-24 452.5,-24 452.5,-0 549.5,-0 549.5,-24"/>
-<text text-anchor="middle" x="501" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<polygon fill="none" stroke="black" points="559,-24 458,-24 458,-0 559,-0 559,-24"/>
+<text text-anchor="middle" x="508.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
@@ -707,21 +772,47 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
+      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
+      <a class="list-group-item" href="../proc/det2.html">det2</a>
+      
+      <a class="list-group-item" href="../proc/eye.html">eye</a>
+      
+      <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
+      
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
+      <a class="list-group-item" href="../proc/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../proc/getarow.html">getArow</a>
+      
       <a class="list-group-item" href="../proc/getie.html">getIe</a>
       
+      <a class="list-group-item" href="../proc/getjacobian.html">getJacobian</a>
+      
+      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      
+      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
+      
+      <a class="list-group-item" href="../proc/inv2.html">inv2</a>
       
       <a class="list-group-item" href="../proc/lgwt.html">lgwt</a>
       
@@ -735,7 +826,11 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
+      <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
+      
+      <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
   </div>
@@ -749,12 +844,12 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2016 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2016-11-02 14:52  
+             on 2017-01-04 18:42  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

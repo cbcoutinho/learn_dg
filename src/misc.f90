@@ -60,7 +60,7 @@ contains
     call r8mat_print_some ( m, n, a, 1, 1, m, n, title )
 
     return
-  end
+  end subroutine r8mat_print
 
   subroutine r8mat_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
 
@@ -121,7 +121,7 @@ contains
     if ( 0 < len_trim ( title ) ) then
       write ( *, '(a)' ) ' '
       write ( *, '(a)' ) trim ( title )
-    end if
+    endif
 
     do j2lo = max ( jlo, 1 ), min ( jhi, n ), incx
 
@@ -136,7 +136,7 @@ contains
       do j = j2lo, j2hi
         j2 = j + 1 - j2lo
         write ( ctemp(j2), '(i8,6x)' ) j
-      end do
+      enddo
 
       write ( *, '(''  Col   '',5a14)' ) ctemp(1:inc)
       write ( *, '(a)' ) '  Row'
@@ -155,19 +155,19 @@ contains
             write ( ctemp(j2), '(f8.0,6x)' ) a(i,j)
           else
             write ( ctemp(j2), '(g14.6)' ) a(i,j)
-          end if
+          endif
 
-        end do
+        enddo
 
         write ( *, '(i5,1x,5a14)' ) i, ( ctemp(j), j = 1, inc )
 
-      end do
+      enddo
 
-    end do
+    enddo
 
     write ( *, '(a)' ) ' '
 
     return
-  end
+  end subroutine r8mat_print_some
 
 end module misc

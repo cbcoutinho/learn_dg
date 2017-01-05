@@ -16,50 +16,63 @@ FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 # FFLAGS += -O3 -march=native -ffast-math -funroll-loops
 
 FLIBS = -lblas -llapack
+# FLIBS += -fopenmp
 
-.DEFAULT_GOAL := $(BIN)/main
+default: all
 
 # Dependencies of main program
 objects=$(OBJ)/lib_array.o \
+	$(OBJ)/lib_algebra.o \
 	$(OBJ)/integration.o \
 	$(OBJ)/misc.o \
 	$(OBJ)/legendre.o \
 	$(OBJ)/io.o \
+	$(OBJ)/assembly.o \
 	$(OBJ)/linalg.o
 
 # Fortran library
 $(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
+$(OBJ)/lib_algebra.o: $(FORTRANLIB_SRC)/lib_algebra.f90
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Modules
 $(OBJ)/misc.o: $(SRC)/misc.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
+$(OBJ)/assembly.o: $(SRC)/assembly.f90 $(OBJ)/legendre.o
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 $(OBJ)/linalg.o: $(SRC)/linalg.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
 $(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/linalg.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
 $(OBJ)/integration.o: $(SRC)/integration.f90 $(OBJ)/lib_array.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-$(OBJ)/io.o: $(SRC)/io.f90
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
+$(OBJ)/io.o: $(SRC)/io.f90 $(OBJ)/lib_array.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Main program
-$(OBJ)/main.o: $(SRC)/main.f90 $(objects) mesh
-	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $<
+$(OBJ)/main.o: $(SRC)/main.f90 $(objects)
+	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $< $(FLIBS)
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
-mesh: $(BIN)/test1D.geo
-	gmsh $(BIN)/test1D.geo -order 1 -1 $(BIN)/test1D.msh > /dev/null 2>&1
+all: $(BIN)/main mesh
+
+mesh: test1D.geo test2D.geo
+	gmsh test1D.geo -order 1 -1 -o test1D.msh > /dev/null 2>&1
+	gmsh test2D.geo -order 1 -2 -o test2D.msh > /dev/null 2>&1
 
 clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main $(BIN)/test1D.msh
+	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main test1D.msh test2D.msh
 
-run: $(BIN)/main mesh
-	$(BIN)/main $(BIN)/test1D.msh
+run: all
+	$(BIN)/main test1D.msh
 
-debug: clean $(BIN)/main mesh
-	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(BIN)/test1D.msh
+debug: clean all
+	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main test1D.msh
+
+plot: run
+	python plotter.py
 
 docs: learn_dg.md
 	ford learn_dg.md

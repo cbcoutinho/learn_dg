@@ -69,12 +69,10 @@
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
-				
-            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
 				
-            <li><a href="../program/main.html">Program</a></li>
-	    
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
             </ul>
             </li>
 
@@ -87,11 +85,9 @@
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
                              
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../program/main.html">Program</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
           </ul>
         
@@ -130,7 +126,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 4.9% of total for procedures.">19 statements</a>
+	  title=" 2.7% of total for procedures.">19 statements</a>
      </li> 
      
      
@@ -197,21 +193,47 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
+      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
+      <a class="list-group-item" href="../proc/det2.html">det2</a>
+      
+      <a class="list-group-item" href="../proc/eye.html">eye</a>
+      
+      <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
+      
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
+      <a class="list-group-item" href="../proc/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../proc/getarow.html">getArow</a>
+      
       <a class="list-group-item" href="../proc/getie.html">getIe</a>
       
+      <a class="list-group-item" href="../proc/getjacobian.html">getJacobian</a>
+      
+      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      
+      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
+      
+      <a class="list-group-item" href="../proc/inv2.html">inv2</a>
       
       <a class="list-group-item" href="../proc/lgwt.html">lgwt</a>
       
@@ -225,7 +247,11 @@
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
+      <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
+      
+      <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
   </div>
@@ -267,7 +293,7 @@ private function basis_1D(x, alpha, dx) result(y)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-x%7E7"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -316,7 +342,7 @@ private function basis_1D(x, alpha, dx) result(y)
     
     
     
-	 <h3>Return Value <small><span class="anchor" id="variable-y"></span>real(kind=wp),
+	 <h3>Return Value <small><span class="anchor" id="variable-y%7E2"></span>real(kind=wp),
   dimension(:),allocatable</small></h3>
     
     
@@ -389,7 +415,7 @@ private function basis_1D(x, alpha, dx) result(y)
 
     <span class="k">allocate</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">yx</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
     <span class="n">N</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="n">d0</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mf">0._wp</span>
 
     <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span> <span class="n">N</span>
 
@@ -397,11 +423,11 @@ private function basis_1D(x, alpha, dx) result(y)
 <span class="k">        </span><span class="n">yx</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="kt">real</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span>
       <span class="k">else</span> <span class="c">! Hoping for the best that dx == 1</span>
         <span class="n">yx</span> <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span> <span class="n">wp</span><span class="p">))</span>
-      <span class="k">end if</span>
+      <span class="n">endif</span>
 
-<span class="k">      </span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">yx</span>
-    <span class="k">end do</span>
-<span class="k">    return</span>
+      <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">yx</span>
+    <span class="n">enddo</span>
+    <span class="k">return</span>
 <span class="k">  end function </span><span class="n">basis_1D</span>
 </pre></div>
 
@@ -421,21 +447,47 @@ private function basis_1D(x, alpha, dx) result(y)
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
+      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
+      <a class="list-group-item" href="../proc/det2.html">det2</a>
+      
+      <a class="list-group-item" href="../proc/eye.html">eye</a>
+      
+      <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
+      
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
+      <a class="list-group-item" href="../proc/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../proc/getarow.html">getArow</a>
+      
       <a class="list-group-item" href="../proc/getie.html">getIe</a>
       
+      <a class="list-group-item" href="../proc/getjacobian.html">getJacobian</a>
+      
+      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      
+      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
       
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
+      
+      <a class="list-group-item" href="../proc/inv2.html">inv2</a>
       
       <a class="list-group-item" href="../proc/lgwt.html">lgwt</a>
       
@@ -449,7 +501,11 @@ private function basis_1D(x, alpha, dx) result(y)
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
+      <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
+      
+      <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
   </div>
@@ -463,12 +519,12 @@ private function basis_1D(x, alpha, dx) result(y)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2016 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2016-11-02 14:52  
+             on 2017-01-04 18:42  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

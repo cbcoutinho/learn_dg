@@ -14,3 +14,8 @@ data.out
 # Test folder related stuff
 __pycache__
 .ipynb_checkpoints
+octave-workspace
+
+# GMSH-related files
+*.msh
+*.vtk
