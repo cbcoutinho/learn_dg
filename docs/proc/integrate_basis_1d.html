@@ -362,44 +362,47 @@ private function integrate_basis_1d(order, basis_num, dx) result(integral)
 <polygon fill="white" stroke="none" points="-4,4 -4,-112 519,-112 519,4 -4,4"/>
 <!-- proc~integrate_basis_1d -->
 <g id="proc~~integrate_basis_1d~~CallsGraph_node1" class="node"><title>proc~integrate_basis_1d</title>
-<polygon fill="none" stroke="black" points="106,-45 7.10543e-15,-45 7.10543e-15,-21 106,-21 106,-45"/>
-<text text-anchor="middle" x="53" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">integrate_basis_1d</text>
+<polygon fill="none" stroke="black" points="106,-87 7.10543e-15,-87 7.10543e-15,-63 106,-63 106,-87"/>
+<text text-anchor="middle" x="53" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">integrate_basis_1d</text>
+</g>
+<!-- proc~integrate -->
+<g id="proc~~integrate_basis_1d~~CallsGraph_node2" class="node"><title>proc~integrate</title>
+<g id="a_proc~~integrate_basis_1d~~CallsGraph_node2"><a xlink:href="../proc/integrate.html" xlink:title="integrate">
+<polygon fill="#d9534f" stroke="#d9534f" points="209,-108 153,-108 153,-84 209,-84 209,-108"/>
+<text text-anchor="middle" x="181" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate</text>
+</a>
+</g>
+</g>
+<!-- proc~integrate_basis_1d&#45;&gt;proc~integrate -->
+<g id="proc~~integrate_basis_1d~~CallsGraph_edge7" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~integrate</title>
+<path fill="none" stroke="#ff0000" d="M106.341,-83.7235C118.558,-85.7596 131.326,-87.8876 142.734,-89.789"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="142.334,-93.2706 152.774,-91.4623 143.485,-86.3659 142.334,-93.2706"/>
 </g>
 <!-- proc~vandermonde -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_node2" class="node"><title>proc~vandermonde</title>
-<g id="a_proc~~integrate_basis_1d~~CallsGraph_node2"><a xlink:href="../proc/vandermonde.html" xlink:title="vandermonde">
+<g id="proc~~integrate_basis_1d~~CallsGraph_node3" class="node"><title>proc~vandermonde</title>
+<g id="a_proc~~integrate_basis_1d~~CallsGraph_node3"><a xlink:href="../proc/vandermonde.html" xlink:title="vandermonde">
 <polygon fill="#d9534f" stroke="#d9534f" points="220,-66 142,-66 142,-42 220,-42 220,-66"/>
 <text text-anchor="middle" x="181" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vandermonde</text>
 </a>
 </g>
 </g>
 <!-- proc~integrate_basis_1d&#45;&gt;proc~vandermonde -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_edge7" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~vandermonde</title>
-<path fill="none" stroke="#ff0000" d="M106.341,-41.7235C114.801,-43.1335 123.525,-44.5875 131.879,-45.9799"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="131.404,-49.4488 141.843,-47.6405 132.555,-42.5441 131.404,-49.4488"/>
+<g id="proc~~integrate_basis_1d~~CallsGraph_edge8" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~vandermonde</title>
+<path fill="none" stroke="#ff0000" d="M106.341,-66.2765C114.801,-64.8665 123.525,-63.4125 131.879,-62.0201"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="132.555,-65.4559 141.843,-60.3595 131.404,-58.5512 132.555,-65.4559"/>
 </g>
-<!-- proc~integrate -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_node3" class="node"><title>proc~integrate</title>
-<g id="a_proc~~integrate_basis_1d~~CallsGraph_node3"><a xlink:href="../proc/integrate.html" xlink:title="integrate">
-<polygon fill="#d9534f" stroke="#d9534f" points="209,-24 153,-24 153,-0 209,-0 209,-24"/>
-<text text-anchor="middle" x="181" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate</text>
+<!-- proc~gaussquad -->
+<g id="proc~~integrate_basis_1d~~CallsGraph_node4" class="node"><title>proc~gaussquad</title>
+<g id="a_proc~~integrate_basis_1d~~CallsGraph_node4"><a xlink:href="../proc/gaussquad.html" xlink:title="gaussquad">
+<polygon fill="#d9534f" stroke="#d9534f" points="329,-108 262,-108 262,-84 329,-84 329,-108"/>
+<text text-anchor="middle" x="295.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
 </a>
 </g>
 </g>
-<!-- proc~integrate_basis_1d&#45;&gt;proc~integrate -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_edge8" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~integrate</title>
-<path fill="none" stroke="#ff0000" d="M106.341,-24.2765C118.558,-22.2404 131.326,-20.1124 142.734,-18.211"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="143.485,-21.6341 152.774,-16.5377 142.334,-14.7294 143.485,-21.6341"/>
-</g>
-<!-- linspace -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_node4" class="node"><title>linspace</title>
-<polygon fill="#777777" stroke="#777777" points="322.5,-108 268.5,-108 268.5,-84 322.5,-84 322.5,-108"/>
-<text text-anchor="middle" x="295.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linspace</text>
-</g>
-<!-- proc~vandermonde&#45;&gt;linspace -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_edge4" class="edge"><title>proc~vandermonde&#45;&gt;linspace</title>
-<path fill="none" stroke="#ff0000" d="M214.238,-66.0355C228.165,-71.235 244.51,-77.3371 258.803,-82.673"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="257.722,-86.0054 268.314,-86.2241 260.17,-79.4475 257.722,-86.0054"/>
+<!-- proc~integrate&#45;&gt;proc~gaussquad -->
+<g id="proc~~integrate_basis_1d~~CallsGraph_edge1" class="edge"><title>proc~integrate&#45;&gt;proc~gaussquad</title>
+<path fill="none" stroke="#ff0000" d="M209.233,-96C222.001,-96 237.516,-96 251.793,-96"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="251.913,-99.5001 261.913,-96 251.913,-92.5001 251.913,-99.5001"/>
 </g>
 <!-- proc~linsolve_quick -->
 <g id="proc~~integrate_basis_1d~~CallsGraph_node5" class="node"><title>proc~linsolve_quick</title>
@@ -411,52 +414,49 @@ private function integrate_basis_1d(order, basis_num, dx) result(integral)
 </g>
 <!-- proc~vandermonde&#45;&gt;proc~linsolve_quick -->
 <g id="proc~~integrate_basis_1d~~CallsGraph_edge5" class="edge"><title>proc~vandermonde&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M220.087,-54C228.245,-54 236.973,-54 245.477,-54"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="245.685,-57.5001 255.685,-54 245.685,-50.5001 245.685,-57.5001"/>
+<path fill="none" stroke="#00ffff" d="M220.087,-54C228.245,-54 236.973,-54 245.477,-54"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="245.685,-57.5001 255.685,-54 245.685,-50.5001 245.685,-57.5001"/>
 </g>
-<!-- proc~gaussquad -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_node9" class="node"><title>proc~gaussquad</title>
-<g id="a_proc~~integrate_basis_1d~~CallsGraph_node9"><a xlink:href="../proc/gaussquad.html" xlink:title="gaussquad">
-<polygon fill="#d9534f" stroke="#d9534f" points="329,-24 262,-24 262,-0 329,-0 329,-24"/>
-<text text-anchor="middle" x="295.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
-</a>
+<!-- linspace -->
+<g id="proc~~integrate_basis_1d~~CallsGraph_node6" class="node"><title>linspace</title>
+<polygon fill="#777777" stroke="#777777" points="322.5,-24 268.5,-24 268.5,-0 322.5,-0 322.5,-24"/>
+<text text-anchor="middle" x="295.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linspace</text>
 </g>
-</g>
-<!-- proc~integrate&#45;&gt;proc~gaussquad -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_edge6" class="edge"><title>proc~integrate&#45;&gt;proc~gaussquad</title>
-<path fill="none" stroke="#00ffff" d="M209.233,-12C222.001,-12 237.516,-12 251.793,-12"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="251.913,-15.5001 261.913,-12 251.913,-8.5001 251.913,-15.5001"/>
+<!-- proc~vandermonde&#45;&gt;linspace -->
+<g id="proc~~integrate_basis_1d~~CallsGraph_edge6" class="edge"><title>proc~vandermonde&#45;&gt;linspace</title>
+<path fill="none" stroke="#00ffff" d="M214.238,-41.9645C228.165,-36.765 244.51,-30.6629 258.803,-25.327"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="260.17,-28.5525 268.314,-21.7759 257.722,-21.9946 260.17,-28.5525"/>
 </g>
 <!-- proc~linsolve -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_node6" class="node"><title>proc~linsolve</title>
-<g id="a_proc~~integrate_basis_1d~~CallsGraph_node6"><a xlink:href="../proc/linsolve.html" xlink:title="linsolve">
+<g id="proc~~integrate_basis_1d~~CallsGraph_node7" class="node"><title>proc~linsolve</title>
+<g id="a_proc~~integrate_basis_1d~~CallsGraph_node7"><a xlink:href="../proc/linsolve.html" xlink:title="linsolve">
 <polygon fill="#d9534f" stroke="#d9534f" points="425,-66 371,-66 371,-42 425,-42 425,-66"/>
 <text text-anchor="middle" x="398" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve</text>
 </a>
 </g>
 </g>
 <!-- proc~linsolve_quick&#45;&gt;proc~linsolve -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_edge3" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
-<path fill="none" stroke="#00ffff" d="M335.069,-54C343.475,-54 352.344,-54 360.661,-54"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="360.824,-57.5001 370.824,-54 360.824,-50.5001 360.824,-57.5001"/>
-</g>
-<!-- dgetrs -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_node7" class="node"><title>dgetrs</title>
-<polygon fill="#777777" stroke="#777777" points="515,-87 461,-87 461,-63 515,-63 515,-87"/>
-<text text-anchor="middle" x="488" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
-</g>
-<!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="proc~~integrate_basis_1d~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
-<path fill="none" stroke="#ff0000" d="M425.403,-60.3007C433.481,-62.2284 442.507,-64.3823 451.105,-66.4341"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="450.38,-69.8593 460.919,-68.7761 452.005,-63.0505 450.38,-69.8593"/>
+<g id="proc~~integrate_basis_1d~~CallsGraph_edge4" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
+<path fill="none" stroke="#ff0000" d="M335.069,-54C343.475,-54 352.344,-54 360.661,-54"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="360.824,-57.5001 370.824,-54 360.824,-50.5001 360.824,-57.5001"/>
 </g>
 <!-- dgetrf -->
 <g id="proc~~integrate_basis_1d~~CallsGraph_node8" class="node"><title>dgetrf</title>
-<polygon fill="#777777" stroke="#777777" points="515,-45 461,-45 461,-21 515,-21 515,-45"/>
-<text text-anchor="middle" x="488" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+<polygon fill="#777777" stroke="#777777" points="515,-87 461,-87 461,-63 515,-63 515,-87"/>
+<text text-anchor="middle" x="488" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
 <!-- proc~linsolve&#45;&gt;dgetrf -->
 <g id="proc~~integrate_basis_1d~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<path fill="none" stroke="#ff0000" d="M425.403,-60.3007C433.481,-62.2284 442.507,-64.3823 451.105,-66.4341"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="450.38,-69.8593 460.919,-68.7761 452.005,-63.0505 450.38,-69.8593"/>
+</g>
+<!-- dgetrs -->
+<g id="proc~~integrate_basis_1d~~CallsGraph_node9" class="node"><title>dgetrs</title>
+<polygon fill="#777777" stroke="#777777" points="515,-45 461,-45 461,-21 515,-21 515,-45"/>
+<text text-anchor="middle" x="488" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+</g>
+<!-- proc~linsolve&#45;&gt;dgetrs -->
+<g id="proc~~integrate_basis_1d~~CallsGraph_edge3" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
 <path fill="none" stroke="#ff0000" d="M425.403,-47.6993C433.481,-45.7716 442.507,-43.6177 451.105,-41.5659"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="452.005,-44.9495 460.919,-39.2239 450.38,-38.1407 452.005,-44.9495"/>
 </g>
@@ -723,7 +723,7 @@ private function integrate_basis_1d(order, basis_num, dx) result(integral)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-04 18:42  
+             on 2017-01-21 23:08  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
