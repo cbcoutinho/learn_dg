@@ -19,6 +19,7 @@ octave-workspace
 
 # GMSH-related files
 *.msh
+!test1D.msh
 *.vtk
 
 # Travis CI ssh key

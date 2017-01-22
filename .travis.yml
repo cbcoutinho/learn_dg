@@ -34,7 +34,6 @@ install:
 
 script:
   - make
-  - ./fidasim
   - make docs
 
 after_success:
