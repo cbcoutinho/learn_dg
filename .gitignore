@@ -20,3 +20,6 @@ octave-workspace
 # GMSH-related files
 *.msh
 *.vtk
+
+# Travis CI ssh key
+.deploy_key

@@ -1,0 +1,44 @@
+language: python
+
+python:
+  - 3.5
+
+cache:
+  apt: true
+  pip: true
+
+branches:
+  only:
+    - master
+
+addons:
+  apt:
+    packages:
+    - git
+    - gcc
+    - g++
+    - gfortran
+    - python-pip
+    - graphviz
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
+  - chmod 600 .deploy_key
+
+install:
+  - export FC=gfortran
+  - export CC=gcc
+  - export CXX=g++
+  - pip install --upgrade graphviz
+  - (pip install --upgrade ford && ford --version)
+
+script:
+  - make
+  - ./fidasim
+  - make docs
+
+after_success:
+  - cd $TRAVIS_BUILD_DIR
+  - git config --global user.name "TRAVIS-CI-for-$(git --no-pager show -s --format='%cn' $TRAVIS_COMMIT)"
+  - git config --global user.email "$(git --no-pager show -s --format='%ce' $TRAVIS_COMMIT)"
+  - bash ./deploy.sh
