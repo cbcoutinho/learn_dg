@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/cbcoutinho/learn_dg.svg?branch=master)](https://travis-ci.org/cbcoutinho/learn_dg)
+
 This project uses lapack/blas as the numerical backend. Linking to these
 libraries was no problem on Linux, but on Windows you need to build lapack/blas
 from scratch.
