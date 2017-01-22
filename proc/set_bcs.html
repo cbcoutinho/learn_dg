@@ -276,6 +276,9 @@ public subroutine set_BCs(xcoords, GlobalB, GlobalA)
 
 
     
+    <p>Set boundary conditions in GlobalA and GlobalB using two Dirchlet
+ boundaries</p>
+    
 
     <h3>Arguments</h3>
     
@@ -295,12 +298,12 @@ public subroutine set_BCs(xcoords, GlobalB, GlobalA)
   
 <tr>
   
-  <td><span class="anchor" id="variable-xcoords%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-xcoords%7E2"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>xcoords</strong></td><td></td>
+  <td><strong>xcoords</strong></td><td><p>Array of nodal coordinates</p></td>
   
 </tr>
 
@@ -315,7 +318,7 @@ public subroutine set_BCs(xcoords, GlobalB, GlobalA)
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>GlobalB</strong></td><td></td>
+  <td><strong>GlobalB</strong></td><td><p>Global RHS Vector</p></td>
   
 </tr>
 
@@ -330,7 +333,7 @@ public subroutine set_BCs(xcoords, GlobalB, GlobalA)
   <td></td>
   
   <td>dimension(:,:)</td><td>::</td>
-  <td><strong>GlobalA</strong></td><td></td>
+  <td><strong>GlobalA</strong></td><td><p>Global Mass Matrix</p></td>
   
 </tr>
 
@@ -397,28 +400,31 @@ public subroutine set_BCs(xcoords, GlobalB, GlobalA)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">set_BCs</span><span class="p">(</span><span class="n">xcoords</span><span class="p">,</span> <span class="n">GlobalB</span><span class="p">,</span> <span class="n">GlobalA</span><span class="p">)</span>
+    <span class="c">!+ Set boundary conditions in GlobalA and GlobalB using two Dirchlet</span>
+    <span class="c">!+ boundaries</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">xcoords</span>
+      <span class="c">!+ Array of nodal coordinates</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">GlobalB</span>
+      <span class="c">!+ Global RHS Vector</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">GlobalA</span>
-
+      <span class="c">!+ Global Mass Matrix</span>
     <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">iloc</span>
-
-    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">minloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
-    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span> <span class="o">=</span> <span class="mf">0._wp</span>
-    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1._wp</span>
-
-    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">maxloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
-    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span> <span class="o">=</span> <span class="mf">0._wp</span>
-    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1._wp</span>
+      <span class="c">!+ Index variable to locate node numbers based on xcoords</span>
 
     <span class="c">! Left Boundary Dirchlet BC</span>
-    <span class="n">GlobalB</span><span class="p">(:)</span>    <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">minloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
+    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span>     <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">1._wp</span>
+    <span class="n">GlobalB</span><span class="p">(</span><span class="n">iloc</span><span class="p">)</span>       <span class="o">=</span> <span class="mf">0._wp</span>
+
     <span class="c">! Right Boundary Dirchlet BC</span>
-    <span class="n">GlobalB</span><span class="p">(</span><span class="nb">maxloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">))</span>    <span class="o">=</span> <span class="mf">1._wp</span>
+    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">maxloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
+    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span>     <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">1._wp</span>
+    <span class="n">GlobalB</span><span class="p">(</span><span class="n">iloc</span><span class="p">)</span>       <span class="o">=</span> <span class="mf">1._wp</span>
 
     <span class="c">! call r8mat_print(num_nodes, 1, GlobalB, &#39;Global RHS:&#39;)</span>
     <span class="c">! stop</span>
-
 
     <span class="k">return</span>
 <span class="k">  end subroutine </span><span class="n">set_BCs</span>
@@ -517,7 +523,7 @@ public subroutine set_BCs(xcoords, GlobalB, GlobalA)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-22 05:15  
+             on 2017-01-22 06:01  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

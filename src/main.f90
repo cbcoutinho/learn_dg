@@ -24,7 +24,7 @@ program main
   call read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, xcoords, dg)
   ! stop
 
-  call initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX, xcoords)
+  call initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
 
   call assemble(order, xcoords, elem_conn, GlobalA, diff, vel)
 
