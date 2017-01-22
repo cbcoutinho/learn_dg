@@ -28,5 +28,6 @@ rm -rf css favicon.png fonts index.html interface \
    js lists media module page proc program search.html \
    sourcefile src tipuesearch type
 cp -r "$TRAVIS_BUILD_DIR"/docs/html/* .
+git add media/* page/*
 git commit -am "Documentation updated by travis job $TRAVIS_JOB_NUMBER for commits $TRAVIS_COMMIT_RANGE"
 git push $SSH_REPO gh-pages
