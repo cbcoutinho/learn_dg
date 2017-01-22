@@ -190,55 +190,31 @@ All Procedures &ndash; learn_dg
 <g id="call~~graph~~CallGraph" class="graph" transform="scale(0.982759 0.982759) rotate(0) translate(4 866)">
 <title>call~~graph~~CallGraph</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-866 867,-866 867,5 -4,5"/>
-<!-- proc~integrate_basis_1d -->
-<g id="node1" class="node"><title>proc~integrate_basis_1d</title>
-<a xlink:href="../proc/integrate_basis_1d.html" xlink:title="integrate_basis_1d">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="282,-466 180,-466 180,-440 282,-440 282,-466"/>
-<text text-anchor="middle" x="231" y="-450.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d</text>
-</a>
-</g>
-<!-- proc~vandermonde -->
-<g id="node16" class="node"><title>proc~vandermonde</title>
-<a xlink:href="../proc/vandermonde.html" xlink:title="vandermonde">
-<polygon fill="#d9534f" stroke="#d9534f" points="450,-378 372,-378 372,-352 450,-352 450,-378"/>
-<text text-anchor="middle" x="411" y="-362.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vandermonde</text>
-</a>
-</g>
-<!-- proc~integrate_basis_1d&#45;&gt;proc~vandermonde -->
-<g id="edge2" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~vandermonde</title>
-<path fill="none" stroke="#ff0000" d="M258.99,-439.954C276.686,-431.512 299.924,-420.068 320,-409 336.421,-399.947 339.236,-395.401 356,-387 359.321,-385.336 362.801,-383.703 366.327,-382.126"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="367.891,-385.264 375.696,-378.099 365.126,-378.833 367.891,-385.264"/>
-</g>
 <!-- proc~integrate -->
-<g id="node18" class="node"><title>proc~integrate</title>
+<g id="node1" class="node"><title>proc~integrate</title>
 <a xlink:href="../proc/integrate.html" xlink:title="integrate">
 <polygon fill="#d9534f" stroke="#d9534f" points="438,-510 384,-510 384,-484 438,-484 438,-510"/>
 <text text-anchor="middle" x="411" y="-494.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate</text>
 </a>
 </g>
-<!-- proc~integrate_basis_1d&#45;&gt;proc~integrate -->
-<g id="edge4" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~integrate</title>
-<path fill="none" stroke="#ff0000" d="M282.581,-465.609C311.562,-472.693 347.086,-481.377 373.419,-487.814"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="372.838,-491.274 383.383,-490.249 374.5,-484.475 372.838,-491.274"/>
-</g>
-<!-- proc~read_gmsh_file_1d -->
-<g id="node2" class="node"><title>proc~read_gmsh_file_1d</title>
-<a xlink:href="../proc/read_gmsh_file_1d.html" xlink:title="read_gmsh_file_1D">
-<polygon fill="#d9534f" stroke="#d9534f" points="106,-642 3.55271e-14,-642 0,-616 106,-616 106,-642"/>
-<text text-anchor="middle" x="53" y="-626.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_gmsh_file_1D</text>
+<!-- proc~gaussquad -->
+<g id="node24" class="node"><title>proc~gaussquad</title>
+<a xlink:href="../proc/gaussquad.html" xlink:title="gaussquad">
+<polygon fill="#d9534f" stroke="#d9534f" points="601,-598 537,-598 537,-572 601,-572 601,-598"/>
+<text text-anchor="middle" x="569" y="-582.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
 </a>
 </g>
+<!-- proc~integrate&#45;&gt;proc~gaussquad -->
+<g id="edge2" class="edge"><title>proc~integrate&#45;&gt;proc~gaussquad</title>
+<path fill="none" stroke="#ff0000" d="M425.825,-510.008C443.095,-524.602 472.977,-548.17 502,-563 509.758,-566.964 518.379,-570.424 526.785,-573.354"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="525.895,-576.746 536.488,-576.548 528.084,-570.097 525.895,-576.746"/>
+</g>
 <!-- proc~get_command_argument_wrapper -->
-<g id="node22" class="node"><title>proc~get_command_argument_wrapper</title>
+<g id="node2" class="node"><title>proc~get_command_argument_wrapper</title>
 <a xlink:href="../proc/get_command_argument_wrapper.html" xlink:title="get_command_argument_wrapper">
 <polygon fill="#d9534f" stroke="#d9534f" points="320,-642 142,-642 142,-616 320,-616 320,-642"/>
 <text text-anchor="middle" x="231" y="-626.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_command_argument_wrapper</text>
 </a>
-</g>
-<!-- proc~read_gmsh_file_1d&#45;&gt;proc~get_command_argument_wrapper -->
-<g id="edge6" class="edge"><title>proc~read_gmsh_file_1d&#45;&gt;proc~get_command_argument_wrapper</title>
-<path fill="none" stroke="#ff2f00" d="M106.406,-629C114.429,-629 122.913,-629 131.531,-629"/>
-<polygon fill="#ff2f00" stroke="#ff2f00" points="131.688,-632.5 141.688,-629 131.688,-625.5 131.688,-632.5"/>
 </g>
 <!-- proc~getxy -->
 <g id="node3" class="node"><title>proc~getxy</title>
@@ -247,8 +223,49 @@ All Procedures &ndash; learn_dg
 <text text-anchor="middle" x="569" y="-450.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getxy</text>
 </a>
 </g>
+<!-- proc~assemble -->
+<g id="node4" class="node"><title>proc~assemble</title>
+<a xlink:href="../proc/assemble.html" xlink:title="assemble">
+<polygon fill="#d9534f" stroke="#d9534f" points="598,-114 540,-114 540,-88 598,-88 598,-114"/>
+<text text-anchor="middle" x="569" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble</text>
+</a>
+</g>
+<!-- getie -->
+<g id="node34" class="node"><title>getie</title>
+<polygon fill="#777777" stroke="#777777" points="749,-114 695,-114 695,-88 749,-88 749,-114"/>
+<text text-anchor="middle" x="722" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getie</text>
+</g>
+<!-- proc~assemble&#45;&gt;getie -->
+<g id="edge4" class="edge"><title>proc~assemble&#45;&gt;getie</title>
+<path fill="none" stroke="#ff8f00" d="M598.138,-101C622.708,-101 658.024,-101 684.664,-101"/>
+<polygon fill="#ff8f00" stroke="#ff8f00" points="684.769,-104.5 694.769,-101 684.769,-97.5001 684.769,-104.5"/>
+</g>
+<!-- proc~integrate_basis_1d -->
+<g id="node5" class="node"><title>proc~integrate_basis_1d</title>
+<a xlink:href="../proc/integrate_basis_1d.html" xlink:title="integrate_basis_1d">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="282,-400 180,-400 180,-374 282,-374 282,-400"/>
+<text text-anchor="middle" x="231" y="-384.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d</text>
+</a>
+</g>
+<!-- proc~integrate_basis_1d&#45;&gt;proc~integrate -->
+<g id="edge8" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~integrate</title>
+<path fill="none" stroke="#ffbf00" d="M248.594,-400.154C277.543,-421.667 334.187,-463.17 356,-475 361.636,-478.057 367.789,-480.929 373.872,-483.526"/>
+<polygon fill="#ffbf00" stroke="#ffbf00" points="372.71,-486.832 383.291,-487.367 375.353,-480.35 372.71,-486.832"/>
+</g>
+<!-- proc~vandermonde -->
+<g id="node21" class="node"><title>proc~vandermonde</title>
+<a xlink:href="../proc/vandermonde.html" xlink:title="vandermonde">
+<polygon fill="#d9534f" stroke="#d9534f" points="450,-378 372,-378 372,-352 450,-352 450,-378"/>
+<text text-anchor="middle" x="411" y="-362.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vandermonde</text>
+</a>
+</g>
+<!-- proc~integrate_basis_1d&#45;&gt;proc~vandermonde -->
+<g id="edge6" class="edge"><title>proc~integrate_basis_1d&#45;&gt;proc~vandermonde</title>
+<path fill="none" stroke="#ffbf00" d="M282.581,-380.696C307.306,-377.674 336.793,-374.07 361.272,-371.078"/>
+<polygon fill="#ffbf00" stroke="#ffbf00" points="361.927,-374.524 371.429,-369.836 361.078,-367.576 361.927,-374.524"/>
+</g>
 <!-- proc~linsolve_quick -->
-<g id="node4" class="node"><title>proc~linsolve_quick</title>
+<g id="node6" class="node"><title>proc~linsolve_quick</title>
 <a xlink:href="../proc/linsolve_quick.html" xlink:title="linsolve_quick">
 <polygon fill="#d9534f" stroke="#d9534f" points="608,-378 530,-378 530,-352 608,-352 608,-378"/>
 <text text-anchor="middle" x="569" y="-362.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve_quick</text>
@@ -262,114 +279,63 @@ All Procedures &ndash; learn_dg
 </a>
 </g>
 <!-- proc~linsolve_quick&#45;&gt;proc~linsolve -->
-<g id="edge8" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
-<path fill="none" stroke="#ff8f00" d="M608.8,-365C632.295,-365 661.843,-365 684.859,-365"/>
-<polygon fill="#ff8f00" stroke="#ff8f00" points="684.929,-368.5 694.929,-365 684.929,-361.5 684.929,-368.5"/>
+<g id="edge10" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
+<path fill="none" stroke="#ffef00" d="M608.8,-365C632.295,-365 661.843,-365 684.859,-365"/>
+<polygon fill="#ffef00" stroke="#ffef00" points="684.929,-368.5 694.929,-365 684.929,-361.5 684.929,-368.5"/>
+</g>
+<!-- proc~initialize_global_mats -->
+<g id="node7" class="node"><title>proc~initialize_global_mats</title>
+<a xlink:href="../proc/initialize_global_mats.html" xlink:title="initialize_global_mats">
+<polygon fill="#d9534f" stroke="#d9534f" points="626,-290 512,-290 512,-264 626,-264 626,-290"/>
+<text text-anchor="middle" x="569" y="-274.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initialize_global_mats</text>
+</a>
+</g>
+<!-- proc~write_out_solution -->
+<g id="node8" class="node"><title>proc~write_out_solution</title>
+<a xlink:href="../proc/write_out_solution.html" xlink:title="write_out_solution">
+<polygon fill="#d9534f" stroke="#d9534f" points="618,-202 520,-202 520,-176 618,-176 618,-202"/>
+<text text-anchor="middle" x="569" y="-186.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_out_solution</text>
+</a>
+</g>
+<!-- proc~basis_1d -->
+<g id="node9" class="node"><title>proc~basis_1d</title>
+<a xlink:href="../proc/basis_1d.html" xlink:title="basis_1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="81,-686 25,-686 25,-660 81,-660 81,-686"/>
+<text text-anchor="middle" x="53" y="-670.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">basis_1D</text>
+</a>
 </g>
 <!-- proc~inv2 -->
-<g id="node5" class="node"><title>proc~inv2</title>
+<g id="node10" class="node"><title>proc~inv2</title>
 <a xlink:href="../proc/inv2.html" xlink:title="inv2">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="80,-686 26,-686 26,-660 80,-660 80,-686"/>
-<text text-anchor="middle" x="53" y="-670.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">inv2</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="80,-730 26,-730 26,-704 80,-704 80,-730"/>
+<text text-anchor="middle" x="53" y="-714.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">inv2</text>
 </a>
 </g>
 <!-- proc~det2 -->
-<g id="node23" class="node"><title>proc~det2</title>
+<g id="node25" class="node"><title>proc~det2</title>
 <a xlink:href="../proc/det2.html" xlink:title="det2">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="258,-686 204,-686 204,-660 258,-660 258,-686"/>
-<text text-anchor="middle" x="231" y="-670.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">det2</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="258,-730 204,-730 204,-704 258,-704 258,-730"/>
+<text text-anchor="middle" x="231" y="-714.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">det2</text>
 </a>
 </g>
 <!-- proc~inv2&#45;&gt;proc~det2 -->
-<g id="edge10" class="edge"><title>proc~inv2&#45;&gt;proc~det2</title>
-<path fill="none" stroke="#ffbf00" d="M80.0344,-673C110.354,-673 159.721,-673 193.698,-673"/>
-<polygon fill="#ffbf00" stroke="#ffbf00" points="193.711,-676.5 203.711,-673 193.711,-669.5 193.711,-676.5"/>
-</g>
-<!-- proc~initialize_global_mats -->
-<g id="node6" class="node"><title>proc~initialize_global_mats</title>
-<a xlink:href="../proc/initialize_global_mats.html" xlink:title="initialize_global_mats">
-<polygon fill="#d9534f" stroke="#d9534f" points="626,-202 512,-202 512,-176 626,-176 626,-202"/>
-<text text-anchor="middle" x="569" y="-186.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initialize_global_mats</text>
-</a>
-</g>
-<!-- proc~assemble -->
-<g id="node7" class="node"><title>proc~assemble</title>
-<a xlink:href="../proc/assemble.html" xlink:title="assemble">
-<polygon fill="#d9534f" stroke="#d9534f" points="598,-290 540,-290 540,-264 598,-264 598,-290"/>
-<text text-anchor="middle" x="569" y="-274.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble</text>
-</a>
-</g>
-<!-- getie -->
-<g id="node38" class="node"><title>getie</title>
-<polygon fill="#777777" stroke="#777777" points="749,-290 695,-290 695,-264 749,-264 749,-290"/>
-<text text-anchor="middle" x="722" y="-274.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getie</text>
-</g>
-<!-- proc~assemble&#45;&gt;getie -->
-<g id="edge12" class="edge"><title>proc~assemble&#45;&gt;getie</title>
-<path fill="none" stroke="#dfff00" d="M598.138,-277C622.708,-277 658.024,-277 684.664,-277"/>
-<polygon fill="#dfff00" stroke="#dfff00" points="684.769,-280.5 694.769,-277 684.769,-273.5 684.769,-280.5"/>
-</g>
-<!-- proc~integrate_basis_1d_ie -->
-<g id="node8" class="node"><title>proc~integrate_basis_1d_ie</title>
-<a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="290,-400 172,-400 172,-374 290,-374 290,-400"/>
-<text text-anchor="middle" x="231" y="-384.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
-</a>
-</g>
-<!-- proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde -->
-<g id="edge14" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde</title>
-<path fill="none" stroke="#afff00" d="M290.438,-379.735C313.422,-376.926 339.424,-373.748 361.381,-371.065"/>
-<polygon fill="#afff00" stroke="#afff00" points="361.979,-374.518 371.481,-369.83 361.13,-367.569 361.979,-374.518"/>
-</g>
-<!-- proc~integrate_basis_1d_ie&#45;&gt;proc~integrate -->
-<g id="edge16" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~integrate</title>
-<path fill="none" stroke="#afff00" d="M265.963,-400.156C283.247,-407.649 303.815,-418.122 320,-431 339.772,-446.732 335.625,-460.057 356,-475 361.333,-478.911 367.458,-482.246 373.64,-485.047"/>
-<polygon fill="#afff00" stroke="#afff00" points="372.717,-488.451 383.296,-489.015 375.377,-481.977 372.717,-488.451"/>
+<g id="edge12" class="edge"><title>proc~inv2&#45;&gt;proc~det2</title>
+<path fill="none" stroke="#4fff00" d="M80.0344,-717C110.354,-717 159.721,-717 193.698,-717"/>
+<polygon fill="#4fff00" stroke="#4fff00" points="193.711,-720.5 203.711,-717 193.711,-713.5 193.711,-720.5"/>
 </g>
 <!-- proc~eye -->
-<g id="node9" class="node"><title>proc~eye</title>
+<g id="node11" class="node"><title>proc~eye</title>
 <a xlink:href="../proc/eye.html" xlink:title="eye">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="596,-422 542,-422 542,-396 596,-396 596,-422"/>
 <text text-anchor="middle" x="569" y="-406.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eye</text>
 </a>
 </g>
-<!-- proc~getie -->
-<g id="node10" class="node"><title>proc~getie</title>
-<a xlink:href="../proc/getie.html" xlink:title="getIe">
-<polygon fill="#d9534f" stroke="#d9534f" points="80,-400 26,-400 26,-374 80,-374 80,-400"/>
-<text text-anchor="middle" x="53" y="-384.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
-</a>
-</g>
-<!-- proc~getie&#45;&gt;proc~integrate_basis_1d_ie -->
-<g id="edge18" class="edge"><title>proc~getie&#45;&gt;proc~integrate_basis_1d_ie</title>
-<path fill="none" stroke="#4fff00" d="M80.0344,-387C101.689,-387 133.06,-387 161.6,-387"/>
-<polygon fill="#4fff00" stroke="#4fff00" points="161.964,-390.5 171.964,-387 161.964,-383.5 161.964,-390.5"/>
-</g>
 <!-- proc~getarow -->
-<g id="node11" class="node"><title>proc~getarow</title>
+<g id="node12" class="node"><title>proc~getarow</title>
 <a xlink:href="../proc/getarow.html" xlink:title="getArow">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="258,-730 204,-730 204,-704 258,-704 258,-730"/>
-<text text-anchor="middle" x="231" y="-714.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="258,-774 204,-774 204,-748 258,-748 258,-774"/>
+<text text-anchor="middle" x="231" y="-758.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow</text>
 </a>
-</g>
-<!-- proc~integrate2d -->
-<g id="node12" class="node"><title>proc~integrate2d</title>
-<a xlink:href="../proc/integrate2d.html" xlink:title="integrate2D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="265,-598 197,-598 197,-572 265,-572 265,-598"/>
-<text text-anchor="middle" x="231" y="-582.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate2D</text>
-</a>
-</g>
-<!-- proc~gaussquad_wrapper -->
-<g id="node20" class="node"><title>proc~gaussquad_wrapper</title>
-<a xlink:href="../proc/gaussquad_wrapper.html" xlink:title="gaussquad_wrapper">
-<polygon fill="#d9534f" stroke="#d9534f" points="466,-598 356,-598 356,-572 466,-572 466,-598"/>
-<text text-anchor="middle" x="411" y="-582.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad_wrapper</text>
-</a>
-</g>
-<!-- proc~integrate2d&#45;&gt;proc~gaussquad_wrapper -->
-<g id="edge20" class="edge"><title>proc~integrate2d&#45;&gt;proc~gaussquad_wrapper</title>
-<path fill="none" stroke="#00ff0f" d="M265.28,-585C287.983,-585 318.483,-585 345.713,-585"/>
-<polygon fill="#00ff0f" stroke="#00ff0f" points="345.965,-588.5 355.965,-585 345.965,-581.5 345.965,-588.5"/>
 </g>
 <!-- proc~r8mat_print -->
 <g id="node13" class="node"><title>proc~r8mat_print</title>
@@ -379,53 +345,108 @@ All Procedures &ndash; learn_dg
 </a>
 </g>
 <!-- proc~r8mat_print_some -->
-<g id="node17" class="node"><title>proc~r8mat_print_some</title>
+<g id="node20" class="node"><title>proc~r8mat_print_some</title>
 <a xlink:href="../proc/r8mat_print_some.html" xlink:title="r8mat_print_some">
 <polygon fill="#d9534f" stroke="#d9534f" points="772,-554 672,-554 672,-528 772,-528 772,-554"/>
 <text text-anchor="middle" x="722" y="-538.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">r8mat_print_some</text>
 </a>
 </g>
 <!-- proc~r8mat_print&#45;&gt;proc~r8mat_print_some -->
-<g id="edge22" class="edge"><title>proc~r8mat_print&#45;&gt;proc~r8mat_print_some</title>
+<g id="edge14" class="edge"><title>proc~r8mat_print&#45;&gt;proc~r8mat_print_some</title>
 <path fill="none" stroke="#00ff3f" d="M602.576,-541C619.96,-541 641.714,-541 661.877,-541"/>
 <polygon fill="#00ff3f" stroke="#00ff3f" points="661.931,-544.5 671.931,-541 661.931,-537.5 661.931,-544.5"/>
 </g>
 <!-- dgetrs -->
-<g id="node45" class="node"><title>dgetrs</title>
+<g id="node41" class="node"><title>dgetrs</title>
 <polygon fill="#777777" stroke="#777777" points="862,-400 808,-400 808,-374 862,-374 862,-400"/>
 <text text-anchor="middle" x="835" y="-384.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
 <!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="edge24" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
+<g id="edge16" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
 <path fill="none" stroke="#00ff6f" d="M749.066,-370.27C763.635,-373.106 781.826,-376.647 797.715,-379.741"/>
 <polygon fill="#00ff6f" stroke="#00ff6f" points="797.278,-383.222 807.763,-381.697 798.616,-376.351 797.278,-383.222"/>
 </g>
 <!-- dgetrf -->
-<g id="node47" class="node"><title>dgetrf</title>
+<g id="node43" class="node"><title>dgetrf</title>
 <polygon fill="#777777" stroke="#777777" points="862,-356 808,-356 808,-330 862,-330 862,-356"/>
 <text text-anchor="middle" x="835" y="-340.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
 <!-- proc~linsolve&#45;&gt;dgetrf -->
-<g id="edge26" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<g id="edge18" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
 <path fill="none" stroke="#00ff6f" d="M749.066,-359.73C763.635,-356.894 781.826,-353.353 797.715,-350.259"/>
 <polygon fill="#00ff6f" stroke="#00ff6f" points="798.616,-353.649 807.763,-348.303 797.278,-346.778 798.616,-353.649"/>
 </g>
+<!-- proc~integrate_basis_1d_ie -->
+<g id="node15" class="node"><title>proc~integrate_basis_1d_ie</title>
+<a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="290,-488 172,-488 172,-462 290,-462 290,-488"/>
+<text text-anchor="middle" x="231" y="-472.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
+</a>
+</g>
+<!-- proc~integrate_basis_1d_ie&#45;&gt;proc~integrate -->
+<g id="edge22" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~integrate</title>
+<path fill="none" stroke="#00ff9f" d="M290.438,-482.265C317.733,-485.601 349.285,-489.457 373.263,-492.388"/>
+<polygon fill="#00ff9f" stroke="#00ff9f" points="373.022,-495.884 383.372,-493.623 373.871,-488.936 373.022,-495.884"/>
+</g>
+<!-- proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde -->
+<g id="edge20" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde</title>
+<path fill="none" stroke="#00ff9f" d="M248.594,-461.846C277.543,-440.333 334.187,-398.83 356,-387 359.076,-385.331 362.307,-383.718 365.596,-382.174"/>
+<polygon fill="#00ff9f" stroke="#00ff9f" points="367.226,-385.28 374.942,-378.02 364.382,-378.883 367.226,-385.28"/>
+</g>
+<!-- proc~integrate2d -->
+<g id="node16" class="node"><title>proc~integrate2d</title>
+<a xlink:href="../proc/integrate2d.html" xlink:title="integrate2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="265,-598 197,-598 197,-572 265,-572 265,-598"/>
+<text text-anchor="middle" x="231" y="-582.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate2D</text>
+</a>
+</g>
+<!-- proc~gaussquad_wrapper -->
+<g id="node23" class="node"><title>proc~gaussquad_wrapper</title>
+<a xlink:href="../proc/gaussquad_wrapper.html" xlink:title="gaussquad_wrapper">
+<polygon fill="#d9534f" stroke="#d9534f" points="466,-598 356,-598 356,-572 466,-572 466,-598"/>
+<text text-anchor="middle" x="411" y="-582.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad_wrapper</text>
+</a>
+</g>
+<!-- proc~integrate2d&#45;&gt;proc~gaussquad_wrapper -->
+<g id="edge24" class="edge"><title>proc~integrate2d&#45;&gt;proc~gaussquad_wrapper</title>
+<path fill="none" stroke="#00ffcf" d="M265.28,-585C287.983,-585 318.483,-585 345.713,-585"/>
+<polygon fill="#00ffcf" stroke="#00ffcf" points="345.965,-588.5 355.965,-585 345.965,-581.5 345.965,-588.5"/>
+</g>
 <!-- proc~getjacobian -->
-<g id="node15" class="node"><title>proc~getjacobian</title>
+<g id="node17" class="node"><title>proc~getjacobian</title>
 <a xlink:href="../proc/getjacobian.html" xlink:title="getJacobian">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="88,-730 18,-730 18,-704 88,-704 88,-730"/>
-<text text-anchor="middle" x="53" y="-714.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getJacobian</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="88,-774 18,-774 18,-748 88,-748 88,-774"/>
+<text text-anchor="middle" x="53" y="-758.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getJacobian</text>
 </a>
 </g>
 <!-- proc~getjacobian&#45;&gt;proc~getarow -->
-<g id="edge28" class="edge"><title>proc~getjacobian&#45;&gt;proc~getarow</title>
-<path fill="none" stroke="#00ff9f" d="M88.1671,-717C118.661,-717 162.661,-717 193.751,-717"/>
-<polygon fill="#00ff9f" stroke="#00ff9f" points="193.761,-720.5 203.761,-717 193.761,-713.5 193.761,-720.5"/>
+<g id="edge26" class="edge"><title>proc~getjacobian&#45;&gt;proc~getarow</title>
+<path fill="none" stroke="#00ffff" d="M88.1671,-761C118.661,-761 162.661,-761 193.751,-761"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="193.761,-764.5 203.761,-761 193.761,-757.5 193.761,-764.5"/>
+</g>
+<!-- proc~getie -->
+<g id="node18" class="node"><title>proc~getie</title>
+<a xlink:href="../proc/getie.html" xlink:title="getIe">
+<polygon fill="#d9534f" stroke="#d9534f" points="80,-488 26,-488 26,-462 80,-462 80,-488"/>
+<text text-anchor="middle" x="53" y="-472.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
+</a>
+</g>
+<!-- proc~getie&#45;&gt;proc~integrate_basis_1d_ie -->
+<g id="edge28" class="edge"><title>proc~getie&#45;&gt;proc~integrate_basis_1d_ie</title>
+<path fill="none" stroke="#00cfff" d="M80.0344,-475C101.689,-475 133.06,-475 161.6,-475"/>
+<polygon fill="#00cfff" stroke="#00cfff" points="161.964,-478.5 171.964,-475 161.964,-471.5 161.964,-478.5"/>
+</g>
+<!-- interface~fun2d_interf -->
+<g id="node19" class="node"><title>interface~fun2d_interf</title>
+<a xlink:href="../interface/fun2d_interf.html" xlink:title="fun2d_interf">
+<polygon fill="#a7506f" stroke="#a7506f" points="88,-818 18,-818 18,-792 88,-792 88,-818"/>
+<text text-anchor="middle" x="53" y="-802.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fun2d_interf</text>
+</a>
 </g>
 <!-- proc~vandermonde&#45;&gt;proc~linsolve_quick -->
 <g id="edge30" class="edge"><title>proc~vandermonde&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#00ffcf" d="M450.87,-365C471.626,-365 497.203,-365 519.244,-365"/>
-<polygon fill="#00ffcf" stroke="#00ffcf" points="519.417,-368.5 529.417,-365 519.417,-361.5 519.417,-368.5"/>
+<path fill="none" stroke="#003fff" d="M450.87,-365C471.626,-365 497.203,-365 519.244,-365"/>
+<polygon fill="#003fff" stroke="#003fff" points="519.417,-368.5 529.417,-365 519.417,-361.5 519.417,-368.5"/>
 </g>
 <!-- linspace -->
 <g id="node51" class="node"><title>linspace</title>
@@ -434,81 +455,67 @@ All Procedures &ndash; learn_dg
 </g>
 <!-- proc~vandermonde&#45;&gt;linspace -->
 <g id="edge32" class="edge"><title>proc~vandermonde&#45;&gt;linspace</title>
-<path fill="none" stroke="#00ffcf" d="M450.87,-353.897C475.667,-346.991 507.346,-338.169 531.655,-331.4"/>
-<polygon fill="#00ffcf" stroke="#00ffcf" points="532.886,-334.69 541.58,-328.636 531.008,-327.947 532.886,-334.69"/>
+<path fill="none" stroke="#003fff" d="M450.87,-353.897C475.667,-346.991 507.346,-338.169 531.655,-331.4"/>
+<polygon fill="#003fff" stroke="#003fff" points="532.886,-334.69 541.58,-328.636 531.008,-327.947 532.886,-334.69"/>
 </g>
-<!-- proc~gaussquad -->
-<g id="node26" class="node"><title>proc~gaussquad</title>
-<a xlink:href="../proc/gaussquad.html" xlink:title="gaussquad">
-<polygon fill="#d9534f" stroke="#d9534f" points="601,-598 537,-598 537,-572 601,-572 601,-598"/>
-<text text-anchor="middle" x="569" y="-582.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
-</a>
-</g>
-<!-- proc~integrate&#45;&gt;proc~gaussquad -->
-<g id="edge34" class="edge"><title>proc~integrate&#45;&gt;proc~gaussquad</title>
-<path fill="none" stroke="#00cfff" d="M425.825,-510.008C443.095,-524.602 472.977,-548.17 502,-563 509.758,-566.964 518.379,-570.424 526.785,-573.354"/>
-<polygon fill="#00cfff" stroke="#00cfff" points="525.895,-576.746 536.488,-576.548 528.084,-570.097 525.895,-576.746"/>
-</g>
-<!-- proc~write_out_solution -->
-<g id="node19" class="node"><title>proc~write_out_solution</title>
-<a xlink:href="../proc/write_out_solution.html" xlink:title="write_out_solution">
-<polygon fill="#d9534f" stroke="#d9534f" points="618,-114 520,-114 520,-88 618,-88 618,-114"/>
-<text text-anchor="middle" x="569" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_out_solution</text>
+<!-- proc~set_bcs -->
+<g id="node22" class="node"><title>proc~set_bcs</title>
+<a xlink:href="../proc/set_bcs.html" xlink:title="set_BCs">
+<polygon fill="#d9534f" stroke="#d9534f" points="80,-862 26,-862 26,-836 80,-836 80,-862"/>
+<text text-anchor="middle" x="53" y="-846.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_BCs</text>
 </a>
 </g>
 <!-- proc~gaussquad_wrapper&#45;&gt;proc~gaussquad -->
-<g id="edge36" class="edge"><title>proc~gaussquad_wrapper&#45;&gt;proc~gaussquad</title>
-<path fill="none" stroke="#006fff" d="M466.261,-585C485.842,-585 507.568,-585 525.979,-585"/>
-<polygon fill="#006fff" stroke="#006fff" points="526.112,-588.5 536.112,-585 526.112,-581.5 526.112,-588.5"/>
-</g>
-<!-- proc~set_bcs -->
-<g id="node21" class="node"><title>proc~set_bcs</title>
-<a xlink:href="../proc/set_bcs.html" xlink:title="set_BCs">
-<polygon fill="#d9534f" stroke="#d9534f" points="80,-774 26,-774 26,-748 80,-748 80,-774"/>
-<text text-anchor="middle" x="53" y="-758.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_BCs</text>
-</a>
+<g id="edge34" class="edge"><title>proc~gaussquad_wrapper&#45;&gt;proc~gaussquad</title>
+<path fill="none" stroke="#1f00ff" d="M466.261,-585C485.842,-585 507.568,-585 525.979,-585"/>
+<polygon fill="#1f00ff" stroke="#1f00ff" points="526.112,-588.5 536.112,-585 526.112,-581.5 526.112,-588.5"/>
 </g>
 <!-- proc~lgwt -->
-<g id="node24" class="node"><title>proc~lgwt</title>
+<g id="node26" class="node"><title>proc~lgwt</title>
 <a xlink:href="../proc/lgwt.html" xlink:title="lgwt">
 <polygon fill="#d9534f" stroke="#d9534f" points="438,-70 384,-70 384,-44 438,-44 438,-70"/>
 <text text-anchor="middle" x="411" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lgwt</text>
 </a>
 </g>
 <!-- proc~lgwt&#45;&gt;linspace -->
-<g id="edge40" class="edge"><title>proc~lgwt&#45;&gt;linspace</title>
-<path fill="none" stroke="#4f00ff" d="M416.974,-70.353C427.472,-94.0276 449.667,-145.013 466,-189 483.906,-237.223 465.644,-262.608 502,-299 510.082,-307.09 521.186,-312.206 532.031,-315.44"/>
-<polygon fill="#4f00ff" stroke="#4f00ff" points="531.271,-318.858 541.823,-317.913 532.985,-312.071 531.271,-318.858"/>
+<g id="edge38" class="edge"><title>proc~lgwt&#45;&gt;linspace</title>
+<path fill="none" stroke="#af00ff" d="M416.974,-70.353C427.472,-94.0276 449.667,-145.013 466,-189 483.906,-237.223 465.644,-262.608 502,-299 510.082,-307.09 521.186,-312.206 532.031,-315.44"/>
+<polygon fill="#af00ff" stroke="#af00ff" points="531.271,-318.858 541.823,-317.913 532.985,-312.071 531.271,-318.858"/>
 </g>
 <!-- dsin -->
-<g id="node55" class="node"><title>dsin</title>
+<g id="node54" class="node"><title>dsin</title>
 <polygon fill="#777777" stroke="#777777" points="596,-70 542,-70 542,-44 596,-44 596,-70"/>
 <text text-anchor="middle" x="569" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dsin</text>
 </g>
 <!-- proc~lgwt&#45;&gt;dsin -->
-<g id="edge38" class="edge"><title>proc~lgwt&#45;&gt;dsin</title>
-<path fill="none" stroke="#4f00ff" d="M438.161,-57C464.014,-57 503.129,-57 531.858,-57"/>
-<polygon fill="#4f00ff" stroke="#4f00ff" points="531.929,-60.5001 541.929,-57 531.929,-53.5001 531.929,-60.5001"/>
+<g id="edge36" class="edge"><title>proc~lgwt&#45;&gt;dsin</title>
+<path fill="none" stroke="#af00ff" d="M438.161,-57C464.014,-57 503.129,-57 531.858,-57"/>
+<polygon fill="#af00ff" stroke="#af00ff" points="531.929,-60.5001 541.929,-57 531.929,-53.5001 531.929,-60.5001"/>
 </g>
 <!-- dcos -->
-<g id="node58" class="node"><title>dcos</title>
+<g id="node57" class="node"><title>dcos</title>
 <polygon fill="#777777" stroke="#777777" points="596,-26 542,-26 542,-1.24345e-14 596,-3.55271e-15 596,-26"/>
 <text text-anchor="middle" x="569" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dcos</text>
 </g>
 <!-- proc~lgwt&#45;&gt;dcos -->
-<g id="edge42" class="edge"><title>proc~lgwt&#45;&gt;dcos</title>
-<path fill="none" stroke="#4f00ff" d="M438.161,-49.4361C464.128,-42.2049 503.472,-31.2482 532.236,-23.2381"/>
-<polygon fill="#4f00ff" stroke="#4f00ff" points="533.235,-26.5932 541.929,-20.5387 531.357,-19.8498 533.235,-26.5932"/>
+<g id="edge40" class="edge"><title>proc~lgwt&#45;&gt;dcos</title>
+<path fill="none" stroke="#af00ff" d="M438.161,-49.4361C464.128,-42.2049 503.472,-31.2482 532.236,-23.2381"/>
+<polygon fill="#af00ff" stroke="#af00ff" points="533.235,-26.5932 541.929,-20.5387 531.357,-19.8498 533.235,-26.5932"/>
 </g>
-<!-- interface~fun2d_interf -->
-<g id="node25" class="node"><title>interface~fun2d_interf</title>
-<a xlink:href="../interface/fun2d_interf.html" xlink:title="fun2d_interf">
-<polygon fill="#a7506f" stroke="#a7506f" points="88,-818 18,-818 18,-792 88,-792 88,-818"/>
-<text text-anchor="middle" x="53" y="-802.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fun2d_interf</text>
+<!-- proc~read_gmsh_file_1d -->
+<g id="node27" class="node"><title>proc~read_gmsh_file_1d</title>
+<a xlink:href="../proc/read_gmsh_file_1d.html" xlink:title="read_gmsh_file_1D">
+<polygon fill="#d9534f" stroke="#d9534f" points="106,-642 3.55271e-14,-642 0,-616 106,-616 106,-642"/>
+<text text-anchor="middle" x="53" y="-626.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_gmsh_file_1D</text>
 </a>
 </g>
+<!-- proc~read_gmsh_file_1d&#45;&gt;proc~get_command_argument_wrapper -->
+<g id="edge42" class="edge"><title>proc~read_gmsh_file_1d&#45;&gt;proc~get_command_argument_wrapper</title>
+<path fill="none" stroke="#df00ff" d="M106.406,-629C114.429,-629 122.913,-629 131.531,-629"/>
+<polygon fill="#df00ff" stroke="#df00ff" points="131.688,-632.5 141.688,-629 131.688,-625.5 131.688,-632.5"/>
+</g>
 <!-- proc~assembleelementalmatrix -->
-<g id="node27" class="node"><title>proc~assembleelementalmatrix</title>
+<g id="node28" class="node"><title>proc~assembleelementalmatrix</title>
 <a xlink:href="../proc/assembleelementalmatrix.html" xlink:title="assembleElementalMatrix">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="298,-334 164,-334 164,-308 298,-308 298,-334"/>
 <text text-anchor="middle" x="231" y="-318.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix</text>
@@ -522,132 +529,125 @@ All Procedures &ndash; learn_dg
 </a>
 </g>
 <!-- proc~assembleelementalmatrix&#45;&gt;proc~getalpha -->
-<g id="edge44" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;proc~getalpha</title>
-<path fill="none" stroke="#df00ff" d="M258.99,-334.046C276.686,-342.488 299.924,-353.932 320,-365 336.421,-374.053 339.236,-378.599 356,-387 361.732,-389.872 367.934,-392.65 374.037,-395.21"/>
-<polygon fill="#df00ff" stroke="#df00ff" points="372.883,-398.518 383.465,-399.034 375.514,-392.032 372.883,-398.518"/>
+<g id="edge46" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;proc~getalpha</title>
+<path fill="none" stroke="#ff00ef" d="M258.99,-334.046C276.686,-342.488 299.924,-353.932 320,-365 336.421,-374.053 339.236,-378.599 356,-387 361.732,-389.872 367.934,-392.65 374.037,-395.21"/>
+<polygon fill="#ff00ef" stroke="#ff00ef" points="372.883,-398.518 383.465,-399.034 375.514,-392.032 372.883,-398.518"/>
 </g>
 <!-- integrate2d -->
-<g id="node61" class="node"><title>integrate2d</title>
+<g id="node60" class="node"><title>integrate2d</title>
 <polygon fill="#777777" stroke="#777777" points="444,-334 378,-334 378,-308 444,-308 444,-334"/>
 <text text-anchor="middle" x="411" y="-318.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate2d</text>
 </g>
 <!-- proc~assembleelementalmatrix&#45;&gt;integrate2d -->
-<g id="edge46" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;integrate2d</title>
-<path fill="none" stroke="#df00ff" d="M298.537,-321C321.579,-321 346.719,-321 367.375,-321"/>
-<polygon fill="#df00ff" stroke="#df00ff" points="367.429,-324.5 377.429,-321 367.429,-317.5 367.429,-324.5"/>
+<g id="edge44" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;integrate2d</title>
+<path fill="none" stroke="#ff00ef" d="M298.537,-321C321.579,-321 346.719,-321 367.375,-321"/>
+<polygon fill="#ff00ef" stroke="#ff00ef" points="367.429,-324.5 377.429,-321 367.429,-317.5 367.429,-324.5"/>
+</g>
+<!-- proc~getalpha&#45;&gt;proc~linsolve_quick -->
+<g id="edge48" class="edge"><title>proc~getalpha&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff00bf" d="M438.521,-401.336C460.787,-395.135 492.715,-386.244 519.414,-378.809"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="520.665,-382.094 529.359,-376.039 518.787,-375.35 520.665,-382.094"/>
+</g>
+<!-- proc~getalpha&#45;&gt;proc~eye -->
+<g id="edge50" class="edge"><title>proc~getalpha&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#ff00bf" d="M438.521,-409C464.349,-409 503.18,-409 531.768,-409"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="531.794,-412.5 541.794,-409 531.794,-405.5 531.794,-412.5"/>
 </g>
 <!-- proc~cgwt -->
-<g id="node28" class="node"><title>proc~cgwt</title>
+<g id="node30" class="node"><title>proc~cgwt</title>
 <a xlink:href="../proc/cgwt.html" xlink:title="cgwt">
 <polygon fill="#d9534f" stroke="#d9534f" points="438,-26 384,-26 384,-1.24345e-14 438,-3.55271e-15 438,-26"/>
 <text text-anchor="middle" x="411" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">cgwt</text>
 </a>
 </g>
 <!-- proc~cgwt&#45;&gt;dcos -->
-<g id="edge48" class="edge"><title>proc~cgwt&#45;&gt;dcos</title>
-<path fill="none" stroke="#ff00ef" d="M438.161,-13C464.014,-13 503.129,-13 531.858,-13"/>
-<polygon fill="#ff00ef" stroke="#ff00ef" points="531.929,-16.5001 541.929,-13 531.929,-9.5001 531.929,-16.5001"/>
+<g id="edge52" class="edge"><title>proc~cgwt&#45;&gt;dcos</title>
+<path fill="none" stroke="#ff008f" d="M438.161,-13C464.014,-13 503.129,-13 531.858,-13"/>
+<polygon fill="#ff008f" stroke="#ff008f" points="531.929,-16.5001 541.929,-13 531.929,-9.5001 531.929,-16.5001"/>
 </g>
-<!-- proc~getalpha&#45;&gt;proc~linsolve_quick -->
-<g id="edge50" class="edge"><title>proc~getalpha&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff00bf" d="M438.521,-401.336C460.787,-395.135 492.715,-386.244 519.414,-378.809"/>
-<polygon fill="#ff00bf" stroke="#ff00bf" points="520.665,-382.094 529.359,-376.039 518.787,-375.35 520.665,-382.094"/>
-</g>
-<!-- proc~getalpha&#45;&gt;proc~eye -->
-<g id="edge52" class="edge"><title>proc~getalpha&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff00bf" d="M438.521,-409C464.349,-409 503.18,-409 531.768,-409"/>
-<polygon fill="#ff00bf" stroke="#ff00bf" points="531.794,-412.5 541.794,-409 531.794,-405.5 531.794,-412.5"/>
-</g>
-<!-- proc~basis_1d -->
-<g id="node30" class="node"><title>proc~basis_1d</title>
-<a xlink:href="../proc/basis_1d.html" xlink:title="basis_1D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="81,-862 25,-862 25,-836 81,-836 81,-862"/>
-<text text-anchor="middle" x="53" y="-846.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">basis_1D</text>
+<!-- program~main -->
+<g id="node31" class="node"><title>program~main</title>
+<a xlink:href="../program/main.html" xlink:title="main">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="438,-224 384,-224 384,-198 438,-198 438,-224"/>
+<text text-anchor="middle" x="411" y="-208.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
 </a>
 </g>
+<!-- program~main&#45;&gt;proc~assemble -->
+<g id="edge60" class="edge"><title>program~main&#45;&gt;proc~assemble</title>
+<path fill="none" stroke="#ff005f" d="M421.343,-197.742C436.901,-178.642 468.13,-143.439 502,-123 510.558,-117.836 520.471,-113.728 530.006,-110.528"/>
+<polygon fill="#ff005f" stroke="#ff005f" points="531.215,-113.818 539.731,-107.516 529.143,-107.131 531.215,-113.818"/>
+</g>
+<!-- program~main&#45;&gt;proc~linsolve_quick -->
+<g id="edge64" class="edge"><title>program~main&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff005f" d="M419.332,-224.074C439.596,-255.724 490.633,-334.497 502,-343 507.401,-347.04 513.581,-350.36 519.953,-353.083"/>
+<polygon fill="#ff005f" stroke="#ff005f" points="518.769,-356.378 529.36,-356.66 521.257,-349.834 518.769,-356.378"/>
+</g>
+<!-- program~main&#45;&gt;proc~initialize_global_mats -->
+<g id="edge54" class="edge"><title>program~main&#45;&gt;proc~initialize_global_mats</title>
+<path fill="none" stroke="#ff005f" d="M435.703,-224.051C453.781,-233.328 479.057,-245.734 502,-255 506.773,-256.928 511.786,-258.816 516.831,-260.625"/>
+<polygon fill="#ff005f" stroke="#ff005f" points="515.922,-264.015 526.517,-263.997 518.224,-257.404 515.922,-264.015"/>
+</g>
+<!-- program~main&#45;&gt;proc~write_out_solution -->
+<g id="edge56" class="edge"><title>program~main&#45;&gt;proc~write_out_solution</title>
+<path fill="none" stroke="#ff005f" d="M438.161,-207.218C457.703,-204.497 484.822,-200.721 509.305,-197.312"/>
+<polygon fill="#ff005f" stroke="#ff005f" points="509.827,-200.773 519.248,-195.927 508.861,-193.84 509.827,-200.773"/>
+</g>
+<!-- set_bcs -->
+<g id="node68" class="node"><title>set_bcs</title>
+<polygon fill="#777777" stroke="#777777" points="596,-246 542,-246 542,-220 596,-220 596,-246"/>
+<text text-anchor="middle" x="569" y="-230.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_bcs</text>
+</g>
+<!-- program~main&#45;&gt;set_bcs -->
+<g id="edge58" class="edge"><title>program~main&#45;&gt;set_bcs</title>
+<path fill="none" stroke="#ff005f" d="M438.161,-214.782C464.014,-218.382 503.129,-223.828 531.858,-227.828"/>
+<polygon fill="#ff005f" stroke="#ff005f" points="531.542,-231.318 541.929,-229.231 532.508,-224.385 531.542,-231.318"/>
+</g>
+<!-- read_gmsh_file_1d -->
+<g id="node71" class="node"><title>read_gmsh_file_1d</title>
+<polygon fill="#777777" stroke="#777777" points="621,-158 517,-158 517,-132 621,-132 621,-158"/>
+<text text-anchor="middle" x="569" y="-142.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_gmsh_file_1d</text>
+</g>
+<!-- program~main&#45;&gt;read_gmsh_file_1d -->
+<g id="edge62" class="edge"><title>program~main&#45;&gt;read_gmsh_file_1d</title>
+<path fill="none" stroke="#ff005f" d="M435.703,-197.949C453.781,-188.672 479.057,-176.266 502,-167 506.773,-165.072 511.786,-163.184 516.831,-161.375"/>
+<polygon fill="#ff005f" stroke="#ff005f" points="518.224,-164.596 526.517,-158.003 515.922,-157.985 518.224,-164.596"/>
+</g>
 <!-- program~doubleint -->
-<g id="node31" class="node"><title>program~doubleint</title>
+<g id="node32" class="node"><title>program~doubleint</title>
 <a xlink:href="../program/doubleint.html" xlink:title="doubleint">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="439,-466 383,-466 383,-440 439,-440 439,-466"/>
 <text text-anchor="middle" x="411" y="-450.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">doubleint</text>
 </a>
 </g>
 <!-- program~doubleint&#45;&gt;proc~getxy -->
-<g id="edge56" class="edge"><title>program~doubleint&#45;&gt;proc~getxy</title>
-<path fill="none" stroke="#ff005f" d="M439.247,-453C464.985,-453 503.185,-453 531.478,-453"/>
-<polygon fill="#ff005f" stroke="#ff005f" points="531.79,-456.5 541.79,-453 531.79,-449.5 531.79,-456.5"/>
+<g id="edge68" class="edge"><title>program~doubleint&#45;&gt;proc~getxy</title>
+<path fill="none" stroke="#ff002f" d="M439.247,-453C464.985,-453 503.185,-453 531.478,-453"/>
+<polygon fill="#ff002f" stroke="#ff002f" points="531.79,-456.5 541.79,-453 531.79,-449.5 531.79,-456.5"/>
 </g>
 <!-- program~doubleint&#45;&gt;proc~linsolve_quick -->
-<g id="edge54" class="edge"><title>program~doubleint&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff005f" d="M439.268,-444.803C448.314,-441.392 458.039,-436.839 466,-431 486.375,-416.057 481.163,-401.291 502,-387 507.367,-383.319 513.394,-380.218 519.575,-377.615"/>
-<polygon fill="#ff005f" stroke="#ff005f" points="521.227,-380.733 529.343,-373.923 518.751,-374.185 521.227,-380.733"/>
+<g id="edge66" class="edge"><title>program~doubleint&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff002f" d="M439.268,-444.803C448.314,-441.392 458.039,-436.839 466,-431 486.375,-416.057 481.163,-401.291 502,-387 507.367,-383.319 513.394,-380.218 519.575,-377.615"/>
+<polygon fill="#ff002f" stroke="#ff002f" points="521.227,-380.733 529.343,-373.923 518.751,-374.185 521.227,-380.733"/>
 </g>
 <!-- program~doubleint&#45;&gt;proc~eye -->
-<g id="edge62" class="edge"><title>program~doubleint&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff005f" d="M439.247,-445.134C465.098,-437.935 503.522,-427.234 531.851,-419.345"/>
-<polygon fill="#ff005f" stroke="#ff005f" points="533.095,-422.632 541.79,-416.578 531.217,-415.889 533.095,-422.632"/>
+<g id="edge72" class="edge"><title>program~doubleint&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#ff002f" d="M439.247,-445.134C465.098,-437.935 503.522,-427.234 531.851,-419.345"/>
+<polygon fill="#ff002f" stroke="#ff002f" points="533.095,-422.632 541.79,-416.578 531.217,-415.889 533.095,-422.632"/>
 </g>
 <!-- program~doubleint&#45;&gt;proc~r8mat_print -->
-<g id="edge60" class="edge"><title>program~doubleint&#45;&gt;proc~r8mat_print</title>
-<path fill="none" stroke="#ff005f" d="M439.268,-461.197C448.314,-464.608 458.039,-469.161 466,-475 486.375,-489.943 481.163,-504.709 502,-519 509.112,-523.878 517.382,-527.737 525.635,-530.768"/>
-<polygon fill="#ff005f" stroke="#ff005f" points="524.652,-534.13 535.245,-533.959 526.858,-527.486 524.652,-534.13"/>
+<g id="edge70" class="edge"><title>program~doubleint&#45;&gt;proc~r8mat_print</title>
+<path fill="none" stroke="#ff002f" d="M439.268,-461.197C448.314,-464.608 458.039,-469.161 466,-475 486.375,-489.943 481.163,-504.709 502,-519 509.112,-523.878 517.382,-527.737 525.635,-530.768"/>
+<polygon fill="#ff002f" stroke="#ff002f" points="524.652,-534.13 535.245,-533.959 526.858,-527.486 524.652,-534.13"/>
 </g>
 <!-- assembleelementalmatrix -->
-<g id="node68" class="node"><title>assembleelementalmatrix</title>
+<g id="node78" class="node"><title>assembleelementalmatrix</title>
 <polygon fill="#777777" stroke="#777777" points="636,-510 502,-510 502,-484 636,-484 636,-510"/>
 <text text-anchor="middle" x="569" y="-494.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleelementalmatrix</text>
 </g>
 <!-- program~doubleint&#45;&gt;assembleelementalmatrix -->
-<g id="edge58" class="edge"><title>program~doubleint&#45;&gt;assembleelementalmatrix</title>
-<path fill="none" stroke="#ff005f" d="M439.247,-460.866C459.543,-466.518 487.588,-474.328 512.414,-481.242"/>
-<polygon fill="#ff005f" stroke="#ff005f" points="511.532,-484.629 522.104,-483.94 513.41,-477.886 511.532,-484.629"/>
-</g>
-<!-- program~main -->
-<g id="node32" class="node"><title>program~main</title>
-<a xlink:href="../program/main.html" xlink:title="main">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="438,-224 384,-224 384,-198 438,-198 438,-224"/>
-<text text-anchor="middle" x="411" y="-208.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
-</a>
-</g>
-<!-- program~main&#45;&gt;proc~linsolve_quick -->
-<g id="edge72" class="edge"><title>program~main&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff002f" d="M419.332,-224.074C439.596,-255.724 490.633,-334.497 502,-343 507.401,-347.04 513.581,-350.36 519.953,-353.083"/>
-<polygon fill="#ff002f" stroke="#ff002f" points="518.769,-356.378 529.36,-356.66 521.257,-349.834 518.769,-356.378"/>
-</g>
-<!-- program~main&#45;&gt;proc~initialize_global_mats -->
-<g id="edge74" class="edge"><title>program~main&#45;&gt;proc~initialize_global_mats</title>
-<path fill="none" stroke="#ff002f" d="M438.161,-207.218C455.683,-204.778 479.295,-201.491 501.638,-198.379"/>
-<polygon fill="#ff002f" stroke="#ff002f" points="502.366,-201.812 511.788,-196.966 501.401,-194.879 502.366,-201.812"/>
-</g>
-<!-- program~main&#45;&gt;proc~assemble -->
-<g id="edge66" class="edge"><title>program~main&#45;&gt;proc~assemble</title>
-<path fill="none" stroke="#ff002f" d="M435.703,-224.051C453.781,-233.328 479.057,-245.734 502,-255 510.92,-258.602 520.677,-262.066 529.916,-265.137"/>
-<polygon fill="#ff002f" stroke="#ff002f" points="529.082,-268.546 539.674,-268.303 531.243,-261.888 529.082,-268.546"/>
-</g>
-<!-- program~main&#45;&gt;proc~write_out_solution -->
-<g id="edge70" class="edge"><title>program~main&#45;&gt;proc~write_out_solution</title>
-<path fill="none" stroke="#ff002f" d="M421.343,-197.742C436.901,-178.642 468.13,-143.439 502,-123 504.83,-121.292 507.809,-119.7 510.873,-118.218"/>
-<polygon fill="#ff002f" stroke="#ff002f" points="512.51,-121.321 520.259,-114.096 509.695,-114.912 512.51,-121.321"/>
-</g>
-<!-- set_bcs -->
-<g id="node72" class="node"><title>set_bcs</title>
-<polygon fill="#777777" stroke="#777777" points="596,-246 542,-246 542,-220 596,-220 596,-246"/>
-<text text-anchor="middle" x="569" y="-230.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_bcs</text>
-</g>
-<!-- program~main&#45;&gt;set_bcs -->
-<g id="edge64" class="edge"><title>program~main&#45;&gt;set_bcs</title>
-<path fill="none" stroke="#ff002f" d="M438.161,-214.782C464.014,-218.382 503.129,-223.828 531.858,-227.828"/>
-<polygon fill="#ff002f" stroke="#ff002f" points="531.542,-231.318 541.929,-229.231 532.508,-224.385 531.542,-231.318"/>
-</g>
-<!-- read_gmsh_file_1d -->
-<g id="node75" class="node"><title>read_gmsh_file_1d</title>
-<polygon fill="#777777" stroke="#777777" points="621,-158 517,-158 517,-132 621,-132 621,-158"/>
-<text text-anchor="middle" x="569" y="-142.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_gmsh_file_1d</text>
-</g>
-<!-- program~main&#45;&gt;read_gmsh_file_1d -->
-<g id="edge68" class="edge"><title>program~main&#45;&gt;read_gmsh_file_1d</title>
-<path fill="none" stroke="#ff002f" d="M435.703,-197.949C453.781,-188.672 479.057,-176.266 502,-167 506.773,-165.072 511.786,-163.184 516.831,-161.375"/>
-<polygon fill="#ff002f" stroke="#ff002f" points="518.224,-164.596 526.517,-158.003 515.922,-157.985 518.224,-164.596"/>
+<g id="edge74" class="edge"><title>program~doubleint&#45;&gt;assembleelementalmatrix</title>
+<path fill="none" stroke="#ff002f" d="M439.247,-460.866C459.543,-466.518 487.588,-474.328 512.414,-481.242"/>
+<polygon fill="#ff002f" stroke="#ff002f" points="511.532,-484.629 522.104,-483.94 513.41,-477.886 511.532,-484.629"/>
 </g>
 </g>
 </svg>
@@ -738,7 +738,7 @@ All Procedures &ndash; learn_dg
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-22 05:12  
+             on 2017-01-22 05:15  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
