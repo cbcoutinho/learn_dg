@@ -1,11 +1,10 @@
 # makefile: makes the learn_dg program
 
-current_dir = $(shell pwd)
-SRC=$(current_dir)/src
-OBJ=$(current_dir)/obj
-BIN=$(current_dir)/bin
-DOCS=$(current_dir)/docs
-FORTRANLIB_SRC=$(current_dir)/src/fortranlib/src
+SRC=$(shell pwd)/src
+OBJ=$(shell pwd)/obj
+BIN=$(shell pwd)/bin
+DOCS=$(shell pwd)/docs
+FORTRANLIB_SRC=$(shell pwd)/src/fortranlib/src
 
 # Compiler
 FF = gfortran
@@ -17,6 +16,10 @@ FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 
 FLIBS = -lblas -llapack
 # FLIBS += -fopenmp
+
+FORD_FLAGS = -d $(SRC) \
+	-p $(DOCS)/user-guide \
+	-o $(DOCS)/html
 
 default: all
 
@@ -74,5 +77,6 @@ debug: clean all
 plot: run
 	python plotter.py
 
-docs: learn_dg.md
-	ford learn_dg.md
+.PHONY: docs
+docs: $(DOCS)/learn_dg.md
+	ford $(FORD_FLAGS) $(DOCS)/learn_dg.md
