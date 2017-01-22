@@ -33,8 +33,6 @@ install:
   - (pip install --upgrade ford && ford --version)
 
 script:
-  - make
-  - ./fidasim
   - make docs
 
 after_success:

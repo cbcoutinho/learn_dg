@@ -21,8 +21,6 @@ FORD_FLAGS = -d $(SRC) \
 	-p $(DOCS)/user-guide \
 	-o $(DOCS)/html
 
-default: all
-
 # Dependencies of main program
 objects=$(OBJ)/lib_array.o \
 	$(OBJ)/lib_algebra.o \
@@ -59,7 +57,9 @@ $(OBJ)/main.o: $(SRC)/main.f90 $(objects)
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
-all: $(BIN)/main mesh
+default: all
+
+all: $(BIN)/main
 
 mesh: test1D.geo test2D.geo
 	gmsh test1D.geo -order 1 -1 -o test1D.msh > /dev/null 2>&1
