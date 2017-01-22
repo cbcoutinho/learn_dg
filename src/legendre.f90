@@ -16,22 +16,30 @@ contains
   ! !!!!!! Elemental Matrix Routines 1-D !!!!!!!
   ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  subroutine getIe(dx1, dx2, xcoords, Ie)
-    integer, intent(in) :: dx1, dx2
-    real(wp), intent(in), dimension(:) :: xcoords
-    real(wp), intent(out), dimension(:,:) :: Ie
+  subroutine getIe(dii, djj, xcoords, Ie)
+    !*  Routine to calculate the elemental mass/stiffness matrix based on the
+    !   derivatives of the basis functions.
+    !
+    !   Currently only zero-th and first order derivatives are supported. Second
+    !   order derivatives need to be reduced to first order derivatives in the
+    !   problem formulation using Green's Theorem
+    
+    integer,  intent(in)                    :: dii      !! Derivative of the first basis function
+    integer,  intent(in)                    :: djj      !! Derivative of the second basis function
+    real(wp), intent(in),   dimension(:)    :: xcoords  !! Coordinates of the 1D line element
+    real(wp), intent(out),  dimension(:,:)  :: Ie       !! Output elemental matrix
 
     integer :: ii, jj, order
     order = size(xcoords)-1
 
     do ii = 1, size(xcoords)
-      Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, dx1, dx2, xcoords), jj = 1, order+1 )]
+      Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, dii, djj, xcoords), jj = 1, order+1 )]
     enddo
     return
   end subroutine getIe
 
-  function integrate_basis_1d_Ie(N, ii, jj, dx1, dx2, xcoords) result(integral)
-    integer, intent(in)                     :: N, ii, jj, dx1, dx2
+  function integrate_basis_1d_Ie(N, ii, jj, dii, djj, xcoords) result(integral)
+    integer, intent(in)                     :: N, ii, jj, dii, djj
     real(wp), intent(in), dimension(:)      :: xcoords
     real(wp)                                :: integral
 
@@ -78,14 +86,14 @@ contains
       allocate(J(size(s)))
       call XorJ(s, 1, J)
 
-      ! write(*,*) dx1, dx2
+      ! write(*,*) dii, djj
 
       y = 1.0_wp
 
       ! Here we have to be careful because J is not always needed in the first
       ! two function calls. Instead of using if statements, we can use an exponent so that when dx_ == 0, J is 1
-      y = y * basis_1D(s, Vinv(:, basis_num1), dx1) / (J**real(dx1,wp))
-      y = y * basis_1D(s, Vinv(:, basis_num2), dx2) / (J**real(dx2,wp))
+      y = y * basis_1D(s, Vinv(:, basis_num1), dii) / (J**real(dii,wp))
+      y = y * basis_1D(s, Vinv(:, basis_num2), djj) / (J**real(djj,wp))
       y = y * J
 
       deallocate(J)
