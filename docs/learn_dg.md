@@ -15,9 +15,10 @@ display: public
 docmark: +
 source: true
 graph: true
-extra_filetypes: py
-sort: alpha
 coloured_edges: true
+extra_filetypes: py
+media_dir: ./media
+favicon: ./media/learn_dg-favicon.png
 print_creation_date: true
 creation_date: %Y-%m-%d %H:%M %z
 extra_mods: iso_fortran_env:https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html
