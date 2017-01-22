@@ -8,7 +8,7 @@ exclude_dir: ./src/fortranlib
              ./src/fortranlib/templates
 project_github: https://github.com/cbcoutinho/learn_dg
 github: https://github.com/cbcoutinho
-linkedin: https://www.linkedin.com/cbcoutinho
+linkedin: https://www.linkedin.com/in/cbcoutinho
 website: https://cbcoutinho.github.io
 display: public
          protected
