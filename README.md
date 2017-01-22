@@ -18,14 +18,12 @@ Example:
 'C:\Development\MinGW\lib'
 
 ## Documentation Website
-The documentation is built using [FORD](https://github.com/cmacmackin/ford).
-FORD takes inline documentation, prefixed by `!+`, and the markdown files located in `docs/user_guide` and wraps them all up in a pretty website.
+The documentation is built using [FORD](https://github.com/cmacmackin/ford), a python package that produces documentation from source code similar to Doxygen, but specifically designed for Fortran.
+FORD takes inline documentation, prefixed by `!!`, and the markdown files located in `docs/user_guide`, and wraps them all up into an attractive website, available [here](https://cbcoutinho.github.io/learn_dg).
 The documentation website is automatically updated whenever a commit is added to the master branch. This is done through Travis-CI.
 
 To build the documentation locally run
 ```
 make docs
 ```
-This will build the documentation website in the `docs/html` directory.
-
-This project organization was heavily influenced by [FIDASIM](https://github.com/D3DEnergetic/FIDASIM)
+This will build the documentation website in the `docs/html` directory. The organization of this project was heavily influenced by [FIDASIM](https://github.com/D3DEnergetic/FIDASIM)
