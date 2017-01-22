@@ -277,7 +277,19 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
 
     
     <p>This routine initalizes the global stiffness matrix, global rhs vector,
- and global solution vector based on the number of nodes in the system</p>
+  and global solution vector based on the number of nodes in the system</p>
+<ul>
+<li>This is a bullet point</li>
+<li>
+<p>Another bullet point</p>
+</li>
+<li>
+<p>This might be a number</p>
+</li>
+<li>Also a number?</li>
+</ul>
+<p>Some \( \LaTeX \):
+ $$ \frac{\partial u}{\partial t} = 0 $$</p>
     
 
     <h3>Arguments</h3>
@@ -519,25 +531,31 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
                                   <span class="p">&amp;</span> <span class="n">GlobalA</span><span class="p">,</span> <span class="p">&amp;</span>
                                   <span class="p">&amp;</span> <span class="n">GlobalB</span><span class="p">,</span> <span class="p">&amp;</span>
                                   <span class="p">&amp;</span> <span class="n">GlobalX</span><span class="p">)</span>
-    <span class="c">!+ This routine initalizes the global stiffness matrix, global rhs vector,</span>
-    <span class="c">!+ and global solution vector based on the number of nodes in the system</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">num_nodes</span>
-      <span class="c">!+ The number of nodes in the system</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalB</span>
-      <span class="c">!+ Global RHS Vector</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalX</span>
-      <span class="c">!+ Global solution vector</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalA</span>
-      <span class="c">!+ Global mass matrix</span>
+    <span class="c">!* This routine initalizes the global stiffness matrix, global rhs vector,</span>
+    <span class="c">!  and global solution vector based on the number of nodes in the system</span>
+    <span class="c">!</span>
+    <span class="c">! * This is a bullet point</span>
+    <span class="c">! * Another bullet point</span>
+    <span class="c">!</span>
+    <span class="c">! 1. This might be a number</span>
+    <span class="c">! 2. Also a number?</span>
+    <span class="c">!</span>
+    <span class="c">! Some \( \LaTeX \):</span>
+    <span class="c">! $$ \frac{\partial u}{\partial t} = 0 $$</span>
+
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">num_nodes</span>  <span class="c">!! The number of nodes in the system</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalB</span>    <span class="c">!! Global RHS Vector</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalX</span>    <span class="c">!! Global solution vector</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalA</span>    <span class="c">!! Global mass matrix</span>
 
     <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalA</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">))</span>
     <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalB</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
     <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalX</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
 
     <span class="c">! Intial Conditions</span>
-    <span class="n">GlobalA</span><span class="p">(:,:)</span>  <span class="o">=</span> <span class="mf">0._wp</span>
-    <span class="n">GlobalX</span><span class="p">(:)</span>    <span class="o">=</span> <span class="mf">0._wp</span>
-    <span class="n">GlobalB</span><span class="p">(:)</span>    <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="n">GlobalA</span> <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="n">GlobalX</span> <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="n">GlobalB</span> <span class="o">=</span> <span class="mf">0._wp</span>
 
     <span class="k">return</span>
 <span class="k">  end subroutine </span><span class="n">initialize_global_mats</span>
@@ -636,7 +654,7 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-22 06:31  
+             on 2017-01-22 22:01  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

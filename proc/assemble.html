@@ -644,19 +644,13 @@ public subroutine assemble(order, xcoords, elem_conn, GlobalA, diff, vel)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">assemble</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">xcoords</span><span class="p">,</span> <span class="n">elem_conn</span><span class="p">,</span> <span class="n">GlobalA</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">vel</span><span class="p">)</span>
-    <span class="c">!+ Assemble the global stiffness matrix based on element connectivity</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">order</span>
-      <span class="c">!+ Order of element(s)</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">elem_conn</span>
-      <span class="c">!+ Element connectivity</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">diff</span>
-      <span class="c">!+ Diffusivity coefficient [m/s^2]</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">vel</span>
-      <span class="c">!+ Velocity [m/s]</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">xcoords</span>
-      <span class="c">!+ Array of nodal coordinates</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">GlobalA</span>
-      <span class="c">!+ Global Stiffness matrix</span>
+    <span class="c">!* Assemble the global stiffness matrix based on element connectivity</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">order</span>      <span class="c">!! Order of element(s)</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">elem_conn</span>  <span class="c">!! Element connectivity</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">diff</span>       <span class="c">!! Diffusivity coefficient [m/s^2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">vel</span>        <span class="c">!! Velocity [m/s]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">xcoords</span>    <span class="c">!! Array of nodal coordinates</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">GlobalA</span>    <span class="c">!! Global Stiffness matrix</span>
 
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span>   <span class="kd">::</span> <span class="n">Ie</span>
@@ -781,7 +775,7 @@ public subroutine assemble(order, xcoords, elem_conn, GlobalA, diff, vel)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-22 06:31  
+             on 2017-01-22 22:01  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

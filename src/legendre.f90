@@ -12,9 +12,9 @@ module legendre
 
 contains
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!! Elemental Matrix Routines 1-D !!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!! Elemental Matrix Routines 1-D !!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   subroutine getIe(dx1, dx2, xcoords, Ie)
     integer, intent(in) :: dx1, dx2
@@ -187,9 +187,9 @@ contains
     return
   end subroutine vandermonde
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!! Elemental Matrix Routines 2-D !!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!! Elemental Matrix Routines 2-D !!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   pure function getxy(N) result(xy)
     integer,  intent(in)      :: N
@@ -229,7 +229,7 @@ contains
               & -third, third, &                !     of the four edges
               & one, one, &
               & third, -third, &
-              & -third, -third, third, third]  ! Four internal nodes
+              & -third, -third, third, third]   ! Four internal nodes
 
     endif
 
