@@ -33,6 +33,7 @@ install:
   - (pip install --upgrade ford && ford --version)
 
 script:
+  - make
   - make docs
 
 after_success:

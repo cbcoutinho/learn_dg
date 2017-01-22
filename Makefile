@@ -31,6 +31,8 @@ objects=$(OBJ)/lib_array.o \
 	$(OBJ)/assembly.o \
 	$(OBJ)/linalg.o
 
+default: all
+
 # Fortran library
 $(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
@@ -57,8 +59,6 @@ $(OBJ)/main.o: $(SRC)/main.f90 $(objects)
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
-default: all
-
 all: $(BIN)/main
 
 mesh: test1D.geo test2D.geo
@@ -68,7 +68,7 @@ mesh: test1D.geo test2D.geo
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main test1D.msh test2D.msh
 
-run: all
+run: all mesh
 	$(BIN)/main test1D.msh
 
 debug: clean all
