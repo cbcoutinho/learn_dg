@@ -22,10 +22,13 @@ favicon: ./media/learn_dg-favicon.png
 print_creation_date: true
 creation_date: %Y-%m-%d %H:%M %z
 extra_mods: iso_fortran_env:https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html
+md_extensions: markdown.extensions.toc
 ---
 
 This is the first paragraph of the document
 
-@note This is a note. I should elaborate on it
+@note Watch out, none of this code works
+
+More information can be found in the [user guide](./page/index.html).
 
 {!README.md!}

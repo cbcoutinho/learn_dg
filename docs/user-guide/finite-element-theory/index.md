@@ -28,4 +28,4 @@ Example adv-diff equation
 
 $$ \frac{\partial u}{\partial t} = \Delta \left( u \right) - \nabla \cdot \left( \vec{c} u \right) $$
 
-* [Example](./01_example.html)
+[Example](./01_example.html)
