@@ -19,7 +19,7 @@ echo $REPO
 echo $SSH_REPO
 
 eval `ssh-agent -s`
-ssh-add travis_key
+ssh-add .deploy_key
 
 git clone --branch=gh-pages $REPO gh-pages
 
