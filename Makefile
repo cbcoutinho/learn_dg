@@ -78,7 +78,7 @@ plot: run
 	python plotter.py
 
 .PHONY: docs
-docs: $(DOCS)/learn_dg.md
+docs: $(DOCS)/learn_dg.md README.md
 	cp README.md $(DOCS)/README.md
 	ford $(FORD_FLAGS) $(DOCS)/learn_dg.md
 	rm $(DOCS)/README.md
