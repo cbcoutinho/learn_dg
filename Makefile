@@ -4,6 +4,7 @@ SRC=$(shell pwd)/src
 OBJ=$(shell pwd)/obj
 BIN=$(shell pwd)/bin
 DOCS=$(shell pwd)/docs
+TEST=$(shell pwd)/test
 FORTRANLIB_SRC=$(shell pwd)/src/fortranlib/src
 
 # Compiler
@@ -61,18 +62,19 @@ $(BIN)/main: $(OBJ)/main.o $(objects)
 
 all: $(BIN)/main
 
-mesh: test1D.geo test2D.geo
-	gmsh test1D.geo -order 1 -1 -o test1D.msh > /dev/null 2>&1
-	gmsh test2D.geo -order 1 -2 -o test2D.msh > /dev/null 2>&1
+mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
+	gmsh $(TEST)/test1D.geo -order 1 -1 -o $(TEST)/test1D.msh > /dev/null 2>&1
+	gmsh $(TEST)/test2D.geo -order 1 -2 -o $(TEST)/test2D.msh > /dev/null 2>&1
 
 clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main test1D.msh test2D.msh
+	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main
+	rm -f $(TEST)/test1D.msh $(TEST)/test2D.msh
 
 run: all mesh
-	$(BIN)/main test1D.msh
+	$(BIN)/main $(TEST)/test1D.msh
 
 debug: clean all
-	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main test1D.msh
+	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
 
 plot: run
 	python plotter.py
