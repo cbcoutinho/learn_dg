@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	 
-	 <meta name="description" content="learn_dg -- A small project to learn DGFEM, modern fortran, and">
+	 <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
     
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
@@ -336,44 +336,44 @@ public pure function eye(N)
 <polygon fill="none" stroke="black" points="319,-45 265,-45 265,-21 319,-21 319,-45"/>
 <text text-anchor="middle" x="292" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">eye</text>
 </g>
-<!-- proc~getalpha -->
-<g id="proc~~eye~~CalledByGraph_node2" class="node"><title>proc~getalpha</title>
-<g id="a_proc~~eye~~CalledByGraph_node2"><a xlink:href="../proc/getalpha.html" xlink:title="getAlpha">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="228,-66 173,-66 173,-42 228,-42 228,-66"/>
-<text text-anchor="middle" x="200.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha&#45;&gt;proc~eye -->
-<g id="proc~~eye~~CalledByGraph_edge2" class="edge"><title>proc~getalpha&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff0000" d="M228.353,-47.6993C236.733,-45.7331 246.115,-43.5316 255.016,-41.4431"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="255.846,-44.8436 264.782,-39.1517 254.247,-38.0287 255.846,-44.8436"/>
-</g>
 <!-- program~doubleint -->
-<g id="proc~~eye~~CalledByGraph_node3" class="node"><title>program~doubleint</title>
-<g id="a_proc~~eye~~CalledByGraph_node3"><a xlink:href="../program/doubleint.html" xlink:title="doubleint">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="229,-24 172,-24 172,-0 229,-0 229,-24"/>
-<text text-anchor="middle" x="200.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">doubleint</text>
+<g id="proc~~eye~~CalledByGraph_node2" class="node"><title>program~doubleint</title>
+<g id="a_proc~~eye~~CalledByGraph_node2"><a xlink:href="../program/doubleint.html" xlink:title="doubleint">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="229,-66 172,-66 172,-42 229,-42 229,-66"/>
+<text text-anchor="middle" x="200.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">doubleint</text>
 </a>
 </g>
 </g>
 <!-- program~doubleint&#45;&gt;proc~eye -->
-<g id="proc~~eye~~CalledByGraph_edge3" class="edge"><title>program~doubleint&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff0000" d="M229.328,-18.5294C237.442,-20.4333 246.426,-22.5414 254.97,-24.546"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="254.183,-27.9563 264.718,-26.8332 255.782,-21.1414 254.183,-27.9563"/>
+<g id="proc~~eye~~CalledByGraph_edge2" class="edge"><title>program~doubleint&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#ff0000" d="M229.328,-47.4706C237.442,-45.5667 246.426,-43.4586 254.97,-41.454"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="255.782,-44.8586 264.718,-39.1668 254.183,-38.0437 255.782,-44.8586"/>
+</g>
+<!-- proc~getalpha -->
+<g id="proc~~eye~~CalledByGraph_node3" class="node"><title>proc~getalpha</title>
+<g id="a_proc~~eye~~CalledByGraph_node3"><a xlink:href="../proc/getalpha.html" xlink:title="getAlpha">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="228,-24 173,-24 173,-0 228,-0 228,-24"/>
+<text text-anchor="middle" x="200.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha</text>
+</a>
+</g>
+</g>
+<!-- proc~getalpha&#45;&gt;proc~eye -->
+<g id="proc~~eye~~CalledByGraph_edge3" class="edge"><title>proc~getalpha&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#ff0000" d="M228.353,-18.3007C236.733,-20.2669 246.115,-22.4684 255.016,-24.5569"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="254.247,-27.9713 264.782,-26.8483 255.846,-21.1564 254.247,-27.9713"/>
 </g>
 <!-- proc~assembleelementalmatrix -->
 <g id="proc~~eye~~CalledByGraph_node4" class="node"><title>proc~assembleelementalmatrix</title>
 <g id="a_proc~~eye~~CalledByGraph_node4"><a xlink:href="../proc/assembleelementalmatrix.html" xlink:title="assembleElementalMatrix">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-66 0,-66 0,-42 136,-42 136,-66"/>
-<text text-anchor="middle" x="68" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 0,-24 0,-0 136,-0 136,-24"/>
+<text text-anchor="middle" x="68" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix</text>
 </a>
 </g>
 </g>
 <!-- proc~assembleelementalmatrix&#45;&gt;proc~getalpha -->
 <g id="proc~~eye~~CalledByGraph_edge1" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;proc~getalpha</title>
-<path fill="none" stroke="#ff0000" d="M136.161,-54C145.295,-54 154.379,-54 162.696,-54"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="162.767,-57.5001 172.767,-54 162.767,-50.5001 162.767,-57.5001"/>
+<path fill="none" stroke="#00ffff" d="M136.161,-12C145.295,-12 154.379,-12 162.696,-12"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="162.767,-15.5001 172.767,-12 162.767,-8.5001 162.767,-15.5001"/>
 </g>
 </g>
 </svg>
@@ -606,7 +606,7 @@ public pure function eye(N)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-21 23:08  
+             on 2017-01-22 01:00  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

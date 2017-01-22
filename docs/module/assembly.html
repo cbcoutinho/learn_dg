@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	 
-	 <meta name="description" content="learn_dg -- A small project to learn DGFEM, modern fortran, and">
+	 <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
     
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
@@ -249,32 +249,37 @@
 <polygon fill="none" stroke="black" points="374,-136.731 316,-136.731 316,-112.731 374,-112.731 374,-136.731"/>
 <text text-anchor="middle" x="345" y="-122.331" font-family="Helvetica,sans-Serif" font-size="10.50">assembly</text>
 </g>
+<!-- module~legendre -->
+<g id="module~~assembly~~UsesGraph_node2" class="node"><title>module~legendre</title>
+<g id="a_module~~assembly~~UsesGraph_node2"><a xlink:href="../module/legendre.html" xlink:title="legendre">
+<polygon fill="#337ab7" stroke="#337ab7" points="280,-106.731 225,-106.731 225,-82.7309 280,-82.7309 280,-106.731"/>
+<text text-anchor="middle" x="252.5" y="-92.3309" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">legendre</text>
+</a>
+</g>
+</g>
+<!-- module~legendre&#45;&gt;module~assembly -->
+<g id="module~~assembly~~UsesGraph_edge10" class="edge"><title>module~legendre&#45;&gt;module~assembly</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M280.164,-103.57C288.346,-106.282 297.51,-109.32 306.285,-112.229"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="305.361,-115.61 315.954,-115.434 307.563,-108.965 305.361,-115.61"/>
+</g>
 <!-- iso_fortran_env -->
-<g id="module~~assembly~~UsesGraph_node2" class="node"><title>iso_fortran_env</title>
-<g id="a_module~~assembly~~UsesGraph_node2"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<g id="module~~assembly~~UsesGraph_node3" class="node"><title>iso_fortran_env</title>
+<g id="a_module~~assembly~~UsesGraph_node3"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
 <polygon fill="#337ab7" stroke="#337ab7" points="89,-95.7309 7.10543e-15,-95.7309 7.10543e-15,-71.7309 89,-71.7309 89,-95.7309"/>
 <text text-anchor="middle" x="44.5" y="-81.3309" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
 </a>
 </g>
 </g>
 <!-- iso_fortran_env&#45;&gt;module~assembly -->
-<g id="module~~assembly~~UsesGraph_edge10" class="edge"><title>iso_fortran_env&#45;&gt;module~assembly</title>
+<g id="module~~assembly~~UsesGraph_edge11" class="edge"><title>iso_fortran_env&#45;&gt;module~assembly</title>
 <path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M158,-155.731C209.331,-162.446 268.217,-149.037 305.739,-137.803"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="307.213,-141.011 315.732,-134.711 305.144,-134.324 307.213,-141.011"/>
 </g>
-<!-- module~legendre -->
-<g id="module~~assembly~~UsesGraph_node3" class="node"><title>module~legendre</title>
-<g id="a_module~~assembly~~UsesGraph_node3"><a xlink:href="../module/legendre.html" xlink:title="legendre">
-<polygon fill="#337ab7" stroke="#337ab7" points="280,-106.731 225,-106.731 225,-82.7309 280,-82.7309 280,-106.731"/>
-<text text-anchor="middle" x="252.5" y="-92.3309" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">legendre</text>
-</a>
-</g>
-</g>
 <!-- iso_fortran_env&#45;&gt;module~legendre -->
 <g id="module~~assembly~~UsesGraph_edge6" class="edge"><title>iso_fortran_env&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M56.5919,-96.0055C74.9955,-115.082 113.998,-150.236 156,-155.731"/>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M158,-155.731C189.277,-159.823 218.576,-134.058 235.77,-114.744"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="238.567,-116.858 242.369,-106.968 233.23,-112.329 238.567,-116.858"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M56.5919,-96.0055C74.9955,-115.082 113.998,-150.236 156,-155.731"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M158,-155.731C189.277,-159.823 218.576,-134.058 235.77,-114.744"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="238.567,-116.858 242.369,-106.968 233.23,-112.329 238.567,-116.858"/>
 </g>
 <!-- module~misc -->
 <g id="module~~assembly~~UsesGraph_node5" class="node"><title>module~misc</title>
@@ -289,36 +294,31 @@
 <path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M86.9605,-95.7376C97.8201,-98.8824 109.439,-102.247 119.988,-105.302"/>
 <polygon fill="#7fff00" stroke="#7fff00" points="119.137,-108.699 129.716,-108.119 121.084,-101.976 119.137,-108.699"/>
 </g>
-<!-- module~linalg -->
-<g id="module~~assembly~~UsesGraph_node6" class="node"><title>module~linalg</title>
-<g id="a_module~~assembly~~UsesGraph_node6"><a xlink:href="../module/linalg.html" xlink:title="linalg">
-<polygon fill="#337ab7" stroke="#337ab7" points="184,-85.7309 130,-85.7309 130,-61.7309 184,-61.7309 184,-85.7309"/>
-<text text-anchor="middle" x="157" y="-71.3309" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linalg</text>
-</a>
-</g>
-</g>
-<!-- iso_fortran_env&#45;&gt;module~linalg -->
-<g id="module~~assembly~~UsesGraph_edge2" class="edge"><title>iso_fortran_env&#45;&gt;module~linalg</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M89.1725,-79.7787C99.2733,-78.8646 109.915,-77.9016 119.663,-77.0194"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="120.178,-80.4871 129.822,-76.1 119.547,-73.5156 120.178,-80.4871"/>
-</g>
 <!-- module~integration -->
-<g id="module~~assembly~~UsesGraph_node7" class="node"><title>module~integration</title>
-<g id="a_module~~assembly~~UsesGraph_node7"><a xlink:href="../module/integration.html" xlink:title="integration">
+<g id="module~~assembly~~UsesGraph_node6" class="node"><title>module~integration</title>
+<g id="a_module~~assembly~~UsesGraph_node6"><a xlink:href="../module/integration.html" xlink:title="integration">
 <polygon fill="#337ab7" stroke="#337ab7" points="189,-43.7309 125,-43.7309 125,-19.7309 189,-19.7309 189,-43.7309"/>
 <text text-anchor="middle" x="157" y="-29.3309" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integration</text>
 </a>
 </g>
 </g>
 <!-- iso_fortran_env&#45;&gt;module~integration -->
-<g id="module~~assembly~~UsesGraph_edge4" class="edge"><title>iso_fortran_env&#45;&gt;module~integration</title>
-<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M71.1287,-71.6704C85.9448,-64.6981 104.796,-55.8269 120.967,-48.2171"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="122.57,-51.3311 130.128,-43.9062 119.589,-44.9974 122.57,-51.3311"/>
+<g id="module~~assembly~~UsesGraph_edge3" class="edge"><title>iso_fortran_env&#45;&gt;module~integration</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M71.1287,-71.6704C85.9448,-64.6981 104.796,-55.8269 120.967,-48.2171"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="122.57,-51.3311 130.128,-43.9062 119.589,-44.9974 122.57,-51.3311"/>
 </g>
-<!-- module~legendre&#45;&gt;module~assembly -->
-<g id="module~~assembly~~UsesGraph_edge11" class="edge"><title>module~legendre&#45;&gt;module~assembly</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M280.164,-103.57C288.346,-106.282 297.51,-109.32 306.285,-112.229"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="305.361,-115.61 315.954,-115.434 307.563,-108.965 305.361,-115.61"/>
+<!-- module~linalg -->
+<g id="module~~assembly~~UsesGraph_node7" class="node"><title>module~linalg</title>
+<g id="a_module~~assembly~~UsesGraph_node7"><a xlink:href="../module/linalg.html" xlink:title="linalg">
+<polygon fill="#337ab7" stroke="#337ab7" points="184,-85.7309 130,-85.7309 130,-61.7309 184,-61.7309 184,-85.7309"/>
+<text text-anchor="middle" x="157" y="-71.3309" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linalg</text>
+</a>
+</g>
+</g>
+<!-- iso_fortran_env&#45;&gt;module~linalg -->
+<g id="module~~assembly~~UsesGraph_edge4" class="edge"><title>iso_fortran_env&#45;&gt;module~linalg</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M89.1725,-79.7787C99.2733,-78.8646 109.915,-77.9016 119.663,-77.0194"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="120.178,-80.4871 129.822,-76.1 119.547,-73.5156 120.178,-80.4871"/>
 </g>
 <!-- lib_array -->
 <g id="module~~assembly~~UsesGraph_node4" class="node"><title>lib_array</title>
@@ -327,28 +327,28 @@
 </g>
 <!-- lib_array&#45;&gt;module~legendre -->
 <g id="module~~assembly~~UsesGraph_edge5" class="edge"><title>lib_array&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M71.6836,-11.9598C101.71,-2.44975 151.602,8.05734 189,-10.7309 214.963,-23.7744 232.87,-53.2779 242.66,-73.6013"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="239.485,-75.0762 246.813,-82.7285 245.857,-72.1769 239.485,-75.0762"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M71.6836,-11.9598C101.71,-2.44975 151.602,8.05734 189,-10.7309 214.963,-23.7744 232.87,-53.2779 242.66,-73.6013"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="239.485,-75.0762 246.813,-82.7285 245.857,-72.1769 239.485,-75.0762"/>
 </g>
 <!-- lib_array&#45;&gt;module~integration -->
-<g id="module~~assembly~~UsesGraph_edge3" class="edge"><title>lib_array&#45;&gt;module~integration</title>
-<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M71.687,-24.1008C84.5259,-25.2627 100.292,-26.6895 114.703,-27.9936"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="114.621,-31.5004 124.896,-28.9161 115.252,-24.5289 114.621,-31.5004"/>
+<g id="module~~assembly~~UsesGraph_edge2" class="edge"><title>lib_array&#45;&gt;module~integration</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M71.687,-24.1008C84.5259,-25.2627 100.292,-26.6895 114.703,-27.9936"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="114.621,-31.5004 124.896,-28.9161 115.252,-24.5289 114.621,-31.5004"/>
 </g>
 <!-- module~misc&#45;&gt;module~legendre -->
 <g id="module~~assembly~~UsesGraph_edge7" class="edge"><title>module~misc&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M184.045,-109.881C193.609,-107.733 204.622,-105.26 214.939,-102.942"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="215.955,-106.302 224.945,-100.695 214.421,-99.4717 215.955,-106.302"/>
-</g>
-<!-- module~linalg&#45;&gt;module~legendre -->
-<g id="module~~assembly~~UsesGraph_edge8" class="edge"><title>module~linalg&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M184.045,-79.5806C193.609,-81.7287 204.622,-84.2022 214.939,-86.5194"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="214.421,-89.9902 224.945,-88.7667 215.955,-83.1603 214.421,-89.9902"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M184.045,-109.881C193.609,-107.733 204.622,-105.26 214.939,-102.942"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="215.955,-106.302 224.945,-100.695 214.421,-99.4717 215.955,-106.302"/>
 </g>
 <!-- module~integration&#45;&gt;module~legendre -->
-<g id="module~~assembly~~UsesGraph_edge9" class="edge"><title>module~integration&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M176.028,-43.878C189.868,-53.2036 209.192,-66.224 224.822,-76.7551"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="223.279,-79.9359 233.528,-82.6212 227.19,-74.1307 223.279,-79.9359"/>
+<g id="module~~assembly~~UsesGraph_edge8" class="edge"><title>module~integration&#45;&gt;module~legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M176.028,-43.878C189.868,-53.2036 209.192,-66.224 224.822,-76.7551"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="223.279,-79.9359 233.528,-82.6212 227.19,-74.1307 223.279,-79.9359"/>
+</g>
+<!-- module~linalg&#45;&gt;module~legendre -->
+<g id="module~~assembly~~UsesGraph_edge9" class="edge"><title>module~linalg&#45;&gt;module~legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M184.045,-79.5806C193.609,-81.7287 204.622,-84.2022 214.939,-86.5194"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="214.421,-89.9902 224.945,-88.7667 215.955,-83.1603 214.421,-89.9902"/>
 </g>
 </g>
 </svg>
@@ -951,7 +951,7 @@ public subroutine <a href='../proc/set_bcs.html'>set_BCs</a>(xcoords, GlobalB, G
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-21 23:08  
+             on 2017-01-22 01:00  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
