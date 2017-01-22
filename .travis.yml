@@ -25,6 +25,7 @@ addons:
     - graphviz
     - libblas-dev
     - liblapack-dev
+    - gmsh
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
@@ -40,6 +41,7 @@ install:
 
 script:
   - make
+  - make run
   - make docs
 
 after_success:
