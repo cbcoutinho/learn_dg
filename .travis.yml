@@ -15,9 +15,9 @@ addons:
   apt:
     packages:
     - git
-    - gcc-6
-    - g++-6
-    - gfortran-6
+    - gcc
+    - g++
+    - gfortran
     - python-pip
     - graphviz
     - libblas-dev
@@ -28,9 +28,9 @@ before_install:
   - chmod 600 .deploy_key
 
 install:
-  - export gfortran=gfortran-6
-  - export gcc=gcc-6
-  - export g++=g++-6
+  # - export gfortran=gfortran-6
+  # - export gcc=gcc-6
+  # - export g++=g++-6
   - pip install --upgrade graphviz
   - (pip install --upgrade ford && ford --version)
 
