@@ -24,7 +24,6 @@ FORD_FLAGS = -d $(SRC) \
 
 # Dependencies of main program
 objects=$(OBJ)/lib_array.o \
-	$(OBJ)/lib_algebra.o \
 	$(OBJ)/integration.o \
 	$(OBJ)/misc.o \
 	$(OBJ)/legendre.o \
@@ -36,8 +35,6 @@ default: all
 
 # Fortran library
 $(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-$(OBJ)/lib_algebra.o: $(FORTRANLIB_SRC)/lib_algebra.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Modules
@@ -60,7 +57,11 @@ $(OBJ)/main.o: $(SRC)/main.f90 $(objects)
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
-all: $(BIN)/main
+submodules:
+	git submodule init
+	git submodule update
+
+all: submodules $(BIN)/main
 
 mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
 	gmsh $(TEST)/test1D.geo -order 1 -1 -o $(TEST)/test1D.msh > /dev/null 2>&1
@@ -80,7 +81,7 @@ plot: run
 	python plotter.py
 
 .PHONY: docs
-docs: $(DOCS)/learn_dg.md README.md
+docs: submodules $(DOCS)/learn_dg.md README.md
 	cp README.md $(DOCS)/README.md
 	ford $(FORD_FLAGS) $(DOCS)/learn_dg.md
 	rm $(DOCS)/README.md
