@@ -79,4 +79,6 @@ plot: run
 
 .PHONY: docs
 docs: $(DOCS)/learn_dg.md
+	cp README.md $(DOCS)/README.md
 	ford $(FORD_FLAGS) $(DOCS)/learn_dg.md
+	rm $(DOCS)/README.md

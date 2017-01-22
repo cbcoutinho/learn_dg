@@ -17,7 +17,7 @@ addons:
     - git
     - gcc
     - g++
-    - gfortran
+    - gfortran-6
     - python-pip
     - graphviz
     - libblas-dev
