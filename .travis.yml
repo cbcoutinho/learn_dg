@@ -32,6 +32,7 @@ install:
   # - export gcc=gcc-6
   # - export g++=g++-6
   - pip install --upgrade graphviz
+  - pip install --upgrade meshio
   - (pip install --upgrade ford && ford --version)
 
 script:
