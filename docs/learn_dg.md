@@ -12,7 +12,7 @@ website: https://cbcoutinho.github.io
 display: public
          protected
          private
-docmark: +
+docmark: !
 source: true
 graph: true
 coloured_edges: true

@@ -1,9 +1,11 @@
 module assembly
   use iso_fortran_env, only: wp => real64
-  use legendre, only: getIe
+  use legendre, only: getIe, assembleElementalMatrix, getxy
   implicit none
 
   public :: initialize_global_mats, assemble
+
+
 
 contains
 
@@ -11,43 +13,43 @@ contains
                                   & GlobalA, &
                                   & GlobalB, &
                                   & GlobalX)
-    !+ This routine initalizes the global stiffness matrix, global rhs vector,
-    !+ and global solution vector based on the number of nodes in the system
-    integer,  intent(in)                                :: num_nodes
-      !+ The number of nodes in the system
-    real(wp), intent(out),  dimension(:),   allocatable :: GlobalB
-      !+ Global RHS Vector
-    real(wp), intent(out),  dimension(:),   allocatable :: GlobalX
-      !+ Global solution vector
-    real(wp), intent(out),  dimension(:,:), allocatable :: GlobalA
-      !+ Global mass matrix
+    !* This routine initalizes the global stiffness matrix, global rhs vector,
+    !  and global solution vector based on the number of nodes in the system
+    !
+    ! * This is a bullet point
+    ! * Another bullet point
+    !
+    ! 1. This might be a number
+    ! 2. Also a number?
+    !
+    ! Some \( \LaTeX \):
+    ! $$ \frac{\partial u}{\partial t} = 0 $$
+
+    integer,  intent(in)                                :: num_nodes  !! The number of nodes in the system
+    real(wp), intent(out),  dimension(:),   allocatable :: GlobalB    !! Global RHS Vector
+    real(wp), intent(out),  dimension(:),   allocatable :: GlobalX    !! Global solution vector
+    real(wp), intent(out),  dimension(:,:), allocatable :: GlobalA    !! Global mass matrix
 
     allocate(GlobalA(num_nodes, num_nodes))
     allocate(GlobalB(num_nodes))
     allocate(GlobalX(num_nodes))
 
     ! Intial Conditions
-    GlobalA(:,:)  = 0._wp
-    GlobalX(:)    = 0._wp
-    GlobalB(:)    = 0._wp
+    GlobalA = 0._wp
+    GlobalX = 0._wp
+    GlobalB = 0._wp
 
     return
   end subroutine initialize_global_mats
 
   subroutine assemble(order, xcoords, elem_conn, GlobalA, diff, vel)
-    !+ Assemble the global stiffness matrix based on element connectivity
-    integer,  intent(in),   dimension(:)    :: order
-      !+ Order of element(s)
-    integer,  intent(in),   dimension(:,:)  :: elem_conn
-      !+ Element connectivity
-    real(wp), intent(in)                    :: diff
-      !+ Diffusivity coefficient [m/s^2]
-    real(wp), intent(in)                    :: vel
-      !+ Velocity [m/s]
-    real(wp), intent(in),   dimension(:)    :: xcoords
-      !+ Array of nodal coordinates
-    real(wp), intent(out),  dimension(:,:)  :: GlobalA
-      !+ Global Stiffness matrix
+    !* Assemble the global stiffness matrix based on element connectivity
+    integer,  intent(in),   dimension(:)    :: order      !! Order of element(s)
+    integer,  intent(in),   dimension(:,:)  :: elem_conn  !! Element connectivity
+    real(wp), intent(in)                    :: diff       !! Diffusivity coefficient [m/s^2]
+    real(wp), intent(in)                    :: vel        !! Velocity [m/s]
+    real(wp), intent(in),   dimension(:)    :: xcoords    !! Array of nodal coordinates
+    real(wp), intent(out),  dimension(:,:)  :: GlobalA    !! Global Stiffness matrix
 
     integer :: ii
     real(wp), dimension(:,:), allocatable   :: Ie
@@ -79,16 +81,13 @@ contains
   end subroutine assemble
 
   subroutine set_BCs(xcoords, GlobalB, GlobalA)
-    !+ Set boundary conditions in GlobalA and GlobalB using two Dirchlet
-    !+ boundaries
-    real(wp), intent(in),   dimension(:)    :: xcoords
-      !+ Array of nodal coordinates
-    real(wp), intent(out),  dimension(:)    :: GlobalB
-      !+ Global RHS Vector
-    real(wp), intent(out),  dimension(:,:)  :: GlobalA
-      !+ Global Mass Matrix
-    integer,  dimension(1)  :: iloc
-      !+ Index variable to locate node numbers based on xcoords
+    !*  Set boundary conditions in GlobalA and GlobalB using two Dirchlet
+    !   boundaries
+
+    real(wp), intent(in),   dimension(:)    :: xcoords  !! Array of nodal coordinates
+    real(wp), intent(out),  dimension(:)    :: GlobalB  !! Global RHS Vector
+    real(wp), intent(out),  dimension(:,:)  :: GlobalA  !! Global Mass Matrix
+    integer,  dimension(1)  :: iloc                     !! Index variable to locate node numbers based on xcoords
 
     ! Left Boundary Dirchlet BC
     iloc = minloc(xcoords)
