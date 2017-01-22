@@ -67,15 +67,8 @@ mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
 	gmsh $(TEST)/test1D.geo -order 1 -1 -o $(TEST)/test1D.msh > /dev/null 2>&1
 	gmsh $(TEST)/test2D.geo -order 1 -2 -o $(TEST)/test2D.msh > /dev/null 2>&1
 
-clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main
-	rm -f $(TEST)/test1D.msh $(TEST)/test2D.msh
-
 run: all mesh
 	$(BIN)/main $(TEST)/test1D.msh
-
-debug: clean all
-	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
 
 plot: run
 	python plotter.py
@@ -85,3 +78,10 @@ docs: submodules $(DOCS)/learn_dg.md README.md
 	cp README.md $(DOCS)/README.md
 	ford $(FORD_FLAGS) $(DOCS)/learn_dg.md
 	rm $(DOCS)/README.md
+
+debug: clean all
+	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
+
+clean:
+	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main
+	rm -f $(TEST)/test1D.msh $(TEST)/test2D.msh
