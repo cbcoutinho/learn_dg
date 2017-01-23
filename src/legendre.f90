@@ -7,7 +7,7 @@ module legendre
   implicit none
 
   private :: basis_1D, vandermonde
-  private :: integrate_basis_1d, integrate_basis_1d_Ie
+  private :: integrate_basis_1d_Ie
   public  :: getIe, assembleElementalMatrix, getxy
 
 contains
@@ -23,7 +23,7 @@ contains
     !   Currently only zero-th and first order derivatives are supported. Second
     !   order derivatives need to be reduced to first order derivatives in the
     !   problem formulation using Green's Theorem
-    
+
     integer,  intent(in)                    :: dii      !! Derivative of the first basis function
     integer,  intent(in)                    :: djj      !! Derivative of the second basis function
     real(wp), intent(in),   dimension(:)    :: xcoords  !! Coordinates of the 1D line element
@@ -102,47 +102,47 @@ contains
     end subroutine local_wrapper
   end function integrate_basis_1d_Ie
 
-  function integrate_basis_1d(order, basis_num, dx) result(integral)
-    integer, intent(in) :: order, basis_num, dx
-    real(wp)            :: integral
-
-    real(wp), dimension(:, :), allocatable:: Vinv
-
-    allocate(Vinv(order+1, order+1))
-    call vandermonde(order+1, Vinv)
-
-    ! call r8mat_print(order+1, order+1, Vinv, 'Inverse Vandermonde')
-
-    ! Check to make sure requested basis number is within available basis
-    if ( basis_num > order+1 ) then
-      write(*,*) 'The basis_num input is larger than number of available basis nodes (order+1)'
-      write(*,*) 'Make sure order and basis_num are correctly set before calling'
-      stop
-    endif
-
-    ! Check to make sure differentiation is either 0 or 1
-    if ( dx < 0 .or. dx > 1 ) then
-      write(*,*) 'Derivatives of order lower than 0 or higher than 1 are not allowed'
-      write(*,*) 'integrate_basis_1d was called with dx = ', dx
-      write(*,*) 'Check to make sure that the function was called correctly'
-      stop
-    endif
-
-    call integrate(local_basis_1D, -1.0_wp, 1.0_wp, integral)
-
-    deallocate(Vinv)
-
-    return
-  contains
-    subroutine local_basis_1D(x, y)
-      real(wp), intent(in), dimension(:) :: x
-      real(wp), intent(out), dimension(:) :: y
-
-      y = basis_1D(x, Vinv(:, basis_num), dx)
-
-      return
-    end subroutine local_basis_1D
-  end function integrate_basis_1d
+  ! function integrate_basis_1d(order, basis_num, dx) result(integral)
+  !   integer, intent(in) :: order, basis_num, dx
+  !   real(wp)            :: integral
+  !
+  !   real(wp), dimension(:, :), allocatable:: Vinv
+  !
+  !   allocate(Vinv(order+1, order+1))
+  !   call vandermonde(order+1, Vinv)
+  !
+  !   ! call r8mat_print(order+1, order+1, Vinv, 'Inverse Vandermonde')
+  !
+  !   ! Check to make sure requested basis number is within available basis
+  !   if ( basis_num > order+1 ) then
+  !     write(*,*) 'The basis_num input is larger than number of available basis nodes (order+1)'
+  !     write(*,*) 'Make sure order and basis_num are correctly set before calling'
+  !     stop
+  !   endif
+  !
+  !   ! Check to make sure differentiation is either 0 or 1
+  !   if ( dx < 0 .or. dx > 1 ) then
+  !     write(*,*) 'Derivatives of order lower than 0 or higher than 1 are not allowed'
+  !     write(*,*) 'integrate_basis_1d was called with dx = ', dx
+  !     write(*,*) 'Check to make sure that the function was called correctly'
+  !     stop
+  !   endif
+  !
+  !   call integrate(local_basis_1D, -1.0_wp, 1.0_wp, integral)
+  !
+  !   deallocate(Vinv)
+  !
+  !   return
+  ! contains
+  !   subroutine local_basis_1D(x, y)
+  !     real(wp), intent(in), dimension(:) :: x
+  !     real(wp), intent(out), dimension(:) :: y
+  !
+  !     y = basis_1D(x, Vinv(:, basis_num), dx)
+  !
+  !     return
+  !   end subroutine local_basis_1D
+  ! end function integrate_basis_1d
 
   function basis_1D(x, alpha, dx) result(y)
     ! Input/output variables

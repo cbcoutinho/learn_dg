@@ -3,7 +3,7 @@
 SRC=$(shell pwd)/src
 OBJ=$(shell pwd)/obj
 BIN=$(shell pwd)/bin
-DOCS=$(shell pwd)/docs
+DOC=$(shell pwd)/docs
 TEST=$(shell pwd)/test
 FORTRANLIB_SRC=$(shell pwd)/src/fortranlib/src
 
@@ -19,8 +19,8 @@ FLIBS = -lblas -llapack
 # FLIBS += -fopenmp
 
 FORD_FLAGS = -d $(SRC) \
-	-p $(DOCS)/user-guide \
-	-o $(DOCS)/html
+	-p $(DOC)/user-guide \
+	-o $(DOC)/html
 
 # Dependencies of main program
 objects=$(OBJ)/lib_array.o \
@@ -31,7 +31,7 @@ objects=$(OBJ)/lib_array.o \
 	$(OBJ)/assembly.o \
 	$(OBJ)/linalg.o
 
-default: all
+default: build
 
 # Fortran library
 $(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
@@ -61,25 +61,25 @@ submodules:
 	git submodule init
 	git submodule update
 
-all: submodules $(BIN)/main
+build: submodules $(BIN)/main
 
 mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
 	gmsh $(TEST)/test1D.geo -order 1 -1 -o $(TEST)/test1D.msh > /dev/null 2>&1
 	gmsh $(TEST)/test2D.geo -order 1 -2 -o $(TEST)/test2D.msh > /dev/null 2>&1
 
-run: all mesh
+run: build mesh
 	$(BIN)/main $(TEST)/test1D.msh
 
 plot: run
 	python plotter.py
 
 .PHONY: docs
-docs: submodules $(DOCS)/learn_dg.md README.md
-	cp README.md $(DOCS)/README.md
-	ford $(FORD_FLAGS) $(DOCS)/learn_dg.md
-	rm $(DOCS)/README.md
+docs: submodules $(DOC)/learn_dg.md README.md
+	cp README.md $(DOC)/README.md
+	ford $(FORD_FLAGS) $(DOC)/learn_dg.md
+	rm $(DOC)/README.md
 
-debug: clean all
+debug: clean build
 	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
 
 clean:
