@@ -3,8 +3,8 @@ program main
   use linalg, only: linsolve_quick
   use misc, only: r8mat_print
   use io, only: get_command_argument_wrapper, &
-              & read_gmsh_file_1D, &
-              & write_out_solution
+                read_gmsh_file_1D, &
+                write_out_solution
   use assembly, only: initialize_global_mats, assemble, set_BCs
 
   implicit none

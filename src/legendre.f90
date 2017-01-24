@@ -216,28 +216,28 @@ contains
     elseif ( N == 9 ) then
 
       xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
-              & zero, one, zero, -one, &        ! Four edge nodes
-              & zero]                           ! Center node
+                zero, one, zero, -one, &        ! Four edge nodes
+                zero]                           ! Center node
 
       xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
-              & -one, zero, one, zero, &        ! Four edge nodes
-              & zero]                           ! Center node
+                -one, zero, one, zero, &        ! Four edge nodes
+                zero]                           ! Center node
 
     elseif ( N == 16 ) then
 
       xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
-              & -third, third, &                ! Two edge nodes on each
-              & one, one, &                     !     of the four edges
-              & third, -third, &
-              & -one, -one, &
-              & -third, third, third, -third]   ! Four internal nodes
+                -third, third, &                ! Two edge nodes on each
+                one, one, &                     !     of the four edges
+                third, -third, &
+                -one, -one, &
+                -third, third, third, -third]   ! Four internal nodes
 
       xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
-              & -one, -one, &                   ! Two edge nodes on each
-              & -third, third, &                !     of the four edges
-              & one, one, &
-              & third, -third, &
-              & -third, -third, third, third]   ! Four internal nodes
+                -one, -one, &                   ! Two edge nodes on each
+                -third, third, &                !     of the four edges
+                one, one, &
+                third, -third, &
+                -third, -third, third, third]   ! Four internal nodes
 
     endif
 
@@ -251,24 +251,24 @@ contains
 
     if ( N == 4 ) then
       row = [1._wp, &
-          & xi, eta, &
-          & xi*eta]
+            xi, eta, &
+            xi*eta]
 
     elseif ( N == 9 ) then
       row = [1._wp, &
-          & xi, eta, &
-          & xi**2._wp, xi*eta, eta**2._wp, &
-          & xi**2._wp * eta, xi * eta**2._wp, &
-          & xi**2._wp * eta**2._wp]
+            xi, eta, &
+            xi**2._wp, xi*eta, eta**2._wp, &
+            xi**2._wp * eta, xi * eta**2._wp, &
+            xi**2._wp * eta**2._wp]
 
     elseif ( N == 16 ) then
       row = [1._wp, &
-          & xi, eta, &
-          & xi**2._wp, xi*eta, eta**2._wp, &
-          & xi**3._wp, xi**2._wp * eta, xi * eta**2._wp, eta**3._wp, &
-          & xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
-          & xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
-          & xi**3._wp * eta**3._wp]
+            xi, eta, &
+            xi**2._wp, xi*eta, eta**2._wp, &
+            xi**3._wp, xi**2._wp * eta, xi * eta**2._wp, eta**3._wp, &
+            xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
+            xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
+            xi**3._wp * eta**3._wp]
 
     endif
 
@@ -328,9 +328,9 @@ contains
     do ii = 1,N
       x = alpha(:,ii)
       P(1,ii) = dot_product(x, getArow(N, xi+eps, eta     )) - &
-              & dot_product(x, getArow(N, xi-eps, eta     ))
+                dot_product(x, getArow(N, xi-eps, eta     ))
       P(2,ii) = dot_product(x, getArow(N, xi,     eta+eps )) - &
-              & dot_product(x, getArow(N, xi,     eta-eps ))
+                dot_product(x, getArow(N, xi,     eta-eps ))
     enddo
 
     P = P / ( 2._wp*eps )
@@ -402,14 +402,14 @@ contains
 
             ! If fun1 contains a derivative, need to calc N_i,xi and N_i,eta
             dfun1(1) = ( &
-            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
-            & ) / ( 2._wp*eps )
+              dot_product(alpha(:,N1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+              dot_product(alpha(:,N1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+              ) / ( 2._wp*eps )
 
             dfun1(2) = ( &
-            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
-            & ) / ( 2._wp*eps )
+              dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+              ) / ( 2._wp*eps )
 
             ! N_i,x = dxi/dx * N_i,xi + deta/dx * N_i,eta
             fun1 = dot_product(invJ(d1,:), dfun1)
@@ -422,17 +422,17 @@ contains
           else
 
             ! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta
-            dfun2(1) = ( &
-            & dot_product(alpha(:,N2), &
-                        & getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-            & dot_product(alpha(:,N2), &
-                        & getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
-            & ) / ( 2._wp*eps )
+            dfun2(1) =  ( &
+              dot_product(alpha(:,N2), &
+                          getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+              dot_product(alpha(:,N2), &
+                          getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+                        ) / ( 2._wp*eps )
 
-            dfun2(2) = ( &
-            & dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-            & dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
-            & ) / ( 2._wp*eps )
+            dfun2(2) =  ( &
+              dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+                        ) / ( 2._wp*eps )
 
             ! N_i,y = dxi/dy * N_i,xi + deta/dy * N_i,eta
             fun2 = dot_product(invJ(d2,:), dfun2)

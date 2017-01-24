@@ -4,7 +4,7 @@ module io
   implicit none
 
   public :: read_gmsh_file_1D, &
-          & write_out_solution
+            write_out_solution
 
 contains
 
@@ -29,11 +29,12 @@ contains
   end subroutine get_command_argument_wrapper
 
   subroutine read_gmsh_file_1D(num_nodes, &
-                            & order, &
-                            & nodes2vertex, &
-                            & elem_conn, &
-                            & xcoords, &
-                            & dg)
+                                order, &
+                                nodes2vertex, &
+                                elem_conn, &
+                                xcoords, &
+                                dg)
+    !
     !*  Reads the input mesh file (gmsh .msh format) and returns the number of
     !   nodes, the order of each element, element connectivity, and the
     !   coordinates of the nodes (nx1 for 1D, nx2 for 2D, etc.)
@@ -132,8 +133,8 @@ contains
       ! print*, pack(vertex_conn, vertex_conn == nodes2vertex)
     enddo
     ! print*, pack([( ii, ii = 1, num_nodes )], &
-    !       & nodes2vertex == nodes2vertex(3) &
-    !       & .or. nodes2vertex == nodes2vertex(5))
+    !         nodes2vertex == nodes2vertex(3) &
+    !         .or. nodes2vertex == nodes2vertex(5))
     ! stop
 
     if ( .not. dg ) then
@@ -141,7 +142,7 @@ contains
     else
       do ii = 1, num_elements
         ! elem_conn(ii,:) = pack([( ii, ii = 1, num_nodes )], &
-                        ! & nodes2vertex == vertex_conn(ii,1))
+                        !   nodes2vertex == vertex_conn(ii,1))
         ! print*, loc(2._wp)
         ! print*, loc(nodes2vertex == vertex_conn(ii,2))
         print*,  order(ii), vertex_conn(ii,:), elem_conn(ii,:)
