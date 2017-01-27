@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.5% of total for procedures.">18 statements</a>
+	  title=" 2.6% of total for procedures.">18 statements</a>
      </li> 
      
      
@@ -211,7 +211,7 @@
       
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
       
-      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
+      <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
@@ -231,8 +231,6 @@
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
-      <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
-      
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
       
       <a class="list-group-item" href="../proc/inv2.html">inv2</a>
@@ -250,6 +248,8 @@
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
+      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
       
@@ -493,28 +493,28 @@ public pure function getxy(N) result(xy)
     <span class="n">elseif</span> <span class="p">(</span> <span class="n">N</span> <span class="o">==</span> <span class="mi">9</span> <span class="p">)</span> <span class="k">then</span>
 
 <span class="k">      </span><span class="n">xy</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>        <span class="c">! Four corner nodes</span>
-              <span class="p">&amp;</span> <span class="n">zero</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>        <span class="c">! Four edge nodes</span>
-              <span class="p">&amp;</span> <span class="n">zero</span><span class="p">]</span>                           <span class="c">! Center node</span>
+                <span class="n">zero</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>        <span class="c">! Four edge nodes</span>
+                <span class="n">zero</span><span class="p">]</span>                           <span class="c">! Center node</span>
 
       <span class="n">xy</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>        <span class="c">! Four corner nodes</span>
-              <span class="p">&amp;</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="p">&amp;</span>        <span class="c">! Four edge nodes</span>
-              <span class="p">&amp;</span> <span class="n">zero</span><span class="p">]</span>                           <span class="c">! Center node</span>
+                <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="p">&amp;</span>        <span class="c">! Four edge nodes</span>
+                <span class="n">zero</span><span class="p">]</span>                           <span class="c">! Center node</span>
 
     <span class="n">elseif</span> <span class="p">(</span> <span class="n">N</span> <span class="o">==</span> <span class="mi">16</span> <span class="p">)</span> <span class="k">then</span>
 
 <span class="k">      </span><span class="n">xy</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>        <span class="c">! Four corner nodes</span>
-              <span class="p">&amp;</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="p">&amp;</span>                <span class="c">! Two edge nodes on each</span>
-              <span class="p">&amp;</span> <span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>                     <span class="c">!     of the four edges</span>
-              <span class="p">&amp;</span> <span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="p">&amp;</span>
-              <span class="p">&amp;</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>
-              <span class="p">&amp;</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">]</span>   <span class="c">! Four internal nodes</span>
+                <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="p">&amp;</span>                <span class="c">! Two edge nodes on each</span>
+                <span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>                     <span class="c">!     of the four edges</span>
+                <span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="p">&amp;</span>
+                <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>
+                <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">]</span>   <span class="c">! Four internal nodes</span>
 
       <span class="n">xy</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>        <span class="c">! Four corner nodes</span>
-              <span class="p">&amp;</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>                   <span class="c">! Two edge nodes on each</span>
-              <span class="p">&amp;</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="p">&amp;</span>                <span class="c">!     of the four edges</span>
-              <span class="p">&amp;</span> <span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>
-              <span class="p">&amp;</span> <span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="p">&amp;</span>
-              <span class="p">&amp;</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">]</span>   <span class="c">! Four internal nodes</span>
+                <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>                   <span class="c">! Two edge nodes on each</span>
+                <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="p">&amp;</span>                <span class="c">!     of the four edges</span>
+                <span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="p">&amp;</span>
+                <span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="p">&amp;</span>
+                <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="n">third</span><span class="p">]</span>   <span class="c">! Four internal nodes</span>
 
     <span class="n">endif</span>
 
@@ -554,7 +554,7 @@ public pure function getxy(N) result(xy)
       
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
       
-      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
+      <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
@@ -574,8 +574,6 @@ public pure function getxy(N) result(xy)
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
-      <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
-      
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
       
       <a class="list-group-item" href="../proc/inv2.html">inv2</a>
@@ -593,6 +591,8 @@ public pure function getxy(N) result(xy)
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
+      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
       
@@ -615,7 +615,7 @@ public pure function getxy(N) result(xy)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-22 23:59  
+             on 2017-01-27 00:12  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

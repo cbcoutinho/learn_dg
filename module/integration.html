@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="25.5% of total for modules and submodules.">192 statements</a>
+	  title="26.1% of total for modules and submodules.">191 statements</a>
      </li> 
      
      
@@ -173,6 +173,8 @@
       
       <a class="list-group-item" href="../module/integration.html#interface-fun2d_interf">fun2d_interf</a>
       
+      <a class="list-group-item" href="../module/integration.html#interface-sub1d_interf">sub1d_interf</a>
+      
     </div>
   </div>
 </div>
@@ -199,13 +201,13 @@
       
       <a class="list-group-item" href="../module/integration.html#proc-integrate">integrate</a>
       
-      <a class="list-group-item" href="../module/integration.html#proc-gaussquad_wrapper">gaussquad_wrapper</a>
+      <a class="list-group-item" href="../module/integration.html#proc-gaussquad">gaussquad</a>
       
       <a class="list-group-item" href="../module/integration.html#proc-lgwt">lgwt</a>
       
       <a class="list-group-item" href="../module/integration.html#proc-cgwt">cgwt</a>
       
-      <a class="list-group-item" href="../module/integration.html#proc-gaussquad">gaussquad</a>
+      <a class="list-group-item" href="../module/integration.html#proc-gaussquad_rosetta">gaussquad_rosetta</a>
       
     </div>
   </div>
@@ -530,6 +532,8 @@
       
       <a class="list-group-item" href="../module/integration.html#interface-fun2d_interf">fun2d_interf</a>
       
+      <a class="list-group-item" href="../module/integration.html#interface-sub1d_interf">sub1d_interf</a>
+      
     </div>
   </div>
 </div>
@@ -556,13 +560,13 @@
       
       <a class="list-group-item" href="../module/integration.html#proc-integrate">integrate</a>
       
-      <a class="list-group-item" href="../module/integration.html#proc-gaussquad_wrapper">gaussquad_wrapper</a>
+      <a class="list-group-item" href="../module/integration.html#proc-gaussquad">gaussquad</a>
       
       <a class="list-group-item" href="../module/integration.html#proc-lgwt">lgwt</a>
       
       <a class="list-group-item" href="../module/integration.html#proc-cgwt">cgwt</a>
       
-      <a class="list-group-item" href="../module/integration.html#proc-gaussquad">gaussquad</a>
+      <a class="list-group-item" href="../module/integration.html#proc-gaussquad_rosetta">gaussquad_rosetta</a>
       
     </div>
   </div>
@@ -665,6 +669,81 @@ public function <a href='../interface/fun2d_interf.html'>fun2d_interf</a>(x, y) 
      <h4>Return Value <small>real(kind=wp),
   dimension(:,:), allocatable</small></h4>
   
+    
+
+    </li>
+  
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-sub1d_interf"></span><h3>interface 
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+public subroutine <a href='../interface/sub1d_interf.html'>sub1d_interf</a>(xx, yy)
+    
+    
+	 
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>xx</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>yy</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
     
 
     </li>
@@ -784,68 +863,12 @@ public subroutine <a href='../proc/integrate.html'>integrate</a>(sub, a, b, resu
   
 <tr>
   
-  <td colspan="7">
-      <small>
-    
-    <h5>
-public subroutine sub(xx, yy)
-    
-    
-	 
-</h5>
-    
-    
-    <h6>Arguments</h6>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
+  <td><span class="anchor" ></span>procedure(<a href='../interface/sub1d_interf.html'>sub1d_interf</a>)</td>
+  <td></td>
   <td></td>
   
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>xx</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>yy</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-</small>
-  </td> 
+  <td></td><td>::</td>
+  <td><strong>sub</strong></td><td></td>
   
 </tr>
 
@@ -907,8 +930,8 @@ public subroutine sub(xx, yy)
     
     
   <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-gaussquad_wrapper"></span><h3>
-public subroutine <a href='../proc/gaussquad_wrapper.html'>gaussquad_wrapper</a>(N, x, w)
+  <div class="panel-heading codesum"><span class="anchor" id="proc-gaussquad"></span><h3>
+private subroutine <a href='../proc/gaussquad.html'>gaussquad</a>(N, x, w)
     
     
 	 
@@ -997,6 +1020,16 @@ private subroutine <a href='../proc/lgwt.html'>lgwt</a>(a, b, num_pts, x, w)
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>This function is a fortran90 port of the matlab function, lgwt.m
+   The source code of lgwt.m was originally found at:
+     http://www.mathworks.com/matlabcentral/fileexchange/4540</p>
     
     <h4>Arguments</h4>
     
@@ -1180,8 +1213,8 @@ private subroutine <a href='../proc/cgwt.html'>cgwt</a>(num_pts, x, w)
     
     
   <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-gaussquad"></span><h3>
-private subroutine <a href='../proc/gaussquad.html'>gaussquad</a>(n, r1, r2)
+  <div class="panel-heading codesum"><span class="anchor" id="proc-gaussquad_rosetta"></span><h3>
+private subroutine <a href='../proc/gaussquad_rosetta.html'>gaussquad_rosetta</a>(n, r1, r2)
     
     
 	 
@@ -1305,7 +1338,7 @@ private subroutine <a href='../proc/gaussquad.html'>gaussquad</a>(n, r1, r2)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-22 23:59  
+             on 2017-01-27 00:12  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

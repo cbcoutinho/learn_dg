@@ -156,43 +156,24 @@ All Modules &ndash; learn_dg
 <g id="module~~graph~~ModuleGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 290.777)">
 <title>module~~graph~~ModuleGraph</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-290.777 469,-290.777 469,5 -4,5"/>
-<!-- module~io -->
-<g id="node1" class="node"><title>module~io</title>
-<a xlink:href="../module/io.html" xlink:title="io">
-<polygon fill="#337ab7" stroke="#337ab7" points="183,-265.676 129,-265.676 129,-239.676 183,-239.676 183,-265.676"/>
-<text text-anchor="middle" x="156" y="-250.226" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">io</text>
-</a>
-</g>
-<!-- program~main -->
-<g id="node8" class="node"><title>program~main</title>
-<a xlink:href="../program/main.html" xlink:title="main">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="464,-121.676 410,-121.676 410,-95.6757 464,-95.6757 464,-121.676"/>
-<text text-anchor="middle" x="437" y="-106.226" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
-</a>
-</g>
-<!-- module~io&#45;&gt;program~main -->
-<g id="edge38" class="edge"><title>module~io&#45;&gt;program~main</title>
-<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M183.221,-241.774C225.197,-224.588 307.802,-189.261 374,-151.676 386.63,-144.505 400.002,-135.585 411.162,-127.732"/>
-<polygon fill="#ff00bf" stroke="#ff00bf" points="413.479,-130.378 419.581,-121.716 409.41,-124.682 413.479,-130.378"/>
-</g>
-<!-- module~linalg -->
-<g id="node2" class="node"><title>module~linalg</title>
-<a xlink:href="../module/linalg.html" xlink:title="linalg">
-<polygon fill="#337ab7" stroke="#337ab7" points="183,-57.6757 129,-57.6757 129,-31.6757 183,-31.6757 183,-57.6757"/>
-<text text-anchor="middle" x="156" y="-42.2257" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linalg</text>
-</a>
-</g>
 <!-- module~legendre -->
-<g id="node4" class="node"><title>module~legendre</title>
+<g id="node1" class="node"><title>module~legendre</title>
 <a xlink:href="../module/legendre.html" xlink:title="legendre">
 <polygon fill="#337ab7" stroke="#337ab7" points="279,-142.676 225,-142.676 225,-116.676 279,-116.676 279,-142.676"/>
 <text text-anchor="middle" x="252" y="-127.226" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">legendre</text>
 </a>
 </g>
-<!-- module~linalg&#45;&gt;module~legendre -->
-<g id="edge14" class="edge"><title>module~linalg&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ff3f" stroke-dasharray="5,2" d="M176.385,-57.8611C180.335,-60.6454 184.372,-63.6578 188,-66.6757 205.396,-81.1459 207.855,-86.8218 224,-102.676 226.168,-104.805 228.439,-107.02 230.71,-109.225"/>
-<polygon fill="#00ff3f" stroke="#00ff3f" points="228.657,-112.108 238.28,-116.542 233.522,-107.075 228.657,-112.108"/>
+<!-- module~assembly -->
+<g id="node4" class="node"><title>module~assembly</title>
+<a xlink:href="../module/assembly.html" xlink:title="assembly">
+<polygon fill="#337ab7" stroke="#337ab7" points="374,-142.676 316,-142.676 316,-116.676 374,-116.676 374,-142.676"/>
+<text text-anchor="middle" x="345" y="-127.226" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembly</text>
+</a>
+</g>
+<!-- module~legendre&#45;&gt;module~assembly -->
+<g id="edge18" class="edge"><title>module~legendre&#45;&gt;module~assembly</title>
+<path fill="none" stroke="#00ff3f" stroke-dasharray="5,2" d="M279.651,-129.676C287.81,-129.676 296.9,-129.676 305.645,-129.676"/>
+<polygon fill="#00ff3f" stroke="#00ff3f" points="305.676,-133.176 315.676,-129.676 305.676,-126.176 305.676,-133.176"/>
 </g>
 <!-- program~doubleint -->
 <g id="node7" class="node"><title>program~doubleint</title>
@@ -201,13 +182,37 @@ All Modules &ndash; learn_dg
 <text text-anchor="middle" x="345" y="-44.2257" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">doubleint</text>
 </a>
 </g>
+<!-- module~legendre&#45;&gt;program~doubleint -->
+<g id="edge30" class="edge"><title>module~legendre&#45;&gt;program~doubleint</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M266.942,-116.34C281.945,-102.951 305.245,-82.1557 322.487,-66.7679"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="325.271,-68.9743 330.402,-59.7044 320.61,-63.7517 325.271,-68.9743"/>
+</g>
+<!-- module~linalg -->
+<g id="node2" class="node"><title>module~linalg</title>
+<a xlink:href="../module/linalg.html" xlink:title="linalg">
+<polygon fill="#337ab7" stroke="#337ab7" points="183,-57.6757 129,-57.6757 129,-31.6757 183,-31.6757 183,-57.6757"/>
+<text text-anchor="middle" x="156" y="-42.2257" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linalg</text>
+</a>
+</g>
+<!-- module~linalg&#45;&gt;module~legendre -->
+<g id="edge10" class="edge"><title>module~linalg&#45;&gt;module~legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M176.385,-57.8611C180.335,-60.6454 184.372,-63.6578 188,-66.6757 205.396,-81.1459 207.855,-86.8218 224,-102.676 226.168,-104.805 228.439,-107.02 230.71,-109.225"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="228.657,-112.108 238.28,-116.542 233.522,-107.075 228.657,-112.108"/>
+</g>
 <!-- module~linalg&#45;&gt;program~doubleint -->
-<g id="edge32" class="edge"><title>module~linalg&#45;&gt;program~doubleint</title>
+<g id="edge34" class="edge"><title>module~linalg&#45;&gt;program~doubleint</title>
 <path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M252,-43.6757C269.973,-41.905 289.984,-42.253 306.826,-43.2069"/>
 <polygon fill="#7f00ff" stroke="#7f00ff" points="306.648,-46.7026 316.856,-43.8656 307.107,-39.7177 306.648,-46.7026"/>
 </g>
+<!-- program~main -->
+<g id="node8" class="node"><title>program~main</title>
+<a xlink:href="../program/main.html" xlink:title="main">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="464,-121.676 410,-121.676 410,-95.6757 464,-95.6757 464,-121.676"/>
+<text text-anchor="middle" x="437" y="-106.226" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
+</a>
+</g>
 <!-- module~linalg&#45;&gt;program~main -->
-<g id="edge40" class="edge"><title>module~linalg&#45;&gt;program~main</title>
+<g id="edge44" class="edge"><title>module~linalg&#45;&gt;program~main</title>
 <path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M183.38,-45.6635C202.623,-46.0469 228.944,-45.9473 252,-43.6757"/>
 <path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M252,-43.6757C296.435,-39.2978 302.618,8.37453 345,-5.67574"/>
 </g>
@@ -219,38 +224,38 @@ All Modules &ndash; learn_dg
 </a>
 </g>
 <!-- module~integration&#45;&gt;module~legendre -->
-<g id="edge20" class="edge"><title>module~integration&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ff3f" stroke-dasharray="5,2" d="M186.639,-157.59C195.599,-153.764 205.491,-149.539 214.81,-145.559"/>
-<polygon fill="#00ff3f" stroke="#00ff3f" points="216.429,-148.673 224.251,-141.527 213.68,-142.236 216.429,-148.673"/>
+<g id="edge4" class="edge"><title>module~integration&#45;&gt;module~legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M186.639,-157.59C195.599,-153.764 205.491,-149.539 214.81,-145.559"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="216.429,-148.673 224.251,-141.527 213.68,-142.236 216.429,-148.673"/>
 </g>
-<!-- module~assembly -->
-<g id="node6" class="node"><title>module~assembly</title>
-<a xlink:href="../module/assembly.html" xlink:title="assembly">
-<polygon fill="#337ab7" stroke="#337ab7" points="374,-142.676 316,-142.676 316,-116.676 374,-116.676 374,-142.676"/>
-<text text-anchor="middle" x="345" y="-127.226" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembly</text>
+<!-- module~assembly&#45;&gt;program~main -->
+<g id="edge36" class="edge"><title>module~assembly&#45;&gt;program~main</title>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M374.109,-123.031C382.358,-121.148 391.448,-119.074 400.092,-117.1"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="400.986,-120.486 409.957,-114.849 399.428,-113.662 400.986,-120.486"/>
+</g>
+<!-- module~io -->
+<g id="node5" class="node"><title>module~io</title>
+<a xlink:href="../module/io.html" xlink:title="io">
+<polygon fill="#337ab7" stroke="#337ab7" points="183,-265.676 129,-265.676 129,-239.676 183,-239.676 183,-265.676"/>
+<text text-anchor="middle" x="156" y="-250.226" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">io</text>
 </a>
 </g>
-<!-- module~legendre&#45;&gt;module~assembly -->
-<g id="edge24" class="edge"><title>module~legendre&#45;&gt;module~assembly</title>
-<path fill="none" stroke="#003fff" stroke-dasharray="5,2" d="M279.651,-129.676C287.81,-129.676 296.9,-129.676 305.645,-129.676"/>
-<polygon fill="#003fff" stroke="#003fff" points="305.676,-133.176 315.676,-129.676 305.676,-126.176 305.676,-133.176"/>
-</g>
-<!-- module~legendre&#45;&gt;program~doubleint -->
-<g id="edge30" class="edge"><title>module~legendre&#45;&gt;program~doubleint</title>
-<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M266.942,-116.34C281.945,-102.951 305.245,-82.1557 322.487,-66.7679"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="325.271,-68.9743 330.402,-59.7044 320.61,-63.7517 325.271,-68.9743"/>
+<!-- module~io&#45;&gt;program~main -->
+<g id="edge40" class="edge"><title>module~io&#45;&gt;program~main</title>
+<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M183.221,-241.774C225.197,-224.588 307.802,-189.261 374,-151.676 386.63,-144.505 400.002,-135.585 411.162,-127.732"/>
+<polygon fill="#ff00bf" stroke="#ff00bf" points="413.479,-130.378 419.581,-121.716 409.41,-124.682 413.479,-130.378"/>
 </g>
 <!-- module~misc -->
-<g id="node5" class="node"><title>module~misc</title>
+<g id="node6" class="node"><title>module~misc</title>
 <a xlink:href="../module/misc.html" xlink:title="misc">
 <polygon fill="#337ab7" stroke="#337ab7" points="183,-101.676 129,-101.676 129,-75.6757 183,-75.6757 183,-101.676"/>
 <text text-anchor="middle" x="156" y="-86.2257" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">misc</text>
 </a>
 </g>
 <!-- module~misc&#45;&gt;module~legendre -->
-<g id="edge12" class="edge"><title>module~misc&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ff3f" stroke-dasharray="5,2" d="M183.253,-100.315C193.099,-104.52 204.388,-109.341 214.933,-113.845"/>
-<polygon fill="#00ff3f" stroke="#00ff3f" points="213.774,-117.156 224.346,-117.865 216.524,-110.719 213.774,-117.156"/>
+<g id="edge6" class="edge"><title>module~misc&#45;&gt;module~legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M183.253,-100.315C193.099,-104.52 204.388,-109.341 214.933,-113.845"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="213.774,-117.156 224.346,-117.865 216.524,-110.719 213.774,-117.156"/>
 </g>
 <!-- module~misc&#45;&gt;program~doubleint -->
 <g id="edge28" class="edge"><title>module~misc&#45;&gt;program~doubleint</title>
@@ -259,79 +264,74 @@ All Modules &ndash; learn_dg
 <polygon fill="#7f00ff" stroke="#7f00ff" points="318.922,-67.8195 325.738,-59.7088 315.352,-61.7982 318.922,-67.8195"/>
 </g>
 <!-- module~misc&#45;&gt;program~main -->
-<g id="edge36" class="edge"><title>module~misc&#45;&gt;program~main</title>
+<g id="edge38" class="edge"><title>module~misc&#45;&gt;program~main</title>
 <path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M252,-88.6757C303.211,-82.9658 362.425,-92.1353 399.789,-99.8592"/>
 <polygon fill="#ff00bf" stroke="#ff00bf" points="399.212,-103.315 409.723,-101.986 400.677,-96.47 399.212,-103.315"/>
-</g>
-<!-- module~assembly&#45;&gt;program~main -->
-<g id="edge42" class="edge"><title>module~assembly&#45;&gt;program~main</title>
-<path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M374.109,-123.031C382.358,-121.148 391.448,-119.074 400.092,-117.1"/>
-<polygon fill="#ff00bf" stroke="#ff00bf" points="400.986,-120.486 409.957,-114.849 399.428,-113.662 400.986,-120.486"/>
 </g>
 <!-- lib_array -->
 <g id="node9" class="node"><title>lib_array</title>
 <polygon fill="#337ab7" stroke="#337ab7" points="71,-265.676 17,-265.676 17,-239.676 71,-239.676 71,-265.676"/>
 <text text-anchor="middle" x="44" y="-250.226" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lib_array</text>
 </g>
-<!-- lib_array&#45;&gt;module~io -->
-<g id="edge2" class="edge"><title>lib_array&#45;&gt;module~io</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M71.1121,-252.676C85.3143,-252.676 102.93,-252.676 118.427,-252.676"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="118.749,-256.176 128.749,-252.676 118.749,-249.176 118.749,-256.176"/>
+<!-- lib_array&#45;&gt;module~legendre -->
+<g id="edge2" class="edge"><title>lib_array&#45;&gt;module~legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M68.3007,-265.773C98.7751,-280.225 151.451,-298.495 188,-274.676 229.631,-247.545 244.375,-186.538 249.449,-152.948"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="252.963,-153.073 250.823,-142.697 246.025,-152.143 252.963,-153.073"/>
 </g>
 <!-- lib_array&#45;&gt;module~integration -->
-<g id="edge8" class="edge"><title>lib_array&#45;&gt;module~integration</title>
+<g id="edge14" class="edge"><title>lib_array&#45;&gt;module~integration</title>
 <path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M61.9947,-239.501C80.3642,-226.052 109.064,-205.04 129.923,-189.768"/>
 <polygon fill="#7fff00" stroke="#7fff00" points="132.049,-192.549 138.05,-183.818 127.914,-186.901 132.049,-192.549"/>
 </g>
-<!-- lib_array&#45;&gt;module~legendre -->
-<g id="edge16" class="edge"><title>lib_array&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ff3f" stroke-dasharray="5,2" d="M68.3007,-265.773C98.7751,-280.225 151.451,-298.495 188,-274.676 229.631,-247.545 244.375,-186.538 249.449,-152.948"/>
-<polygon fill="#00ff3f" stroke="#00ff3f" points="252.963,-153.073 250.823,-142.697 246.025,-152.143 252.963,-153.073"/>
+<!-- lib_array&#45;&gt;module~io -->
+<g id="edge22" class="edge"><title>lib_array&#45;&gt;module~io</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M71.1121,-252.676C85.3143,-252.676 102.93,-252.676 118.427,-252.676"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="118.749,-256.176 128.749,-252.676 118.749,-249.176 118.749,-256.176"/>
 </g>
 <!-- iso_fortran_env -->
-<g id="node11" class="node"><title>iso_fortran_env</title>
+<g id="node13" class="node"><title>iso_fortran_env</title>
 <a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
 <polygon fill="#337ab7" stroke="#337ab7" points="87,-142.676 1,-142.676 1,-116.676 87,-116.676 87,-142.676"/>
 <text text-anchor="middle" x="44" y="-127.226" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
 </a>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~io -->
-<g id="edge4" class="edge"><title>iso_fortran_env&#45;&gt;module~io</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M53.6872,-142.711C68.104,-161.769 96.4712,-197.978 124,-225.676 126.357,-228.047 128.9,-230.438 131.487,-232.765"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="129.381,-235.572 139.232,-239.47 133.962,-230.279 129.381,-235.572"/>
+<!-- iso_fortran_env&#45;&gt;module~legendre -->
+<g id="edge8" class="edge"><title>iso_fortran_env&#45;&gt;module~legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M87.6036,-129.676C125.118,-129.676 178.677,-129.676 214.352,-129.676"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="214.361,-133.176 224.361,-129.676 214.361,-126.176 214.361,-133.176"/>
 </g>
 <!-- iso_fortran_env&#45;&gt;module~linalg -->
-<g id="edge6" class="edge"><title>iso_fortran_env&#45;&gt;module~linalg</title>
+<g id="edge12" class="edge"><title>iso_fortran_env&#45;&gt;module~linalg</title>
 <path fill="none" stroke="#ffbf00" stroke-dasharray="5,2" d="M60.0038,-116.574C75.9863,-103.608 101.365,-83.342 124,-66.6757 125.381,-65.6589 126.803,-64.6269 128.246,-63.5929"/>
 <polygon fill="#ffbf00" stroke="#ffbf00" points="130.402,-66.355 136.567,-57.7384 126.375,-60.6298 130.402,-66.355"/>
 </g>
 <!-- iso_fortran_env&#45;&gt;module~integration -->
-<g id="edge10" class="edge"><title>iso_fortran_env&#45;&gt;module~integration</title>
+<g id="edge16" class="edge"><title>iso_fortran_env&#45;&gt;module~integration</title>
 <path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M79.7454,-142.761C90.9487,-146.862 103.402,-151.421 114.942,-155.646"/>
 <polygon fill="#7fff00" stroke="#7fff00" points="113.779,-158.947 124.373,-159.098 116.186,-152.374 113.779,-158.947"/>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~legendre -->
-<g id="edge18" class="edge"><title>iso_fortran_env&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#00ff3f" stroke-dasharray="5,2" d="M87.6036,-129.676C125.118,-129.676 178.677,-129.676 214.352,-129.676"/>
-<polygon fill="#00ff3f" stroke="#00ff3f" points="214.361,-133.176 224.361,-129.676 214.361,-126.176 214.361,-133.176"/>
+<!-- iso_fortran_env&#45;&gt;module~assembly -->
+<g id="edge20" class="edge"><title>iso_fortran_env&#45;&gt;module~assembly</title>
+<path fill="none" stroke="#00ff3f" stroke-dasharray="5,2" d="M55.4048,-142.897C69.6423,-158.283 95.6027,-182.837 124,-192.676 192.661,-216.466 275.489,-174.514 317.57,-148.325"/>
+<polygon fill="#00ff3f" stroke="#00ff3f" points="319.607,-151.177 326.153,-142.847 315.841,-145.277 319.607,-151.177"/>
+</g>
+<!-- iso_fortran_env&#45;&gt;module~io -->
+<g id="edge24" class="edge"><title>iso_fortran_env&#45;&gt;module~io</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M53.6872,-142.711C68.104,-161.769 96.4712,-197.978 124,-225.676 126.357,-228.047 128.9,-230.438 131.487,-232.765"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="129.381,-235.572 139.232,-239.47 133.962,-230.279 129.381,-235.572"/>
 </g>
 <!-- iso_fortran_env&#45;&gt;module~misc -->
-<g id="edge22" class="edge"><title>iso_fortran_env&#45;&gt;module~misc</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M79.7454,-116.59C92.2731,-112.004 106.364,-106.846 118.993,-102.223"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="120.562,-105.376 128.749,-98.6514 118.156,-98.8024 120.562,-105.376"/>
-</g>
-<!-- iso_fortran_env&#45;&gt;module~assembly -->
-<g id="edge26" class="edge"><title>iso_fortran_env&#45;&gt;module~assembly</title>
-<path fill="none" stroke="#003fff" stroke-dasharray="5,2" d="M55.4048,-142.897C69.6423,-158.283 95.6027,-182.837 124,-192.676 192.661,-216.466 275.489,-174.514 317.57,-148.325"/>
-<polygon fill="#003fff" stroke="#003fff" points="319.607,-151.177 326.153,-142.847 315.841,-145.277 319.607,-151.177"/>
+<g id="edge26" class="edge"><title>iso_fortran_env&#45;&gt;module~misc</title>
+<path fill="none" stroke="#003fff" stroke-dasharray="5,2" d="M79.7454,-116.59C92.2731,-112.004 106.364,-106.846 118.993,-102.223"/>
+<polygon fill="#003fff" stroke="#003fff" points="120.562,-105.376 128.749,-98.6514 118.156,-98.8024 120.562,-105.376"/>
 </g>
 <!-- iso_fortran_env&#45;&gt;program~doubleint -->
-<g id="edge34" class="edge"><title>iso_fortran_env&#45;&gt;program~doubleint</title>
+<g id="edge32" class="edge"><title>iso_fortran_env&#45;&gt;program~doubleint</title>
 <path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M252,-5.67574C274.828,-8.40269 298.508,-18.9738 316.261,-28.6983"/>
 <polygon fill="#7f00ff" stroke="#7f00ff" points="314.547,-31.75 324.968,-33.6604 318.013,-25.6682 314.547,-31.75"/>
 </g>
 <!-- iso_fortran_env&#45;&gt;program~main -->
-<g id="edge44" class="edge"><title>iso_fortran_env&#45;&gt;program~main</title>
+<g id="edge42" class="edge"><title>iso_fortran_env&#45;&gt;program~main</title>
 <path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M49.6303,-116.452C60.3315,-93.1114 85.9858,-44.9702 124,-22.6757 173.503,6.35662 195.017,1.13141 252,-5.67574"/>
 <path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M252,-5.67574C293.193,-9.08032 305.766,7.33067 345,-5.67574"/>
 <path fill="none" stroke="#ff00bf" stroke-dasharray="5,2" d="M345,-5.67574C383.917,-18.5773 411.892,-60.1999 426.179,-86.4177"/>
@@ -419,7 +419,7 @@ All Modules &ndash; learn_dg
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-22 23:59  
+             on 2017-01-27 00:12  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

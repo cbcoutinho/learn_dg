@@ -2,26 +2,12 @@ module misc
   use iso_fortran_env, only: wp => real64
   implicit none
 
-  ! abstract interface
-  !   pure function func1(xx) result(yy)
-  !     import wp
-  !     real(wp), intent(in), dimension(:):: xx
-  !     real(wp), dimension(:), allocatable:: yy
-  !   end function func1
-  !
-  !   pure function func2(xx, aa) result(yy)
-  !     import wp
-  !     real(wp), intent(in), dimension(:):: xx, aa
-  !     real(wp), dimension(:), allocatable:: yy
-  !   end function func2
-  ! end interface
-
 contains
 
   subroutine r8mat_print ( m, n, a, title )
-    ! *****************************************************************************80
+    ! **************************************************************************
     !
-    !! R8MAT_PRINT prints an R8MAT.
+    !* R8MAT_PRINT prints an R8MAT.
     !
     !  Discussion:
     !
@@ -48,7 +34,7 @@ contains
     !    Input, real ( kind = 8 ) A(M,N), the matrix.
     !
     !    Input, character ( len = * ) TITLE, a title to be printed.
-    !
+
     implicit none
 
     integer ( kind = 4 ) m
@@ -64,9 +50,9 @@ contains
 
   subroutine r8mat_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
 
-    ! *****************************************************************************80
+    ! **************************************************************************
     !
-    !! R8MAT_PRINT_SOME prints some of an R8MAT.
+    !* R8MAT_PRINT_SOME prints some of an R8MAT.
     !
     !  Discussion:
     !
@@ -95,7 +81,7 @@ contains
     !    Input, integer IHI, JHI, the last row and column to print.
     !
     !    Input, character ( len = * ) TITLE, an optional title.
-    !
+
     implicit none
 
     integer ( kind = 4 ), parameter :: incx = 5

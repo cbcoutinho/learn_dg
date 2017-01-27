@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="11.0% of total for procedures.">78 statements</a>
+	  title="11.7% of total for procedures.">82 statements</a>
      </li> 
      
      
@@ -211,7 +211,7 @@
       
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
       
-      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
+      <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
@@ -231,8 +231,6 @@
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
-      <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
-      
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
       
       <a class="list-group-item" href="../proc/inv2.html">inv2</a>
@@ -250,6 +248,8 @@
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
+      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
       
@@ -276,6 +276,10 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
 
 
     
+    <p>Reads the input mesh file (gmsh .msh format) and returns the number of
+   nodes, the order of each element, element connectivity, and the
+   coordinates of the nodes (nx1 for 1D, nx2 for 2D, etc.)</p>
+    
 
     <h3>Arguments</h3>
     
@@ -300,7 +304,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>num_nodes</strong></td><td></td>
+  <td><strong>num_nodes</strong></td><td><p>Number of nodes in mesh</p></td>
   
 </tr>
 
@@ -315,7 +319,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   <td></td>
   
   <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>order</strong></td><td></td>
+  <td><strong>order</strong></td><td><p>Array containing order of each element</p></td>
   
 </tr>
 
@@ -330,7 +334,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   <td></td>
   
   <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>nodes2vertex</strong></td><td></td>
+  <td><strong>nodes2vertex</strong></td><td><p>Array containing node to vertex connectivity (only interesting w.r.t discontinuous galerkin)</p></td>
   
 </tr>
 
@@ -345,7 +349,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   <td></td>
   
   <td>dimension(:,:), allocatable</td><td>::</td>
-  <td><strong>elem_conn</strong></td><td></td>
+  <td><strong>elem_conn</strong></td><td><p>Array containing node connectivity of each element</p></td>
   
 </tr>
 
@@ -360,7 +364,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   <td></td>
   
   <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>xcoords</strong></td><td></td>
+  <td><strong>xcoords</strong></td><td><p>Array containing node coordinates</p></td>
   
 </tr>
 
@@ -375,7 +379,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>dg</strong></td><td></td>
+  <td><strong>dg</strong></td><td><p>Logical switch is continuous galerkin or discontinuous galerkin</p></td>
   
 </tr>
 
@@ -543,29 +547,37 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">read_gmsh_file_1D</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="p">&amp;</span>
-                            <span class="p">&amp;</span> <span class="n">order</span><span class="p">,</span> <span class="p">&amp;</span>
-                            <span class="p">&amp;</span> <span class="n">nodes2vertex</span><span class="p">,</span> <span class="p">&amp;</span>
-                            <span class="p">&amp;</span> <span class="n">elem_conn</span><span class="p">,</span> <span class="p">&amp;</span>
-                            <span class="p">&amp;</span> <span class="n">xcoords</span><span class="p">,</span> <span class="p">&amp;</span>
-                            <span class="p">&amp;</span> <span class="n">dg</span><span class="p">)</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">num_nodes</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">order</span><span class="p">,</span> <span class="n">nodes2vertex</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">elem_conn</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xcoords</span>
-    <span class="kt">logical</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">dg</span>
+                                <span class="n">order</span><span class="p">,</span> <span class="p">&amp;</span>
+                                <span class="n">nodes2vertex</span><span class="p">,</span> <span class="p">&amp;</span>
+                                <span class="n">elem_conn</span><span class="p">,</span> <span class="p">&amp;</span>
+                                <span class="n">xcoords</span><span class="p">,</span> <span class="p">&amp;</span>
+                                <span class="n">dg</span><span class="p">)</span>
+    <span class="c">!</span>
+    <span class="c">!*  Reads the input mesh file (gmsh .msh format) and returns the number of</span>
+    <span class="c">!   nodes, the order of each element, element connectivity, and the</span>
+    <span class="c">!   coordinates of the nodes (nx1 for 1D, nx2 for 2D, etc.)</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">num_nodes</span>    <span class="c">!! Number of nodes in mesh</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">order</span>        <span class="c">!! Array containing order of each element</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">nodes2vertex</span> <span class="c">!! Array containing node to vertex connectivity (only interesting w.r.t discontinuous galerkin)</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">elem_conn</span>    <span class="c">!! Array containing node connectivity of each element</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xcoords</span>      <span class="c">!! Array containing node coordinates</span>
+    <span class="kt">logical</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">dg</span>           <span class="c">!! Logical switch is continuous galerkin or discontinuous galerkin</span>
 
     <span class="kt">integer</span>         <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ios</span><span class="p">,</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">num_elements</span><span class="p">,</span> <span class="n">num_vertexes</span><span class="p">,</span> <span class="n">d_int</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">iloc</span>
     <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">vertex_conn</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">d_real</span>
-    <span class="kt">character</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">filename</span>
-    <span class="kt">character</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">blank_string</span>
+    <span class="kt">character</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">filename</span>
+    <span class="kt">character</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">blank_string</span>
 
     <span class="k">call </span><span class="n">get_command_argument_wrapper</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="c">! print*, filename</span>
 
     <span class="k">open</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;old&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;read&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">stop</span> <span class="s2">&quot;Error opening file &quot;</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
+<span class="k">      print</span><span class="o">*</span><span class="p">,</span> <span class="n">filename</span>
+      <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="n">ios</span>
+      <span class="k">stop</span> <span class="s2">&quot;Error opening file &quot;</span>
+    <span class="n">endif</span>
 
     <span class="c">! Read initial header information - assuming file is in the correct format</span>
     <span class="k">do</span>
@@ -639,8 +651,8 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
       <span class="c">! print*, pack(vertex_conn, vertex_conn == nodes2vertex)</span>
     <span class="n">enddo</span>
     <span class="c">! print*, pack([( ii, ii = 1, num_nodes )], &amp;</span>
-    <span class="c">!       &amp; nodes2vertex == nodes2vertex(3) &amp;</span>
-    <span class="c">!       &amp; .or. nodes2vertex == nodes2vertex(5))</span>
+    <span class="c">!         nodes2vertex == nodes2vertex(3) &amp;</span>
+    <span class="c">!         .or. nodes2vertex == nodes2vertex(5))</span>
     <span class="c">! stop</span>
 
     <span class="k">if</span> <span class="p">(</span> <span class="p">.</span><span class="nb">not</span><span class="p">.</span> <span class="n">dg</span> <span class="p">)</span> <span class="k">then</span>
@@ -648,7 +660,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
     <span class="k">else</span>
 <span class="k">      do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_elements</span>
         <span class="c">! elem_conn(ii,:) = pack([( ii, ii = 1, num_nodes )], &amp;</span>
-                        <span class="c">! &amp; nodes2vertex == vertex_conn(ii,1))</span>
+                        <span class="c">!   nodes2vertex == vertex_conn(ii,1))</span>
         <span class="c">! print*, loc(2._wp)</span>
         <span class="c">! print*, loc(nodes2vertex == vertex_conn(ii,2))</span>
         <span class="k">print</span><span class="o">*</span><span class="p">,</span>  <span class="n">order</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">vertex_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:)</span>
@@ -701,7 +713,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
       
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
       
-      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
+      <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
@@ -721,8 +733,6 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
-      <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
-      
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
       
       <a class="list-group-item" href="../proc/inv2.html">inv2</a>
@@ -740,6 +750,8 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
+      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
       
@@ -762,7 +774,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-22 23:59  
+             on 2017-01-27 00:12  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

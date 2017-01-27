@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 7.2% of total for procedures.">51 statements</a>
+	  title=" 7.3% of total for procedures.">51 statements</a>
      </li> 
      
      
@@ -211,7 +211,7 @@
       
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
       
-      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
+      <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
@@ -231,8 +231,6 @@
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
-      <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
-      
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
       
       <a class="list-group-item" href="../proc/inv2.html">inv2</a>
@@ -250,6 +248,8 @@
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
+      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
       
@@ -440,23 +440,23 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
 <path fill="none" stroke="#ff0000" d="M355.528,-57C364.159,-57 373.265,-57 381.802,-57"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="381.862,-60.5001 391.862,-57 381.862,-53.5001 381.862,-60.5001"/>
 </g>
-<!-- dgetrf -->
-<g id="node7" class="node"><title>dgetrf</title>
+<!-- dgetrs -->
+<g id="node7" class="node"><title>dgetrs</title>
 <polygon fill="#777777" stroke="#777777" points="536,-92 482,-92 482,-66 536,-66 536,-92"/>
-<text text-anchor="middle" x="509" y="-76.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+<text text-anchor="middle" x="509" y="-76.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrf -->
-<g id="edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<!-- proc~linsolve&#45;&gt;dgetrs -->
+<g id="edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
 <path fill="none" stroke="#ff0000" d="M446.003,-63.6007C454.116,-65.5839 463.163,-67.7954 471.813,-69.9099"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="471.16,-73.3532 481.705,-72.3279 472.822,-66.5534 471.16,-73.3532"/>
 </g>
-<!-- dgetrs -->
-<g id="node8" class="node"><title>dgetrs</title>
+<!-- dgetrf -->
+<g id="node8" class="node"><title>dgetrf</title>
 <polygon fill="#777777" stroke="#777777" points="536,-48 482,-48 482,-22 536,-22 536,-48"/>
-<text text-anchor="middle" x="509" y="-32.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+<text text-anchor="middle" x="509" y="-32.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="edge4" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
+<!-- proc~linsolve&#45;&gt;dgetrf -->
+<g id="edge4" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
 <path fill="none" stroke="#ff0000" d="M446.003,-50.3993C454.116,-48.4161 463.163,-46.2046 471.813,-44.0901"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="472.822,-47.4466 481.705,-41.6721 471.16,-40.6468 472.822,-47.4466"/>
 </g>
@@ -649,14 +649,14 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
 
             <span class="c">! If fun1 contains a derivative, need to calc N_i,xi and N_i,eta</span>
             <span class="n">dfun1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N1</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">+</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)))</span> <span class="o">-</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N1</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)))</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">eps</span> <span class="p">)</span>
+              <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N1</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">+</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)))</span> <span class="o">-</span> <span class="p">&amp;</span>
+              <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N1</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)))</span> <span class="p">&amp;</span>
+              <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">eps</span> <span class="p">)</span>
 
             <span class="n">dfun1</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N1</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">+</span><span class="n">eps</span><span class="p">))</span> <span class="o">-</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N1</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="n">eps</span><span class="p">))</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">eps</span> <span class="p">)</span>
+              <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N1</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">+</span><span class="n">eps</span><span class="p">))</span> <span class="o">-</span> <span class="p">&amp;</span>
+              <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N1</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="n">eps</span><span class="p">))</span> <span class="p">&amp;</span>
+              <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">eps</span> <span class="p">)</span>
 
             <span class="c">! N_i,x = dxi/dx * N_i,xi + deta/dx * N_i,eta</span>
             <span class="n">fun1</span> <span class="o">=</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">invJ</span><span class="p">(</span><span class="n">d1</span><span class="p">,:),</span> <span class="n">dfun1</span><span class="p">)</span>
@@ -669,17 +669,17 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
           <span class="k">else</span>
 
             <span class="c">! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta</span>
-            <span class="n">dfun2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N2</span><span class="p">),</span> <span class="p">&amp;</span>
-                        <span class="p">&amp;</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">+</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)))</span> <span class="o">-</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N2</span><span class="p">),</span> <span class="p">&amp;</span>
-                        <span class="p">&amp;</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)))</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">eps</span> <span class="p">)</span>
+            <span class="n">dfun2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span>  <span class="p">(</span> <span class="p">&amp;</span>
+              <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N2</span><span class="p">),</span> <span class="p">&amp;</span>
+                          <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">+</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)))</span> <span class="o">-</span> <span class="p">&amp;</span>
+              <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N2</span><span class="p">),</span> <span class="p">&amp;</span>
+                          <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)))</span> <span class="p">&amp;</span>
+                        <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">eps</span> <span class="p">)</span>
 
-            <span class="n">dfun2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N2</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">+</span><span class="n">eps</span><span class="p">))</span> <span class="o">-</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N2</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="n">eps</span><span class="p">))</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">eps</span> <span class="p">)</span>
+            <span class="n">dfun2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span>  <span class="p">(</span> <span class="p">&amp;</span>
+              <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N2</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">+</span><span class="n">eps</span><span class="p">))</span> <span class="o">-</span> <span class="p">&amp;</span>
+              <span class="nb">dot_product</span><span class="p">(</span><span class="n">alpha</span><span class="p">(:,</span><span class="n">N2</span><span class="p">),</span> <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">eta</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="n">eps</span><span class="p">))</span> <span class="p">&amp;</span>
+                        <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">eps</span> <span class="p">)</span>
 
             <span class="c">! N_i,y = dxi/dy * N_i,xi + deta/dy * N_i,eta</span>
             <span class="n">fun2</span> <span class="o">=</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">invJ</span><span class="p">(</span><span class="n">d2</span><span class="p">,:),</span> <span class="n">dfun2</span><span class="p">)</span>
@@ -729,7 +729,7 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
       
       <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
       
-      <a class="list-group-item" href="../proc/gaussquad_wrapper.html">gaussquad_wrapper</a>
+      <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../proc/get_command_argument_wrapper.html">get_command_argument_wrapper</a>
       
@@ -749,8 +749,6 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
-      <a class="list-group-item" href="../proc/integrate_basis_1d.html">integrate_basis_1d</a>
-      
       <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
       
       <a class="list-group-item" href="../proc/inv2.html">inv2</a>
@@ -768,6 +766,8 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
+      
+      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
       
@@ -790,7 +790,7 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-22 23:59  
+             on 2017-01-27 00:12  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

@@ -3,16 +3,14 @@ module assembly
   use legendre, only: getIe, assembleElementalMatrix, getxy
   implicit none
 
-  public :: initialize_global_mats, assemble
-
-
+  public :: initialize_global_mats, assemble, set_BCs
 
 contains
 
   subroutine initialize_global_mats(num_nodes, &
-                                  & GlobalA, &
-                                  & GlobalB, &
-                                  & GlobalX)
+                                    GlobalA, &
+                                    GlobalB, &
+                                    GlobalX)
     !* This routine initalizes the global stiffness matrix, global rhs vector,
     !  and global solution vector based on the number of nodes in the system
     !

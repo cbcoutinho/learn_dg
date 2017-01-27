@@ -7,7 +7,7 @@ module legendre
   implicit none
 
   private :: basis_1D, vandermonde
-  private :: integrate_basis_1d, integrate_basis_1d_Ie
+  private :: integrate_basis_1d_Ie
   public  :: getIe, assembleElementalMatrix, getxy
 
 contains
@@ -23,7 +23,7 @@ contains
     !   Currently only zero-th and first order derivatives are supported. Second
     !   order derivatives need to be reduced to first order derivatives in the
     !   problem formulation using Green's Theorem
-    
+
     integer,  intent(in)                    :: dii      !! Derivative of the first basis function
     integer,  intent(in)                    :: djj      !! Derivative of the second basis function
     real(wp), intent(in),   dimension(:)    :: xcoords  !! Coordinates of the 1D line element
@@ -102,47 +102,47 @@ contains
     end subroutine local_wrapper
   end function integrate_basis_1d_Ie
 
-  function integrate_basis_1d(order, basis_num, dx) result(integral)
-    integer, intent(in) :: order, basis_num, dx
-    real(wp)            :: integral
-
-    real(wp), dimension(:, :), allocatable:: Vinv
-
-    allocate(Vinv(order+1, order+1))
-    call vandermonde(order+1, Vinv)
-
-    ! call r8mat_print(order+1, order+1, Vinv, 'Inverse Vandermonde')
-
-    ! Check to make sure requested basis number is within available basis
-    if ( basis_num > order+1 ) then
-      write(*,*) 'The basis_num input is larger than number of available basis nodes (order+1)'
-      write(*,*) 'Make sure order and basis_num are correctly set before calling'
-      stop
-    endif
-
-    ! Check to make sure differentiation is either 0 or 1
-    if ( dx < 0 .or. dx > 1 ) then
-      write(*,*) 'Derivatives of order lower than 0 or higher than 1 are not allowed'
-      write(*,*) 'integrate_basis_1d was called with dx = ', dx
-      write(*,*) 'Check to make sure that the function was called correctly'
-      stop
-    endif
-
-    call integrate(local_basis_1D, -1.0_wp, 1.0_wp, integral)
-
-    deallocate(Vinv)
-
-    return
-  contains
-    subroutine local_basis_1D(x, y)
-      real(wp), intent(in), dimension(:) :: x
-      real(wp), intent(out), dimension(:) :: y
-
-      y = basis_1D(x, Vinv(:, basis_num), dx)
-
-      return
-    end subroutine local_basis_1D
-  end function integrate_basis_1d
+  ! function integrate_basis_1d(order, basis_num, dx) result(integral)
+  !   integer, intent(in) :: order, basis_num, dx
+  !   real(wp)            :: integral
+  !
+  !   real(wp), dimension(:, :), allocatable:: Vinv
+  !
+  !   allocate(Vinv(order+1, order+1))
+  !   call vandermonde(order+1, Vinv)
+  !
+  !   ! call r8mat_print(order+1, order+1, Vinv, 'Inverse Vandermonde')
+  !
+  !   ! Check to make sure requested basis number is within available basis
+  !   if ( basis_num > order+1 ) then
+  !     write(*,*) 'The basis_num input is larger than number of available basis nodes (order+1)'
+  !     write(*,*) 'Make sure order and basis_num are correctly set before calling'
+  !     stop
+  !   endif
+  !
+  !   ! Check to make sure differentiation is either 0 or 1
+  !   if ( dx < 0 .or. dx > 1 ) then
+  !     write(*,*) 'Derivatives of order lower than 0 or higher than 1 are not allowed'
+  !     write(*,*) 'integrate_basis_1d was called with dx = ', dx
+  !     write(*,*) 'Check to make sure that the function was called correctly'
+  !     stop
+  !   endif
+  !
+  !   call integrate(local_basis_1D, -1.0_wp, 1.0_wp, integral)
+  !
+  !   deallocate(Vinv)
+  !
+  !   return
+  ! contains
+  !   subroutine local_basis_1D(x, y)
+  !     real(wp), intent(in), dimension(:) :: x
+  !     real(wp), intent(out), dimension(:) :: y
+  !
+  !     y = basis_1D(x, Vinv(:, basis_num), dx)
+  !
+  !     return
+  !   end subroutine local_basis_1D
+  ! end function integrate_basis_1d
 
   function basis_1D(x, alpha, dx) result(y)
     ! Input/output variables
@@ -216,28 +216,28 @@ contains
     elseif ( N == 9 ) then
 
       xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
-              & zero, one, zero, -one, &        ! Four edge nodes
-              & zero]                           ! Center node
+                zero, one, zero, -one, &        ! Four edge nodes
+                zero]                           ! Center node
 
       xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
-              & -one, zero, one, zero, &        ! Four edge nodes
-              & zero]                           ! Center node
+                -one, zero, one, zero, &        ! Four edge nodes
+                zero]                           ! Center node
 
     elseif ( N == 16 ) then
 
       xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
-              & -third, third, &                ! Two edge nodes on each
-              & one, one, &                     !     of the four edges
-              & third, -third, &
-              & -one, -one, &
-              & -third, third, third, -third]   ! Four internal nodes
+                -third, third, &                ! Two edge nodes on each
+                one, one, &                     !     of the four edges
+                third, -third, &
+                -one, -one, &
+                -third, third, third, -third]   ! Four internal nodes
 
       xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
-              & -one, -one, &                   ! Two edge nodes on each
-              & -third, third, &                !     of the four edges
-              & one, one, &
-              & third, -third, &
-              & -third, -third, third, third]   ! Four internal nodes
+                -one, -one, &                   ! Two edge nodes on each
+                -third, third, &                !     of the four edges
+                one, one, &
+                third, -third, &
+                -third, -third, third, third]   ! Four internal nodes
 
     endif
 
@@ -251,24 +251,24 @@ contains
 
     if ( N == 4 ) then
       row = [1._wp, &
-          & xi, eta, &
-          & xi*eta]
+            xi, eta, &
+            xi*eta]
 
     elseif ( N == 9 ) then
       row = [1._wp, &
-          & xi, eta, &
-          & xi**2._wp, xi*eta, eta**2._wp, &
-          & xi**2._wp * eta, xi * eta**2._wp, &
-          & xi**2._wp * eta**2._wp]
+            xi, eta, &
+            xi**2._wp, xi*eta, eta**2._wp, &
+            xi**2._wp * eta, xi * eta**2._wp, &
+            xi**2._wp * eta**2._wp]
 
     elseif ( N == 16 ) then
       row = [1._wp, &
-          & xi, eta, &
-          & xi**2._wp, xi*eta, eta**2._wp, &
-          & xi**3._wp, xi**2._wp * eta, xi * eta**2._wp, eta**3._wp, &
-          & xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
-          & xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
-          & xi**3._wp * eta**3._wp]
+            xi, eta, &
+            xi**2._wp, xi*eta, eta**2._wp, &
+            xi**3._wp, xi**2._wp * eta, xi * eta**2._wp, eta**3._wp, &
+            xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
+            xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
+            xi**3._wp * eta**3._wp]
 
     endif
 
@@ -328,9 +328,9 @@ contains
     do ii = 1,N
       x = alpha(:,ii)
       P(1,ii) = dot_product(x, getArow(N, xi+eps, eta     )) - &
-              & dot_product(x, getArow(N, xi-eps, eta     ))
+                dot_product(x, getArow(N, xi-eps, eta     ))
       P(2,ii) = dot_product(x, getArow(N, xi,     eta+eps )) - &
-              & dot_product(x, getArow(N, xi,     eta-eps ))
+                dot_product(x, getArow(N, xi,     eta-eps ))
     enddo
 
     P = P / ( 2._wp*eps )
@@ -402,14 +402,14 @@ contains
 
             ! If fun1 contains a derivative, need to calc N_i,xi and N_i,eta
             dfun1(1) = ( &
-            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
-            & ) / ( 2._wp*eps )
+              dot_product(alpha(:,N1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+              dot_product(alpha(:,N1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+              ) / ( 2._wp*eps )
 
             dfun1(2) = ( &
-            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-            & dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
-            & ) / ( 2._wp*eps )
+              dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+              ) / ( 2._wp*eps )
 
             ! N_i,x = dxi/dx * N_i,xi + deta/dx * N_i,eta
             fun1 = dot_product(invJ(d1,:), dfun1)
@@ -422,17 +422,17 @@ contains
           else
 
             ! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta
-            dfun2(1) = ( &
-            & dot_product(alpha(:,N2), &
-                        & getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-            & dot_product(alpha(:,N2), &
-                        & getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
-            & ) / ( 2._wp*eps )
+            dfun2(1) =  ( &
+              dot_product(alpha(:,N2), &
+                          getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+              dot_product(alpha(:,N2), &
+                          getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+                        ) / ( 2._wp*eps )
 
-            dfun2(2) = ( &
-            & dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-            & dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
-            & ) / ( 2._wp*eps )
+            dfun2(2) =  ( &
+              dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+                        ) / ( 2._wp*eps )
 
             ! N_i,y = dxi/dy * N_i,xi + deta/dy * N_i,eta
             fun2 = dot_product(invJ(d2,:), dfun2)
