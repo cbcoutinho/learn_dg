@@ -4,7 +4,7 @@ module io
   implicit none
 
   public :: read_gmsh_file_1D, &
-          & write_out_solution
+            write_out_solution
 
 contains
 
@@ -29,29 +29,37 @@ contains
   end subroutine get_command_argument_wrapper
 
   subroutine read_gmsh_file_1D(num_nodes, &
-                            & order, &
-                            & nodes2vertex, &
-                            & elem_conn, &
-                            & xcoords, &
-                            & dg)
-    integer,  intent(out)                               :: num_nodes
-    integer,  intent(out),  dimension(:),   allocatable :: order, nodes2vertex
-    integer,  intent(out),  dimension(:,:), allocatable :: elem_conn
-    real(wp), intent(out),  dimension(:),   allocatable :: xcoords
-    logical,  intent(in)                                :: dg
+                                order, &
+                                nodes2vertex, &
+                                elem_conn, &
+                                xcoords, &
+                                dg)
+    !
+    !*  Reads the input mesh file (gmsh .msh format) and returns the number of
+    !   nodes, the order of each element, element connectivity, and the
+    !   coordinates of the nodes (nx1 for 1D, nx2 for 2D, etc.)
+    integer,  intent(out)                               :: num_nodes    !! Number of nodes in mesh
+    integer,  intent(out),  dimension(:),   allocatable :: order        !! Array containing order of each element
+    integer,  intent(out),  dimension(:),   allocatable :: nodes2vertex !! Array containing node to vertex connectivity (only interesting w.r.t discontinuous galerkin)
+    integer,  intent(out),  dimension(:,:), allocatable :: elem_conn    !! Array containing node connectivity of each element
+    real(wp), intent(out),  dimension(:),   allocatable :: xcoords      !! Array containing node coordinates
+    logical,  intent(in)                                :: dg           !! Logical switch is continuous galerkin or discontinuous galerkin
 
     integer         :: ii, ios, vertex, num_elements, num_vertexes, d_int
-    integer,  dimension(2)                :: iloc
     integer,  dimension(:,:), allocatable :: vertex_conn
     real(wp)        :: d_real
-    character(50)   :: filename
-    character(50)   :: blank_string
+    character(80)   :: filename
+    character(80)   :: blank_string
 
     call get_command_argument_wrapper(filename)
     ! print*, filename
 
     open(unit=21, file=filename, iostat=ios, status="old", action="read")
-    if ( ios /= 0 ) stop "Error opening file "
+    if ( ios /= 0 ) then
+      print*, filename
+      print*, ios
+      stop "Error opening file "
+    endif
 
     ! Read initial header information - assuming file is in the correct format
     do
@@ -125,8 +133,8 @@ contains
       ! print*, pack(vertex_conn, vertex_conn == nodes2vertex)
     enddo
     ! print*, pack([( ii, ii = 1, num_nodes )], &
-    !       & nodes2vertex == nodes2vertex(3) &
-    !       & .or. nodes2vertex == nodes2vertex(5))
+    !         nodes2vertex == nodes2vertex(3) &
+    !         .or. nodes2vertex == nodes2vertex(5))
     ! stop
 
     if ( .not. dg ) then
@@ -134,7 +142,7 @@ contains
     else
       do ii = 1, num_elements
         ! elem_conn(ii,:) = pack([( ii, ii = 1, num_nodes )], &
-                        ! & nodes2vertex == vertex_conn(ii,1))
+                        !   nodes2vertex == vertex_conn(ii,1))
         ! print*, loc(2._wp)
         ! print*, loc(nodes2vertex == vertex_conn(ii,2))
         print*,  order(ii), vertex_conn(ii,:), elem_conn(ii,:)
@@ -161,14 +169,20 @@ contains
     integer :: ii, ios
 
     open(unit=21, file='data.out', iostat=ios, status="replace", action="write")
-    if ( ios /= 0 ) stop "Error opening file data.out"
+    if ( ios /= 0 ) then
+      print*, ios
+      stop "Error opening file data.out"
+    endif
 
     do ii = 1, num_nodes
       write(21,*) xcoords(ii), GlobalX(ii)
     enddo
 
     close(unit=21, iostat=ios)
-    if ( ios /= 0 ) stop "Error closing file unit data.out"
+    if ( ios /= 0 ) then
+      print*, ios
+      stop "Error closing file unit data.out"
+    endif
 
 
     return

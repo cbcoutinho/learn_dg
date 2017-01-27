@@ -3,8 +3,7 @@ module integration
   use lib_array, only: linspace
   implicit none
 
-  private :: lgwt, gaussquad, cgwt
-  ! public :: lgwt, gaussquad, cgwt
+  private :: lgwt, gaussquad_rosetta, cgwt, gaussquad
   public :: integrate, integrate2D
 
   interface
@@ -13,6 +12,12 @@ module integration
       real(wp), intent(in), dimension(:,:)  :: x, y
       real(wp), dimension(:,:), allocatable :: z
     end function
+
+    subroutine sub1d_interf(xx, yy)
+      import wp
+      real(wp), intent(in),   dimension(:) :: xx
+      real(wp), intent(out),  dimension(:) :: yy
+    end subroutine sub1d_interf
   end interface
 
 contains
@@ -20,15 +25,9 @@ contains
     ! This routine uses gauss-legendre quadrature to integrate a 1D function
 
     ! Input/Output variables
-    real(wp), intent(in):: a, b
-    real(wp), intent(out):: result
-    interface
-      subroutine sub(xx, yy)
-        import wp
-        real(wp), intent(in), dimension(:) :: xx
-        real(wp), intent(out), dimension(:) :: yy
-      end subroutine sub
-    end interface
+    real(wp), intent(in)    :: a, b
+    real(wp), intent(out)   :: result
+    procedure(sub1d_interf) :: sub
 
     ! Local variables
     integer:: N
@@ -45,8 +44,6 @@ contains
 
       allocate(x(N), w(N), y(N))
 
-      ! call cgwt(N, x, w)
-      ! call lgwt(a, b, N, x, w)
       call gaussquad(N, x, w)
 
       call sub(x, y)
@@ -57,8 +54,8 @@ contains
       ! error = norm2([result, result_old])
       error = sqrt((result-result_old)**2.0_wp)
       ! error = abs((result-result_old)/(result_old+eps))
-      ! write(*,*) N, result, error
-      ! write(*,*) N, result, result_old, error, eps
+      ! print*, N, result, error
+      ! print*, N, result, result_old, error, eps
 
       ! Check if error is acceptable, as well as whether the loop was gone
       ! through at least twice (N = 3, 4, 5...)
@@ -95,7 +92,7 @@ contains
       allocate(wx(N,N), wy(N,N))
       allocate(out_spread(N,N))
 
-      call gaussquad_wrapper(N, x, w)
+      call gaussquad(N, x, w)
 
       ! Copy the 'x' array along both the x and y axes
       xx = spread(x, dim=1, ncopies=N)
@@ -127,7 +124,7 @@ contains
       ! If iteration counter is more than 1 then check exit criteria
       if ( norm2( [ error ] ) <= eps ) then
         ! print'(a,i3,a,e13.5)', 'Fun integrated in ', N, &
-        !                       & ' iterations. Error = ', error
+        !                        ' iterations. Error = ', error
         exit
       else
         out_old = out
@@ -140,7 +137,7 @@ contains
     return
   end function
 
-  subroutine gaussquad_wrapper(N, x, w)
+  subroutine gaussquad(N, x, w)
     integer,  intent(in)                :: N
     real(wp), intent(out), dimension(N) :: x, w
 
@@ -151,70 +148,69 @@ contains
 
     case (2)
       x = [ -0.5773502691896257_wp, &
-          & 0.5773502691896257_wp ]
+            0.5773502691896257_wp ]
       w = [ 1._wp, &
-          & 1._wp ]
+            1._wp ]
 
     case (3)
       x = [ -0.7745966692414834_wp, &
-          & 0._wp, &
-          & 0.7745966692414834_wp ]
+            0._wp, &
+            0.7745966692414834_wp ]
       w = [ 0.5555555555555556_wp, &
-          & 0.8888888888888888_wp, &
-          & 0.5555555555555556_wp ]
+            0.8888888888888888_wp, &
+            0.5555555555555556_wp ]
 
     case (4)
       x = [ -0.8611363115940526_wp, &
-          & -0.3399810435848563_wp, &
-          & 0.3399810435848563_wp, &
-          & 0.8611363115940526_wp ]
+            -0.3399810435848563_wp, &
+            0.3399810435848563_wp, &
+            0.8611363115940526_wp ]
       w = [ 0.3478548451374538_wp, &
-          & 0.6521451548625461_wp, &
-          & 0.6521451548625461_wp, &
-          & 0.3478548451374538_wp ]
+            0.6521451548625461_wp, &
+            0.6521451548625461_wp, &
+            0.3478548451374538_wp ]
 
     case (5)
       x = [ -0.9061798459386640_wp, &
-          & -0.5384693101056831_wp, &
-          & 0._wp, &
-          & 0.5384693101056831_wp, &
-          & 0.9061798459386640_wp ]
+            -0.5384693101056831_wp, &
+            0._wp, &
+            0.5384693101056831_wp, &
+            0.9061798459386640_wp ]
       w = [ 0.2369268850561891_wp, &
-          & 0.4786286704993665_wp, &
-          & 0.5688888888888889_wp, &
-          & 0.4786286704993665_wp, &
-          & 0.2369268850561891_wp ]
+            0.4786286704993665_wp, &
+            0.5688888888888889_wp, &
+            0.4786286704993665_wp, &
+            0.2369268850561891_wp ]
 
     case default
 
       ! call lgwt(-1._wp, 1._wp, N, x, w)
       ! call cgwt(N, x, w)
-      call gaussquad(N, x, w)
+      call gaussquad_rosetta(N, x, w)
 
     end select
 
     return
-  end subroutine gaussquad_wrapper
+  end subroutine gaussquad
 
 
   subroutine lgwt(a, b, num_pts, x, w)
-    ! This function is a fortran90 port of the matlab function, lgwt.m
-    ! The source code of lgwt.m was originally found at:
-    !
-    ! http://www.mathworks.com/matlabcentral/fileexchange/4540
+    !*  This function is a fortran90 port of the matlab function, lgwt.m
+    !   The source code of lgwt.m was originally found at:
+    !     http://www.mathworks.com/matlabcentral/fileexchange/4540
 
     ! Variables in/out
-    integer, intent(in) :: num_pts
-    real(wp), intent(in) :: a, b
+    integer, intent(in)                 :: num_pts
+    real(wp), intent(in)                :: a, b
     real(wp), intent(out), dimension(:) :: x, w
 
     ! Local variables
     integer:: ii, jj, N, N1, N2
     ! real(wp), parameter:: eps=sqrt(epsilon(1.0_wp))
-    real(wp), parameter:: eps=1d-10
-    real(wp), dimension(:), allocatable:: xu, array1, y, y0, Lpp
-    real(wp), dimension(:, :), allocatable:: L, Lp
-    real(wp), parameter:: pi = 4.0_wp*datan(1.0_wp)
+    real(wp), parameter                       :: eps=1d-10
+    real(wp), dimension(:),     allocatable   :: xu, array1, y, y0, Lpp
+    real(wp), dimension(:, :),  allocatable   :: L, Lp
+    real(wp), parameter                       :: pi = 4.0_wp*datan(1.0_wp)
 
     N = num_pts - 1
     N1 = N + 1
@@ -228,10 +224,10 @@ contains
     call linspace(-1.0_wp, 1.0_wp, xu)
 
     array1 = [ (ii, ii = 0, N) ]
-    ! Initial guess of ???
-    y = dcos((2.0_wp * real(array1,wp) + 1.0_wp) * &
-              pi / (2.0_wp * real(N,wp) + 2.0_wp)) + &
-              (0.27_wp/real(N1,wp)) * dsin(pi*xu*real(N,wp)/real(N2,wp))
+    ! Initial guess of the roots of the Legendre polynomial of order N
+    y = cos((2.0_wp * real(array1,wp) + 1.0_wp) * &
+            pi / (2.0_wp * real(N,wp) + 2.0_wp)) + &
+            (0.27_wp/real(N1,wp)) * sin(pi*xu*real(N,wp)/real(N2,wp))
 
     y0 = 2.0_wp
 
@@ -276,17 +272,17 @@ contains
     integer:: ii
     real(wp), parameter:: pi = 4._wp*datan(1._wp)
 
-    x = dcos( (real(2*[( ii, ii=1,num_pts )] - 1, wp) )/real(2*num_pts, wp) * pi)
+    x = cos( (real(2*[( ii, ii=1,num_pts )]-1, wp) )/real(2*num_pts, wp) * pi)
 
     w = pi/real(num_pts,wp) / ((1.0_wp - x**2._wp)**(-0.5_wp))
 
-    ! write(*,*) x
-    ! write(*,*) w
+    ! print*, x
+    ! print*, w
     ! stop
     return
   end subroutine cgwt
 
-  subroutine gaussquad(n, r1, r2)
+  subroutine gaussquad_rosetta(n, r1, r2)
     ! This code was originally found at the following website:
     !  http://rosettacode.org/wiki/Numerical_integration/Gauss-Legendre_Quadrature#Fortran
     integer,  intent(in)    :: n
@@ -322,6 +318,6 @@ contains
       r2(i) = 2/((1-x**2)*df**2)
     enddo
     return
-  end subroutine
+  end subroutine gaussquad_rosetta
 
 end module integration
