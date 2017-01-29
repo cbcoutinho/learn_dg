@@ -15,6 +15,10 @@ FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 # Release flags:
 # FFLAGS += -O3 -march=native -ffast-math -funroll-loops
 
+# Ford
+# FORD = ford
+FORD = $(HOME)/Projects/ford/ford.py
+
 FLIBS = -lblas -llapack
 # FLIBS += -fopenmp
 
@@ -76,7 +80,7 @@ plot: run
 .PHONY: docs
 docs: submodules $(DOC)/learn_dg.md README.md
 	cp README.md $(DOC)/README.md
-	ford $(FORD_FLAGS) $(DOC)/learn_dg.md
+	$(FORD) $(FORD_FLAGS) $(DOC)/learn_dg.md
 	rm $(DOC)/README.md
 
 debug: clean build
