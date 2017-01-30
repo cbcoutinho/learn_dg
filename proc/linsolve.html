@@ -433,23 +433,23 @@ public subroutine linsolve(n, a, nrhs, b, x, LU, P, toggle)
 <polygon fill="none" stroke="black" points="54,-48 2.13163e-14,-48 0,-22 54,-22 54,-48"/>
 <text text-anchor="middle" x="27" y="-32.55" font-family="Helvetica,sans-Serif" font-size="10.50">linsolve</text>
 </g>
-<!-- dgetrs -->
-<g id="node2" class="node"><title>dgetrs</title>
+<!-- dgetrf -->
+<g id="node2" class="node"><title>dgetrf</title>
 <polygon fill="#777777" stroke="#777777" points="144,-70 90,-70 90,-44 144,-44 144,-70"/>
-<text text-anchor="middle" x="117" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+<text text-anchor="middle" x="117" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
+<!-- proc~linsolve&#45;&gt;dgetrf -->
+<g id="edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
 <path fill="none" stroke="#ff0000" d="M54.003,-41.6007C62.1158,-43.5839 71.1631,-45.7954 79.8131,-47.9099"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="79.1599,-51.3532 89.705,-50.3279 80.8221,-44.5534 79.1599,-51.3532"/>
 </g>
-<!-- dgetrf -->
-<g id="node3" class="node"><title>dgetrf</title>
+<!-- dgetrs -->
+<g id="node3" class="node"><title>dgetrs</title>
 <polygon fill="#777777" stroke="#777777" points="144,-26 90,-26 90,-1.24345e-14 144,-3.55271e-15 144,-26"/>
-<text text-anchor="middle" x="117" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+<text text-anchor="middle" x="117" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrf -->
-<g id="edge4" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<!-- proc~linsolve&#45;&gt;dgetrs -->
+<g id="edge4" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
 <path fill="none" stroke="#ff0000" d="M54.003,-28.3993C62.1158,-26.4161 71.1631,-24.2046 79.8131,-22.0901"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="80.8221,-25.4466 89.705,-19.6721 79.1599,-18.6468 80.8221,-25.4466"/>
 </g>
@@ -579,27 +579,27 @@ public subroutine linsolve(n, a, nrhs, b, x, LU, P, toggle)
 <path fill="none" stroke="#ff0000" d="M330.08,-95.6744C341.622,-93.4855 355.34,-90.8839 368.466,-88.3944"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="369.17,-91.8233 378.343,-86.5211 367.866,-84.9459 369.17,-91.8233"/>
 </g>
-<!-- program~main -->
-<g id="node5" class="node"><title>program~main</title>
-<a xlink:href="../program/main.html" xlink:title="main">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="329,-70 275,-70 275,-44 329,-44 329,-70"/>
-<text text-anchor="middle" x="302" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
-</a>
-</g>
-<!-- program~main&#45;&gt;proc~linsolve_quick -->
-<g id="edge12" class="edge"><title>program~main&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M329.197,-62.158C340.83,-64.3643 354.792,-67.0123 368.163,-69.5482"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="367.748,-73.0318 378.225,-71.4565 369.053,-66.1544 367.748,-73.0318"/>
-</g>
 <!-- proc~vandermonde -->
-<g id="node6" class="node"><title>proc~vandermonde</title>
+<g id="node5" class="node"><title>proc~vandermonde</title>
 <a xlink:href="../proc/vandermonde.html" xlink:title="vandermonde">
-<polygon fill="#d9534f" stroke="#d9534f" points="341,-26 263,-26 263,-1.24345e-14 341,-3.55271e-15 341,-26"/>
-<text text-anchor="middle" x="302" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vandermonde</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="341,-70 263,-70 263,-44 341,-44 341,-70"/>
+<text text-anchor="middle" x="302" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vandermonde</text>
 </a>
 </g>
 <!-- proc~vandermonde&#45;&gt;proc~linsolve_quick -->
-<g id="edge14" class="edge"><title>proc~vandermonde&#45;&gt;proc~linsolve_quick</title>
+<g id="edge12" class="edge"><title>proc~vandermonde&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M341.596,-64.5096C350.18,-66.1375 359.363,-67.8793 368.28,-69.5704"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="367.711,-73.0248 378.188,-71.4495 369.016,-66.1474 367.711,-73.0248"/>
+</g>
+<!-- program~main -->
+<g id="node6" class="node"><title>program~main</title>
+<a xlink:href="../program/main.html" xlink:title="main">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="329,-26 275,-26 275,-1.24345e-14 329,-3.55271e-15 329,-26"/>
+<text text-anchor="middle" x="302" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
+</a>
+</g>
+<!-- program~main&#45;&gt;proc~linsolve_quick -->
+<g id="edge14" class="edge"><title>program~main&#45;&gt;proc~linsolve_quick</title>
 <path fill="none" stroke="#ff0000" d="M326.161,-26.1771C331.395,-29.063 336.892,-32.1174 342,-35 356.78,-43.3413 373.075,-52.7476 386.774,-60.7156"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="385.391,-63.9603 395.793,-65.9715 388.915,-57.9123 385.391,-63.9603"/>
 </g>
@@ -618,26 +618,26 @@ public subroutine linsolve(n, a, nrhs, b, x, LU, P, toggle)
 <!-- proc~integrate_basis_1d_ie -->
 <g id="node9" class="node"><title>proc~integrate_basis_1d_ie</title>
 <a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="217,-26 99,-26 99,-1.24345e-14 217,-3.55271e-15 217,-26"/>
-<text text-anchor="middle" x="158" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="217,-70 99,-70 99,-44 217,-44 217,-70"/>
+<text text-anchor="middle" x="158" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
 </a>
 </g>
 <!-- proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde -->
 <g id="edge6" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~vandermonde</title>
-<path fill="none" stroke="#7f00ff" d="M217.402,-13C229.028,-13 241.106,-13 252.372,-13"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="252.455,-16.5001 262.455,-13 252.455,-9.5001 252.455,-16.5001"/>
+<path fill="none" stroke="#00ffff" d="M217.402,-57C229.028,-57 241.106,-57 252.372,-57"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="252.455,-60.5001 262.455,-57 252.455,-53.5001 252.455,-60.5001"/>
 </g>
 <!-- proc~getie -->
 <g id="node10" class="node"><title>proc~getie</title>
 <a xlink:href="../proc/getie.html" xlink:title="getIe">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
-<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-70 2.13163e-14,-70 0,-44 54,-44 54,-70"/>
+<text text-anchor="middle" x="27" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
 </a>
 </g>
 <!-- proc~getie&#45;&gt;proc~integrate_basis_1d_ie -->
 <g id="edge4" class="edge"><title>proc~getie&#45;&gt;proc~integrate_basis_1d_ie</title>
-<path fill="none" stroke="#ff0000" d="M54.1433,-13C64.2723,-13 76.2908,-13 88.4953,-13"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="88.7536,-16.5001 98.7536,-13 88.7535,-9.5001 88.7536,-16.5001"/>
+<path fill="none" stroke="#ff0000" d="M54.1433,-57C64.2723,-57 76.2908,-57 88.4953,-57"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="88.7536,-60.5001 98.7536,-57 88.7535,-53.5001 88.7536,-60.5001"/>
 </g>
 </g>
 </svg>
@@ -917,7 +917,7 @@ public subroutine linsolve(n, a, nrhs, b, x, LU, P, toggle)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-30 00:54  
+             on 2017-01-30 01:33  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
