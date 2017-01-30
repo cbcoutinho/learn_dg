@@ -2,8 +2,7 @@ program main
   use iso_fortran_env, only: wp => real64
   use linalg, only: linsolve_quick
   use misc, only: r8mat_print
-  use io, only: get_command_argument_wrapper, &
-                read_gmsh_file_1D, &
+  use io, only: read_gmsh_file_1D, &
                 write_out_solution
   use assembly, only: initialize_global_mats, assemble, set_BCs
 

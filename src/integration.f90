@@ -3,7 +3,7 @@ module integration
   use lib_array, only: linspace
   implicit none
 
-  private :: lgwt, gaussquad_rosetta, cgwt, gaussquad
+  private
   public :: integrate, integrate2D
 
   interface

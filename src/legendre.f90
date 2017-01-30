@@ -6,8 +6,7 @@ module legendre
   use linalg, only: linsolve_quick, linsolve, inv2, det2, eye
   implicit none
 
-  private :: basis_1D, vandermonde
-  private :: integrate_basis_1d_Ie
+  private :: basis_1D, vandermonde, integrate_basis_1d_Ie
   public  :: getIe, assembleElementalMatrix, getxy
 
 contains

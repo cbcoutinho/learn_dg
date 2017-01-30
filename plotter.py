@@ -35,6 +35,7 @@ error = df.FEM - analytical(df.x)
 plt.figure(1)
 plt.subplot(211)
 plt.plot(df.x, df.FEM, 'o-', x, analytical(x), '-')
+plt.xlim([np.min(x), np.max(x)])
 
 width = df.x.diff()[1]*0.5
 
