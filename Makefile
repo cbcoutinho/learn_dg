@@ -16,8 +16,8 @@ FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 # FFLAGS += -O3 -march=native -ffast-math -funroll-loops
 
 # Ford
-# FORD = ford
-FORD = $(HOME)/Projects/ford/ford.py
+FORD = ford
+# FORD = $(HOME)/Projects/ford/ford.py
 
 FLIBS = -lblas -llapack
 # FLIBS += -fopenmp
