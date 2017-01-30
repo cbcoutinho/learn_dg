@@ -3,6 +3,7 @@ module io
   use lib_array, only: linspace
   implicit none
 
+  private
   public :: read_gmsh_file_1D, &
             write_out_solution
 
