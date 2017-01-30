@@ -1,6 +1,10 @@
 [![Build Status](https://travis-ci.org/cbcoutinho/learn_dg.svg?branch=master)](https://travis-ci.org/cbcoutinho/learn_dg)
 
 
+
+
+[![forthebadge](http://forthebadge.com/images/badges/fuck-it-ship-it.svg)](http://forthebadge.com)
+
 ## Dependencies
 This project uses lapack/blas as the numerical backend. Linking to these
 libraries was no problem on Linux, but on Windows you need to build lapack/blas
@@ -17,7 +21,7 @@ libraries into wherever mingw expects to find libraries:
 Example:
 'C:\Development\MinGW\lib'
 
-## Documentation Website
+## Documentation
 The documentation is built using [FORD](https://github.com/cmacmackin/ford), a python package that produces documentation from source code similar to Doxygen, but specifically designed for Fortran.
 FORD takes inline documentation, prefixed by `!!`, and the markdown files located in `docs/user_guide`, and wraps them all up into an attractive website, available [here](https://cbcoutinho.github.io/learn_dg).
 The documentation website is automatically updated whenever a commit is added to the master branch. This is done through Travis-CI.
