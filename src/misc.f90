@@ -2,6 +2,8 @@ module misc
   use iso_fortran_env, only: wp => real64
   implicit none
 
+  private
+  public :: r8mat_print
 contains
 
   subroutine r8mat_print ( m, n, a, title )

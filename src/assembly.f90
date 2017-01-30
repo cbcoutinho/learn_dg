@@ -3,6 +3,7 @@ module assembly
   use legendre, only: getIe, assembleElementalMatrix, getxy
   implicit none
 
+  private
   public :: initialize_global_mats, assemble, set_BCs
 
 contains

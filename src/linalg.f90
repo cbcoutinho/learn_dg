@@ -2,7 +2,8 @@ module linalg
   use iso_fortran_env, only: wp => real64
   implicit none
 
-  public  :: linsolve_quick, linsolve
+  private
+  public  :: linsolve_quick, linsolve, inv2, det2, eye
 
 contains
 

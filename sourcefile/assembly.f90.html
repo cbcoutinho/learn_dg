@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 6.9% of total for source files.">54 statements</a>
+	  title=" 7.1% of total for source files.">55 statements</a>
      </li> 
      
      
@@ -478,109 +478,110 @@
 <a name="ln-3"></a>  <span class="k">use </span><span class="n">legendre</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">getIe</span><span class="p">,</span> <span class="n">assembleElementalMatrix</span><span class="p">,</span> <span class="n">getxy</span>
 <a name="ln-4"></a>  <span class="k">implicit none</span>
 <a name="ln-5"></a>
-<a name="ln-6"></a><span class="k">  public</span> <span class="kd">::</span> <span class="n">initialize_global_mats</span><span class="p">,</span> <span class="n">assemble</span><span class="p">,</span> <span class="n">set_BCs</span>
-<a name="ln-7"></a>
-<a name="ln-8"></a><span class="k">contains</span>
-<a name="ln-9"></a>
-<a name="ln-10"></a><span class="k">  subroutine </span><span class="n">initialize_global_mats</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-11"></a>                                    <span class="n">GlobalA</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12"></a>                                    <span class="n">GlobalB</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-13"></a>                                    <span class="n">GlobalX</span><span class="p">)</span>
-<a name="ln-14"></a>    <span class="c">!* This routine initalizes the global stiffness matrix, global rhs vector,</span>
-<a name="ln-15"></a>    <span class="c">!  and global solution vector based on the number of nodes in the system</span>
-<a name="ln-16"></a>    <span class="c">!</span>
-<a name="ln-17"></a>    <span class="c">! * This is a bullet point</span>
-<a name="ln-18"></a>    <span class="c">! * Another bullet point</span>
-<a name="ln-19"></a>    <span class="c">!</span>
-<a name="ln-20"></a>    <span class="c">! 1. This might be a number</span>
-<a name="ln-21"></a>    <span class="c">! 2. Also a number?</span>
-<a name="ln-22"></a>    <span class="c">!</span>
-<a name="ln-23"></a>    <span class="c">! Some \( \LaTeX \):</span>
-<a name="ln-24"></a>    <span class="c">! $$ \frac{\partial u}{\partial t} = 0 $$</span>
-<a name="ln-25"></a>
-<a name="ln-26"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">num_nodes</span>  <span class="c">!! The number of nodes in the system</span>
-<a name="ln-27"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalB</span>    <span class="c">!! Global RHS Vector</span>
-<a name="ln-28"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalX</span>    <span class="c">!! Global solution vector</span>
-<a name="ln-29"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalA</span>    <span class="c">!! Global mass matrix</span>
-<a name="ln-30"></a>
-<a name="ln-31"></a>    <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalA</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">))</span>
-<a name="ln-32"></a>    <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalB</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
-<a name="ln-33"></a>    <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalX</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
-<a name="ln-34"></a>
-<a name="ln-35"></a>    <span class="c">! Intial Conditions</span>
-<a name="ln-36"></a>    <span class="n">GlobalA</span> <span class="o">=</span> <span class="mf">0._wp</span>
-<a name="ln-37"></a>    <span class="n">GlobalX</span> <span class="o">=</span> <span class="mf">0._wp</span>
-<a name="ln-38"></a>    <span class="n">GlobalB</span> <span class="o">=</span> <span class="mf">0._wp</span>
-<a name="ln-39"></a>
-<a name="ln-40"></a>    <span class="k">return</span>
-<a name="ln-41"></a><span class="k">  end subroutine </span><span class="n">initialize_global_mats</span>
-<a name="ln-42"></a>
-<a name="ln-43"></a>  <span class="k">subroutine </span><span class="n">assemble</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">xcoords</span><span class="p">,</span> <span class="n">elem_conn</span><span class="p">,</span> <span class="n">GlobalA</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">vel</span><span class="p">)</span>
-<a name="ln-44"></a>    <span class="c">!* Assemble the global stiffness matrix based on element connectivity</span>
-<a name="ln-45"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">order</span>      <span class="c">!! Order of element(s)</span>
-<a name="ln-46"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">elem_conn</span>  <span class="c">!! Element connectivity</span>
-<a name="ln-47"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">diff</span>       <span class="c">!! Diffusivity coefficient [m/s^2]</span>
-<a name="ln-48"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">vel</span>        <span class="c">!! Velocity [m/s]</span>
-<a name="ln-49"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">xcoords</span>    <span class="c">!! Array of nodal coordinates</span>
-<a name="ln-50"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">GlobalA</span>    <span class="c">!! Global Stiffness matrix</span>
-<a name="ln-51"></a>
-<a name="ln-52"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
-<a name="ln-53"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span>   <span class="kd">::</span> <span class="n">Ie</span>
-<a name="ln-54"></a>
-<a name="ln-55"></a>    <span class="c">! Add elemental stiffness matrices to Global Stiffness Matrix</span>
-<a name="ln-56"></a>    <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
-<a name="ln-57"></a>      <span class="c">! Reallocate elemental stiffness matrix</span>
-<a name="ln-58"></a>      <span class="k">allocate</span><span class="p">(</span><span class="n">Ie</span><span class="p">(</span><span class="n">order</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">order</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-<a name="ln-59"></a>      <span class="k">call </span><span class="n">getIe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xcoords</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:)),</span> <span class="n">Ie</span><span class="p">)</span>
-<a name="ln-60"></a>      <span class="c">! call r8mat_print(order(ii)+1, order(ii)+1, Ie, &#39;Elemental Stiffness Matrix:&#39;)</span>
-<a name="ln-61"></a>
-<a name="ln-62"></a>      <span class="n">GlobalA</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:))</span> <span class="o">=</span> <span class="p">&amp;</span>
-<a name="ln-63"></a>          <span class="n">GlobalA</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:))</span> <span class="o">-</span> <span class="n">diff</span><span class="o">*</span><span class="n">Ie</span>
-<a name="ln-64"></a>
-<a name="ln-65"></a>      <span class="k">call </span><span class="n">getIe</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xcoords</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:)),</span> <span class="n">Ie</span><span class="p">)</span>
-<a name="ln-66"></a>      <span class="c">! call r8mat_print(order(ii)+1, order(ii)+1, Ie, &#39;Elemental Stiffness Matrix:&#39;)</span>
-<a name="ln-67"></a>
-<a name="ln-68"></a>      <span class="n">GlobalA</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:))</span> <span class="o">=</span> <span class="p">&amp;</span>
-<a name="ln-69"></a>          <span class="n">GlobalA</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:))</span> <span class="o">-</span> <span class="n">vel</span><span class="o">*</span><span class="n">Ie</span>
-<a name="ln-70"></a>
-<a name="ln-71"></a>      <span class="c">! Deallocate elemental stiffness matrix after every loop</span>
-<a name="ln-72"></a>      <span class="k">deallocate</span><span class="p">(</span><span class="n">Ie</span><span class="p">)</span>
-<a name="ln-73"></a>      <span class="c">! stop</span>
-<a name="ln-74"></a>    <span class="n">enddo</span>
-<a name="ln-75"></a>
-<a name="ln-76"></a>    <span class="c">! call r8mat_print(num_nodes, num_nodes, GlobalA, &#39;Global Stiffness Matrix:&#39;)</span>
-<a name="ln-77"></a>    <span class="c">! stop</span>
-<a name="ln-78"></a>    <span class="k">return</span>
-<a name="ln-79"></a><span class="k">  end subroutine </span><span class="n">assemble</span>
-<a name="ln-80"></a>
-<a name="ln-81"></a>  <span class="k">subroutine </span><span class="n">set_BCs</span><span class="p">(</span><span class="n">xcoords</span><span class="p">,</span> <span class="n">GlobalB</span><span class="p">,</span> <span class="n">GlobalA</span><span class="p">)</span>
-<a name="ln-82"></a>    <span class="c">!*  Set boundary conditions in GlobalA and GlobalB using two Dirchlet</span>
-<a name="ln-83"></a>    <span class="c">!   boundaries</span>
-<a name="ln-84"></a>
-<a name="ln-85"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">xcoords</span>  <span class="c">!! Array of nodal coordinates</span>
-<a name="ln-86"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">GlobalB</span>  <span class="c">!! Global RHS Vector</span>
-<a name="ln-87"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">GlobalA</span>  <span class="c">!! Global Mass Matrix</span>
-<a name="ln-88"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">iloc</span>                     <span class="c">!! Index variable to locate node numbers based on xcoords</span>
-<a name="ln-89"></a>
-<a name="ln-90"></a>    <span class="c">! Left Boundary Dirchlet BC</span>
-<a name="ln-91"></a>    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">minloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
-<a name="ln-92"></a>    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span>     <span class="o">=</span> <span class="mf">0._wp</span>
-<a name="ln-93"></a>    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">1._wp</span>
-<a name="ln-94"></a>    <span class="n">GlobalB</span><span class="p">(</span><span class="n">iloc</span><span class="p">)</span>       <span class="o">=</span> <span class="mf">0._wp</span>
-<a name="ln-95"></a>
-<a name="ln-96"></a>    <span class="c">! Right Boundary Dirchlet BC</span>
-<a name="ln-97"></a>    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">maxloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
-<a name="ln-98"></a>    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span>     <span class="o">=</span> <span class="mf">0._wp</span>
-<a name="ln-99"></a>    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">1._wp</span>
-<a name="ln-100"></a>    <span class="n">GlobalB</span><span class="p">(</span><span class="n">iloc</span><span class="p">)</span>       <span class="o">=</span> <span class="mf">1._wp</span>
-<a name="ln-101"></a>
-<a name="ln-102"></a>    <span class="c">! call r8mat_print(num_nodes, 1, GlobalB, &#39;Global RHS:&#39;)</span>
-<a name="ln-103"></a>    <span class="c">! stop</span>
-<a name="ln-104"></a>
-<a name="ln-105"></a>    <span class="k">return</span>
-<a name="ln-106"></a><span class="k">  end subroutine </span><span class="n">set_BCs</span>
-<a name="ln-107"></a>
-<a name="ln-108"></a><span class="k">end module </span><span class="n">assembly</span>
+<a name="ln-6"></a><span class="k">  private</span>
+<a name="ln-7"></a><span class="k">  public</span> <span class="kd">::</span> <span class="n">initialize_global_mats</span><span class="p">,</span> <span class="n">assemble</span><span class="p">,</span> <span class="n">set_BCs</span>
+<a name="ln-8"></a>
+<a name="ln-9"></a><span class="k">contains</span>
+<a name="ln-10"></a>
+<a name="ln-11"></a><span class="k">  subroutine </span><span class="n">initialize_global_mats</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12"></a>                                    <span class="n">GlobalA</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-13"></a>                                    <span class="n">GlobalB</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-14"></a>                                    <span class="n">GlobalX</span><span class="p">)</span>
+<a name="ln-15"></a>    <span class="c">!* This routine initalizes the global stiffness matrix, global rhs vector,</span>
+<a name="ln-16"></a>    <span class="c">!  and global solution vector based on the number of nodes in the system</span>
+<a name="ln-17"></a>    <span class="c">!</span>
+<a name="ln-18"></a>    <span class="c">! * This is a bullet point</span>
+<a name="ln-19"></a>    <span class="c">! * Another bullet point</span>
+<a name="ln-20"></a>    <span class="c">!</span>
+<a name="ln-21"></a>    <span class="c">! 1. This might be a number</span>
+<a name="ln-22"></a>    <span class="c">! 2. Also a number?</span>
+<a name="ln-23"></a>    <span class="c">!</span>
+<a name="ln-24"></a>    <span class="c">! Some \( \LaTeX \):</span>
+<a name="ln-25"></a>    <span class="c">! $$ \frac{\partial u}{\partial t} = 0 $$</span>
+<a name="ln-26"></a>
+<a name="ln-27"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">num_nodes</span>  <span class="c">!! The number of nodes in the system</span>
+<a name="ln-28"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalB</span>    <span class="c">!! Global RHS Vector</span>
+<a name="ln-29"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalX</span>    <span class="c">!! Global solution vector</span>
+<a name="ln-30"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalA</span>    <span class="c">!! Global mass matrix</span>
+<a name="ln-31"></a>
+<a name="ln-32"></a>    <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalA</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">))</span>
+<a name="ln-33"></a>    <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalB</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
+<a name="ln-34"></a>    <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalX</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
+<a name="ln-35"></a>
+<a name="ln-36"></a>    <span class="c">! Intial Conditions</span>
+<a name="ln-37"></a>    <span class="n">GlobalA</span> <span class="o">=</span> <span class="mf">0._wp</span>
+<a name="ln-38"></a>    <span class="n">GlobalX</span> <span class="o">=</span> <span class="mf">0._wp</span>
+<a name="ln-39"></a>    <span class="n">GlobalB</span> <span class="o">=</span> <span class="mf">0._wp</span>
+<a name="ln-40"></a>
+<a name="ln-41"></a>    <span class="k">return</span>
+<a name="ln-42"></a><span class="k">  end subroutine </span><span class="n">initialize_global_mats</span>
+<a name="ln-43"></a>
+<a name="ln-44"></a>  <span class="k">subroutine </span><span class="n">assemble</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">xcoords</span><span class="p">,</span> <span class="n">elem_conn</span><span class="p">,</span> <span class="n">GlobalA</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">vel</span><span class="p">)</span>
+<a name="ln-45"></a>    <span class="c">!* Assemble the global stiffness matrix based on element connectivity</span>
+<a name="ln-46"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">order</span>      <span class="c">!! Order of element(s)</span>
+<a name="ln-47"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">elem_conn</span>  <span class="c">!! Element connectivity</span>
+<a name="ln-48"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">diff</span>       <span class="c">!! Diffusivity coefficient [m/s^2]</span>
+<a name="ln-49"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">vel</span>        <span class="c">!! Velocity [m/s]</span>
+<a name="ln-50"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">xcoords</span>    <span class="c">!! Array of nodal coordinates</span>
+<a name="ln-51"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">GlobalA</span>    <span class="c">!! Global Stiffness matrix</span>
+<a name="ln-52"></a>
+<a name="ln-53"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
+<a name="ln-54"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span>   <span class="kd">::</span> <span class="n">Ie</span>
+<a name="ln-55"></a>
+<a name="ln-56"></a>    <span class="c">! Add elemental stiffness matrices to Global Stiffness Matrix</span>
+<a name="ln-57"></a>    <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+<a name="ln-58"></a>      <span class="c">! Reallocate elemental stiffness matrix</span>
+<a name="ln-59"></a>      <span class="k">allocate</span><span class="p">(</span><span class="n">Ie</span><span class="p">(</span><span class="n">order</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">order</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<a name="ln-60"></a>      <span class="k">call </span><span class="n">getIe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xcoords</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:)),</span> <span class="n">Ie</span><span class="p">)</span>
+<a name="ln-61"></a>      <span class="c">! call r8mat_print(order(ii)+1, order(ii)+1, Ie, &#39;Elemental Stiffness Matrix:&#39;)</span>
+<a name="ln-62"></a>
+<a name="ln-63"></a>      <span class="n">GlobalA</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:))</span> <span class="o">=</span> <span class="p">&amp;</span>
+<a name="ln-64"></a>          <span class="n">GlobalA</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:))</span> <span class="o">-</span> <span class="n">diff</span><span class="o">*</span><span class="n">Ie</span>
+<a name="ln-65"></a>
+<a name="ln-66"></a>      <span class="k">call </span><span class="n">getIe</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xcoords</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:)),</span> <span class="n">Ie</span><span class="p">)</span>
+<a name="ln-67"></a>      <span class="c">! call r8mat_print(order(ii)+1, order(ii)+1, Ie, &#39;Elemental Stiffness Matrix:&#39;)</span>
+<a name="ln-68"></a>
+<a name="ln-69"></a>      <span class="n">GlobalA</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:))</span> <span class="o">=</span> <span class="p">&amp;</span>
+<a name="ln-70"></a>          <span class="n">GlobalA</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:))</span> <span class="o">-</span> <span class="n">vel</span><span class="o">*</span><span class="n">Ie</span>
+<a name="ln-71"></a>
+<a name="ln-72"></a>      <span class="c">! Deallocate elemental stiffness matrix after every loop</span>
+<a name="ln-73"></a>      <span class="k">deallocate</span><span class="p">(</span><span class="n">Ie</span><span class="p">)</span>
+<a name="ln-74"></a>      <span class="c">! stop</span>
+<a name="ln-75"></a>    <span class="n">enddo</span>
+<a name="ln-76"></a>
+<a name="ln-77"></a>    <span class="c">! call r8mat_print(num_nodes, num_nodes, GlobalA, &#39;Global Stiffness Matrix:&#39;)</span>
+<a name="ln-78"></a>    <span class="c">! stop</span>
+<a name="ln-79"></a>    <span class="k">return</span>
+<a name="ln-80"></a><span class="k">  end subroutine </span><span class="n">assemble</span>
+<a name="ln-81"></a>
+<a name="ln-82"></a>  <span class="k">subroutine </span><span class="n">set_BCs</span><span class="p">(</span><span class="n">xcoords</span><span class="p">,</span> <span class="n">GlobalB</span><span class="p">,</span> <span class="n">GlobalA</span><span class="p">)</span>
+<a name="ln-83"></a>    <span class="c">!*  Set boundary conditions in GlobalA and GlobalB using two Dirchlet</span>
+<a name="ln-84"></a>    <span class="c">!   boundaries</span>
+<a name="ln-85"></a>
+<a name="ln-86"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">xcoords</span>  <span class="c">!! Array of nodal coordinates</span>
+<a name="ln-87"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">GlobalB</span>  <span class="c">!! Global RHS Vector</span>
+<a name="ln-88"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">GlobalA</span>  <span class="c">!! Global Mass Matrix</span>
+<a name="ln-89"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">iloc</span>                     <span class="c">!! Index variable to locate node numbers based on xcoords</span>
+<a name="ln-90"></a>
+<a name="ln-91"></a>    <span class="c">! Left Boundary Dirchlet BC</span>
+<a name="ln-92"></a>    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">minloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
+<a name="ln-93"></a>    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span>     <span class="o">=</span> <span class="mf">0._wp</span>
+<a name="ln-94"></a>    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">1._wp</span>
+<a name="ln-95"></a>    <span class="n">GlobalB</span><span class="p">(</span><span class="n">iloc</span><span class="p">)</span>       <span class="o">=</span> <span class="mf">0._wp</span>
+<a name="ln-96"></a>
+<a name="ln-97"></a>    <span class="c">! Right Boundary Dirchlet BC</span>
+<a name="ln-98"></a>    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">maxloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
+<a name="ln-99"></a>    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span>     <span class="o">=</span> <span class="mf">0._wp</span>
+<a name="ln-100"></a>    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">1._wp</span>
+<a name="ln-101"></a>    <span class="n">GlobalB</span><span class="p">(</span><span class="n">iloc</span><span class="p">)</span>       <span class="o">=</span> <span class="mf">1._wp</span>
+<a name="ln-102"></a>
+<a name="ln-103"></a>    <span class="c">! call r8mat_print(num_nodes, 1, GlobalB, &#39;Global RHS:&#39;)</span>
+<a name="ln-104"></a>    <span class="c">! stop</span>
+<a name="ln-105"></a>
+<a name="ln-106"></a>    <span class="k">return</span>
+<a name="ln-107"></a><span class="k">  end subroutine </span><span class="n">set_BCs</span>
+<a name="ln-108"></a>
+<a name="ln-109"></a><span class="k">end module </span><span class="n">assembly</span>
 </pre></div>
 
     </section>
@@ -629,7 +630,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-01-30 06:45  
+             on 2017-01-30 08:28  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
