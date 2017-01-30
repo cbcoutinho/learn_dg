@@ -8,26 +8,6 @@ module io
 
 contains
 
-  subroutine get_command_argument_wrapper(arg)
-    character(*), intent(out):: arg
-    integer :: ii
-
-    ii = 1
-    do
-      call get_command_argument(ii, arg)
-
-      if (len_trim(arg) == 0) then
-        arg = trim(arg)
-      else
-        exit
-      endif
-
-      ii = ii + 1
-    enddo
-
-    return
-  end subroutine get_command_argument_wrapper
-
   subroutine read_gmsh_file_1D(num_nodes, &
                                 order, &
                                 nodes2vertex, &
@@ -51,7 +31,7 @@ contains
     character(80)   :: filename
     character(80)   :: blank_string
 
-    call get_command_argument_wrapper(filename)
+    call get_command_argument(1, filename)
     ! print*, filename
 
     open(unit=21, file=filename, iostat=ios, status="old", action="read")
