@@ -35,7 +35,8 @@ install:
   - (pip install --upgrade ford && ford --version)
 
 script:
-  - make
+  - make clean
+  - make build
   - make run
   - make docs
 
