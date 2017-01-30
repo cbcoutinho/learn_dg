@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +11,7 @@
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
 
-    <title>set_BCs &ndash; learn_dg</title>
+    <title>sub1d_interf &ndash; learn_dg</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -110,10 +111,11 @@
     
   
   <div class="row">
-    <h1>set_BCs
-      <small>Subroutine</small>
+    <h1>sub1d_interf
+	 <small>Interface</small>
     
     </h1>
+    
     
 <div class="row">
   <div class="col-lg-12">
@@ -128,20 +130,20 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.1% of total for procedures.">15 statements</a>
+	  title=" 1.7% of total for procedures.">12 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/assembly.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/integration.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/assembly.f90.html'>assembly.f90</a></li>
+     <li><a href='../sourcefile/integration.f90.html'>integration.f90</a></li>
   
-     <li><a href='../module/assembly.html'>assembly</a></li>
+     <li><a href='../module/integration.html'>integration</a></li>
   
-     <li class="active">set_BCs</li>
+     <li class="active">sub1d_interf</li>
   </ol>
 </div>
 </div>
@@ -152,6 +154,7 @@
   })
 </script>
 
+    
   </div>
   
   <div class="row">
@@ -178,13 +181,6 @@
 
 
 
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/set_bcs.html#src">set_BCs</a>
-  </div>
-</div>
 
 
   <hr>
@@ -265,20 +261,20 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public subroutine set_BCs(xcoords, GlobalB, GlobalA)
+	
+    
+    <h2>interface <br>
+    
+public subroutine sub1d_interf(xx, yy)
     
     
 	 
-</h2>
+</h2>    
+    
+
     
   
 
-
-    
-    <p>Set boundary conditions in GlobalA and GlobalB using two Dirchlet
-   boundaries</p>
-    
 
     <h3>Arguments</h3>
     
@@ -298,12 +294,12 @@ public subroutine set_BCs(xcoords, GlobalB, GlobalA)
   
 <tr>
   
-  <td><span class="anchor" id="variable-xcoords%7E2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-xx"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>xcoords</strong></td><td><p>Array of nodal coordinates</p></td>
+  <td><strong>xx</strong></td><td></td>
   
 </tr>
 
@@ -313,27 +309,12 @@ public subroutine set_BCs(xcoords, GlobalB, GlobalA)
   
 <tr>
   
-  <td><span class="anchor" id="variable-globalb%7E2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-yy"></span>real(kind=wp),</td>
   <td>intent(out),</td>
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>GlobalB</strong></td><td><p>Global RHS Vector</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-globala%7E3"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
-  <td><strong>GlobalA</strong></td><td><p>Global Mass Matrix</p></td>
+  <td><strong>yy</strong></td><td></td>
   
 </tr>
 
@@ -343,96 +324,10 @@ public subroutine set_BCs(xcoords, GlobalB, GlobalA)
     
     
     
-     
     <br>
 
-    <section class="visible-xs visible-sm hidden-md">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/set_bcs.html#src">set_BCs</a>
-  </div>
+ </div>
 </div>
-
-
-    </section>
-    <br class="visible-xs visible-sm hidden-md">
-
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-
-
-    
-    
-    
-    <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">set_BCs</span><span class="p">(</span><span class="n">xcoords</span><span class="p">,</span> <span class="n">GlobalB</span><span class="p">,</span> <span class="n">GlobalA</span><span class="p">)</span>
-    <span class="c">!*  Set boundary conditions in GlobalA and GlobalB using two Dirchlet</span>
-    <span class="c">!   boundaries</span>
-
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">xcoords</span>  <span class="c">!! Array of nodal coordinates</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">GlobalB</span>  <span class="c">!! Global RHS Vector</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">GlobalA</span>  <span class="c">!! Global Mass Matrix</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">iloc</span>                     <span class="c">!! Index variable to locate node numbers based on xcoords</span>
-
-    <span class="c">! Left Boundary Dirchlet BC</span>
-    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">minloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
-    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span>     <span class="o">=</span> <span class="mf">0._wp</span>
-    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">1._wp</span>
-    <span class="n">GlobalB</span><span class="p">(</span><span class="n">iloc</span><span class="p">)</span>       <span class="o">=</span> <span class="mf">0._wp</span>
-
-    <span class="c">! Right Boundary Dirchlet BC</span>
-    <span class="n">iloc</span> <span class="o">=</span> <span class="nb">maxloc</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
-    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,:)</span>     <span class="o">=</span> <span class="mf">0._wp</span>
-    <span class="n">GlobalA</span><span class="p">(</span><span class="n">iloc</span><span class="p">,</span><span class="n">iloc</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">1._wp</span>
-    <span class="n">GlobalB</span><span class="p">(</span><span class="n">iloc</span><span class="p">)</span>       <span class="o">=</span> <span class="mf">1._wp</span>
-
-    <span class="c">! call r8mat_print(num_nodes, 1, GlobalB, &#39;Global RHS:&#39;)</span>
-    <span class="c">! stop</span>
-
-    <span class="k">return</span>
-<span class="k">  end subroutine </span><span class="n">set_BCs</span>
-</pre></div>
-
-    </section>
-    <br>
-    
-    
-    </div>
-  </div>
 
   <section class="visible-xs visible-sm hidden-md">
     <hr>
