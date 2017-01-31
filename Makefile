@@ -1,11 +1,11 @@
 # makefile: makes the learn_dg program
 
-SRC=$(shell pwd)/src
-OBJ=$(shell pwd)/obj
-BIN=$(shell pwd)/bin
-DOC=$(shell pwd)/docs
-TEST=$(shell pwd)/test
-FORTRANLIB_SRC=$(shell pwd)/src/fortranlib/src
+SRC=./src
+OBJ=./obj
+BIN=./bin
+DOC=./docs
+TEST=./test
+FORTRANLIB_SRC=./src/fortranlib/src
 
 # Compiler
 FF = gfortran
