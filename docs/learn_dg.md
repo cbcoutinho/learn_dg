@@ -24,8 +24,6 @@ extra_mods: iso_fortran_env:https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORT
 md_extensions: markdown.extensions.toc
 ---
 
-This is the first paragraph of the document
-
 @note Watch out, none of this code works
 
 More information can be found in the [user guide](./page/index.html).

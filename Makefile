@@ -16,8 +16,13 @@ FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 # FFLAGS += -O3 -march=native -ffast-math -funroll-loops
 
 # Ford
+ifneq ("$(wildcard $(HOME)/Projects/ford/ford.py)","")
+# FILE_EXISTS = 1
+FORD = $(HOME)/Projects/ford/ford.py
+else
+# FILE_EXISTS = 0
 FORD = ford
-# FORD = $(HOME)/Projects/ford/ford.py
+endif
 
 FLIBS = -lblas -llapack
 # FLIBS += -fopenmp
