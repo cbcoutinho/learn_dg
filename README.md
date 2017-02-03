@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/cbcoutinho/learn_dg.svg?branch=master)](https://travis-ci.org/cbcoutinho/learn_dg)
+[![Build Status](https://travis-ci.org/cbcoutinho/learn_dg.svg)](https://travis-ci.org/cbcoutinho/learn_dg)
 
 [![forthebadge](http://forthebadge.com/images/badges/fuck-it-ship-it.svg)](http://forthebadge.com)
 
