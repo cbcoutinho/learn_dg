@@ -284,27 +284,40 @@ private pure function getJacobian(N, xi, eta, xy, alpha) result(J)
     
     <p>Calculates the Jacobian of a quadrilateral element</p>
 <p>The Jacobian of an element is defined as:
- \[ J = P \cdot X \]</p>
+ \[ \textbf{J} = \textbf{P} \textbf{X} \]</p>
 <p>Where:
- \[ P = \left[ \begin{array}{cc}
-     \frac{\partial N_1}{\partial \xi} &amp; \frac{\partial N_2}{\partial \xi} \\
-     \frac{\partial N_1}{\partial \eta} &amp; \frac{\partial N_2}{\partial \eta} \end{array}
+ \[ \textbf{P} = \left[ \begin{array}{cc}
+     \frac{\partial H_1}{\partial \xi} &amp; \frac{\partial H_2}{\partial \xi} \\
+     \frac{\partial H_1}{\partial \eta} &amp; \frac{\partial H_2}{\partial \eta} \end{array}
        \cdots
      \begin{array}{cc}
-     \frac{\partial N_{N-1}}{\partial \xi} &amp; \frac{\partial N_{N}}{\partial \xi} \\
-     \frac{\partial N_{N-1}}{\partial \eta} &amp; \frac{\partial N_{N}}{\partial \eta} \end{array}
+     \frac{\partial H_{N-1}}{\partial \xi} &amp; \frac{\partial H_{N}}{\partial \xi} \\
+     \frac{\partial H_{N-1}}{\partial \eta} &amp; \frac{\partial H_{N}}{\partial \eta} \end{array}
  \right]\]</p>
-<p>\[ X = \left[ \begin{array}{c@{}}
-     \begin{array}{cc}
-       x_1 &amp; y_1 \\
-       x_2 &amp; y_2
-     \end{array} \
-     \vdots \
-     \begin{array}{cc}
-       x_{N-1} &amp; y_{N-1} \\
-       x_N &amp; y_N
-     \end{array} \\
+<p>\[ X = \left[ \begin{array}{rcl}
+       x_1 &amp; &amp; y_1 \\
+       x_2 &amp; &amp; y_2 \\
+       &amp; \vdots &amp; \\
+       x_{N-1} &amp; &amp; y_{N-1} \\
+       x_N &amp; &amp; y_N \\
    \end{array} \right]\]</p>
+<p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>The following below doesn't work with MathJax and is being rendered incorrectly for some reason:</p></div>
+<p>\[ X = \left[ \begin{array}{c}
+      \begin{array}{cc}
+        x_1 &amp; y_1 \\
+        x_2 &amp; y_2
+      \end{array} \
+      \vdots \
+      \begin{array}{cc}
+        x_{N-1} &amp; y_{N-1} \\
+        x_N &amp; y_N
+      \end{array} \\
+    \end{array} \right]\]</p>
+<ul>
+<li>\( H_i \) : Basis function \(i\)</li>
+<li>\( x_i \) : X-coordinate of node \(i\)</li>
+<li>\( y_i \) : Y-coordinate of node \(i\)</li>
+</ul>
     
 
     <h3>Arguments</h3>
@@ -451,41 +464,41 @@ private pure function getJacobian(N, xi, eta, xy, alpha) result(J)
 <path fill="none" stroke="#ff0000" d="M160.003,-35C168.028,-35 176.967,-35 185.531,-35"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="185.705,-38.5001 195.705,-35 185.705,-31.5001 185.705,-38.5001"/>
 </g>
-<!-- proc~pascal_2d_quad -->
-<g id="node4" class="node"><title>proc~pascal_2d_quad</title>
-<a xlink:href="../proc/pascal_2d_quad.html" xlink:title="pascal_2D_quad">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="379,-70 287,-70 287,-44 379,-44 379,-70"/>
-<text text-anchor="middle" x="333" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_quad</text>
-</a>
-</g>
-<!-- interface~pascal&#45;&gt;proc~pascal_2d_quad -->
-<g id="edge4" class="edge"><title>interface~pascal&#45;&gt;proc~pascal_2d_quad</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M250.191,-40.4382C258.227,-42.0454 267.338,-43.8677 276.505,-45.7009"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="275.933,-49.1558 286.425,-47.685 277.305,-42.2917 275.933,-49.1558"/>
-</g>
 <!-- proc~pascal_1d_line -->
-<g id="node5" class="node"><title>proc~pascal_1d_line</title>
+<g id="node4" class="node"><title>proc~pascal_1d_line</title>
 <a xlink:href="../proc/pascal_1d_line.html" xlink:title="pascal_1D_line">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="375,-26 291,-26 291,-1.24345e-14 375,-3.55271e-15 375,-26"/>
-<text text-anchor="middle" x="333" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_1D_line</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="375,-70 291,-70 291,-44 375,-44 375,-70"/>
+<text text-anchor="middle" x="333" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_1D_line</text>
 </a>
 </g>
 <!-- interface~pascal&#45;&gt;proc~pascal_1d_line -->
-<g id="edge6" class="edge"><title>interface~pascal&#45;&gt;proc~pascal_1d_line</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M250.191,-29.5618C259.352,-27.7297 269.909,-25.6183 280.353,-23.5295"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="281.162,-26.9369 290.282,-21.5437 279.789,-20.0729 281.162,-26.9369"/>
+<g id="edge4" class="edge"><title>interface~pascal&#45;&gt;proc~pascal_1d_line</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M250.191,-40.4382C259.352,-42.2703 269.909,-44.3817 280.353,-46.4705"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="279.789,-49.9271 290.282,-48.4563 281.162,-43.0631 279.789,-49.9271"/>
+</g>
+<!-- proc~pascal_2d_quad -->
+<g id="node5" class="node"><title>proc~pascal_2d_quad</title>
+<a xlink:href="../proc/pascal_2d_quad.html" xlink:title="pascal_2D_quad">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="379,-26 287,-26 287,-1.24345e-14 379,-3.55271e-15 379,-26"/>
+<text text-anchor="middle" x="333" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_quad</text>
+</a>
+</g>
+<!-- interface~pascal&#45;&gt;proc~pascal_2d_quad -->
+<g id="edge6" class="edge"><title>interface~pascal&#45;&gt;proc~pascal_2d_quad</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M250.191,-29.5618C258.227,-27.9546 267.338,-26.1323 276.505,-24.2991"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="277.305,-27.7083 286.425,-22.315 275.933,-20.8442 277.305,-27.7083"/>
 </g>
 <!-- proc~pascal_2d_row -->
 <g id="node6" class="node"><title>proc~pascal_2d_row</title>
 <a xlink:href="../proc/pascal_2d_row.html" xlink:title="pascal_2D_row">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="502,-70 416,-70 416,-44 502,-44 502,-70"/>
-<text text-anchor="middle" x="459" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_row</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="502,-26 416,-26 416,-1.24345e-14 502,-3.55271e-15 502,-26"/>
+<text text-anchor="middle" x="459" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_row</text>
 </a>
 </g>
 <!-- proc~pascal_2d_quad&#45;&gt;proc~pascal_2d_row -->
 <g id="edge2" class="edge"><title>proc~pascal_2d_quad&#45;&gt;proc~pascal_2d_row</title>
-<path fill="none" stroke="#ff0000" d="M379.56,-57C388.125,-57 397.127,-57 405.869,-57"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="405.97,-60.5001 415.97,-57 405.97,-53.5001 405.97,-60.5001"/>
+<path fill="none" stroke="#00ffff" d="M379.56,-13C388.125,-13 397.127,-13 405.869,-13"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="405.97,-16.5001 415.97,-13 405.97,-9.5001 405.97,-16.5001"/>
 </g>
 </g>
 </svg>
@@ -619,29 +632,43 @@ private pure function getJacobian(N, xi, eta, xy, alpha) result(J)
     <span class="c">! Calculates the Jacobian of a quadrilateral element</span>
     <span class="c">!</span>
     <span class="c">! The Jacobian of an element is defined as:</span>
-    <span class="c">! \[ J = P \cdot X \]</span>
+    <span class="c">! \[ \textbf{J} = \textbf{P} \textbf{X} \]</span>
     <span class="c">!</span>
     <span class="c">! Where:</span>
-    <span class="c">! \[ P = \left[ \begin{array}{cc}</span>
-    <span class="c">!     \frac{\partial N_1}{\partial \xi} &amp; \frac{\partial N_2}{\partial \xi} \\</span>
-    <span class="c">!     \frac{\partial N_1}{\partial \eta} &amp; \frac{\partial N_2}{\partial \eta} \end{array}</span>
+    <span class="c">! \[ \textbf{P} = \left[ \begin{array}{cc}</span>
+    <span class="c">!     \frac{\partial H_1}{\partial \xi} &amp; \frac{\partial H_2}{\partial \xi} \\</span>
+    <span class="c">!     \frac{\partial H_1}{\partial \eta} &amp; \frac{\partial H_2}{\partial \eta} \end{array}</span>
     <span class="c">!       \cdots</span>
     <span class="c">!     \begin{array}{cc}</span>
-    <span class="c">!     \frac{\partial N_{N-1}}{\partial \xi} &amp; \frac{\partial N_{N}}{\partial \xi} \\</span>
-    <span class="c">!     \frac{\partial N_{N-1}}{\partial \eta} &amp; \frac{\partial N_{N}}{\partial \eta} \end{array}</span>
+    <span class="c">!     \frac{\partial H_{N-1}}{\partial \xi} &amp; \frac{\partial H_{N}}{\partial \xi} \\</span>
+    <span class="c">!     \frac{\partial H_{N-1}}{\partial \eta} &amp; \frac{\partial H_{N}}{\partial \eta} \end{array}</span>
     <span class="c">! \right]\]</span>
     <span class="c">!</span>
-    <span class="c">! \[ X = \left[ \begin{array}{c@{}}</span>
-    <span class="c">!     \begin{array}{cc}</span>
-    <span class="c">!       x_1 &amp; y_1 \\</span>
-    <span class="c">!       x_2 &amp; y_2</span>
-    <span class="c">!     \end{array} \\</span>
-    <span class="c">!     \vdots \\</span>
-    <span class="c">!     \begin{array}{cc}</span>
-    <span class="c">!       x_{N-1} &amp; y_{N-1} \\</span>
-    <span class="c">!       x_N &amp; y_N</span>
-    <span class="c">!     \end{array} \\</span>
+    <span class="c">! \[ X = \left[ \begin{array}{rcl}</span>
+    <span class="c">!       x_1 &amp; &amp; y_1 \\</span>
+    <span class="c">!       x_2 &amp; &amp; y_2 \\</span>
+    <span class="c">!       &amp; \vdots &amp; \\</span>
+    <span class="c">!       x_{N-1} &amp; &amp; y_{N-1} \\</span>
+    <span class="c">!       x_N &amp; &amp; y_N \\</span>
     <span class="c">!   \end{array} \right]\]</span>
+    <span class="c">!</span>
+    <span class="c">! @note The following below doesn&#39;t work with MathJax and is being rendered incorrectly for some reason:</span>
+    <span class="c">!</span>
+    <span class="c">! \[ X = \left[ \begin{array}{c}</span>
+    <span class="c">!      \begin{array}{cc}</span>
+    <span class="c">!        x_1 &amp; y_1 \\</span>
+    <span class="c">!        x_2 &amp; y_2</span>
+    <span class="c">!      \end{array} \\</span>
+    <span class="c">!      \vdots \\</span>
+    <span class="c">!      \begin{array}{cc}</span>
+    <span class="c">!        x_{N-1} &amp; y_{N-1} \\</span>
+    <span class="c">!        x_N &amp; y_N</span>
+    <span class="c">!      \end{array} \\</span>
+    <span class="c">!    \end{array} \right]\]</span>
+    <span class="c">!</span>
+    <span class="c">! * \( H_i \) : Basis function \(i\)</span>
+    <span class="c">! * \( x_i \) : X-coordinate of node \(i\)</span>
+    <span class="c">! * \( y_i \) : Y-coordinate of node \(i\)</span>
 
     <span class="kt">integer</span><span class="p">,</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span>      <span class="c">!! Number of points in element</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xi</span>     <span class="c">!!</span>
@@ -774,7 +801,7 @@ private pure function getJacobian(N, xi, eta, xy, alpha) result(J)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-02-03 18:34  
+             on 2017-02-03 19:11  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

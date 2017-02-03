@@ -277,29 +277,43 @@ contains
     ! Calculates the Jacobian of a quadrilateral element
     !
     ! The Jacobian of an element is defined as:
-    ! \[ J = P \cdot X \]
+    ! \[ \textbf{J} = \textbf{P} \textbf{X} \]
     !
     ! Where:
-    ! \[ P = \left[ \begin{array}{cc}
-    !     \frac{\partial N_1}{\partial \xi} & \frac{\partial N_2}{\partial \xi} \\
-    !     \frac{\partial N_1}{\partial \eta} & \frac{\partial N_2}{\partial \eta} \end{array}
+    ! \[ \textbf{P} = \left[ \begin{array}{cc}
+    !     \frac{\partial H_1}{\partial \xi} & \frac{\partial H_2}{\partial \xi} \\
+    !     \frac{\partial H_1}{\partial \eta} & \frac{\partial H_2}{\partial \eta} \end{array}
     !       \cdots
     !     \begin{array}{cc}
-    !     \frac{\partial N_{N-1}}{\partial \xi} & \frac{\partial N_{N}}{\partial \xi} \\
-    !     \frac{\partial N_{N-1}}{\partial \eta} & \frac{\partial N_{N}}{\partial \eta} \end{array}
+    !     \frac{\partial H_{N-1}}{\partial \xi} & \frac{\partial H_{N}}{\partial \xi} \\
+    !     \frac{\partial H_{N-1}}{\partial \eta} & \frac{\partial H_{N}}{\partial \eta} \end{array}
     ! \right]\]
     !
-    ! \[ X = \left[ \begin{array}{c@{}}
-    !     \begin{array}{cc}
-    !       x_1 & y_1 \\
-    !       x_2 & y_2
-    !     \end{array} \\
-    !     \vdots \\
-    !     \begin{array}{cc}
-    !       x_{N-1} & y_{N-1} \\
-    !       x_N & y_N
-    !     \end{array} \\
+    ! \[ X = \left[ \begin{array}{rcl}
+    !       x_1 & & y_1 \\
+    !       x_2 & & y_2 \\
+    !       & \vdots & \\
+    !       x_{N-1} & & y_{N-1} \\
+    !       x_N & & y_N \\
     !   \end{array} \right]\]
+    !
+    ! @note The following below doesn't work with MathJax and is being rendered incorrectly for some reason:
+    !
+    ! \[ X = \left[ \begin{array}{c}
+    !      \begin{array}{cc}
+    !        x_1 & y_1 \\
+    !        x_2 & y_2
+    !      \end{array} \\
+    !      \vdots \\
+    !      \begin{array}{cc}
+    !        x_{N-1} & y_{N-1} \\
+    !        x_N & y_N
+    !      \end{array} \\
+    !    \end{array} \right]\]
+    !
+    ! * \( H_i \) : Basis function \(i\)
+    ! * \( x_i \) : X-coordinate of node \(i\)
+    ! * \( y_i \) : Y-coordinate of node \(i\)
 
     integer,                  intent(in)  :: N      !! Number of points in element
     real(wp),                 intent(in)  :: xi     !!
@@ -461,7 +475,7 @@ contains
     !   \[ [x^3,~ \mathbf{x^2y},~ \mathbf{xy^2},~ y^3] \]
     !   \[ [x^4,~ x^3y,~ \mathbf{x^2y^2},~ xy^3, y^4] \]
     !   \[ \vdots \]
-    !   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]
+    !   \[ [x^N,~ x^{N-1}y,~ \cdots ~,~ xy^{N-1},~ y^N] \]
 
     integer,  intent(in)  :: N
     real(wp), intent(in)  :: x, y
