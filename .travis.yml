@@ -6,10 +6,6 @@ language: python
 python:
   - 3.5
 
-env:
-  global:
-    - gfortran=gfortran-6
-
 cache:
   apt: false
   pip: false
@@ -32,6 +28,7 @@ addons:
       - gmsh
 
 before_install:
+  - gfortran=gfortran-6
   - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
   - chmod 600 .deploy_key
 
@@ -39,6 +36,9 @@ install:
   - pip install --upgrade graphviz
   - pip install --upgrade meshio
   - (pip install --upgrade ford && ford --version)
+
+before_script:
+  - gfortran=gfortran-6
 
 script:
   - make clean
