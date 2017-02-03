@@ -458,20 +458,24 @@ contains
   end function pascal_2D_quad
 
   pure function pascal_2D_row(N, x, y) result(row)
-    !*  Generates a row of Pascal's triangle in 2D, where rows are 0-indexed
+    !*
+    ! Generates a row of Pascal's triangle in 2D, where rows are 0-indexed
     !
-    !   Pascal's triangle in 2D looks like this:
-    !     \[1\]
-    !     \[x, y\]
-    !     \[x^2, x\cdot y, y^2\]
-    !     \[x^3, x^2y, xy^2, y^3\]
-    !     \[\vdots\]
+    ! Pascal's triangle in 2D looks like this:
+    !   \[ [1] \]
+    !   \[ [x,~ y] \]
+    !   \[ [x^2,~ x y,~ y^2] \]
+    !   \[ [x^3,~ x^2y,~ xy^2,~ y^3] \]
+    !   \[ [x^4,~ x^3y,~ x^2y^2,~ xy^3, y^4] \]
+    !   \[ \vdots \]
+    !   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]
     !
-    !   Therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]
+    ! Therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]
 
-    integer,  intent(in)  :: N
-    real(wp), intent(in)  :: x, y
-    real(wp), dimension(N+1) :: row
+    integer,  intent(in)      :: N    !! Row number of pascal's 2D triange (0-indexed)
+    real(wp), intent(in)      :: x    !! X-value used in triange
+    real(wp), intent(in)      :: y    !! Y-Value used in triange
+    real(wp), dimension(N+1)  :: row  !! Output row of triange
 
     integer :: ii
 
