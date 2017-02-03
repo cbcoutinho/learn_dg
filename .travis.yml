@@ -6,9 +6,13 @@ language: python
 python:
   - 3.5
 
+env:
+  global:
+    - gfortran=gfortran-6
+
 cache:
-  apt: true
-  pip: true
+  apt: false
+  pip: false
 
 branches:
   only:
@@ -17,13 +21,13 @@ branches:
 addons:
   apt:
     packages:
-    - git
-    - gfortran
-    - python-pip
-    - graphviz
-    - libblas-dev
-    - liblapack-dev
-    - gmsh
+      - git
+      - gfortran-6
+      - python-pip
+      - graphviz
+      - libblas-dev
+      - liblapack-dev
+      - gmsh
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
