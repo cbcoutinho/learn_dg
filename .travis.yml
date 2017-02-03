@@ -1,33 +1,38 @@
+language: python
+group: stable
+os: linux
+dist: precise
+
 notifications:
-  email: change
+  email: change  # options: [always|never|change]
 
-language: generic
-
-python: 3
+python:
+  - 3.4
 
 cache:
   apt: false
   pip: false
+    # - $HOME/.cache/pip
+    # - $HOME/.local
 
 branches:
   only:
     - master
+    - develop
 
 addons:
   sources:
     - ubuntu-toolchain-r-test
   apt:
     packages:
-      - git
       - gfortran-6
-      - python-pip
       - graphviz
       - libblas-dev
       - liblapack-dev
       - gmsh
 
 before_install:
-  - gfortran=gfortran-6
+  - ln -fs "$(which gfortran-6)" "$HOME/bin/gfortran" && gfortran --version
   - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
   - chmod 600 .deploy_key
 
@@ -37,7 +42,7 @@ install:
   - (pip install --upgrade ford && ford --version)
 
 before_script:
-  - gfortran=gfortran-6
+  - echo "Wow we installed everything!"
 
 script:
   - make clean
@@ -51,7 +56,3 @@ after_success:
   - git config --global user.name "TRAVIS-CI-for-$(git --no-pager show -s --format='%cn' $TRAVIS_COMMIT)"
   - git config --global user.email "$(git --no-pager show -s --format='%ce' $TRAVIS_COMMIT)"
   - bash ./deploy.sh
-
-group: stable
-dist: trusty
-os: linux
