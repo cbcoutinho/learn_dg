@@ -1,7 +1,7 @@
 language: python
 group: stable
 os: linux
-dist: precise
+dist: trusty
 
 notifications:
   email: change  # options: [always|never|change]
