@@ -127,5 +127,5 @@ debug: clean build
 	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
 
 clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.*mod $(BIN)/main
+	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main
 	rm -f $(TEST)/test1D.msh $(TEST)/test2D.msh
