@@ -19,6 +19,8 @@ branches:
     - master
 
 addons:
+  sources:
+    - ubuntu-toolchain-r-test
   apt:
     packages:
       - git
