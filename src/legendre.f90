@@ -422,6 +422,18 @@ contains
   end function pascal_1D_line
 
   pure function pascal_2D_quad(N, x, y) result(row)
+    !*
+    ! Generates an array of points related to a quadrilateral using Pascal's triangle in 2D, where rows are 0-indexed
+    !
+    ! Pascal's triangle in 2D looks like this, with points used in bi-quadratic quadrilateral in bold:
+    !   \[ [\mathbf{1}] \]
+    !   \[ [\mathbf{x},~ \mathbf{y}] \]
+    !   \[ [\mathbf{x^2},~ \mathbf{x y},~ \mathbf{y^2}] \]
+    !   \[ [x^3,~ \mathbf{x^2y},~ \mathbf{xy^2},~ y^3] \]
+    !   \[ [x^4,~ x^3y,~ \mathbf{x^2y^2},~ xy^3, y^4] \]
+    !   \[ \vdots \]
+    !   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]
+    
     integer,  intent(in)  :: N
     real(wp), intent(in)  :: x, y
     real(wp), dimension(N**2 + 2*N + 1) :: row
