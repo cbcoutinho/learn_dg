@@ -6,8 +6,14 @@ module legendre
   use linalg, only: linsolve_quick, linsolve, inv2, det2, eye
   implicit none
 
-  private :: basis_1D, vandermonde, integrate_basis_1d_Ie
+  private
   public  :: getIe, assembleElementalMatrix, getxy
+
+  public :: pascal
+  interface pascal
+     module procedure pascal_1D_line
+     module procedure pascal_2D_quad
+  end interface pascal
 
 contains
 
@@ -100,48 +106,6 @@ contains
       return
     end subroutine local_wrapper
   end function integrate_basis_1d_Ie
-
-  ! function integrate_basis_1d(order, basis_num, dx) result(integral)
-  !   integer, intent(in) :: order, basis_num, dx
-  !   real(wp)            :: integral
-  !
-  !   real(wp), dimension(:, :), allocatable:: Vinv
-  !
-  !   allocate(Vinv(order+1, order+1))
-  !   call vandermonde(order+1, Vinv)
-  !
-  !   ! call r8mat_print(order+1, order+1, Vinv, 'Inverse Vandermonde')
-  !
-  !   ! Check to make sure requested basis number is within available basis
-  !   if ( basis_num > order+1 ) then
-  !     write(*,*) 'The basis_num input is larger than number of available basis nodes (order+1)'
-  !     write(*,*) 'Make sure order and basis_num are correctly set before calling'
-  !     stop
-  !   endif
-  !
-  !   ! Check to make sure differentiation is either 0 or 1
-  !   if ( dx < 0 .or. dx > 1 ) then
-  !     write(*,*) 'Derivatives of order lower than 0 or higher than 1 are not allowed'
-  !     write(*,*) 'integrate_basis_1d was called with dx = ', dx
-  !     write(*,*) 'Check to make sure that the function was called correctly'
-  !     stop
-  !   endif
-  !
-  !   call integrate(local_basis_1D, -1.0_wp, 1.0_wp, integral)
-  !
-  !   deallocate(Vinv)
-  !
-  !   return
-  ! contains
-  !   subroutine local_basis_1D(x, y)
-  !     real(wp), intent(in), dimension(:) :: x
-  !     real(wp), intent(out), dimension(:) :: y
-  !
-  !     y = basis_1D(x, Vinv(:, basis_num), dx)
-  !
-  !     return
-  !   end subroutine local_basis_1D
-  ! end function integrate_basis_1d
 
   function basis_1D(x, alpha, dx) result(y)
     ! Input/output variables
@@ -249,25 +213,28 @@ contains
     real(wp), dimension(N)  :: row
 
     if ( N == 4 ) then
-      row = [1._wp, &
-            xi, eta, &
-            xi*eta]
+      ! row = [1._wp, &
+      !       xi, eta, &
+      !       xi*eta]
+      row = pascal(1, xi, eta)
 
     elseif ( N == 9 ) then
-      row = [1._wp, &
-            xi, eta, &
-            xi**2._wp, xi*eta, eta**2._wp, &
-            xi**2._wp * eta, xi * eta**2._wp, &
-            xi**2._wp * eta**2._wp]
+      ! row = [1._wp, &
+      !       xi, eta, &
+      !       xi**2._wp, xi*eta, eta**2._wp, &
+      !       xi**2._wp * eta, xi * eta**2._wp, &
+      !       xi**2._wp * eta**2._wp]
+      row = pascal(2, xi, eta)
 
     elseif ( N == 16 ) then
-      row = [1._wp, &
-            xi, eta, &
-            xi**2._wp, xi*eta, eta**2._wp, &
-            xi**3._wp, xi**2._wp * eta, xi * eta**2._wp, eta**3._wp, &
-            xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
-            xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
-            xi**3._wp * eta**3._wp]
+      ! row = [1._wp, &
+      !       xi, eta, &
+      !       xi**2._wp, xi*eta, eta**2._wp, &
+      !       xi**3._wp, xi**2._wp * eta, xi * eta**2._wp, eta**3._wp, &
+      !       xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
+      !       xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
+      !       xi**3._wp * eta**3._wp]
+      row = pascal(3, xi, eta)
 
     endif
 
@@ -287,9 +254,7 @@ contains
     call linsolve_quick(N, A, N, B, alpha)
 
     return
-
   contains
-
     pure function getA(N) result(A)
       integer, intent(in)       :: N
       real(wp), dimension(N,N)  :: A
@@ -305,7 +270,6 @@ contains
 
       return
     end function getA
-
   end function getAlpha
 
   pure function getJacobian(N, xi, eta, xy, alpha) result(J)
@@ -363,9 +327,7 @@ contains
 
       enddo
     enddo
-
   contains
-
     function fun(xi, eta) result(out)
       ! Dummy variables
       real(wp), dimension(:,:), intent(in)  :: xi, eta
@@ -442,10 +404,81 @@ contains
 
         enddo
       enddo
-
       return
     end function fun
-
   end function assembleElementalMatrix
+
+  pure function pascal_1D_line(N, x) result(row)
+    integer,  intent(in)  :: N
+    real(wp), intent(in)  :: x
+    real(wp), dimension(N+1) :: row
+
+    integer :: ii
+
+    ! Produces the elements of an array: [1, x, x^2, ..., x^N]
+    row = [( x**(ii-1), ii = 1, N+1 )]
+
+    return
+  end function pascal_1D_line
+
+  pure function pascal_2D_quad(N, x, y) result(row)
+    integer,  intent(in)  :: N
+    real(wp), intent(in)  :: x, y
+    real(wp), dimension(N**2 + 2*N + 1) :: row
+
+    integer :: ii, start, finish
+    real(wp), dimension(:), allocatable :: temp, temp_pre, temp_post
+
+    row = 0.d0
+
+    ! Collects the first N rows of a 2D pascal triangle as function of x and y
+    temp_pre = [( pascal_2D_row(ii, x, y), ii = 0, N )]
+    temp_post = [( pascal_2D_quad_post(N, ii, x, y), ii = N+1, 2*N )]
+
+    row = [temp_pre, temp_post]
+
+    return
+  contains
+    pure function pascal_2D_quad_post(N, ii, x, y) result(row)
+      integer,  intent(in)  :: N, ii
+      real(wp), intent(in)  :: x, y
+      real(wp), dimension(2*N-ii+1) :: row
+
+      integer :: start, finish
+      real(wp), dimension(:), allocatable :: temp
+
+      temp = pascal_2D_row(ii, x, y)
+      start = ii-N+1
+      finish = ii-(ii-N)+1
+
+      row = temp( start:finish )
+
+      return
+    end function pascal_2D_quad_post
+  end function pascal_2D_quad
+
+  pure function pascal_2D_row(N, x, y) result(row)
+    !*  Generates a row of Pascal's triangle in 2D, where rows are 0-indexed
+    !
+    !   Pascal's triangle in 2D looks like this:
+    !     \[1\]
+    !     \[x, y\]
+    !     \[x^2, x\cdot y, y^2\]
+    !     \[x^3, x^2y, xy^2, y^3\]
+    !     \[\vdots\]
+    !
+    !   Therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]
+
+    integer,  intent(in)  :: N
+    real(wp), intent(in)  :: x, y
+    real(wp), dimension(N+1) :: row
+
+    integer :: ii
+
+    ! Produces the elements of an array: [x^N, x^(N-1)*y, x^(N-2)*y^2, ..., y^N]
+    row = [( x**(N-ii) * y**(ii), ii = 0, N )]
+
+    return
+  end function pascal_2D_row
 
 end module legendre

@@ -5,11 +5,12 @@ import os, sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
 
 # sys.path.append(os.path.join(os.getcwd(),'src','meshio'))
 # import meshio
 # points, cells, point_data, cell_data, field_data = meshio.read('test2D.msh')
-
 
 filename = 'data.out'
 
@@ -37,7 +38,7 @@ plt.subplot(211)
 plt.plot(df.x, df.FEM, 'o-', x, analytical(x), '-')
 plt.xlim([np.min(x), np.max(x)])
 
-width = df.x.diff()[1]*0.5
+width = df.x.diff()[1]*0.75
 
 plt.subplot(212)
 plt.bar(df.x, error, width=width, align='center')
