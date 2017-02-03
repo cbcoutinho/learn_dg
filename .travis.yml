@@ -1,10 +1,9 @@
 notifications:
   email: change
 
-language: python
+language: generic
 
-python:
-  - 3.5
+python: 3
 
 cache:
   apt: false
