@@ -24,12 +24,12 @@ FF = gfortran
 FFLAGS = -Wall -std=f2008 -Wextra -fPIC -fmax-errors=1 -Wimplicit-interface
 ifeq ($(DEBUG),"yes")
 # Debug flags:
-$(info DEBUG is $(DEBUG))
+# $(info DEBUG is $(DEBUG))
 $(info Building in Debug mode)
 FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 else
 # Release flags:
-$(info DEBUG is $(DEBUG))
+# $(info DEBUG is $(DEBUG))
 FFLAGS += -O3 -march=native -ffast-math -funroll-loops
 $(info Building in Release mode)
 endif

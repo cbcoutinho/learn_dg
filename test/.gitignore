@@ -2,3 +2,9 @@
 *.mod
 *.o
 a.out
+
+# Tex related stuff
+test.tex
+test.pdf
+test.synctex.gz
+build
