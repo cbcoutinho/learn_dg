@@ -1,5 +1,5 @@
 program doubleint
-  use iso_fortran_env, only: wp => real64
+  use iso_fortran_env, only: wp=>real64
   use linalg, only: linsolve_quick, eye
   use misc, only: r8mat_print
   use legendre, only: assembleElementalMatrix, getxy

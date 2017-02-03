@@ -17,11 +17,11 @@ FLIB_SRC=./src/fortranlib/src
 
 # Use debug flags unless otherwise stated
 ifndef DEBUG
-DEBUG="yes"
+DEBUG = "yes"
 endif
 
 FF = gfortran
-FFLAGS = -Wall -std=f2008 -Wextra -fPIC -fmax-errors=1 -Wimplicit-interface
+FFLAGS = -std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface -Wall -Wextra
 ifeq ($(DEBUG),"yes")
 # Debug flags:
 # $(info DEBUG is $(DEBUG))
@@ -62,6 +62,7 @@ objects=$(OBJ)/lib_array.o \
 	$(OBJ)/integration.o \
 	$(OBJ)/misc.o \
 	$(OBJ)/legendre.o \
+	$(OBJ)/pascal_smod.o \
 	$(OBJ)/io.o \
 	$(OBJ)/assembly.o \
 	$(OBJ)/linalg.o
@@ -84,6 +85,8 @@ $(OBJ)/misc.o: $(SRC)/misc.f90
 $(OBJ)/assembly.o: $(SRC)/assembly.f90 $(OBJ)/legendre.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 $(OBJ)/linalg.o: $(SRC)/linalg.f90
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
+$(OBJ)/pascal_smod.o: $(SRC)/pascal_smod.f90 $(OBJ)/legendre.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
 $(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/linalg.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
@@ -124,5 +127,5 @@ debug: clean build
 	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
 
 clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(BIN)/main
+	rm -f $(OBJ)/*.o $(OBJ)/*.*mod $(BIN)/main
 	rm -f $(TEST)/test1D.msh $(TEST)/test2D.msh
