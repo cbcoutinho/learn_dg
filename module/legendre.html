@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="31.0% of total for modules and submodules.">224 statements</a>
+	  title="35.3% of total for modules and submodules.">272 statements</a>
      </li> 
      
      
@@ -166,6 +166,17 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-0">Interfaces</a></h3></div>
+  <div id="inters-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/legendre.html#interface-pascal">pascal</a>
+      
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -187,6 +198,12 @@
       <a class="list-group-item" href="../module/legendre.html#proc-getjacobian">getJacobian</a>
       
       <a class="list-group-item" href="../module/legendre.html#proc-assembleelementalmatrix">assembleElementalMatrix</a>
+      
+      <a class="list-group-item" href="../module/legendre.html#proc-pascal_1d_line">pascal_1D_line</a>
+      
+      <a class="list-group-item" href="../module/legendre.html#proc-pascal_2d_quad">pascal_2D_quad</a>
+      
+      <a class="list-group-item" href="../module/legendre.html#proc-pascal_2d_row">pascal_2D_row</a>
       
     </div>
   </div>
@@ -290,27 +307,27 @@
 <path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M184.543,-44.0168C194.191,-48.4388 205.102,-53.4395 215.292,-58.1102"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="213.843,-61.2959 224.392,-62.2807 216.759,-54.9324 213.843,-61.2959"/>
 </g>
-<!-- module~misc -->
-<g id="node3" class="node"><title>module~misc</title>
-<a xlink:href="../module/misc.html" xlink:title="misc">
-<polygon fill="#337ab7" stroke="#337ab7" points="183,-131.934 129,-131.934 129,-105.934 183,-105.934 183,-131.934"/>
-<text text-anchor="middle" x="156" y="-116.484" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">misc</text>
-</a>
-</g>
-<!-- module~misc&#45;&gt;module~legendre -->
-<g id="edge12" class="edge"><title>module~misc&#45;&gt;module~legendre</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M183.253,-106.444C193.099,-101.931 204.388,-96.7567 214.933,-91.9235"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="216.713,-94.9578 224.346,-87.6095 213.797,-88.5943 216.713,-94.9578"/>
-</g>
 <!-- module~linalg -->
-<g id="node4" class="node"><title>module~linalg</title>
+<g id="node3" class="node"><title>module~linalg</title>
 <a xlink:href="../module/linalg.html" xlink:title="linalg">
-<polygon fill="#337ab7" stroke="#337ab7" points="183,-87.9345 129,-87.9345 129,-61.9345 183,-61.9345 183,-87.9345"/>
-<text text-anchor="middle" x="156" y="-72.4845" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linalg</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="183,-131.934 129,-131.934 129,-105.934 183,-105.934 183,-131.934"/>
+<text text-anchor="middle" x="156" y="-116.484" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linalg</text>
 </a>
 </g>
 <!-- module~linalg&#45;&gt;module~legendre -->
-<g id="edge14" class="edge"><title>module~linalg&#45;&gt;module~legendre</title>
+<g id="edge12" class="edge"><title>module~linalg&#45;&gt;module~legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M183.253,-106.444C193.099,-101.931 204.388,-96.7567 214.933,-91.9235"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="216.713,-94.9578 224.346,-87.6095 213.797,-88.5943 216.713,-94.9578"/>
+</g>
+<!-- module~misc -->
+<g id="node4" class="node"><title>module~misc</title>
+<a xlink:href="../module/misc.html" xlink:title="misc">
+<polygon fill="#337ab7" stroke="#337ab7" points="183,-87.9345 129,-87.9345 129,-61.9345 183,-61.9345 183,-87.9345"/>
+<text text-anchor="middle" x="156" y="-72.4845" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">misc</text>
+</a>
+</g>
+<!-- module~misc&#45;&gt;module~legendre -->
+<g id="edge14" class="edge"><title>module~misc&#45;&gt;module~legendre</title>
 <path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M183.253,-74.9345C192.898,-74.9345 203.928,-74.9345 214.286,-74.9345"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="214.346,-78.4346 224.346,-74.9345 214.345,-71.4346 214.346,-78.4346"/>
 </g>
@@ -331,13 +348,13 @@
 <path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M71.1121,-71.8626C85.5875,-64.8834 103.609,-56.1944 119.319,-48.62"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="121.262,-51.5689 128.749,-44.0732 118.222,-45.2635 121.262,-51.5689"/>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~misc -->
-<g id="edge6" class="edge"><title>iso_fortran_env&#45;&gt;module~misc</title>
+<!-- iso_fortran_env&#45;&gt;module~linalg -->
+<g id="edge6" class="edge"><title>iso_fortran_env&#45;&gt;module~linalg</title>
 <path fill="none" stroke="#cbff00" stroke-dasharray="5,2" d="M86.9818,-97.9825C97.5306,-101.185 108.732,-104.585 118.973,-107.694"/>
 <polygon fill="#cbff00" stroke="#cbff00" points="118.249,-111.132 128.834,-110.688 120.282,-104.434 118.249,-111.132"/>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~linalg -->
-<g id="edge8" class="edge"><title>iso_fortran_env&#45;&gt;module~linalg</title>
+<!-- iso_fortran_env&#45;&gt;module~misc -->
+<g id="edge8" class="edge"><title>iso_fortran_env&#45;&gt;module~misc</title>
 <path fill="none" stroke="#00ff66" stroke-dasharray="5,2" d="M87.6228,-81.0396C97.9253,-80.1197 108.816,-79.1473 118.804,-78.2556"/>
 <polygon fill="#00ff66" stroke="#00ff66" points="119.174,-81.7365 128.823,-77.361 118.551,-74.7643 119.174,-81.7365"/>
 </g>
@@ -449,41 +466,41 @@
 <polygon fill="none" stroke="black" points="55,-48 1,-48 1,-22 55,-22 55,-48"/>
 <text text-anchor="middle" x="28" y="-32.55" font-family="Helvetica,sans-Serif" font-size="10.50">legendre</text>
 </g>
-<!-- module~assembly -->
-<g id="node2" class="node"><title>module~assembly</title>
-<a xlink:href="../module/assembly.html" xlink:title="assembly">
-<polygon fill="#337ab7" stroke="#337ab7" points="150,-70 92,-70 92,-44 150,-44 150,-70"/>
-<text text-anchor="middle" x="121" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembly</text>
-</a>
-</g>
-<!-- module~legendre&#45;&gt;module~assembly -->
-<g id="edge4" class="edge"><title>module~legendre&#45;&gt;module~assembly</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M55.6513,-41.5412C63.8985,-43.4921 73.098,-45.6683 81.9303,-47.7577"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="81.1388,-51.167 91.676,-50.0631 82.7503,-44.355 81.1388,-51.167"/>
-</g>
 <!-- program~doubleint -->
-<g id="node3" class="node"><title>program~doubleint</title>
+<g id="node2" class="node"><title>program~doubleint</title>
 <a xlink:href="../program/doubleint.html" xlink:title="doubleint">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149,-26 93,-26 93,-1.24345e-14 149,-3.55271e-15 149,-26"/>
-<text text-anchor="middle" x="121" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">doubleint</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149,-70 93,-70 93,-44 149,-44 149,-70"/>
+<text text-anchor="middle" x="121" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">doubleint</text>
 </a>
 </g>
 <!-- module~legendre&#45;&gt;program~doubleint -->
-<g id="edge6" class="edge"><title>module~legendre&#45;&gt;program~doubleint</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M55.6513,-28.4588C64.3018,-26.4125 73.9999,-24.1183 83.2231,-21.9365"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="84.0471,-25.3382 92.9728,-19.6301 82.4356,-18.5262 84.0471,-25.3382"/>
+<g id="edge4" class="edge"><title>module~legendre&#45;&gt;program~doubleint</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M55.6513,-41.5412C64.3018,-43.5875 73.9999,-45.8817 83.2231,-48.0635"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="82.4356,-51.4738 92.9728,-50.3699 84.0471,-44.6618 82.4356,-51.4738"/>
+</g>
+<!-- module~assembly -->
+<g id="node3" class="node"><title>module~assembly</title>
+<a xlink:href="../module/assembly.html" xlink:title="assembly">
+<polygon fill="#337ab7" stroke="#337ab7" points="150,-26 92,-26 92,-1.24345e-14 150,-3.55271e-15 150,-26"/>
+<text text-anchor="middle" x="121" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembly</text>
+</a>
+</g>
+<!-- module~legendre&#45;&gt;module~assembly -->
+<g id="edge6" class="edge"><title>module~legendre&#45;&gt;module~assembly</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M55.6513,-28.4588C63.8985,-26.5079 73.098,-24.3317 81.9303,-22.2423"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="82.7503,-25.645 91.676,-19.9369 81.1388,-18.833 82.7503,-25.645"/>
 </g>
 <!-- program~main -->
 <g id="node4" class="node"><title>program~main</title>
 <a xlink:href="../program/main.html" xlink:title="main">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="240,-70 186,-70 186,-44 240,-44 240,-70"/>
-<text text-anchor="middle" x="213" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="240,-26 186,-26 186,-1.24345e-14 240,-3.55271e-15 240,-26"/>
+<text text-anchor="middle" x="213" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
 </a>
 </g>
 <!-- module~assembly&#45;&gt;program~main -->
 <g id="edge2" class="edge"><title>module~assembly&#45;&gt;program~main</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M150.109,-57C158.268,-57 167.25,-57 175.81,-57"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="175.957,-60.5001 185.957,-57 175.957,-53.5001 175.957,-60.5001"/>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M150.109,-13C158.268,-13 167.25,-13 175.81,-13"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="175.957,-16.5001 185.957,-13 175.957,-9.5001 175.957,-16.5001"/>
 </g>
 </g>
 </svg>
@@ -568,6 +585,17 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-1">Interfaces</a></h3></div>
+  <div id="inters-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/legendre.html#interface-pascal">pascal</a>
+      
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -589,6 +617,12 @@
       <a class="list-group-item" href="../module/legendre.html#proc-getjacobian">getJacobian</a>
       
       <a class="list-group-item" href="../module/legendre.html#proc-assembleelementalmatrix">assembleElementalMatrix</a>
+      
+      <a class="list-group-item" href="../module/legendre.html#proc-pascal_1d_line">pascal_1D_line</a>
+      
+      <a class="list-group-item" href="../module/legendre.html#proc-pascal_2d_quad">pascal_2D_quad</a>
+      
+      <a class="list-group-item" href="../module/legendre.html#proc-pascal_2d_row">pascal_2D_row</a>
       
     </div>
   </div>
@@ -625,6 +659,194 @@
     
     
     
+    
+    <section>
+	 <h2>Interfaces</h2>
+	 
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-pascal"></span><h3>public interface <a href='../interface/pascal.html'>pascal</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private pure function <a href='../proc/pascal_1d_line.html'>pascal_1D_line</a>(N, x) result(row)
+    
+    
+	 
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>N</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=wp),
+  dimension(N+1)</small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private pure function <a href='../proc/pascal_2d_quad.html'>pascal_2D_quad</a>(N, x, y) result(row)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Generates an array of points related to a quadrilateral using Pascal's triangle in 2D, where rows are 0-indexed</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>N</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>y</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=wp),
+  dimension(N**2 + 2*N + 1)</small></h4>
+  
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+    </section>
+	<br>
     
 
     
@@ -923,7 +1145,7 @@ public pure function <a href='../proc/getxy.html'>getxy</a>(N) result(xy)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-getarow"></span><h3>
-public pure function <a href='../proc/getarow.html'>getArow</a>(N, xi, eta) result(row)
+private pure function <a href='../proc/getarow.html'>getArow</a>(N, xi, eta) result(row)
     
     
 	 
@@ -1013,7 +1235,7 @@ public pure function <a href='../proc/getarow.html'>getArow</a>(N, xi, eta) resu
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-getalpha"></span><h3>
-public function <a href='../proc/getalpha.html'>getAlpha</a>(N) result(alpha)
+private function <a href='../proc/getalpha.html'>getAlpha</a>(N) result(alpha)
     
     
 	 
@@ -1073,7 +1295,7 @@ public function <a href='../proc/getalpha.html'>getAlpha</a>(N) result(alpha)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-getjacobian"></span><h3>
-public pure function <a href='../proc/getjacobian.html'>getJacobian</a>(N, xi, eta, xy, alpha) result(J)
+private pure function <a href='../proc/getjacobian.html'>getJacobian</a>(N, xi, eta, xy, alpha) result(J)
     
     
 	 
@@ -1081,6 +1303,14 @@ public pure function <a href='../proc/getjacobian.html'>getJacobian</a>(N, xi, e
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>Calculates the Jacobian of a quadrilateral element</p>
     
     <h4>Arguments</h4>
     
@@ -1106,7 +1336,7 @@ public pure function <a href='../proc/getjacobian.html'>getJacobian</a>(N, xi, e
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>N</strong></td><td></td>
+  <td><strong>N</strong></td><td><p>Number of points in element</p></td>
   
 </tr>
 
@@ -1289,6 +1519,277 @@ public function <a href='../proc/assembleelementalmatrix.html'>assembleElemental
      <h4>Return Value <small>real(kind=wp),
   dimension(N,N)</small></h4>
   
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-pascal_1d_line"></span><h3>
+private pure function <a href='../proc/pascal_1d_line.html'>pascal_1D_line</a>(N, x) result(row)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>N</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=wp),
+  dimension(N+1)</small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-pascal_2d_quad"></span><h3>
+private pure function <a href='../proc/pascal_2d_quad.html'>pascal_2D_quad</a>(N, x, y) result(row)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Generates an array of points related to a quadrilateral using Pascal's triangle in 2D, where rows are 0-indexed</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>N</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>y</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=wp),
+  dimension(N**2 + 2*N + 1)</small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-pascal_2d_row"></span><h3>
+private pure function <a href='../proc/pascal_2d_row.html'>pascal_2D_row</a>(N, x, y) result(row)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Generates a row of Pascal's triangle in 2D, where rows are 0-indexed</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>N</strong></td><td><p>Row number of pascal's 2D triange (0-indexed)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td><p>X-value used in triange</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>y</strong></td><td><p>Y-Value used in triange</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=wp),
+  dimension(N+1)</small></h4>
+  <p>Output row of triange</p>
     
 
   </div>
@@ -1520,7 +2021,7 @@ private subroutine <a href='../proc/vandermonde.html'>vandermonde</a>(n, Vinv)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-02-02 09:10  
+             on 2017-02-03 18:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
