@@ -273,16 +273,45 @@ contains
   end function getAlpha
 
   pure function getJacobian(N, xi, eta, xy, alpha) result(J)
-    integer,                  intent(in)  :: N
-    real(wp),                 intent(in)  :: xi, eta
-    real(wp), dimension(N,2), intent(in)  :: xy
-    real(wp), dimension(N,N), intent(in)  :: alpha
-    real(wp), dimension(2,2)              :: J
+    !*
+    ! Calculates the Jacobian of a quadrilateral element
+    !
+    ! The Jacobian of an element is defined as:
+    ! \[ J = P \cdot X \]
+    !
+    ! Where:
+    ! \[ P = \left[ \begin{array}{cc}
+    !     \frac{\partial N_1}{\partial \xi} & \frac{\partial N_2}{\partial \xi} \\
+    !     \frac{\partial N_1}{\partial \eta} & \frac{\partial N_2}{\partial \eta} \end{array}
+    !       \cdots
+    !     \begin{array}{cc}
+    !     \frac{\partial N_{N-1}}{\partial \xi} & \frac{\partial N_{N}}{\partial \xi} \\
+    !     \frac{\partial N_{N-1}}{\partial \eta} & \frac{\partial N_{N}}{\partial \eta} \end{array}
+    ! \right]\]
+    !
+    ! \[ X = \left[ \begin{array}{c@{}}
+    !     \begin{array}{cc}
+    !       x_1 & y_1 \\
+    !       x_2 & y_2
+    !     \end{array} \\
+    !     \vdots \\
+    !     \begin{array}{cc}
+    !       x_{N-1} & y_{N-1} \\
+    !       x_N & y_N
+    !     \end{array} \\
+    !   \end{array} \right]\]
 
-    integer                               :: ii
+    integer,                  intent(in)  :: N      !! Number of points in element
+    real(wp),                 intent(in)  :: xi     !!
+    real(wp),                 intent(in)  :: eta    !!
+    real(wp), dimension(N,2), intent(in)  :: xy     !!
+    real(wp), dimension(N,N), intent(in)  :: alpha  !!
+    real(wp), dimension(2,2)              :: J      !!
+
+    integer                               :: ii     !!
     real(wp), parameter                   :: eps = epsilon(0e0)
-    real(wp), dimension(2,N)              :: P
-    real(wp), dimension(N)                :: x
+    real(wp), dimension(2,N)              :: P      !! Array of
+    real(wp), dimension(N)                :: x      !! Row in element coefficient matrix
 
     ! P is a matrix containing derivatives of each basis function at (xi,eta)
     ! P = [dN_1/dxi, dN_2/dxi, dN_3/dxi, ...
@@ -433,7 +462,7 @@ contains
     !   \[ [x^4,~ x^3y,~ \mathbf{x^2y^2},~ xy^3, y^4] \]
     !   \[ \vdots \]
     !   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]
-    
+
     integer,  intent(in)  :: N
     real(wp), intent(in)  :: x, y
     real(wp), dimension(N**2 + 2*N + 1) :: row

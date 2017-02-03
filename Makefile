@@ -1,21 +1,46 @@
 # makefile: makes the learn_dg program
 
+##############################
+#### Project Directories #####
+##############################
+
 SRC=./src
 OBJ=./obj
 BIN=./bin
 DOC=./docs
 TEST=./test
-FORTRANLIB_SRC=./src/fortranlib/src
+FLIB_SRC=./src/fortranlib/src
 
-# Compiler
+##############################
+###### Compiler options ######
+##############################
+
+# Use debug flags unless otherwise stated
+ifndef DEBUG
+DEBUG="yes"
+endif
+
 FF = gfortran
 FFLAGS = -Wall -std=f2008 -Wextra -fPIC -fmax-errors=1 -Wimplicit-interface
+ifeq ($(DEBUG),"yes")
 # Debug flags:
+$(info DEBUG is $(DEBUG))
+$(info Building in Debug mode)
 FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
+else
 # Release flags:
-# FFLAGS += -O3 -march=native -ffast-math -funroll-loops
+$(info DEBUG is $(DEBUG))
+FFLAGS += -O3 -march=native -ffast-math -funroll-loops
+$(info Building in Release mode)
+endif
 
-# Ford
+FLIBS = -lblas -llapack
+# FLIBS += -fopenmp
+
+##############################
+######## FORD options ########
+##############################
+
 ifneq ("$(wildcard $(HOME)/Projects/ford/ford.py)","")
 # FILE_EXISTS = 1
 FORD = $(HOME)/Projects/ford/ford.py
@@ -24,12 +49,13 @@ else
 FORD = ford
 endif
 
-FLIBS = -lblas -llapack
-# FLIBS += -fopenmp
-
 FORD_FLAGS = -d $(SRC) \
 	-p $(DOC)/user-guide \
 	-o $(DOC)/html
+
+##############################
+#### Project Dependencies ####
+##############################
 
 # Dependencies of main program
 objects=$(OBJ)/lib_array.o \
@@ -40,10 +66,16 @@ objects=$(OBJ)/lib_array.o \
 	$(OBJ)/assembly.o \
 	$(OBJ)/linalg.o
 
+
+
+##############################
+####### Build Recepies #######
+##############################
+
 default: build
 
 # Fortran library
-$(OBJ)/lib_array.o: $(FORTRANLIB_SRC)/lib_array.f90
+$(OBJ)/lib_array.o: $(FLIB_SRC)/lib_array.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Modules
