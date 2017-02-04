@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script lets Travis CI deploy the FORD generated documentation website
 
-set -e
+set -ev
 
 if [ ! "$TRAVIS" ]; then
     echo "Documentation can only be deployed by Travis CI"
