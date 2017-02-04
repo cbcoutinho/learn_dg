@@ -16,7 +16,7 @@ python:
   - 3.4
 env:
   - FF=gfortran-6 DEBUG="no"
-  - FF=gfortran-6 DEBUG="yes"
+  # - FF=gfortran-6 DEBUG="yes"
 
 branches:
   only:
@@ -46,7 +46,8 @@ install:
 
 before_script:
   - gfortran-6 -v
-  - $(FF) -v
+  - which FF
+  - $FF -v
   - echo "Wow we installed everything!"
 
 script:
