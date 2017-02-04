@@ -68,7 +68,8 @@ objects=$(OBJ)/lib_array.o \
 	$(OBJ)/integration.o \
 	$(OBJ)/misc.o \
 	$(OBJ)/legendre.o \
-	$(OBJ)/pascal.o \
+	$(OBJ)/pascal_1D.o \
+	$(OBJ)/pascal_2D.o \
 	$(OBJ)/io.o \
 	$(OBJ)/assembly.o \
 	$(OBJ)/linalg.o
@@ -92,7 +93,9 @@ $(OBJ)/assembly.o: $(SRC)/assembly_mod.f90 $(OBJ)/legendre.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 $(OBJ)/linalg.o: $(SRC)/linalg_mod.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/pascal.o: $(SRC)/pascal_smod.f90 $(OBJ)/legendre.o
+$(OBJ)/pascal_1D.o: $(SRC)/pascal_1D_smod.f90 $(OBJ)/legendre.o
+	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
+$(OBJ)/pascal_2D.o: $(SRC)/pascal_2D_smod.f90 $(OBJ)/legendre.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
 $(OBJ)/legendre.o: $(SRC)/legendre_mod.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/linalg.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
