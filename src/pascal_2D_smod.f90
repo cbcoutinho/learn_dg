@@ -29,8 +29,8 @@ contains
       real(wp), intent(in)  :: y            !! Y-coordinate of node used in calculation
       real(wp), dimension((N+1)**2) :: row  !! Output row
 
-    integer :: ii, start, finish
-    real(wp), dimension(:), allocatable :: temp, temp_pre, temp_post
+    integer :: ii
+    real(wp), dimension(:), allocatable :: temp_pre, temp_post
 
     row = 0.d0
 

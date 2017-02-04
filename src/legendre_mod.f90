@@ -18,15 +18,16 @@ module legendre
   public :: pascal_row
   interface pascal_row
     module function pascal_1D_line(N, x) result(row)
-        integer,  intent(in)  :: N
-        real(wp), intent(in)  :: x
-        real(wp), dimension(N+1) :: row
+      integer,  intent(in)        :: N
+      real(wp), intent(in)        :: x
+      real(wp), dimension(N+1)    :: row
     end function pascal_1D_line
+
     module function pascal_2D_quad(N, x, y) result(row)
-      integer,  intent(in)  :: N
-      real(wp), intent(in)  :: x
-      real(wp), intent(in)  :: y
-      real(wp), dimension(N+1) :: row
+      integer,  intent(in)        :: N
+      real(wp), intent(in)        :: x
+      real(wp), intent(in)        :: y
+      real(wp), dimension(N+1)    :: row
     end function pascal_2D_quad
   end interface pascal_row
 
