@@ -26,16 +26,19 @@ endif
 
 FFLAGS = -std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface -Wall -Wextra
 ifeq ($(DEBUG),"yes")
+# if [[ "$(DEBUG)" =~ ^[Yy]$ ]]; then
 # Debug flags:
-# $(info DEBUG is $(DEBUG))
+$(info DEBUG is $(DEBUG))
 $(info Building in Debug mode)
 FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 else
 # Release flags:
-# $(info DEBUG is $(DEBUG))
+$(info DEBUG is $(DEBUG))
 FFLAGS += -O3 -march=native -ffast-math -funroll-loops
 $(info Building in Release mode)
 endif
+
+
 
 FLIBS = -lblas -llapack
 # FLIBS += -fopenmp

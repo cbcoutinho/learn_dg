@@ -1,3 +1,9 @@
+! Learn_dg - A quick and dirty project to deploy a working DG solver
+! Copyright (c) 2017, Chris Coutinho
+! All rights reserved.
+!
+! Licensed under the BSD-2 clause license. See LICENSE for details.
+
 module integration
   use iso_fortran_env, only: wp=>real64
   use lib_array, only: linspace
