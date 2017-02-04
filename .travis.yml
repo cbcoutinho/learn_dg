@@ -15,8 +15,8 @@ cache:
 python:
   - 3.4
 env:
-  - FF=gfortran-6 DEBUG="no"
-  # - FF=gfortran-6 DEBUG="yes"
+  - DEBUG="no"
+  # - DEBUG="yes"
 
 branches:
   only:
@@ -43,12 +43,16 @@ install:
   - pip install --upgrade graphviz
   - pip install --upgrade meshio
   - (pip install --upgrade ford && ford --version)
+  - mkdir -p $TRAVIS_BUILD_DIR/bin
+  - ln -sf "$(which gfortran-6)" $TRAVIS_BUILD_DIR/bin/gfortran
+  - export PATH=$TRAVIS_BUILD_DIR/bin:$PATH
 
 before_script:
   - gfortran-6 -v
-  - which FF
-  - $FF -v
+  - gfortran -v
   - echo "Wow we installed everything!"
+  # - which FF
+  # - $FF -v
 
 script:
   - make clean
