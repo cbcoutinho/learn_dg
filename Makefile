@@ -101,11 +101,16 @@ $(OBJ)/main.o: $(SRC)/main.f90 $(objects)
 $(BIN)/main: $(OBJ)/main.o $(objects)
 	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
 
+$(OBJ)/doubleint.o: $(SRC)/doubleint.f90 $(objects)
+	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $< $(FLIBS)
+$(BIN)/doubleint: $(OBJ)/doubleint.o $(objects)
+	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
+
 submodules:
 	git submodule init
 	git submodule update
 
-build: submodules $(BIN)/main
+build: submodules $(BIN)/main $(BIN)/doubleint
 
 mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
 	gmsh $(TEST)/test1D.geo -order 1 -1 -o $(TEST)/test1D.msh > /dev/null 2>&1
@@ -113,6 +118,7 @@ mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
 
 run: build mesh
 	$(BIN)/main $(TEST)/test1D.msh
+	$(BIN)/doubleint
 
 plot: run
 	python plotter.py

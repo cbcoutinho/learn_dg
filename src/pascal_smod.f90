@@ -18,12 +18,9 @@ contains
   end function pascal_1D_line
 
   module function pascal_2D_quad(N, x, y) result(row)
-      integer,  intent(in)  :: N
-      real(wp), intent(in)  :: x
-      real(wp), intent(in)  :: y
-      real(wp), dimension(N+1) :: row
     !*
-    ! Generates an array of points related to a quadrilateral using Pascal's triangle in 2D, where rows are 0-indexed
+    ! Generates an array of points related to a quadrilateral using Pascal's
+    ! triangle in 2D, where rows are 0-indexed
     !
     ! Pascal's triangle in 2D looks like this, with points used in bi-quadratic quadrilateral in bold:
     !   \[ [\mathbf{1}] \]
@@ -33,6 +30,11 @@ contains
     !   \[ [x^4,~ x^3y,~ \mathbf{x^2y^2},~ xy^3, y^4] \]
     !   \[ \vdots \]
     !   \[ [x^N,~ x^{N-1}y,~ \cdots ~,~ xy^{N-1},~ y^N] \]
+
+      integer,  intent(in)  :: N            !! Order of the qaudrilateral
+      real(wp), intent(in)  :: x            !! X-coordinate of node used in calculation
+      real(wp), intent(in)  :: y            !! Y-coordinate of node used in calculation
+      real(wp), dimension((N+1)**2) :: row  !! Output row
 
     integer :: ii, start, finish
     real(wp), dimension(:), allocatable :: temp, temp_pre, temp_post
