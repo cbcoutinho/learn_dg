@@ -20,7 +20,10 @@ ifndef DEBUG
 DEBUG = "yes"
 endif
 
+ifndef FF
 FF = gfortran
+endif
+
 FFLAGS = -std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface -Wall -Wextra
 ifeq ($(DEBUG),"yes")
 # Debug flags:

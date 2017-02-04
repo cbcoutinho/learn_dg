@@ -15,8 +15,8 @@ cache:
 python:
   - 3.4
 env:
-  - DEBUG="no"
-  - DEBUG="yes"
+  - FF=gfortran-6 DEBUG="no"
+  - FF=gfortran-6 DEBUG="yes"
 
 branches:
   only:
@@ -46,8 +46,10 @@ install:
 
 before_script:
   - gfortran-6 -v
-  - ln -fs "$(which gfortran-6)" "$HOME/bin/gfortran" && gfortran --version
+  - echo $PATH
+  - ln -fs "$(which gfortran-6)" "$HOME/gfortran"
   - gfortran -v
+  - $(FF) -v
   - echo "Wow we installed everything!"
 
 script:
