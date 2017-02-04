@@ -1,4 +1,4 @@
-language: generic
+language: python
 group: stable
 os: linux
 dist: trusty
@@ -6,8 +6,8 @@ dist: trusty
 notifications:
   email: change  # options: [always|never|change]
 
-# python:
-#   - 3.4
+python:
+  - 3.4
 
 cache:
   apt: true
@@ -22,10 +22,7 @@ branches:
 
 matrix:
   include:
-    - env:
-      - gfortran=gfortran-6
-      - PYTHON_VERSION=3.5
-      - DEBUG="no"
+    - env: gfortran=gfortran-6 DEBUG="no"
       addons:
         apt:
           packages:
@@ -35,18 +32,9 @@ matrix:
             - libblas-dev
             - liblapack-dev
             - gmsh
-            sources: &sources
-              - ubuntu-toolchain-r-test
-              # - llvm-toolchain-precise
-              # - llvm-toolchain-precise-3.8
-              # - llvm-toolchain-precise-3.7
-              # - llvm-toolchain-precise-3.6
-              # - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
-              # key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-    - env:
-      - gfortran=gfortran-6
-      - PYTHON_VERSION=3.5
-      - DEBUG="yes"
+          sources: &sources
+            - ubuntu-toolchain-r-test
+    - env: gfortran=gfortran-6 DEBUG="yes"
       addons:
         apt:
           packages:
@@ -56,7 +44,7 @@ matrix:
             - libblas-dev
             - liblapack-dev
             - gmsh
-            sources: *sources
+          sources: *sources
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
