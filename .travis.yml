@@ -15,8 +15,8 @@ cache:
 python:
   - 3.4
 env:
-  - gfortran=gfortran-6 DEBUG="no"
-  - gfortran=gfortran-6 DEBUG="yes"
+  - DEBUG="no"
+  - DEBUG="yes"
 
 branches:
   only:
@@ -45,9 +45,10 @@ install:
   - (pip install --upgrade ford && ford --version)
 
 before_script:
+  - gfortran-6 -v
+  - ln -fs "$(which gfortran-6)" "$HOME/bin/gfortran" && gfortran --version
   - gfortran -v
   - echo "Wow we installed everything!"
-  # - ln -fs "$(which gfortran-6)" "$HOME/bin/gfortran" && gfortran --version
 
 script:
   - make clean
