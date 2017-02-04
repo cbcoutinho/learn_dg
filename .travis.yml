@@ -16,7 +16,7 @@ python:
   - 3.4
 env:
   - DEBUG="no"
-  # - DEBUG="yes"
+  - DEBUG="yes"
 
 branches:
   only:
@@ -48,11 +48,8 @@ install:
   - export PATH=$TRAVIS_BUILD_DIR/bin:$PATH
 
 before_script:
-  - gfortran-6 -v
   - gfortran -v
   - echo "Wow we installed everything!"
-  # - which FF
-  # - $FF -v
 
 script:
   - make clean

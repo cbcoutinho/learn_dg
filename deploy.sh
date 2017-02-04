@@ -8,7 +8,7 @@ if [ ! "$TRAVIS" ]; then
     exit 0
 fi
 
-if [ ! "$TRAVIS_BRANCH" != "master" ]; then
+if [ "$TRAVIS_BRANCH" != "master" ]; then
   echo "Skipping documentation deployment"
   echo "Only applicable to master branch"
   exit 0
