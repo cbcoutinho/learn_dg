@@ -20,16 +20,21 @@ branches:
     - master
     - develop
 
-addons:
-  sources:
-    - ubuntu-toolchain-r-test
-  apt:
-    packages:
-      - graphviz
-      - libblas-dev
-      - liblapack-dev
-      - gmsh
-      - gfortran-6
+matrix:
+  include:
+    env: gfortran=gfortran-6
+    addons:
+      sources: &sources
+        - ubuntu-toolchain-r-test
+        apt:
+          packages:
+            - gfortran-6
+            - valgrind
+            - graphviz
+            - libblas-dev
+            - liblapack-dev
+            - gmsh
+
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
