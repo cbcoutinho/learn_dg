@@ -24,22 +24,22 @@ matrix:
   include:
     - env: gfortran=gfortran-6
       addons:
-        sources: &sources
-          - ubuntu-toolchain-r-test
-          - llvm-toolchain-precise
-          - llvm-toolchain-precise-3.8
-          - llvm-toolchain-precise-3.7
-          - llvm-toolchain-precise-3.6
-          - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
-            key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-          apt:
-            packages:
-              - gfortran-6
-              - valgrind
-              - graphviz
-              - libblas-dev
-              - liblapack-dev
-              - gmsh
+        apt:
+          packages:
+            - gfortran-6
+            - valgrind
+            - graphviz
+            - libblas-dev
+            - liblapack-dev
+            - gmsh
+          sources: &sources
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise
+            - llvm-toolchain-precise-3.8
+            - llvm-toolchain-precise-3.7
+            - llvm-toolchain-precise-3.6
+            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
 
 
 before_install:
