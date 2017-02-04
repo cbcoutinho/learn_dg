@@ -18,11 +18,9 @@ cache:
 
 python:
   - 3.4
-  - 3.5
-  - 3.6
 env:
-  - DEBUG="no"
-  - DEBUG="yes"
+  - DEBUG=0
+  - DEBUG=1
 
 branches:
   only:

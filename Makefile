@@ -17,15 +17,15 @@ FLIB_SRC=./src/fortranlib/src
 
 # Use debug flags unless otherwise stated
 ifndef DEBUG
-DEBUG = "yes"
+DEBUG=1
 endif
 
 ifndef FF
-FF = gfortran
+FF=gfortran
 endif
 
 FFLAGS = -std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface -Wall -Wextra
-ifeq ($(DEBUG),"yes")
+ifeq ($(DEBUG),1)
 # if [[ "$(DEBUG)" =~ ^[Yy]$ ]]; then
 # Debug flags:
 $(info DEBUG is $(DEBUG))
