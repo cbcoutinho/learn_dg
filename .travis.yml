@@ -1,19 +1,22 @@
-language: python
+language: generic
 group: stable
 os: linux
-dist: precise
+dist: trusty
 
 notifications:
   email: change  # options: [always|never|change]
 
+cache:
+  apt: true
+  pip: true
+    - $HOME/.cache/pip
+    - $HOME/.local
+
 python:
   - 3.4
-
-cache:
-  apt: false
-  pip: false
-    # - $HOME/.cache/pip
-    # - $HOME/.local
+env:
+  - DEBUG="no"
+  - DEBUG="yes"
 
 branches:
   only:
@@ -21,18 +24,18 @@ branches:
     - develop
 
 addons:
-  sources:
-    - ubuntu-toolchain-r-test
   apt:
     packages:
       - gfortran-6
+      - valgrind
       - graphviz
       - libblas-dev
       - liblapack-dev
       - gmsh
+    sources: &sources
+      - ubuntu-toolchain-r-test
 
 before_install:
-  - ln -fs "$(which gfortran-6)" "$HOME/bin/gfortran" && gfortran --version
   - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
   - chmod 600 .deploy_key
 
@@ -40,15 +43,18 @@ install:
   - pip install --upgrade graphviz
   - pip install --upgrade meshio
   - (pip install --upgrade ford && ford --version)
+  - mkdir -p $TRAVIS_BUILD_DIR/bin
+  - ln -sf "$(which gfortran-6)" $TRAVIS_BUILD_DIR/bin/gfortran
+  - export PATH=$TRAVIS_BUILD_DIR/bin:$PATH
 
 before_script:
+  - gfortran -v
   - echo "Wow we installed everything!"
 
 script:
   - make clean
   - make build
   - make run
-  - DEBUG=no make clean run
   - make docs
 
 after_success:

@@ -188,34 +188,46 @@ contains
 
     if ( N == 4 ) then
 
-      xy(:,1) = [-one, one, one, -one]          ! Four corner nodes
-      xy(:,2) = [-one, -one, one, one]          ! Four corner nodes
+      xy(1,:)   = [   -one,   -one]  ! Node 1
+      xy(2,:)   = [    one,   -one]  ! Node 2
+      xy(3,:)   = [    one,    one]  ! Node 3
+      xy(4,:)   = [   -one,    one]  ! Node 4
 
     elseif ( N == 9 ) then
 
-      xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
-                zero, one, zero, -one, &        ! Four edge nodes
-                zero]                           ! Center node
-
-      xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
-                -one, zero, one, zero, &        ! Four edge nodes
-                zero]                           ! Center node
+      xy(1,:)   = [   -one,   -one]  ! Node 1
+      xy(2,:)   = [    one,   -one]  ! Node 2
+      xy(3,:)   = [    one,    one]  ! Node 3
+      xy(4,:)   = [   -one,    one]  ! Node 4
+      xy(5,:)   = [   zero,   -one]  ! Node 5
+      xy(6,:)   = [    one,   zero]  ! Node 6
+      xy(7,:)   = [   zero,    one]  ! Node 7
+      xy(8,:)   = [   -one,   zero]  ! Node 8
+      xy(9,:)   = [   zero,   zero]  ! Node 9
 
     elseif ( N == 16 ) then
 
-      xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
-                -third, third, &                ! Two edge nodes on each
-                one, one, &                     !     of the four edges
-                third, -third, &
-                -one, -one, &
-                -third, third, third, -third]   ! Four internal nodes
+      xy(1,:)   = [   -one,   -one]  ! Node 1
+      xy(2,:)   = [    one,   -one]  ! Node 2
+      xy(3,:)   = [    one,    one]  ! Node 3
+      xy(4,:)   = [   -one,    one]  ! Node 4
+      xy(5,:)   = [ -third,   -one]  ! Node 5
+      xy(6,:)   = [  third,   -one]  ! Node 6
+      xy(7,:)   = [    one, -third]  ! Node 7
+      xy(8,:)   = [    one,  third]  ! Node 8
+      xy(9,:)   = [  third,    one]  ! Node 9
+      xy(10,:)  = [ -third,    one]  ! Node 10
+      xy(11,:)  = [   -one,  third]  ! Node 11
+      xy(12,:)  = [   -one, -third]  ! Node 12
+      xy(13,:)  = [ -third, -third]  ! Node 13
+      xy(14,:)  = [  third, -third]  ! Node 14
+      xy(15,:)  = [  third,  third]  ! Node 15
+      xy(16,:)  = [ -third,  third]  ! Node 16
 
-      xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
-                -one, -one, &                   ! Two edge nodes on each
-                -third, third, &                !     of the four edges
-                one, one, &
-                third, -third, &
-                -third, -third, third, third]   ! Four internal nodes
+    ! else
+    !
+    !   print*, "Unsupported number of nodes selected: ", N
+    !   stop "Number of nodes must be either 4, 9, or 16"
 
     endif
 
@@ -228,9 +240,6 @@ contains
     real(wp), dimension(N)  :: row
 
     if ( N == 4 ) then
-      ! row = [1._wp, &
-      !       xi, eta, &
-      !       xi*eta]
       row = pascal(1, xi, eta)
 
     elseif ( N == 9 ) then
@@ -250,6 +259,11 @@ contains
       !       xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
       !       xi**3._wp * eta**3._wp]
       row = pascal(3, xi, eta)
+
+    ! else
+    !
+    !   print*, "Unsupported number of nodes selected: ", N
+    !   stop "Number of nodes must be either 4, 9, or 16"
 
     endif
 
