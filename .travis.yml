@@ -46,9 +46,6 @@ install:
 
 before_script:
   - gfortran-6 -v
-  - echo $PATH
-  - ln -fs "$(which gfortran-6)" "$HOME/gfortran"
-  - gfortran -v
   - $(FF) -v
   - echo "Wow we installed everything!"
 
