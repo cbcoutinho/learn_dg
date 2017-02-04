@@ -132,12 +132,12 @@
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/legendre.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/legendre_mod.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/legendre.f90.html'>legendre.f90</a></li>
+     <li><a href='../sourcefile/legendre_mod.f90.html'>legendre_mod.f90</a></li>
   
      <li><a href='../module/legendre.html'>legendre</a></li>
   
@@ -239,9 +239,9 @@
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
-      <a class="list-group-item" href="../interface/pascal.html">pascal</a>
-      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
       
       <a class="list-group-item" href="../proc/r8mat_print.html">r8mat_print</a>
       
@@ -381,90 +381,90 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
 <polygon fill="white" stroke="none" points="-4,4 -4,-91 540,-91 540,4 -4,4"/>
 <!-- proc~assembleelementalmatrix -->
 <g id="proc~~assembleelementalmatrix~~CallsGraph_node1" class="node"><title>proc~assembleelementalmatrix</title>
-<polygon fill="none" stroke="black" points="135.5,-45 0.5,-45 0.5,-21 135.5,-21 135.5,-45"/>
-<text text-anchor="middle" x="68" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">assembleElementalMatrix</text>
+<polygon fill="none" stroke="black" points="135.5,-66 0.5,-66 0.5,-42 135.5,-42 135.5,-66"/>
+<text text-anchor="middle" x="68" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">assembleElementalMatrix</text>
+</g>
+<!-- integrate2d -->
+<g id="proc~~assembleelementalmatrix~~CallsGraph_node2" class="node"><title>integrate2d</title>
+<polygon fill="#777777" stroke="#777777" points="239.5,-87 172.5,-87 172.5,-63 239.5,-63 239.5,-87"/>
+<text text-anchor="middle" x="206" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate2d</text>
+</g>
+<!-- proc~assembleelementalmatrix&#45;&gt;integrate2d -->
+<g id="proc~~assembleelementalmatrix~~CallsGraph_edge6" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;integrate2d</title>
+<path fill="none" stroke="#ff0000" d="M135.805,-64.3154C144.879,-65.7166 153.981,-67.1221 162.465,-68.4321"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="162.047,-71.9089 172.464,-69.976 163.115,-64.9909 162.047,-71.9089"/>
 </g>
 <!-- proc~getalpha -->
-<g id="proc~~assembleelementalmatrix~~CallsGraph_node2" class="node"><title>proc~getalpha</title>
-<g id="a_proc~~assembleelementalmatrix~~CallsGraph_node2"><a xlink:href="../proc/getalpha.html" xlink:title="getAlpha">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="233.5,-66 178.5,-66 178.5,-42 233.5,-42 233.5,-66"/>
-<text text-anchor="middle" x="206" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha</text>
+<g id="proc~~assembleelementalmatrix~~CallsGraph_node3" class="node"><title>proc~getalpha</title>
+<g id="a_proc~~assembleelementalmatrix~~CallsGraph_node3"><a xlink:href="../proc/getalpha.html" xlink:title="getAlpha">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="233.5,-45 178.5,-45 178.5,-21 233.5,-21 233.5,-45"/>
+<text text-anchor="middle" x="206" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha</text>
 </a>
 </g>
 </g>
 <!-- proc~assembleelementalmatrix&#45;&gt;proc~getalpha -->
-<g id="proc~~assembleelementalmatrix~~CallsGraph_edge6" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;proc~getalpha</title>
-<path fill="none" stroke="#ff0000" d="M135.805,-43.3154C146.973,-45.0399 158.184,-46.771 168.232,-48.3226"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="167.815,-51.7996 178.232,-49.8667 168.883,-44.8816 167.815,-51.7996"/>
-</g>
-<!-- integrate2d -->
-<g id="proc~~assembleelementalmatrix~~CallsGraph_node3" class="node"><title>integrate2d</title>
-<polygon fill="#777777" stroke="#777777" points="239.5,-24 172.5,-24 172.5,-0 239.5,-0 239.5,-24"/>
-<text text-anchor="middle" x="206" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate2d</text>
-</g>
-<!-- proc~assembleelementalmatrix&#45;&gt;integrate2d -->
-<g id="proc~~assembleelementalmatrix~~CallsGraph_edge7" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;integrate2d</title>
-<path fill="none" stroke="#ff0000" d="M135.805,-22.6846C144.879,-21.2834 153.981,-19.8779 162.465,-18.5679"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="163.115,-22.0091 172.464,-17.024 162.047,-15.0911 163.115,-22.0091"/>
-</g>
-<!-- proc~eye -->
-<g id="proc~~assembleelementalmatrix~~CallsGraph_node4" class="node"><title>proc~eye</title>
-<g id="a_proc~~assembleelementalmatrix~~CallsGraph_node4"><a xlink:href="../proc/eye.html" xlink:title="eye">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="343,-87 289,-87 289,-63 343,-63 343,-87"/>
-<text text-anchor="middle" x="316" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eye</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha&#45;&gt;proc~eye -->
-<g id="proc~~assembleelementalmatrix~~CallsGraph_edge4" class="edge"><title>proc~getalpha&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff0000" d="M233.697,-59.191C247.4,-61.8555 264.286,-65.139 279.112,-68.0219"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="278.499,-71.468 288.983,-69.9412 279.835,-64.5967 278.499,-71.468"/>
+<g id="proc~~assembleelementalmatrix~~CallsGraph_edge7" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;proc~getalpha</title>
+<path fill="none" stroke="#ff0000" d="M135.805,-43.6846C146.973,-41.9601 158.184,-40.229 168.232,-38.6774"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="168.883,-42.1184 178.232,-37.1333 167.815,-35.2004 168.883,-42.1184"/>
 </g>
 <!-- proc~linsolve_quick -->
-<g id="proc~~assembleelementalmatrix~~CallsGraph_node5" class="node"><title>proc~linsolve_quick</title>
-<g id="a_proc~~assembleelementalmatrix~~CallsGraph_node5"><a xlink:href="../proc/linsolve_quick.html" xlink:title="linsolve_quick">
-<polygon fill="#d9534f" stroke="#d9534f" points="355.5,-45 276.5,-45 276.5,-21 355.5,-21 355.5,-45"/>
-<text text-anchor="middle" x="316" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve_quick</text>
+<g id="proc~~assembleelementalmatrix~~CallsGraph_node4" class="node"><title>proc~linsolve_quick</title>
+<g id="a_proc~~assembleelementalmatrix~~CallsGraph_node4"><a xlink:href="../proc/linsolve_quick.html" xlink:title="linsolve_quick">
+<polygon fill="#d9534f" stroke="#d9534f" points="355.5,-66 276.5,-66 276.5,-42 355.5,-42 355.5,-66"/>
+<text text-anchor="middle" x="316" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve_quick</text>
 </a>
 </g>
 </g>
 <!-- proc~getalpha&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~assembleelementalmatrix~~CallsGraph_edge5" class="edge"><title>proc~getalpha&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M233.697,-48.809C243.548,-46.8934 255.046,-44.6578 266.24,-42.4812"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="267.231,-45.8541 276.379,-40.5097 265.895,-38.9828 267.231,-45.8541"/>
+<g id="proc~~assembleelementalmatrix~~CallsGraph_edge4" class="edge"><title>proc~getalpha&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#00ffff" d="M233.697,-38.191C243.548,-40.1066 255.046,-42.3422 266.24,-44.5188"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="265.895,-48.0172 276.379,-46.4903 267.231,-41.1459 265.895,-48.0172"/>
+</g>
+<!-- proc~eye -->
+<g id="proc~~assembleelementalmatrix~~CallsGraph_node5" class="node"><title>proc~eye</title>
+<g id="a_proc~~assembleelementalmatrix~~CallsGraph_node5"><a xlink:href="../proc/eye.html" xlink:title="eye">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="343,-24 289,-24 289,-0 343,-0 343,-24"/>
+<text text-anchor="middle" x="316" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eye</text>
+</a>
+</g>
+</g>
+<!-- proc~getalpha&#45;&gt;proc~eye -->
+<g id="proc~~assembleelementalmatrix~~CallsGraph_edge5" class="edge"><title>proc~getalpha&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#00ffff" d="M233.697,-27.809C247.4,-25.1445 264.286,-21.861 279.112,-18.9781"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="279.835,-22.4033 288.983,-17.0588 278.499,-15.532 279.835,-22.4033"/>
 </g>
 <!-- proc~linsolve -->
 <g id="proc~~assembleelementalmatrix~~CallsGraph_node6" class="node"><title>proc~linsolve</title>
 <g id="a_proc~~assembleelementalmatrix~~CallsGraph_node6"><a xlink:href="../proc/linsolve.html" xlink:title="linsolve">
-<polygon fill="#d9534f" stroke="#d9534f" points="446,-45 392,-45 392,-21 446,-21 446,-45"/>
-<text text-anchor="middle" x="419" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="446,-66 392,-66 392,-42 446,-42 446,-66"/>
+<text text-anchor="middle" x="419" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve</text>
 </a>
 </g>
 </g>
 <!-- proc~linsolve_quick&#45;&gt;proc~linsolve -->
 <g id="proc~~assembleelementalmatrix~~CallsGraph_edge3" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
-<path fill="none" stroke="#00ffff" d="M355.76,-33C364.382,-33 373.487,-33 381.993,-33"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="381.998,-36.5001 391.998,-33 381.998,-29.5001 381.998,-36.5001"/>
+<path fill="none" stroke="#ff0000" d="M355.76,-54C364.382,-54 373.487,-54 381.993,-54"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="381.998,-57.5001 391.998,-54 381.998,-50.5001 381.998,-57.5001"/>
 </g>
 <!-- dgetrs -->
 <g id="proc~~assembleelementalmatrix~~CallsGraph_node7" class="node"><title>dgetrs</title>
-<polygon fill="#777777" stroke="#777777" points="536,-66 482,-66 482,-42 536,-42 536,-66"/>
-<text text-anchor="middle" x="509" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+<polygon fill="#777777" stroke="#777777" points="536,-87 482,-87 482,-63 536,-63 536,-87"/>
+<text text-anchor="middle" x="509" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
 <!-- proc~linsolve&#45;&gt;dgetrs -->
 <g id="proc~~assembleelementalmatrix~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
-<path fill="none" stroke="#ff0000" d="M446.403,-39.3007C454.481,-41.2284 463.507,-43.3823 472.105,-45.4341"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="471.38,-48.8593 481.919,-47.7761 473.005,-42.0505 471.38,-48.8593"/>
+<path fill="none" stroke="#ff0000" d="M446.403,-60.3007C454.481,-62.2284 463.507,-64.3823 472.105,-66.4341"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="471.38,-69.8593 481.919,-68.7761 473.005,-63.0505 471.38,-69.8593"/>
 </g>
 <!-- dgetrf -->
 <g id="proc~~assembleelementalmatrix~~CallsGraph_node8" class="node"><title>dgetrf</title>
-<polygon fill="#777777" stroke="#777777" points="536,-24 482,-24 482,-0 536,-0 536,-24"/>
-<text text-anchor="middle" x="509" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+<polygon fill="#777777" stroke="#777777" points="536,-45 482,-45 482,-21 536,-21 536,-45"/>
+<text text-anchor="middle" x="509" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
 <!-- proc~linsolve&#45;&gt;dgetrf -->
 <g id="proc~~assembleelementalmatrix~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
-<path fill="none" stroke="#ff0000" d="M446.403,-26.6993C454.481,-24.7716 463.507,-22.6177 472.105,-20.5659"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="473.005,-23.9495 481.919,-18.2239 471.38,-17.1407 473.005,-23.9495"/>
+<path fill="none" stroke="#ff0000" d="M446.403,-47.6993C454.481,-45.7716 463.507,-43.6177 472.105,-41.5659"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="473.005,-44.9495 481.919,-39.2239 471.38,-38.1407 473.005,-44.9495"/>
 </g>
 </g>
 </svg>
@@ -759,9 +759,9 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
-      <a class="list-group-item" href="../interface/pascal.html">pascal</a>
-      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
       
       <a class="list-group-item" href="../proc/r8mat_print.html">r8mat_print</a>
       
@@ -794,7 +794,7 @@ public function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-02-04 01:55  
+             on 2017-02-04 02:18  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
