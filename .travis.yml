@@ -1,4 +1,4 @@
-language: python
+language: generic
 group: stable
 os: linux
 dist: trusty
@@ -6,8 +6,8 @@ dist: trusty
 notifications:
   email: change  # options: [always|never|change]
 
-python:
-  - 3.4
+# python:
+#   - 3.4
 
 cache:
   apt: false
@@ -22,24 +22,32 @@ branches:
 
 matrix:
   include:
-    - env: gfortran=gfortran-6
-      addons:
-        apt:
-          packages:
-            - gfortran-6
-            - valgrind
-            - graphviz
-            - libblas-dev
-            - liblapack-dev
-            - gmsh
-          sources: &sources
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise
-            - llvm-toolchain-precise-3.8
-            - llvm-toolchain-precise-3.7
-            - llvm-toolchain-precise-3.6
-            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
-              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+    - env:
+      - gfortran=gfortran-6
+      - PYTHON_VERSION=3.5
+      - DEBUG="no"
+    - env:
+      - gfortran=gfortran-6
+      - PYTHON_VERSION=3.5
+      - DEBUG="yes"
+
+addons:
+  apt:
+    packages:
+      - gfortran-6
+      - valgrind
+      - graphviz
+      - libblas-dev
+      - liblapack-dev
+      - gmsh
+    sources: &sources
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise
+      - llvm-toolchain-precise-3.8
+      - llvm-toolchain-precise-3.7
+      - llvm-toolchain-precise-3.6
+      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
+        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
 
 
 before_install:
@@ -52,14 +60,13 @@ install:
   - (pip install --upgrade ford && ford --version)
 
 before_script:
-  - ln -fs "$(which gfortran-6)" "$HOME/bin/gfortran" && gfortran --version
   - echo "Wow we installed everything!"
+  # - ln -fs "$(which gfortran-6)" "$HOME/bin/gfortran" && gfortran --version
 
 script:
   - make clean
   - make build
   - make run
-  - DEBUG=no make clean run
   - make docs
 
 after_success:
