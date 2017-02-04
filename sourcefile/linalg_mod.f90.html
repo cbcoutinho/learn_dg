@@ -423,121 +423,127 @@
 
     <section>
       <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="k">module </span><span class="n">linalg</span>
-<a name="ln-2"></a>  <span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real64</span>
-<a name="ln-3"></a>  <span class="k">implicit none</span>
-<a name="ln-4"></a>
-<a name="ln-5"></a><span class="k">  private</span>
-<a name="ln-6"></a><span class="k">  public</span>  <span class="kd">::</span> <span class="n">linsolve_quick</span><span class="p">,</span> <span class="n">linsolve</span><span class="p">,</span> <span class="n">inv2</span><span class="p">,</span> <span class="n">det2</span><span class="p">,</span> <span class="n">eye</span>
-<a name="ln-7"></a>
-<a name="ln-8"></a><span class="k">contains</span>
-<a name="ln-9"></a>
-<a name="ln-10"></a><span class="k">  pure function </span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-<a name="ln-11"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">N</span>
-<a name="ln-12"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">eye</span>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">! Learn_dg - A quick and dirty project to deploy a working DG solver</span>
+<a name="ln-2"></a><span class="c">! Copyright (c) 2017, Chris Coutinho</span>
+<a name="ln-3"></a><span class="c">! All rights reserved.</span>
+<a name="ln-4"></a><span class="c">!</span>
+<a name="ln-5"></a><span class="c">! Licensed under the BSD-2 clause license. See LICENSE for details.</span>
+<a name="ln-6"></a>
+<a name="ln-7"></a><span class="k">module </span><span class="n">linalg</span>
+<a name="ln-8"></a>  <span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real64</span>
+<a name="ln-9"></a>  <span class="k">implicit none</span>
+<a name="ln-10"></a>
+<a name="ln-11"></a><span class="k">  private</span>
+<a name="ln-12"></a><span class="k">  public</span>  <span class="kd">::</span> <span class="n">linsolve_quick</span><span class="p">,</span> <span class="n">linsolve</span><span class="p">,</span> <span class="n">inv2</span><span class="p">,</span> <span class="n">det2</span><span class="p">,</span> <span class="n">eye</span>
 <a name="ln-13"></a>
-<a name="ln-14"></a>    <span class="kt">integer</span>                   <span class="kd">::</span> <span class="n">ii</span>
+<a name="ln-14"></a><span class="k">contains</span>
 <a name="ln-15"></a>
-<a name="ln-16"></a>    <span class="n">eye</span> <span class="o">=</span> <span class="mf">0._wp</span><span class="p">;</span> <span class="k">forall</span><span class="p">(</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">)</span> <span class="n">eye</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">ii</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1._wp</span>
-<a name="ln-17"></a>
-<a name="ln-18"></a>    <span class="k">return</span>
-<a name="ln-19"></a><span class="k">  end function </span><span class="n">eye</span>
-<a name="ln-20"></a>
-<a name="ln-21"></a>  <span class="k">pure function </span><span class="n">inv2</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">invJ</span><span class="p">)</span>
-<a name="ln-22"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">J</span>
-<a name="ln-23"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">invJ</span>
-<a name="ln-24"></a>
-<a name="ln-25"></a>    <span class="n">invJ</span>  <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span> <span class="p">[</span><span class="n">J</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="n">J</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">J</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">J</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span>
-<a name="ln-26"></a>    <span class="n">invJ</span>  <span class="o">=</span> <span class="n">invJ</span> <span class="o">/</span> <span class="n">det2</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
-<a name="ln-27"></a>
-<a name="ln-28"></a>    <span class="k">return</span>
-<a name="ln-29"></a><span class="k">  end function </span><span class="n">inv2</span>
+<a name="ln-16"></a><span class="k">  pure function </span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<a name="ln-17"></a>    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">N</span>
+<a name="ln-18"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">eye</span>
+<a name="ln-19"></a>
+<a name="ln-20"></a>    <span class="kt">integer</span>                   <span class="kd">::</span> <span class="n">ii</span>
+<a name="ln-21"></a>
+<a name="ln-22"></a>    <span class="n">eye</span> <span class="o">=</span> <span class="mf">0._wp</span><span class="p">;</span> <span class="k">forall</span><span class="p">(</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">)</span> <span class="n">eye</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">ii</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1._wp</span>
+<a name="ln-23"></a>
+<a name="ln-24"></a>    <span class="k">return</span>
+<a name="ln-25"></a><span class="k">  end function </span><span class="n">eye</span>
+<a name="ln-26"></a>
+<a name="ln-27"></a>  <span class="k">pure function </span><span class="n">inv2</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">invJ</span><span class="p">)</span>
+<a name="ln-28"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">J</span>
+<a name="ln-29"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">invJ</span>
 <a name="ln-30"></a>
-<a name="ln-31"></a>  <span class="k">pure function </span><span class="n">det2</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">det</span><span class="p">)</span>
-<a name="ln-32"></a>    <span class="c">! Computes the determinant of a 2x2 matrix</span>
-<a name="ln-33"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">A</span>
-<a name="ln-34"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">det</span>
-<a name="ln-35"></a>
-<a name="ln-36"></a>    <span class="n">det</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">A</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">A</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-37"></a>
-<a name="ln-38"></a>    <span class="k">return</span>
-<a name="ln-39"></a><span class="k">  end function </span><span class="n">det2</span>
-<a name="ln-40"></a>
-<a name="ln-41"></a>  <span class="k">subroutine </span><span class="n">linsolve_quick</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-<a name="ln-42"></a>
-<a name="ln-43"></a>    <span class="c">! Quick wrapper around linsolve</span>
-<a name="ln-44"></a>
-<a name="ln-45"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span>
-<a name="ln-46"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">a</span>
-<a name="ln-47"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">b</span>
-<a name="ln-48"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>
-<a name="ln-49"></a>
-<a name="ln-50"></a>    <span class="kt">integer</span><span class="p">,</span>                  <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">P</span>
-<a name="ln-51"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">LU</span>
-<a name="ln-52"></a>
-<a name="ln-53"></a>    <span class="k">call </span><span class="n">linsolve</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">LU</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="p">.</span><span class="n">False</span><span class="p">.)</span>
-<a name="ln-54"></a>    <span class="k">return</span>
-<a name="ln-55"></a><span class="k">  end subroutine </span><span class="n">linsolve_quick</span>
-<a name="ln-56"></a>
-<a name="ln-57"></a>  <span class="k">subroutine </span><span class="n">linsolve</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">LU</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">toggle</span><span class="p">)</span>
-<a name="ln-58"></a>    <span class="c">! This routine is a wrapper dgesv, splitting it into its two primary</span>
-<a name="ln-59"></a>    <span class="c">! components:</span>
-<a name="ln-60"></a>    <span class="c">!             dgetrf - Decomposes A into P*L*U</span>
-<a name="ln-61"></a>    <span class="c">!             dgetrs - Uses P*L*U to solve for x (Ax=b =&gt; (P*L*U)x=b)</span>
-<a name="ln-62"></a>    <span class="c">!</span>
-<a name="ln-63"></a>    <span class="c">! Splitting these two up like this allows you to save the decomposed</span>
-<a name="ln-64"></a>    <span class="c">! version of &#39;a&#39; so that you don&#39;t have to do it again. If &#39;toggle&#39; is</span>
-<a name="ln-65"></a>    <span class="c">! equal to true, then the decomposition has already occured and LU can be</span>
-<a name="ln-66"></a>    <span class="c">! trusted - OK to skip dgetrf</span>
-<a name="ln-67"></a>
-<a name="ln-68"></a>    <span class="c">! Dummy variables</span>
-<a name="ln-69"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span>
-<a name="ln-70"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">P</span>
-<a name="ln-71"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">b</span>
-<a name="ln-72"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">a</span>
-<a name="ln-73"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>
-<a name="ln-74"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">LU</span>
-<a name="ln-75"></a>    <span class="kt">logical</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">toggle</span>
-<a name="ln-76"></a>
-<a name="ln-77"></a>    <span class="c">! Local variables</span>
-<a name="ln-78"></a>    <span class="kt">integer</span>                                       <span class="kd">::</span> <span class="n">info</span>
-<a name="ln-79"></a>    <span class="kt">integer</span><span class="p">,</span>                  <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">my_P</span>
-<a name="ln-80"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">my_a</span>
-<a name="ln-81"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">my_b</span>
+<a name="ln-31"></a>    <span class="n">invJ</span>  <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span> <span class="p">[</span><span class="n">J</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="n">J</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">J</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">J</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span>
+<a name="ln-32"></a>    <span class="n">invJ</span>  <span class="o">=</span> <span class="n">invJ</span> <span class="o">/</span> <span class="n">det2</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+<a name="ln-33"></a>
+<a name="ln-34"></a>    <span class="k">return</span>
+<a name="ln-35"></a><span class="k">  end function </span><span class="n">inv2</span>
+<a name="ln-36"></a>
+<a name="ln-37"></a>  <span class="k">pure function </span><span class="n">det2</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">det</span><span class="p">)</span>
+<a name="ln-38"></a>    <span class="c">! Computes the determinant of a 2x2 matrix</span>
+<a name="ln-39"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">A</span>
+<a name="ln-40"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">det</span>
+<a name="ln-41"></a>
+<a name="ln-42"></a>    <span class="n">det</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">A</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">A</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-43"></a>
+<a name="ln-44"></a>    <span class="k">return</span>
+<a name="ln-45"></a><span class="k">  end function </span><span class="n">det2</span>
+<a name="ln-46"></a>
+<a name="ln-47"></a>  <span class="k">subroutine </span><span class="n">linsolve_quick</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<a name="ln-48"></a>
+<a name="ln-49"></a>    <span class="c">! Quick wrapper around linsolve</span>
+<a name="ln-50"></a>
+<a name="ln-51"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span>
+<a name="ln-52"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-53"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">b</span>
+<a name="ln-54"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>
+<a name="ln-55"></a>
+<a name="ln-56"></a>    <span class="kt">integer</span><span class="p">,</span>                  <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">P</span>
+<a name="ln-57"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">LU</span>
+<a name="ln-58"></a>
+<a name="ln-59"></a>    <span class="k">call </span><span class="n">linsolve</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">LU</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="p">.</span><span class="n">False</span><span class="p">.)</span>
+<a name="ln-60"></a>    <span class="k">return</span>
+<a name="ln-61"></a><span class="k">  end subroutine </span><span class="n">linsolve_quick</span>
+<a name="ln-62"></a>
+<a name="ln-63"></a>  <span class="k">subroutine </span><span class="n">linsolve</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">LU</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">toggle</span><span class="p">)</span>
+<a name="ln-64"></a>    <span class="c">! This routine is a wrapper dgesv, splitting it into its two primary</span>
+<a name="ln-65"></a>    <span class="c">! components:</span>
+<a name="ln-66"></a>    <span class="c">!             dgetrf - Decomposes A into P*L*U</span>
+<a name="ln-67"></a>    <span class="c">!             dgetrs - Uses P*L*U to solve for x (Ax=b =&gt; (P*L*U)x=b)</span>
+<a name="ln-68"></a>    <span class="c">!</span>
+<a name="ln-69"></a>    <span class="c">! Splitting these two up like this allows you to save the decomposed</span>
+<a name="ln-70"></a>    <span class="c">! version of &#39;a&#39; so that you don&#39;t have to do it again. If &#39;toggle&#39; is</span>
+<a name="ln-71"></a>    <span class="c">! equal to true, then the decomposition has already occured and LU can be</span>
+<a name="ln-72"></a>    <span class="c">! trusted - OK to skip dgetrf</span>
+<a name="ln-73"></a>
+<a name="ln-74"></a>    <span class="c">! Dummy variables</span>
+<a name="ln-75"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span>
+<a name="ln-76"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">P</span>
+<a name="ln-77"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">b</span>
+<a name="ln-78"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-79"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>
+<a name="ln-80"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">LU</span>
+<a name="ln-81"></a>    <span class="kt">logical</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">toggle</span>
 <a name="ln-82"></a>
-<a name="ln-83"></a>    <span class="n">my_a</span> <span class="o">=</span> <span class="n">a</span>
-<a name="ln-84"></a>    <span class="n">my_b</span> <span class="o">=</span> <span class="n">b</span>
-<a name="ln-85"></a>
-<a name="ln-86"></a>    <span class="k">if</span> <span class="p">(</span> <span class="p">.</span><span class="nb">not</span><span class="p">.</span> <span class="n">toggle</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-87"></a><span class="k">      call </span><span class="n">dgetrf</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">my_a</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">my_P</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+<a name="ln-83"></a>    <span class="c">! Local variables</span>
+<a name="ln-84"></a>    <span class="kt">integer</span>                                       <span class="kd">::</span> <span class="n">info</span>
+<a name="ln-85"></a>    <span class="kt">integer</span><span class="p">,</span>                  <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">my_P</span>
+<a name="ln-86"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">my_a</span>
+<a name="ln-87"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">my_b</span>
 <a name="ln-88"></a>
-<a name="ln-89"></a>      <span class="k">if</span> <span class="p">(</span> <span class="n">info</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-90"></a><span class="k">        write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span> <span class="p">)</span> <span class="s1">&#39; &#39;</span>
-<a name="ln-91"></a>        <span class="k">write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span> <span class="p">)</span> <span class="s1">&#39;DGETRF&#39;</span>
-<a name="ln-92"></a>        <span class="k">write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a,i8)&#39;</span> <span class="p">)</span> <span class="s1">&#39;  Factorization failed, INFO = &#39;</span><span class="p">,</span> <span class="n">info</span>
-<a name="ln-93"></a>        <span class="k">stop</span>
-<a name="ln-94"></a><span class="k">      </span><span class="n">endif</span>
-<a name="ln-95"></a>
-<a name="ln-96"></a>      <span class="n">LU</span>  <span class="o">=</span> <span class="n">my_a</span>
-<a name="ln-97"></a>      <span class="n">P</span>   <span class="o">=</span> <span class="n">my_P</span>
-<a name="ln-98"></a>
-<a name="ln-99"></a>    <span class="n">endif</span>
-<a name="ln-100"></a>
-<a name="ln-101"></a>    <span class="k">call </span><span class="n">dgetrs</span> <span class="p">(</span><span class="s1">&#39;No transpose&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">LU</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">my_b</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
-<a name="ln-102"></a>
-<a name="ln-103"></a>    <span class="k">if</span> <span class="p">(</span> <span class="n">info</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-104"></a><span class="k">      write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span> <span class="p">)</span> <span class="s1">&#39; &#39;</span>
-<a name="ln-105"></a>      <span class="k">write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span> <span class="p">)</span> <span class="s1">&#39;DGETRS&#39;</span>
-<a name="ln-106"></a>      <span class="k">write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a,i8)&#39;</span> <span class="p">)</span> <span class="s1">&#39;  Back substitution failed, INFO = &#39;</span><span class="p">,</span> <span class="n">info</span>
-<a name="ln-107"></a>      <span class="k">stop</span>
-<a name="ln-108"></a><span class="k">    </span><span class="n">endif</span>
-<a name="ln-109"></a>
-<a name="ln-110"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">my_b</span>
-<a name="ln-111"></a>
-<a name="ln-112"></a>    <span class="k">return</span>
-<a name="ln-113"></a><span class="k">  end subroutine </span><span class="n">linsolve</span>
-<a name="ln-114"></a>
-<a name="ln-115"></a><span class="k">end module </span><span class="n">linalg</span>
+<a name="ln-89"></a>    <span class="n">my_a</span> <span class="o">=</span> <span class="n">a</span>
+<a name="ln-90"></a>    <span class="n">my_b</span> <span class="o">=</span> <span class="n">b</span>
+<a name="ln-91"></a>
+<a name="ln-92"></a>    <span class="k">if</span> <span class="p">(</span> <span class="p">.</span><span class="nb">not</span><span class="p">.</span> <span class="n">toggle</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-93"></a><span class="k">      call </span><span class="n">dgetrf</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">my_a</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">my_P</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+<a name="ln-94"></a>
+<a name="ln-95"></a>      <span class="k">if</span> <span class="p">(</span> <span class="n">info</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-96"></a><span class="k">        write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span> <span class="p">)</span> <span class="s1">&#39; &#39;</span>
+<a name="ln-97"></a>        <span class="k">write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span> <span class="p">)</span> <span class="s1">&#39;DGETRF&#39;</span>
+<a name="ln-98"></a>        <span class="k">write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a,i8)&#39;</span> <span class="p">)</span> <span class="s1">&#39;  Factorization failed, INFO = &#39;</span><span class="p">,</span> <span class="n">info</span>
+<a name="ln-99"></a>        <span class="k">stop</span>
+<a name="ln-100"></a><span class="k">      </span><span class="n">endif</span>
+<a name="ln-101"></a>
+<a name="ln-102"></a>      <span class="n">LU</span>  <span class="o">=</span> <span class="n">my_a</span>
+<a name="ln-103"></a>      <span class="n">P</span>   <span class="o">=</span> <span class="n">my_P</span>
+<a name="ln-104"></a>
+<a name="ln-105"></a>    <span class="n">endif</span>
+<a name="ln-106"></a>
+<a name="ln-107"></a>    <span class="k">call </span><span class="n">dgetrs</span> <span class="p">(</span><span class="s1">&#39;No transpose&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">LU</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">my_b</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+<a name="ln-108"></a>
+<a name="ln-109"></a>    <span class="k">if</span> <span class="p">(</span> <span class="n">info</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-110"></a><span class="k">      write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span> <span class="p">)</span> <span class="s1">&#39; &#39;</span>
+<a name="ln-111"></a>      <span class="k">write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span> <span class="p">)</span> <span class="s1">&#39;DGETRS&#39;</span>
+<a name="ln-112"></a>      <span class="k">write</span> <span class="p">(</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;(a,i8)&#39;</span> <span class="p">)</span> <span class="s1">&#39;  Back substitution failed, INFO = &#39;</span><span class="p">,</span> <span class="n">info</span>
+<a name="ln-113"></a>      <span class="k">stop</span>
+<a name="ln-114"></a><span class="k">    </span><span class="n">endif</span>
+<a name="ln-115"></a>
+<a name="ln-116"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">my_b</span>
+<a name="ln-117"></a>
+<a name="ln-118"></a>    <span class="k">return</span>
+<a name="ln-119"></a><span class="k">  end subroutine </span><span class="n">linsolve</span>
+<a name="ln-120"></a>
+<a name="ln-121"></a><span class="k">end module </span><span class="n">linalg</span>
 </pre></div>
 
     </section>
@@ -588,7 +594,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-02-04 02:18  
+             on 2017-02-04 03:25  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

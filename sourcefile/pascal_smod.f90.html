@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 5.6% of total for source files.">48 statements</a>
+	  title=" 6.1% of total for source files.">53 statements</a>
      </li> 
      
      
@@ -166,7 +166,9 @@
   <div id="submods-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/pascal.html">pascal</a>
+      <a class="list-group-item" href="../module/pascal_1d.html">pascal_1D</a>
+      
+      <a class="list-group-item" href="../module/pascal_2d.html">pascal_2D</a>
       
     </div>
   </div>
@@ -367,7 +369,9 @@
   <div id="submods-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/pascal.html">pascal</a>
+      <a class="list-group-item" href="../module/pascal_1d.html">pascal_1D</a>
+      
+      <a class="list-group-item" href="../module/pascal_2d.html">pascal_2D</a>
       
     </div>
   </div>
@@ -399,104 +403,140 @@
 
     <section>
       <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="k">submodule</span> <span class="p">(</span><span class="n">legendre</span><span class="p">)</span> <span class="n">pascal</span>
-<a name="ln-2"></a>  <span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real64</span>
-<a name="ln-3"></a>  <span class="k">implicit none</span>
-<a name="ln-4"></a>
-<a name="ln-5"></a><span class="k">contains</span>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">! Learn_dg - A quick and dirty project to deploy a working DG solver</span>
+<a name="ln-2"></a><span class="c">! Copyright (c) 2017, Chris Coutinho</span>
+<a name="ln-3"></a><span class="c">! All rights reserved.</span>
+<a name="ln-4"></a><span class="c">!</span>
+<a name="ln-5"></a><span class="c">! Licensed under the BSD-2 clause license. See LICENSE for details.</span>
 <a name="ln-6"></a>
-<a name="ln-7"></a><span class="k">  module function </span><span class="n">pascal_1D_line</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<a name="ln-8"></a>      <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span>
-<a name="ln-9"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>
-<a name="ln-10"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span> <span class="n">row</span>
-<a name="ln-11"></a>
-<a name="ln-12"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
-<a name="ln-13"></a>
-<a name="ln-14"></a>    <span class="c">! Produces the elements of an array: [1, x, x^2, ..., x^N]</span>
-<a name="ln-15"></a>    <span class="n">row</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span> <span class="p">)]</span>
-<a name="ln-16"></a>
-<a name="ln-17"></a>    <span class="k">return</span>
-<a name="ln-18"></a><span class="k">  end function </span><span class="n">pascal_1D_line</span>
-<a name="ln-19"></a>
-<a name="ln-20"></a>  <span class="k">module function </span><span class="n">pascal_2D_quad</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<a name="ln-21"></a>    <span class="c">!*</span>
-<a name="ln-22"></a>    <span class="c">! Generates an array of points related to a quadrilateral using Pascal&#39;s</span>
-<a name="ln-23"></a>    <span class="c">! triangle in 2D, where rows are 0-indexed</span>
-<a name="ln-24"></a>    <span class="c">!</span>
-<a name="ln-25"></a>    <span class="c">! Pascal&#39;s triangle in 2D looks like this, with points used in bi-quadratic quadrilateral in bold:</span>
-<a name="ln-26"></a>    <span class="c">!   \[ [\mathbf{1}] \]</span>
-<a name="ln-27"></a>    <span class="c">!   \[ [\mathbf{x},~ \mathbf{y}] \]</span>
-<a name="ln-28"></a>    <span class="c">!   \[ [\mathbf{x^2},~ \mathbf{x y},~ \mathbf{y^2}] \]</span>
-<a name="ln-29"></a>    <span class="c">!   \[ [x^3,~ \mathbf{x^2y},~ \mathbf{xy^2},~ y^3] \]</span>
-<a name="ln-30"></a>    <span class="c">!   \[ [x^4,~ x^3y,~ \mathbf{x^2y^2},~ xy^3, y^4] \]</span>
-<a name="ln-31"></a>    <span class="c">!   \[ \vdots \]</span>
-<a name="ln-32"></a>    <span class="c">!   \[ [x^N,~ x^{N-1}y,~ \cdots ~,~ xy^{N-1},~ y^N] \]</span>
-<a name="ln-33"></a>
-<a name="ln-34"></a>      <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span>            <span class="c">!! Order of the qaudrilateral</span>
-<a name="ln-35"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>            <span class="c">!! X-coordinate of node used in calculation</span>
-<a name="ln-36"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">y</span>            <span class="c">!! Y-coordinate of node used in calculation</span>
-<a name="ln-37"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="kd">::</span> <span class="n">row</span>  <span class="c">!! Output row</span>
-<a name="ln-38"></a>
-<a name="ln-39"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">finish</span>
-<a name="ln-40"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp_pre</span><span class="p">,</span> <span class="n">temp_post</span>
+<a name="ln-7"></a><span class="k">submodule</span> <span class="p">(</span><span class="n">legendre</span><span class="p">)</span> <span class="n">pascal_1D</span>
+<a name="ln-8"></a>  <span class="c">!*</span>
+<a name="ln-9"></a>  <span class="c">! Pascal_1D is a submodule used to generate arrays of coeffiecents used for</span>
+<a name="ln-10"></a>  <span class="c">! developing finite element basis functions in 1D. Finite element basis</span>
+<a name="ln-11"></a>  <span class="c">! functions are defined at internal nodes and used to iterpolate some value</span>
+<a name="ln-12"></a>  <span class="c">! between those nodes.</span>
+<a name="ln-13"></a>  <span class="c">!</span>
+<a name="ln-14"></a>  <span class="c">!</span>
+<a name="ln-15"></a>  <span class="c">! calculate the coeffiecents associated with a univarate Lagrangian polynomial</span>
+<a name="ln-16"></a>  <span class="c">!</span>
+<a name="ln-17"></a>  <span class="c">! \[ 1, x, x^2, ..., x^N \]</span>
+<a name="ln-18"></a>  <span class="c">!</span>
+<a name="ln-19"></a>  <span class="c">!</span>
+<a name="ln-20"></a>  <span class="c">! In the end you end up with a group of basis functions similar to this:</span>
+<a name="ln-21"></a>  <span class="c">!</span>
+<a name="ln-22"></a>  <span class="c">! ![Quadratic Basis Functions catption](|media|/quadratic_basis.png &quot;Quadratic Basis Functions&quot;){: width=&quot;500&quot; }</span>
+<a name="ln-23"></a>  <span class="c">! {: style=&quot;text-align: center&quot; }</span>
+<a name="ln-24"></a>
+<a name="ln-25"></a>
+<a name="ln-26"></a>  <span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real64</span>
+<a name="ln-27"></a>  <span class="k">implicit none</span>
+<a name="ln-28"></a>
+<a name="ln-29"></a><span class="k">contains</span>
+<a name="ln-30"></a>
+<a name="ln-31"></a><span class="k">  module function </span><span class="n">pascal_1D_line</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<a name="ln-32"></a>    <span class="c">!*</span>
+<a name="ln-33"></a>    <span class="c">! Generates the elements of an array associated with a univarate</span>
+<a name="ln-34"></a>    <span class="c">! Lagrange polynomial.</span>
+<a name="ln-35"></a>
+<a name="ln-36"></a>      <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span>
+<a name="ln-37"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>
+<a name="ln-38"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span> <span class="n">row</span>
+<a name="ln-39"></a>
+<a name="ln-40"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
 <a name="ln-41"></a>
-<a name="ln-42"></a>    <span class="n">row</span> <span class="o">=</span> <span class="mf">0.d0</span>
+<a name="ln-42"></a>    <span class="n">row</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span> <span class="p">)]</span>
 <a name="ln-43"></a>
-<a name="ln-44"></a>    <span class="c">! Collects the first N rows of a 2D pascal triangle as function of x and y</span>
-<a name="ln-45"></a>    <span class="n">temp_pre</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">pascal_2D_row</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">N</span> <span class="p">)]</span>
-<a name="ln-46"></a>    <span class="n">temp_post</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">pascal_2D_quad_post</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span> <span class="p">)]</span>
-<a name="ln-47"></a>
-<a name="ln-48"></a>    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">temp_pre</span><span class="p">,</span> <span class="n">temp_post</span><span class="p">]</span>
+<a name="ln-44"></a>    <span class="k">return</span>
+<a name="ln-45"></a><span class="k">  end function </span><span class="n">pascal_1D_line</span>
+<a name="ln-46"></a>
+<a name="ln-47"></a><span class="k">end submodule </span><span class="n">pascal_1D</span>
+<a name="ln-48"></a>
 <a name="ln-49"></a>
-<a name="ln-50"></a>    <span class="k">return</span>
-<a name="ln-51"></a><span class="k">  contains</span>
-<a name="ln-52"></a><span class="k">    pure function </span><span class="n">pascal_2D_quad_post</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<a name="ln-53"></a>      <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span><span class="p">,</span> <span class="n">ii</span>
-<a name="ln-54"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
-<a name="ln-55"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="o">-</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span> <span class="n">row</span>
-<a name="ln-56"></a>
-<a name="ln-57"></a>      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">start</span><span class="p">,</span> <span class="n">finish</span>
-<a name="ln-58"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">temp</span>
-<a name="ln-59"></a>
-<a name="ln-60"></a>      <span class="n">temp</span> <span class="o">=</span> <span class="n">pascal_2D_row</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<a name="ln-61"></a>      <span class="n">start</span> <span class="o">=</span> <span class="n">ii</span><span class="o">-</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span>
-<a name="ln-62"></a>      <span class="n">finish</span> <span class="o">=</span> <span class="n">ii</span><span class="o">-</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="n">N</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
-<a name="ln-63"></a>
-<a name="ln-64"></a>      <span class="n">row</span> <span class="o">=</span> <span class="n">temp</span><span class="p">(</span> <span class="n">start</span><span class="p">:</span><span class="n">finish</span> <span class="p">)</span>
-<a name="ln-65"></a>
-<a name="ln-66"></a>      <span class="k">return</span>
-<a name="ln-67"></a><span class="k">    end function </span><span class="n">pascal_2D_quad_post</span>
-<a name="ln-68"></a>  <span class="k">end function </span><span class="n">pascal_2D_quad</span>
+<a name="ln-50"></a><span class="k">submodule</span> <span class="p">(</span><span class="n">legendre</span><span class="p">)</span> <span class="n">pascal_2D</span>
+<a name="ln-51"></a>  <span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real64</span>
+<a name="ln-52"></a>  <span class="k">implicit none</span>
+<a name="ln-53"></a>
+<a name="ln-54"></a><span class="k">contains</span>
+<a name="ln-55"></a>
+<a name="ln-56"></a><span class="k">  module function </span><span class="n">pascal_2D_quad</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<a name="ln-57"></a>    <span class="c">!*</span>
+<a name="ln-58"></a>    <span class="c">! Generates an array of points related to a quadrilateral using Pascal&#39;s</span>
+<a name="ln-59"></a>    <span class="c">! triangle in 2D, where rows are 0-indexed</span>
+<a name="ln-60"></a>    <span class="c">!</span>
+<a name="ln-61"></a>    <span class="c">! Pascal&#39;s triangle in 2D looks like this, with points used in bi-quadratic quadrilateral in bold:</span>
+<a name="ln-62"></a>    <span class="c">!   \[ [\mathbf{1}] \]</span>
+<a name="ln-63"></a>    <span class="c">!   \[ [\mathbf{x},~ \mathbf{y}] \]</span>
+<a name="ln-64"></a>    <span class="c">!   \[ [\mathbf{x^2},~ \mathbf{x y},~ \mathbf{y^2}] \]</span>
+<a name="ln-65"></a>    <span class="c">!   \[ [x^3,~ \mathbf{x^2y},~ \mathbf{xy^2},~ y^3] \]</span>
+<a name="ln-66"></a>    <span class="c">!   \[ [x^4,~ x^3y,~ \mathbf{x^2y^2},~ xy^3, y^4] \]</span>
+<a name="ln-67"></a>    <span class="c">!   \[ \vdots \]</span>
+<a name="ln-68"></a>    <span class="c">!   \[ [x^N,~ x^{N-1}y,~ \cdots ~,~ xy^{N-1},~ y^N] \]</span>
 <a name="ln-69"></a>
-<a name="ln-70"></a>  <span class="k">pure function </span><span class="n">pascal_2D_row</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<a name="ln-71"></a>    <span class="c">!*</span>
-<a name="ln-72"></a>    <span class="c">! Generates a row of Pascal&#39;s triangle in 2D, where rows are 0-indexed</span>
-<a name="ln-73"></a>    <span class="c">!</span>
-<a name="ln-74"></a>    <span class="c">! Pascal&#39;s triangle in 2D looks like this:</span>
-<a name="ln-75"></a>    <span class="c">!   \[ [1] \]</span>
-<a name="ln-76"></a>    <span class="c">!   \[ [x,~ y] \]</span>
-<a name="ln-77"></a>    <span class="c">!   \[ [x^2,~ x y,~ y^2] \]</span>
-<a name="ln-78"></a>    <span class="c">!   \[ [x^3,~ x^2y,~ xy^2,~ y^3] \]</span>
-<a name="ln-79"></a>    <span class="c">!   \[ [x^4,~ x^3y,~ x^2y^2,~ xy^3, y^4] \]</span>
-<a name="ln-80"></a>    <span class="c">!   \[ \vdots \]</span>
-<a name="ln-81"></a>    <span class="c">!   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]</span>
-<a name="ln-82"></a>    <span class="c">!</span>
-<a name="ln-83"></a>    <span class="c">! Therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]</span>
-<a name="ln-84"></a>
-<a name="ln-85"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">N</span>    <span class="c">!! Row number of pascal&#39;s 2D triange (0-indexed)</span>
-<a name="ln-86"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">x</span>    <span class="c">!! X-value used in triange</span>
-<a name="ln-87"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">y</span>    <span class="c">!! Y-Value used in triange</span>
-<a name="ln-88"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">row</span>  <span class="c">!! Output row of triange</span>
-<a name="ln-89"></a>
-<a name="ln-90"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
-<a name="ln-91"></a>
-<a name="ln-92"></a>    <span class="c">! Produces the elements of an array: [x^N, x^(N-1)*y, x^(N-2)*y^2, ..., y^N]</span>
-<a name="ln-93"></a>    <span class="n">row</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">ii</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span><span class="o">**</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">N</span> <span class="p">)]</span>
-<a name="ln-94"></a>
-<a name="ln-95"></a>    <span class="k">return</span>
-<a name="ln-96"></a><span class="k">  end function </span><span class="n">pascal_2D_row</span>
-<a name="ln-97"></a>
-<a name="ln-98"></a><span class="k">end submodule </span><span class="n">pascal</span>
+<a name="ln-70"></a>      <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span>            <span class="c">!! Order of the qaudrilateral</span>
+<a name="ln-71"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>            <span class="c">!! X-coordinate of node used in calculation</span>
+<a name="ln-72"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">y</span>            <span class="c">!! Y-coordinate of node used in calculation</span>
+<a name="ln-73"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="kd">::</span> <span class="n">row</span>  <span class="c">!! Output row</span>
+<a name="ln-74"></a>
+<a name="ln-75"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">finish</span>
+<a name="ln-76"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp_pre</span><span class="p">,</span> <span class="n">temp_post</span>
+<a name="ln-77"></a>
+<a name="ln-78"></a>    <span class="n">row</span> <span class="o">=</span> <span class="mf">0.d0</span>
+<a name="ln-79"></a>
+<a name="ln-80"></a>    <span class="c">! Collects the first N rows of a 2D pascal triangle as function of x and y</span>
+<a name="ln-81"></a>    <span class="n">temp_pre</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">pascal_2D_row</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">N</span> <span class="p">)]</span>
+<a name="ln-82"></a>    <span class="n">temp_post</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">pascal_2D_quad_post</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span> <span class="p">)]</span>
+<a name="ln-83"></a>
+<a name="ln-84"></a>    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">temp_pre</span><span class="p">,</span> <span class="n">temp_post</span><span class="p">]</span>
+<a name="ln-85"></a>
+<a name="ln-86"></a>    <span class="k">return</span>
+<a name="ln-87"></a><span class="k">  contains</span>
+<a name="ln-88"></a><span class="k">    pure function </span><span class="n">pascal_2D_quad_post</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<a name="ln-89"></a>      <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span><span class="p">,</span> <span class="n">ii</span>
+<a name="ln-90"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<a name="ln-91"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="o">-</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span> <span class="n">row</span>
+<a name="ln-92"></a>
+<a name="ln-93"></a>      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">start</span><span class="p">,</span> <span class="n">finish</span>
+<a name="ln-94"></a>      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">temp</span>
+<a name="ln-95"></a>
+<a name="ln-96"></a>      <span class="n">temp</span> <span class="o">=</span> <span class="n">pascal_2D_row</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<a name="ln-97"></a>      <span class="n">start</span> <span class="o">=</span> <span class="n">ii</span><span class="o">-</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-98"></a>      <span class="n">finish</span> <span class="o">=</span> <span class="n">ii</span><span class="o">-</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="n">N</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-99"></a>
+<a name="ln-100"></a>      <span class="n">row</span> <span class="o">=</span> <span class="n">temp</span><span class="p">(</span> <span class="n">start</span><span class="p">:</span><span class="n">finish</span> <span class="p">)</span>
+<a name="ln-101"></a>
+<a name="ln-102"></a>      <span class="k">return</span>
+<a name="ln-103"></a><span class="k">    end function </span><span class="n">pascal_2D_quad_post</span>
+<a name="ln-104"></a>  <span class="k">end function </span><span class="n">pascal_2D_quad</span>
+<a name="ln-105"></a>
+<a name="ln-106"></a>  <span class="k">pure function </span><span class="n">pascal_2D_row</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<a name="ln-107"></a>    <span class="c">!*</span>
+<a name="ln-108"></a>    <span class="c">! Generates a row of Pascal&#39;s triangle in 2D, where rows are 0-indexed</span>
+<a name="ln-109"></a>    <span class="c">!</span>
+<a name="ln-110"></a>    <span class="c">! Pascal&#39;s triangle in 2D looks like this:</span>
+<a name="ln-111"></a>    <span class="c">!   \[ [1] \]</span>
+<a name="ln-112"></a>    <span class="c">!   \[ [x,~ y] \]</span>
+<a name="ln-113"></a>    <span class="c">!   \[ [x^2,~ x y,~ y^2] \]</span>
+<a name="ln-114"></a>    <span class="c">!   \[ [x^3,~ x^2y,~ xy^2,~ y^3] \]</span>
+<a name="ln-115"></a>    <span class="c">!   \[ [x^4,~ x^3y,~ x^2y^2,~ xy^3, y^4] \]</span>
+<a name="ln-116"></a>    <span class="c">!   \[ \vdots \]</span>
+<a name="ln-117"></a>    <span class="c">!   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]</span>
+<a name="ln-118"></a>    <span class="c">!</span>
+<a name="ln-119"></a>    <span class="c">! Therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]</span>
+<a name="ln-120"></a>
+<a name="ln-121"></a>    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">N</span>    <span class="c">!! Row number of pascal&#39;s 2D triange (0-indexed)</span>
+<a name="ln-122"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">x</span>    <span class="c">!! X-value used in triange</span>
+<a name="ln-123"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">y</span>    <span class="c">!! Y-Value used in triange</span>
+<a name="ln-124"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">row</span>  <span class="c">!! Output row of triange</span>
+<a name="ln-125"></a>
+<a name="ln-126"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
+<a name="ln-127"></a>
+<a name="ln-128"></a>    <span class="c">! Produces the elements of an array: [x^N, x^(N-1)*y, x^(N-2)*y^2, ..., y^N]</span>
+<a name="ln-129"></a>    <span class="n">row</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">ii</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span><span class="o">**</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">N</span> <span class="p">)]</span>
+<a name="ln-130"></a>
+<a name="ln-131"></a>    <span class="k">return</span>
+<a name="ln-132"></a><span class="k">  end function </span><span class="n">pascal_2D_row</span>
+<a name="ln-133"></a>
+<a name="ln-134"></a><span class="k">end submodule </span><span class="n">pascal_2D</span>
 </pre></div>
 
     </section>
@@ -547,7 +587,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-02-04 02:18  
+             on 2017-02-04 03:25  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
