@@ -1,4 +1,4 @@
-submodule (legendre) pascal_smod
+submodule (legendre) pascal
   use iso_fortran_env, only: wp=>real64
   implicit none
 
@@ -95,4 +95,4 @@ contains
     return
   end function pascal_2D_row
 
-end submodule pascal_smod
+end submodule pascal

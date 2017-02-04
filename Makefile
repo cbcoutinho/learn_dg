@@ -65,7 +65,7 @@ objects=$(OBJ)/lib_array.o \
 	$(OBJ)/integration.o \
 	$(OBJ)/misc.o \
 	$(OBJ)/legendre.o \
-	$(OBJ)/pascal_smod.o \
+	$(OBJ)/pascal.o \
 	$(OBJ)/io.o \
 	$(OBJ)/assembly.o \
 	$(OBJ)/linalg.o
@@ -83,19 +83,19 @@ $(OBJ)/lib_array.o: $(FLIB_SRC)/lib_array.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Modules
-$(OBJ)/misc.o: $(SRC)/misc.f90
+$(OBJ)/misc.o: $(SRC)/misc_mod.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-$(OBJ)/assembly.o: $(SRC)/assembly.f90 $(OBJ)/legendre.o
+$(OBJ)/assembly.o: $(SRC)/assembly_mod.f90 $(OBJ)/legendre.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-$(OBJ)/linalg.o: $(SRC)/linalg.f90
+$(OBJ)/linalg.o: $(SRC)/linalg_mod.f90
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/pascal_smod.o: $(SRC)/pascal_smod.f90 $(OBJ)/legendre.o
+$(OBJ)/pascal.o: $(SRC)/pascal_smod.f90 $(OBJ)/legendre.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/legendre.o: $(SRC)/legendre.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/linalg.o
+$(OBJ)/legendre.o: $(SRC)/legendre_mod.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/linalg.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/integration.o: $(SRC)/integration.f90 $(OBJ)/lib_array.o
+$(OBJ)/integration.o: $(SRC)/integration_mod.f90 $(OBJ)/lib_array.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/io.o: $(SRC)/io.f90 $(OBJ)/lib_array.o
+$(OBJ)/io.o: $(SRC)/io_mod.f90 $(OBJ)/lib_array.o
 	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
 
 # Main program
@@ -132,8 +132,9 @@ docs: submodules $(DOC)/learn_dg.md README.md
 	$(FORD) $(FORD_FLAGS) $(DOC)/learn_dg.md
 	rm $(DOC)/README.md
 
-debug: clean build
-	/usr/bin/valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
+debug: clean build mesh
+	valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
+	valgrind --track-origins=yes --leak-check=full $(BIN)/doubleint
 
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main
