@@ -9,14 +9,8 @@ module legendre
   private
   public  :: getIe, assembleElementalMatrix, getxy
 
-  ! public :: pascal
-  ! interface pascal
-  !    module procedure pascal_1D_line
-  !    module procedure pascal_2D_quad
-  ! end interface pascal
-
-  public :: pascal
-  interface pascal
+  public :: pascal_row
+  interface pascal_row
     module function pascal_1D_line(N, x) result(row)
         integer,  intent(in)  :: N
         real(wp), intent(in)  :: x
@@ -28,7 +22,7 @@ module legendre
       real(wp), intent(in)  :: y
       real(wp), dimension(N+1) :: row
     end function pascal_2D_quad
-  end interface pascal
+  end interface pascal_row
 
 contains
 
@@ -240,7 +234,7 @@ contains
     real(wp), dimension(N)  :: row
 
     if ( N == 4 ) then
-      row = pascal(1, xi, eta)
+      row = pascal_row(1, xi, eta)
 
     elseif ( N == 9 ) then
       ! row = [1._wp, &
@@ -248,7 +242,7 @@ contains
       !       xi**2._wp, xi*eta, eta**2._wp, &
       !       xi**2._wp * eta, xi * eta**2._wp, &
       !       xi**2._wp * eta**2._wp]
-      row = pascal(2, xi, eta)
+      row = pascal_row(2, xi, eta)
 
     elseif ( N == 16 ) then
       ! row = [1._wp, &
@@ -258,7 +252,7 @@ contains
       !       xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
       !       xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
       !       xi**3._wp * eta**3._wp]
-      row = pascal(3, xi, eta)
+      row = pascal_row(3, xi, eta)
 
     ! else
     !
