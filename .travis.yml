@@ -10,10 +10,10 @@ notifications:
 #   - 3.4
 
 cache:
-  apt: false
-  pip: false
-    # - $HOME/.cache/pip
-    # - $HOME/.local
+  apt: true
+  pip: true
+    - $HOME/.cache/pip
+    - $HOME/.local
 
 branches:
   only:
@@ -26,29 +26,37 @@ matrix:
       - gfortran=gfortran-6
       - PYTHON_VERSION=3.5
       - DEBUG="no"
+      addons:
+        apt:
+          packages:
+            - gfortran-6
+            - valgrind
+            - graphviz
+            - libblas-dev
+            - liblapack-dev
+            - gmsh
+            sources: &sources
+              - ubuntu-toolchain-r-test
+              # - llvm-toolchain-precise
+              # - llvm-toolchain-precise-3.8
+              # - llvm-toolchain-precise-3.7
+              # - llvm-toolchain-precise-3.6
+              # - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
+              # key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
     - env:
       - gfortran=gfortran-6
       - PYTHON_VERSION=3.5
       - DEBUG="yes"
-
-addons:
-  apt:
-    packages:
-      - gfortran-6
-      - valgrind
-      - graphviz
-      - libblas-dev
-      - liblapack-dev
-      - gmsh
-    sources: &sources
-      - ubuntu-toolchain-r-test
-      - llvm-toolchain-precise
-      - llvm-toolchain-precise-3.8
-      - llvm-toolchain-precise-3.7
-      - llvm-toolchain-precise-3.6
-      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
-        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-
+      addons:
+        apt:
+          packages:
+            - gfortran-6
+            - valgrind
+            - graphviz
+            - libblas-dev
+            - liblapack-dev
+            - gmsh
+            sources: *sources
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
@@ -60,6 +68,7 @@ install:
   - (pip install --upgrade ford && ford --version)
 
 before_script:
+  - gfortran -v
   - echo "Wow we installed everything!"
   # - ln -fs "$(which gfortran-6)" "$HOME/bin/gfortran" && gfortran --version
 
