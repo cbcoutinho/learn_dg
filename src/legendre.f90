@@ -1,5 +1,5 @@
 module legendre
-  use iso_fortran_env, only: wp => real64
+  use iso_fortran_env, only: wp=>real64
   use misc, only: r8mat_print
   use lib_array, only: linspace
   use integration, only: integrate, integrate2D
@@ -9,10 +9,25 @@ module legendre
   private
   public  :: getIe, assembleElementalMatrix, getxy
 
+  ! public :: pascal
+  ! interface pascal
+  !    module procedure pascal_1D_line
+  !    module procedure pascal_2D_quad
+  ! end interface pascal
+
   public :: pascal
   interface pascal
-     module procedure pascal_1D_line
-     module procedure pascal_2D_quad
+    module function pascal_1D_line(N, x) result(row)
+        integer,  intent(in)  :: N
+        real(wp), intent(in)  :: x
+        real(wp), dimension(N+1) :: row
+    end function pascal_1D_line
+    module function pascal_2D_quad(N, x, y) result(row)
+      integer,  intent(in)  :: N
+      real(wp), intent(in)  :: x
+      real(wp), intent(in)  :: y
+      real(wp), dimension(N+1) :: row
+    end function pascal_2D_quad
   end interface pascal
 
 contains
@@ -173,49 +188,58 @@ contains
 
     if ( N == 4 ) then
 
-      xy(:,1) = [-one, one, one, -one]          ! Four corner nodes
-      xy(:,2) = [-one, -one, one, one]          ! Four corner nodes
+      xy(1,:)   = [   -one,   -one]  ! Node 1
+      xy(2,:)   = [    one,   -one]  ! Node 2
+      xy(3,:)   = [    one,    one]  ! Node 3
+      xy(4,:)   = [   -one,    one]  ! Node 4
 
     elseif ( N == 9 ) then
 
-      xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
-                zero, one, zero, -one, &        ! Four edge nodes
-                zero]                           ! Center node
-
-      xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
-                -one, zero, one, zero, &        ! Four edge nodes
-                zero]                           ! Center node
+      xy(1,:)   = [   -one,   -one]  ! Node 1
+      xy(2,:)   = [    one,   -one]  ! Node 2
+      xy(3,:)   = [    one,    one]  ! Node 3
+      xy(4,:)   = [   -one,    one]  ! Node 4
+      xy(5,:)   = [   zero,   -one]  ! Node 5
+      xy(6,:)   = [    one,   zero]  ! Node 6
+      xy(7,:)   = [   zero,    one]  ! Node 7
+      xy(8,:)   = [   -one,   zero]  ! Node 8
+      xy(9,:)   = [   zero,   zero]  ! Node 9
 
     elseif ( N == 16 ) then
 
-      xy(:,1) = [-one, one, one, -one, &        ! Four corner nodes
-                -third, third, &                ! Two edge nodes on each
-                one, one, &                     !     of the four edges
-                third, -third, &
-                -one, -one, &
-                -third, third, third, -third]   ! Four internal nodes
+      xy(1,:)   = [   -one,   -one]  ! Node 1
+      xy(2,:)   = [    one,   -one]  ! Node 2
+      xy(3,:)   = [    one,    one]  ! Node 3
+      xy(4,:)   = [   -one,    one]  ! Node 4
+      xy(5,:)   = [ -third,   -one]  ! Node 5
+      xy(6,:)   = [  third,   -one]  ! Node 6
+      xy(7,:)   = [    one, -third]  ! Node 7
+      xy(8,:)   = [    one,  third]  ! Node 8
+      xy(9,:)   = [  third,    one]  ! Node 9
+      xy(10,:)  = [ -third,    one]  ! Node 10
+      xy(11,:)  = [   -one,  third]  ! Node 11
+      xy(12,:)  = [   -one, -third]  ! Node 12
+      xy(13,:)  = [ -third, -third]  ! Node 13
+      xy(14,:)  = [  third, -third]  ! Node 14
+      xy(15,:)  = [  third,  third]  ! Node 15
+      xy(16,:)  = [ -third,  third]  ! Node 16
 
-      xy(:,2) = [-one, -one, one, one, &        ! Four corner nodes
-                -one, -one, &                   ! Two edge nodes on each
-                -third, third, &                !     of the four edges
-                one, one, &
-                third, -third, &
-                -third, -third, third, third]   ! Four internal nodes
+    ! else
+    !
+    !   print*, "Unsupported number of nodes selected: ", N
+    !   stop "Number of nodes must be either 4, 9, or 16"
 
     endif
 
     return
   end function getxy
 
-  pure function getArow(N, xi, eta) result(row)
+  function getArow(N, xi, eta) result(row)
     integer, intent(in)     :: N
     real(wp), intent(in)    :: xi, eta
     real(wp), dimension(N)  :: row
 
     if ( N == 4 ) then
-      ! row = [1._wp, &
-      !       xi, eta, &
-      !       xi*eta]
       row = pascal(1, xi, eta)
 
     elseif ( N == 9 ) then
@@ -236,6 +260,11 @@ contains
       !       xi**3._wp * eta**3._wp]
       row = pascal(3, xi, eta)
 
+    ! else
+    !
+    !   print*, "Unsupported number of nodes selected: ", N
+    !   stop "Number of nodes must be either 4, 9, or 16"
+
     endif
 
     return
@@ -255,7 +284,7 @@ contains
 
     return
   contains
-    pure function getA(N) result(A)
+    function getA(N) result(A)
       integer, intent(in)       :: N
       real(wp), dimension(N,N)  :: A
 
@@ -272,7 +301,7 @@ contains
     end function getA
   end function getAlpha
 
-  pure function getJacobian(N, xi, eta, xy, alpha) result(J)
+  function getJacobian(N, xi, eta, xy, alpha) result(J)
     !*
     ! Calculates the Jacobian of a quadrilateral element
     !
@@ -450,94 +479,5 @@ contains
       return
     end function fun
   end function assembleElementalMatrix
-
-  pure function pascal_1D_line(N, x) result(row)
-    integer,  intent(in)  :: N
-    real(wp), intent(in)  :: x
-    real(wp), dimension(N+1) :: row
-
-    integer :: ii
-
-    ! Produces the elements of an array: [1, x, x^2, ..., x^N]
-    row = [( x**(ii-1), ii = 1, N+1 )]
-
-    return
-  end function pascal_1D_line
-
-  pure function pascal_2D_quad(N, x, y) result(row)
-    !*
-    ! Generates an array of points related to a quadrilateral using Pascal's triangle in 2D, where rows are 0-indexed
-    !
-    ! Pascal's triangle in 2D looks like this, with points used in bi-quadratic quadrilateral in bold:
-    !   \[ [\mathbf{1}] \]
-    !   \[ [\mathbf{x},~ \mathbf{y}] \]
-    !   \[ [\mathbf{x^2},~ \mathbf{x y},~ \mathbf{y^2}] \]
-    !   \[ [x^3,~ \mathbf{x^2y},~ \mathbf{xy^2},~ y^3] \]
-    !   \[ [x^4,~ x^3y,~ \mathbf{x^2y^2},~ xy^3, y^4] \]
-    !   \[ \vdots \]
-    !   \[ [x^N,~ x^{N-1}y,~ \cdots ~,~ xy^{N-1},~ y^N] \]
-
-    integer,  intent(in)  :: N
-    real(wp), intent(in)  :: x, y
-    real(wp), dimension(N**2 + 2*N + 1) :: row
-
-    integer :: ii, start, finish
-    real(wp), dimension(:), allocatable :: temp, temp_pre, temp_post
-
-    row = 0.d0
-
-    ! Collects the first N rows of a 2D pascal triangle as function of x and y
-    temp_pre = [( pascal_2D_row(ii, x, y), ii = 0, N )]
-    temp_post = [( pascal_2D_quad_post(N, ii, x, y), ii = N+1, 2*N )]
-
-    row = [temp_pre, temp_post]
-
-    return
-  contains
-    pure function pascal_2D_quad_post(N, ii, x, y) result(row)
-      integer,  intent(in)  :: N, ii
-      real(wp), intent(in)  :: x, y
-      real(wp), dimension(2*N-ii+1) :: row
-
-      integer :: start, finish
-      real(wp), dimension(:), allocatable :: temp
-
-      temp = pascal_2D_row(ii, x, y)
-      start = ii-N+1
-      finish = ii-(ii-N)+1
-
-      row = temp( start:finish )
-
-      return
-    end function pascal_2D_quad_post
-  end function pascal_2D_quad
-
-  pure function pascal_2D_row(N, x, y) result(row)
-    !*
-    ! Generates a row of Pascal's triangle in 2D, where rows are 0-indexed
-    !
-    ! Pascal's triangle in 2D looks like this:
-    !   \[ [1] \]
-    !   \[ [x,~ y] \]
-    !   \[ [x^2,~ x y,~ y^2] \]
-    !   \[ [x^3,~ x^2y,~ xy^2,~ y^3] \]
-    !   \[ [x^4,~ x^3y,~ x^2y^2,~ xy^3, y^4] \]
-    !   \[ \vdots \]
-    !   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]
-    !
-    ! Therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]
-
-    integer,  intent(in)      :: N    !! Row number of pascal's 2D triange (0-indexed)
-    real(wp), intent(in)      :: x    !! X-value used in triange
-    real(wp), intent(in)      :: y    !! Y-Value used in triange
-    real(wp), dimension(N+1)  :: row  !! Output row of triange
-
-    integer :: ii
-
-    ! Produces the elements of an array: [x^N, x^(N-1)*y, x^(N-2)*y^2, ..., y^N]
-    row = [( x**(N-ii) * y**(ii), ii = 0, N )]
-
-    return
-  end function pascal_2D_row
 
 end module legendre

@@ -1,5 +1,5 @@
 module linalg
-  use iso_fortran_env, only: wp => real64
+  use iso_fortran_env, only: wp=>real64
   implicit none
 
   private

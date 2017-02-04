@@ -1,5 +1,5 @@
 module integration
-  use iso_fortran_env, only: wp => real64
+  use iso_fortran_env, only: wp=>real64
   use lib_array, only: linspace
   implicit none
 

@@ -1,5 +1,5 @@
 module assembly
-  use iso_fortran_env, only: wp => real64
+  use iso_fortran_env, only: wp=>real64
   use legendre, only: getIe, assembleElementalMatrix, getxy
   implicit none
 

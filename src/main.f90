@@ -1,5 +1,5 @@
 program main
-  use iso_fortran_env, only: wp => real64
+  use iso_fortran_env, only: wp=>real64
   use linalg, only: linsolve_quick
   use misc, only: r8mat_print
   use io, only: read_gmsh_file_1D, &
