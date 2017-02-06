@@ -307,10 +307,10 @@ contains
     ! Calculates the Jacobian of a quadrilateral element
     !
     ! The Jacobian of an element is defined as:
-    ! \[ \textbf{J} = \textbf{P} \textbf{X} \]
+    ! \[ \boldsymbol{J} = \boldsymbol{P} \boldsymbol{X} \]
     !
     ! Where:
-    ! \[ \textbf{P} = \left[ \begin{array}{cc}
+    ! \[ \boldsymbol{P} = \left[ \begin{array}{cc}
     !     \frac{\partial H_1}{\partial \xi} & \frac{\partial H_2}{\partial \xi} \\
     !     \frac{\partial H_1}{\partial \eta} & \frac{\partial H_2}{\partial \eta} \end{array}
     !       \cdots
@@ -319,7 +319,7 @@ contains
     !     \frac{\partial H_{N-1}}{\partial \eta} & \frac{\partial H_{N}}{\partial \eta} \end{array}
     ! \right]\]
     !
-    ! \[ X = \left[ \begin{array}{c}
+    ! \[ \boldsymbol{X} = \left[ \begin{array}{c}
     !      \begin{array}{cc}
     !        x_1 & y_1 \\
     !        x_2 & y_2
@@ -331,6 +331,18 @@ contains
     !      \end{array} \\
     !    \end{array} \right]\]
     !
+    ! Thus:
+    !
+    ! \[ \boldsymbol{J} =  \left[ \begin{array}{cc}
+    !           \boldsymbol{H}_{\xi} \cdot \boldsymbol{x} & \boldsymbol{H}_{\xi} \cdot \boldsymbol{y} \\
+    !           \boldsymbol{H}_{\eta} \cdot \boldsymbol{x} & \boldsymbol{H}_{\eta} \cdot \boldsymbol{y} \\
+    !         \end{array} \right] \]
+    !
+    !
+    ! * \( \boldsymbol{H} \) : Vector of basis functions
+    ! * \( \boldsymbol{x} \) : Vector of X-coordinates for all element nodes
+    ! * \( \boldsymbol{y} \) : Vector of Y-coordinates for all element nodes
+
     ! * \( H_i \) : Basis function \(i\)
     ! * \( x_i \) : X-coordinate of node \(i\)
     ! * \( y_i \) : Y-coordinate of node \(i\)
