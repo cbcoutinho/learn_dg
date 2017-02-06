@@ -18,16 +18,16 @@ module legendre
   public :: pascal_row
   interface pascal_row
     module function pascal_1D_line(N, x) result(row)
-      integer,  intent(in)        :: N
-      real(wp), intent(in)        :: x
-      real(wp), dimension(N+1)    :: row
+      integer,  intent(in)          :: N
+      real(wp), intent(in)          :: x
+      real(wp), dimension(N+1)      :: row
     end function pascal_1D_line
 
     module function pascal_2D_quad(N, x, y) result(row)
-      integer,  intent(in)        :: N
-      real(wp), intent(in)        :: x
-      real(wp), intent(in)        :: y
-      real(wp), dimension(N+1)    :: row
+      integer,  intent(in)          :: N
+      real(wp), intent(in)          :: x
+      real(wp), intent(in)          :: y
+      real(wp), dimension((N+1)**2) :: row
     end function pascal_2D_quad
   end interface pascal_row
 
@@ -182,19 +182,20 @@ contains
     integer,  intent(in)      :: N
     real(wp), dimension(N,2)  :: xy
 
-    ! Keep a copy of 1/3 handy so no need to retype it all the time
+    ! Keep a copy of 0, 1, and 1/3 handy so no need to retype it all the time
     real(wp), parameter :: zero = 0._wp
     real(wp), parameter :: one = 1._wp
     real(wp), parameter :: third = 1._wp/3._wp
 
-    if ( N == 4 ) then
+    select case (N)
+    case (4)
 
       xy(1,:)   = [   -one,   -one]  ! Node 1
       xy(2,:)   = [    one,   -one]  ! Node 2
       xy(3,:)   = [    one,    one]  ! Node 3
       xy(4,:)   = [   -one,    one]  ! Node 4
 
-    elseif ( N == 9 ) then
+    case (9)
 
       xy(1,:)   = [   -one,   -one]  ! Node 1
       xy(2,:)   = [    one,   -one]  ! Node 2
@@ -206,7 +207,7 @@ contains
       xy(8,:)   = [   -one,   zero]  ! Node 8
       xy(9,:)   = [   zero,   zero]  ! Node 9
 
-    elseif ( N == 16 ) then
+    case (16)
 
       xy(1,:)   = [   -one,   -one]  ! Node 1
       xy(2,:)   = [    one,   -one]  ! Node 2
@@ -225,12 +226,13 @@ contains
       xy(15,:)  = [  third,  third]  ! Node 15
       xy(16,:)  = [ -third,  third]  ! Node 16
 
-    ! else
-    !
-    !   print*, "Unsupported number of nodes selected: ", N
-    !   stop "Number of nodes must be either 4, 9, or 16"
+    case default
 
-    endif
+      ! I should probably changed this to a subroutine and include an output
+      ! error variable
+      xy = 0.d0
+
+    end select
 
     return
   end function getxy
@@ -240,33 +242,16 @@ contains
     real(wp), intent(in)    :: xi, eta
     real(wp), dimension(N)  :: row
 
-    if ( N == 4 ) then
+    select case (N)
+    case (4)
       row = pascal_row(1, xi, eta)
-
-    elseif ( N == 9 ) then
-      ! row = [1._wp, &
-      !       xi, eta, &
-      !       xi**2._wp, xi*eta, eta**2._wp, &
-      !       xi**2._wp * eta, xi * eta**2._wp, &
-      !       xi**2._wp * eta**2._wp]
+    case (9)
       row = pascal_row(2, xi, eta)
-
-    elseif ( N == 16 ) then
-      ! row = [1._wp, &
-      !       xi, eta, &
-      !       xi**2._wp, xi*eta, eta**2._wp, &
-      !       xi**3._wp, xi**2._wp * eta, xi * eta**2._wp, eta**3._wp, &
-      !       xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
-      !       xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
-      !       xi**3._wp * eta**3._wp]
+    case (16)
       row = pascal_row(3, xi, eta)
-
-    ! else
-    !
-    !   print*, "Unsupported number of nodes selected: ", N
-    !   stop "Number of nodes must be either 4, 9, or 16"
-
-    endif
+    case default
+      row = 0.d0
+    end select
 
     return
   end function getArow
@@ -338,7 +323,6 @@ contains
     !           \boldsymbol{H}_{\eta} \cdot \boldsymbol{x} & \boldsymbol{H}_{\eta} \cdot \boldsymbol{y} \\
     !         \end{array} \right] \]
     !
-    !
     ! * \( \boldsymbol{H} \) : Vector of basis functions
     ! * \( \boldsymbol{x} \) : Vector of X-coordinates for all element nodes
     ! * \( \boldsymbol{y} \) : Vector of Y-coordinates for all element nodes
@@ -385,8 +369,8 @@ contains
     real(wp), dimension(N,N)              :: Ie
 
     ! Local variables
-    integer                   :: N1, N2
     real(wp), dimension(N,N)  :: alpha
+    integer                                 :: node1, node2
 
     ! Get the coefficients of the basis functions (alpha). Both bi-linear (N=4)
     ! and bi-quadratic (N=9) quadrilaterals are supported.
@@ -394,11 +378,11 @@ contains
 
     Ie = 0._wp
 
-    do N1 = 1, N
-      do N2 = 1, N
+    do node1 = 1, N
+      do node2 = 1, N
 
-        ! fun is now implicitly defined using the following: N1, N2, d1, and d2
-        Ie(N1,N2) = Ie(N1,N2) + integrate2D(fun)
+        ! fun is now implicitly defined using the following: node1, node2, d1, and d2
+        Ie(node1,node2) = Ie(node1,node2) + integrate2D(fun)
 
       enddo
     enddo
@@ -433,18 +417,18 @@ contains
 
           ! If fun1 is just N_i, use dot_product to determine N_i
           if ( d1 == 0 ) then
-            fun1 = dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)))
+            fun1 = dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)))
           else
 
             ! If fun1 contains a derivative, need to calc N_i,xi and N_i,eta
             dfun1(1) = ( &
-              dot_product(alpha(:,N1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-              dot_product(alpha(:,N1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
               ) / ( 2._wp*eps )
 
             dfun1(2) = ( &
-              dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-              dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
               ) / ( 2._wp*eps )
 
             ! N_i,x = dxi/dx * N_i,xi + deta/dx * N_i,eta
@@ -454,20 +438,20 @@ contains
 
           ! If fun2 is just N_i, use dot_product to determine N_i
           if ( d2 == 0 ) then
-            fun2 = dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)))
+            fun2 = dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)))
           else
 
             ! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta
             dfun2(1) =  ( &
-              dot_product(alpha(:,N2), &
+              dot_product(alpha(:,node2), &
                           getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-              dot_product(alpha(:,N2), &
+              dot_product(alpha(:,node2), &
                           getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
                         ) / ( 2._wp*eps )
 
             dfun2(2) =  ( &
-              dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-              dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
                         ) / ( 2._wp*eps )
 
             ! N_i,y = dxi/dy * N_i,xi + deta/dy * N_i,eta
