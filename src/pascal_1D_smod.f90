@@ -28,14 +28,15 @@ submodule (legendre) pascal_1D
 
 contains
 
+  ! module procedure pascal_1D_line
   module function pascal_1D_line(N, x) result(row)
     !*
     ! Generates the elements of an array associated with a univarate
     ! Lagrange polynomial.
 
-      integer,  intent(in)  :: N
-      real(wp), intent(in)  :: x
-      real(wp), dimension(N+1) :: row
+    integer,  intent(in)      :: N
+    real(wp), intent(in)      :: x
+    real(wp), dimension(N+1)  :: row
 
     integer :: ii
 
@@ -43,5 +44,6 @@ contains
 
     return
   end function pascal_1D_line
+  ! end procedure pascal_1D_line
 
 end submodule pascal_1D

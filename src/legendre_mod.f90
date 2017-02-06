@@ -319,22 +319,12 @@ contains
     !     \frac{\partial H_{N-1}}{\partial \eta} & \frac{\partial H_{N}}{\partial \eta} \end{array}
     ! \right]\]
     !
-    ! \[ X = \left[ \begin{array}{rcl}
-    !       x_1 & & y_1 \\
-    !       x_2 & & y_2 \\
-    !       & \vdots & \\
-    !       x_{N-1} & & y_{N-1} \\
-    !       x_N & & y_N \\
-    !   \end{array} \right]\]
-    !
-    ! @note The following below doesn't work with MathJax and is being rendered incorrectly for some reason:
-    !
     ! \[ X = \left[ \begin{array}{c}
     !      \begin{array}{cc}
     !        x_1 & y_1 \\
     !        x_2 & y_2
-    !      \end{array} \\
-    !      \vdots \\
+    !      \end{array} \\\\
+    !      \vdots \\\\
     !      \begin{array}{cc}
     !        x_{N-1} & y_{N-1} \\
     !        x_N & y_N
