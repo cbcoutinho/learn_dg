@@ -13,14 +13,12 @@ module integration
   public :: integrate, integrate2D
 
   interface
-    function fun2d_interf(x, y) result(z)
-      import wp
+    module function fun2d_interf(x, y) result(z)
       real(wp), intent(in), dimension(:,:)  :: x, y
       real(wp), dimension(:,:), allocatable :: z
     end function
 
-    subroutine sub1d_interf(xx, yy)
-      import wp
+    module subroutine sub1d_interf(xx, yy)
       real(wp), intent(in),   dimension(:) :: xx
       real(wp), intent(out),  dimension(:) :: yy
     end subroutine sub1d_interf

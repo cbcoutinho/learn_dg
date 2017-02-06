@@ -38,8 +38,6 @@ FFLAGS += -O3 -march=native -ffast-math -funroll-loops
 $(info Building in Release mode)
 endif
 
-
-
 FLIBS = -lblas -llapack
 # FLIBS += -fopenmp
 
@@ -74,8 +72,6 @@ objects=$(OBJ)/lib_array.o \
 	$(OBJ)/assembly.o \
 	$(OBJ)/linalg.o
 
-
-
 ##############################
 ####### Build Recepies #######
 ##############################
@@ -108,12 +104,12 @@ $(OBJ)/io.o: $(SRC)/io_mod.f90 $(OBJ)/lib_array.o
 $(OBJ)/main.o: $(SRC)/main.f90 $(objects)
 	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $< $(FLIBS)
 $(BIN)/main: $(OBJ)/main.o $(objects)
-	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
+	$(FF) $(FFLAGS) -o $@ $^ $(FLIBS)
 
 $(OBJ)/doubleint.o: $(SRC)/doubleint.f90 $(objects)
 	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $< $(FLIBS)
 $(BIN)/doubleint: $(OBJ)/doubleint.o $(objects)
-	$(FF) $(FFLAGS) -o $@ $+ $(FLIBS)
+	$(FF) $(FFLAGS) -o $@ $^ $(FLIBS)
 
 submodules:
 	git submodule init

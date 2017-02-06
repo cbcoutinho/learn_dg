@@ -8,7 +8,9 @@ os: linux
 dist: trusty      # options: [precise|trusty]
 
 notifications:
-  email: change   # options: [always|never|change]
+  email:
+    on_success: never   # options: [always|never|change]
+    on_failure: change  # options: [always|never|change]
 
 cache:
   apt: true
