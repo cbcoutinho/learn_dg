@@ -121,11 +121,15 @@ mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
 	gmsh $(TEST)/test1D.geo -order 1 -1 -o $(TEST)/test1D.msh > /dev/null 2>&1
 	gmsh $(TEST)/test2D.geo -order 1 -2 -o $(TEST)/test2D.msh > /dev/null 2>&1
 
-run: build mesh
+run1: build mesh
 	$(BIN)/main $(TEST)/test1D.msh
+
+run2: build
 	$(BIN)/doubleint
 
-plot: run
+run: run1 run2
+
+plot: run1
 	python plotter.py
 
 .PHONY: docs
