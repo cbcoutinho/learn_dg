@@ -12,25 +12,59 @@ module legendre
   use linalg, only: linsolve_quick, linsolve, inv2, det2, eye
   implicit none
 
-  private
-  public  :: getIe, assembleElementalMatrix, getxy
+  real(wp), dimension(:,:), allocatable :: alpha
 
-  public :: pascal_row
+  private
+  public  :: getIe, assembleElementalMatrix
+
+  public :: getxy
+  interface getxy
+    pure module function getxy(N) result(xy)
+      integer,  intent(in)          :: N
+      real(wp), dimension(N,2)      :: xy
+    end function
+  end interface getxy
+
   interface pascal_row
-    module function pascal_1D_line(N, x) result(row)
-      integer,  intent(in)        :: N
-      real(wp), intent(in)        :: x
-      real(wp), dimension(N+1)    :: row
+    pure module function pascal_1D_line(N, x) result(row)
+      integer,  intent(in)          :: N
+      real(wp), intent(in)          :: x
+      real(wp), dimension(N+1)      :: row
     end function pascal_1D_line
 
-    module function pascal_2D_quad(N, x, y) result(row)
-      integer,  intent(in)        :: N
-      real(wp), intent(in)        :: x
-      real(wp), intent(in)        :: y
-      real(wp), dimension(N+1)    :: row
+    pure module function pascal_2D_quad(N, x, y) result(row)
+      integer,  intent(in)          :: N
+      real(wp), intent(in)          :: x
+      real(wp), intent(in)          :: y
+      real(wp), dimension((N+1)**2) :: row
     end function pascal_2D_quad
   end interface pascal_row
 
+  interface getArow
+    pure module function getArow(N, xi, eta) result(row)
+      integer, intent(in)     :: N
+      real(wp), intent(in)    :: xi, eta
+      real(wp), dimension(N)  :: row
+    end function getArow
+  end interface getArow
+
+  interface getAlpha
+    module function getAlpha(N) result(alpha)
+      integer, intent(in)       :: N
+      real(wp), dimension(N,N)  :: alpha
+    end function getAlpha
+  end interface getAlpha
+
+  interface getJacobian
+    module function getJacobian(N, xi, eta, xy, alpha) result(J)
+      integer,                  intent(in)  :: N      !! Number of points in element
+      real(wp),                 intent(in)  :: xi     !!
+      real(wp),                 intent(in)  :: eta    !!
+      real(wp), dimension(N,2), intent(in)  :: xy     !!
+      real(wp), dimension(N,N), intent(in)  :: alpha  !!
+      real(wp), dimension(2,2)              :: J      !!
+    end function getJacobian
+  end interface getJacobian
 contains
 
   ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -178,194 +212,6 @@ contains
   ! !!!!!! Elemental Matrix Routines 2-D !!!!!!!
   ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  pure function getxy(N) result(xy)
-    integer,  intent(in)      :: N
-    real(wp), dimension(N,2)  :: xy
-
-    ! Keep a copy of 1/3 handy so no need to retype it all the time
-    real(wp), parameter :: zero = 0._wp
-    real(wp), parameter :: one = 1._wp
-    real(wp), parameter :: third = 1._wp/3._wp
-
-    if ( N == 4 ) then
-
-      xy(1,:)   = [   -one,   -one]  ! Node 1
-      xy(2,:)   = [    one,   -one]  ! Node 2
-      xy(3,:)   = [    one,    one]  ! Node 3
-      xy(4,:)   = [   -one,    one]  ! Node 4
-
-    elseif ( N == 9 ) then
-
-      xy(1,:)   = [   -one,   -one]  ! Node 1
-      xy(2,:)   = [    one,   -one]  ! Node 2
-      xy(3,:)   = [    one,    one]  ! Node 3
-      xy(4,:)   = [   -one,    one]  ! Node 4
-      xy(5,:)   = [   zero,   -one]  ! Node 5
-      xy(6,:)   = [    one,   zero]  ! Node 6
-      xy(7,:)   = [   zero,    one]  ! Node 7
-      xy(8,:)   = [   -one,   zero]  ! Node 8
-      xy(9,:)   = [   zero,   zero]  ! Node 9
-
-    elseif ( N == 16 ) then
-
-      xy(1,:)   = [   -one,   -one]  ! Node 1
-      xy(2,:)   = [    one,   -one]  ! Node 2
-      xy(3,:)   = [    one,    one]  ! Node 3
-      xy(4,:)   = [   -one,    one]  ! Node 4
-      xy(5,:)   = [ -third,   -one]  ! Node 5
-      xy(6,:)   = [  third,   -one]  ! Node 6
-      xy(7,:)   = [    one, -third]  ! Node 7
-      xy(8,:)   = [    one,  third]  ! Node 8
-      xy(9,:)   = [  third,    one]  ! Node 9
-      xy(10,:)  = [ -third,    one]  ! Node 10
-      xy(11,:)  = [   -one,  third]  ! Node 11
-      xy(12,:)  = [   -one, -third]  ! Node 12
-      xy(13,:)  = [ -third, -third]  ! Node 13
-      xy(14,:)  = [  third, -third]  ! Node 14
-      xy(15,:)  = [  third,  third]  ! Node 15
-      xy(16,:)  = [ -third,  third]  ! Node 16
-
-    ! else
-    !
-    !   print*, "Unsupported number of nodes selected: ", N
-    !   stop "Number of nodes must be either 4, 9, or 16"
-
-    endif
-
-    return
-  end function getxy
-
-  function getArow(N, xi, eta) result(row)
-    integer, intent(in)     :: N
-    real(wp), intent(in)    :: xi, eta
-    real(wp), dimension(N)  :: row
-
-    if ( N == 4 ) then
-      row = pascal_row(1, xi, eta)
-
-    elseif ( N == 9 ) then
-      ! row = [1._wp, &
-      !       xi, eta, &
-      !       xi**2._wp, xi*eta, eta**2._wp, &
-      !       xi**2._wp * eta, xi * eta**2._wp, &
-      !       xi**2._wp * eta**2._wp]
-      row = pascal_row(2, xi, eta)
-
-    elseif ( N == 16 ) then
-      ! row = [1._wp, &
-      !       xi, eta, &
-      !       xi**2._wp, xi*eta, eta**2._wp, &
-      !       xi**3._wp, xi**2._wp * eta, xi * eta**2._wp, eta**3._wp, &
-      !       xi**3._wp * eta, xi**2._wp * eta**2._wp, xi * eta**3._wp, &
-      !       xi**3._wp * eta**2._wp, xi**2._wp * eta**3._wp, &
-      !       xi**3._wp * eta**3._wp]
-      row = pascal_row(3, xi, eta)
-
-    ! else
-    !
-    !   print*, "Unsupported number of nodes selected: ", N
-    !   stop "Number of nodes must be either 4, 9, or 16"
-
-    endif
-
-    return
-  end function getArow
-
-  function getAlpha(N) result(alpha)
-    integer, intent(in)       :: N
-    real(wp), dimension(N,N)  :: alpha
-
-    integer                   :: ii
-    real(wp), dimension(N,N)  :: A, B
-
-    A = getA(N)
-    B = eye(N)
-
-    call linsolve_quick(N, A, N, B, alpha)
-
-    return
-  contains
-    function getA(N) result(A)
-      integer, intent(in)       :: N
-      real(wp), dimension(N,N)  :: A
-
-      integer                   :: ii
-      real(wp), dimension(N,2)  :: xy
-
-      xy = getxy(N)
-
-      do ii = 1,N
-        A(ii,:) = getArow(N, xy(ii,1), xy(ii,2))
-      enddo
-
-      return
-    end function getA
-  end function getAlpha
-
-  function getJacobian(N, xi, eta, xy, alpha) result(J)
-    !*
-    ! Calculates the Jacobian of a quadrilateral element
-    !
-    ! The Jacobian of an element is defined as:
-    ! \[ \textbf{J} = \textbf{P} \textbf{X} \]
-    !
-    ! Where:
-    ! \[ \textbf{P} = \left[ \begin{array}{cc}
-    !     \frac{\partial H_1}{\partial \xi} & \frac{\partial H_2}{\partial \xi} \\
-    !     \frac{\partial H_1}{\partial \eta} & \frac{\partial H_2}{\partial \eta} \end{array}
-    !       \cdots
-    !     \begin{array}{cc}
-    !     \frac{\partial H_{N-1}}{\partial \xi} & \frac{\partial H_{N}}{\partial \xi} \\
-    !     \frac{\partial H_{N-1}}{\partial \eta} & \frac{\partial H_{N}}{\partial \eta} \end{array}
-    ! \right]\]
-    !
-    ! \[ X = \left[ \begin{array}{c}
-    !      \begin{array}{cc}
-    !        x_1 & y_1 \\
-    !        x_2 & y_2
-    !      \end{array} \\\\
-    !      \vdots \\\\
-    !      \begin{array}{cc}
-    !        x_{N-1} & y_{N-1} \\
-    !        x_N & y_N
-    !      \end{array} \\
-    !    \end{array} \right]\]
-    !
-    ! * \( H_i \) : Basis function \(i\)
-    ! * \( x_i \) : X-coordinate of node \(i\)
-    ! * \( y_i \) : Y-coordinate of node \(i\)
-
-    integer,                  intent(in)  :: N      !! Number of points in element
-    real(wp),                 intent(in)  :: xi     !!
-    real(wp),                 intent(in)  :: eta    !!
-    real(wp), dimension(N,2), intent(in)  :: xy     !!
-    real(wp), dimension(N,N), intent(in)  :: alpha  !!
-    real(wp), dimension(2,2)              :: J      !!
-
-    integer                               :: ii     !!
-    real(wp), parameter                   :: eps = epsilon(0e0)
-    real(wp), dimension(2,N)              :: P      !! Array of
-    real(wp), dimension(N)                :: x      !! Row in element coefficient matrix
-
-    ! P is a matrix containing derivatives of each basis function at (xi,eta)
-    ! P = [dN_1/dxi, dN_2/dxi, dN_3/dxi, ...
-    !      dN_1/deta, dN_2/deta, dN_3/deta, ...]
-
-    do ii = 1,N
-      x = alpha(:,ii)
-      P(1,ii) = dot_product(x, getArow(N, xi+eps, eta     )) - &
-                dot_product(x, getArow(N, xi-eps, eta     ))
-      P(2,ii) = dot_product(x, getArow(N, xi,     eta+eps )) - &
-                dot_product(x, getArow(N, xi,     eta-eps ))
-    enddo
-
-    P = P / ( 2._wp*eps )
-
-    J = matmul(P,xy)
-
-    return
-  end function getJacobian
-
   function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
     ! Dummy variables
     integer,                  intent(in)  :: N, d1, d2
@@ -373,20 +219,19 @@ contains
     real(wp), dimension(N,N)              :: Ie
 
     ! Local variables
-    integer                   :: N1, N2
-    real(wp), dimension(N,N)  :: alpha
+    integer                                 :: node1, node2
 
     ! Get the coefficients of the basis functions (alpha). Both bi-linear (N=4)
     ! and bi-quadratic (N=9) quadrilaterals are supported.
-    alpha = getAlpha(N)
+    if ( .not. allocated(alpha) ) alpha = getAlpha(N)
 
     Ie = 0._wp
 
-    do N1 = 1, N
-      do N2 = 1, N
+    do node1 = 1, N
+      do node2 = 1, N
 
-        ! fun is now implicitly defined using the following: N1, N2, d1, and d2
-        Ie(N1,N2) = Ie(N1,N2) + integrate2D(fun)
+        ! fun is now implicitly defined using the following: node1, node2, d1, and d2
+        Ie(node1,node2) = Ie(node1,node2) + integrate2D(fun)
 
       enddo
     enddo
@@ -421,18 +266,18 @@ contains
 
           ! If fun1 is just N_i, use dot_product to determine N_i
           if ( d1 == 0 ) then
-            fun1 = dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)))
+            fun1 = dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)))
           else
 
             ! If fun1 contains a derivative, need to calc N_i,xi and N_i,eta
             dfun1(1) = ( &
-              dot_product(alpha(:,N1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-              dot_product(alpha(:,N1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
               ) / ( 2._wp*eps )
 
             dfun1(2) = ( &
-              dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-              dot_product(alpha(:,N1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
               ) / ( 2._wp*eps )
 
             ! N_i,x = dxi/dx * N_i,xi + deta/dx * N_i,eta
@@ -442,20 +287,20 @@ contains
 
           ! If fun2 is just N_i, use dot_product to determine N_i
           if ( d2 == 0 ) then
-            fun2 = dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)))
+            fun2 = dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)))
           else
 
             ! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta
             dfun2(1) =  ( &
-              dot_product(alpha(:,N2), &
+              dot_product(alpha(:,node2), &
                           getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-              dot_product(alpha(:,N2), &
+              dot_product(alpha(:,node2), &
                           getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
                         ) / ( 2._wp*eps )
 
             dfun2(2) =  ( &
-              dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-              dot_product(alpha(:,N2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
                         ) / ( 2._wp*eps )
 
             ! N_i,y = dxi/dy * N_i,xi + deta/dy * N_i,eta

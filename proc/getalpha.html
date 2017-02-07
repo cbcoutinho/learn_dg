@@ -111,7 +111,7 @@
   
   <div class="row">
     <h1>getAlpha
-      <small>Function</small>
+      <small>Module Function</small>
     
     </h1>
     
@@ -128,18 +128,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 3.0% of total for procedures.">22 statements</a>
+	  title=" 3.1% of total for procedures.">22 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/legendre_mod.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/pascal_2D_smod.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/legendre_mod.f90.html'>legendre_mod.f90</a></li>
+     <li><a href='../sourcefile/pascal_2d_smod.f90.html'>pascal_2D_smod.f90</a></li>
   
-     <li><a href='../module/legendre.html'>legendre</a></li>
+     <li><a href='../module/pascal_2d.html'>pascal_2D</a></li>
   
      <li class="active">getAlpha</li>
   </ol>
@@ -213,13 +213,15 @@
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../proc/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
       
-      <a class="list-group-item" href="../proc/getarow.html">getArow</a>
+      <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
       <a class="list-group-item" href="../proc/getie.html">getIe</a>
       
-      <a class="list-group-item" href="../proc/getjacobian.html">getJacobian</a>
+      <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
+      
+      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
       
       <a class="list-group-item" href="../proc/getxy.html">getxy</a>
       
@@ -268,7 +270,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private function getAlpha(N) result(alpha)
+function getAlpha(N) result(alpha)
     
     
 	 
@@ -297,7 +299,7 @@ private function getAlpha(N) result(alpha)
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E5"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E9"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -336,67 +338,67 @@ private function getAlpha(N) result(alpha)
 <polygon fill="white" stroke="none" points="-4,4 -4,-91 356,-91 356,4 -4,4"/>
 <!-- proc~getalpha -->
 <g id="proc~~getalpha~~CallsGraph_node1" class="node"><title>proc~getalpha</title>
-<polygon fill="none" stroke="black" points="55.5,-66 0.5,-66 0.5,-42 55.5,-42 55.5,-66"/>
-<text text-anchor="middle" x="28" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">getAlpha</text>
-</g>
-<!-- proc~eye -->
-<g id="proc~~getalpha~~CallsGraph_node2" class="node"><title>proc~eye</title>
-<g id="a_proc~~getalpha~~CallsGraph_node2"><a xlink:href="../proc/eye.html" xlink:title="eye">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="159,-87 105,-87 105,-63 159,-63 159,-87"/>
-<text text-anchor="middle" x="132" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eye</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha&#45;&gt;proc~eye -->
-<g id="proc~~getalpha~~CallsGraph_edge4" class="edge"><title>proc~getalpha&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff0000" d="M55.533,-59.4627C67.5498,-61.9367 81.9415,-64.8997 94.9198,-67.5717"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="94.4524,-71.0488 104.953,-69.6373 95.864,-64.1926 94.4524,-71.0488"/>
+<polygon fill="none" stroke="black" points="55.5,-45 0.5,-45 0.5,-21 55.5,-21 55.5,-45"/>
+<text text-anchor="middle" x="28" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">getAlpha</text>
 </g>
 <!-- proc~linsolve_quick -->
-<g id="proc~~getalpha~~CallsGraph_node3" class="node"><title>proc~linsolve_quick</title>
-<g id="a_proc~~getalpha~~CallsGraph_node3"><a xlink:href="../proc/linsolve_quick.html" xlink:title="linsolve_quick">
-<polygon fill="#d9534f" stroke="#d9534f" points="171.5,-45 92.5,-45 92.5,-21 171.5,-21 171.5,-45"/>
-<text text-anchor="middle" x="132" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve_quick</text>
+<g id="proc~~getalpha~~CallsGraph_node2" class="node"><title>proc~linsolve_quick</title>
+<g id="a_proc~~getalpha~~CallsGraph_node2"><a xlink:href="../proc/linsolve_quick.html" xlink:title="linsolve_quick">
+<polygon fill="#d9534f" stroke="#d9534f" points="171.5,-66 92.5,-66 92.5,-42 171.5,-42 171.5,-66"/>
+<text text-anchor="middle" x="132" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve_quick</text>
 </a>
 </g>
 </g>
 <!-- proc~getalpha&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~getalpha~~CallsGraph_edge5" class="edge"><title>proc~getalpha&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M55.533,-48.5373C63.7692,-46.8416 73.1211,-44.9162 82.3689,-43.0123"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="83.2165,-46.4113 92.3052,-40.9666 81.8049,-39.5551 83.2165,-46.4113"/>
+<g id="proc~~getalpha~~CallsGraph_edge4" class="edge"><title>proc~getalpha&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M55.533,-38.4627C63.7692,-40.1584 73.1211,-42.0838 82.3689,-43.9877"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="81.8049,-47.4449 92.3052,-46.0334 83.2165,-40.5887 81.8049,-47.4449"/>
+</g>
+<!-- proc~eye -->
+<g id="proc~~getalpha~~CallsGraph_node3" class="node"><title>proc~eye</title>
+<g id="a_proc~~getalpha~~CallsGraph_node3"><a xlink:href="../proc/eye.html" xlink:title="eye">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="159,-24 105,-24 105,-0 159,-0 159,-24"/>
+<text text-anchor="middle" x="132" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eye</text>
+</a>
+</g>
+</g>
+<!-- proc~getalpha&#45;&gt;proc~eye -->
+<g id="proc~~getalpha~~CallsGraph_edge5" class="edge"><title>proc~getalpha&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#ff0000" d="M55.533,-27.5373C67.5498,-25.0633 81.9415,-22.1003 94.9198,-19.4283"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="95.864,-22.8074 104.953,-17.3627 94.4524,-15.9512 95.864,-22.8074"/>
 </g>
 <!-- proc~linsolve -->
 <g id="proc~~getalpha~~CallsGraph_node4" class="node"><title>proc~linsolve</title>
 <g id="a_proc~~getalpha~~CallsGraph_node4"><a xlink:href="../proc/linsolve.html" xlink:title="linsolve">
-<polygon fill="#d9534f" stroke="#d9534f" points="262,-45 208,-45 208,-21 262,-21 262,-45"/>
-<text text-anchor="middle" x="235" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="262,-66 208,-66 208,-42 262,-42 262,-66"/>
+<text text-anchor="middle" x="235" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve</text>
 </a>
 </g>
 </g>
 <!-- proc~linsolve_quick&#45;&gt;proc~linsolve -->
 <g id="proc~~getalpha~~CallsGraph_edge3" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
-<path fill="none" stroke="#00ffff" d="M171.76,-33C180.382,-33 189.487,-33 197.993,-33"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="197.998,-36.5001 207.998,-33 197.998,-29.5001 197.998,-36.5001"/>
+<path fill="none" stroke="#ff0000" d="M171.76,-54C180.382,-54 189.487,-54 197.993,-54"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="197.998,-57.5001 207.998,-54 197.998,-50.5001 197.998,-57.5001"/>
 </g>
 <!-- dgetrs -->
 <g id="proc~~getalpha~~CallsGraph_node5" class="node"><title>dgetrs</title>
-<polygon fill="#777777" stroke="#777777" points="352,-66 298,-66 298,-42 352,-42 352,-66"/>
-<text text-anchor="middle" x="325" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+<polygon fill="#777777" stroke="#777777" points="352,-87 298,-87 298,-63 352,-63 352,-87"/>
+<text text-anchor="middle" x="325" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
 <!-- proc~linsolve&#45;&gt;dgetrs -->
 <g id="proc~~getalpha~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
-<path fill="none" stroke="#ff0000" d="M262.403,-39.3007C270.481,-41.2284 279.507,-43.3823 288.105,-45.4341"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="287.38,-48.8593 297.919,-47.7761 289.005,-42.0505 287.38,-48.8593"/>
+<path fill="none" stroke="#ff0000" d="M262.403,-60.3007C270.481,-62.2284 279.507,-64.3823 288.105,-66.4341"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="287.38,-69.8593 297.919,-68.7761 289.005,-63.0505 287.38,-69.8593"/>
 </g>
 <!-- dgetrf -->
 <g id="proc~~getalpha~~CallsGraph_node6" class="node"><title>dgetrf</title>
-<polygon fill="#777777" stroke="#777777" points="352,-24 298,-24 298,-0 352,-0 352,-24"/>
-<text text-anchor="middle" x="325" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+<polygon fill="#777777" stroke="#777777" points="352,-45 298,-45 298,-21 352,-21 352,-45"/>
+<text text-anchor="middle" x="325" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
 <!-- proc~linsolve&#45;&gt;dgetrf -->
 <g id="proc~~getalpha~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
-<path fill="none" stroke="#ff0000" d="M262.403,-26.6993C270.481,-24.7716 279.507,-22.6177 288.105,-20.5659"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="289.005,-23.9495 297.919,-18.2239 287.38,-17.1407 289.005,-23.9495"/>
+<path fill="none" stroke="#ff0000" d="M262.403,-47.6993C270.481,-45.7716 279.507,-43.6177 288.105,-41.5659"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="289.005,-44.9495 297.919,-39.2239 287.38,-38.1407 289.005,-44.9495"/>
 </g>
 </g>
 </svg>
@@ -469,108 +471,6 @@ private function getAlpha(N) result(alpha)
                 </div>
                 
      
-     
-     <h3>Called By</h3>
-     
-                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.36.0 (20140111.2315)
- -->
-<!-- Title: proc~~getalpha~~CalledByGraph Pages: 1 -->
-<svg id="procgetalphaCalledByGraph" width="236pt" height="32pt"
- viewBox="0.00 0.00 236.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~getalpha~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~getalpha~~CalledByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 232,-28 232,4 -4,4"/>
-<!-- proc~getalpha -->
-<g id="proc~~getalpha~~CalledByGraph_node1" class="node"><title>proc~getalpha</title>
-<polygon fill="none" stroke="black" points="227.5,-24 172.5,-24 172.5,-0 227.5,-0 227.5,-24"/>
-<text text-anchor="middle" x="200" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">getAlpha</text>
-</g>
-<!-- proc~assembleelementalmatrix -->
-<g id="proc~~getalpha~~CalledByGraph_node2" class="node"><title>proc~assembleelementalmatrix</title>
-<g id="a_proc~~getalpha~~CalledByGraph_node2"><a xlink:href="../proc/assembleelementalmatrix.html" xlink:title="assembleElementalMatrix">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="135.5,-24 0.5,-24 0.5,-0 135.5,-0 135.5,-24"/>
-<text text-anchor="middle" x="68" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix</text>
-</a>
-</g>
-</g>
-<!-- proc~assembleelementalmatrix&#45;&gt;proc~getalpha -->
-<g id="proc~~getalpha~~CalledByGraph_edge1" class="edge"><title>proc~assembleelementalmatrix&#45;&gt;proc~getalpha</title>
-<path fill="none" stroke="#ff0000" d="M135.523,-12C144.747,-12 153.93,-12 162.329,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="162.492,-15.5001 172.492,-12 162.492,-8.5001 162.492,-15.5001"/>
-</g>
-</g>
-</svg>
-</div>
-                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
-                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
-                      </div>
-                      <div class="modal-body">
-                        
-    <p>Nodes of different colours represent the following: </p>
-    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.36.0 (20140111.2315)
- -->
-<!-- Title: Graph Key Pages: 1 -->
-<svg width="559pt" height="32pt"
- viewBox="0.00 0.00 559.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>Graph Key</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 555,-28 555,4 -4,4"/>
-<!-- Subroutine -->
-<g id="node1" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="64,-24 0,-24 0,-0 64,-0 64,-24"/>
-<text text-anchor="middle" x="32" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
-</g>
-<!-- Function -->
-<g id="node2" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 82,-24 82,-0 136,-0 136,-24"/>
-<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
-</g>
-<!-- Interface -->
-<g id="node3" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="209.25,-24 154.75,-24 154.75,-0 209.25,-0 209.25,-24"/>
-<text text-anchor="middle" x="182" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
-</g>
-<!-- Unknown Procedure Type -->
-<g id="node4" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="364,-24 228,-24 228,-0 364,-0 364,-24"/>
-<text text-anchor="middle" x="296" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
-</g>
-<!-- Program -->
-<g id="node5" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="436,-24 382,-24 382,-0 436,-0 436,-24"/>
-<text text-anchor="middle" x="409" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
-</g>
-<!-- This Page&#39;s Entity -->
-<g id="node6" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="551.25,-24 454.75,-24 454.75,-0 551.25,-0 551.25,-24"/>
-<text text-anchor="middle" x="503" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
-</g>
-</g>
-</svg>
-
-    
-    <p>Solid arrows point from a procedure to one which it calls. Dashed 
-    arrows point from an interface to procedures which implement that interface.
-    This could include the module procedures in a generic interface or the
-    implementation in a submodule of an interface in a parent module. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
-    </p>
-    
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
      
     <br>
 
@@ -627,7 +527,7 @@ private function getAlpha(N) result(alpha)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">getAlpha</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span>  <span class="k">module function </span><span class="n">getAlpha</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
     <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">N</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">alpha</span>
 
@@ -693,13 +593,15 @@ private function getAlpha(N) result(alpha)
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../proc/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
       
-      <a class="list-group-item" href="../proc/getarow.html">getArow</a>
+      <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
       <a class="list-group-item" href="../proc/getie.html">getIe</a>
       
-      <a class="list-group-item" href="../proc/getjacobian.html">getJacobian</a>
+      <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
+      
+      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
       
       <a class="list-group-item" href="../proc/getxy.html">getxy</a>
       
@@ -754,7 +656,7 @@ private function getAlpha(N) result(alpha)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-02-06 18:11  
+             on 2017-02-07 00:11  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

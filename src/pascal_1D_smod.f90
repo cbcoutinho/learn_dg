@@ -29,7 +29,7 @@ submodule (legendre) pascal_1D
 contains
 
   ! module procedure pascal_1D_line
-  module function pascal_1D_line(N, x) result(row)
+  pure module function pascal_1D_line(N, x) result(row)
     !*
     ! Generates the elements of an array associated with a univarate
     ! Lagrange polynomial.
