@@ -10,6 +10,110 @@ submodule (legendre) pascal_2D
 
 contains
 
+  module function assembleElementalMatrix2D(N, d1, d2, xy) result(Ie)
+    ! Dummy variables
+    integer,                  intent(in)  :: N, d1, d2
+    real(wp), dimension(N,2), intent(in)  :: xy
+    real(wp), dimension(N,N)              :: Ie
+
+    ! Local variables
+    integer                                 :: node1, node2
+
+    ! Get the coefficients of the basis functions (alpha). Both bi-linear (N=4)
+    ! and bi-quadratic (N=9) quadrilaterals are supported.
+    if ( .not. allocated(alpha) ) alpha = getAlpha(N)
+
+    Ie = 0._wp
+
+    do node1 = 1, N
+      do node2 = 1, N
+
+        ! fun is now implicitly defined using the following: node1, node2, d1, and d2
+        Ie(node1,node2) = Ie(node1,node2) + integrate2D(fun)
+
+      enddo
+    enddo
+  contains
+    function fun(xi, eta) result(out)
+      ! Dummy variables
+      real(wp), dimension(:,:), intent(in)  :: xi, eta
+      real(wp), dimension(:,:), allocatable :: out
+
+      ! Local variables
+      integer                   :: ii, jj, num_pts
+      real(wp), parameter       :: eps = epsilon(0e0)
+      real(wp)                  :: fun1, fun2
+      real(wp), dimension(2)    :: dfun1, dfun2
+      real(wp)                  :: detJ
+      real(wp), dimension(2,2)  :: J, invJ
+
+      ! Initialize function output. Actual number of pts is num_pts*num_pts,
+      ! because the meshgrid goes in both x and y directions. Only need one.
+      num_pts = size(xi,1)
+      allocate(out(num_pts,num_pts))
+      out = 0._wp
+
+      do ii = 1, num_pts
+        do jj = 1, num_pts
+
+          ! Calculate Jacobian, inverse Jacobian, and determinant of finite
+          ! element at (xi,eta)
+          J     = getJacobian(N, xi(ii,jj), eta(ii,jj), xy, alpha)
+          invJ  = inv2(J)
+          detJ  = det2(J)
+
+          ! If fun1 is just N_i, use dot_product to determine N_i
+          if ( d1 == 0 ) then
+            fun1 = dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)))
+          else
+
+            ! If fun1 contains a derivative, need to calc N_i,xi and N_i,eta
+            dfun1(1) = ( &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+              ) / ( 2._wp*eps )
+
+            dfun1(2) = ( &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+              ) / ( 2._wp*eps )
+
+            ! N_i,x = dxi/dx * N_i,xi + deta/dx * N_i,eta
+            fun1 = dot_product(invJ(d1,:), dfun1)
+
+          endif
+
+          ! If fun2 is just N_i, use dot_product to determine N_i
+          if ( d2 == 0 ) then
+            fun2 = dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)))
+          else
+
+            ! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta
+            dfun2(1) =  ( &
+              dot_product(alpha(:,node2), &
+                          getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+              dot_product(alpha(:,node2), &
+                          getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+                        ) / ( 2._wp*eps )
+
+            dfun2(2) =  ( &
+              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
+              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
+                        ) / ( 2._wp*eps )
+
+            ! N_i,y = dxi/dy * N_i,xi + deta/dy * N_i,eta
+            fun2 = dot_product(invJ(d2,:), dfun2)
+
+          endif
+
+          out(ii,jj) = fun1 * fun2 * detJ
+
+        enddo
+      enddo
+      return
+    end function fun
+  end function assembleElementalMatrix2D
+
   pure function getxy(N) result(xy)
     integer,  intent(in)      :: N
     real(wp), dimension(N,2)  :: xy
@@ -76,10 +180,13 @@ contains
 
     select case (N)
     case (4)
+      ! row = pascal_2D_quad(1, xi, eta)
       row = pascal_row(1, xi, eta)
     case (9)
+      ! row = pascal_2D_quad(2, xi, eta)
       row = pascal_row(2, xi, eta)
     case (16)
+      ! row = pascal_2D_quad(3, xi, eta)
       row = pascal_row(3, xi, eta)
     case default
       row = 0.d0
@@ -88,7 +195,7 @@ contains
     return
   end function getArow
 
-  module function getAlpha(N) result(alpha)
+  module function getAlpha2D(N) result(alpha)
     integer, intent(in)       :: N
     real(wp), dimension(N,N)  :: alpha
 
@@ -117,7 +224,7 @@ contains
 
       return
     end function getA
-  end function getAlpha
+  end function getAlpha2D
 
   pure module function pascal_2D_quad(N, x, y) result(row)
     !*
@@ -231,6 +338,9 @@ contains
     ! \[ \boldsymbol{J} =  \left[ \begin{array}{cc}
     !           \boldsymbol{H}_{\xi} \cdot \boldsymbol{x} & \boldsymbol{H}_{\xi} \cdot \boldsymbol{y} \\
     !           \boldsymbol{H}_{\eta} \cdot \boldsymbol{x} & \boldsymbol{H}_{\eta} \cdot \boldsymbol{y} \\
+    !         \end{array} \right] = \left[ \begin{array}{cc}
+    !           \frac{\partial \xi}{\partial x} & \frac{\partial \xi}{\partial y} \\
+    !           \frac{\partial \eta}{\partial x} & \frac{\partial \eta}{\partial y} \\
     !         \end{array} \right] \]
     !
     ! * \( \boldsymbol{H} \) : Vector of basis functions
@@ -240,6 +350,7 @@ contains
     ! * \( H_i \) : Basis function \(i\)
     ! * \( x_i \) : X-coordinate of node \(i\)
     ! * \( y_i \) : Y-coordinate of node \(i\)
+
 
     integer,                  intent(in)  :: N      !! Number of points in element
     real(wp),                 intent(in)  :: xi     !!
