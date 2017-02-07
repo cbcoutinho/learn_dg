@@ -15,7 +15,7 @@ module legendre
   real(wp), dimension(:,:), allocatable :: alpha
 
   private
-  public  :: getIe, assembleElementalMatrix
+  public  :: getIe
 
   public :: getxy
   interface getxy
@@ -24,6 +24,21 @@ module legendre
       real(wp), dimension(N,2)      :: xy
     end function
   end interface getxy
+
+  public :: assembleElementalMatrix
+  interface assembleElementalMatrix
+    module function assembleElementalMatrix1D(N, d1, d2, xy) result(Ie)
+      integer,                  intent(in)  :: N, d1, d2
+      real(wp), dimension(N),   intent(in)  :: xy
+      real(wp), dimension(N,N)              :: Ie
+    end function assembleElementalMatrix1D
+
+    module function assembleElementalMatrix2D(N, d1, d2, xy) result(Ie)
+      integer,                  intent(in)  :: N, d1, d2
+      real(wp), dimension(N,2), intent(in)  :: xy
+      real(wp), dimension(N,N)              :: Ie
+    end function assembleElementalMatrix2D
+  end interface assembleElementalMatrix
 
   interface pascal_row
     pure module function pascal_1D_line(N, x) result(row)
@@ -49,11 +64,18 @@ module legendre
   end interface getArow
 
   interface getAlpha
-    module function getAlpha(N) result(alpha)
+    module function getAlpha2D(N) result(alpha)
       integer, intent(in)       :: N
       real(wp), dimension(N,N)  :: alpha
-    end function getAlpha
+    end function getAlpha2D
   end interface getAlpha
+
+  interface getAlpha_
+    module function getAlpha1D(N) result(alpha)
+      integer, intent(in)       :: N
+      real(wp), dimension(N,N)  :: alpha
+    end function getAlpha1D
+  end interface getAlpha_
 
   interface getJacobian
     module function getJacobian(N, xi, eta, xy, alpha) result(J)
@@ -98,14 +120,15 @@ contains
     real(wp), intent(in), dimension(:)      :: xcoords
     real(wp)                                :: integral
 
+    integer :: kk
     integer                                 :: order, basis_num1, basis_num2
-    real(wp), dimension(:, :), allocatable  :: Vinv
+    real(wp), dimension(N+1,N+1)            :: Vinv
 
     order = N
     basis_num1 = ii
     basis_num2 = jj
-    allocate(Vinv(order+1, order+1))
-    call vandermonde(order+1, Vinv)
+
+    Vinv = getAlpha_(order+1)
 
     ! Check to make sure xcoords is an array of size (N+1)
     if ( size(xcoords) /=  order+1 ) then
@@ -184,136 +207,8 @@ contains
     return
   end function basis_1D
 
-  subroutine vandermonde(n, Vinv)
-    integer:: ii, jj
-    integer:: n
-    real(wp), dimension(n):: x
-    real(wp), dimension((n)**2):: V_flat
-    real(wp), dimension(n, n):: V, Vinv, eye
-
-    call linspace(-1._wp, 1._wp, x)
-
-    V_flat = [( [( [x(ii)**real(jj-1, wp)], ii = 1, n)], jj = 1, n)]
-    V = reshape([ V_flat ], [ n, n ])
-
-    ! call r8mat_print(n, n, V, 'Original V Matrix: ')
-
-    eye = 0._wp
-    do ii = 1, n
-      eye(ii,ii) = 1._wp
-    enddo
-
-    call linsolve_quick (n, V, n, eye, Vinv)
-
-    return
-  end subroutine vandermonde
-
   ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   ! !!!!!! Elemental Matrix Routines 2-D !!!!!!!
   ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-  function assembleElementalMatrix(N, d1, d2, xy) result(Ie)
-    ! Dummy variables
-    integer,                  intent(in)  :: N, d1, d2
-    real(wp), dimension(N,2), intent(in)  :: xy
-    real(wp), dimension(N,N)              :: Ie
-
-    ! Local variables
-    integer                                 :: node1, node2
-
-    ! Get the coefficients of the basis functions (alpha). Both bi-linear (N=4)
-    ! and bi-quadratic (N=9) quadrilaterals are supported.
-    if ( .not. allocated(alpha) ) alpha = getAlpha(N)
-
-    Ie = 0._wp
-
-    do node1 = 1, N
-      do node2 = 1, N
-
-        ! fun is now implicitly defined using the following: node1, node2, d1, and d2
-        Ie(node1,node2) = Ie(node1,node2) + integrate2D(fun)
-
-      enddo
-    enddo
-  contains
-    function fun(xi, eta) result(out)
-      ! Dummy variables
-      real(wp), dimension(:,:), intent(in)  :: xi, eta
-      real(wp), dimension(:,:), allocatable :: out
-
-      ! Local variables
-      integer                   :: ii, jj, num_pts
-      real(wp), parameter       :: eps = epsilon(0e0)
-      real(wp)                  :: fun1, fun2
-      real(wp), dimension(2)    :: dfun1, dfun2
-      real(wp)                  :: detJ
-      real(wp), dimension(2,2)  :: J, invJ
-
-      ! Initialize function output. Actual number of pts is num_pts*num_pts,
-      ! because the meshgrid goes in both x and y directions. Only need one.
-      num_pts = size(xi,1)
-      allocate(out(num_pts,num_pts))
-      out = 0._wp
-
-      do ii = 1, num_pts
-        do jj = 1, num_pts
-
-          ! Calculate Jacobian, inverse Jacobian, and determinant of finite
-          ! element at (xi,eta)
-          J     = getJacobian(N, xi(ii,jj), eta(ii,jj), xy, alpha)
-          invJ  = inv2(J)
-          detJ  = det2(J)
-
-          ! If fun1 is just N_i, use dot_product to determine N_i
-          if ( d1 == 0 ) then
-            fun1 = dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)))
-          else
-
-            ! If fun1 contains a derivative, need to calc N_i,xi and N_i,eta
-            dfun1(1) = ( &
-              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
-              ) / ( 2._wp*eps )
-
-            dfun1(2) = ( &
-              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
-              ) / ( 2._wp*eps )
-
-            ! N_i,x = dxi/dx * N_i,xi + deta/dx * N_i,eta
-            fun1 = dot_product(invJ(d1,:), dfun1)
-
-          endif
-
-          ! If fun2 is just N_i, use dot_product to determine N_i
-          if ( d2 == 0 ) then
-            fun2 = dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)))
-          else
-
-            ! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta
-            dfun2(1) =  ( &
-              dot_product(alpha(:,node2), &
-                          getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-              dot_product(alpha(:,node2), &
-                          getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
-                        ) / ( 2._wp*eps )
-
-            dfun2(2) =  ( &
-              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
-                        ) / ( 2._wp*eps )
-
-            ! N_i,y = dxi/dy * N_i,xi + deta/dy * N_i,eta
-            fun2 = dot_product(invJ(d2,:), dfun2)
-
-          endif
-
-          out(ii,jj) = fun1 * fun2 * detJ
-
-        enddo
-      enddo
-      return
-    end function fun
-  end function assembleElementalMatrix
 
 end module legendre

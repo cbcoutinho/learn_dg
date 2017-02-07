@@ -10,7 +10,7 @@
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
 
-    <title>initialize_global_mats &ndash; learn_dg</title>
+    <title>assembleElementalMatrix1D &ndash; learn_dg</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -110,8 +110,8 @@
     
   
   <div class="row">
-    <h1>initialize_global_mats
-      <small>Subroutine</small>
+    <h1>assembleElementalMatrix1D
+      <small>Module Function</small>
     
     </h1>
     
@@ -128,20 +128,20 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.0% of total for procedures.">13 statements</a>
+	  title=" 1.1% of total for procedures.">7 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/assembly_mod.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/pascal_1D_smod.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/assembly_mod.f90.html'>assembly_mod.f90</a></li>
+     <li><a href='../sourcefile/pascal_1d_smod.f90.html'>pascal_1D_smod.f90</a></li>
   
-     <li><a href='../module/assembly.html'>assembly</a></li>
+     <li><a href='../module/pascal_1d.html'>pascal_1D</a></li>
   
-     <li class="active">initialize_global_mats</li>
+     <li class="active">assembleElementalMatrix1D</li>
   </ol>
 </div>
 </div>
@@ -182,7 +182,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/initialize_global_mats.html#src">initialize_global_mats</a>
+    <a class="list-group-item" href="../proc/assembleelementalmatrix1d.html#src">assembleElementalMatrix1D</a>
   </div>
 </div>
 
@@ -270,7 +270,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
+function assembleElementalMatrix1D(N, d1, d2, xy) result(Ie)
     
     
 	 
@@ -279,21 +279,6 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
   
 
 
-    
-    <p>This routine initalizes the global stiffness matrix, global rhs vector,
-  and global solution vector based on the number of nodes in the system</p>
-<ul>
-<li>This is a bullet point</li>
-<li>
-<p>Another bullet point</p>
-</li>
-<li>
-<p>This might be a number</p>
-</li>
-<li>Also a number?</li>
-</ul>
-<p>Some \( \LaTeX \):
- $$ \frac{\partial u}{\partial t} = 0 $$</p>
     
 
     <h3>Arguments</h3>
@@ -314,12 +299,12 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
   
 <tr>
   
-  <td><span class="anchor" id="variable-num_nodes"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E6"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>num_nodes</strong></td><td><p>The number of nodes in the system</p></td>
+  <td><strong>N</strong></td><td></td>
   
 </tr>
 
@@ -329,12 +314,12 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
   
 <tr>
   
-  <td><span class="anchor" id="variable-globala"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
+  <td><span class="anchor" id="variable-d1"></span>integer,</td>
+  <td>intent(in)</td>
   <td></td>
   
-  <td>dimension(:,:), allocatable</td><td>::</td>
-  <td><strong>GlobalA</strong></td><td><p>Global mass matrix</p></td>
+  <td></td><td>::</td>
+  <td><strong>d1</strong></td><td></td>
   
 </tr>
 
@@ -344,12 +329,12 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
   
 <tr>
   
-  <td><span class="anchor" id="variable-globalb"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
+  <td><span class="anchor" id="variable-d2"></span>integer,</td>
+  <td>intent(in)</td>
   <td></td>
   
-  <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>GlobalB</strong></td><td><p>Global RHS Vector</p></td>
+  <td></td><td>::</td>
+  <td><strong>d2</strong></td><td></td>
   
 </tr>
 
@@ -359,12 +344,12 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
   
 <tr>
   
-  <td><span class="anchor" id="variable-globalx"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
+  <td><span class="anchor" id="variable-xy%7E2"></span>real(kind=wp),</td>
+  <td>intent(in),</td>
   <td></td>
   
-  <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>GlobalX</strong></td><td><p>Global solution vector</p></td>
+  <td>dimension(N)</td><td>::</td>
+  <td><strong>xy</strong></td><td></td>
   
 </tr>
 
@@ -374,108 +359,15 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
     
     
     
-     
-     <h3>Called By</h3>
-     
-                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.36.0 (20140111.2315)
- -->
-<!-- Title: proc~~initialize_global_mats~~CalledByGraph Pages: 1 -->
-<svg id="procinitialize_global_matsCalledByGraph" width="212pt" height="32pt"
- viewBox="0.00 0.00 212.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~initialize_global_mats~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~initialize_global_mats~~CalledByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 208,-28 208,4 -4,4"/>
-<!-- proc~initialize_global_mats -->
-<g id="proc~~initialize_global_mats~~CalledByGraph_node1" class="node"><title>proc~initialize_global_mats</title>
-<polygon fill="none" stroke="black" points="204,-24 90,-24 90,-0 204,-0 204,-24"/>
-<text text-anchor="middle" x="147" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">initialize_global_mats</text>
-</g>
-<!-- program~main -->
-<g id="proc~~initialize_global_mats~~CalledByGraph_node2" class="node"><title>program~main</title>
-<g id="a_proc~~initialize_global_mats~~CalledByGraph_node2"><a xlink:href="../program/main.html" xlink:title="main">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="54,-24 0,-24 0,-0 54,-0 54,-24"/>
-<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">main</text>
-</a>
-</g>
-</g>
-<!-- program~main&#45;&gt;proc~initialize_global_mats -->
-<g id="proc~~initialize_global_mats~~CalledByGraph_edge1" class="edge"><title>program~main&#45;&gt;proc~initialize_global_mats</title>
-<path fill="none" stroke="#ff0000" d="M54.188,-12C61.8838,-12 70.6717,-12 79.691,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="79.9266,-15.5001 89.9266,-12 79.9266,-8.5001 79.9266,-15.5001"/>
-</g>
-</g>
-</svg>
-</div>
-                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
-                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
-                      </div>
-                      <div class="modal-body">
-                        
-    <p>Nodes of different colours represent the following: </p>
-    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.36.0 (20140111.2315)
- -->
-<!-- Title: Graph Key Pages: 1 -->
-<svg width="559pt" height="32pt"
- viewBox="0.00 0.00 559.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>Graph Key</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 555,-28 555,4 -4,4"/>
-<!-- Subroutine -->
-<g id="node1" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="64,-24 0,-24 0,-0 64,-0 64,-24"/>
-<text text-anchor="middle" x="32" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
-</g>
-<!-- Function -->
-<g id="node2" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 82,-24 82,-0 136,-0 136,-24"/>
-<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
-</g>
-<!-- Interface -->
-<g id="node3" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="209.25,-24 154.75,-24 154.75,-0 209.25,-0 209.25,-24"/>
-<text text-anchor="middle" x="182" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
-</g>
-<!-- Unknown Procedure Type -->
-<g id="node4" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="364,-24 228,-24 228,-0 364,-0 364,-24"/>
-<text text-anchor="middle" x="296" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
-</g>
-<!-- Program -->
-<g id="node5" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="436,-24 382,-24 382,-0 436,-0 436,-24"/>
-<text text-anchor="middle" x="409" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
-</g>
-<!-- This Page&#39;s Entity -->
-<g id="node6" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="551.25,-24 454.75,-24 454.75,-0 551.25,-0 551.25,-24"/>
-<text text-anchor="middle" x="503" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
-</g>
-</g>
-</svg>
-
     
-    <p>Solid arrows point from a procedure to one which it calls. Dashed 
-    arrows point from an interface to procedures which implement that interface.
-    This could include the module procedures in a generic interface or the
-    implementation in a submodule of an interface in a parent module. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
-    </p>
     
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
+    
+    
+	 <h3>Return Value <small><span class="anchor" id="variable-ie%7E2"></span>real(kind=wp),
+  dimension(N,N)</small></h3>
+    
+    
+    
      
     <br>
 
@@ -504,7 +396,7 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/initialize_global_mats.html#src">initialize_global_mats</a>
+    <a class="list-group-item" href="../proc/assembleelementalmatrix1d.html#src">assembleElementalMatrix1D</a>
   </div>
 </div>
 
@@ -532,38 +424,15 @@ public subroutine initialize_global_mats(num_nodes, GlobalA, GlobalB, GlobalX)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">initialize_global_mats</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="p">&amp;</span>
-                                    <span class="n">GlobalA</span><span class="p">,</span> <span class="p">&amp;</span>
-                                    <span class="n">GlobalB</span><span class="p">,</span> <span class="p">&amp;</span>
-                                    <span class="n">GlobalX</span><span class="p">)</span>
-    <span class="c">!* This routine initalizes the global stiffness matrix, global rhs vector,</span>
-    <span class="c">!  and global solution vector based on the number of nodes in the system</span>
-    <span class="c">!</span>
-    <span class="c">! * This is a bullet point</span>
-    <span class="c">! * Another bullet point</span>
-    <span class="c">!</span>
-    <span class="c">! 1. This might be a number</span>
-    <span class="c">! 2. Also a number?</span>
-    <span class="c">!</span>
-    <span class="c">! Some \( \LaTeX \):</span>
-    <span class="c">! $$ \frac{\partial u}{\partial t} = 0 $$</span>
+    <div class="highlight"><pre><span></span>  <span class="k">module function </span><span class="n">assembleElementalMatrix1D</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">xy</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">Ie</span><span class="p">)</span>
+    <span class="kt">integer</span><span class="p">,</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">),</span>   <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xy</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">Ie</span>
 
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">num_nodes</span>  <span class="c">!! The number of nodes in the system</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalB</span>    <span class="c">!! Global RHS Vector</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalX</span>    <span class="c">!! Global solution vector</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">GlobalA</span>    <span class="c">!! Global mass matrix</span>
-
-    <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalA</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">))</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalB</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">GlobalX</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
-
-    <span class="c">! Intial Conditions</span>
-    <span class="n">GlobalA</span> <span class="o">=</span> <span class="mf">0._wp</span>
-    <span class="n">GlobalX</span> <span class="o">=</span> <span class="mf">0._wp</span>
-    <span class="n">GlobalB</span> <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="kt">integer</span>                               <span class="kd">::</span> <span class="n">node1</span><span class="p">,</span> <span class="n">node2</span>
 
     <span class="k">return</span>
-<span class="k">  end subroutine </span><span class="n">initialize_global_mats</span>
+<span class="k">  end function </span><span class="n">assembleElementalMatrix1D</span>
 </pre></div>
 
     </section>

@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.3% of total for procedures.">16 statements</a>
+	  title=" 2.4% of total for procedures.">16 statements</a>
      </li> 
      
      
@@ -197,7 +197,7 @@
       
       <a class="list-group-item" href="../proc/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
@@ -214,6 +214,8 @@
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -254,8 +256,6 @@
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
-      <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
       
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
@@ -299,7 +299,7 @@ pure function getArow(N, xi, eta) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E8"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E12"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -314,7 +314,7 @@ pure function getArow(N, xi, eta) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-xi"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-xi%7E2"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -348,7 +348,7 @@ pure function getArow(N, xi, eta) result(row)
     
     
     
-	 <h3>Return Value <small><span class="anchor" id="variable-row%7E3"></span>real(kind=wp),
+	 <h3>Return Value <small><span class="anchor" id="variable-row%7E4"></span>real(kind=wp),
   dimension(N)</small></h3>
     
     
@@ -518,10 +518,13 @@ pure function getArow(N, xi, eta) result(row)
 
     <span class="k">select case</span> <span class="p">(</span><span class="n">N</span><span class="p">)</span>
     <span class="k">case</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+      <span class="c">! row = pascal_2D_quad(1, xi, eta)</span>
       <span class="n">row</span> <span class="o">=</span> <span class="n">pascal_row</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">eta</span><span class="p">)</span>
     <span class="k">case</span> <span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+      <span class="c">! row = pascal_2D_quad(2, xi, eta)</span>
       <span class="n">row</span> <span class="o">=</span> <span class="n">pascal_row</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">eta</span><span class="p">)</span>
     <span class="k">case</span> <span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+      <span class="c">! row = pascal_2D_quad(3, xi, eta)</span>
       <span class="n">row</span> <span class="o">=</span> <span class="n">pascal_row</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">eta</span><span class="p">)</span>
     <span class="k">case </span><span class="n">default</span>
       <span class="n">row</span> <span class="o">=</span> <span class="mf">0.d0</span>
@@ -549,7 +552,7 @@ pure function getArow(N, xi, eta) result(row)
       
       <a class="list-group-item" href="../proc/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
@@ -566,6 +569,8 @@ pure function getArow(N, xi, eta) result(row)
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -607,8 +612,6 @@ pure function getArow(N, xi, eta) result(row)
       
       <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
-      <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -628,7 +631,7 @@ pure function getArow(N, xi, eta) result(row)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-02-07 00:12  
+             on 2017-02-07 02:35  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

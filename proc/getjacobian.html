@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.8% of total for procedures.">20 statements</a>
+	  title=" 3.1% of total for procedures.">20 statements</a>
      </li> 
      
      
@@ -197,7 +197,7 @@
       
       <a class="list-group-item" href="../proc/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
@@ -214,6 +214,8 @@
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -254,8 +256,6 @@
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
-      <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
       
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
@@ -307,6 +307,9 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
 <p>\[ \boldsymbol{J} =  \left[ \begin{array}{cc}
            \boldsymbol{H}_{\xi} \cdot \boldsymbol{x} &amp; \boldsymbol{H}_{\xi} \cdot \boldsymbol{y} \\
            \boldsymbol{H}_{\eta} \cdot \boldsymbol{x} &amp; \boldsymbol{H}_{\eta} \cdot \boldsymbol{y} \\
+         \end{array} \right] = \left[ \begin{array}{cc}
+           \frac{\partial \xi}{\partial x} &amp; \frac{\partial \xi}{\partial y} \\
+           \frac{\partial \eta}{\partial x} &amp; \frac{\partial \eta}{\partial y} \\
          \end{array} \right] \]</p>
 <ul>
 <li>\( \boldsymbol{H} \) : Vector of basis functions</li>
@@ -333,7 +336,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E11"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E15"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -348,7 +351,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
   
 <tr>
   
-  <td><span class="anchor" id="variable-xi%7E2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-xi%7E3"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -378,7 +381,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
   
 <tr>
   
-  <td><span class="anchor" id="variable-xy%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-xy%7E4"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -393,7 +396,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
   
 <tr>
   
-  <td><span class="anchor" id="variable-alpha%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-alpha%7E4"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -609,6 +612,9 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
     <span class="c">! \[ \boldsymbol{J} =  \left[ \begin{array}{cc}</span>
     <span class="c">!           \boldsymbol{H}_{\xi} \cdot \boldsymbol{x} &amp; \boldsymbol{H}_{\xi} \cdot \boldsymbol{y} \\</span>
     <span class="c">!           \boldsymbol{H}_{\eta} \cdot \boldsymbol{x} &amp; \boldsymbol{H}_{\eta} \cdot \boldsymbol{y} \\</span>
+    <span class="c">!         \end{array} \right] = \left[ \begin{array}{cc}</span>
+    <span class="c">!           \frac{\partial \xi}{\partial x} &amp; \frac{\partial \xi}{\partial y} \\</span>
+    <span class="c">!           \frac{\partial \eta}{\partial x} &amp; \frac{\partial \eta}{\partial y} \\</span>
     <span class="c">!         \end{array} \right] \]</span>
     <span class="c">!</span>
     <span class="c">! * \( \boldsymbol{H} \) : Vector of basis functions</span>
@@ -618,6 +624,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
     <span class="c">! * \( H_i \) : Basis function \(i\)</span>
     <span class="c">! * \( x_i \) : X-coordinate of node \(i\)</span>
     <span class="c">! * \( y_i \) : Y-coordinate of node \(i\)</span>
+
 
     <span class="kt">integer</span><span class="p">,</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span>      <span class="c">!! Number of points in element</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xi</span>     <span class="c">!!</span>
@@ -669,7 +676,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
       
       <a class="list-group-item" href="../proc/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/assembleelementalmatrix.html">assembleElementalMatrix</a>
+      <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
       <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
       
@@ -686,6 +693,8 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
       <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      
+      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -727,8 +736,6 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
       
       <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
-      <a class="list-group-item" href="../proc/vandermonde.html">vandermonde</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -748,7 +755,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-02-07 00:12  
+             on 2017-02-07 02:35  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
