@@ -5,7 +5,7 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 submodule (legendre) pascal_2D
-  use iso_fortran_env, only: wp=>real64
+  use, intrinsic :: iso_fortran_env, only: wp=>real64
   implicit none
 
 contains

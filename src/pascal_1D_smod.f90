@@ -22,7 +22,7 @@ submodule (legendre) pascal_1D
   ! ![Quadratic Basis Functions catption](|media|/quadratic_basis.png "Quadratic Basis Functions"){: width="500" }
   ! {: style="text-align: center" }
 
-  use iso_fortran_env, only: wp=>real64
+  use, intrinsic :: iso_fortran_env, only: wp=>real64
   implicit none
 
 contains

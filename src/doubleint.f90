@@ -5,10 +5,10 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 program doubleint
-  use iso_fortran_env, only: wp=>real64
-  use linalg, only: linsolve_quick, eye
-  use misc, only: r8mat_print
-  use legendre, only: assembleElementalMatrix, getxy
+  use, intrinsic :: iso_fortran_env, only: wp=>real64
+  use :: linalg, only: linsolve_quick, eye
+  use :: misc, only: r8mat_print
+  use :: legendre, only: assembleElementalMatrix, getxy
   implicit none
 
   integer :: ii
