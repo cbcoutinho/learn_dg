@@ -5,12 +5,11 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 program main
-  use iso_fortran_env, only: wp=>real64
-  use linalg, only: linsolve_quick
-  use misc, only: r8mat_print
-  use io, only: read_gmsh_file_1D, &
-                write_out_solution
-  use assembly, only: initialize_global_mats, assemble, set_BCs
+  use, intrinsic :: iso_fortran_env, only: wp=>real64
+  use :: linalg, only: linsolve_quick
+  use :: misc, only: r8mat_print
+  use :: io, only: read_gmsh_file_1D, write_out_solution
+  use :: assembly, only: initialize_global_mats, assemble, set_BCs
 
   implicit none
 

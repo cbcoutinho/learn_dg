@@ -5,8 +5,8 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 module io
-  use iso_fortran_env, only: wp=>real64
-  use lib_array, only: linspace
+  use, intrinsic :: iso_fortran_env, only: wp=>real64
+  use :: lib_array, only: linspace
   implicit none
 
   private
