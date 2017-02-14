@@ -5,11 +5,11 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 module legendre
-  use iso_fortran_env, only: wp=>real64
-  use misc, only: r8mat_print
-  use lib_array, only: linspace
-  use integration, only: integrate, integrate2D
-  use linalg, only: linsolve_quick, linsolve, inv2, det2, eye
+  use, intrinsic :: iso_fortran_env, only: wp=>real64
+  use :: misc, only: r8mat_print
+  use :: lib_array, only: linspace
+  use :: integration, only: integrate, integrate2D
+  use :: linalg, only: linsolve_quick, linsolve, inv2, det2, eye
   implicit none
 
   real(wp), dimension(:,:), allocatable :: alpha

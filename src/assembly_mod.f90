@@ -5,8 +5,8 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 module assembly
-  use iso_fortran_env, only: wp=>real64
-  use legendre, only: getIe, assembleElementalMatrix, getxy
+  use, intrinsic :: iso_fortran_env, only: wp=>real64
+  use :: legendre, only: getIe,  assembleElementalMatrix, getxy
   implicit none
 
   private

@@ -17,28 +17,33 @@ FLIB_SRC=./src/fortranlib/src
 
 # Use debug flags unless otherwise stated
 ifndef DEBUG
-DEBUG=1
+DEBUG:=1
 endif
 
 ifndef FF
-FF=gfortran
+FF:=gfortran
 endif
 
-FFLAGS = -std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface -Wall -Wextra
+# FFVERSIONGTEQ6 := $(shell expr `$(FF) -dumpversion | cut -f1 -d.` \>= 6)
+# ifeq "$(FFVERSIONGTEQ6)" "0"
+# 	@echo "Fortran Compiler must be at least version 6"
+# endif
+
+FFLAGS := -std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface -Wall -Wextra
 ifeq ($(DEBUG),1)
 # if [[ "$(DEBUG)" =~ ^[Yy]$ ]]; then
 # Debug flags:
 $(info DEBUG is $(DEBUG))
 $(info Building in Debug mode)
-FFLAGS += -O0 -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
+FFLAGS += -Og -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
 else
 # Release flags:
 $(info DEBUG is $(DEBUG))
-FFLAGS += -O3 -march=native -ffast-math -funroll-loops
+FFLAGS += -Ofast -march=native -ffast-math -funroll-loops
 $(info Building in Release mode)
 endif
 
-FLIBS = -lblas -llapack
+FLIBS := -lblas -llapack
 # FLIBS += -fopenmp
 
 ##############################
@@ -47,13 +52,13 @@ FLIBS = -lblas -llapack
 
 ifneq ("$(wildcard $(HOME)/Projects/ford/ford.py)","")
 # FILE_EXISTS = 1
-FORD = $(HOME)/Projects/ford/ford.py
+FORD := $(HOME)/Projects/ford/ford.py
 else
 # FILE_EXISTS = 0
-FORD = ford
+FORD := ford
 endif
 
-FORD_FLAGS = -d $(SRC) \
+FORD_FLAGS := -d $(SRC) \
 	-p $(DOC)/user-guide \
 	-o $(DOC)/html
 
@@ -62,7 +67,7 @@ FORD_FLAGS = -d $(SRC) \
 ##############################
 
 # Dependencies of main program
-objects=$(OBJ)/lib_array.o \
+objects:=$(OBJ)/lib_array.o \
 	$(OBJ)/integration.o \
 	$(OBJ)/misc.o \
 	$(OBJ)/legendre.o \
