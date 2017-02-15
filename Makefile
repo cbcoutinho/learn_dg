@@ -29,13 +29,13 @@ endif
 # 	@echo "Fortran Compiler must be at least version 6"
 # endif
 
-FFLAGS := -std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface -Wall -Wextra
+FFLAGS := -std=f2008 -fPIC -fmax-errors=1
 ifeq ($(DEBUG),1)
 # if [[ "$(DEBUG)" =~ ^[Yy]$ ]]; then
 # Debug flags:
 $(info DEBUG is $(DEBUG))
 $(info Building in Debug mode)
-FFLAGS += -Og -g -fcheck=all -fbacktrace #-ffpe-trap=zero,overflow,underflow
+FFLAGS += -Og -g -fcheck=all -fbacktrace -Wimplicit-interface -Wall -Wextra #-ffpe-trap=zero,overflow,underflow
 else
 # Release flags:
 $(info DEBUG is $(DEBUG))
@@ -147,6 +147,15 @@ debug: clean build mesh
 	valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
 	valgrind --track-origins=yes --leak-check=full $(BIN)/doubleint
 
+.PHONY: cmake
+cmake: submodules mesh
+	test -d build || mkdir build
+	cd build && cmake .. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
+	$(MAKE) -C build
+	./build/main $(TEST)/test1D.msh
+	rm -rf build
+
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main
 	rm -f $(TEST)/test1D.msh $(TEST)/test2D.msh
+	rm -rf build
