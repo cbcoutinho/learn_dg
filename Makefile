@@ -150,9 +150,9 @@ debug: clean build mesh
 .PHONY: cmake
 cmake: submodules
 	test -d build || mkdir build
-	cd build && cmake ..
+	cd build && cmake .. && cd ..
 	$(MAKE) -C build
-	# rm -rf build
+	rm -rf build
 
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main
