@@ -148,10 +148,11 @@ debug: clean build mesh
 	valgrind --track-origins=yes --leak-check=full $(BIN)/doubleint
 
 .PHONY: cmake
-cmake: submodules
+cmake: submodules mesh
 	test -d build || mkdir build
 	cd build && cmake .. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
 	$(MAKE) -C build
+	./build/bin/main $(TEST)/test1D.msh
 	rm -rf build
 
 clean:
