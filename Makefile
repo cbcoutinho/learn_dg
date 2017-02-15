@@ -150,7 +150,7 @@ debug: clean build mesh
 .PHONY: cmake
 cmake: submodules
 	test -d build || mkdir build
-	cd build && cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE && cd ..
+	cd build && cmake .. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
 	$(MAKE) -C build
 	rm -rf build
 

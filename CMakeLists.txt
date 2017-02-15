@@ -6,10 +6,10 @@ enable_language(Fortran)
 get_filename_component (Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
 
 # FFLAGS
-set (CMAKE_Fortran_FLAGS "-std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface")
+set (CMAKE_Fortran_FLAGS "-std=f2008 -fPIC -fmax-errors=1")
 if (Fortran_COMPILER_NAME MATCHES "gfortran.*")
   # gfortran
-  set (CMAKE_Fortran_FLAGS_DEBUG   "-Og -g -fcheck=all -fbacktrace -Wall -Wextra")
+  set (CMAKE_Fortran_FLAGS_DEBUG   "-Og -g -fcheck=all -fbacktrace -Wimplicit-interface -Wall -Wextra")
   set (CMAKE_Fortran_FLAGS_RELEASE "-Ofast -march=native -ffast-math -funroll-loops")
 endif (Fortran_COMPILER_NAME MATCHES "gfortran.*")
 
@@ -23,14 +23,8 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   # Set the possible values of build type for cmake-gui
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 endif()
-
-
-### Output Directories
-
-# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/ar_cmake)
-# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib_cmake)
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin_cmake)
-
+# Put message
+message( STATUS "CMAKE_BUILD_TYPE: " ${CMAKE_BUILD_TYPE} )
 
 
 
