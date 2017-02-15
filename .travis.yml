@@ -60,7 +60,7 @@ install:
 
 before_script:
   - gfortran -v
-  - cmake version
+  - cmake --version
   - echo "Wow we installed everything!"
 
 script:
