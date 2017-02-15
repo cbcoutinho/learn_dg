@@ -17,6 +17,8 @@ cache:
   pip: true
     - $HOME/.cache/pip
     - $HOME/.local
+  directories:
+    - ${TRAVIS_BUILD_DIR}/deps/cmake
 
 python:
   - 3.4
@@ -38,10 +40,10 @@ addons:
       - libblas-dev
       - liblapack-dev
       - gmsh
-      - cmake
+      # - cmake
     sources: &sources
       - ubuntu-toolchain-r-test
-      - kalakris-cmake
+      # - kalakris-cmake
 
 #############################
 ##### Begin Build Steps #####
@@ -58,6 +60,12 @@ install:
   - mkdir -p $TRAVIS_BUILD_DIR/bin
   - ln -sf "$(which gfortran-6)" $TRAVIS_BUILD_DIR/bin/gfortran
   - export PATH=$TRAVIS_BUILD_DIR/bin:$PATH
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+  - mkdir -p "${DEPS_DIR}" && cd "${DEPS_DIR}"
+  - |
+    CMAKE_URL="https://cmake.org/files/v3.7/cmake-3.7.0-Linux-x86_64.tar.gz"
+    mkdir -p cmake && travis_retry wget --no-check-certificate --quiet -O - "${CMAKE_URL}" | tar --strip-components=1 -xz -C cmake
+    export PATH="${DEPS_DIR}/cmake/bin:${PATH}"
 
 before_script:
   - gfortran -v
@@ -67,6 +75,7 @@ before_script:
 script:
   - make clean
   - make build
+  - make cmake
   - make run
   - make docs
 
