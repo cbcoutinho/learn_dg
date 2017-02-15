@@ -6,10 +6,10 @@ enable_language(Fortran)
 get_filename_component (Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
 
 # FFLAGS
-set (CMAKE_Fortran_FLAGS "-std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface -Wall -Wextra")
+set (CMAKE_Fortran_FLAGS "-std=f2008 -fPIC -fmax-errors=1 -Wimplicit-interface")
 if (Fortran_COMPILER_NAME MATCHES "gfortran.*")
   # gfortran
-  set (CMAKE_Fortran_FLAGS_DEBUG   "-Og -g -fcheck=all -fbacktrace")
+  set (CMAKE_Fortran_FLAGS_DEBUG   "-Og -g -fcheck=all -fbacktrace -Wall -Wextra")
   set (CMAKE_Fortran_FLAGS_RELEASE "-Ofast -march=native -ffast-math -funroll-loops")
 endif (Fortran_COMPILER_NAME MATCHES "gfortran.*")
 

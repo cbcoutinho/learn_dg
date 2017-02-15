@@ -79,10 +79,11 @@ script:
   - make build
   - make run
   - make docs
-  - |
-    test -d build || mkdir build
-    cd build && cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE && make && cd ..
-    rm -rf build
+  - make cmake
+  # - |
+  #   test -d build || mkdir build
+  #   cd build && cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE && make && cd ..
+  #   rm -rf build
 
 ################################
 ##### Deploy if Successful #####
