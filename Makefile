@@ -134,7 +134,7 @@ run2: build
 
 run: run1 run2
 
-plot: run1
+plot: cmake
 	python plotter.py
 
 .PHONY: docs
@@ -153,7 +153,6 @@ cmake: submodules mesh
 	cd build && cmake .. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
 	$(MAKE) -C build
 	./build/main $(TEST)/test1D.msh
-	rm -rf build
 
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main
