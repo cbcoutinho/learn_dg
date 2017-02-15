@@ -41,6 +41,7 @@ addons:
       - cmake
     sources: &sources
       - ubuntu-toolchain-r-test
+      - kalakris-cmake
 
 #############################
 ##### Begin Build Steps #####
