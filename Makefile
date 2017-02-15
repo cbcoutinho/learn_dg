@@ -147,6 +147,14 @@ debug: clean build mesh
 	valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
 	valgrind --track-origins=yes --leak-check=full $(BIN)/doubleint
 
+.PHONY: cmake
+cmake: submodules
+	test -d build || mkdir build
+	cd build && cmake ..
+	$(MAKE) -C build
+	# rm -rf build
+
 clean:
 	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main
 	rm -f $(TEST)/test1D.msh $(TEST)/test2D.msh
+	rm -rf build

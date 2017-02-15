@@ -26,3 +26,6 @@ octave-workspace
 
 # Travis CI ssh key
 .deploy_key
+
+# CMake-related files/directories
+build

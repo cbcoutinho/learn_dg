@@ -38,6 +38,7 @@ addons:
       - libblas-dev
       - liblapack-dev
       - gmsh
+      - cmake
     sources: &sources
       - ubuntu-toolchain-r-test
 
@@ -59,6 +60,7 @@ install:
 
 before_script:
   - gfortran -v
+  - cmake version
   - echo "Wow we installed everything!"
 
 script:
