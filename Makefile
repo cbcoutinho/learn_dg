@@ -1,6 +1,12 @@
 # makefile: makes the learn_dg program
 
 ##############################
+###### Windows vs Linux ######
+##############################
+
+
+
+##############################
 #### Project Directories #####
 ##############################
 
@@ -9,11 +15,27 @@ OBJ=./obj
 BIN=./bin
 DOC=./docs
 TEST=./test
+BLD=./build
 FLIB_SRC=./src/fortranlib/src
 
 ##############################
 ###### Compiler options ######
 ##############################
+
+ifeq ($(OS),Windows_NT)
+RM = del /Q
+FixPath = $(subst /,\,$1)
+CMFLAGS = -G "MinGW Makefiles"
+MAIN = main.exe
+DOUBLEINT = doubleint.exe
+else
+#  ifeq ($(shell uname), Linux)
+RM = rm -rf
+FixPath = $1
+MAIN = main
+DOUBLEINT = doubleint
+#  endif
+endif
 
 # Use debug flags unless otherwise stated
 ifndef DEBUG
@@ -81,7 +103,7 @@ objects:=$(OBJ)/lib_array.o \
 ####### Build Recepies #######
 ##############################
 
-default: build
+default: all
 
 # Fortran library
 $(OBJ)/lib_array.o: $(FLIB_SRC)/lib_array.f90
@@ -120,17 +142,17 @@ submodules:
 	git submodule init
 	git submodule update
 
-build: submodules $(BIN)/main $(BIN)/doubleint
+all: submodules $(BIN)/main $(BIN)/doubleint
 
-mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
-	gmsh $(TEST)/test1D.geo -order 1 -1 -o $(TEST)/test1D.msh > /dev/null 2>&1
-	gmsh $(TEST)/test2D.geo -order 1 -2 -o $(TEST)/test2D.msh > /dev/null 2>&1
+mesh: $(call FixPath,$(TEST)/test1D.geo) $(call FixPath,$(TEST)/test2D.geo)
+	gmsh $(call FixPath,$(TEST)/test1D.geo) -order 1 -1 -o $(call FixPath,$(TEST)/test1D.msh)
+	gmsh $(call FixPath,$(TEST)/test2D.geo) -order 1 -2 -o $(call FixPath,$(TEST)/test2D.msh)
 
-run1: build mesh
-	$(BIN)/main $(TEST)/test1D.msh
+run1: all mesh
+	$(call FixPath,$(BIN)/$(MAIN)) $(call FixPath,$(TEST)/test1D.msh)
 
-run2: build
-	$(BIN)/doubleint
+run2: all
+	$(call FixPath,$(BIN)/$(DOUBLEINT))
 
 run: run1 run2
 
@@ -141,20 +163,29 @@ plot: cmake
 docs: submodules $(DOC)/learn_dg.md README.md
 	cp README.md $(DOC)/README.md
 	$(FORD) $(FORD_FLAGS) $(DOC)/learn_dg.md
-	rm $(DOC)/README.md
+	$(RM) $(DOC)/README.md
 
-debug: clean build mesh
-	valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
-	valgrind --track-origins=yes --leak-check=full $(BIN)/doubleint
+debug: clean all mesh
+	valgrind --track-origins=yes --leak-check=full $(call FixPath,$(BIN)/$(MAIN)) $(call FixPath,$(TEST)/test1D.msh)
+	valgrind --track-origins=yes --leak-check=full $(call FixPath,$(BIN)/$(DOUBLEINT))
 
-.PHONY: cmake
-cmake: submodules mesh
-	test -d build || mkdir build
-	cd build && cmake .. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
-	$(MAKE) -C build
-	./build/main $(TEST)/test1D.msh
+# .PHONY: cmake
+cmake: submodules mesh | $(BLD)
+	cd $(call FixPath,$(BLD)) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
+	$(MAKE) -C $(call FixPath,$(BLD))
+	$(call FixPath,$(BLD)/$(MAIN)) $(call FixPath,$(TEST)/test1D.msh)
+
+.ONESHELL:
+$(BLD):
+ifeq ($(OS),Windows_NT)
+	-@ if not exist "$(BLD)" mkdir $(BLD)
+else
+	test -d $(BLD) || mkdir $(BLD)
+endif
 
 clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main
-	rm -f $(TEST)/test1D.msh $(TEST)/test2D.msh
-	rm -rf build
+	$(RM) $(call FixPath,$(OBJ)/*.o) $(call FixPath,$(OBJ)/*.mod) $(call FixPath,$(OBJ)/*.smod) $(call FixPath,$(BIN)/$(MAIN)) $(call FixPath,$(OBJ)/doubleint)
+	$(RM) $(call FixPath,$(TEST)/test1D.msh) $(call FixPath,$(TEST)/test2D.msh)
+	$(RM) $(call FixPath,$(BLD))
+
+# $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main

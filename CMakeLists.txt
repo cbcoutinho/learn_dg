@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.7)
 
-project(main)
-enable_language(Fortran)
+project(main Fortran)
 
 get_filename_component (Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
 
@@ -26,7 +25,18 @@ endif()
 # Put message
 message( STATUS "CMAKE_BUILD_TYPE: " ${CMAKE_BUILD_TYPE} )
 
+find_library(CMAKE_BLAS_LIBRARY blas DOC "Path to the BLAS implementation")
+find_library(CMAKE_LAPACK_LIBRARY lapack DOC "Path to the LAPACK implementation")
 
+# find_package(CMAKE_BLAS_LIBRARY blas DOC "Path to the BLAS implementation")
+# find_package(CMAKE_LAPACK_LIBRARY lapack DOC "Path to the LAPACK implementation")
+
+
+message ( STATUS "Blas: ${CMAKE_BLAS_LIBRARY}")
+message ( STATUS "Lapack: ${CMAKE_LAPACK_LIBRARY}")
+
+# find_package( LAPACK REQUIRED ${CMAKE_LAPACK_LIBRARY} )
+# find_package( BLAS REQUIRED ${CMAKE_BLAS_LIBRARY})
 
 #
 # Compile.
@@ -34,4 +44,6 @@ message( STATUS "CMAKE_BUILD_TYPE: " ${CMAKE_BUILD_TYPE} )
 file(GLOB sources  "src/*.f90" "src/fortranlib/src/lib_array.f90")
 list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/src/doubleint.f90)
 add_executable("main" ${sources})
-TARGET_LINK_LIBRARIES("main" blas lapack)
+target_link_libraries("main" lapack blas)
+
+# LINK_DIRECTORIES(${CMAKE_LAPACK_LIBRARY} ${CMAKE_BLAS_LIBRARY})
