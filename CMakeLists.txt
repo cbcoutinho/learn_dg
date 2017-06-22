@@ -38,6 +38,8 @@ message(STATUS "        Build Type: ${CMAKE_BUILD_TYPE}")
 #-----------------------------------------------------------------------------------
 #                               Set compiler flags
 #-----------------------------------------------------------------------------------
+SET(FFLAGS "-std=f2008 -fPIC -fmax-errors=1")
+
 if (CMAKE_Fortran_COMPILER_ID MATCHES Intel)
     set (USER_COMPILE_FLAGS_DEBUG   "-O0 -fpp -assume realloc_lhs -debug -g \
                                      -traceback -check all -mcmodel=medium \
@@ -57,11 +59,11 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
         message (FATAL_ERROR "Minimum required gfortran version is 6.3")
     endif()
 
-    set (USER_COMPILE_FLAGS_DEBUG   "-O0 -cpp --coverage -ffree-form \
+    set (USER_COMPILE_FLAGS_DEBUG   "${FFLAGS} -O0 -cpp --coverage -ffree-form \
                                      -ffree-line-length-none -fbacktrace \
                                      -fstack-protector -fcheck=bounds \
                                      -fmax-stack-var-size=1600 -p -g")
-    set (USER_COMPILE_FLAGS_RELEASE "-O3 -cpp -ffree-form \
+    set (USER_COMPILE_FLAGS_RELEASE "${FFLAGS} -O3 -cpp -ffree-form \
                                      -ffree-line-length-none -fexternal-blas \
                                      -funroll-loops")
                                      #-march=native -funroll-loops")
