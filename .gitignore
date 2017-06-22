@@ -19,6 +19,8 @@ docs/html
 __pycache__
 .ipynb_checkpoints
 octave-workspace
+test_*
+gmon.out
 
 # GMSH-related files
 *.msh

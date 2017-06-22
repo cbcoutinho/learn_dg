@@ -173,7 +173,8 @@ debug: clean all mesh
 cmake: submodules mesh | $(BLD)
 	cd $(call FixPath,$(BLD)) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
 	$(MAKE) -C $(call FixPath,$(BLD))
-	$(call FixPath,$(BLD)/$(MAIN)) $(call FixPath,$(TEST)/test1D.msh)
+	$(call FixPath,$(BLD)/bin/driverA)
+	$(call FixPath,$(BLD)/bin/driverA) $(call FixPath,$(TEST)/test1D.msh)
 
 .ONESHELL:
 $(BLD):
@@ -187,5 +188,3 @@ clean:
 	$(RM) $(call FixPath,$(OBJ)/*.o) $(call FixPath,$(OBJ)/*.mod) $(call FixPath,$(OBJ)/*.smod) $(call FixPath,$(BIN)/$(MAIN)) $(call FixPath,$(OBJ)/doubleint)
 	$(RM) $(call FixPath,$(TEST)/test1D.msh) $(call FixPath,$(TEST)/test2D.msh)
 	$(RM) $(call FixPath,$(BLD))
-
-# $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main

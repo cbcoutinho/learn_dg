@@ -26,6 +26,11 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build. Options are: Debug Release" FORCE)
 endif()
 
+message(STATUS "        Build Type: ${CMAKE_BUILD_TYPE}")
+
+# if(NOT BUILD_SHARED_LIBRARIES)
+#     set(BUILD_SHARED_LIBRARIES OFF CACHE BOOL "Build shared libraries - Default OFF. Options are: ON OFF" FORCE)
+# endif()
 
 
 
@@ -48,6 +53,10 @@ if (CMAKE_Fortran_COMPILER_ID MATCHES Intel)
     #set (CMAKE_LINKER xild)    # for -ipo
 
 elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
+    if (CMAKE_Fortran_COMPILER_VERSION VERSION_LESS 6.3)
+        message (FATAL_ERROR "Minimum required gfortran version is 6.3")
+    endif()
+
     set (USER_COMPILE_FLAGS_DEBUG   "-O0 -cpp --coverage -ffree-form \
                                      -ffree-line-length-none -fbacktrace \
                                      -fstack-protector -fcheck=bounds \
@@ -83,7 +92,7 @@ message(STATUS " ")
 message(STATUS "BLAS/LAPACK Summary:")
 find_package(LAPACK REQUIRED)
 message(STATUS "    LAPACK Libraries: ")
-message(STATUS "        " ${LAPACK_LIBRARIES})
+message(STATUS "        LAPACK Libraries: ${LAPACK_LIBRARIES}")
 
 
 
@@ -104,8 +113,9 @@ add_subdirectory(src)
 #----------------------------------------------------------------------------------------------
 
 message(STATUS " ")
-#add_library(coredg SHARED ${LIB_SRCS})
-add_library(coredg STATIC ${LIB_SRCS})
+# add_library(coredg SHARED ${LIB_SRCS})
+# add_library(coredg STATIC ${LIB_SRCS})
+add_library(coredg ${LIB_SRCS})
 target_link_libraries(coredg
                       ${LAPACK_LIBRARIES}
                       ${BLAS_LIBRARIES}

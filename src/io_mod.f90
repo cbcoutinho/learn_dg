@@ -41,6 +41,10 @@ contains
     call get_command_argument(1, filename)
     ! print*, filename
 
+    if ( len_trim(filename) == 0 ) then
+      call print_header()
+    endif
+
     open(unit=21, file=filename, iostat=ios, status="old", action="read")
     if ( ios /= 0 ) then
       print*, filename
@@ -174,5 +178,31 @@ contains
 
     return
   end subroutine write_out_solution
+
+  subroutine print_header()
+
+    print*,
+    print*, '  _____  ______ _____      _             _     '
+    print*, ' |  __ \|  ____|  __ \    | |           | |    '
+    print*, ' | |__) | |__  | |  | |___| |_ __ _  ___| | __ '
+    print*, ' |  _  /|  __| | |  | / __| __/ _` |/ __| |/ / '
+    print*, ' | | \ \| |____| |__| \__ \ || (_| | (__|   <  '
+    print*, ' |_|  \_\______|_____/|___/\__\__,_|\___|_|\_\ '
+    print*,
+
+    ! print*,
+    ! print*, '     ____  __________       __             __   '
+    ! print*, '    / __ \/ ____/ __ \_____/ /_____ ______/ /__ '
+    ! print*, '   / /_/ / __/ / / / / ___/ __/ __ `/ ___/ //_/ '
+    ! print*, '  / _, _/ /___/ /_/ (__  ) /_/ /_/ / /__/ ,<    '
+    ! print*, ' /_/ |_/_____/_____/____/\__/\__,_/\___/_/|_|   '
+    ! print*,
+
+    print*, 'No Input file supplied'
+    print*,
+
+    stop
+
+  end subroutine print_header
 
 end module io
