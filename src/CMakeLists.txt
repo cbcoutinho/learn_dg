@@ -1,3 +1,5 @@
+add_subdirectory(legendre)
+
 add_lib_sources(
                 assembly_mod.f90
                 integration_mod.f90
@@ -5,7 +7,15 @@ add_lib_sources(
                 legendre_mod.f90
                 linalg_mod.f90
                 misc_mod.f90
-                pascal_1D_smod.f90
-                pascal_2D_smod.f90
                 fortranlib/src/lib_array.f90
+                )
+
+# Propagate lib_srcs list to parent directory
+add_lib_sources()
+
+
+# Add main executable and propagate to parent
+add_exe_sources(
+                driverA.f90
+                driverB.f90
                 )

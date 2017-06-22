@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-program doubleint
+program driver2
   use, intrinsic :: iso_fortran_env, only: wp=>real64
   use :: linalg, only: linsolve_quick, eye
   use :: misc, only: r8mat_print
@@ -119,4 +119,4 @@ program doubleint
 
   call r8mat_print(size(GlobalX,1), 1, GlobalX, "Solution Vector:")
 
-end program doubleint
+end program driver2

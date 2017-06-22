@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-program main
+program driver1
   use, intrinsic :: iso_fortran_env, only: wp=>real64
   use :: linalg, only: linsolve_quick
   use :: misc, only: r8mat_print
@@ -43,4 +43,4 @@ program main
 
   call write_out_solution(num_nodes, xcoords, GlobalX)
 
-end program main
+end program driver1
