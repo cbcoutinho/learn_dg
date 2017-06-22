@@ -76,8 +76,6 @@ before_script:
 
 script:
   - make clean
-  - make build
-  - make run
   - make cmake
   - |
     if [ "$TRAVIS_BRANCH" == "master" ]; then
