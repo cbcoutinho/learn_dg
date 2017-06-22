@@ -1,22 +1,16 @@
 # makefile: makes the learn_dg program
 
 ##############################
-###### Windows vs Linux ######
-##############################
-
-
-
-##############################
 #### Project Directories #####
 ##############################
 
-SRC=./src
-OBJ=./obj
-BIN=./bin
-DOC=./docs
-TEST=./test
-BLD=./build
-FLIB_SRC=./src/fortranlib/src
+SRC_DIR=./src
+OBJ_DIR=./obj
+BIN_DIR=./bin
+DOC_DIR=./docs
+TEST_DIR=./test
+BLD_DIR=./build
+FLIB_SRC_DIR=./src/fortranlib/src
 
 ##############################
 ###### Compiler options ######
@@ -42,9 +36,9 @@ else
 FORD := ford
 endif
 
-FORD_FLAGS := -d $(SRC) \
-	-p $(DOC)/user-guide \
-	-o $(DOC)/html
+FORD_FLAGS := -d $(SRC_DIR) \
+	-p $(DOC_DIR)/user-guide \
+	-o $(DOC_DIR)/html
 
 ##############################
 ####### Build Recepies #######
@@ -56,17 +50,17 @@ submodules:
 	git submodule init
 	git submodule update
 
-all: cmake # $(BIN)/main $(BIN)/doubleint
+all: cmake # $(BIN_DIR)/main $(BIN_DIR)/doubleint
 
-mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
-	gmsh $(TEST)/test1D.geo -order 1 -1 -o $(TEST)/test1D.msh
-	gmsh $(TEST)/test2D.geo -order 1 -2 -o $(TEST)/test2D.msh
+mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
+	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
+	gmsh $(TEST_DIR)/test2D.geo -order 1 -2 -o $(TEST_DIR)/test2D.msh
 
 run1: all mesh
-	$(BIN)/$(MAIN) $(TEST)/test1D.msh
+	$(BIN_DIR)/$(MAIN) $(TEST_DIR)/test1D.msh
 
 run2: all
-	$(BIN)/$(DOUBLEINT)
+	$(BIN_DIR)/$(DOUBLEINT)
 
 run: run1 run2
 
@@ -74,33 +68,33 @@ plot: cmake
 	python plotter.py
 
 .PHONY: docs
-docs: submodules $(DOC)/learn_dg.md README.md
-	cp README.md $(DOC)/README.md
-	$(FORD) $(FORD_FLAGS) $(DOC)/learn_dg.md
-	$(RM) $(DOC)/README.md
+docs: submodules $(DOC_DIR)/learn_dg.md README.md
+	cp README.md $(DOC_DIR)/README.md
+	$(FORD) $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
+	$(RM) $(DOC_DIR)/README.md
 
 debug: clean all mesh
-	valgrind --track-origins=yes --leak-check=full $(BIN)/$(MAIN)) $(TEST)/test1D.msh
-	valgrind --track-origins=yes --leak-check=full $(BIN)/$(DOUBLEINT)
+	valgrind --track-origins=yes --leak-check=full $(BIN_DIR)/$(MAIN)) $(TEST_DIR)/test1D.msh
+	valgrind --track-origins=yes --leak-check=full $(BIN_DIR)/$(DOUBLEINT)
 
 # .PHONY: cmake
-cmake: submodules mesh | $(BLD)
-	cd $(BLD) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
-	$(MAKE) -C $(BLD)
+cmake: submodules mesh | $(BLD_DIR)
+	cd $(BLD_DIR) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
+	$(MAKE) -C $(BLD_DIR)
 
-cmake_win: submodules mesh | $(BLD)
-	cd $(BLD) && cmake -DCMAKE_TOOLCHAIN_FILE:STRING=../cmake/Toolchain-x64-mingw32.cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
-	$(MAKE) -C $(BLD)
+cmake_win: submodules mesh | $(BLD_DIR)
+	cd $(BLD_DIR) && cmake -DCMAKE_TOOLCHAIN_FILE:STRING=../cmake/Toolchain-x64-mingw32.cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
+	$(MAKE) -C $(BLD_DIR)
 
-test: cmake
-	$(BLD)/bin/driverA
-	$(BLD)/bin/driverA $(TEST)/test1D.msh
+tests: cmake
+	$(BLD_DIR)/bin/driverA
+	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
 
 .ONESHELL:
-$(BLD):
-	test -d $(BLD) || mkdir $(BLD)
+$(BLD_DIR):
+	test -d $(BLD_DIR) || mkdir $(BLD_DIR)
 
 clean:
-	$(RM) $(OBJ)/*.o $(OBJ)/*.*mod
-	$(RM) $(TEST)/test1D.msh $(TEST)/test2D.msh
-	$(RM) $(BLD)
+	$(RM) $(OBJ_DIR)/*.o $(OBJ_DIR)/*.*mod
+	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
+	$(RM) $(BLD_DIR)
