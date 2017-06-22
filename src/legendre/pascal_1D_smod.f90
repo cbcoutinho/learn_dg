@@ -23,6 +23,7 @@ submodule (legendre) pascal_1D
   ! {: style="text-align: center" }
 
   use, intrinsic :: iso_fortran_env, only: wp=>real64
+  use :: linalg, only: linsolve_quick
   implicit none
 
 contains

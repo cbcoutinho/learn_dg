@@ -115,9 +115,9 @@ add_subdirectory(src)
 #----------------------------------------------------------------------------------------------
 
 message(STATUS " ")
-# add_library(coredg SHARED ${LIB_SRCS})
+add_library(coredg SHARED ${LIB_SRCS})
 # add_library(coredg STATIC ${LIB_SRCS})
-add_library(coredg ${LIB_SRCS})
+# add_library(coredg ${LIB_SRCS})
 target_link_libraries(coredg
                       ${LAPACK_LIBRARIES}
                       ${BLAS_LIBRARIES}

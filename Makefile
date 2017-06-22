@@ -89,7 +89,7 @@ cmake: submodules mesh | $(BLD)
 	$(MAKE) -C $(BLD)
 
 cmake_win: submodules mesh | $(BLD)
-	cd $(BLD)) && cmake -DCMAKE_TOOLCHAIN_FILE:STRING=../cmake/Toolchain-x64-mingw32.cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
+	cd $(BLD) && cmake -DCMAKE_TOOLCHAIN_FILE:STRING=../cmake/Toolchain-x64-mingw32.cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
 	$(MAKE) -C $(BLD)
 
 test: cmake

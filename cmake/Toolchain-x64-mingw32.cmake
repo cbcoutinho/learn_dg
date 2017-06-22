@@ -9,6 +9,10 @@ SET(CMAKE_SYSTEM_VERSION 1)
 SET(CMAKE_C_COMPILER        x86_64-w64-mingw32-gcc)
 SET(CMAKE_CXX_COMPILER      x86_64-w64-mingw32-g++)
 SET(CMAKE_Fortran_COMPILER  x86_64-w64-mingw32-gfortran)
+SET(CMAKE_AR                x86_64-w64-mingw32-ar)
+
+SET(CMAKE_CXX_ARCHIVE_CREATE "<CMAKE_AR> -X -r5 -o <TARGET> <LINK_FLAGS> <OBJECTS>")
+SET(CMAKE_C_ARCHIVE_CREATE "<CMAKE_AR> -X -r5 -o <TARGET> <LINK_FLAGS> <OBJECTS>")
 
 # set(BLAS_LIBRARIES /usr/x86_64-w64-mingw32/sys-root/mingw/lib/libblas.dll.a)
 # set(LAPACK_LIBRARIES /usr/x86_64-w64-mingw32/sys-root/mingw/lib/liblapack.dll.a;/usr/x86_64-w64-mingw32/sys-root/mingw/lib/libblas.dll.a)

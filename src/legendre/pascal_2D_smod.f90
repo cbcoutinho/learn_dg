@@ -6,6 +6,8 @@
 
 submodule (legendre) pascal_2D
   use, intrinsic :: iso_fortran_env, only: wp=>real64
+  use :: linalg, only: linsolve_quick, inv2, det2, eye
+  use :: integration, only: integrate2D
   implicit none
 
 contains
