@@ -14,6 +14,7 @@ doubleint.exe
 # File out
 data.out
 docs/html
+compile.out
 
 # Test folder related stuff
 __pycache__

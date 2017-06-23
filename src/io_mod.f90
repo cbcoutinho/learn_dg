@@ -5,8 +5,8 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 module io
-  use, intrinsic :: iso_fortran_env, only: wp=>real64
-  use :: lib_array, only: linspace
+  use, intrinsic  :: iso_fortran_env, only: wp=>real64
+  use             :: lib_array, only: linspace
   implicit none
 
   private
@@ -189,6 +189,9 @@ contains
     print*, ' | | \ \| |____| |__| \__ \ || (_| | (__|   <  '
     print*, ' |_|  \_\______|_____/|___/\__\__,_|\___|_|\_\ '
     print*,
+    print*,
+    print*, ' Developed by Chris Coutinho                   '
+    print*,
 
     ! print*,
     ! print*, '     ____  __________       __             __   '
@@ -196,6 +199,9 @@ contains
     ! print*, '   / /_/ / __/ / / / / ___/ __/ __ `/ ___/ //_/ '
     ! print*, '  / _, _/ /___/ /_/ (__  ) /_/ /_/ / /__/ ,<    '
     ! print*, ' /_/ |_/_____/_____/____/\__/\__,_/\___/_/|_|   '
+    ! print*,
+    ! print*,
+    ! print*, ' Developed by Chris Coutinho                   '
     ! print*,
 
     print*, 'No Input file supplied'

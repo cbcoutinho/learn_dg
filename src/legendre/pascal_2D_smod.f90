@@ -228,7 +228,8 @@ contains
     end function getA
   end function getAlpha2D
 
-  pure module function pascal_2D_quad(N, x, y) result(row)
+  module procedure pascal_2D_quad
+  ! pure module function pascal_2D_quad(N, x, y) result(row)
     !*
     ! Generates an array of points related to a quadrilateral using Pascal's
     ! triangle in 2D, where rows are 0-indexed
@@ -242,10 +243,10 @@ contains
     !   \[ \vdots \]
     !   \[ [x^N,~ x^{N-1}y,~ \cdots ~,~ xy^{N-1},~ y^N] \]
 
-      integer,  intent(in)  :: N            !! Order of the qaudrilateral
-      real(wp), intent(in)  :: x            !! X-coordinate of node used in calculation
-      real(wp), intent(in)  :: y            !! Y-coordinate of node used in calculation
-      real(wp), dimension((N+1)**2) :: row  !! Output row
+      ! integer,  intent(in)  :: N            !! Order of the qaudrilateral
+      ! real(wp), intent(in)  :: x            !! X-coordinate of node used in calculation
+      ! real(wp), intent(in)  :: y            !! Y-coordinate of node used in calculation
+      ! real(wp), dimension((N+1)**2) :: row  !! Output row
 
     integer :: ii
     real(wp), dimension(:), allocatable :: temp_pre, temp_post
@@ -260,23 +261,24 @@ contains
 
     return
   contains
-    pure function pascal_2D_quad_post(N, ii, x, y) result(row)
-      integer,  intent(in)  :: N, ii
-      real(wp), intent(in)  :: x, y
-      real(wp), dimension(2*N-ii+1) :: row
+    pure function pascal_2D_quad_post(N_, ii_, x_, y_) result(row_)
+      integer,  intent(in)  :: N_, ii_
+      real(wp), intent(in)  :: x_, y_
+      real(wp), dimension(2*N_-ii_+1) :: row_
 
       integer :: start, finish
       real(wp), dimension(:), allocatable :: temp
 
-      temp = pascal_2D_row(ii, x, y)
-      start = ii-N+1
-      finish = ii-(ii-N)+1
+      temp = pascal_2D_row(ii_, x_, y_)
+      start = ii_-N_+1
+      finish = ii_-(ii_-N_)+1
 
-      row = temp( start:finish )
+      row_ = temp( start:finish )
 
       return
     end function pascal_2D_quad_post
-  end function pascal_2D_quad
+  ! end function pascal_2D_quad
+  end procedure pascal_2D_quad
 
   pure function pascal_2D_row(N, x, y) result(row)
     !*

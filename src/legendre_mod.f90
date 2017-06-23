@@ -5,17 +5,15 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 module legendre
-  use, intrinsic :: iso_fortran_env, only: wp=>real64
-  use :: misc, only: r8mat_print
-  use :: lib_array, only: linspace
-  use :: integration, only: integrate, integrate2D
-  use :: linalg, only: linsolve_quick, linsolve, inv2, det2, eye
+  use, intrinsic  :: iso_fortran_env, only: wp=>real64
+  use, intrinsic  :: iso_c_binding, only: c_int, c_float
+  use             :: integration, only: integrate
   implicit none
 
-  real(wp), dimension(:,:), allocatable :: alpha
-
   private
-  public  :: getIe
+  public  :: getIe, adder_c
+
+  real(wp), dimension(:,:), allocatable :: alpha
 
   public :: getxy
   interface getxy
@@ -88,6 +86,26 @@ module legendre
     end function getJacobian
   end interface getJacobian
 contains
+
+  function adder(a, b) result(c)
+    integer :: a, b, c
+
+    print*, 'Inside adder'
+    c = a + b
+    print*, 'Finished adding'
+
+  end function adder
+
+  function adder_c(a,b) result(c) bind(c, name='adder')
+    integer(c_int), value :: a, b
+    integer(c_int)        :: c
+
+    print*, 'Inside adder_c, calling adder'
+    c = adder(a,b)
+    print*, 'Finished calling adder'
+    print*,
+
+  end function adder_c
 
   ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   ! !!!!!! Elemental Matrix Routines 1-D !!!!!!!

@@ -62,7 +62,7 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
     set (USER_COMPILE_FLAGS_DEBUG   "${FFLAGS} -O0 -cpp --coverage -ffree-form \
                                      -ffree-line-length-none -fbacktrace \
                                      -fstack-protector -fcheck=bounds \
-                                     -fmax-stack-var-size=1600 -p -g")
+                                     -fmax-stack-var-size=1600")
     set (USER_COMPILE_FLAGS_RELEASE "${FFLAGS} -O3 -cpp -ffree-form \
                                      -ffree-line-length-none -fexternal-blas \
                                      -funroll-loops")
@@ -115,14 +115,14 @@ add_subdirectory(src)
 #----------------------------------------------------------------------------------------------
 
 message(STATUS " ")
-add_library(coredg SHARED ${LIB_SRCS})
-# add_library(coredg STATIC ${LIB_SRCS})
-# add_library(coredg ${LIB_SRCS})
-target_link_libraries(coredg
+add_library(core SHARED ${LIB_SRCS})
+# add_library(core STATIC ${LIB_SRCS})
+# add_library(core ${LIB_SRCS})
+target_link_libraries(core
                       ${LAPACK_LIBRARIES}
                       ${BLAS_LIBRARIES}
                       )
-set_target_properties(coredg PROPERTIES
+set_target_properties(core PROPERTIES
                              COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
                              LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}")
 
@@ -131,14 +131,15 @@ set_target_properties(coredg PROPERTIES
 #----------------------------------------------------------------------------------------------
 #                                       Build Interfaces
 #----------------------------------------------------------------------------------------------
-# Add driver executable linked to coredg library
+# Add driver executable linked to core library
 # add_executable(main ${EXE_SRCS})
+
 foreach( SOURCE_FILE ${EXE_SRCS})
-  string( REPLACE ".f90" "" SOURCE_NAME ${SOURCE_FILE})
-  string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME})
-  add_executable(${SOURCE_NAME} ${SOURCE_FILE})
-  target_link_libraries(${SOURCE_NAME}  coredg)
-  set_target_properties(${SOURCE_NAME}  PROPERTIES
-                                        COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
-                                        LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}")
+    string( REPLACE ".f90" "" SOURCE_NAME ${SOURCE_FILE})
+    string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME})
+    add_executable(${SOURCE_NAME} ${SOURCE_FILE})
+    target_link_libraries(${SOURCE_NAME}  core)
+    set_target_properties(${SOURCE_NAME}  PROPERTIES
+        COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
+    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}")
 endforeach( SOURCE_FILE ${EXE_SRCS} )
