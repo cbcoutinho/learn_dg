@@ -34,7 +34,7 @@ branches:
 addons:
   apt:
     packages:
-      - gfortran-6
+      - gfortran-7
       - valgrind
       - graphviz
       - libblas-dev
@@ -56,7 +56,7 @@ install:
   - pip install --upgrade meshio
   - (pip install --upgrade ford && ford --version)
   - mkdir -p $TRAVIS_BUILD_DIR/bin
-  - ln -sf "$(which gfortran-6)" $TRAVIS_BUILD_DIR/bin/gfortran
+  - ln -sf "$(which gfortran-7)" $TRAVIS_BUILD_DIR/bin/gfortran
   - export PATH=$TRAVIS_BUILD_DIR/bin:$PATH
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir -p "${DEPS_DIR}" && cd "${DEPS_DIR}"
