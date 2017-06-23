@@ -50,34 +50,14 @@ submodules:
 	git submodule init
 	git submodule update
 
-all: cmake # $(BIN_DIR)/main $(BIN_DIR)/doubleint
+all: cmake
 
 mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
 	gmsh $(TEST_DIR)/test2D.geo -order 1 -2 -o $(TEST_DIR)/test2D.msh
 
-run1: all mesh
-	$(BIN_DIR)/$(MAIN) $(TEST_DIR)/test1D.msh
 
-run2: all
-	$(BIN_DIR)/$(DOUBLEINT)
-
-run: run1 run2
-
-plot: cmake
-	python plotter.py
-
-.PHONY: docs
-docs: submodules $(DOC_DIR)/learn_dg.md README.md
-	cp README.md $(DOC_DIR)/README.md
-	$(FORD) $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
-	$(RM) $(DOC_DIR)/README.md
-
-debug: clean all mesh
-	valgrind --track-origins=yes --leak-check=full $(BIN_DIR)/$(MAIN)) $(TEST_DIR)/test1D.msh
-	valgrind --track-origins=yes --leak-check=full $(BIN_DIR)/$(DOUBLEINT)
-
-# .PHONY: cmake
+# Build and test the project
 cmake: submodules mesh | $(BLD_DIR)
 	cd $(BLD_DIR) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
 	$(MAKE) -C $(BLD_DIR)
@@ -89,6 +69,23 @@ cmake_win: submodules mesh | $(BLD_DIR)
 tests: cmake
 	$(BLD_DIR)/bin/driverA
 	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
+
+# After running one of the tests, plot the output
+plot: cmake tests
+	python test/plotter.py
+	$(RM) data.out
+
+
+
+
+
+# Other
+
+.PHONY: docs
+docs: submodules $(DOC_DIR)/learn_dg.md README.md
+	cp README.md $(DOC_DIR)/README.md
+	$(FORD) $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
+	$(RM) $(DOC_DIR)/README.md
 
 .ONESHELL:
 $(BLD_DIR):
