@@ -14,11 +14,14 @@ doubleint.exe
 # File out
 data.out
 docs/html
+compile.out
 
 # Test folder related stuff
 __pycache__
 .ipynb_checkpoints
 octave-workspace
+test_*
+gmon.out
 
 # GMSH-related files
 *.msh

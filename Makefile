@@ -4,12 +4,13 @@
 #### Project Directories #####
 ##############################
 
-SRC=./src
-OBJ=./obj
-BIN=./bin
-DOC=./docs
-TEST=./test
-FLIB_SRC=./src/fortranlib/src
+SRC_DIR=./src
+OBJ_DIR=./obj
+BIN_DIR=./bin
+DOC_DIR=./docs
+TEST_DIR=./test
+BLD_DIR=./build
+FLIB_SRC_DIR=./src/fortranlib/src
 
 ##############################
 ###### Compiler options ######
@@ -20,31 +21,8 @@ ifndef DEBUG
 DEBUG:=1
 endif
 
-ifndef FF
 FF:=gfortran
-endif
-
-# FFVERSIONGTEQ6 := $(shell expr `$(FF) -dumpversion | cut -f1 -d.` \>= 6)
-# ifeq "$(FFVERSIONGTEQ6)" "0"
-# 	@echo "Fortran Compiler must be at least version 6"
-# endif
-
-FFLAGS := -std=f2008 -fPIC -fmax-errors=1
-ifeq ($(DEBUG),1)
-# if [[ "$(DEBUG)" =~ ^[Yy]$ ]]; then
-# Debug flags:
-$(info DEBUG is $(DEBUG))
-$(info Building in Debug mode)
-FFLAGS += -Og -g -fcheck=all -fbacktrace -Wimplicit-interface -Wall -Wextra #-ffpe-trap=zero,overflow,underflow
-else
-# Release flags:
-$(info DEBUG is $(DEBUG))
-FFLAGS += -Ofast -march=native -ffast-math -funroll-loops
-$(info Building in Release mode)
-endif
-
-FLIBS := -lblas -llapack
-# FLIBS += -fopenmp
+RM:=rm -rf
 
 ##############################
 ######## FORD options ########
@@ -58,79 +36,31 @@ else
 FORD := ford
 endif
 
-FORD_FLAGS := -d $(SRC) \
-	-p $(DOC)/user-guide \
-	-o $(DOC)/html
-
-##############################
-#### Project Dependencies ####
-##############################
-
-# Dependencies of main program
-objects:=$(OBJ)/lib_array.o \
-	$(OBJ)/integration.o \
-	$(OBJ)/misc.o \
-	$(OBJ)/legendre.o \
-	$(OBJ)/pascal_1D.o \
-	$(OBJ)/pascal_2D.o \
-	$(OBJ)/io.o \
-	$(OBJ)/assembly.o \
-	$(OBJ)/linalg.o
+FORD_FLAGS := -d $(SRC_DIR) \
+	-p $(DOC_DIR)/user-guide \
+	-o $(DOC_DIR)/html
 
 ##############################
 ####### Build Recepies #######
 ##############################
 
-default: build
-
-# Fortran library
-$(OBJ)/lib_array.o: $(FLIB_SRC)/lib_array.f90
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-
-# Modules
-$(OBJ)/misc.o: $(SRC)/misc_mod.f90
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-$(OBJ)/assembly.o: $(SRC)/assembly_mod.f90 $(OBJ)/legendre.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-$(OBJ)/linalg.o: $(SRC)/linalg_mod.f90
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/pascal_1D.o: $(SRC)/pascal_1D_smod.f90 $(OBJ)/legendre.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/pascal_2D.o: $(SRC)/pascal_2D_smod.f90 $(OBJ)/legendre.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/legendre.o: $(SRC)/legendre_mod.f90 $(OBJ)/misc.o $(OBJ)/lib_array.o $(OBJ)/integration.o $(OBJ)/linalg.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/integration.o: $(SRC)/integration_mod.f90 $(OBJ)/lib_array.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $< $(FLIBS)
-$(OBJ)/io.o: $(SRC)/io_mod.f90 $(OBJ)/lib_array.o
-	$(FF) $(FFLAGS) -J$(OBJ) -c -o $@ $<
-
-# Main program
-$(OBJ)/main.o: $(SRC)/main.f90 $(objects)
-	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $< $(FLIBS)
-$(BIN)/main: $(OBJ)/main.o $(objects)
-	$(FF) $(FFLAGS) -o $@ $^ $(FLIBS)
-
-$(OBJ)/doubleint.o: $(SRC)/doubleint.f90 $(objects)
-	$(FF) $(FFLAGS) -I$(OBJ) -c -o $@ $< $(FLIBS)
-$(BIN)/doubleint: $(OBJ)/doubleint.o $(objects)
-	$(FF) $(FFLAGS) -o $@ $^ $(FLIBS)
+default: all
 
 submodules:
 	git submodule init
 	git submodule update
 
-build: submodules $(BIN)/main $(BIN)/doubleint
+all: cmake # $(BIN_DIR)/main $(BIN_DIR)/doubleint
 
-mesh: $(TEST)/test1D.geo $(TEST)/test2D.geo
-	gmsh $(TEST)/test1D.geo -order 1 -1 -o $(TEST)/test1D.msh > /dev/null 2>&1
-	gmsh $(TEST)/test2D.geo -order 1 -2 -o $(TEST)/test2D.msh > /dev/null 2>&1
+mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
+	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
+	gmsh $(TEST_DIR)/test2D.geo -order 1 -2 -o $(TEST_DIR)/test2D.msh
 
-run1: build mesh
-	$(BIN)/main $(TEST)/test1D.msh
+run1: all mesh
+	$(BIN_DIR)/$(MAIN) $(TEST_DIR)/test1D.msh
 
-run2: build
-	$(BIN)/doubleint
+run2: all
+	$(BIN_DIR)/$(DOUBLEINT)
 
 run: run1 run2
 
@@ -138,23 +68,33 @@ plot: cmake
 	python plotter.py
 
 .PHONY: docs
-docs: submodules $(DOC)/learn_dg.md README.md
-	cp README.md $(DOC)/README.md
-	$(FORD) $(FORD_FLAGS) $(DOC)/learn_dg.md
-	rm $(DOC)/README.md
+docs: submodules $(DOC_DIR)/learn_dg.md README.md
+	cp README.md $(DOC_DIR)/README.md
+	$(FORD) $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
+	$(RM) $(DOC_DIR)/README.md
 
-debug: clean build mesh
-	valgrind --track-origins=yes --leak-check=full $(BIN)/main $(TEST)/test1D.msh
-	valgrind --track-origins=yes --leak-check=full $(BIN)/doubleint
+debug: clean all mesh
+	valgrind --track-origins=yes --leak-check=full $(BIN_DIR)/$(MAIN)) $(TEST_DIR)/test1D.msh
+	valgrind --track-origins=yes --leak-check=full $(BIN_DIR)/$(DOUBLEINT)
 
-.PHONY: cmake
-cmake: submodules mesh
-	test -d build || mkdir build
-	cd build && cmake .. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
-	$(MAKE) -C build
-	./build/main $(TEST)/test1D.msh
+# .PHONY: cmake
+cmake: submodules mesh | $(BLD_DIR)
+	cd $(BLD_DIR) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
+	$(MAKE) -C $(BLD_DIR)
+
+cmake_win: submodules mesh | $(BLD_DIR)
+	cd $(BLD_DIR) && cmake -DCMAKE_TOOLCHAIN_FILE:STRING=../cmake/Toolchain-x64-mingw32.cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
+	$(MAKE) -C $(BLD_DIR)
+
+tests: cmake
+	$(BLD_DIR)/bin/driverA
+	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
+
+.ONESHELL:
+$(BLD_DIR):
+	test -d $(BLD_DIR) || mkdir $(BLD_DIR)
 
 clean:
-	rm -f $(OBJ)/*.o $(OBJ)/*.mod $(OBJ)/*.smod $(BIN)/main
-	rm -f $(TEST)/test1D.msh $(TEST)/test2D.msh
-	rm -rf build
+	$(RM) $(OBJ_DIR)/*.o $(OBJ_DIR)/*.*mod
+	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
+	$(RM) $(BLD_DIR)
