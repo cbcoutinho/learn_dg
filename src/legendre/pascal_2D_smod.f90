@@ -228,8 +228,8 @@ contains
     end function getA
   end function getAlpha2D
 
-  module procedure pascal_2D_quad
-  ! pure module function pascal_2D_quad(N, x, y) result(row)
+  ! module procedure pascal_2D_quad
+  pure module function pascal_2D_quad(N, x, y) result(row)
     !*
     ! Generates an array of points related to a quadrilateral using Pascal's
     ! triangle in 2D, where rows are 0-indexed
@@ -277,8 +277,8 @@ contains
 
       return
     end function pascal_2D_quad_post
-  ! end function pascal_2D_quad
-  end procedure pascal_2D_quad
+  end function pascal_2D_quad
+  ! end procedure pascal_2D_quad
 
   pure function pascal_2D_row(N, x, y) result(row)
     !*
