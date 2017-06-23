@@ -243,10 +243,10 @@ contains
     !   \[ \vdots \]
     !   \[ [x^N,~ x^{N-1}y,~ \cdots ~,~ xy^{N-1},~ y^N] \]
 
-      ! integer,  intent(in)  :: N            !! Order of the qaudrilateral
-      ! real(wp), intent(in)  :: x            !! X-coordinate of node used in calculation
-      ! real(wp), intent(in)  :: y            !! Y-coordinate of node used in calculation
-      ! real(wp), dimension((N+1)**2) :: row  !! Output row
+      integer,  intent(in)  :: N            !! Order of the qaudrilateral
+      real(wp), intent(in)  :: x            !! X-coordinate of node used in calculation
+      real(wp), intent(in)  :: y            !! Y-coordinate of node used in calculation
+      real(wp), dimension((N+1)**2) :: row  !! Output row
 
     integer :: ii
     real(wp), dimension(:), allocatable :: temp_pre, temp_post
