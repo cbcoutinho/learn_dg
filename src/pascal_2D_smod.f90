@@ -6,6 +6,8 @@
 
 submodule (legendre) pascal_2D
   use, intrinsic :: iso_fortran_env, only: wp=>real64
+  use :: linalg, only: linsolve_quick, inv2, det2, eye
+  use :: integration, only: integrate2D
   implicit none
 
 contains
@@ -226,6 +228,7 @@ contains
     end function getA
   end function getAlpha2D
 
+  ! module procedure pascal_2D_quad
   pure module function pascal_2D_quad(N, x, y) result(row)
     !*
     ! Generates an array of points related to a quadrilateral using Pascal's
@@ -258,23 +261,24 @@ contains
 
     return
   contains
-    pure function pascal_2D_quad_post(N, ii, x, y) result(row)
-      integer,  intent(in)  :: N, ii
-      real(wp), intent(in)  :: x, y
-      real(wp), dimension(2*N-ii+1) :: row
+    pure function pascal_2D_quad_post(N_, ii_, x_, y_) result(row_)
+      integer,  intent(in)  :: N_, ii_
+      real(wp), intent(in)  :: x_, y_
+      real(wp), dimension(2*N_-ii_+1) :: row_
 
       integer :: start, finish
       real(wp), dimension(:), allocatable :: temp
 
-      temp = pascal_2D_row(ii, x, y)
-      start = ii-N+1
-      finish = ii-(ii-N)+1
+      temp = pascal_2D_row(ii_, x_, y_)
+      start = ii_-N_+1
+      finish = ii_-(ii_-N_)+1
 
-      row = temp( start:finish )
+      row_ = temp( start:finish )
 
       return
     end function pascal_2D_quad_post
   end function pascal_2D_quad
+  ! end procedure pascal_2D_quad
 
   pure function pascal_2D_row(N, x, y) result(row)
     !*
