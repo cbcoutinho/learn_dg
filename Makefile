@@ -5,8 +5,6 @@
 ##############################
 
 SRC_DIR=./src
-OBJ_DIR=./obj
-BIN_DIR=./bin
 DOC_DIR=./docs
 TEST_DIR=./test
 BLD_DIR=./build
@@ -77,8 +75,6 @@ plot: cmake tests
 
 
 
-
-
 # Other
 
 .PHONY: docs
@@ -92,6 +88,5 @@ $(BLD_DIR):
 	test -d $(BLD_DIR) || mkdir $(BLD_DIR)
 
 clean:
-	$(RM) $(OBJ_DIR)/*.o $(OBJ_DIR)/*.*mod
 	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
 	$(RM) $(BLD_DIR)
