@@ -4,10 +4,10 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-submodule (legendre) pascal_2D
+submodule (mod_legendre) smod_pascal_2D
   use, intrinsic :: iso_fortran_env, only: wp=>real64
-  use :: linalg, only: linsolve_quick, inv2, det2, eye
-  use :: integration, only: integrate2D
+  use :: mod_linalg, only: linsolve_quick, inv2, det2, eye
+  use :: mod_integration, only: integrate2D
   implicit none
 
 contains
@@ -387,4 +387,4 @@ contains
     return
   end function getJacobian
 
-end submodule pascal_2D
+end submodule smod_pascal_2D

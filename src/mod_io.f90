@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-module io
+module mod_io
   use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use             :: lib_array, only: linspace
   implicit none
@@ -211,4 +211,4 @@ contains
 
   end subroutine print_header
 
-end module io
+end module mod_io

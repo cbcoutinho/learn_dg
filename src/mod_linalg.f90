@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-module linalg
+module mod_linalg
   use, intrinsic :: iso_fortran_env, only: wp=>real64
   implicit none
 
@@ -118,4 +118,4 @@ contains
     return
   end subroutine linsolve
 
-end module linalg
+end module mod_linalg

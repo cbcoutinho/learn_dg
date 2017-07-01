@@ -4,10 +4,10 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-module legendre
+module mod_legendre
   use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use, intrinsic  :: iso_c_binding, only: c_int, c_float
-  use             :: integration, only: integrate
+  use             :: mod_integration, only: integrate
   implicit none
 
   private
@@ -229,4 +229,4 @@ contains
   ! !!!!!! Elemental Matrix Routines 2-D !!!!!!!
   ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-end module legendre
+end module mod_legendre

@@ -6,9 +6,9 @@
 
 program driver2
   use, intrinsic  :: iso_fortran_env, only: wp=>real64
-  use             :: linalg, only: linsolve_quick, eye
-  use             :: misc, only: r8mat_print
-  use             :: legendre, only: assembleElementalMatrix, getxy
+  use             :: mod_linalg, only: linsolve_quick, eye
+  use             :: mod_misc, only: r8mat_print
+  use             :: mod_legendre, only: assembleElementalMatrix, getxy
   implicit none
 
   integer :: ii

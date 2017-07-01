@@ -6,10 +6,10 @@
 
 program driver1
   use, intrinsic :: iso_fortran_env, only: wp=>real64
-  use :: linalg, only: linsolve_quick
-  use :: misc, only: r8mat_print
-  use :: io, only: read_gmsh_file_1D, write_out_solution
-  use :: assembly, only: initialize_global_mats, assemble, set_BCs
+  use :: mod_linalg, only: linsolve_quick
+  use :: mod_misc, only: r8mat_print
+  use :: mod_io, only: read_gmsh_file_1D, write_out_solution
+  use :: mod_assembly, only: initialize_global_mats, assemble, set_BCs
 
   implicit none
 

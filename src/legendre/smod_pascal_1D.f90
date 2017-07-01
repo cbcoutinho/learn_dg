@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-submodule (legendre) pascal_1D
+submodule (mod_legendre) smod_pascal_1D
   !*
   ! Pascal_1D is a submodule used to generate arrays of coeffiecents used for
   ! developing finite element basis functions in 1D. Finite element basis
@@ -23,7 +23,7 @@ submodule (legendre) pascal_1D
   ! {: style="text-align: center" }
 
   use, intrinsic :: iso_fortran_env, only: wp=>real64
-  use :: linalg, only: linsolve_quick, eye
+  use :: mod_linalg, only: linsolve_quick, eye
   use :: lib_array, only: linspace
   implicit none
 
@@ -110,4 +110,4 @@ contains
   end function pascal_1D_line
   ! end procedure pascal_1D_line
 
-end submodule pascal_1D
+end submodule smod_pascal_1D

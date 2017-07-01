@@ -4,9 +4,9 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-module assembly
+module mod_assembly
   use, intrinsic :: iso_fortran_env, only: wp=>real64
-  use :: legendre, only: getIe,  assembleElementalMatrix, getxy
+  use :: mod_legendre, only: getIe,  assembleElementalMatrix, getxy
   implicit none
 
   private
@@ -112,4 +112,4 @@ contains
     return
   end subroutine set_BCs
 
-end module assembly
+end module mod_assembly

@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-module integration
+module mod_integration
   use, intrinsic :: iso_fortran_env, only: wp=>real64
   use :: lib_array, only: linspace
   implicit none
@@ -324,4 +324,4 @@ contains
     return
   end subroutine gaussquad_rosetta
 
-end module integration
+end module mod_integration

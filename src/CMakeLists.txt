@@ -1,12 +1,11 @@
 add_subdirectory(legendre)
 
 add_lib_sources(
-                assembly_mod.f90
-                integration_mod.f90
-                io_mod.f90
-                legendre_mod.f90
-                linalg_mod.f90
-                misc_mod.f90
+                mod_assembly.f90
+                mod_integration.f90
+                mod_io.f90
+                mod_linalg.f90
+                mod_misc.f90
                 fortranlib/src/lib_array.f90
                 )
 
