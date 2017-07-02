@@ -54,19 +54,19 @@ mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
 	gmsh $(TEST_DIR)/test2D.geo -order 1 -2 -o $(TEST_DIR)/test2D.msh
 
-
 # Build and test the project
-cmake: submodules mesh | $(BLD_DIR)
+cmake: submodules | $(BLD_DIR)
 	cd $(BLD_DIR) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
 	$(MAKE) -C $(BLD_DIR)
 
-cmake_win: submodules mesh | $(BLD_DIR)
+cmake_win: submodules | $(BLD_DIR)
 	cd $(BLD_DIR) && cmake -DCMAKE_TOOLCHAIN_FILE:STRING=../cmake/Toolchain-x64-mingw32.cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
 	$(MAKE) -C $(BLD_DIR)
 
-tests: cmake
+tests: cmake mesh
 	$(BLD_DIR)/bin/driverA
 	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
+	$(BLD_DIR)/bin/driverB
 
 # After running one of the tests, plot the output
 plot: cmake tests
