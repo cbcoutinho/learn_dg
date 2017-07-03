@@ -106,25 +106,37 @@ message(STATUS "        LAPACK Libraries: ${LAPACK_LIBRARIES}")
 add_subdirectory(src)
 
 
-
-
-
-
 #----------------------------------------------------------------------------------------------
 #                                         Build library
 #----------------------------------------------------------------------------------------------
 
+set(LIB_NAME "core")
+
 message(STATUS " ")
-add_library(core SHARED ${LIB_SRCS})
-# add_library(core STATIC ${LIB_SRCS})
-# add_library(core ${LIB_SRCS})
-target_link_libraries(core
-                      ${LAPACK_LIBRARIES}
-                      ${BLAS_LIBRARIES}
-                      )
-set_target_properties(core PROPERTIES
-                             COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
-                             LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}")
+
+# Static library
+add_library(core-static STATIC ${LIB_SRCS})
+target_link_libraries(core-static
+                    ${LAPACK_LIBRARIES}
+                    ${BLAS_LIBRARIES}
+                    )
+set_target_properties(core-static PROPERTIES
+                    COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
+                    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
+                    OUTPUT_NAME ${LIB_NAME}
+                    )
+
+# Shared library
+add_library(core-shared SHARED ${LIB_SRCS})
+target_link_libraries(core-shared
+                    ${LAPACK_LIBRARIES}
+                    ${BLAS_LIBRARIES}
+                    )
+set_target_properties(core-shared PROPERTIES
+                    COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
+                    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
+                    OUTPUT_NAME ${LIB_NAME}
+                    )
 
 
 
@@ -138,8 +150,8 @@ foreach( SOURCE_FILE ${EXE_SRCS})
     string( REPLACE ".f90" "" SOURCE_NAME ${SOURCE_FILE})
     string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME})
     add_executable(${SOURCE_NAME} ${SOURCE_FILE})
-    target_link_libraries(${SOURCE_NAME}  core)
+    target_link_libraries(${SOURCE_NAME}  core-static)
     set_target_properties(${SOURCE_NAME}  PROPERTIES
-        COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
-    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}")
+                        COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
+                        LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}")
 endforeach( SOURCE_FILE ${EXE_SRCS} )

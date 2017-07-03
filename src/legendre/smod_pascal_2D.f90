@@ -5,118 +5,13 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 submodule (mod_legendre) smod_pascal_2D
-  use, intrinsic :: iso_fortran_env, only: wp=>real64
-  use :: mod_linalg, only: linsolve_quick, inv2, det2, eye
-  use :: mod_integration, only: integrate2D
+  use, intrinsic  :: iso_fortran_env, only: wp=>real64
+  use             :: mod_linalg, only: linsolve_quick, eye
   implicit none
 
 contains
 
-  module function assembleElementalMatrix2D(N, d1, d2, xy) result(Ie)
-    ! Dummy variables
-    integer,                  intent(in)  :: N, d1, d2
-    real(wp), dimension(N,2), intent(in)  :: xy
-    real(wp), dimension(N,N)              :: Ie
-
-    ! Local variables
-    integer                                 :: node1, node2
-
-    ! Get the coefficients of the basis functions (alpha). Both bi-linear (N=4)
-    ! and bi-quadratic (N=9) quadrilaterals are supported.
-    if ( .not. allocated(alpha) ) alpha = getAlpha(N)
-
-    Ie = 0._wp
-
-    do node1 = 1, N
-      do node2 = 1, N
-
-        ! fun is now implicitly defined using the following: node1, node2, d1, and d2
-        Ie(node1,node2) = Ie(node1,node2) + integrate2D(fun)
-
-      enddo
-    enddo
-  contains
-    function fun(xi, eta) result(out)
-      ! Dummy variables
-      real(wp), dimension(:,:), intent(in)  :: xi, eta
-      real(wp), dimension(:,:), allocatable :: out
-
-      ! Local variables
-      integer                   :: ii, jj, num_pts
-      real(wp), parameter       :: eps = epsilon(0e0)
-      real(wp)                  :: fun1, fun2
-      real(wp), dimension(2)    :: dfun1, dfun2
-      real(wp)                  :: detJ
-      real(wp), dimension(2,2)  :: J, invJ
-
-      ! Initialize function output. Actual number of pts is num_pts*num_pts,
-      ! because the meshgrid goes in both x and y directions. Only need one.
-      num_pts = size(xi,1)
-      allocate(out(num_pts,num_pts))
-      out = 0._wp
-
-      do ii = 1, num_pts
-        do jj = 1, num_pts
-
-          ! Calculate Jacobian, inverse Jacobian, and determinant of finite
-          ! element at (xi,eta)
-          J     = getJacobian(N, xi(ii,jj), eta(ii,jj), xy, alpha)
-          invJ  = inv2(J)
-          detJ  = det2(J)
-
-          ! If fun1 is just N_i, use dot_product to determine N_i
-          if ( d1 == 0 ) then
-            fun1 = dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)))
-          else
-
-            ! If fun1 contains a derivative, need to calc N_i,xi and N_i,eta
-            dfun1(1) = ( &
-              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-              dot_product(alpha(:,node1), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
-              ) / ( 2._wp*eps )
-
-            dfun1(2) = ( &
-              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-              dot_product(alpha(:,node1), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
-              ) / ( 2._wp*eps )
-
-            ! N_i,x = dxi/dx * N_i,xi + deta/dx * N_i,eta
-            fun1 = dot_product(invJ(d1,:), dfun1)
-
-          endif
-
-          ! If fun2 is just N_i, use dot_product to determine N_i
-          if ( d2 == 0 ) then
-            fun2 = dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)))
-          else
-
-            ! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta
-            dfun2(1) =  ( &
-              dot_product(alpha(:,node2), &
-                          getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-              dot_product(alpha(:,node2), &
-                          getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
-                        ) / ( 2._wp*eps )
-
-            dfun2(2) =  ( &
-              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)+eps)) - &
-              dot_product(alpha(:,node2), getArow(N, xi(ii,jj), eta(ii,jj)-eps)) &
-                        ) / ( 2._wp*eps )
-
-            ! N_i,y = dxi/dy * N_i,xi + deta/dy * N_i,eta
-            fun2 = dot_product(invJ(d2,:), dfun2)
-
-          endif
-
-          out(ii,jj) = fun1 * fun2 * detJ
-
-        enddo
-      enddo
-      return
-    end function fun
-  end function assembleElementalMatrix2D
-
-  pure function getxy(N) result(xy)
+  pure function getXY(N) result(xy)
     integer,  intent(in)      :: N
     real(wp), dimension(N,2)  :: xy
 
@@ -173,7 +68,7 @@ contains
     end select
 
     return
-  end function getxy
+  end function getXY
 
   pure module function getArow(N, xi, eta) result(row)
     integer, intent(in)     :: N
@@ -218,7 +113,7 @@ contains
       integer                   :: ii
       real(wp), dimension(N,2)  :: xy
 
-      xy = getxy(N)
+      xy = getXY(N)
 
       do ii = 1,N
         A(ii,:) = getArow(N, xy(ii,1), xy(ii,2))
@@ -282,7 +177,7 @@ contains
 
   pure function pascal_2D_row(N, x, y) result(row)
     !*
-    ! Generates a row of Pascal's triangle in 2D, where rows are 0-indexed
+    ! Generates a row of Pascal's triangle in 2D
     !
     ! Pascal's triangle in 2D looks like this:
     !   \[ [1] \]
@@ -293,7 +188,7 @@ contains
     !   \[ \vdots \]
     !   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]
     !
-    ! Therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]
+    ! The rows are zero-indexed, therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]
 
     integer,  intent(in)      :: N    !! Row number of pascal's 2D triange (0-indexed)
     real(wp), intent(in)      :: x    !! X-value used in triange

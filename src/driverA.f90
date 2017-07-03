@@ -13,7 +13,7 @@ program driver1
 
   implicit none
 
-  real(wp), parameter                   :: diff = 0.1_wp, vel = -5._wp
+  real(wp), parameter                   :: diff = 1_wp, vel = -0._wp
 
   integer                               :: num_nodes
   integer,  dimension(:),   allocatable :: order, nodes2vertex

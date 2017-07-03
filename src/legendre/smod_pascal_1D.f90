@@ -29,15 +29,15 @@ submodule (mod_legendre) smod_pascal_1D
 
 contains
 
-  module function assembleElementalMatrix1D(N, d1, d2, xy) result(Ie)
-    integer,                  intent(in)  :: N, d1, d2
-    real(wp), dimension(N),   intent(in)  :: xy
-    real(wp), dimension(N,N)              :: Ie
-
-    integer                               :: node1, node2
-
-    return
-  end function assembleElementalMatrix1D
+  ! module function assembleElementalMatrix1D(N, d1, d2, xy) result(Ie)
+  !   integer,                  intent(in)  :: N, d1, d2
+  !   real(wp), dimension(N),   intent(in)  :: xy
+  !   real(wp), dimension(N,N)              :: Ie
+  !
+  !   integer                               :: node1, node2
+  !
+  !   return
+  ! end function assembleElementalMatrix1D
 
   pure module function getArow_(N, xi) result(row)
     integer, intent(in)     :: N
@@ -109,5 +109,32 @@ contains
     return
   end function pascal_1D_line
   ! end procedure pascal_1D_line
+
+  pure module function basis_1D(x, alpha, dx) result(y)
+    ! Input/output variables
+    integer,  intent(in)                            :: dx
+    real(wp), intent(in), dimension(:)              :: x
+    real(wp), intent(in), dimension(:)              :: alpha
+    real(wp),             dimension(:), allocatable :: y, yx
+
+    ! Local variables
+    integer                                         :: ii, N
+
+    allocate(y(size(x)), yx(size(x)))
+    N = size(alpha)
+    y = 0._wp
+
+    do ii = 1+dx, N
+
+      if (dx == 0) then
+        yx = alpha(ii)*x**real(ii-1, wp)
+      else ! Hoping for the best that dx == 1
+        yx = real(ii-1, wp) * alpha(ii)*(x)**(real(ii-1-dx, wp))
+      endif
+
+      y = y + yx
+    enddo
+    return
+  end function basis_1D
 
 end submodule smod_pascal_1D

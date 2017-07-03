@@ -25,6 +25,7 @@ module mod_integration
   end interface
 
 contains
+
   subroutine integrate(sub, a, b, result)
     ! This routine uses gauss-legendre quadrature to integrate a 1D function
 
@@ -197,7 +198,6 @@ contains
     return
   end subroutine gaussquad
 
-
   subroutine lgwt(a, b, num_pts, x, w)
     !*  This function is a fortran90 port of the matlab function, lgwt.m
     !   The source code of lgwt.m was originally found at:
@@ -263,7 +263,6 @@ contains
 
     return
   end subroutine lgwt
-
 
   subroutine cgwt(num_pts, x, w)
     ! This function  determines the points and weights associated with Chebyshev-Gauss quadrature

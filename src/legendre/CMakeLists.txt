@@ -1,4 +1,5 @@
 add_lib_sources(
+                mod_legendre_c.f90
                 mod_legendre.f90
                 smod_pascal_1D.f90
                 smod_pascal_2D.f90

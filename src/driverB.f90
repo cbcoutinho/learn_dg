@@ -8,7 +8,8 @@ program driver2
   use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use             :: mod_linalg, only: linsolve_quick, eye
   use             :: mod_misc, only: r8mat_print
-  use             :: mod_legendre, only: assembleElementalMatrix, getxy
+  use             :: mod_legendre, only: getXY
+  use             :: mod_assembly, only: assembleElementalMatrix
   implicit none
 
   integer :: ii
@@ -41,7 +42,7 @@ program driver2
   elem(4,:) = [7, 9, 10, 8]
 
   ! Get base xi/eta coordinates for bi-linear quadrilateral
-  xy = getxy(N)
+  xy = getXY(N)
 
   ! Adjust for bi-linear quad
   ! xy(:,1) = [0._wp, 1._wp, 1.6_wp, 0._wp]
@@ -61,7 +62,7 @@ program driver2
   ! elem(2,:) = [2, 3, 4, 5, 12, 13, 14, 8, 15]
 
   ! Get base xi/eta coordinates for bi-quadratic quadrilateral
-  ! xy = getxy(N)
+  ! xy = getXY(N)
 
   ! Adjust for bi-quadratic quad
   ! xy(:,1) = [0._wp, 0.03333_wp, 0.03333_wp, 0._wp, 0.016667_wp, 0.03333_wp, 0.016667_wp, 0._wp, 0.016667_wp]
@@ -81,7 +82,7 @@ program driver2
   ! elem(1,:) = [(ii, ii=1,16)]
 
   ! Get base xi/eta coordinates for bi-cubic quadrilateral
-  ! xy = getxy(N)
+  ! xy = getXY(N)
 
   ! Adjust for bi-cubic quad
   ! xy(:,1) = [0._wp, 0.03333_wp, 0.03333_wp, 0._wp, 0.016667_wp, 0.03333_wp, 0.016667_wp, 0._wp, 0.016667_wp]
