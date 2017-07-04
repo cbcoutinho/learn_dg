@@ -1,4 +1,5 @@
 *.f90
+!test_ctypes.*
 Makefile
 
 # Tex related stuff
