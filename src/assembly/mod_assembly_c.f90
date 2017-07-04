@@ -22,12 +22,12 @@ contains
     temp = [1, 2, 3, 4]
     a = reshape(temp, [2,2])
 
-    print*, temp
-    print*, shape(temp), shape(a)
+    ! print*, temp
+    ! print*, shape(temp), shape(a)
 
-    do ii = 1,2
-      print*, a(ii,:)
-    enddo
+    ! do ii = 1,2
+    !   print*, a(ii,:)
+    ! enddo
 
     return
   end subroutine create_simple_array_c
@@ -41,9 +41,9 @@ contains
 
     Ie = assembleElementalMatrix(N, d1, d2, xy)
 
-    do ii = 1,N
-      print*, Ie(ii,:)
-    enddo
+    ! do ii = 1,N
+    !   print*, Ie(ii,:)
+    ! enddo
 
   end subroutine assembleElementalMatrix_c
 
