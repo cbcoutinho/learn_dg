@@ -2,7 +2,7 @@
 ! Originally found here: https://publicwiki.deltares.nl/display/~baart_f/2011/10/23/Calling+fortran+from+python
 !
 ! Compile with
-!       gfortran -shared -fPIC test.f90 -o libtest.so
+!       gfortran -shared -fPIC test_ctypes.f90 -o libtest.so
 !
 module test
 use iso_c_binding
