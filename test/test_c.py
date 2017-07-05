@@ -7,9 +7,9 @@ from ctypes import (CDLL, POINTER, ARRAY, c_void_p,
                     c_char_p, create_string_buffer)
 from numpy.ctypeslib import ndpointer
 
-clib = CDLL('./build/lib/libcore.so')
+libcore = CDLL('./build/lib/libcore.so')
 
-f = clib.assembleElementalMatrix_c
+f = libcore.assembleElementalMatrix_c
 
 # Sets the input arguement types (int, int, int, c_double(4), c_double(4,4))
 f.argtypes=[c_int, c_int, c_int,
