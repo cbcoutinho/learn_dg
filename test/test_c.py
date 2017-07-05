@@ -10,17 +10,35 @@ from numpy.ctypeslib import ndpointer
 
 libcore = CDLL('./build/lib/libcore.so')
 
-f = libcore.assembleElementalMatrix_c
-
-# Sets the input arguement types (int, int, int, c_double(4), c_double(4,4))
-f.argtypes=[c_int, c_int, c_int,
-            ndpointer(shape=(4,), dtype='double', flags='F'),
-            ndpointer(shape=(4,4), dtype='double', flags='F')]
 
 
 class myTestCase(unittest.TestCase):
 
-    def testAlmostEqual(self):
+    def testAlmostEqual_a(self):
+
+        # Assign function and set arguement types
+        f = libcore.create_simple_array_c
+        f.argtypes=[ndpointer(shape=(2,2), dtype='double', flags='F')]
+
+        # Initialize array
+        a = np.zeros((2,2), dtype='double', order='F')
+
+        f(a)
+        a = np.array(a)
+
+        b = np.array([[1., 2., 3., 4.]]).reshape((2,2), order='F')
+
+        # self.assertTrue(np.allclose(a, np.array([[1, 3], [2, 4]], order='F')))
+        np.testing.assert_array_almost_equal(a, b)
+
+    def testAlmostEqual_b(self):
+
+        # Assign function and sets the input arguement types (int, int, int, c_double(4), c_double(4,4))
+        f = libcore.assembleElementalMatrix_c
+        f.argtypes=[c_int, c_int, c_int,
+                    ndpointer(shape=(4,), dtype='double', flags='F'),
+                    ndpointer(shape=(4,4), dtype='double', flags='F')]
+
         # Dummy xy array - note gmsh node ordering
         xy = np.array([0, 3, 1, 2], dtype='double', order='F')
 
@@ -41,8 +59,8 @@ class myTestCase(unittest.TestCase):
         x = np.linalg.solve(Ie,b)
         # print('x = ', x)
 
-        # self.assertTrue(np.allclose(x, np.array([0, 1, 1/3, 2/3])))
-        np.testing.assert_array_almost_equal(x, np.array([0, 1, 1/3, 2/3]))
+        self.assertTrue(np.allclose(x, np.array([0, 1, 1/3, 2/3])))
+        # np.testing.assert_array_almost_equal(x, np.array([0, 1, 1/3, 2/3]))
 
 if __name__ == '__main__':
     unittest.main()

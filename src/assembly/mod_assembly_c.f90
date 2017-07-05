@@ -24,7 +24,7 @@ contains
 
     ! print*, temp
     ! print*, shape(temp), shape(a)
-
+    !
     ! do ii = 1,2
     !   print*, a(ii,:)
     ! enddo
