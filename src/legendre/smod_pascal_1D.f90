@@ -29,16 +29,6 @@ submodule (mod_legendre) smod_pascal_1D
 
 contains
 
-  ! module function assembleElementalMatrix1D(N, d1, d2, xy) result(Ie)
-  !   integer,                  intent(in)  :: N, d1, d2
-  !   real(wp), dimension(N),   intent(in)  :: xy
-  !   real(wp), dimension(N,N)              :: Ie
-  !
-  !   integer                               :: node1, node2
-  !
-  !   return
-  ! end function assembleElementalMatrix1D
-
   pure module function getArow_(N, xi) result(row)
     integer, intent(in)     :: N
     real(wp), intent(in)    :: xi

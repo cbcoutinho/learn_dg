@@ -34,7 +34,7 @@ class myTestCase(unittest.TestCase):
     def testAlmostEqual_b(self):
 
         # Assign function and sets the input arguement types (int, int, int, c_double(4), c_double(4,4))
-        f = libcore.assembleElementalMatrix_c
+        f = libcore.assembleElementalMatrix1D_c
         f.argtypes=[c_int, c_int, c_int,
                     ndpointer(shape=(4,), dtype='double', flags='F'),
                     ndpointer(shape=(4,4), dtype='double', flags='F')]
@@ -61,6 +61,51 @@ class myTestCase(unittest.TestCase):
 
         self.assertTrue(np.allclose(x, np.array([0, 1, 1/3, 2/3])))
         # np.testing.assert_array_almost_equal(x, np.array([0, 1, 1/3, 2/3]))
+
+    def testSimple2D_quadquad(self):
+        '''
+        Test the middle node of a bi-quadratic quadrilateral
+        to see if the diffusion equation works properly.
+        '''
+
+        # Assign function and sets the input arguement types (int, int, int, c_double(4), c_double(4,4))
+        f = libcore.assembleElementalMatrix2D_c
+        f.argtypes=[c_int, c_int, c_int,
+                    ndpointer(shape=(9,2), dtype='double', flags='F'),
+                    ndpointer(shape=(9,9), dtype='double', flags='F')]
+
+        # Dummy xy array - note gmsh node ordering
+        xy = np.array([[-1, -1],
+                      [ 1, -1],
+                      [ 1,  1],
+                      [-1,  1],
+                      [ 0, -1],
+                      [ 1,  0],
+                      [ 0,  1],
+                      [-1,  0],
+                      [ 0,  0]],
+                      dtype='double', order='F')
+
+        # Zero Ie array
+        Ie = np.zeros((9,9), order='F')
+
+        # Call function
+        f(9, 1, 1, xy, Ie)
+
+        # Set boundary condtions in Ie matrix
+        for ii in [0, 1, 2, 3, 5, 7]:
+            Ie[ii,:] = 0.; Ie[ii,ii] = 1.
+
+        # Set boundary condtions in RHS vector
+        b = np.zeros((9,))
+        for ii in [0, 3, 7]:
+            b[ii] = 1.
+
+        x = np.linalg.solve(Ie, b)
+
+        # Middle node (x[4]) should be exactly between 0 and 1. (0.5)
+
+        np.allclose(x[4], 0.5)
 
 if __name__ == '__main__':
     unittest.main()

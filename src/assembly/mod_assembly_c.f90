@@ -32,7 +32,7 @@ contains
     return
   end subroutine create_simple_array_c
 
-  subroutine assembleElementalMatrix_c(N, d1, d2, xy, Ie) bind(c, name='assembleElementalMatrix_c')
+  subroutine assembleElementalMatrix1D_c(N, d1, d2, xy, Ie) bind(c, name='assembleElementalMatrix1D_c')
     integer(c_int), intent(in), value :: N, d1, d2
     real(c_double), intent(in)        :: xy(N)
     real(c_double), intent(inout)     :: Ie(N,N)
@@ -41,10 +41,19 @@ contains
 
     Ie = assembleElementalMatrix(N, d1, d2, xy)
 
-    ! do ii = 1,N
-    !   print*, Ie(ii,:)
-    ! enddo
+    return
+  end subroutine assembleElementalMatrix1D_c
 
-  end subroutine assembleElementalMatrix_c
+  subroutine assembleElementalMatrix2D_c(N, d1, d2, xy, Ie) bind(c, name='assembleElementalMatrix2D_c')
+    integer(c_int), intent(in), value :: N, d1, d2
+    real(c_double), intent(in)        :: xy(N, 2)
+    real(c_double), intent(inout)     :: Ie(N,N)
+
+    integer :: ii
+
+    Ie = assembleElementalMatrix(N, d1, d2, xy)
+
+    return
+  end subroutine assembleElementalMatrix2D_c
 
 end module mod_assembly_c
