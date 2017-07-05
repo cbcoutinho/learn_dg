@@ -56,7 +56,7 @@ tests: cmake mesh
 	$(BLD_DIR)/bin/driverA
 	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
 	$(BLD_DIR)/bin/driverB
-	pytest test/test_c.py -v
+	pytest test/test_c.py -v --cache-clear
 
 # After running one of the tests, plot the output
 plot: cmake tests
@@ -79,4 +79,5 @@ $(BLD_DIR):
 
 clean:
 	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
+	$(RM) .cache $(TEST_DIR)/__pycache__
 	$(RM) $(BLD_DIR)
