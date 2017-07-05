@@ -56,6 +56,7 @@ tests: cmake mesh
 	$(BLD_DIR)/bin/driverA
 	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
 	$(BLD_DIR)/bin/driverB
+	pytest test/test_c.py
 
 # After running one of the tests, plot the output
 plot: cmake tests

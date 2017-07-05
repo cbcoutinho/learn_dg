@@ -1,5 +1,6 @@
 # Testing the c-interfaces of routines in libcore.so
 
+from __future__ import print_function, division
 import unittest
 import numpy as np
 from ctypes import (CDLL, POINTER, ARRAY, c_void_p,
@@ -40,8 +41,8 @@ class myTestCase(unittest.TestCase):
         x = np.linalg.solve(Ie,b)
         # print('x = ', x)
 
-        self.assertTrue(np.allclose(x, np.array([0, 1, 1/3, 2/3])))
-        # np.testing.assert_array_almost_equal(x, np.array([0, 1, 1/3, 2/3]))
+        # self.assertTrue(np.allclose(x, np.array([0, 1, 1/3, 2/3])))
+        np.testing.assert_array_almost_equal(x, np.array([0, 1, 1/3, 2/3]))
 
 if __name__ == '__main__':
     unittest.main()
