@@ -40,23 +40,23 @@ default: all
 all: cmake
 
 mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
-	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
-	gmsh $(TEST_DIR)/test2D.geo -order 1 -2 -o $(TEST_DIR)/test2D.msh
+	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh && echo
+	gmsh $(TEST_DIR)/test2D.geo -order 1 -2 -o $(TEST_DIR)/test2D.msh && echo
 
 # Build and test the project
 cmake: $(BLD_DIR)
-	cd $(BLD_DIR) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
-	$(MAKE) -C $(BLD_DIR)
+	cd $(BLD_DIR) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd .. && echo
+	$(MAKE) -C $(BLD_DIR) && echo
 
 cmake_win: $(BLD_DIR)
 	cd $(BLD_DIR) && cmake -DCMAKE_TOOLCHAIN_FILE:STRING=../cmake/Toolchain-x64-mingw32.cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
-	$(MAKE) -C $(BLD_DIR)
+	$(MAKE) -C $(BLD_DIR) && echo
 
 tests: cmake mesh
-	$(BLD_DIR)/bin/driverA
-	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
-	$(BLD_DIR)/bin/driverB
-	pytest test/test_c.py
+	$(BLD_DIR)/bin/driverA && echo
+	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh && echo
+	$(BLD_DIR)/bin/driverB && echo
+	pytest test/test_c.py && echo
 
 # After running one of the tests, plot the output
 plot: cmake tests
