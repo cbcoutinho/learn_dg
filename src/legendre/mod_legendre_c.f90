@@ -10,56 +10,46 @@ module mod_legendre_c
   implicit none
 
   private
-  public :: adder_c, pascal_1D_line_c
+  public :: pascal_1D_line_c, pascal_2D_quad_c
 
+  ! NOTE: Not really sure if it's possible to use an iterface across a c-binding
   ! public :: pascal_row_c
   ! interface pascal_row_c
-  !   pure function pascal_1D_line_c(N, x) result(row) bind(c, name='pascal_1D_line')
-  !     import :: c_int, c_double
-  !     integer(c_int),  intent(in), value          :: N
-  !     real(c_double), intent(in), value          :: x
-  !     real(c_double), dimension(N+1)      :: row
-  !   end function pascal_1D_line_c
+  !   pure module subroutine pascal_1D_line_c(N, x, row) bind(c, name='pascal_1D_line_c')
+  !     integer(c_int), intent(in), value :: N
+  !     real(c_double), intent(in), value :: x
+  !     real(c_double), intent(out)       :: row(N+1)
+  !   end subroutine pascal_1D_line_c
   !
-  !   ! pure function pascal_2D_quad_c(N, x, y) result(row) bind(c, name='pascal_2D_quad')
-  !   !   integer,  intent(in)          :: N
-  !   !   real(wp), intent(in)          :: x
-  !   !   real(wp), intent(in)          :: y
-  !   !   real(wp), dimension((N+1)**2) :: row
-  !   ! end function pascal_2D_quad
+  !   pure module subroutine pascal_2D_quad_c(N, x, y, row) bind(c, name='pascal_2D_quad_c')
+  !     integer(c_int), intent(in)  :: N
+  !     real(c_double), intent(in)  :: x
+  !     real(c_double), intent(in)  :: y
+  !     real(c_double), intent(out) :: row((N+1)**2)
+  !   end subroutine pascal_2D_quad_c
   ! end interface pascal_row_c
 
 contains
 
-  function adder(a, b) result(c)
-    integer :: a, b, c
+  pure module subroutine pascal_1D_line_c(N, x, row) bind(c, name='pascal_1D_line_c')
+    integer(c_int), intent(in), value :: N
+    real(c_double), intent(in), value :: x
+    real(c_double), intent(out)       :: row(N+1)
 
-    print*, 'Inside adder'
-    c = a + b
-    print*, 'Finished adding'
-
-  end function adder
-
-  function adder_c(a,b) result(c) bind(c, name='adder_c')
-    integer(c_int), value :: a, b
-    integer(c_int)        :: c
-
-    print*, 'Inside adder_c, calling adder'
-    c = adder(a,b)
-    print*, 'Finished calling adder'
-    print*,
-
-  end function adder_c
-
-  pure subroutine pascal_1D_line_c(N, x, row) bind(c, name='pascal_1D_line_c')
-    integer(c_int),  intent(in), value          :: N
-    real(c_double), intent(in), value          :: x
-    real(c_double), intent(inout), dimension(N+1)      :: row
-
-    ! print*, 'Calling pascal_1D_line'
     row = pascal_row(N, x)
-    ! print*, 'Finished calling pascal_1D_line'
 
+    return
   end subroutine pascal_1D_line_c
+
+  pure module subroutine pascal_2D_quad_c(N, x, y, row) bind(c, name='pascal_2D_quad_c')
+    integer(c_int), intent(in), value :: N
+    real(c_double), intent(in), value :: x
+    real(c_double), intent(in), value :: y
+    real(c_double), intent(out)       :: row((N+1)**2)
+
+    row = pascal_row(N, x, y)
+
+    return
+  end subroutine pascal_2D_quad_c
 
 end module mod_legendre_c

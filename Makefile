@@ -33,15 +33,11 @@ FORD_FLAGS := -d $(SRC_DIR) \
 
 default: all
 
-# submodules:
-# 	git submodule init
-# 	git submodule update
-
 all: cmake
 
 mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
-	gmsh $(TEST_DIR)/test2D.geo -order 1 -2 -o $(TEST_DIR)/test2D.msh
+	gmsh $(TEST_DIR)/test2D.geo -order 3 -2 -o $(TEST_DIR)/test2D.msh
 
 # Build and test the project
 cmake: $(BLD_DIR)
@@ -55,8 +51,7 @@ cmake_win: $(BLD_DIR)
 tests: cmake mesh
 	$(BLD_DIR)/bin/driverA
 	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
-	$(BLD_DIR)/bin/driverB
-	pytest test/test_c.py -v --cache-clear
+	pytest -vs --cache-clear
 
 # After running one of the tests, plot the output
 plot: cmake tests
@@ -78,6 +73,7 @@ $(BLD_DIR):
 	test -d $(BLD_DIR) || mkdir $(BLD_DIR)
 
 clean:
+	$(RM) data.out
 	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
-	$(RM) .cache $(TEST_DIR)/__pycache__
+	$(RM) .cache $(TEST_DIR)/__pycache__ $(TEST_DIR)/helpers.pyc
 	$(RM) $(BLD_DIR)

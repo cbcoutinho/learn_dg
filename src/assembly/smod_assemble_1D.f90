@@ -27,7 +27,7 @@ contains
     return
   end function assembleElementalMatrix1D
 
-  subroutine getIe(dii, djj, xcoords, Ie)
+  subroutine getIe(dii, djj, points, Ie)
     !*  Routine to calculate the elemental mass/stiffness matrix based on the
     !   derivatives of the basis functions.
     !
@@ -37,21 +37,21 @@ contains
 
     integer,  intent(in)                    :: dii      !! Derivative of the first basis function
     integer,  intent(in)                    :: djj      !! Derivative of the second basis function
-    real(wp), intent(in),   dimension(:)    :: xcoords  !! Coordinates of the 1D line element
+    real(wp), intent(in),   dimension(:)    :: points  !! Coordinates of the 1D line element
     real(wp), intent(out),  dimension(:,:)  :: Ie       !! Output elemental matrix
 
     integer :: ii, jj, order
-    order = size(xcoords)-1
+    order = size(points)-1
 
-    do ii = 1, size(xcoords)
-      Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, dii, djj, xcoords), jj = 1, order+1 )]
+    do ii = 1, size(points)
+      Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, dii, djj, points), jj = 1, order+1 )]
     enddo
     return
   end subroutine getIe
 
-  function integrate_basis_1d_Ie(N, ii, jj, dii, djj, xcoords) result(integral)
+  function integrate_basis_1d_Ie(N, ii, jj, dii, djj, points) result(integral)
     integer, intent(in)                     :: N, ii, jj, dii, djj
-    real(wp), intent(in), dimension(:)      :: xcoords
+    real(wp), intent(in), dimension(:)      :: points
     real(wp)                                :: integral
 
     integer :: kk
@@ -64,11 +64,11 @@ contains
 
     Vinv = getAlpha(order+1)
 
-    ! Check to make sure xcoords is an array of size (N+1)
-    if ( size(xcoords) /=  order+1 ) then
-      write(*,*) 'The shape of `xcoords` is outside the acceptable range for a'
+    ! Check to make sure points is an array of size (N+1)
+    if ( size(points) /=  order+1 ) then
+      write(*,*) 'The shape of `points` is outside the acceptable range for a'
       write(*,*) '1D basis function.'
-      write(*,*) 'Shape(xcoords) should be [', 2, order+1, '], not ', shape(xcoords)
+      write(*,*) 'Shape(points) should be [', 2, order+1, '], not ', shape(points)
     endif
 
     call integrate(local_wrapper, -1.0_wp, 1.0_wp, integral)
@@ -83,8 +83,8 @@ contains
       integer                              :: ii
 
       out = 0.0_wp
-      do ii = 1, size(xcoords)
-        out = out + basis_1D(s, Vinv(:, ii), dx) * xcoords(ii)
+      do ii = 1, size(points)
+        out = out + basis_1D(s, Vinv(:, ii), dx) * points(ii)
       enddo
 
     end subroutine XorJ
@@ -150,33 +150,39 @@ contains
     return
   end subroutine initialize_global_mats
 
-  subroutine assemble(order, xcoords, elem_conn, GlobalA, diff, vel)
+  subroutine assemble1D(points, cells, diff, vel, GlobalA)
     !* Assemble the global stiffness matrix based on element connectivity
-    integer,  intent(in),   dimension(:)    :: order      !! Order of element(s)
-    integer,  intent(in),   dimension(:,:)  :: elem_conn  !! Element connectivity
-    real(wp), intent(in)                    :: diff       !! Diffusivity coefficient [m/s^2]
-    real(wp), intent(in)                    :: vel        !! Velocity [m/s]
-    real(wp), intent(in),   dimension(:)    :: xcoords    !! Array of nodal coordinates
-    real(wp), intent(out),  dimension(:,:)  :: GlobalA    !! Global Stiffness matrix
+    integer,  intent(in),   dimension(:,:)  :: cells    !! Element connectivity
+    real(wp), intent(in)                    :: diff     !! Diffusivity coefficient [m/s^2]
+    real(wp), intent(in)                    :: vel      !! Velocity [m/s]
+    real(wp), intent(in),   dimension(:)    :: points   !! Array of nodal coordinates
+    real(wp), intent(out),  dimension(:,:)  :: GlobalA  !! Global Stiffness matrix
 
-    integer :: ii
+    integer :: ii, num_cells, num_pts
     real(wp), dimension(:,:), allocatable   :: Ie
 
+    GlobalA   = 0._wp
+    num_cells = size(cells, 1)
+
     ! Add elemental stiffness matrices to Global Stiffness Matrix
-    do ii = 1, size(order)
+    do ii = 1, num_cells
+
+      num_pts   = size(cells(ii,:))
+
       ! Reallocate elemental stiffness matrix
-      allocate(Ie(order(ii)+1, order(ii)+1))
-      call getIe(1, 1, xcoords(elem_conn(ii,:)), Ie)
-      ! call r8mat_print(order(ii)+1, order(ii)+1, Ie, 'Elemental Stiffness Matrix:')
+      allocate(Ie(num_pts, num_pts))
 
-      GlobalA(elem_conn(ii,:), elem_conn(ii,:)) = &
-          GlobalA(elem_conn(ii,:), elem_conn(ii,:)) - diff*Ie
+      call getIe(1, 1, points(cells(ii,:)), Ie)
+      ! call r8mat_print(num_pts, num_pts, Ie, 'Elemental Stiffness Matrix:')
 
-      call getIe(0, 1, xcoords(elem_conn(ii,:)), Ie)
-      ! call r8mat_print(order(ii)+1, order(ii)+1, Ie, 'Elemental Stiffness Matrix:')
+      GlobalA(cells(ii,:), cells(ii,:)) = &
+          GlobalA(cells(ii,:), cells(ii,:)) - diff*Ie
 
-      GlobalA(elem_conn(ii,:), elem_conn(ii,:)) = &
-          GlobalA(elem_conn(ii,:), elem_conn(ii,:)) - vel*Ie
+      call getIe(0, 1, points(cells(ii,:)), Ie)
+      ! call r8mat_print(num_pts, num_pts, Ie, 'Elemental Stiffness Matrix:')
+
+      GlobalA(cells(ii,:), cells(ii,:)) = &
+          GlobalA(cells(ii,:), cells(ii,:)) - vel*Ie
 
       ! Deallocate elemental stiffness matrix after every loop
       deallocate(Ie)
@@ -186,25 +192,25 @@ contains
     ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')
     ! stop
     return
-  end subroutine assemble
+  end subroutine assemble1D
 
-  subroutine set_BCs(xcoords, GlobalB, GlobalA)
+  subroutine set_BCs(points, GlobalB, GlobalA)
     !*  Set boundary conditions in GlobalA and GlobalB using two Dirchlet
     !   boundaries
 
-    real(wp), intent(in),   dimension(:)    :: xcoords  !! Array of nodal coordinates
+    real(wp), intent(in),   dimension(:)    :: points  !! Array of nodal coordinates
     real(wp), intent(out),  dimension(:)    :: GlobalB  !! Global RHS Vector
     real(wp), intent(out),  dimension(:,:)  :: GlobalA  !! Global Mass Matrix
-    integer,  dimension(1)  :: iloc                     !! Index variable to locate node numbers based on xcoords
+    integer,  dimension(1)  :: iloc                     !! Index variable to locate node numbers based on points
 
     ! Left Boundary Dirchlet BC
-    iloc = minloc(xcoords)
+    iloc = minloc(points)
     GlobalA(iloc,:)     = 0._wp
     GlobalA(iloc,iloc)  = 1._wp
     GlobalB(iloc)       = 0._wp
 
     ! Right Boundary Dirchlet BC
-    iloc = maxloc(xcoords)
+    iloc = maxloc(points)
     GlobalA(iloc,:)     = 0._wp
     GlobalA(iloc,iloc)  = 1._wp
     GlobalB(iloc)       = 1._wp

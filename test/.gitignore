@@ -1,9 +1,1 @@
-*.f90
-!test_c.*
-Makefile
-
-# Tex related stuff
-test.tex
-test.pdf
-test.synctex.gz
-build
+helpers.pyc

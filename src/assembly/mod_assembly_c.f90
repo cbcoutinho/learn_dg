@@ -5,8 +5,10 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 module mod_assembly_c
+  use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use, intrinsic  :: iso_c_binding, only: c_int, c_double
-  use             :: mod_assembly, only: assembleElementalMatrix
+  use             :: mod_assembly, only: assembleElementalMatrix, assemble
+  use             :: mod_misc, only: r8mat_print
   implicit none
 
   private
@@ -55,5 +57,18 @@ contains
 
     return
   end subroutine assembleElementalMatrix2D_c
+
+  subroutine assemble2D_c(num_cells, num_pts_per_cell, num_pts, &
+                        & points, cells, diff, vel, GlobalA) bind(c, name='assemble2D_c')
+    integer(c_int), intent(in), value :: num_cells, num_pts_per_cell, num_pts
+    integer(c_int), intent(in)        :: cells(num_cells, num_pts_per_cell)
+    real(c_double), intent(in), value :: diff
+    real(c_double), intent(in)        :: vel(2), points(num_pts, 2)
+    real(c_double), intent(inout)     :: GlobalA(num_pts, num_pts)
+
+    call assemble(points, cells, diff, vel, GlobalA)
+
+    return
+  end subroutine assemble2D_c
 
 end module mod_assembly_c

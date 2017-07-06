@@ -7,8 +7,10 @@
 submodule (mod_assembly) smod_assemble_2D
   use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use             :: mod_linalg, only: inv2, det2
+  use             :: mod_misc, only: r8mat_print
   use             :: mod_legendre, only: getAlpha => getAlpha2D
   use             :: mod_integration, only: integrate2D
+  use             :: lib_array, only: linspace
   implicit none
 
 contains
@@ -23,11 +25,43 @@ contains
     integer                               :: node1, node2
     real(wp), dimension(:,:), allocatable :: alpha
 
+    ! integer, parameter                    :: M = 4
+    ! integer :: ii, jj, d1_, d2_
+    ! real(wp)                              :: myXY(M,M,2), myX(M), out(M,M)
+
     ! Get the coefficients of the basis functions (alpha). Both bi-linear (N=4)
     ! and bi-quadratic (N=9) quadrilaterals are supported.
     if ( .not. allocated(alpha) ) alpha = getAlpha(N)
 
     Ie = 0._wp
+
+    ! print*, 'Hello from assembleElementalMatrix2D'
+    !
+    ! print*, shape(xy)
+    ! call r8mat_print(size(xy, 1), size(xy, 2), xy, 'xy:')
+
+
+    ! call linspace(0._wp, 1._wp, myX)
+
+    ! myXY(:,:,1) = spread(myX, 1, M)
+    ! call r8mat_print(M, M, myXY(:,:,1), 'myXY_1')
+
+    ! myXY(:,:,2) = spread(myX(M:1:-1), 2, M)
+    ! call r8mat_print(M, M, myXY(:,:,2), 'myXY_2')
+
+    ! node1 = 1
+    ! node2 = 1
+    ! d1_ = 0
+    ! d2_ = 0
+    ! out = fun(myXY(:,:,1), myXY(:,:,2))
+
+    ! do ii = 1,M
+    !   print'(i4,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6)', &
+    !     & ii, xy(ii, 1), xy(ii, 2), &
+    !     & out(ii,:)
+    ! enddo
+    ! call r8mat_print(M, M, out, 'Out:')
+    ! return
 
     do node1 = 1, N
       do node2 = 1, N
@@ -55,6 +89,7 @@ contains
       ! Initialize function output. Actual number of pts is num_pts*num_pts,
       ! because the meshgrid goes in both x and y directions. Only need one.
       num_pts = size(xi,1)
+
       allocate(out(num_pts,num_pts))
       out = 0._wp
 
@@ -119,6 +154,61 @@ contains
     end function fun
   end function assembleElementalMatrix2D
 
+  module subroutine assemble2D(points, cells, diff, vel, GlobalA)
+    integer,  intent(in),   dimension(:,:)  :: cells
+    real(wp), intent(in)                    :: diff
+    real(wp), intent(in),   dimension(2)    :: vel
+    real(wp), intent(in),   dimension(:,:)  :: points
+    real(wp), intent(out),  dimension(:,:)  :: GlobalA
 
+    integer :: ii, jj, num_cells, num_pts
+    real(wp), dimension(:,:), allocatable   :: Ie, xy
+
+
+    GlobalA   = 0._wp
+    num_cells = size(cells, 1)
+    num_pts   = size(cells, 2)
+
+    ! print*, num_cells, num_pts
+    !
+    ! print*, 'points'
+    ! call r8mat_print(size(points, 1), size(points, 2), points, 'points')
+    !
+    ! print*, 'cells'
+    ! call r8mat_print(size(cells, 1), size(cells, 2), real(cells,wp), 'cells')
+
+
+
+    allocate(xy(num_pts, 2))
+
+    do ii = 1, num_cells
+
+      xy = points(cells(ii,:), :)
+
+      ! Ie  = assembleElementalMatrix(num_pts, 1, 1, xy)
+      ! return
+
+      ! *** Elemental matrix for diffusion in X and Y ***
+
+      Ie  = assembleElementalMatrix(num_pts, 1, 1, xy) + &
+          & assembleElementalMatrix(num_pts, 2, 2, xy)
+
+      GlobalA(cells(ii,:), cells(ii,:)) = &
+          & GlobalA(cells(ii,:), cells(ii,:)) - diff*Ie
+
+      ! Add elemental matrix for velcity in X (1) and Y (2) to GlobalA
+      do jj = 1, 2
+
+        Ie = assembleElementalMatrix(num_pts, 0, jj, xy)
+
+        GlobalA(cells(ii,:), cells(ii,:)) = &
+            & GlobalA(cells(ii,:), cells(ii,:)) - vel(jj)*Ie
+
+      enddo
+    enddo
+
+    deallocate(Ie, xy)
+    return
+  end subroutine assemble2D
 
 end submodule

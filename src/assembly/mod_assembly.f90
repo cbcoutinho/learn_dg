@@ -41,20 +41,27 @@ module mod_assembly
 
   public :: assemble
   interface assemble
-    module subroutine assemble(order, xcoords, elem_conn, GlobalA, diff, vel)
-      integer,  intent(in),   dimension(:)    :: order
-      integer,  intent(in),   dimension(:,:)  :: elem_conn
+    module subroutine assemble1D(points, cells, diff, vel, GlobalA)
+      integer,  intent(in),   dimension(:,:)  :: cells
       real(wp), intent(in)                    :: diff
       real(wp), intent(in)                    :: vel
-      real(wp), intent(in),   dimension(:)    :: xcoords
+      real(wp), intent(in),   dimension(:)    :: points
       real(wp), intent(out),  dimension(:,:)  :: GlobalA
-    end subroutine assemble
+    end subroutine assemble1D
+
+    module subroutine assemble2D(points, cells, diff, vel, GlobalA)
+      integer,  intent(in),   dimension(:,:)  :: cells
+      real(wp), intent(in)                    :: diff
+      real(wp), intent(in),   dimension(2)    :: vel
+      real(wp), intent(in),   dimension(:,:)  :: points
+      real(wp), intent(out),  dimension(:,:)  :: GlobalA
+    end subroutine assemble2D
   end interface assemble
 
   public :: set_BCs
   interface set_BCs
-    module subroutine set_BCs(xcoords, GlobalB, GlobalA)
-      real(wp), intent(in),   dimension(:)    :: xcoords  !! Array of nodal coordinates
+    module subroutine set_BCs(points, GlobalB, GlobalA)
+      real(wp), intent(in),   dimension(:)    :: points  !! Array of nodal coordinates
       real(wp), intent(out),  dimension(:)    :: GlobalB  !! Global RHS Vector
       real(wp), intent(out),  dimension(:,:)  :: GlobalA
     end subroutine set_BCs
