@@ -7,6 +7,7 @@
 submodule (mod_legendre) smod_pascal_2D
   use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use             :: mod_linalg, only: linsolve_quick, eye
+  use             :: mod_misc, only: r8mat_print
   implicit none
 
 contains
@@ -70,7 +71,7 @@ contains
     return
   end function getXY
 
-  pure module function getArow(N, xi, eta) result(row)
+  module function getArow(N, xi, eta) result(row)
     integer, intent(in)     :: N
     real(wp), intent(in)    :: xi, eta
     real(wp), dimension(N)  :: row
@@ -124,7 +125,7 @@ contains
   end function getAlpha2D
 
   ! module procedure pascal_2D_quad
-  pure module function pascal_2D_quad(N, x, y) result(row)
+  module function pascal_2D_quad(N, x, y) result(row)
     !*
     ! Generates an array of points related to a quadrilateral using Pascal's
     ! triangle in 2D, where rows are 0-indexed
@@ -138,10 +139,10 @@ contains
     !   \[ \vdots \]
     !   \[ [x^N,~ x^{N-1}y,~ \cdots ~,~ xy^{N-1},~ y^N] \]
 
-      integer,  intent(in)  :: N            !! Order of the qaudrilateral
-      real(wp), intent(in)  :: x            !! X-coordinate of node used in calculation
-      real(wp), intent(in)  :: y            !! Y-coordinate of node used in calculation
-      real(wp), dimension((N+1)**2) :: row  !! Output row
+    integer,  intent(in)  :: N            !! Order of the qaudrilateral
+    real(wp), intent(in)  :: x            !! X-coordinate of node used in calculation
+    real(wp), intent(in)  :: y            !! Y-coordinate of node used in calculation
+    real(wp), dimension((N+1)**2) :: row  !! Output row
 
     integer :: ii
     real(wp), dimension(:), allocatable :: temp_pre, temp_post
@@ -166,7 +167,7 @@ contains
 
       temp = pascal_2D_row(ii_, x_, y_)
       start = ii_-N_+1
-      finish = ii_-(ii_-N_)+1
+      finish = N_+1
 
       row_ = temp( start:finish )
 

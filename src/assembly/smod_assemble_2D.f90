@@ -26,7 +26,7 @@ contains
     real(wp), dimension(:,:), allocatable :: alpha
 
     ! integer, parameter                    :: M = 4
-    ! integer :: ii, jj, d1_, d2_
+    ! integer :: ii, jj
     ! real(wp)                              :: myXY(M,M,2), myX(M), out(M,M)
 
     ! Get the coefficients of the basis functions (alpha). Both bi-linear (N=4)
@@ -37,29 +37,23 @@ contains
 
     ! print*, 'Hello from assembleElementalMatrix2D'
     !
-    ! print*, shape(xy)
-    ! call r8mat_print(size(xy, 1), size(xy, 2), xy, 'xy:')
-
-
+    ! print*, shape(alpha)
+    ! call r8mat_print(size(alpha, 1), size(alpha, 2), alpha, 'alpha:')
+    !
+    !
     ! call linspace(0._wp, 1._wp, myX)
-
+    !
     ! myXY(:,:,1) = spread(myX, 1, M)
-    ! call r8mat_print(M, M, myXY(:,:,1), 'myXY_1')
-
-    ! myXY(:,:,2) = spread(myX(M:1:-1), 2, M)
-    ! call r8mat_print(M, M, myXY(:,:,2), 'myXY_2')
-
+    ! call r8mat_print(M, M, myXY(:,:,1), 'myXY_X')
+    !
+    ! ! myXY(:,:,2) = spread(myX(M:1:-1), 2, M)
+    ! myXY(:,:,2) = spread(myX, 2, M)
+    ! call r8mat_print(M, M, myXY(:,:,2), 'myXY_Y')
+    !
     ! node1 = 1
     ! node2 = 1
-    ! d1_ = 0
-    ! d2_ = 0
     ! out = fun(myXY(:,:,1), myXY(:,:,2))
-
-    ! do ii = 1,M
-    !   print'(i4,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6,f10.6)', &
-    !     & ii, xy(ii, 1), xy(ii, 2), &
-    !     & out(ii,:)
-    ! enddo
+    !
     ! call r8mat_print(M, M, out, 'Out:')
     ! return
 
@@ -170,14 +164,15 @@ contains
     num_pts   = size(cells, 2)
 
     ! print*, num_cells, num_pts
-    !
+
     ! print*, 'points'
     ! call r8mat_print(size(points, 1), size(points, 2), points, 'points')
-    !
+
     ! print*, 'cells'
     ! call r8mat_print(size(cells, 1), size(cells, 2), real(cells,wp), 'cells')
+    ! print '(i4)', cells
 
-
+    ! return
 
     allocate(xy(num_pts, 2))
 
@@ -185,7 +180,7 @@ contains
 
       xy = points(cells(ii,:), :)
 
-      ! Ie  = assembleElementalMatrix(num_pts, 1, 1, xy)
+      ! Ie  = assembleElementalMatrix(num_pts, 0, 0, xy)
       ! return
 
       ! *** Elemental matrix for diffusion in X and Y ***
