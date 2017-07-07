@@ -174,8 +174,9 @@ contains
 
     ! return
 
-    allocate(xy(num_pts, 2))
+    allocate(xy(num_pts, 2), Ie(num_pts, num_pts))
 
+     !$OMP PARALLEL DO PRIVATE(ii, xy, Ie) SHARED(GlobalA, diff, vel)
     do ii = 1, num_cells
 
       xy = points(cells(ii,:), :)
@@ -201,6 +202,7 @@ contains
 
       enddo
     enddo
+    !$OMP END PARALLEL DO
 
     deallocate(Ie, xy)
     return
