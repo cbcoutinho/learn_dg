@@ -35,7 +35,6 @@ branches:
 addons:
   apt:
     packages:
-      - gfortran-7
       - graphviz
       - libblas-dev
       - liblapack-dev
