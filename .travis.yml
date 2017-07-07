@@ -43,6 +43,28 @@ addons:
     sources: &sources
       - ubuntu-toolchain-r-test
 
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gfortran-7
+      env:
+        - MATRIX_EVAL="ln -sf $(which gfortran-7)" $TRAVIS_BUILD_DIR/bin/gfortran
+
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-tool-chain-r-test
+          packages:
+            - gfortran-6
+      env:
+        - MATRIX_EVAL="ln -sf $(which gfortran-6)" $TRAVIS_BUILD_DIR/bin/gfortran
+
 #############################
 ##### Begin Build Steps #####
 #############################
@@ -50,14 +72,14 @@ addons:
 before_install:
   - openssl aes-256-cbc -K $encrypted_614a5b0d391b_key -iv $encrypted_614a5b0d391b_iv -in .deploy_key.enc -out .deploy_key -d
   - chmod 600 .deploy_key
+  - mkdir -p $TRAVIS_BUILD_DIR/bin
 
 install:
   - pip install --upgrade graphviz
   - pip install --upgrade meshio
   - (pip install --upgrade ford && ford --version)
   - pip install --upgrade pytest
-  - mkdir -p $TRAVIS_BUILD_DIR/bin
-  - ln -sf "$(which gfortran-7)" $TRAVIS_BUILD_DIR/bin/gfortran
+  # - ln -sf "$(which gfortran-7)" $TRAVIS_BUILD_DIR/bin/gfortran
   - export PATH=$TRAVIS_BUILD_DIR/bin:$PATH
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir -p "${DEPS_DIR}" && cd "${DEPS_DIR}"
