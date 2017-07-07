@@ -20,18 +20,20 @@ cache:
   directories:
     - ${TRAVIS_BUILD_DIR}/deps/cmake
 
+branches:
+  only:
+    - master
+    - develop
+
+# *** When Life was simplier ***
+#
 # python:
 #   - 2.7
 #   - 3.4
 # env:
 #   - BUILD_TYPE=Release
 #   - BUILD_TYPE=Debug
-
-branches:
-  only:
-    - master
-    - develop
-
+#
 # addons:
 #   apt:
 #     packages:
