@@ -25,37 +25,14 @@ contains
     integer                               :: node1, node2
     real(wp), dimension(:,:), allocatable :: alpha
 
-    ! integer, parameter                    :: M = 4
-    ! integer :: ii, jj
-    ! real(wp)                              :: myXY(M,M,2), myX(M), out(M,M)
-
-    ! Get the coefficients of the basis functions (alpha). Both bi-linear (N=4)
-    ! and bi-quadratic (N=9) quadrilaterals are supported.
+    ! Get the coefficients of the basis functions (alpha)
+    ! Supported 2D basis functions:
+    !   Bi-linear quadrilaterals (N=4)
+    !   Bi-quadratic quadrilaterals (N=9)
+    !   Bi-cubic quadrilaterals (N=16)
     if ( .not. allocated(alpha) ) alpha = getAlpha(N)
 
     Ie = 0._wp
-
-    ! print*, 'Hello from assembleElementalMatrix2D'
-    !
-    ! print*, shape(alpha)
-    ! call r8mat_print(size(alpha, 1), size(alpha, 2), alpha, 'alpha:')
-    !
-    !
-    ! call linspace(0._wp, 1._wp, myX)
-    !
-    ! myXY(:,:,1) = spread(myX, 1, M)
-    ! call r8mat_print(M, M, myXY(:,:,1), 'myXY_X')
-    !
-    ! ! myXY(:,:,2) = spread(myX(M:1:-1), 2, M)
-    ! myXY(:,:,2) = spread(myX, 2, M)
-    ! call r8mat_print(M, M, myXY(:,:,2), 'myXY_Y')
-    !
-    ! node1 = 1
-    ! node2 = 1
-    ! out = fun(myXY(:,:,1), myXY(:,:,2))
-    !
-    ! call r8mat_print(M, M, out, 'Out:')
-    ! return
 
     do node1 = 1, N
       do node2 = 1, N
@@ -163,26 +140,12 @@ contains
     num_cells = size(cells, 1)
     num_pts   = size(cells, 2)
 
-    ! print*, num_cells, num_pts
-
-    ! print*, 'points'
-    ! call r8mat_print(size(points, 1), size(points, 2), points, 'points')
-
-    ! print*, 'cells'
-    ! call r8mat_print(size(cells, 1), size(cells, 2), real(cells,wp), 'cells')
-    ! print '(i4)', cells
-
-    ! return
-
     allocate(xy(num_pts, 2), Ie(num_pts, num_pts))
 
-     !$OMP PARALLEL DO PRIVATE(ii, xy, Ie) SHARED(GlobalA, diff, vel)
+    !$OMP PARALLEL DO PRIVATE(ii, xy, Ie) SHARED(GlobalA, diff, vel)
     do ii = 1, num_cells
 
       xy = points(cells(ii,:), :)
-
-      ! Ie  = assembleElementalMatrix(num_pts, 0, 0, xy)
-      ! return
 
       ! *** Elemental matrix for diffusion in X and Y ***
 

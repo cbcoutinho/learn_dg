@@ -59,32 +59,32 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
         message (FATAL_ERROR "Minimum required gfortran version is 6.3")
     endif()
 
-    set (USER_COMPILE_FLAGS_DEBUG   "${FFLAGS} -O0 -cpp --coverage -ffree-form \
-                                     -ffree-line-length-none -fbacktrace \
-                                     -fstack-protector -fcheck=bounds \
-                                     -fmax-stack-var-size=1600")
-                                    # -Wall -Werror")
-    set (USER_COMPILE_FLAGS_RELEASE "${FFLAGS} -O3 -cpp -ffree-form \
+    set (USER_COMPILE_FLAGS_DEBUG "-O0 -cpp --coverage -ffree-form \
+                                  -ffree-line-length-none -fbacktrace \
+                                  -fstack-protector -fcheck=bounds \
+                                  -p -g")
+
+    set (USER_COMPILE_FLAGS_RELEASE "-O3 -cpp -ffree-form \
                                      -ffree-line-length-none -fexternal-blas \
                                      -march=native -funroll-loops")
 
     set (CMAKE_Fortran_LINK_FLAGS_DEBUG "-O0 --coverage")
     set (CMAKE_Fortran_LINK_FLAGS_RELEASE "-O3")
 
+    # NOTE: PROFILE_FLAGS are built into debug flags
     set (PROFILE_FLAGS "-p -g")
 
 endif()
 
 # Append user flags to debug and release variables
-set (CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} ${USER_COMPILE_FLAGS_DEBUG}")
-set (CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE} ${USER_COMPILE_FLAGS_RELEASE}")
+set (CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} ${FFLAGS} ${USER_COMPILE_FLAGS_DEBUG}")
+set (CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE} ${FFLAGS} ${USER_COMPILE_FLAGS_RELEASE}")
 
 # Append profile flags
 if (PROFILE)
     set (CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} ${PROFILE_FLAGS}")
     set (CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE} ${PROFILE_FLAGS}")
 endif()
-
 
 
 #----------------------------------------------------------------------------------------------
@@ -103,14 +103,14 @@ message(STATUS "        LAPACK Libraries: ${LAPACK_LIBRARIES}")
 #----------------------------------------------------------------------------------------------
 
 # if (USE_OPENMP)
-# find_package(OpenMP)
-# if (OPENMP_FOUND)
-#     SET (USE_OPENMP 1)
-#     set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-#     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-#     set (CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${OpenMP_Fortran_FLAGS}")
-#     set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
-# endif()
+find_package(OpenMP)
+if (OPENMP_FOUND)
+    SET (USE_OPENMP 1)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    set (CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${OpenMP_Fortran_FLAGS}")
+    set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+endif()
 # endif()
 
 

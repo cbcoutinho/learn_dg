@@ -37,21 +37,21 @@ all: cmake
 
 mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
-	gmsh $(TEST_DIR)/test2D.geo -order 1 -2 -o $(TEST_DIR)/test2D.msh
+	gmsh $(TEST_DIR)/test2D.geo -order 3 -2 -o $(TEST_DIR)/test2D.msh
 
 # Build and test the project
 cmake: $(BLD_DIR)
-	cd $(BLD_DIR) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
+	cmake -B$(BLD_DIR) -H. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
 	$(MAKE) -C $(BLD_DIR)
 
 cmake_win: $(BLD_DIR)
-	cd $(BLD_DIR) && cmake -DCMAKE_TOOLCHAIN_FILE:STRING=../cmake/Toolchain-x64-mingw32.cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
+	cmake -B$(BLD_DIR) -H. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-x64-mingw32.cmake
 	$(MAKE) -C $(BLD_DIR)
 
 tests: cmake mesh
 	$(BLD_DIR)/bin/driverA
 	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
-	pytest -vs --cache-clear
+	pytest -vs --cache-clear -m 'not slowtest'
 
 # After running one of the tests, plot the output
 plot: cmake tests
@@ -73,7 +73,7 @@ $(BLD_DIR):
 	test -d $(BLD_DIR) || mkdir $(BLD_DIR)
 
 clean:
-	$(RM) data.out
+	$(RM) data.out gmon.out
 	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
 	$(RM) .cache $(TEST_DIR)/__pycache__ $(TEST_DIR)/helpers.pyc
 	$(RM) $(BLD_DIR)
