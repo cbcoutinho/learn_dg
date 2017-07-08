@@ -40,7 +40,7 @@ contains
     real(wp), parameter:: eps=sqrt(epsilon(1.0_wp))
     real(wp), dimension(:), allocatable:: x, w, y
 
-    N = 3
+    N = 5
     result = 0.0_wp
     error = 1.0_wp
 

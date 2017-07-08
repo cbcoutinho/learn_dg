@@ -1,7 +1,7 @@
 // Inputs
 length = 1.0;
-width  = 10.0;
-meshSize = 1;
+width  = 1.0;
+meshSize = 1.0;
 /*meshSize = 0.2;*/
 //+
 Point(1) = {0,      0,      0, meshSize};

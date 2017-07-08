@@ -15,6 +15,6 @@ add_lib_sources()
 
 # Add main executable and propagate to parent
 add_exe_sources(
-                driverA.f90
-                driverB.f90
+                driver1D.f90
+                driver2D.f90
                 )

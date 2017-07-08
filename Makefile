@@ -37,7 +37,7 @@ all: cmake
 
 mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
-	gmsh $(TEST_DIR)/test2D.geo -order 3 -2 -o $(TEST_DIR)/test2D.msh
+	gmsh $(TEST_DIR)/test2D.geo -order 2 -2 -o $(TEST_DIR)/test2D.msh
 
 # Build and test the project
 cmake: $(BLD_DIR)

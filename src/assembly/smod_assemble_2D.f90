@@ -134,7 +134,7 @@ contains
 
     integer :: ii, jj, num_cells, num_pts
     real(wp), dimension(:,:), allocatable   :: Ie, xy
-
+    real(wp), parameter                     :: epsilon = 1d-7
 
     GlobalA   = 0._wp
     num_cells = size(cells, 1)
@@ -157,12 +157,14 @@ contains
 
       ! Add elemental matrix for velcity in X (1) and Y (2) to GlobalA
       do jj = 1, 2
+        if ( abs(vel(jj)) .gt. epsilon ) then
 
         Ie = assembleElementalMatrix(num_pts, 0, jj, xy)
 
         GlobalA(cells(ii,:), cells(ii,:)) = &
             & GlobalA(cells(ii,:), cells(ii,:)) - vel(jj)*Ie
 
+        endif
       enddo
     enddo
     !$OMP END PARALLEL DO
