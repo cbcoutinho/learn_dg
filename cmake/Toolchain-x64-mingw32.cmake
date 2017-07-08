@@ -9,6 +9,7 @@ SET(CMAKE_SYSTEM_VERSION 1)
 SET(CMAKE_C_COMPILER        x86_64-w64-mingw32-gcc)
 SET(CMAKE_CXX_COMPILER      x86_64-w64-mingw32-g++)
 SET(CMAKE_Fortran_COMPILER  x86_64-w64-mingw32-gfortran)
+SET(OpenMP_gomp_LIBRARY     libgomp-1.dll)
 
 
 # where is the target environment
