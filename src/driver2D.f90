@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-program driver2
+program driver2D
   use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use             :: mod_linalg, only: linsolve_quick, eye
   use             :: mod_misc, only: r8mat_print
@@ -137,4 +137,4 @@ program driver2
   call linsolve_quick(size(GlobalA, 1), GlobalA, size(GlobalB,1), GlobalB, GlobalX)
   ! call r8mat_print(size(GlobalX,1), 1, GlobalX, "Solution Vector:")
 
-end program driver2
+end program driver2D
