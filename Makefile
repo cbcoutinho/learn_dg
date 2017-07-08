@@ -49,8 +49,8 @@ cmake_win: $(BLD_DIR)
 	$(MAKE) -C $(BLD_DIR)
 
 tests: cmake mesh
-	$(BLD_DIR)/bin/driverA
-	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
+	$(BLD_DIR)/bin/driver1D
+	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
 	pytest -vs --cache-clear -m 'not slowtest'
 
 # After running one of the tests, plot the output
