@@ -4,9 +4,9 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-submodule (mod_legendre) smod_pascal_1D
+submodule (mod_legendre) smod_legendre_1D
   !*
-  ! Pascal_1D is a submodule used to generate arrays of coeffiecents used for
+  ! Legendre_1D is a submodule used to generate arrays of coeffiecents used for
   ! developing finite element basis functions in 1D. Finite element basis
   ! functions are defined at internal nodes and used to iterpolate some value
   ! between those nodes.
@@ -108,7 +108,7 @@ contains
     real(wp),             dimension(:), allocatable :: y, yx
 
     ! Local variables
-    integer                                         :: ii, N
+    integer :: ii, N
 
     allocate(y(size(x)), yx(size(x)))
     N = size(alpha)
@@ -118,8 +118,12 @@ contains
 
       if (dx == 0) then
         yx = alpha(ii)*x**real(ii-1, wp)
-      else ! Hoping for the best that dx == 1
+      elseif (dx == 1) then
         yx = real(ii-1, wp) * alpha(ii)*(x)**(real(ii-1-dx, wp))
+      else
+        ! NOTE: Can't print because pure function
+        ! print*, 'dx is neither 0 or 1 in basis_1D: ', dx
+        ! print*, 'ERROR'
       endif
 
       y = y + yx
@@ -127,4 +131,4 @@ contains
     return
   end function basis_1D
 
-end submodule smod_pascal_1D
+end submodule smod_legendre_1D

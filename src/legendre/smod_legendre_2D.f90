@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-submodule (mod_legendre) smod_pascal_2D
+submodule (mod_legendre) smod_legendre_2D
   use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use             :: mod_linalg, only: linsolve_quick, eye
   use             :: mod_misc, only: r8mat_print
@@ -206,7 +206,7 @@ contains
 
   module function getJacobian(N, xi, eta, xy, alpha) result(J)
     !*
-    ! Calculates the Jacobian of a quadrilateral element
+    ! Calculates the Jacobian of a quadrilateral element at a point
     !
     ! The Jacobian of an element is defined as:
     ! \[ \boldsymbol{J} = \boldsymbol{P} \boldsymbol{X} \]
@@ -268,19 +268,20 @@ contains
     ! P = [dN_1/dxi, dN_2/dxi, dN_3/dxi, ...
     !      dN_1/deta, dN_2/deta, dN_3/deta, ...]
 
-    do ii = 1,N
-      x = alpha(:,ii)
-      P(1,ii) = dot_product(x, getArow(N, xi+eps, eta     )) - &
-                dot_product(x, getArow(N, xi-eps, eta     ))
-      P(2,ii) = dot_product(x, getArow(N, xi,     eta+eps )) - &
-                dot_product(x, getArow(N, xi,     eta-eps ))
-    enddo
+
+    P = 0._wp
+    P(1,:) = [getArow(N, xi+eps, eta    ) - &
+              getArow(N, xi-eps, eta    )]
+    P(2,:) = [getArow(N, xi    , eta+eps) - &
+              getArow(N, xi    , eta-eps)]
 
     P = P / ( 2._wp*eps )
+
+    P = matmul(P,alpha)
 
     J = matmul(P,xy)
 
     return
   end function getJacobian
 
-end submodule smod_pascal_2D
+end submodule smod_legendre_2D

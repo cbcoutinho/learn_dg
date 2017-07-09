@@ -58,6 +58,19 @@ contains
     return
   end subroutine assembleElementalMatrix2D_c
 
+  subroutine assemble1D_c(num_cells, num_pts_per_cell, num_pts, &
+                        & points, cells, diff, vel, GlobalA) bind(c, name='assemble1D_c')
+    integer(c_int), intent(in), value :: num_cells, num_pts_per_cell, num_pts
+    integer(c_int), intent(in)        :: cells(num_cells, num_pts_per_cell)
+    real(c_double), intent(in), value :: diff, vel
+    real(c_double), intent(in)        :: points(num_pts)
+    real(c_double), intent(inout)     :: GlobalA(num_pts, num_pts)
+
+    call assemble(points, cells, diff, vel, GlobalA)
+
+    return
+  end subroutine assemble1D_c
+
   subroutine assemble2D_c(num_cells, num_pts_per_cell, num_pts, &
                         & points, cells, diff, vel, GlobalA) bind(c, name='assemble2D_c')
     integer(c_int), intent(in), value :: num_cells, num_pts_per_cell, num_pts

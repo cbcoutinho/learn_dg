@@ -4,6 +4,8 @@ from __future__ import print_function, division
 import unittest, pytest
 import numpy as np
 
+import matplotlib.pyplot as plt
+
 import meshio
 import tempfile
 import textwrap
@@ -12,7 +14,7 @@ import helpers
 
 class myTestCase(unittest.TestCase):
 
-    def test_0AlmostEqual(self):
+    def test_AlmostEqual(self):
 
         N = 4
         f = helpers.set_assembleElementalMatrix1D_args(N)
@@ -39,7 +41,7 @@ class myTestCase(unittest.TestCase):
         self.assertTrue(np.allclose(x, np.array([0, 1, 1/3, 2/3])))
         # np.testing.assert_array_almost_equal(x, np.array([0, 1, 1/3, 2/3]))
 
-    def test_1SimpleAlmostEqual(self):
+    def test_SimpleAlmostEqual(self):
 
         N = 2
         f = helpers.set_create_simple_array_c_args(N)
@@ -55,9 +57,531 @@ class myTestCase(unittest.TestCase):
         # self.assertTrue(np.allclose(a, np.array([[1, 3], [2, 4]], order='F')))
         np.testing.assert_array_almost_equal(a, b)
 
-    def test_2Multiple2D_biquad(self):
+    def test_Linear1DAdvDiffEqual(self):
         '''
-        This is a replacement for the original fortran program - 'driverB'
+        This is a replacement for the original fortran program - 'driver1D'
+
+        Tests the core library using a simple 1D adv. diffusion problem
+        '''
+
+        gmsh_buffer='''\
+        $MeshFormat
+        2.2 0 8
+        $EndMeshFormat
+        $Nodes
+        53
+        1 0 0 0
+        2 1 0 0
+        3 0.005030611117855227 0 0
+        4 0.01028898505360888 0 0
+        5 0.01578543473744853 0 0
+        6 0.02153073886104991 0 0
+        7 0.0275361641320945 0 0
+        8 0.03381348747337311 0 0
+        9 0.04037502051188173 0 0
+        10 0.04723363071047033 0 0
+        11 0.05440276741538541 0 0
+        12 0.06189649069088329 0 0
+        13 0.06972949691528545 0 0
+        14 0.0779171446731899 0 0
+        15 0.08647549147831562 0 0
+        16 0.09542132338499346 0 0
+        17 0.1047721814948864 0 0
+        18 0.1145464039321533 0 0
+        19 0.1247631588183544 0 0
+        20 0.1354424829767921 0 0
+        21 0.1466053185760331 0 0
+        22 0.1582735583739696 0 0
+        23 0.1704700819318919 0 0
+        24 0.1832188106214766 0 0
+        25 0.1965447437932882 0 0
+        26 0.2104740155104575 0 0
+        27 0.2250339402607451 0 0
+        28 0.2402530764359224 0 0
+        29 0.2561612661172213 0 0
+        30 0.2727897036477114 0 0
+        31 0.2901710001687771 0 0
+        32 0.3083392463940801 0 0
+        33 0.3273300718524898 0 0
+        34 0.3471807106396735 0 0
+        35 0.3679300994701113 0 0
+        36 0.3896189290639822 0 0
+        37 0.4122897303969599 0 0
+        38 0.4359869623522767 0 0
+        39 0.4607570985513004 0 0
+        40 0.4866487146275841 0 0
+        41 0.5137125865497462 0 0
+        42 0.5420017871557876 0 0
+        43 0.5715717987934756 0 0
+        44 0.6024806105980948 0 0
+        45 0.6347888244962619 0 0
+        46 0.6685598190666602 0 0
+        47 0.7038597970735351 0 0
+        48 0.7407580124632287 0 0
+        49 0.7793268079814842 0 0
+        50 0.8196418280784888 0 0
+        51 0.8617821258089199 0 0
+        52 0.9058303511173761 0 0
+        53 0.9518728765844403 0 0
+        $EndNodes
+        $Elements
+        54
+        1 15 2 0 1 1
+        2 15 2 0 2 2
+        3 1 2 0 1 1 3
+        4 1 2 0 1 3 4
+        5 1 2 0 1 4 5
+        6 1 2 0 1 5 6
+        7 1 2 0 1 6 7
+        8 1 2 0 1 7 8
+        9 1 2 0 1 8 9
+        10 1 2 0 1 9 10
+        11 1 2 0 1 10 11
+        12 1 2 0 1 11 12
+        13 1 2 0 1 12 13
+        14 1 2 0 1 13 14
+        15 1 2 0 1 14 15
+        16 1 2 0 1 15 16
+        17 1 2 0 1 16 17
+        18 1 2 0 1 17 18
+        19 1 2 0 1 18 19
+        20 1 2 0 1 19 20
+        21 1 2 0 1 20 21
+        22 1 2 0 1 21 22
+        23 1 2 0 1 22 23
+        24 1 2 0 1 23 24
+        25 1 2 0 1 24 25
+        26 1 2 0 1 25 26
+        27 1 2 0 1 26 27
+        28 1 2 0 1 27 28
+        29 1 2 0 1 28 29
+        30 1 2 0 1 29 30
+        31 1 2 0 1 30 31
+        32 1 2 0 1 31 32
+        33 1 2 0 1 32 33
+        34 1 2 0 1 33 34
+        35 1 2 0 1 34 35
+        36 1 2 0 1 35 36
+        37 1 2 0 1 36 37
+        38 1 2 0 1 37 38
+        39 1 2 0 1 38 39
+        40 1 2 0 1 39 40
+        41 1 2 0 1 40 41
+        42 1 2 0 1 41 42
+        43 1 2 0 1 42 43
+        44 1 2 0 1 43 44
+        45 1 2 0 1 44 45
+        46 1 2 0 1 45 46
+        47 1 2 0 1 46 47
+        48 1 2 0 1 47 48
+        49 1 2 0 1 48 49
+        50 1 2 0 1 49 50
+        51 1 2 0 1 50 51
+        52 1 2 0 1 51 52
+        53 1 2 0 1 52 53
+        54 1 2 0 1 53 2
+        $EndElements
+        '''
+
+        diff = 0.25
+        vel = -1.0
+
+        gmsh_buffer = textwrap.dedent(gmsh_buffer)
+
+        with tempfile.NamedTemporaryFile(suffix='.msh') as temp:
+            temp.write(gmsh_buffer.encode('utf-8'))
+            temp.flush()
+            points, cells, point_data, cell_data, field_data = meshio.read(temp.name)
+
+        points_ = np.array(points[:, 0], dtype='double', order='F')
+        cells_ = np.array(cells['line'] + 1, dtype='int32', order='F')
+        # NOTE: Always change 0-based to 1-based indexing
+
+        num_cells, num_pts_per_cell, num_pts = cells_.shape[0], cells_.shape[1], points_.shape[0]
+
+        # Sanity checks on matrix sizes
+        self.assertTrue(num_cells==52)
+        self.assertTrue(num_pts_per_cell==2)
+        self.assertTrue(num_pts==53)
+
+        # Zero Ie array
+        A = np.zeros((num_pts, num_pts), dtype='double', order='F')
+
+        f = helpers.set_assemble1D_c_args(num_cells, num_pts_per_cell, num_pts)
+        f(num_cells, num_pts_per_cell, num_pts,
+          points_, cells_, np.float64(diff), np.float(vel), A)
+
+        # A 1D line will always have end points as pt 0 and 1
+        left_list = [0]
+        right_list = [1]
+
+        # Set boundary condtions in Ie matrix
+        for ii in left_list + right_list:
+            A[ii,:] = 0.; A[ii,ii] = 1.
+
+        # Set boundary condtions in RHS vector
+        b = np.zeros((num_pts,))
+        for ii in right_list:
+            b[ii] = 1.
+
+        x = np.linalg.solve(A, b)
+
+        r = vel/diff
+
+        def analytical(x):
+            return ( 1.0 - np.exp( r * x )) / ( 1.0 - np.exp( r ))
+
+        # fig = plt.figure()
+        # plt.plot(points_, x, 'o', label='simulation')
+        # plt.plot(points_, analytical(points_), 'o', label='analytical')
+        # plt.legend()
+        # fig.savefig('sample.png')
+
+        self.assertTrue(np.allclose(x, analytical(points_), atol=1e-4))
+
+    def test_Quad1DAdvDiffEqual(self):
+        '''
+        This is a replacement for the original fortran program - 'driver1D'
+
+        Tests the core library using a simple 1D adv. diffusion problem using
+        quadratic line elements
+        '''
+
+        gmsh_buffer='''\
+        $MeshFormat
+        2.2 0 8
+        $EndMeshFormat
+        $Nodes
+        53
+        1 0 0 0
+        2 1 0 0
+        3 0.01028898512093517 0 0
+        4 0.0215307390081578 0 0
+        5 0.0338134875014839 0 0
+        6 0.04723363127339462 0 0
+        7 0.06189649036599121 0 0
+        8 0.07791714442309114 0 0
+        9 0.09542132322625055 0 0
+        10 0.1145464038838541 0 0
+        11 0.1354424830607478 0 0
+        12 0.1582735586150919 0 0
+        13 0.1832188114257096 0 0
+        14 0.2104740173701267 0 0
+        15 0.2402530757044003 0 0
+        16 0.2727897030614678 0 0
+        17 0.3083392459861587 0 0
+        18 0.3471807104480421 0 0
+        19 0.3896189291322947 0 0
+        20 0.4359869680476123 0 0
+        21 0.4866487219042465 0 0
+        22 0.5420017867318138 0 0
+        23 0.6024806089626876 0 0
+        24 0.6685598177119734 0 0
+        25 0.7407580114554201 0 0
+        26 0.8196418274935637 0 0
+        27 0.9058303510422514 0 0
+        28 0.005144492560467496 0 0
+        29 0.01590986206454648 0 0
+        30 0.02767211325482123 0 0
+        31 0.04052355938743926 0 0
+        32 0.05456506081969292 0 0
+        33 0.06990681739454088 0 0
+        34 0.08666923382467084 0 0
+        35 0.1049838635550523 0 0
+        36 0.1249944434723082 0 0
+        37 0.1468580208379198 0 0
+        38 0.1707461850204007 0 0
+        39 0.1968464143979182 0 0
+        40 0.2253635465372635 0 0
+        41 0.2565213893829341 0 0
+        42 0.2905644745238133 0 0
+        43 0.3277599782171004 0 0
+        44 0.3683998197901684 0 0
+        45 0.4128029485899535 0 0
+        46 0.4613178449759294 0 0
+        47 0.5143252543179917 0 0
+        48 0.5722411978472507 0 0
+        49 0.6355202133373304 0 0
+        50 0.7046589145836968 0 0
+        51 0.7801999194744919 0 0
+        52 0.8627360892679076 0 0
+        53 0.9529151755211257 0 0
+        $EndNodes
+        $Elements
+        28
+        1 15 2 0 1 1
+        2 15 2 0 2 2
+        3 8 2 0 1 1 3 28
+        4 8 2 0 1 3 4 29
+        5 8 2 0 1 4 5 30
+        6 8 2 0 1 5 6 31
+        7 8 2 0 1 6 7 32
+        8 8 2 0 1 7 8 33
+        9 8 2 0 1 8 9 34
+        10 8 2 0 1 9 10 35
+        11 8 2 0 1 10 11 36
+        12 8 2 0 1 11 12 37
+        13 8 2 0 1 12 13 38
+        14 8 2 0 1 13 14 39
+        15 8 2 0 1 14 15 40
+        16 8 2 0 1 15 16 41
+        17 8 2 0 1 16 17 42
+        18 8 2 0 1 17 18 43
+        19 8 2 0 1 18 19 44
+        20 8 2 0 1 19 20 45
+        21 8 2 0 1 20 21 46
+        22 8 2 0 1 21 22 47
+        23 8 2 0 1 22 23 48
+        24 8 2 0 1 23 24 49
+        25 8 2 0 1 24 25 50
+        26 8 2 0 1 25 26 51
+        27 8 2 0 1 26 27 52
+        28 8 2 0 1 27 2 53
+        $EndElements
+        '''
+
+        diff = 0.25
+        vel = -1.0
+
+        gmsh_buffer = textwrap.dedent(gmsh_buffer)
+
+        with tempfile.NamedTemporaryFile(suffix='.msh') as temp:
+            temp.write(gmsh_buffer.encode('utf-8'))
+            temp.flush()
+            points, cells, point_data, cell_data, field_data = meshio.read(temp.name)
+
+        points_ = np.array(points[:, 0], dtype='double', order='F')
+        cells_ = np.array(cells['line3'] + 1, dtype='int32', order='F')
+        # NOTE: Always change 0-based to 1-based indexing
+
+        num_cells, num_pts_per_cell, num_pts = cells_.shape[0], cells_.shape[1], points_.shape[0]
+
+        # Sanity checks on matrix sizes
+        self.assertTrue(num_cells==26)
+        self.assertTrue(num_pts_per_cell==3)
+        self.assertTrue(num_pts==53)
+
+        # Zero Ie array
+        A = np.zeros((num_pts, num_pts), dtype='double', order='F')
+
+        f = helpers.set_assemble1D_c_args(num_cells, num_pts_per_cell, num_pts)
+        f(num_cells, num_pts_per_cell, num_pts,
+          points_, cells_, np.float64(diff), np.float(vel), A)
+
+        # A 1D line will always have end points as pt 0 and 1
+        left_list = [0]
+        right_list = [1]
+
+        # Set boundary condtions in Ie matrix
+        for ii in left_list + right_list:
+            A[ii,:] = 0.; A[ii,ii] = 1.
+
+        # Set boundary condtions in RHS vector
+        b = np.zeros((num_pts,))
+        for ii in right_list:
+            b[ii] = 1.
+
+        x = np.linalg.solve(A, b)
+
+        r = vel/diff
+
+        def analytical(x):
+            return ( 1.0 - np.exp( r * x )) / ( 1.0 - np.exp( r ))
+
+        # fig = plt.figure()
+        # plt.plot(points_, x, 'o', label='simulation')
+        # plt.plot(points_, analytical(points_), 'o', label='analytical')
+        # plt.legend()
+        # fig.savefig('sample.png')
+
+        self.assertTrue(np.allclose(x, analytical(points_), atol=1e-4))
+
+    def test_Cub1DAdvDiffEqual(self):
+        '''
+        This is a replacement for the original fortran program - 'driver1D'
+
+        Tests the core library using a simple 1D adv. diffusion problem using
+        cubic line elements
+        '''
+
+        gmsh_buffer='''\
+        $MeshFormat
+        2.2 0 8
+        $EndMeshFormat
+        $Nodes
+        79
+        1 0 0 0
+        2 1 0 0
+        3 0.01028898512093517 0 0
+        4 0.0215307390081578 0 0
+        5 0.0338134875014839 0 0
+        6 0.04723363127339462 0 0
+        7 0.06189649036599121 0 0
+        8 0.07791714442309114 0 0
+        9 0.09542132322625055 0 0
+        10 0.1145464038838541 0 0
+        11 0.1354424830607478 0 0
+        12 0.1582735586150919 0 0
+        13 0.1832188114257096 0 0
+        14 0.2104740173701267 0 0
+        15 0.2402530757044003 0 0
+        16 0.2727897030614678 0 0
+        17 0.3083392459861587 0 0
+        18 0.3471807104480421 0 0
+        19 0.3896189291322947 0 0
+        20 0.4359869680476123 0 0
+        21 0.4866487219042465 0 0
+        22 0.5420017867318138 0 0
+        23 0.6024806089626876 0 0
+        24 0.6685598177119734 0 0
+        25 0.7407580114554201 0 0
+        26 0.8196418274935637 0 0
+        27 0.9058303510422514 0 0
+        28 0.003429661706978295 0 0
+        29 0.006859323413956723 0 0
+        30 0.01403623641667604 0 0
+        31 0.01778348771241692 0 0
+        32 0.02562498850593348 0 0
+        33 0.02971923800370915 0 0
+        34 0.03828686875878747 0 0
+        35 0.04276025001609104 0 0
+        36 0.05212125097092682 0 0
+        37 0.05700887066845901 0 0
+        38 0.06723670838502425 0 0
+        39 0.0725769264040577 0 0
+        40 0.08375187069081094 0 0
+        41 0.08958659695853075 0 0
+        42 0.1017963501121184 0 0
+        43 0.1081713769979863 0 0
+        44 0.1215117636094902 0 0
+        45 0.1284771233351214 0 0
+        46 0.1430528415788625 0 0
+        47 0.1506632000969772 0 0
+        48 0.1665886428852978 0 0
+        49 0.1749037271555037 0 0
+        50 0.1923038800738486 0 0
+        51 0.2013889487219877 0 0
+        52 0.2204003701482179 0 0
+        53 0.2303267229263091 0 0
+        54 0.2510986181567562 0 0
+        55 0.261944160609112 0 0
+        56 0.2846395507030314 0 0
+        57 0.296489398344595 0 0
+        58 0.3212864008067865 0 0
+        59 0.3342335556274143 0 0
+        60 0.361326783342793 0 0
+        61 0.3754728562375439 0 0
+        62 0.4050749421040672 0 0
+        63 0.4205309550758398 0 0
+        64 0.452874219333157 0 0
+        65 0.4697614706187017 0 0
+        66 0.5050997435133822 0 0
+        67 0.5235507651225979 0 0
+        68 0.5621613941421051 0 0
+        69 0.5823210015523964 0 0
+        70 0.6245070118791162 0 0
+        71 0.6465334147955447 0 0
+        72 0.6926258822931223 0 0
+        73 0.7166919468742712 0 0
+        74 0.767052616801468 0 0
+        75 0.7933472221475159 0 0
+        76 0.8483713353431263 0 0
+        77 0.8771008431926888 0 0
+        78 0.9372202340281676 0 0
+        79 0.9686101170140837 0 0
+        $EndNodes
+        $Elements
+        28
+        1 15 2 0 1 1
+        2 15 2 0 2 2
+        3 26 2 0 1 1 3 28 29
+        4 26 2 0 1 3 4 30 31
+        5 26 2 0 1 4 5 32 33
+        6 26 2 0 1 5 6 34 35
+        7 26 2 0 1 6 7 36 37
+        8 26 2 0 1 7 8 38 39
+        9 26 2 0 1 8 9 40 41
+        10 26 2 0 1 9 10 42 43
+        11 26 2 0 1 10 11 44 45
+        12 26 2 0 1 11 12 46 47
+        13 26 2 0 1 12 13 48 49
+        14 26 2 0 1 13 14 50 51
+        15 26 2 0 1 14 15 52 53
+        16 26 2 0 1 15 16 54 55
+        17 26 2 0 1 16 17 56 57
+        18 26 2 0 1 17 18 58 59
+        19 26 2 0 1 18 19 60 61
+        20 26 2 0 1 19 20 62 63
+        21 26 2 0 1 20 21 64 65
+        22 26 2 0 1 21 22 66 67
+        23 26 2 0 1 22 23 68 69
+        24 26 2 0 1 23 24 70 71
+        25 26 2 0 1 24 25 72 73
+        26 26 2 0 1 25 26 74 75
+        27 26 2 0 1 26 27 76 77
+        28 26 2 0 1 27 2 78 79
+        $EndElements
+        '''
+
+        diff = 0.25
+        vel = -1.0
+
+        gmsh_buffer = textwrap.dedent(gmsh_buffer)
+
+        with tempfile.NamedTemporaryFile(suffix='.msh') as temp:
+            temp.write(gmsh_buffer.encode('utf-8'))
+            temp.flush()
+            points, cells, point_data, cell_data, field_data = meshio.read(temp.name)
+
+        points_ = np.array(points[:, 0], dtype='double', order='F')
+        cells_ = np.array(cells['line4'] + 1, dtype='int32', order='F')
+        # NOTE: Always change 0-based to 1-based indexing
+
+        num_cells, num_pts_per_cell, num_pts = cells_.shape[0], cells_.shape[1], points_.shape[0]
+
+        # Sanity checks on matrix sizes
+        self.assertTrue(num_cells==26)
+        self.assertTrue(num_pts_per_cell==4)
+        self.assertTrue(num_pts==79)
+
+        # Zero Ie array
+        A = np.zeros((num_pts, num_pts), dtype='double', order='F')
+
+        f = helpers.set_assemble1D_c_args(num_cells, num_pts_per_cell, num_pts)
+        f(num_cells, num_pts_per_cell, num_pts,
+          points_, cells_, np.float64(diff), np.float(vel), A)
+
+        # A 1D line will always have end points as pt 0 and 1
+        left_list = [0]
+        right_list = [1]
+
+        # Set boundary condtions in Ie matrix
+        for ii in left_list + right_list:
+            A[ii,:] = 0.; A[ii,ii] = 1.
+
+        # Set boundary condtions in RHS vector
+        b = np.zeros((num_pts,))
+        for ii in right_list:
+            b[ii] = 1.
+
+        x = np.linalg.solve(A, b)
+
+        r = vel/diff
+
+        def analytical(x):
+            return ( 1.0 - np.exp( r * x )) / ( 1.0 - np.exp( r ))
+
+        # fig = plt.figure()
+        # plt.plot(points_, x, 'o', label='simulation')
+        # plt.plot(points_, analytical(points_), 'o', label='analytical')
+        # plt.legend()
+        # fig.savefig('sample.png')
+
+        self.assertTrue(np.allclose(x, analytical(points_), atol=1e-4))
+
+    def test_Multiple2D_biquad(self):
+        '''
+        This is a replacement for the original fortran program - 'driver2D'
 
         Test four bi-linear quadrilateral elements using the diffusion equation.
 
@@ -146,7 +670,6 @@ class myTestCase(unittest.TestCase):
         right_list = np.unique(cells['line'][cell_data['line']['physical'] == field_data['right']]).tolist()
 
         # Set boundary condtions in Ie matrix
-        # for ii in [0, 1, 2, 3, 5, 7]:
         for ii in left_list + right_list:
             A[ii,:] = 0.; A[ii,ii] = 1.
 
@@ -159,7 +682,7 @@ class myTestCase(unittest.TestCase):
 
         self.assertTrue(np.allclose(x[4], 0.5))
 
-    def test_3Single2D_quadquad(self):
+    def test_Single2D_quadquad(self):
         '''
         Test the middle node of a single bi-quadratic quadrilateral
         to see if the diffusion equation works properly.
@@ -247,7 +770,7 @@ class myTestCase(unittest.TestCase):
 
         self.assertTrue(np.allclose(x[8], 0.5))
 
-    def test_4Multiple2D_quadquad(self):
+    def test_Multiple2D_quadquad(self):
         '''
 
         Test four bi-quadratic quadrilateral elements using the diffusion
@@ -350,7 +873,7 @@ class myTestCase(unittest.TestCase):
         self.assertTrue(np.allclose(x[13], 0.5))
 
     # @pytest.mark.timeout(30)
-    def test_5Single2D_cubquad(self):
+    def test_Single2D_cubquad(self):
         '''
         Test the middle node of a single bi-quadratic quadrilateral
         to see if the diffusion equation works properly.
@@ -451,7 +974,7 @@ class myTestCase(unittest.TestCase):
 
         self.assertTrue(np.allclose(midPointMean, 0.5))
 
-    def test_6Multiple2D_cubquad(self):
+    def test_Multiple2D_cubquad(self):
         '''
         Test a middle node between two bi-cubic quadrilaterals
         to see if the diffusion equation works properly.
@@ -568,7 +1091,7 @@ class myTestCase(unittest.TestCase):
 
     # @pytest.mark.skip(reason="This test takes way too long")
     @pytest.mark.slowtest
-    def test_7Multiple2D_cubquad(self):
+    def test_Multiple2D_cubquad(self):
         '''
         Test a middle node between twenty bi-cubic quadrilaterals
         to see if the diffusion equation works properly.
@@ -909,8 +1432,6 @@ class myTestCase(unittest.TestCase):
         points = np.array([9, 43, 77, 138, 139, 146, 147])-1
         midPoints = x[points]
         midPointMean = midPoints.mean()
-
-        print(midPoints, midPointMean)
 
         self.assertTrue(np.allclose(midPointMean, 0.5))
 

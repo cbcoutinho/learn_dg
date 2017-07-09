@@ -47,6 +47,25 @@ def set_assembleElementalMatrix1D_args(N):
 
     return f
 
+def set_assemble1D_c_args(num_cells, num_pts_per_cell, num_pts):
+    '''
+    Assign function and set the input arguement types for assembling a full 1D
+    matrix
+
+    (int, int, int, c_double(N), c_double(N1,N2), c_double, c_double, c_double(N,N))
+    '''
+
+    f = libcore.assemble1D_c
+    f.argtypes=[c_int, c_int, c_int,
+                ndpointer(shape=(num_pts,), dtype='double', flags='F'),
+                ndpointer(shape=(num_cells, num_pts_per_cell), dtype='int32', flags='F'),
+                c_double,
+                c_double,
+                ndpointer(shape=(num_pts,num_pts), dtype='double', flags='F')]
+    f.restype = None
+
+    return f
+
 def set_assemble2D_c_args(num_cells, num_pts_per_cell, num_pts):
     '''
     Assign function and set the input arguement types for assembling a full 2D

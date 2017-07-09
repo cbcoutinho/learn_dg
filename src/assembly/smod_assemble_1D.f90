@@ -158,36 +158,44 @@ contains
     real(wp), intent(in),   dimension(:)    :: points   !! Array of nodal coordinates
     real(wp), intent(out),  dimension(:,:)  :: GlobalA  !! Global Stiffness matrix
 
-    integer :: ii, num_cells, num_pts
-    real(wp), dimension(:,:), allocatable   :: Ie
+    integer               :: ii, num_cells, num_pts
+    real(wp), allocatable :: xy(:) ,Ie(:,:)
+    real, parameter       :: eps = epsilon(1e0)
 
     GlobalA   = 0._wp
     num_cells = size(cells, 1)
 
     ! Add elemental stiffness matrices to Global Stiffness Matrix
+    !$OMP PARALLEL DO PRIVATE(ii, xy, Ie) SHARED(GlobalA, diff, vel)
     do ii = 1, num_cells
 
       num_pts   = size(cells(ii,:))
 
       ! Reallocate elemental stiffness matrix
-      allocate(Ie(num_pts, num_pts))
+      allocate(xy(num_pts), Ie(num_pts, num_pts))
 
-      call getIe(1, 1, points(cells(ii,:)), Ie)
+      xy = points(cells(ii,:))
+
+      call getIe(1, 1, xy, Ie)
       ! call r8mat_print(num_pts, num_pts, Ie, 'Elemental Stiffness Matrix:')
 
       GlobalA(cells(ii,:), cells(ii,:)) = &
           GlobalA(cells(ii,:), cells(ii,:)) - diff*Ie
 
-      call getIe(0, 1, points(cells(ii,:)), Ie)
-      ! call r8mat_print(num_pts, num_pts, Ie, 'Elemental Stiffness Matrix:')
+      if ( abs(vel) .gt. eps ) then
+        call getIe(0, 1, xy, Ie)
+        ! call r8mat_print(num_pts, num_pts, Ie, 'Elemental Stiffness Matrix:')
 
-      GlobalA(cells(ii,:), cells(ii,:)) = &
-          GlobalA(cells(ii,:), cells(ii,:)) - vel*Ie
+        GlobalA(cells(ii,:), cells(ii,:)) = &
+            GlobalA(cells(ii,:), cells(ii,:)) - vel*Ie
+
+      endif
 
       ! Deallocate elemental stiffness matrix after every loop
-      deallocate(Ie)
+      deallocate(Ie, xy)
       ! stop
     enddo
+    !$OMP END PARALLEL DO
 
     ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')
     ! stop
