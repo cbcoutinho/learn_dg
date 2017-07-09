@@ -103,6 +103,7 @@ install:
   - pip install --upgrade meshio
   - (pip install --upgrade ford && ford --version)
   - pip install --upgrade pytest
+  - pip install --upgrade matplotlib
   - mkdir -p $TRAVIS_BUILD_DIR/bin
   - ln -sf "$(which gfortran-$GCC_VERSION)" $TRAVIS_BUILD_DIR/bin/gfortran
   - export PATH=$TRAVIS_BUILD_DIR/bin:$PATH
@@ -130,10 +131,6 @@ script:
     if [ "$TRAVIS_BRANCH" == "master" ]; then
       make docs
     fi
-  # - |
-  #   test -d build || mkdir build
-  #   cd build && cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE && make && cd ..
-  #   rm -rf build
 
 ################################
 ##### Deploy if Successful #####
