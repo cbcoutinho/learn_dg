@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.7)
 #                      CMake macros for adding source files
 #-----------------------------------------------------------------------------------
 
-# Includes the cmake_dependent_option macro used in profiling below
+# Includes the cmake_dependent_option macro used in profiling setting below
 include( CMakeDependentOption )
 
 include(cmake/macros/add_exe_sources.txt)
@@ -16,7 +16,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+# set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 
 #-----------------------------------------------------------------------------------
@@ -29,7 +29,17 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build. Options are: Debug Release" FORCE)
 endif()
 
+if(NOT PROFILE)
+    set(PROFILE OFF CACHE BOOL "Choose to enable profiling. Options are: ON OFF" FORCE)
+endif()
+
+# If NOT CMAKE_CROSSCOMPILING, create a variable called PROFILE with default off
+cmake_dependent_option(PROFILE "Use Profiling" OFF
+                        "NOT CMAKE_CROSSCOMPILING" OFF)
+
+message(STATUS " ")
 message(STATUS "    Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "    Profiling: ${PROFILE}")
 
 
 #-----------------------------------------------------------------------------------
@@ -66,7 +76,7 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
     set (USER_COMPILE_FLAGS_RELEASE "-O3 -cpp -ffree-form "
                                     "-ffree-line-length-none -fexternal-blas "
                                     "-march=native -funroll-loops ")
-    string(REPLACE ";" " " USER_COMPILE_FLAGS_RELEASE "${USER_COMPILE_FLAGS_RELEASE}")  
+    string(REPLACE ";" " " USER_COMPILE_FLAGS_RELEASE "${USER_COMPILE_FLAGS_RELEASE}")
 
     set (CMAKE_Fortran_LINK_FLAGS_DEBUG "-O0 --coverage ")
     set (CMAKE_Fortran_LINK_FLAGS_RELEASE "-O3 ")
@@ -81,15 +91,11 @@ set (CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE} ${FFLAGS} ${USE
 
 # Append profile flags
 
-# If NOT CMAKE_CROSSCOMPILING, create a variable called PROFILE with default off
-cmake_dependent_option(PROFILE "Use Profiling" OFF
-                        "NOT CMAKE_CROSSCOMPILING" OFF)
-
 if (PROFILE)
     set (CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} ${PROFILE_FLAGS}")
     set (CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE} ${PROFILE_FLAGS}")
 endif()
-message(STATUS "    Profiling: ${PROFILE}")
+
 
 
 #----------------------------------------------------------------------------------------------
@@ -97,10 +103,11 @@ message(STATUS "    Profiling: ${PROFILE}")
 #----------------------------------------------------------------------------------------------
 message(STATUS " ")
 message(STATUS "BLAS/LAPACK Summary:")
-# find_package(OpenBLAS REQUIRED HINTS /home/redclient04/Software/OpenBLAS/install)
-find_package(LAPACK REQUIRED) # HINTS /home/redclient04/Software/lapack/install)
+find_package(LAPACK REQUIRED)
 message(STATUS "    LAPACK Libraries: ")
-message(STATUS "        LAPACK Libraries: ${LAPACK_LIBRARIES}")
+foreach (lib ${LAPACK_LIBRARIES})
+    message(STATUS "        " ${lib})
+endforeach()
 
 
 #----------------------------------------------------------------------------------------------
@@ -144,6 +151,7 @@ set_target_properties(core-static PROPERTIES
                     COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
                     LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
                     OUTPUT_NAME ${LIB_NAME}
+                    Fortran_MODULE_DIRECTORY "core-static"
                     )
 
 # Shared library
@@ -156,6 +164,7 @@ set_target_properties(core-shared PROPERTIES
                     COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
                     LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
                     OUTPUT_NAME ${LIB_NAME}
+                    Fortran_MODULE_DIRECTORY "core-shared"
                     )
 
 
@@ -166,13 +175,18 @@ set_target_properties(core-shared PROPERTIES
 # Add driver executable linked to core library
 # add_executable(main ${EXE_SRCS})
 
+# set (lib_name core-static)
+set (lib_name core-shared)
 foreach( SOURCE_FILE ${EXE_SRCS})
     string( REPLACE ".f90" "" SOURCE_NAME ${SOURCE_FILE})
     string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME})
     add_executable(${SOURCE_NAME} ${SOURCE_FILE})
-    target_link_libraries(${SOURCE_NAME}  core-static)
-    # target_link_libraries(${SOURCE_NAME}  core-shared)
+    target_link_libraries(${SOURCE_NAME} ${lib_name})
+    # target_include_directories(${SOURCE_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/${lib_name})
+    # include_directories(${SOURCE_NAME} ${CMAKE_CURRENT_BINARY_DIR}/${lib_name})
     set_target_properties(${SOURCE_NAME}  PROPERTIES
                         COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
-                        LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}")
+                        LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
+                        Fortran_MODULE_DIRECTORY ${lib_name}
+                        )
 endforeach( SOURCE_FILE ${EXE_SRCS} )
