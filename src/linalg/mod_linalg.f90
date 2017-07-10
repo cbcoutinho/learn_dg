@@ -61,13 +61,13 @@ contains
   end subroutine linsolve_quick
 
   subroutine linsolve (n, a, nrhs, b, x, LU, P, toggle)
-    ! This routine is a wrapper dgesv, splitting it into its two primary
+    ! This routine is a wrapper of dgesv, splitting it into its two primary
     ! components:
     !             dgetrf - Decomposes A into P*L*U
     !             dgetrs - Uses P*L*U to solve for x (Ax=b => (P*L*U)x=b)
     !
     ! Splitting these two up like this allows you to save the decomposed
-    ! version of 'a' so that you don't have to do it again. If 'toggle' is
+    ! version of 'A' so that you don't have to do it again. If 'toggle' is
     ! equal to true, then the decomposition has already occured and LU can be
     ! trusted - OK to skip dgetrf
 

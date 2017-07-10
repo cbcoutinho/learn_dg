@@ -34,13 +34,14 @@ if(NOT PROFILE)
 endif()
 
 # If NOT CMAKE_CROSSCOMPILING, create a variable called PROFILE with default off
-cmake_dependent_option(PROFILE "Use Profiling" OFF
-                        "NOT CMAKE_CROSSCOMPILING" OFF)
+cmake_dependent_option(PROFILE
+    "Use Profiling" OFF
+    "NOT CMAKE_CROSSCOMPILING" OFF
+)
 
 message(STATUS " ")
 message(STATUS "    Build Type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "    Profiling: ${PROFILE}")
-
 
 #-----------------------------------------------------------------------------------
 #                               Set compiler flags
@@ -49,11 +50,14 @@ message(STATUS "    Profiling: ${PROFILE}")
 SET(FFLAGS "-std=f2008 -fPIC -fmax-errors=1")
 
 if (CMAKE_Fortran_COMPILER_ID MATCHES Intel)
-    set (USER_COMPILE_FLAGS_DEBUG   "-O0 -fpp -assume realloc_lhs -debug -g \
-                                     -traceback -check all -mcmodel=medium \
-                                     -fp-stack-check -heap-arrays 1600")
+    set (USER_COMPILE_FLAGS_DEBUG
+        "-O0 -fpp -assume realloc_lhs -debug -g \
+        -traceback -check all -mcmodel=medium \
+        -fp-stack-check -heap-arrays 1600"
+    )
     set (USER_COMPILE_FLAGS_RELEASE "-O3 -fpp -assume realloc_lhs -mcmodel=medium \
-                                     -align array32byte -traceback")
+        -align array32byte -traceback"
+    )
     set (CMAKE_Fortran_LINK_FLAGS_DEBUG "")
     set (CMAKE_Fortran_LINK_FLAGS_RELEASE "")
 
@@ -68,14 +72,16 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
     endif()
 
     set (USER_COMPILE_FLAGS_DEBUG   "-O0 -cpp --coverage -ffree-form"
-                                    "-ffree-line-length-none -fbacktrace"
-                                    "-fstack-protector -fcheck=bounds"
-                                    "-g")
+        "-ffree-line-length-none -fbacktrace"
+        "-fstack-protector -fcheck=bounds"
+        "-g"
+    )
     string(REPLACE ";" " " USER_COMPILE_FLAGS_DEBUG "${USER_COMPILE_FLAGS_DEBUG}")
 
     set (USER_COMPILE_FLAGS_RELEASE "-O3 -cpp -ffree-form "
-                                    "-ffree-line-length-none -fexternal-blas "
-                                    "-march=native -funroll-loops ")
+        "-ffree-line-length-none -fexternal-blas "
+        "-march=native -funroll-loops "
+    )
     string(REPLACE ";" " " USER_COMPILE_FLAGS_RELEASE "${USER_COMPILE_FLAGS_RELEASE}")
 
     set (CMAKE_Fortran_LINK_FLAGS_DEBUG "-O0 --coverage ")
@@ -101,6 +107,7 @@ endif()
 #----------------------------------------------------------------------------------------------
 #                                         Find Lapack
 #----------------------------------------------------------------------------------------------
+
 message(STATUS " ")
 message(STATUS "BLAS/LAPACK Summary:")
 find_package(LAPACK REQUIRED)
@@ -109,12 +116,10 @@ foreach (lib ${LAPACK_LIBRARIES})
     message(STATUS "        " ${lib})
 endforeach()
 
-
 #----------------------------------------------------------------------------------------------
 #                                         Find OpenMP
 #----------------------------------------------------------------------------------------------
 
-# if (USE_OPENMP)
 find_package(OpenMP)
 if (OPENMP_FOUND)
     SET (USE_OPENMP 1)
@@ -123,15 +128,14 @@ if (OPENMP_FOUND)
     set (CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${OpenMP_Fortran_FLAGS}")
     set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 endif()
-# endif()
 
 
 
 #----------------------------------------------------------------------------------------------
 #                                   Add source tree and includes
 #----------------------------------------------------------------------------------------------
-add_subdirectory(src)
 
+add_subdirectory(src)
 
 #----------------------------------------------------------------------------------------------
 #                                         Build library
@@ -144,28 +148,30 @@ message(STATUS " ")
 # Static library
 add_library(core-static STATIC ${LIB_SRCS})
 target_link_libraries(core-static
-                    ${LAPACK_LIBRARIES}
-                    ${BLAS_LIBRARIES}
-                    )
-set_target_properties(core-static PROPERTIES
-                    COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
-                    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
-                    OUTPUT_NAME ${LIB_NAME}
-                    Fortran_MODULE_DIRECTORY "core-static"
-                    )
+    ${LAPACK_LIBRARIES}
+    ${BLAS_LIBRARIES}
+)
+set_target_properties(core-static
+    PROPERTIES
+    COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
+    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
+    OUTPUT_NAME ${LIB_NAME}
+    Fortran_MODULE_DIRECTORY "core-static"
+)
 
 # Shared library
 add_library(core-shared SHARED ${LIB_SRCS})
 target_link_libraries(core-shared
-                    ${LAPACK_LIBRARIES}
-                    ${BLAS_LIBRARIES}
-                    )
-set_target_properties(core-shared PROPERTIES
-                    COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
-                    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
-                    OUTPUT_NAME ${LIB_NAME}
-                    Fortran_MODULE_DIRECTORY "core-shared"
-                    )
+    ${LAPACK_LIBRARIES}
+    ${BLAS_LIBRARIES}
+)
+set_target_properties(core-shared
+    PROPERTIES
+    COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
+    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
+    OUTPUT_NAME ${LIB_NAME}
+    Fortran_MODULE_DIRECTORY "core-shared"
+)
 
 
 
@@ -184,9 +190,10 @@ foreach( SOURCE_FILE ${EXE_SRCS})
     target_link_libraries(${SOURCE_NAME} ${lib_name})
     # target_include_directories(${SOURCE_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/${lib_name})
     # include_directories(${SOURCE_NAME} ${CMAKE_CURRENT_BINARY_DIR}/${lib_name})
-    set_target_properties(${SOURCE_NAME}  PROPERTIES
-                        COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
-                        LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
-                        Fortran_MODULE_DIRECTORY ${lib_name}
-                        )
+    set_target_properties(${SOURCE_NAME}
+        PROPERTIES
+        COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
+        LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
+        Fortran_MODULE_DIRECTORY ${lib_name}
+    )
 endforeach( SOURCE_FILE ${EXE_SRCS} )
