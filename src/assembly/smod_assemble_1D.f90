@@ -118,9 +118,9 @@ contains
   ! COPIED FROM mod_assembly
 
   module subroutine initialize_global_mats(num_nodes, &
-                                    GlobalA, &
-                                    GlobalB, &
-                                    GlobalX)
+                                            GlobalA, &
+                                            GlobalB, &
+                                            GlobalX)
     !* This routine initalizes the global stiffness matrix, global rhs vector,
     !  and global solution vector based on the number of nodes in the system
     !
@@ -159,14 +159,15 @@ contains
     real(wp), intent(out),  dimension(:,:)  :: GlobalA  !! Global Stiffness matrix
 
     integer               :: ii, num_cells, num_pts
-    real(wp), allocatable :: xy(:) ,Ie(:,:)
     real, parameter       :: eps = epsilon(1e0)
+    real(wp), allocatable :: xy(:), Ie(:,:)
 
     GlobalA   = 0._wp
     num_cells = size(cells, 1)
 
     ! Add elemental stiffness matrices to Global Stiffness Matrix
-    !$OMP PARALLEL DO PRIVATE(ii, xy, Ie) SHARED(GlobalA, diff, vel)
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(ii, xy, Ie)
+    !$OMP DO
     do ii = 1, num_cells
 
       num_pts   = size(cells(ii,:))
@@ -195,7 +196,8 @@ contains
       deallocate(Ie, xy)
       ! stop
     enddo
-    !$OMP END PARALLEL DO
+    !$OMP END DO
+    !$OMP END PARALLEL
 
     ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')
     ! stop

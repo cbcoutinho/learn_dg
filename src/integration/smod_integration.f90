@@ -1,4 +1,6 @@
 submodule (mod_integration) smod_integration
+  use, intrinsic  :: iso_fortran_env, only: wp=>real64
+  implicit none
 
   interface
     module subroutine gaussquad(N, x, w)

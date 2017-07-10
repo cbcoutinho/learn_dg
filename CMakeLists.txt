@@ -138,42 +138,29 @@ endif()
 add_subdirectory(src)
 
 #----------------------------------------------------------------------------------------------
-#                                         Build library
+#                                         Build libraries
 #----------------------------------------------------------------------------------------------
 
 set(LIB_NAME "core")
-
 message(STATUS " ")
 
-# Static library
-add_library(core-static STATIC ${LIB_SRCS})
-target_link_libraries(core-static
-    ${LAPACK_LIBRARIES}
-    ${BLAS_LIBRARIES}
-)
-set_target_properties(core-static
-    PROPERTIES
-    COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
-    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
-    OUTPUT_NAME ${LIB_NAME}
-    Fortran_MODULE_DIRECTORY "core-static"
-)
+add_library(core-static STATIC ${LIB_SRCS}) # Static library
+add_library(core-shared SHARED ${LIB_SRCS}) # Shared library
 
-# Shared library
-add_library(core-shared SHARED ${LIB_SRCS})
-target_link_libraries(core-shared
-    ${LAPACK_LIBRARIES}
-    ${BLAS_LIBRARIES}
-)
-set_target_properties(core-shared
-    PROPERTIES
-    COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
-    LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
-    OUTPUT_NAME ${LIB_NAME}
-    Fortran_MODULE_DIRECTORY "core-shared"
-)
+foreach( mylib core-shared core-static )
+    target_link_libraries( ${mylib}
+        ${LAPACK_LIBRARIES}
+        ${BLAS_LIBRARIES}
+    )
 
-
+    set_target_properties( ${mylib}
+        PROPERTIES
+        OUTPUT_NAME     ${LIB_NAME}
+        COMPILE_FLAGS   "${CMAKE_Fortran_FLAGS}"
+        LINK_FLAGS      "${CMAKE_Fortran_LINK_FLAGS}"
+        Fortran_MODULE_DIRECTORY ${mylib}
+    )
+endforeach()
 
 #----------------------------------------------------------------------------------------------
 #                                       Build Interfaces
@@ -183,17 +170,17 @@ set_target_properties(core-shared
 
 # set (lib_name core-static)
 set (lib_name core-shared)
-foreach( SOURCE_FILE ${EXE_SRCS})
-    string( REPLACE ".f90" "" SOURCE_NAME ${SOURCE_FILE})
-    string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME})
-    add_executable(${SOURCE_NAME} ${SOURCE_FILE})
-    target_link_libraries(${SOURCE_NAME} ${lib_name})
-    # target_include_directories(${SOURCE_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/${lib_name})
-    # include_directories(${SOURCE_NAME} ${CMAKE_CURRENT_BINARY_DIR}/${lib_name})
-    set_target_properties(${SOURCE_NAME}
+foreach( SOURCE_FILE ${EXE_SRCS} )
+    string( REPLACE ".f90" "" SOURCE_NAME ${SOURCE_FILE} )
+    string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME} )
+    add_executable( ${SOURCE_NAME} ${SOURCE_FILE} )
+    target_link_libraries( ${SOURCE_NAME} ${lib_name} )
+    target_include_directories(${SOURCE_NAME} PUBLIC ${CMAKE_BINARY_DIR}/${lib_name})
+    # include_directories(${SOURCE_NAME} ${CMAKE_BINARY_DIR}/${lib_name})
+    set_target_properties( ${SOURCE_NAME}
         PROPERTIES
         COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
         LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
-        Fortran_MODULE_DIRECTORY ${lib_name}
+        # Fortran_MODULE_DIRECTORY ${lib_name}
     )
 endforeach( SOURCE_FILE ${EXE_SRCS} )
