@@ -237,7 +237,7 @@ class myTestCase(unittest.TestCase):
         # plt.legend()
         # fig.savefig('sample.png')
 
-        self.assertTrue(np.allclose(x, analytical(points_), atol=1e-4))
+        self.assertTrue(np.allclose(x, analytical(points_), atol=1e-3))
 
     def test_Quad1DAdvDiffEqual(self):
         '''
