@@ -4,7 +4,15 @@ from ctypes import (CDLL, POINTER, ARRAY, c_void_p,
                     c_char_p, create_string_buffer)
 from numpy.ctypeslib import ndpointer
 
-libcore = CDLL('./build/lib/libcore.so')
+import sys, os
+
+prefix = {'win32': 'lib'}.get(sys.platform, 'lib')
+extension = {'darwin': '.dylib', 'win32': '.dll'}.get(sys.platform, '.so')
+
+dir_lib = {'win32': 'bin'}.get(sys.platform, 'lib')
+
+# libcore = CDLL('./build/lib/libcore.so')
+libcore = CDLL(os.path.join('build', dir_lib, prefix + 'core' + extension))
 
 def set_assembleElementalMatrix2D_c_args(N):
     '''
