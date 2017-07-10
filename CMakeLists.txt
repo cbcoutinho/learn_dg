@@ -1,10 +1,13 @@
 project(learn_dg Fortran)
 cmake_minimum_required(VERSION 3.7)
 
-
 #-----------------------------------------------------------------------------------
 #                      CMake macros for adding source files
 #-----------------------------------------------------------------------------------
+
+# Includes the cmake_dependent_option macro used in profiling below
+include( CMakeDependentOption )
+
 include(cmake/macros/add_exe_sources.txt)
 include(cmake/macros/add_lib_sources.txt)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
@@ -26,18 +29,13 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build. Options are: Debug Release" FORCE)
 endif()
 
-message(STATUS "        Build Type: ${CMAKE_BUILD_TYPE}")
-
-# if(NOT BUILD_SHARED_LIBRARIES)
-#     set(BUILD_SHARED_LIBRARIES OFF CACHE BOOL "Build shared libraries - Default OFF. Options are: ON OFF" FORCE)
-# endif()
-
-
+message(STATUS "    Build Type: ${CMAKE_BUILD_TYPE}")
 
 
 #-----------------------------------------------------------------------------------
 #                               Set compiler flags
 #-----------------------------------------------------------------------------------
+
 SET(FFLAGS "-std=f2008 -fPIC -fmax-errors=1")
 
 if (CMAKE_Fortran_COMPILER_ID MATCHES Intel)
@@ -59,20 +57,21 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
         message (FATAL_ERROR "Minimum required gfortran version is 6.3")
     endif()
 
-    set (USER_COMPILE_FLAGS_DEBUG "-O0 -cpp --coverage -ffree-form \
-                                  -ffree-line-length-none -fbacktrace \
-                                  -fstack-protector -fcheck=bounds \
-                                  -p -g")
+    set (USER_COMPILE_FLAGS_DEBUG   "-O0 -cpp --coverage -ffree-form"
+                                    "-ffree-line-length-none -fbacktrace"
+                                    "-fstack-protector -fcheck=bounds"
+                                    "-g")
+    string(REPLACE ";" " " USER_COMPILE_FLAGS_DEBUG "${USER_COMPILE_FLAGS_DEBUG}")
 
-    set (USER_COMPILE_FLAGS_RELEASE "-O3 -cpp -ffree-form \
-                                     -ffree-line-length-none -fexternal-blas \
-                                     -march=native -funroll-loops")
+    set (USER_COMPILE_FLAGS_RELEASE "-O3 -cpp -ffree-form "
+                                    "-ffree-line-length-none -fexternal-blas "
+                                    "-march=native -funroll-loops ")
+    string(REPLACE ";" " " USER_COMPILE_FLAGS_RELEASE "${USER_COMPILE_FLAGS_RELEASE}")  
 
-    set (CMAKE_Fortran_LINK_FLAGS_DEBUG "-O0 --coverage")
-    set (CMAKE_Fortran_LINK_FLAGS_RELEASE "-O3")
+    set (CMAKE_Fortran_LINK_FLAGS_DEBUG "-O0 --coverage ")
+    set (CMAKE_Fortran_LINK_FLAGS_RELEASE "-O3 ")
 
-    # NOTE: PROFILE_FLAGS are built into debug flags
-    set (PROFILE_FLAGS "-p -g")
+    set (PROFILE_FLAGS "-p")
 
 endif()
 
@@ -81,10 +80,16 @@ set (CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} ${FFLAGS} ${USER_CO
 set (CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE} ${FFLAGS} ${USER_COMPILE_FLAGS_RELEASE}")
 
 # Append profile flags
+
+# If NOT CMAKE_CROSSCOMPILING, create a variable called PROFILE with default off
+cmake_dependent_option(PROFILE "Use Profiling" OFF
+                        "NOT CMAKE_CROSSCOMPILING" OFF)
+
 if (PROFILE)
     set (CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} ${PROFILE_FLAGS}")
     set (CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE} ${PROFILE_FLAGS}")
 endif()
+message(STATUS "    Profiling: ${PROFILE}")
 
 
 #----------------------------------------------------------------------------------------------
@@ -166,6 +171,7 @@ foreach( SOURCE_FILE ${EXE_SRCS})
     string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME})
     add_executable(${SOURCE_NAME} ${SOURCE_FILE})
     target_link_libraries(${SOURCE_NAME}  core-static)
+    # target_link_libraries(${SOURCE_NAME}  core-shared)
     set_target_properties(${SOURCE_NAME}  PROPERTIES
                         COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
                         LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}")

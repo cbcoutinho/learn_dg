@@ -14,8 +14,10 @@ FLIB_SRC_DIR=./src/fortranlib/src
 ###### Compiler options ######
 ##############################
 
-FF:=gfortran
+FC:=gfortran
 RM:=rm -rf
+
+CMFLAGS= -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DPROFILE=$(PROFILE)
 
 ##############################
 ######## FORD options ########
@@ -41,17 +43,22 @@ mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 
 # Build and test the project
 cmake: $(BLD_DIR)
-	cmake -B$(BLD_DIR) -H. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
+	cmake -B$(BLD_DIR) -H. $(CMFLAGS)
 	$(MAKE) -C $(BLD_DIR)
 
 cmake_win: $(BLD_DIR)
-	cmake -B$(BLD_DIR) -H. -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-x64-mingw32.cmake
+	cmake -B$(BLD_DIR) -H. $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-x64-mingw32.cmake
 	$(MAKE) -C $(BLD_DIR)
 
-tests: cmake mesh
+test: cmake mesh
 	$(BLD_DIR)/bin/driver1D
 	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
 	pytest -vs --cache-clear -m 'not slowtest'
+
+test_all: cmake mesh
+	$(BLD_DIR)/bin/driver1D
+	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
+	pytest -vs --cache-clear
 
 # After running one of the tests, plot the output
 plot: cmake tests

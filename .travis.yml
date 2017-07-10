@@ -126,7 +126,7 @@ before_script:
 script:
   - make clean
   - make cmake
-  - make tests
+  - make test
   - |
     if [ "$TRAVIS_BRANCH" == "master" ]; then
       make docs
