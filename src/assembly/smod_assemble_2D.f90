@@ -132,9 +132,10 @@ contains
     real(wp), intent(in),   dimension(:,:)  :: points
     real(wp), intent(out),  dimension(:,:)  :: GlobalA
 
-    integer :: ii, jj, num_cells, num_pts
-    real(wp), dimension(:,:), allocatable   :: Ie, xy
+    integer                                 :: ii, jj
+    integer                                 :: num_cells, num_pts
     real(wp), parameter                     :: eps = epsilon(0e0)
+    real(wp), dimension(:,:), allocatable   :: Ie, xy
 
     GlobalA   = 0._wp
     num_cells = size(cells, 1)
@@ -143,7 +144,7 @@ contains
     allocate(xy(num_pts, 2), Ie(num_pts, num_pts))
 
     ! NOTE: This is assuming that all elements have the same number of points
-    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(ii, xy, Ie)
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(ii, xy, Ie) REDUCTION(+:GlobalA)
     !$OMP DO
     do ii = 1, num_cells
 

@@ -166,7 +166,7 @@ contains
     num_cells = size(cells, 1)
 
     ! Add elemental stiffness matrices to Global Stiffness Matrix
-    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(ii, xy, Ie)
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(ii, xy, Ie) REDUCTION(+:GlobalA)
     !$OMP DO
     do ii = 1, num_cells
 
