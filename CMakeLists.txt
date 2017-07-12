@@ -120,8 +120,17 @@ endforeach()
 #                                         Find OpenMP
 #----------------------------------------------------------------------------------------------
 
+message(STATUS " ")
+message(STATUS "Looking for OpenMP Libraries")
 find_package(OpenMP)
 if (OPENMP_FOUND)
+    message(STATUS "    OpenMP Libraries Found")
+    # message(STATUS "        ${OpenMP_LIBRARY}")
+    # message(STATUS "        ${OpenMP_LIBRARIES}")
+    # message(STATUS "        ${LIBOMP_LIB}")
+    # foreach (lib ${LIBOMP_LIBRARY})
+    #     message(STATUS "        " ${lib})
+    endforeach()
     SET (USE_OPENMP 1)
     set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")

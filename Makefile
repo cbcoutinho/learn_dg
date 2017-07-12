@@ -47,7 +47,11 @@ cmake: $(BLD_DIR)
 	$(MAKE) -C $(BLD_DIR)
 
 cmake_win: $(BLD_DIR)
-	cmake -B$(BLD_DIR) -H. $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-x64-mingw32.cmake
+	cmake -B$(BLD_DIR) -H. $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-x86_64-w64-mingw32.cmake
+	$(MAKE) -C $(BLD_DIR)
+
+cmake_win32: $(BLD_DIR)
+	cmake -B$(BLD_DIR) -H. $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-i686-w64-mingw32.cmake
 	$(MAKE) -C $(BLD_DIR)
 
 test: cmake mesh
