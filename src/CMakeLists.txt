@@ -1,10 +1,12 @@
-add_subdirectory(legendre)
 add_subdirectory(assembly)
 add_subdirectory(integration)
 add_subdirectory(io)
+add_subdirectory(legendre)
 add_subdirectory(linalg)
 add_subdirectory(misc)
+add_subdirectory(settings)
 
+# Explicitly add only the lib_array module from fortranlib
 add_lib_sources(
                 fortranlib/src/lib_array.f90
                 )
