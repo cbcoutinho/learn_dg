@@ -34,14 +34,14 @@ contains
 
     Ie = 0._wp
 
-    do node1 = 1, N
-      do node2 = 1, N
+    outer: do node1 = 1, N
+      inner: do node2 = 1, N
 
         ! fun is now implicitly defined using the following: node1, node2, d1, and d2
         Ie(node1,node2) = Ie(node1,node2) + integrate2D(fun)
 
-      enddo
-    enddo
+      enddo inner
+    enddo outer
     return
   contains
     function fun(xi, eta) result(out)
@@ -64,8 +64,8 @@ contains
       allocate(out(num_pts,num_pts))
       out = 0._wp
 
-      do ii = 1, num_pts
-        do jj = 1, num_pts
+      outer: do ii = 1, num_pts
+        inner: do jj = 1, num_pts
 
           ! Calculate Jacobian, inverse Jacobian, and determinant of finite
           ! element at (xi,eta)
@@ -101,10 +101,8 @@ contains
 
             ! If fun2 contains a derivative, need to calc N_i,xi and N_i,eta
             dfun2(1) =  ( &
-            dot_product(alpha(:,node2), &
-            getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
-            dot_product(alpha(:,node2), &
-            getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
+            dot_product(alpha(:,node2), getArow(N, xi(ii,jj)+eps, eta(ii,jj))) - &
+            dot_product(alpha(:,node2), getArow(N, xi(ii,jj)-eps, eta(ii,jj))) &
             ) / ( 2._wp*eps )
 
             dfun2(2) =  ( &
@@ -119,8 +117,8 @@ contains
 
           out(ii,jj) = fun1 * fun2 * detJ
 
-        enddo
-      enddo
+        enddo inner
+      enddo outer
       return
     end function fun
   end function assembleElementalMatrix2D

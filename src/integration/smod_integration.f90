@@ -104,17 +104,17 @@ contains
 
     y0 = 2.0_wp
 
-    do
+    outer: do
       L(:, 1) = 1.0_wp
       Lp(:, 1) = 0.0_wp
 
       L(:, 2) = y
       Lp(:, 2) = 1.0_wp
 
-      do jj = 2, N1
+      inner: do jj = 2, N1
         L(:, jj+1) = ( (2.0_wp*real(jj,wp)-1.0_wp) * y * L(:, jj) - &
                       real(jj-1, wp) * L(:, jj-1)) / real(jj, wp)
-      enddo
+      enddo inner
 
       Lpp = real(N2,wp) * (L(:,N1) - y * L(:,N2)) / (1.0_wp - y**2.0_wp)
 
@@ -122,9 +122,9 @@ contains
       y = y0 - L(:,N2)/Lpp
 
       if ( norm2(y-y0) < eps ) then
-        exit
+        exit outer
       endif
-    enddo
+    enddo outer
 
     x = ( a*(1.0_wp-y) + b*(1.0_wp+y) ) / 2.0_wp
     w = ( b-a ) / ((1.0_wp - y**2.0_wp)*Lpp**2.0_wp) * &
@@ -174,21 +174,22 @@ contains
        tmp = ((2*k-1)*[p1,0._wp]-(k-1)*[0._wp, 0._wp,p0])/k
        p0 = p1; p1 = tmp
     enddo
-    do i = 1, n
+
+    outer: do i = 1, n
       x = cos(pi*(i-0.25_wp)/(n+0.5_wp))
-      do iter = 1, 10
+      inner: do iter = 1, 10
         f = p1(1); df = 0._wp
-        do k = 2, size(p1)
+        deep: do k = 2, size(p1)
           df = f + x*df
           f  = p1(k) + x * f
-        enddo
+        enddo deep
         dx =  f / df
         x = x - dx
         if (abs(dx)<10*epsilon(dx)) exit
-      enddo
+      enddo inner
       r1(i) = x
       r2(i) = 2/((1-x**2)*df**2)
-    enddo
+    enddo outer
     return
   end subroutine gaussquad_rosetta
 
