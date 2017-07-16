@@ -17,6 +17,9 @@ FLIB_SRC_DIR=./src/fortranlib/src
 FC:=gfortran
 RM:=rm -rf
 
+BUILD_TYPE ?= Release
+Profile    ?= OFF
+
 CMFLAGS= -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DPROFILE=$(PROFILE)
 
 ##############################
