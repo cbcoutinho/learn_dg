@@ -18,9 +18,12 @@ FC:=gfortran
 RM:=rm -rf
 
 BUILD_TYPE ?= Debug
-Profile    ?= OFF
+PROFILE    ?= OFF
+USE_OPENMP ?= OFF
 
-CMFLAGS= -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DPROFILE=$(PROFILE)
+CMFLAGS= -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+	-DPROFILE=$(PROFILE) \
+	-DUSE_OPENMP=$(USE_OPENMP)
 
 ##############################
 ######## FORD options ########

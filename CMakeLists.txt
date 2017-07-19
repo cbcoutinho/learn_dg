@@ -16,8 +16,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-# set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
 
 #-----------------------------------------------------------------------------------
 #                               Set default options
@@ -34,6 +32,10 @@ if(NOT PROFILE)
     set(PROFILE OFF CACHE BOOL "Choose to enable profiling. Options are: ON OFF" FORCE)
 endif()
 
+if(NOT USE_OPENMP)
+    set(USE_OPENMP OFF CACHE BOOL "Choose to enable OpenMP. Options are: ON OFF" FORCE)
+endif()
+
 # If NOT CMAKE_CROSSCOMPILING, create a variable called PROFILE with default off
 cmake_dependent_option(PROFILE
     "Use Profiling" OFF
@@ -43,6 +45,7 @@ cmake_dependent_option(PROFILE
 message(STATUS " ")
 message(STATUS "    Build Type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "    Profiling: ${PROFILE}")
+message(STATUS "    OpenMP: ${USE_OPENMP}")
 
 #-----------------------------------------------------------------------------------
 #                               Set compiler flags
@@ -121,19 +124,18 @@ endforeach()
 #                                         Find OpenMP
 #----------------------------------------------------------------------------------------------
 
-message(STATUS " ")
-message(STATUS "Looking for OpenMP Libraries")
-find_package(OpenMP)
-if (OPENMP_FOUND)
-    message(STATUS "    OpenMP Libraries Found")
-    SET (USE_OPENMP 1)
-    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-    set (CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${OpenMP_Fortran_FLAGS}")
-    set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+if (USE_OPENMP)
+    message(STATUS " ")
+    message(STATUS "Looking for OpenMP Libraries")
+    find_package(OpenMP REQUIRED)
+    if (OPENMP_FOUND)
+        message(STATUS "    OpenMP Libraries Found")
+        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+        set (CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${OpenMP_Fortran_FLAGS}")
+        set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+    endif()
 endif()
-
-
 
 #----------------------------------------------------------------------------------------------
 #                                   Add source tree and includes
