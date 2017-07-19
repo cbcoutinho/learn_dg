@@ -16,7 +16,7 @@ fi
 
 if [ "$TRAVIS_PYTHON_VERSION" != "3.4" ]; then
   echo "Skipping documentation deployment"
-  echo "Only use Python 3..4"
+  echo "Only use Python 3.4"
   exit 0
 fi
 
