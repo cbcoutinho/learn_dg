@@ -72,6 +72,8 @@
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
 				
             <li><a href="../lists/programs.html">Programs</a></li>
 				
@@ -88,6 +90,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
                              
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
@@ -128,18 +132,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.3% of total for procedures.">9 statements</a>
+	  title=" 1.2% of total for procedures.">9 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/pascal_2D_smod.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/smod_legendre_2D.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/pascal_2d_smod.f90.html'>pascal_2D_smod.f90</a></li>
+     <li><a href='../sourcefile/smod_legendre_2d.f90.html'>smod_legendre_2D.f90</a></li>
   
-     <li><a href='../module/pascal_2d.html'>pascal_2D</a></li>
+     <li><a href='../module/smod_legendre_2d.html'>smod_legendre_2D</a></li>
   
      <li class="active">pascal_2D_row</li>
   </ol>
@@ -195,17 +199,25 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -213,13 +225,15 @@
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -227,11 +241,11 @@
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -247,9 +261,17 @@
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -258,6 +280,8 @@
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -286,7 +310,7 @@ pure function pascal_2D_row(N, x, y) result(row)
 
 
     
-    <p>Generates a row of Pascal's triangle in 2D, where rows are 0-indexed</p>
+    <p>Generates a row of Pascal's triangle in 2D</p>
 <p>Pascal's triangle in 2D looks like this:
    \[ [1] \]
    \[ [x,~ y] \]
@@ -295,7 +319,7 @@ pure function pascal_2D_row(N, x, y) result(row)
    \[ [x^4,~ x^3y,~ x^2y^2,~ xy^3, y^4] \]
    \[ \vdots \]
    \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]</p>
-<p>Therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]</p>
+<p>The rows are zero-indexed, therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]</p>
     
 
     <h3>Arguments</h3>
@@ -316,7 +340,7 @@ pure function pascal_2D_row(N, x, y) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E5"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E10"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -331,7 +355,7 @@ pure function pascal_2D_row(N, x, y) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-x%7E9"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -346,7 +370,7 @@ pure function pascal_2D_row(N, x, y) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-y%7E4"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -365,7 +389,7 @@ pure function pascal_2D_row(N, x, y) result(row)
     
     
     
-	 <h3>Return Value <small><span class="anchor" id="variable-row"></span>real(kind=wp),
+	 <h3>Return Value <small><span class="anchor" id="variable-row%7E4"></span>real(kind=wp),
   dimension(N+1)</small></h3>
     <p>Output row of triange</p>
     
@@ -530,7 +554,7 @@ pure function pascal_2D_row(N, x, y) result(row)
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">pure function </span><span class="n">pascal_2D_row</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
     <span class="c">!*</span>
-    <span class="c">! Generates a row of Pascal&#39;s triangle in 2D, where rows are 0-indexed</span>
+    <span class="c">! Generates a row of Pascal&#39;s triangle in 2D</span>
     <span class="c">!</span>
     <span class="c">! Pascal&#39;s triangle in 2D looks like this:</span>
     <span class="c">!   \[ [1] \]</span>
@@ -541,7 +565,7 @@ pure function pascal_2D_row(N, x, y) result(row)
     <span class="c">!   \[ \vdots \]</span>
     <span class="c">!   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]</span>
     <span class="c">!</span>
-    <span class="c">! Therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]</span>
+    <span class="c">! The rows are zero-indexed, therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]</span>
 
     <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">N</span>    <span class="c">!! Row number of pascal&#39;s 2D triange (0-indexed)</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">x</span>    <span class="c">!! X-value used in triange</span>
@@ -573,17 +597,25 @@ pure function pascal_2D_row(N, x, y) result(row)
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -591,13 +623,15 @@ pure function pascal_2D_row(N, x, y) result(row)
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -605,11 +639,11 @@ pure function pascal_2D_row(N, x, y) result(row)
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -625,9 +659,17 @@ pure function pascal_2D_row(N, x, y) result(row)
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -636,6 +678,8 @@ pure function pascal_2D_row(N, x, y) result(row)
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -660,7 +704,7 @@ pure function pascal_2D_row(N, x, y) result(row)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-07-03 21:46  
+             on 2017-07-19 23:43  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

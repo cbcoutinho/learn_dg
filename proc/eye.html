@@ -72,6 +72,8 @@
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
 				
             <li><a href="../lists/programs.html">Programs</a></li>
 				
@@ -88,6 +90,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
                              
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
@@ -128,18 +132,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.2% of total for procedures.">8 statements</a>
+	  title=" 1.1% of total for procedures.">8 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/linalg_mod.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/mod_linalg.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/linalg_mod.f90.html'>linalg_mod.f90</a></li>
+     <li><a href='../sourcefile/mod_linalg.f90.html'>mod_linalg.f90</a></li>
   
-     <li><a href='../module/linalg.html'>linalg</a></li>
+     <li><a href='../module/mod_linalg.html'>mod_linalg</a></li>
   
      <li class="active">eye</li>
   </ol>
@@ -195,17 +199,25 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -213,13 +225,15 @@
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -227,11 +241,11 @@
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -247,9 +261,17 @@
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -258,6 +280,8 @@
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -305,7 +329,7 @@ public pure function eye(N)
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E3"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E11"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -348,44 +372,44 @@ public pure function eye(N)
 <polygon fill="none" stroke="black" points="158,-66 104,-66 104,-42 158,-42 158,-66"/>
 <text text-anchor="middle" x="131" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">eye</text>
 </g>
-<!-- proc~getalpha1d -->
-<g id="proc~~eye~~CalledByGraph_node2" class="node"><title>proc~getalpha1d</title>
-<g id="a_proc~~eye~~CalledByGraph_node2"><a xlink:href="../proc/getalpha1d.html" xlink:title="getAlpha1D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-108 0,-108 0,-84 68,-84 68,-108"/>
-<text text-anchor="middle" x="34" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha1D</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha1d&#45;&gt;proc~eye -->
-<g id="proc~~eye~~CalledByGraph_edge1" class="edge"><title>proc~getalpha1d&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff0000" d="M62.2232,-83.9645C72.214,-79.5475 83.6782,-74.4791 94.3015,-69.7825"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="96.0241,-72.8478 103.755,-65.6031 93.1936,-66.4455 96.0241,-72.8478"/>
-</g>
 <!-- proc~getalpha2d -->
-<g id="proc~~eye~~CalledByGraph_node3" class="node"><title>proc~getalpha2d</title>
-<g id="a_proc~~eye~~CalledByGraph_node3"><a xlink:href="../proc/getalpha2d.html" xlink:title="getAlpha2D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-66 0,-66 0,-42 68,-42 68,-66"/>
-<text text-anchor="middle" x="34" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
+<g id="proc~~eye~~CalledByGraph_node2" class="node"><title>proc~getalpha2d</title>
+<g id="a_proc~~eye~~CalledByGraph_node2"><a xlink:href="../proc/getalpha2d.html" xlink:title="getAlpha2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-108 0,-108 0,-84 68,-84 68,-108"/>
+<text text-anchor="middle" x="34" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
 </a>
 </g>
 </g>
 <!-- proc~getalpha2d&#45;&gt;proc~eye -->
-<g id="proc~~eye~~CalledByGraph_edge2" class="edge"><title>proc~getalpha2d&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff0000" d="M68.2264,-54C76.4279,-54 85.2553,-54 93.5988,-54"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="93.8248,-57.5001 103.825,-54 93.8247,-50.5001 93.8248,-57.5001"/>
+<g id="proc~~eye~~CalledByGraph_edge1" class="edge"><title>proc~getalpha2d&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#ff0000" d="M62.2232,-83.9645C72.214,-79.5475 83.6782,-74.4791 94.3015,-69.7825"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="96.0241,-72.8478 103.755,-65.6031 93.1936,-66.4455 96.0241,-72.8478"/>
 </g>
-<!-- program~driver2 -->
-<g id="proc~~eye~~CalledByGraph_node4" class="node"><title>program~driver2</title>
-<g id="a_proc~~eye~~CalledByGraph_node4"><a xlink:href="../program/driver2.html" xlink:title="driver2">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-24 7,-24 7,-0 61,-0 61,-24"/>
-<text text-anchor="middle" x="34" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2</text>
+<!-- program~driver2d -->
+<g id="proc~~eye~~CalledByGraph_node3" class="node"><title>program~driver2d</title>
+<g id="a_proc~~eye~~CalledByGraph_node3"><a xlink:href="../program/driver2d.html" xlink:title="driver2D">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-66 7,-66 7,-42 61,-42 61,-66"/>
+<text text-anchor="middle" x="34" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2D</text>
 </a>
 </g>
 </g>
-<!-- program~driver2&#45;&gt;proc~eye -->
-<g id="proc~~eye~~CalledByGraph_edge3" class="edge"><title>program~driver2&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff0000" d="M61.2106,-23.5879C71.4903,-28.1325 83.4472,-33.4187 94.4812,-38.297"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="93.3136,-41.6075 103.875,-42.45 96.1441,-35.2053 93.3136,-41.6075"/>
+<!-- program~driver2d&#45;&gt;proc~eye -->
+<g id="proc~~eye~~CalledByGraph_edge2" class="edge"><title>program~driver2d&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#ff0000" d="M61.2106,-54C71.2826,-54 82.9647,-54 93.8114,-54"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="93.8749,-57.5001 103.875,-54 93.8749,-50.5001 93.8749,-57.5001"/>
+</g>
+<!-- proc~getalpha1d -->
+<g id="proc~~eye~~CalledByGraph_node4" class="node"><title>proc~getalpha1d</title>
+<g id="a_proc~~eye~~CalledByGraph_node4"><a xlink:href="../proc/getalpha1d.html" xlink:title="getAlpha1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-24 0,-24 0,-0 68,-0 68,-24"/>
+<text text-anchor="middle" x="34" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha1D</text>
+</a>
+</g>
+</g>
+<!-- proc~getalpha1d&#45;&gt;proc~eye -->
+<g id="proc~~eye~~CalledByGraph_edge3" class="edge"><title>proc~getalpha1d&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#ff0000" d="M62.2232,-24.0355C72.214,-28.4525 83.6782,-33.5209 94.3015,-38.2175"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="93.1936,-41.5545 103.755,-42.3969 96.0241,-35.1522 93.1936,-41.5545"/>
 </g>
 </g>
 </svg>
@@ -541,17 +565,25 @@ public pure function eye(N)
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -559,13 +591,15 @@ public pure function eye(N)
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -573,11 +607,11 @@ public pure function eye(N)
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -593,9 +627,17 @@ public pure function eye(N)
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -604,6 +646,8 @@ public pure function eye(N)
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -628,7 +672,7 @@ public pure function eye(N)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-07-03 21:46  
+             on 2017-07-19 23:43  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

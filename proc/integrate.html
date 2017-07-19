@@ -72,6 +72,8 @@
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
 				
             <li><a href="../lists/programs.html">Programs</a></li>
 				
@@ -88,6 +90,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
                              
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
@@ -128,18 +132,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 3.9% of total for procedures.">27 statements</a>
+	  title=" 3.7% of total for procedures.">28 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/integration_mod.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/mod_integration.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/integration_mod.f90.html'>integration_mod.f90</a></li>
+     <li><a href='../sourcefile/mod_integration.f90.html'>mod_integration.f90</a></li>
   
-     <li><a href='../module/integration.html'>integration</a></li>
+     <li><a href='../module/mod_integration.html'>mod_integration</a></li>
   
      <li class="active">integrate</li>
   </ol>
@@ -195,17 +199,25 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -213,13 +225,15 @@
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -227,11 +241,11 @@
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -247,9 +261,17 @@
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -258,6 +280,8 @@
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -320,7 +344,7 @@ public subroutine integrate(sub, a, b, result)
   
 <tr>
   
-  <td><span class="anchor" id="variable-a"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-a%7E2"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -373,41 +397,54 @@ public subroutine integrate(sub, a, b, result)
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
 <!-- Title: proc~~integrate~~CallsGraph Pages: 1 -->
-<svg id="procintegrateCallsGraph" width="306pt" height="32pt"
- viewBox="0.00 0.00 306.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="procintegrateCallsGraph" width="408pt" height="32pt"
+ viewBox="0.00 0.00 408.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="proc~~integrate~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
 <title>proc~~integrate~~CallsGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 302,-28 302,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 404,-28 404,4 -4,4"/>
 <!-- proc~integrate -->
 <g id="proc~~integrate~~CallsGraph_node1" class="node"><title>proc~integrate</title>
 <polygon fill="none" stroke="black" points="55.5,-24 0.5,-24 0.5,-0 55.5,-0 55.5,-24"/>
 <text text-anchor="middle" x="28" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">integrate</text>
 </g>
-<!-- proc~gaussquad -->
-<g id="proc~~integrate~~CallsGraph_node2" class="node"><title>proc~gaussquad</title>
-<g id="a_proc~~integrate~~CallsGraph_node2"><a xlink:href="../proc/gaussquad.html" xlink:title="gaussquad">
-<polygon fill="#d9534f" stroke="#d9534f" points="157.5,-24 92.5,-24 92.5,-0 157.5,-0 157.5,-24"/>
+<!-- interface~gaussquad -->
+<g id="proc~~integrate~~CallsGraph_node2" class="node"><title>interface~gaussquad</title>
+<g id="a_proc~~integrate~~CallsGraph_node2"><a xlink:href="../interface/gaussquad.html" xlink:title="gaussquad">
+<polygon fill="#a7506f" stroke="#a7506f" points="157.5,-24 92.5,-24 92.5,-0 157.5,-0 157.5,-24"/>
 <text text-anchor="middle" x="125" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
 </a>
 </g>
 </g>
-<!-- proc~integrate&#45;&gt;proc~gaussquad -->
-<g id="proc~~integrate~~CallsGraph_edge2" class="edge"><title>proc~integrate&#45;&gt;proc~gaussquad</title>
+<!-- proc~integrate&#45;&gt;interface~gaussquad -->
+<g id="proc~~integrate~~CallsGraph_edge3" class="edge"><title>proc~integrate&#45;&gt;interface~gaussquad</title>
 <path fill="none" stroke="#ff0000" d="M55.7156,-12C64.0094,-12 73.3562,-12 82.4119,-12"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="82.4407,-15.5001 92.4406,-12 82.4406,-8.5001 82.4407,-15.5001"/>
 </g>
+<!-- proc~gaussquad -->
+<g id="proc~~integrate~~CallsGraph_node3" class="node"><title>proc~gaussquad</title>
+<g id="a_proc~~integrate~~CallsGraph_node3"><a xlink:href="../proc/gaussquad.html" xlink:title="gaussquad">
+<polygon fill="#d9534f" stroke="#d9534f" points="259.5,-24 194.5,-24 194.5,-0 259.5,-0 259.5,-24"/>
+<text text-anchor="middle" x="227" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
+</a>
+</g>
+</g>
+<!-- interface~gaussquad&#45;&gt;proc~gaussquad -->
+<g id="proc~~integrate~~CallsGraph_edge2" class="edge"><title>interface~gaussquad&#45;&gt;proc~gaussquad</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M157.641,-12C166.031,-12 175.221,-12 184.066,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="184.222,-15.5001 194.222,-12 184.222,-8.5001 184.222,-15.5001"/>
+</g>
 <!-- proc~gaussquad_rosetta -->
-<g id="proc~~integrate~~CallsGraph_node3" class="node"><title>proc~gaussquad_rosetta</title>
-<g id="a_proc~~integrate~~CallsGraph_node3"><a xlink:href="../proc/gaussquad_rosetta.html" xlink:title="gaussquad_rosetta">
-<polygon fill="#d9534f" stroke="#d9534f" points="298,-24 194,-24 194,-0 298,-0 298,-24"/>
-<text text-anchor="middle" x="246" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad_rosetta</text>
+<g id="proc~~integrate~~CallsGraph_node4" class="node"><title>proc~gaussquad_rosetta</title>
+<g id="a_proc~~integrate~~CallsGraph_node4"><a xlink:href="../proc/gaussquad_rosetta.html" xlink:title="gaussquad_rosetta">
+<polygon fill="#d9534f" stroke="#d9534f" points="400,-24 296,-24 296,-0 400,-0 400,-24"/>
+<text text-anchor="middle" x="348" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad_rosetta</text>
 </a>
 </g>
 </g>
 <!-- proc~gaussquad&#45;&gt;proc~gaussquad_rosetta -->
 <g id="proc~~integrate~~CallsGraph_edge1" class="edge"><title>proc~gaussquad&#45;&gt;proc~gaussquad_rosetta</title>
-<path fill="none" stroke="#ff0000" d="M157.577,-12C165.682,-12 174.68,-12 183.733,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="183.933,-15.5001 193.933,-12 183.933,-8.5001 183.933,-15.5001"/>
+<path fill="none" stroke="#ff0000" d="M259.577,-12C267.682,-12 276.68,-12 285.733,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="285.933,-15.5001 295.933,-12 285.933,-8.5001 285.933,-15.5001"/>
 </g>
 </g>
 </svg>
@@ -489,41 +526,67 @@ public subroutine integrate(sub, a, b, result)
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
 <!-- Title: proc~~integrate~~CalledByGraph Pages: 1 -->
-<svg id="procintegrateCalledByGraph" width="308pt" height="32pt"
- viewBox="0.00 0.00 308.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~integrate~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<svg id="procintegrateCalledByGraph" width="492pt" height="74pt"
+ viewBox="0.00 0.00 492.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~integrate~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
 <title>proc~~integrate~~CalledByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 304,-28 304,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-70 488,-70 488,4 -4,4"/>
 <!-- proc~integrate -->
 <g id="proc~~integrate~~CalledByGraph_node1" class="node"><title>proc~integrate</title>
-<polygon fill="none" stroke="black" points="299.5,-24 244.5,-24 244.5,-0 299.5,-0 299.5,-24"/>
-<text text-anchor="middle" x="272" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">integrate</text>
+<polygon fill="none" stroke="black" points="483.5,-45 428.5,-45 428.5,-21 483.5,-21 483.5,-45"/>
+<text text-anchor="middle" x="456" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">integrate</text>
 </g>
 <!-- proc~integrate_basis_1d_ie -->
 <g id="proc~~integrate~~CalledByGraph_node2" class="node"><title>proc~integrate_basis_1d_ie</title>
 <g id="a_proc~~integrate~~CalledByGraph_node2"><a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="208,-24 90,-24 90,-0 208,-0 208,-24"/>
-<text text-anchor="middle" x="149" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="392,-45 274,-45 274,-21 392,-21 392,-45"/>
+<text text-anchor="middle" x="333" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
 </a>
 </g>
 </g>
 <!-- proc~integrate_basis_1d_ie&#45;&gt;proc~integrate -->
-<g id="proc~~integrate~~CalledByGraph_edge2" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~integrate</title>
-<path fill="none" stroke="#ff0000" d="M208.019,-12C216.975,-12 226.003,-12 234.317,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="234.407,-15.5001 244.407,-12 234.407,-8.5001 234.407,-15.5001"/>
+<g id="proc~~integrate~~CalledByGraph_edge4" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~integrate</title>
+<path fill="none" stroke="#ff0000" d="M392.019,-33C400.975,-33 410.003,-33 418.317,-33"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="418.407,-36.5001 428.407,-33 418.407,-29.5001 418.407,-36.5001"/>
 </g>
 <!-- proc~getie -->
 <g id="proc~~integrate~~CalledByGraph_node3" class="node"><title>proc~getie</title>
 <g id="a_proc~~integrate~~CalledByGraph_node3"><a xlink:href="../proc/getie.html" xlink:title="getIe">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-24 0,-24 0,-0 54,-0 54,-24"/>
-<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="238,-45 184,-45 184,-21 238,-21 238,-45"/>
+<text text-anchor="middle" x="211" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getIe</text>
 </a>
 </g>
 </g>
 <!-- proc~getie&#45;&gt;proc~integrate_basis_1d_ie -->
-<g id="proc~~integrate~~CalledByGraph_edge1" class="edge"><title>proc~getie&#45;&gt;proc~integrate_basis_1d_ie</title>
-<path fill="none" stroke="#ff0000" d="M54.0382,-12C61.8339,-12 70.7702,-12 79.9628,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="79.9965,-15.5001 89.9964,-12 79.9964,-8.5001 79.9965,-15.5001"/>
+<g id="proc~~integrate~~CalledByGraph_edge3" class="edge"><title>proc~getie&#45;&gt;proc~integrate_basis_1d_ie</title>
+<path fill="none" stroke="#ff0000" d="M238.038,-33C245.834,-33 254.77,-33 263.963,-33"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="263.996,-36.5001 273.996,-33 263.996,-29.5001 263.996,-36.5001"/>
+</g>
+<!-- proc~assemble1d -->
+<g id="proc~~integrate~~CalledByGraph_node4" class="node"><title>proc~assemble1d</title>
+<g id="a_proc~~integrate~~CalledByGraph_node4"><a xlink:href="../proc/assemble1d.html" xlink:title="assemble1D">
+<polygon fill="#d9534f" stroke="#d9534f" points="110,-66 38,-66 38,-42 110,-42 110,-66"/>
+<text text-anchor="middle" x="74" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble1D</text>
+</a>
+</g>
+</g>
+<!-- proc~assemble1d&#45;&gt;proc~getie -->
+<g id="proc~~integrate~~CalledByGraph_edge1" class="edge"><title>proc~assemble1d&#45;&gt;proc~getie</title>
+<path fill="none" stroke="#ff0000" d="M110.117,-48.5373C129.587,-45.5087 153.767,-41.7474 173.459,-38.6841"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="174.246,-42.104 183.589,-37.1084 173.169,-35.1872 174.246,-42.104"/>
+</g>
+<!-- proc~assembleelementalmatrix1d -->
+<g id="proc~~integrate~~CalledByGraph_node5" class="node"><title>proc~assembleelementalmatrix1d</title>
+<g id="a_proc~~integrate~~CalledByGraph_node5"><a xlink:href="../proc/assembleelementalmatrix1d.html" xlink:title="assembleElementalMatrix1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="148,-24 0,-24 0,-0 148,-0 148,-24"/>
+<text text-anchor="middle" x="74" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix1D</text>
+</a>
+</g>
+</g>
+<!-- proc~assembleelementalmatrix1d&#45;&gt;proc~getie -->
+<g id="proc~~integrate~~CalledByGraph_edge2" class="edge"><title>proc~assembleelementalmatrix1d&#45;&gt;proc~getie</title>
+<path fill="none" stroke="#ff0000" d="M148.032,-23.3605C156.93,-24.7447 165.7,-26.1089 173.716,-27.3558"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="173.349,-30.8407 183.768,-28.9195 174.425,-23.9239 173.349,-30.8407"/>
 </g>
 </g>
 </svg>
@@ -652,7 +715,7 @@ public subroutine integrate(sub, a, b, result)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">integrate</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="k">result</span><span class="p">)</span>
-    <span class="c">! This routine uses gauss-legendre quadrature to integrate a 1D function</span>
+    <span class="c">! This routine uses gauss-legendre quadrature to integrate a 1D line function</span>
 
     <span class="c">! Input/Output variables</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
@@ -660,12 +723,13 @@ public subroutine integrate(sub, a, b, result)
 <span class="k">    procedure</span><span class="p">(</span><span class="n">sub1d_interf</span><span class="p">)</span> <span class="kd">::</span> <span class="n">sub</span>
 
     <span class="c">! Local variables</span>
-    <span class="kt">integer</span><span class="kd">::</span> <span class="n">N</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="kd">::</span> <span class="n">result_old</span><span class="p">,</span> <span class="n">error</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span><span class="kd">::</span> <span class="n">eps</span><span class="o">=</span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">epsilon</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="p">))</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span><span class="kd">::</span> <span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span>
+    <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span>    <span class="kd">::</span> <span class="n">N_start</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="kt">integer</span>               <span class="kd">::</span> <span class="n">N</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">result_old</span><span class="p">,</span> <span class="n">error</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span>   <span class="kd">::</span> <span class="n">eps</span> <span class="o">=</span> <span class="nb">epsilon</span><span class="p">(</span><span class="err">0</span><span class="n">e0</span><span class="p">)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">x</span><span class="p">(:),</span> <span class="n">w</span><span class="p">(:),</span> <span class="n">y</span><span class="p">(:)</span>
 
-    <span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">N_start</span>
     <span class="k">result</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
     <span class="n">error</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
 
@@ -689,9 +753,11 @@ public subroutine integrate(sub, a, b, result)
 
       <span class="c">! Check if error is acceptable, as well as whether the loop was gone</span>
       <span class="c">! through at least twice (N = 3, 4, 5...)</span>
-      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">error</span> <span class="o">&lt;</span> <span class="n">eps</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="nb">abs</span><span class="p">(</span><span class="k">result</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">)</span> <span class="p">&amp;</span>
-           <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="p">)</span> <span class="k">then</span>
-<span class="k">        exit</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="n">N_start</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">&amp;</span>
+            <span class="nb">norm2</span><span class="p">(</span> <span class="p">[</span> <span class="n">error</span> <span class="p">]</span> <span class="p">)</span> <span class="o">&lt;=</span> <span class="n">eps</span> <span class="p">)</span> <span class="k">then</span>
+        <span class="c">! print&#39;(a,i3,a,e13.5)&#39;,  &#39;Fun integrated in &#39;, N, &amp;</span>
+        <span class="c">!                         &#39; iterations. Error = &#39;, error</span>
+        <span class="k">exit</span>
 <span class="k">      else</span>
 <span class="k">        </span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="n">endif</span>
@@ -716,17 +782,25 @@ public subroutine integrate(sub, a, b, result)
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -734,13 +808,15 @@ public subroutine integrate(sub, a, b, result)
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -748,11 +824,11 @@ public subroutine integrate(sub, a, b, result)
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -768,9 +844,17 @@ public subroutine integrate(sub, a, b, result)
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -779,6 +863,8 @@ public subroutine integrate(sub, a, b, result)
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -803,7 +889,7 @@ public subroutine integrate(sub, a, b, result)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-07-03 21:46  
+             on 2017-07-19 23:43  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

@@ -72,6 +72,8 @@
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
 				
             <li><a href="../lists/programs.html">Programs</a></li>
 				
@@ -88,6 +90,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
                              
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
@@ -128,18 +132,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p> 1.9% of total for procedures.</p>Including implementation: 13 statements,  1.9% of total for procedures.">13 statements</a>
+	  title="<p> 1.7% of total for procedures.</p>Including implementation: 13 statements,  1.7% of total for procedures.">13 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/legendre_mod.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/mod_legendre.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/legendre_mod.f90.html'>legendre_mod.f90</a></li>
+     <li><a href='../sourcefile/mod_legendre.f90.html'>mod_legendre.f90</a></li>
   
-     <li><a href='../module/legendre.html'>legendre</a></li>
+     <li><a href='../module/mod_legendre.html'>mod_legendre</a></li>
   
      <li class="active">pascal_row</li>
   </ol>
@@ -201,17 +205,25 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -219,13 +231,15 @@
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -233,11 +247,11 @@
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -253,9 +267,17 @@
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -264,6 +286,8 @@
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -281,7 +305,7 @@
     </div>
     
     <div class="col-md-9" id='text'>
-      <h2>private interface pascal_row</h2>
+      <h2>public interface pascal_row</h2>
 	 
      
      
@@ -293,41 +317,67 @@
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
 <!-- Title: interface~~pascal_row~~CalledByGraph Pages: 1 -->
-<svg id="interfacepascal_rowCalledByGraph" width="170pt" height="74pt"
- viewBox="0.00 0.00 170.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="interface~~pascal_row~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<svg id="interfacepascal_rowCalledByGraph" width="216pt" height="158pt"
+ viewBox="0.00 0.00 216.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="interface~~pascal_row~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
 <title>interface~~pascal_row~~CalledByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-70 166,-70 166,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-154 212,-154 212,4 -4,4"/>
 <!-- interface~pascal_row -->
 <g id="interface~~pascal_row~~CalledByGraph_node1" class="node"><title>interface~pascal_row</title>
-<polygon fill="none" stroke="black" points="161.5,-45 94.5,-45 94.5,-21 161.5,-21 161.5,-45"/>
-<text text-anchor="middle" x="128" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">pascal_row</text>
+<polygon fill="none" stroke="black" points="207.5,-87 140.5,-87 140.5,-63 207.5,-63 207.5,-87"/>
+<text text-anchor="middle" x="174" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">pascal_row</text>
 </g>
 <!-- proc~getarow_ -->
 <g id="interface~~pascal_row~~CalledByGraph_node2" class="node"><title>proc~getarow_</title>
 <g id="a_interface~~pascal_row~~CalledByGraph_node2"><a xlink:href="../proc/getarow_.html" xlink:title="getArow_">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="58,-66 3.55271e-15,-66 3.55271e-15,-42 58,-42 58,-66"/>
-<text text-anchor="middle" x="29" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow_</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="81,-150 23,-150 23,-126 81,-126 81,-150"/>
+<text text-anchor="middle" x="52" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow_</text>
 </a>
 </g>
 </g>
 <!-- proc~getarow_&#45;&gt;interface~pascal_row -->
 <g id="interface~~pascal_row~~CalledByGraph_edge1" class="edge"><title>proc~getarow_&#45;&gt;interface~pascal_row</title>
-<path fill="none" stroke="#ff0000" d="M58.0564,-47.9259C66.2684,-46.1481 75.4374,-44.163 84.3401,-42.2357"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="85.1801,-45.635 94.2131,-40.0982 83.6989,-38.7935 85.1801,-45.635"/>
+<path fill="none" stroke="#ff0000" d="M81.1466,-127.329C88.6768,-124.227 96.7386,-120.677 104,-117 118.397,-109.71 133.792,-100.488 146.38,-92.5436"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="148.458,-95.3687 154.995,-87.0304 144.685,-89.4727 148.458,-95.3687"/>
 </g>
 <!-- proc~getarow -->
 <g id="interface~~pascal_row~~CalledByGraph_node3" class="node"><title>proc~getarow</title>
 <g id="a_interface~~pascal_row~~CalledByGraph_node3"><a xlink:href="../proc/getarow.html" xlink:title="getArow">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="56,-24 2,-24 2,-0 56,-0 56,-24"/>
-<text text-anchor="middle" x="29" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow</text>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="79,-108 25,-108 25,-84 79,-84 79,-108"/>
+<text text-anchor="middle" x="52" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow</text>
 </a>
 </g>
 </g>
 <!-- proc~getarow&#45;&gt;interface~pascal_row -->
 <g id="interface~~pascal_row~~CalledByGraph_edge2" class="edge"><title>proc~getarow&#45;&gt;interface~pascal_row</title>
-<path fill="none" stroke="#ff0000" d="M56.2496,-17.6829C64.9945,-19.5761 74.9715,-21.7361 84.6201,-23.825"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="83.9765,-27.2666 94.4907,-25.9619 85.4577,-20.4251 83.9765,-27.2666"/>
+<path fill="none" stroke="#ff0000" d="M79.0382,-91.4433C93.88,-88.846 112.856,-85.5252 129.864,-82.5488"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="130.898,-85.9211 140.145,-80.7496 129.691,-79.0259 130.898,-85.9211"/>
+</g>
+<!-- proc~pascal_1d_line_c -->
+<g id="interface~~pascal_row~~CalledByGraph_node4" class="node"><title>proc~pascal_1d_line_c</title>
+<g id="a_interface~~pascal_row~~CalledByGraph_node4"><a xlink:href="../proc/pascal_1d_line_c.html" xlink:title="pascal_1D_line_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="100.5,-66 3.5,-66 3.5,-42 100.5,-42 100.5,-66"/>
+<text text-anchor="middle" x="52" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_1D_line_c</text>
+</a>
+</g>
+</g>
+<!-- proc~pascal_1d_line_c&#45;&gt;interface~pascal_row -->
+<g id="interface~~pascal_row~~CalledByGraph_edge3" class="edge"><title>proc~pascal_1d_line_c&#45;&gt;interface~pascal_row</title>
+<path fill="none" stroke="#ff0000" d="M100.772,-62.3601C110.468,-64.0568 120.608,-65.8314 130.122,-67.4964"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="129.695,-70.9748 140.149,-69.251 130.902,-64.0795 129.695,-70.9748"/>
+</g>
+<!-- proc~pascal_2d_quad_c -->
+<g id="interface~~pascal_row~~CalledByGraph_node5" class="node"><title>proc~pascal_2d_quad_c</title>
+<g id="a_interface~~pascal_row~~CalledByGraph_node5"><a xlink:href="../proc/pascal_2d_quad_c.html" xlink:title="pascal_2D_quad_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="104,-24 0,-24 0,-0 104,-0 104,-24"/>
+<text text-anchor="middle" x="52" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_quad_c</text>
+</a>
+</g>
+</g>
+<!-- proc~pascal_2d_quad_c&#45;&gt;interface~pascal_row -->
+<g id="interface~~pascal_row~~CalledByGraph_edge4" class="edge"><title>proc~pascal_2d_quad_c&#45;&gt;interface~pascal_row</title>
+<path fill="none" stroke="#ff0000" d="M84.3639,-24.0105C90.9371,-26.7781 97.7638,-29.8424 104,-33 118.397,-40.2896 133.792,-49.5118 146.38,-57.4564"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="144.685,-60.5273 154.995,-62.9696 148.458,-54.6313 144.685,-60.5273"/>
 </g>
 </g>
 </svg>
@@ -522,7 +572,7 @@ public pure function pascal_1D_line(N, x) result(row)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-pascal_2d_quad"></span><h3>
-public pure function pascal_2D_quad(N, x, y) result(row)
+public function pascal_2D_quad(N, x, y) result(row)
     
     
 	 
@@ -627,17 +677,25 @@ public pure function pascal_2D_quad(N, x, y) result(row)
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -645,13 +703,15 @@ public pure function pascal_2D_quad(N, x, y) result(row)
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -659,11 +719,11 @@ public pure function pascal_2D_quad(N, x, y) result(row)
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -679,9 +739,17 @@ public pure function pascal_2D_quad(N, x, y) result(row)
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -690,6 +758,8 @@ public pure function pascal_2D_quad(N, x, y) result(row)
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -714,7 +784,7 @@ public pure function pascal_2D_quad(N, x, y) result(row)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-07-03 21:46  
+             on 2017-07-19 23:43  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

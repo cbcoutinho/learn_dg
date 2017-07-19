@@ -72,6 +72,8 @@
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
 				
             <li><a href="../lists/programs.html">Programs</a></li>
 				
@@ -88,6 +90,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
                              
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
@@ -128,18 +132,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="12.4% of total for procedures.">85 statements</a>
+	  title=" 9.2% of total for procedures.">69 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/io_mod.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/mod_io.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/io_mod.f90.html'>io_mod.f90</a></li>
+     <li><a href='../sourcefile/mod_io.f90.html'>mod_io.f90</a></li>
   
-     <li><a href='../module/io.html'>io</a></li>
+     <li><a href='../module/mod_io.html'>mod_io</a></li>
   
      <li class="active">read_gmsh_file_1D</li>
   </ol>
@@ -195,17 +199,25 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -213,13 +225,15 @@
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -227,11 +241,11 @@
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -247,9 +261,17 @@
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -258,6 +280,8 @@
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -276,7 +300,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, xcoords, dg)
+public subroutine read_gmsh_file_1D(num_nodes, nodes2vertex, cells, points, dg)
     
     
 	 
@@ -287,8 +311,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
 
     
     <p>Reads the input mesh file (gmsh .msh format) and returns the number of
-   nodes, the order of each element, element connectivity, and the
-   coordinates of the nodes (nx1 for 1D, nx2 for 2D, etc.)</p>
+   nodes, element connectivity, and the coordinates of the nodes in 1D</p>
     
 
     <h3>Arguments</h3>
@@ -309,27 +332,12 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   
 <tr>
   
-  <td><span class="anchor" id="variable-num_nodes%7E2"></span>integer,</td>
+  <td><span class="anchor" id="variable-num_nodes"></span>integer,</td>
   <td>intent(out)</td>
   <td></td>
   
   <td></td><td>::</td>
   <td><strong>num_nodes</strong></td><td><p>Number of nodes in mesh</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-order%7E2"></span>integer,</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>order</strong></td><td><p>Array containing order of each element</p></td>
   
 </tr>
 
@@ -354,12 +362,12 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   
 <tr>
   
-  <td><span class="anchor" id="variable-elem_conn%7E2"></span>integer,</td>
+  <td><span class="anchor" id="variable-cells%7E4"></span>integer,</td>
   <td>intent(out),</td>
   <td></td>
   
   <td>dimension(:,:), allocatable</td><td>::</td>
-  <td><strong>elem_conn</strong></td><td><p>Array containing node connectivity of each element</p></td>
+  <td><strong>cells</strong></td><td><p>Array containing node connectivity of each element</p></td>
   
 </tr>
 
@@ -369,12 +377,12 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   
 <tr>
   
-  <td><span class="anchor" id="variable-xcoords%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-points%7E7"></span>real(kind=wp),</td>
   <td>intent(out),</td>
   <td></td>
   
   <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>xcoords</strong></td><td><p>Array containing node coordinates</p></td>
+  <td><strong>points</strong></td><td><p>Array containing node coordinates</p></td>
   
 </tr>
 
@@ -558,20 +566,17 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">read_gmsh_file_1D</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="p">&amp;</span>
-                                <span class="n">order</span><span class="p">,</span> <span class="p">&amp;</span>
                                 <span class="n">nodes2vertex</span><span class="p">,</span> <span class="p">&amp;</span>
-                                <span class="n">elem_conn</span><span class="p">,</span> <span class="p">&amp;</span>
-                                <span class="n">xcoords</span><span class="p">,</span> <span class="p">&amp;</span>
+                                <span class="n">cells</span><span class="p">,</span> <span class="p">&amp;</span>
+                                <span class="n">points</span><span class="p">,</span> <span class="p">&amp;</span>
                                 <span class="n">dg</span><span class="p">)</span>
     <span class="c">!</span>
     <span class="c">!*  Reads the input mesh file (gmsh .msh format) and returns the number of</span>
-    <span class="c">!   nodes, the order of each element, element connectivity, and the</span>
-    <span class="c">!   coordinates of the nodes (nx1 for 1D, nx2 for 2D, etc.)</span>
+    <span class="c">!   nodes, element connectivity, and the coordinates of the nodes in 1D</span>
     <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">num_nodes</span>    <span class="c">!! Number of nodes in mesh</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">order</span>        <span class="c">!! Array containing order of each element</span>
     <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">nodes2vertex</span> <span class="c">!! Array containing node to vertex connectivity (only interesting w.r.t discontinuous galerkin)</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">elem_conn</span>    <span class="c">!! Array containing node connectivity of each element</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xcoords</span>      <span class="c">!! Array containing node coordinates</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">cells</span>        <span class="c">!! Array containing node connectivity of each element</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">points</span>       <span class="c">!! Array containing node coordinates</span>
     <span class="kt">logical</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">dg</span>           <span class="c">!! Logical switch is continuous galerkin or discontinuous galerkin</span>
 
     <span class="kt">integer</span>         <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ios</span><span class="p">,</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">num_elements</span><span class="p">,</span> <span class="n">num_vertexes</span><span class="p">,</span> <span class="n">d_int</span>
@@ -581,7 +586,6 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
     <span class="kt">character</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">blank_string</span>
 
     <span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-    <span class="c">! print*, filename</span>
 
     <span class="k">if</span> <span class="p">(</span> <span class="nb">len_trim</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
 <span class="k">      call </span><span class="n">print_header</span><span class="p">()</span>
@@ -602,7 +606,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
 
     <span class="c">! Read number of nodes</span>
     <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">num_vertexes</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">xcoords</span><span class="p">(</span><span class="n">num_vertexes</span><span class="p">))</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">num_vertexes</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="p">(</span> <span class="p">.</span><span class="nb">not</span><span class="p">.</span> <span class="n">dg</span> <span class="p">)</span> <span class="k">then</span>
 <span class="k">      </span><span class="n">num_nodes</span> <span class="o">=</span> <span class="n">num_vertexes</span>
@@ -612,7 +616,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
 
     <span class="c">! Read coordinate information for each vertex</span>
     <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_vertexes</span>
-      <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">xcoords</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">d_real</span><span class="p">,</span> <span class="n">d_real</span>
+      <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">points</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">d_real</span><span class="p">,</span> <span class="n">d_real</span>
     <span class="n">enddo</span>
 
 
@@ -635,10 +639,10 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
 <span class="k">      </span><span class="n">nodes2vertex</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_nodes</span> <span class="p">)]</span>
     <span class="n">endif</span>
 
-    <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_nodes</span>
-      <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">nodes2vertex</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">xcoords</span><span class="p">(</span><span class="n">nodes2vertex</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span>
-    <span class="n">enddo</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+    <span class="c">! do ii = 1, num_nodes</span>
+    <span class="c">!   print*, ii, nodes2vertex(ii), points(nodes2vertex(ii))</span>
+    <span class="c">! enddo</span>
+    <span class="c">! print*,</span>
     <span class="c">! stop</span>
 
     <span class="c">! Two dummy lines :</span>
@@ -650,12 +654,8 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
     <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">num_elements</span>
     <span class="n">num_elements</span> <span class="o">=</span> <span class="n">num_elements</span><span class="o">-</span><span class="mi">2</span>
 
-    <span class="k">allocate</span><span class="p">(</span><span class="n">order</span><span class="p">(</span><span class="n">num_elements</span><span class="p">))</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">elem_conn</span><span class="p">(</span><span class="n">num_elements</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">cells</span><span class="p">(</span><span class="n">num_elements</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     <span class="k">allocate</span><span class="p">(</span><span class="n">vertex_conn</span><span class="p">(</span><span class="n">num_elements</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-
-    <span class="c">! Initialize all elements as first order linear elements</span>
-    <span class="n">order</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="c">! Two dummy lines - Associated with &#39;point&#39; elements</span>
     <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>
@@ -671,23 +671,23 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
     <span class="c">! stop</span>
 
     <span class="k">if</span> <span class="p">(</span> <span class="p">.</span><span class="nb">not</span><span class="p">.</span> <span class="n">dg</span> <span class="p">)</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">elem_conn</span> <span class="o">=</span> <span class="n">vertex_conn</span>
+<span class="k">      </span><span class="n">cells</span> <span class="o">=</span> <span class="n">vertex_conn</span>
     <span class="k">else</span>
-<span class="k">      do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_elements</span>
-        <span class="c">! elem_conn(ii,:) = pack([( ii, ii = 1, num_nodes )], &amp;</span>
-                        <span class="c">!   nodes2vertex == vertex_conn(ii,1))</span>
-        <span class="c">! print*, loc(2._wp)</span>
-        <span class="c">! print*, loc(nodes2vertex == vertex_conn(ii,2))</span>
-        <span class="k">print</span><span class="o">*</span><span class="p">,</span>  <span class="n">order</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">vertex_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span> <span class="n">elem_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,:)</span>
-        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-      <span class="n">enddo</span>
+      <span class="c">! do ii = 1, num_elements</span>
+      <span class="c">!   cells(ii,:) = pack([( ii, ii = 1, num_nodes )], &amp;</span>
+      <span class="c">!                     nodes2vertex == vertex_conn(ii,1))</span>
+      <span class="c">!   print*, loc(2._wp)</span>
+      <span class="c">!   print*, loc(nodes2vertex == vertex_conn(ii,2))</span>
+      <span class="c">!   print*, vertex_conn(ii,:), cells(ii,:)</span>
+      <span class="c">!   print*,</span>
+      <span class="c">! enddo</span>
     <span class="n">endif</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+    <span class="c">! print*,</span>
 
-    <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">xcoords</span><span class="p">)</span>
-      <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="n">xcoords</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
-    <span class="n">enddo</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+    <span class="c">! do ii = 1, size(points)</span>
+    <span class="c">!   print*, points(ii)</span>
+    <span class="c">! enddo</span>
+    <span class="c">! print*,</span>
 
     <span class="k">close</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">stop</span> <span class="s2">&quot;Error closing file unit 21&quot;</span>
@@ -712,17 +712,25 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -730,13 +738,15 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -744,11 +754,11 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -764,9 +774,17 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -775,6 +793,8 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -799,7 +819,7 @@ public subroutine read_gmsh_file_1D(num_nodes, order, nodes2vertex, elem_conn, x
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-07-03 21:46  
+             on 2017-07-19 23:43  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

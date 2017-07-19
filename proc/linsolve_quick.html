@@ -72,6 +72,8 @@
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
 				
             <li><a href="../lists/programs.html">Programs</a></li>
 				
@@ -88,6 +90,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
                              
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
@@ -128,18 +132,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.5% of total for procedures.">10 statements</a>
+	  title=" 1.3% of total for procedures.">10 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/linalg_mod.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/mod_linalg.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/linalg_mod.f90.html'>linalg_mod.f90</a></li>
+     <li><a href='../sourcefile/mod_linalg.f90.html'>mod_linalg.f90</a></li>
   
-     <li><a href='../module/linalg.html'>linalg</a></li>
+     <li><a href='../module/mod_linalg.html'>mod_linalg</a></li>
   
      <li class="active">linsolve_quick</li>
   </ol>
@@ -195,17 +199,25 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -213,13 +225,15 @@
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -227,11 +241,11 @@
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -247,9 +261,17 @@
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -258,6 +280,8 @@
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -320,7 +344,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-a%7E5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-a%7E4"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -350,7 +374,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-b%7E5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-b%7E3"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -365,7 +389,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E6"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-x%7E10"></span>real(kind=wp),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -411,23 +435,23 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <path fill="none" stroke="#ff0000" d="M79.7604,-33C88.3822,-33 97.4872,-33 105.993,-33"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="105.998,-36.5001 115.998,-33 105.998,-29.5001 105.998,-36.5001"/>
 </g>
-<!-- dgetrf -->
-<g id="proc~~linsolve_quick~~CallsGraph_node3" class="node"><title>dgetrf</title>
+<!-- dgetrs -->
+<g id="proc~~linsolve_quick~~CallsGraph_node3" class="node"><title>dgetrs</title>
 <polygon fill="#777777" stroke="#777777" points="260,-66 206,-66 206,-42 260,-42 260,-66"/>
-<text text-anchor="middle" x="233" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+<text text-anchor="middle" x="233" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrf -->
-<g id="proc~~linsolve_quick~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<!-- proc~linsolve&#45;&gt;dgetrs -->
+<g id="proc~~linsolve_quick~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
 <path fill="none" stroke="#ff0000" d="M170.403,-39.3007C178.481,-41.2284 187.507,-43.3823 196.105,-45.4341"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="195.38,-48.8593 205.919,-47.7761 197.005,-42.0505 195.38,-48.8593"/>
 </g>
-<!-- dgetrs -->
-<g id="proc~~linsolve_quick~~CallsGraph_node4" class="node"><title>dgetrs</title>
+<!-- dgetrf -->
+<g id="proc~~linsolve_quick~~CallsGraph_node4" class="node"><title>dgetrf</title>
 <polygon fill="#777777" stroke="#777777" points="260,-24 206,-24 206,-0 260,-0 260,-24"/>
-<text text-anchor="middle" x="233" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+<text text-anchor="middle" x="233" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="proc~~linsolve_quick~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
+<!-- proc~linsolve&#45;&gt;dgetrf -->
+<g id="proc~~linsolve_quick~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
 <path fill="none" stroke="#ff0000" d="M170.403,-26.6993C178.481,-24.7716 187.507,-22.6177 196.105,-20.5659"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="197.005,-23.9495 205.919,-18.2239 195.38,-17.1407 197.005,-23.9495"/>
 </g>
@@ -521,55 +545,55 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <polygon fill="none" stroke="black" points="183.5,-87 104.5,-87 104.5,-63 183.5,-63 183.5,-87"/>
 <text text-anchor="middle" x="144" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">linsolve_quick</text>
 </g>
-<!-- proc~getalpha1d -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node2" class="node"><title>proc~getalpha1d</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node2"><a xlink:href="../proc/getalpha1d.html" xlink:title="getAlpha1D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-150 0,-150 0,-126 68,-126 68,-150"/>
-<text text-anchor="middle" x="34" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha1D</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha1d&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge1" class="edge"><title>proc~getalpha1d&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M55.8235,-125.853C72.1838,-116.309 95.1774,-102.896 113.443,-92.2419"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="115.366,-95.1717 122.24,-87.1097 111.839,-89.1253 115.366,-95.1717"/>
-</g>
 <!-- proc~getalpha2d -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node3" class="node"><title>proc~getalpha2d</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node3"><a xlink:href="../proc/getalpha2d.html" xlink:title="getAlpha2D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-108 0,-108 0,-84 68,-84 68,-108"/>
-<text text-anchor="middle" x="34" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
+<g id="proc~~linsolve_quick~~CalledByGraph_node2" class="node"><title>proc~getalpha2d</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node2"><a xlink:href="../proc/getalpha2d.html" xlink:title="getAlpha2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-150 0,-150 0,-126 68,-126 68,-150"/>
+<text text-anchor="middle" x="34" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
 </a>
 </g>
 </g>
 <!-- proc~getalpha2d&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge2" class="edge"><title>proc~getalpha2d&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M68.2848,-89.528C76.5706,-87.9168 85.6232,-86.1566 94.4775,-84.4349"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="95.1903,-87.862 104.338,-82.5175 93.8542,-80.9907 95.1903,-87.862"/>
+<g id="proc~~linsolve_quick~~CalledByGraph_edge1" class="edge"><title>proc~getalpha2d&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M55.8235,-125.853C72.1838,-116.309 95.1774,-102.896 113.443,-92.2419"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="115.366,-95.1717 122.24,-87.1097 111.839,-89.1253 115.366,-95.1717"/>
 </g>
-<!-- program~driver2 -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node4" class="node"><title>program~driver2</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node4"><a xlink:href="../program/driver2.html" xlink:title="driver2">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-66 7,-66 7,-42 61,-42 61,-66"/>
-<text text-anchor="middle" x="34" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2</text>
+<!-- program~driver1d -->
+<g id="proc~~linsolve_quick~~CalledByGraph_node3" class="node"><title>program~driver1d</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node3"><a xlink:href="../program/driver1d.html" xlink:title="driver1D">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-108 7,-108 7,-84 61,-84 61,-108"/>
+<text text-anchor="middle" x="34" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver1D</text>
 </a>
 </g>
 </g>
-<!-- program~driver2&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge3" class="edge"><title>program~driver2&#45;&gt;proc~linsolve_quick</title>
+<!-- program~driver1d&#45;&gt;proc~linsolve_quick -->
+<g id="proc~~linsolve_quick~~CalledByGraph_edge2" class="edge"><title>program~driver1d&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M61.1438,-90.9165C71.1868,-88.9637 83.0001,-86.6667 94.4796,-84.4345"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="95.2808,-87.8444 104.429,-82.4999 93.9446,-80.9731 95.2808,-87.8444"/>
+</g>
+<!-- program~driver2d -->
+<g id="proc~~linsolve_quick~~CalledByGraph_node4" class="node"><title>program~driver2d</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node4"><a xlink:href="../program/driver2d.html" xlink:title="driver2D">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-66 7,-66 7,-42 61,-42 61,-66"/>
+<text text-anchor="middle" x="34" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2D</text>
+</a>
+</g>
+</g>
+<!-- program~driver2d&#45;&gt;proc~linsolve_quick -->
+<g id="proc~~linsolve_quick~~CalledByGraph_edge3" class="edge"><title>program~driver2d&#45;&gt;proc~linsolve_quick</title>
 <path fill="none" stroke="#ff0000" d="M61.1438,-59.0835C71.1868,-61.0363 83.0001,-63.3333 94.4796,-65.5655"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="93.9446,-69.0269 104.429,-67.5001 95.2808,-62.1556 93.9446,-69.0269"/>
 </g>
-<!-- program~driver1 -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node5" class="node"><title>program~driver1</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node5"><a xlink:href="../program/driver1.html" xlink:title="driver1">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-24 7,-24 7,-0 61,-0 61,-24"/>
-<text text-anchor="middle" x="34" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver1</text>
+<!-- proc~getalpha1d -->
+<g id="proc~~linsolve_quick~~CalledByGraph_node5" class="node"><title>proc~getalpha1d</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node5"><a xlink:href="../proc/getalpha1d.html" xlink:title="getAlpha1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-24 0,-24 0,-0 68,-0 68,-24"/>
+<text text-anchor="middle" x="34" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha1D</text>
 </a>
 </g>
 </g>
-<!-- program~driver1&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge4" class="edge"><title>program~driver1&#45;&gt;proc~linsolve_quick</title>
+<!-- proc~getalpha1d&#45;&gt;proc~linsolve_quick -->
+<g id="proc~~linsolve_quick~~CalledByGraph_edge4" class="edge"><title>proc~getalpha1d&#45;&gt;proc~linsolve_quick</title>
 <path fill="none" stroke="#ff0000" d="M55.8235,-24.147C72.1838,-33.6905 95.1774,-47.1035 113.443,-57.7581"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="111.839,-60.8747 122.24,-62.8903 115.366,-54.8283 111.839,-60.8747"/>
 </g>
@@ -732,17 +756,25 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -750,13 +782,15 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -764,11 +798,11 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -784,9 +818,17 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -795,6 +837,8 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -819,7 +863,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-07-03 21:46  
+             on 2017-07-19 23:43  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

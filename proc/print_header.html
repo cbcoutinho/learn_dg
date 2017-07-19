@@ -72,6 +72,8 @@
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
 				
             <li><a href="../lists/programs.html">Programs</a></li>
 				
@@ -88,6 +90,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
                              
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
 
@@ -128,18 +132,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.3% of total for procedures.">16 statements</a>
+	  title=" 2.0% of total for procedures.">15 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/io_mod.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/mod_io.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/io_mod.f90.html'>io_mod.f90</a></li>
+     <li><a href='../sourcefile/mod_io.f90.html'>mod_io.f90</a></li>
   
-     <li><a href='../module/io.html'>io</a></li>
+     <li><a href='../module/mod_io.html'>mod_io</a></li>
   
      <li class="active">print_header</li>
   </ol>
@@ -195,17 +199,25 @@
   <div id="allprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -213,13 +225,15 @@
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -227,11 +241,11 @@
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -247,9 +261,17 @@
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -258,6 +280,8 @@
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -453,28 +477,28 @@ private subroutine print_header()
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">print_header</span><span class="p">()</span>
 
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;  _____  ______ _____      _             _     &#39;</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; |  __ \|  ____|  __ \    | |           | |    &#39;</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; | |__) | |__  | |  | |___| |_ __ _  ___| | __ &#39;</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; |  _  /|  __| | |  | / __| __/ _` |/ __| |/ / &#39;</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; | | \ \| |____| |__| \__ \ || (_| | (__|   &lt;  &#39;</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; |_|  \_\______|_____/|___/\__\__,_|\___|_|\_\ &#39;</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; Developed by Chris Coutinho                   &#39;</span>
-    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-
     <span class="c">! print*,</span>
-    <span class="c">! print*, &#39;     ____  __________       __             __   &#39;</span>
-    <span class="c">! print*, &#39;    / __ \/ ____/ __ \_____/ /_____ ______/ /__ &#39;</span>
-    <span class="c">! print*, &#39;   / /_/ / __/ / / / / ___/ __/ __ `/ ___/ //_/ &#39;</span>
-    <span class="c">! print*, &#39;  / _, _/ /___/ /_/ (__  ) /_/ /_/ / /__/ ,&lt;    &#39;</span>
-    <span class="c">! print*, &#39; /_/ |_/_____/_____/____/\__/\__,_/\___/_/|_|   &#39;</span>
+    <span class="c">! print*, &#39;  _____  ______ _____      _             _     &#39;</span>
+    <span class="c">! print*, &#39; |  __ \|  ____|  __ \    | |           | |    &#39;</span>
+    <span class="c">! print*, &#39; | |__) | |__  | |  | |___| |_ __ _  ___| | __ &#39;</span>
+    <span class="c">! print*, &#39; |  _  /|  __| | |  | / __| __/ _` |/ __| |/ / &#39;</span>
+    <span class="c">! print*, &#39; | | \ \| |____| |__| \__ \ || (_| | (__|   &lt;  &#39;</span>
+    <span class="c">! print*, &#39; |_|  \_\______|_____/|___/\__\__,_|\___|_|\_\ &#39;</span>
     <span class="c">! print*,</span>
     <span class="c">! print*,</span>
     <span class="c">! print*, &#39; Developed by Chris Coutinho                   &#39;</span>
     <span class="c">! print*,</span>
+
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;     ____  __________       __             __   &#39;</span>
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;    / __ \/ ____/ __ \_____/ /_____ ______/ /__ &#39;</span>
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;   / /_/ / __/ / / / / ___/ __/ __ `/ ___/ //_/ &#39;</span>
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;  / _, _/ /___/ /_/ (__  ) /_/ /_/ / /__/ ,&lt;    &#39;</span>
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; /_/ |_/_____/_____/____/\__/\__,_/\___/_/|_|   &#39;</span>
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; Developed by Chris Coutinho                   &#39;</span>
+    <span class="k">print</span><span class="o">*</span><span class="p">,</span>
 
     <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;No Input file supplied&#39;</span>
     <span class="k">print</span><span class="o">*</span><span class="p">,</span>
@@ -500,17 +524,25 @@ private subroutine print_header()
   <div id="allprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/adder.html">adder</a>
+      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
       
-      <a class="list-group-item" href="../proc/adder_c.html">adder_c</a>
+      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
       
-      <a class="list-group-item" href="../proc/assemble.html">assemble</a>
+      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
       
       <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
       
-      <a class="list-group-item" href="../proc/basis_1d.html">basis_1D</a>
+      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
+      
+      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
+      
+      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
+      
+      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
       
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
@@ -518,13 +550,15 @@ private subroutine print_header()
       
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
-      <a class="list-group-item" href="../proc/gaussquad.html">gaussquad</a>
+      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
+      
+      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
-      <a class="list-group-item" href="../interface/getalpha.html">getAlpha</a>
+      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
       
-      <a class="list-group-item" href="../interface/getalpha_.html">getAlpha_</a>
+      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
@@ -532,11 +566,11 @@ private subroutine print_header()
       
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
-      <a class="list-group-item" href="../interface/getxy.html">getxy</a>
+      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/getxy.html">getxy</a>
+      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
-      <a class="list-group-item" href="../proc/initialize_global_mats.html">initialize_global_mats</a>
+      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
       <a class="list-group-item" href="../proc/integrate.html">integrate</a>
       
@@ -552,9 +586,17 @@ private subroutine print_header()
       
       <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
       
+      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
+      
+      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
+      
       <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
       
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
       
       <a class="list-group-item" href="../proc/print_header.html">print_header</a>
       
@@ -563,6 +605,8 @@ private subroutine print_header()
       <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
       
       <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
+      
+      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
@@ -587,7 +631,7 @@ private subroutine print_header()
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-07-03 21:46  
+             on 2017-07-19 23:43  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
