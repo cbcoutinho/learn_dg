@@ -20,8 +20,8 @@ compile.out
 __pycache__
 .ipynb_checkpoints
 octave-workspace
-test_*
 gmon.out
+.cache
 
 # GMSH-related files
 *.msh

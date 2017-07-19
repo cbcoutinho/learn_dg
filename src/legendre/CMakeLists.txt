@@ -1,6 +1,8 @@
 add_lib_sources(
-                pascal_1D_smod.f90
-                pascal_2D_smod.f90
+                mod_legendre_c.f90
+                mod_legendre.f90
+                smod_legendre_1D.f90
+                smod_legendre_2D.f90
                 )
 
 # Propagate lib_srcs list to parent directory

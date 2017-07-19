@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-module misc
+module mod_misc
   use, intrinsic :: iso_fortran_env, only: wp=>real64
   implicit none
 
@@ -164,4 +164,4 @@ contains
     return
   end subroutine r8mat_print_some
 
-end module misc
+end module mod_misc

@@ -5,8 +5,6 @@
 ##############################
 
 SRC_DIR=./src
-OBJ_DIR=./obj
-BIN_DIR=./bin
 DOC_DIR=./docs
 TEST_DIR=./test
 BLD_DIR=./build
@@ -16,25 +14,22 @@ FLIB_SRC_DIR=./src/fortranlib/src
 ###### Compiler options ######
 ##############################
 
-# Use debug flags unless otherwise stated
-ifndef DEBUG
-DEBUG:=1
-endif
-
-FF:=gfortran
+FC:=gfortran
 RM:=rm -rf
+
+BUILD_TYPE ?= Debug
+PROFILE    ?= OFF
+USE_OPENMP ?= OFF
+
+CMFLAGS= -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+	-DPROFILE=$(PROFILE) \
+	-DUSE_OPENMP=$(USE_OPENMP)
 
 ##############################
 ######## FORD options ########
 ##############################
 
-ifneq ("$(wildcard $(HOME)/Projects/ford/ford.py)","")
-# FILE_EXISTS = 1
-FORD := $(HOME)/Projects/ford/ford.py
-else
-# FILE_EXISTS = 0
 FORD := ford
-endif
 
 FORD_FLAGS := -d $(SRC_DIR) \
 	-p $(DOC_DIR)/user-guide \
@@ -46,55 +41,56 @@ FORD_FLAGS := -d $(SRC_DIR) \
 
 default: all
 
-submodules:
-	git submodule init
-	git submodule update
-
-all: cmake # $(BIN_DIR)/main $(BIN_DIR)/doubleint
+all: cmake
 
 mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
-	gmsh $(TEST_DIR)/test2D.geo -order 1 -2 -o $(TEST_DIR)/test2D.msh
+	gmsh $(TEST_DIR)/test2D.geo -order 2 -2 -o $(TEST_DIR)/test2D.msh
 
-run1: all mesh
-	$(BIN_DIR)/$(MAIN) $(TEST_DIR)/test1D.msh
+# Build and test the project
+cmake: $(BLD_DIR)
+	cmake -B$(BLD_DIR) -H. $(CMFLAGS)
+	$(MAKE) -C $(BLD_DIR)
 
-run2: all
-	$(BIN_DIR)/$(DOUBLEINT)
+cmake_win: $(BLD_DIR)
+	cmake -B$(BLD_DIR) -H. $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-x86_64-w64-mingw32.cmake
+	$(MAKE) -C $(BLD_DIR)
 
-run: run1 run2
+cmake_win32: $(BLD_DIR)
+	cmake -B$(BLD_DIR) -H. $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-i686-w64-mingw32.cmake
+	$(MAKE) -C $(BLD_DIR)
 
-plot: cmake
-	python plotter.py
+test: cmake mesh
+	$(BLD_DIR)/bin/driver1D
+	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
+	pytest -vs --cache-clear -m 'not slowtest'
+
+test_all: cmake mesh
+	$(BLD_DIR)/bin/driver1D
+	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
+	pytest -vs --cache-clear
+
+# After running one of the tests, plot the output
+plot: cmake tests
+	python test/plotter.py
+	$(RM) data.out
+
+
+
+# Other
 
 .PHONY: docs
-docs: submodules $(DOC_DIR)/learn_dg.md README.md
+docs: $(DOC_DIR)/learn_dg.md README.md
 	cp README.md $(DOC_DIR)/README.md
 	$(FORD) $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
 	$(RM) $(DOC_DIR)/README.md
-
-debug: clean all mesh
-	valgrind --track-origins=yes --leak-check=full $(BIN_DIR)/$(MAIN)) $(TEST_DIR)/test1D.msh
-	valgrind --track-origins=yes --leak-check=full $(BIN_DIR)/$(DOUBLEINT)
-
-# .PHONY: cmake
-cmake: submodules mesh | $(BLD_DIR)
-	cd $(BLD_DIR) && cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
-	$(MAKE) -C $(BLD_DIR)
-
-cmake_win: submodules mesh | $(BLD_DIR)
-	cd $(BLD_DIR) && cmake -DCMAKE_TOOLCHAIN_FILE:STRING=../cmake/Toolchain-x64-mingw32.cmake .. $(CMFLAGS) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) && cd ..
-	$(MAKE) -C $(BLD_DIR)
-
-tests: cmake
-	$(BLD_DIR)/bin/driverA
-	$(BLD_DIR)/bin/driverA $(TEST_DIR)/test1D.msh
 
 .ONESHELL:
 $(BLD_DIR):
 	test -d $(BLD_DIR) || mkdir $(BLD_DIR)
 
 clean:
-	$(RM) $(OBJ_DIR)/*.o $(OBJ_DIR)/*.*mod
+	$(RM) data.out gmon.out
 	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
+	$(RM) .cache $(TEST_DIR)/__pycache__ $(TEST_DIR)/helpers.pyc
 	$(RM) $(BLD_DIR)

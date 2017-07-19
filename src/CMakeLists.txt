@@ -1,12 +1,13 @@
+add_subdirectory(assembly)
+add_subdirectory(integration)
+add_subdirectory(io)
 add_subdirectory(legendre)
+add_subdirectory(linalg)
+add_subdirectory(misc)
+add_subdirectory(settings)
 
+# Explicitly add only the lib_array module from fortranlib
 add_lib_sources(
-                assembly_mod.f90
-                integration_mod.f90
-                io_mod.f90
-                legendre_mod.f90
-                linalg_mod.f90
-                misc_mod.f90
                 fortranlib/src/lib_array.f90
                 )
 
@@ -16,6 +17,6 @@ add_lib_sources()
 
 # Add main executable and propagate to parent
 add_exe_sources(
-                driverA.f90
-                driverB.f90
+                driver1D.f90
+                driver2D.f90
                 )

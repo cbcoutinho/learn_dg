@@ -4,7 +4,7 @@
 !
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
-module io
+module mod_io
   use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use             :: lib_array, only: linspace
   implicit none
@@ -16,20 +16,17 @@ module io
 contains
 
   subroutine read_gmsh_file_1D(num_nodes, &
-                                order, &
                                 nodes2vertex, &
-                                elem_conn, &
-                                xcoords, &
+                                cells, &
+                                points, &
                                 dg)
     !
     !*  Reads the input mesh file (gmsh .msh format) and returns the number of
-    !   nodes, the order of each element, element connectivity, and the
-    !   coordinates of the nodes (nx1 for 1D, nx2 for 2D, etc.)
+    !   nodes, element connectivity, and the coordinates of the nodes in 1D
     integer,  intent(out)                               :: num_nodes    !! Number of nodes in mesh
-    integer,  intent(out),  dimension(:),   allocatable :: order        !! Array containing order of each element
     integer,  intent(out),  dimension(:),   allocatable :: nodes2vertex !! Array containing node to vertex connectivity (only interesting w.r.t discontinuous galerkin)
-    integer,  intent(out),  dimension(:,:), allocatable :: elem_conn    !! Array containing node connectivity of each element
-    real(wp), intent(out),  dimension(:),   allocatable :: xcoords      !! Array containing node coordinates
+    integer,  intent(out),  dimension(:,:), allocatable :: cells        !! Array containing node connectivity of each element
+    real(wp), intent(out),  dimension(:),   allocatable :: points       !! Array containing node coordinates
     logical,  intent(in)                                :: dg           !! Logical switch is continuous galerkin or discontinuous galerkin
 
     integer         :: ii, ios, vertex, num_elements, num_vertexes, d_int
@@ -39,7 +36,6 @@ contains
     character(80)   :: blank_string
 
     call get_command_argument(1, filename)
-    ! print*, filename
 
     if ( len_trim(filename) == 0 ) then
       call print_header()
@@ -60,7 +56,7 @@ contains
 
     ! Read number of nodes
     read(21,*) num_vertexes
-    allocate(xcoords(num_vertexes))
+    allocate(points(num_vertexes))
 
     if ( .not. dg ) then
       num_nodes = num_vertexes
@@ -70,7 +66,7 @@ contains
 
     ! Read coordinate information for each vertex
     do ii = 1, num_vertexes
-      read(21,*) d_int, xcoords(ii), d_real, d_real
+      read(21,*) d_int, points(ii), d_real, d_real
     enddo
 
 
@@ -93,10 +89,10 @@ contains
       nodes2vertex = [( ii, ii = 1, num_nodes )]
     endif
 
-    do ii = 1, num_nodes
-      print*, ii, nodes2vertex(ii), xcoords(nodes2vertex(ii))
-    enddo
-    print*,
+    ! do ii = 1, num_nodes
+    !   print*, ii, nodes2vertex(ii), points(nodes2vertex(ii))
+    ! enddo
+    ! print*,
     ! stop
 
     ! Two dummy lines :
@@ -108,12 +104,8 @@ contains
     read(21,*) num_elements
     num_elements = num_elements-2
 
-    allocate(order(num_elements))
-    allocate(elem_conn(num_elements, 2))
+    allocate(cells(num_elements, 2))
     allocate(vertex_conn(num_elements, 2))
-
-    ! Initialize all elements as first order linear elements
-    order = 1
 
     ! Two dummy lines - Associated with 'point' elements
     read(21,*)
@@ -129,23 +121,23 @@ contains
     ! stop
 
     if ( .not. dg ) then
-      elem_conn = vertex_conn
+      cells = vertex_conn
     else
-      do ii = 1, num_elements
-        ! elem_conn(ii,:) = pack([( ii, ii = 1, num_nodes )], &
-                        !   nodes2vertex == vertex_conn(ii,1))
-        ! print*, loc(2._wp)
-        ! print*, loc(nodes2vertex == vertex_conn(ii,2))
-        print*,  order(ii), vertex_conn(ii,:), elem_conn(ii,:)
-        print*,
-      enddo
+      ! do ii = 1, num_elements
+      !   cells(ii,:) = pack([( ii, ii = 1, num_nodes )], &
+      !                     nodes2vertex == vertex_conn(ii,1))
+      !   print*, loc(2._wp)
+      !   print*, loc(nodes2vertex == vertex_conn(ii,2))
+      !   print*, vertex_conn(ii,:), cells(ii,:)
+      !   print*,
+      ! enddo
     endif
-    print*,
+    ! print*,
 
-    do ii = 1, size(xcoords)
-      print*, xcoords(ii)
-    enddo
-    print*,
+    ! do ii = 1, size(points)
+    !   print*, points(ii)
+    ! enddo
+    ! print*,
 
     close(unit=21, iostat=ios)
     if ( ios /= 0 ) stop "Error closing file unit 21"
@@ -153,9 +145,9 @@ contains
     return
   end subroutine read_gmsh_file_1D
 
-  subroutine write_out_solution(num_nodes, xcoords, GlobalX)
+  subroutine write_out_solution(num_nodes, points, GlobalX)
     integer,  intent(in)                :: num_nodes
-    real(wp), intent(in), dimension(:)  :: xcoords, GlobalX
+    real(wp), intent(in), dimension(:)  :: points, GlobalX
 
     integer :: ii, ios
 
@@ -166,7 +158,7 @@ contains
     endif
 
     do ii = 1, num_nodes
-      write(21,*) xcoords(ii), GlobalX(ii)
+      write(21,*) points(ii), GlobalX(ii)
     enddo
 
     close(unit=21, iostat=ios)
@@ -181,28 +173,28 @@ contains
 
   subroutine print_header()
 
-    print*,
-    print*, '  _____  ______ _____      _             _     '
-    print*, ' |  __ \|  ____|  __ \    | |           | |    '
-    print*, ' | |__) | |__  | |  | |___| |_ __ _  ___| | __ '
-    print*, ' |  _  /|  __| | |  | / __| __/ _` |/ __| |/ / '
-    print*, ' | | \ \| |____| |__| \__ \ || (_| | (__|   <  '
-    print*, ' |_|  \_\______|_____/|___/\__\__,_|\___|_|\_\ '
-    print*,
-    print*,
-    print*, ' Developed by Chris Coutinho                   '
-    print*,
-
     ! print*,
-    ! print*, '     ____  __________       __             __   '
-    ! print*, '    / __ \/ ____/ __ \_____/ /_____ ______/ /__ '
-    ! print*, '   / /_/ / __/ / / / / ___/ __/ __ `/ ___/ //_/ '
-    ! print*, '  / _, _/ /___/ /_/ (__  ) /_/ /_/ / /__/ ,<    '
-    ! print*, ' /_/ |_/_____/_____/____/\__/\__,_/\___/_/|_|   '
+    ! print*, '  _____  ______ _____      _             _     '
+    ! print*, ' |  __ \|  ____|  __ \    | |           | |    '
+    ! print*, ' | |__) | |__  | |  | |___| |_ __ _  ___| | __ '
+    ! print*, ' |  _  /|  __| | |  | / __| __/ _` |/ __| |/ / '
+    ! print*, ' | | \ \| |____| |__| \__ \ || (_| | (__|   <  '
+    ! print*, ' |_|  \_\______|_____/|___/\__\__,_|\___|_|\_\ '
     ! print*,
     ! print*,
     ! print*, ' Developed by Chris Coutinho                   '
     ! print*,
+
+    print*,
+    print*, '     ____  __________       __             __   '
+    print*, '    / __ \/ ____/ __ \_____/ /_____ ______/ /__ '
+    print*, '   / /_/ / __/ / / / / ___/ __/ __ `/ ___/ //_/ '
+    print*, '  / _, _/ /___/ /_/ (__  ) /_/ /_/ / /__/ ,<    '
+    print*, ' /_/ |_/_____/_____/____/\__/\__,_/\___/_/|_|   '
+    print*,
+    print*,
+    print*, ' Developed by Chris Coutinho                   '
+    print*,
 
     print*, 'No Input file supplied'
     print*,
@@ -211,4 +203,4 @@ contains
 
   end subroutine print_header
 
-end module io
+end module mod_io
