@@ -14,6 +14,25 @@ if [ "$TRAVIS_BRANCH" != "master" ]; then
   exit 0
 fi
 
+if [ "$TRAVIS_PYTHON_VERSION" != "3.4" ]; then
+  echo "Skipping documentation deployment"
+  echo "Only use Python 3..4"
+  exit 0
+fi
+
+
+if [ "$GCC_VERSION" != "7" ]; then
+  echo "Skipping documentation deployment"
+  echo "Only use gcc7"
+  exit 0
+fi
+
+if [ "$BUILD_TYPE" != "Release" ]; then
+  echo "Skipping documentation deployment"
+  echo "Only use Release build"
+  exit 0
+fi
+
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     echo "Skipping documentation deployment"
     echo "Not applicable to pull requests"
