@@ -47,6 +47,12 @@ mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
 	gmsh $(TEST_DIR)/test2D.geo -order 2 -2 -o $(TEST_DIR)/test2D.msh
 
+cleantest: clean
+	$(MAKE) test
+
+cleantest_all: clean
+	$(MAKE) test_all
+
 # Build and test the project
 cmake: $(BLD_DIR)
 	cmake -B$(BLD_DIR) -H. $(CMFLAGS)
