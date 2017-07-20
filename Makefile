@@ -14,8 +14,8 @@ FLIB_SRC_DIR=./src/fortranlib/src
 ###### Compiler options ######
 ##############################
 
-FC:=gfortran
-RM:=rm -rf
+FC := gfortran
+RM := rm -rf
 
 BUILD_TYPE ?= Debug
 PROFILE    ?= OFF

@@ -75,10 +75,10 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
         message (FATAL_ERROR "Minimum required gfortran version is 6.3")
     endif()
 
-    set (USER_COMPILE_FLAGS_DEBUG   "-O0 -cpp --coverage -ffree-form"
-        "-ffree-line-length-none -fbacktrace"
-        "-fstack-protector -fcheck=bounds"
-        "-g"
+    set (USER_COMPILE_FLAGS_DEBUG   "-O0 -cpp --coverage -ffree-form "
+        "-ffree-line-length-none -fbacktrace "
+        "-fstack-protector -fcheck=bounds "
+        "-g "
     )
     string(REPLACE ";" " " USER_COMPILE_FLAGS_DEBUG "${USER_COMPILE_FLAGS_DEBUG}")
 
@@ -91,7 +91,7 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
     set (CMAKE_Fortran_LINK_FLAGS_DEBUG "-O0 --coverage ")
     set (CMAKE_Fortran_LINK_FLAGS_RELEASE "-O3 ")
 
-    set (PROFILE_FLAGS "-p")
+    set (PROFILE_FLAGS "-p ")
 
 endif()
 
