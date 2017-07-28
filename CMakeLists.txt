@@ -43,37 +43,24 @@ cmake_dependent_option(PROFILE
 )
 
 message(STATUS " ")
+message(STATUS "    Compiler: ${CMAKE_Fortran_COMPILER_ID}")
 message(STATUS "    Build Type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "    Profiling: ${PROFILE}")
 message(STATUS "    OpenMP: ${USE_OPENMP}")
+
 
 #-----------------------------------------------------------------------------------
 #                               Set compiler flags
 #-----------------------------------------------------------------------------------
 
-SET(FFLAGS "-std=f2008 -fPIC -fmax-errors=1")
+SET(FFLAGS "-fPIC")
 
-if (CMAKE_Fortran_COMPILER_ID MATCHES Intel)
-    set (USER_COMPILE_FLAGS_DEBUG
-        "-O0 -fpp -assume realloc_lhs -debug -g \
-        -traceback -check all -mcmodel=medium \
-        -fp-stack-check -heap-arrays 1600"
-    )
-    set (USER_COMPILE_FLAGS_RELEASE "-O3 -fpp -assume realloc_lhs -mcmodel=medium \
-        -align array32byte -traceback"
-    )
-    set (CMAKE_Fortran_LINK_FLAGS_DEBUG "")
-    set (CMAKE_Fortran_LINK_FLAGS_RELEASE "")
-
-    set (PROFILE_FLAGS "-p")
-
-    #set (CMAKE_AR xiar)        # for -ipo
-    #set (CMAKE_LINKER xild)    # for -ipo
-
-elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
+if (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
     if (CMAKE_Fortran_COMPILER_VERSION VERSION_LESS 6.3)
         message (FATAL_ERROR "Minimum required gfortran version is 6.3")
     endif()
+
+    set (FFLAGS "-std=f2008 -fmax-errors=1 ${FFLAGS}")
 
     set (USER_COMPILE_FLAGS_DEBUG   "-O0 -cpp --coverage -ffree-form "
         "-ffree-line-length-none -fbacktrace "
@@ -93,6 +80,20 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
 
     set (PROFILE_FLAGS "-p ")
 
+elseif (CMAKE_Fortran_COMPILER_ID MATCHES PGI)
+
+    set (USER_COMPILE_FLAGS_DEBUG   "-O0 -g ")
+    string(REPLACE ";" " " USER_COMPILE_FLAGS_DEBUG "${USER_COMPILE_FLAGS_DEBUG}")
+
+    set (USER_COMPILE_FLAGS_RELEASE "-O4 "
+    )
+    string(REPLACE ";" " " USER_COMPILE_FLAGS_RELEASE "${USER_COMPILE_FLAGS_RELEASE}")
+
+    set (CMAKE_Fortran_LINK_FLAGS_DEBUG "-O0 -g ")
+    set (CMAKE_Fortran_LINK_FLAGS_RELEASE "-O4 ")
+
+    set (PROFILE_FLAGS "-p ")
+
 endif()
 
 # Append user flags to debug and release variables
@@ -107,7 +108,6 @@ if (PROFILE)
 endif()
 
 
-
 #----------------------------------------------------------------------------------------------
 #                                         Find Lapack
 #----------------------------------------------------------------------------------------------
@@ -119,6 +119,7 @@ message(STATUS "    LAPACK Libraries: ")
 foreach (lib ${LAPACK_LIBRARIES})
     message(STATUS "        " ${lib})
 endforeach()
+
 
 #----------------------------------------------------------------------------------------------
 #                                         Find OpenMP
@@ -136,6 +137,7 @@ if (USE_OPENMP)
         set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
     endif()
 endif()
+
 
 #----------------------------------------------------------------------------------------------
 #                                   Add source tree and includes
@@ -167,6 +169,7 @@ foreach( mylib core-shared core-static )
         Fortran_MODULE_DIRECTORY ${mylib}
     )
 endforeach()
+
 
 #----------------------------------------------------------------------------------------------
 #                                       Build Interfaces

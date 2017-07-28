@@ -14,16 +14,14 @@ FLIB_SRC_DIR=./src/fortranlib/src
 ###### Compiler options ######
 ##############################
 
-FC := gfortran
-RM := rm -rf
+FC         ?= gfortran
+RM         := rm -rf
 
 BUILD_TYPE ?= Debug
 PROFILE    ?= OFF
 USE_OPENMP ?= OFF
 
-CMFLAGS= -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
-	-DPROFILE=$(PROFILE) \
-	-DUSE_OPENMP=$(USE_OPENMP)
+CMFLAGS= -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DPROFILE=$(PROFILE) -DCMAKE_Fortran_COMPILER=$(FC)
 
 ##############################
 ######## FORD options ########
