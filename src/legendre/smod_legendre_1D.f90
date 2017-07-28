@@ -22,7 +22,6 @@ submodule (mod_legendre) smod_legendre_1D
   ! ![Quadratic Basis Functions catption](|media|/quadratic_basis.png "Quadratic Basis Functions"){: width="500" }
   ! {: style="text-align: center" }
 
-  use, intrinsic :: iso_fortran_env, only: wp=>real64
   use :: mod_linalg, only: linsolve_quick, eye
   use :: lib_array, only: linspace
   implicit none

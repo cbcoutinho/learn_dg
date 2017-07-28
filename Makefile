@@ -21,7 +21,11 @@ BUILD_TYPE ?= Debug
 PROFILE    ?= OFF
 USE_OPENMP ?= OFF
 
-CMFLAGS= -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DPROFILE=$(PROFILE) -DCMAKE_Fortran_COMPILER=$(FC)
+CMFLAGS= -B$(BLD_DIR) -H. \
+	-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+	-DUSE_OPENMP=$(USE_OPENMP) \
+	-DPROFILE=$(PROFILE) \
+	-DCMAKE_Fortran_COMPILER=$(FC)
 
 ##############################
 ######## FORD options ########
@@ -53,15 +57,15 @@ cleantest_all: clean
 
 # Build and test the project
 cmake: $(BLD_DIR)
-	cmake -B$(BLD_DIR) -H. $(CMFLAGS)
+	cmake $(CMFLAGS)
 	$(MAKE) -C $(BLD_DIR)
 
 cmake_win: $(BLD_DIR)
-	cmake -B$(BLD_DIR) -H. $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-x86_64-w64-mingw32.cmake
+	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-x86_64-w64-mingw32.cmake
 	$(MAKE) -C $(BLD_DIR)
 
 cmake_win32: $(BLD_DIR)
-	cmake -B$(BLD_DIR) -H. $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-i686-w64-mingw32.cmake
+	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-i686-w64-mingw32.cmake
 	$(MAKE) -C $(BLD_DIR)
 
 test: cmake mesh

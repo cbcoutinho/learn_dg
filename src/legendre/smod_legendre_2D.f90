@@ -5,7 +5,6 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 submodule (mod_legendre) smod_legendre_2D
-  use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use             :: mod_linalg, only: linsolve_quick, eye
   use             :: mod_misc, only: r8mat_print
   implicit none
