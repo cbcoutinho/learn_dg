@@ -111,7 +111,7 @@ program driver2D
 
   elem(1,:) = [(ii, ii = 1,N)]
 
-  ! call r8mat_print(size(elem,1), size(elem,2), real(elem, wp), "cells")
+  ! call r8mat_print(size(elem,1), size(elem,2), dble(elem), "cells")
 
   points = getXY(N)
   ! call r8mat_print(size(points,1), size(points,2), points, 'points')

@@ -47,7 +47,7 @@ module mod_legendre
       real(wp), dimension(N+1)      :: row
     end function pascal_1D_line
 
-    module function pascal_2D_quad(N, x, y) result(row)
+    pure module function pascal_2D_quad(N, x, y) result(row)
       integer,  intent(in)          :: N
       real(wp), intent(in)          :: x
       real(wp), intent(in)          :: y
@@ -57,11 +57,16 @@ module mod_legendre
 
   public :: getArow
   interface getArow
-    module function getArow(N, xi, eta) result(row)
+    pure module function getArow1D(N, xi) result(row)
+      integer, intent(in)     :: N
+      real(wp), intent(in)    :: xi
+      real(wp), dimension(N)  :: row
+    end function getArow1D
+    pure module function getArow2D(N, xi, eta) result(row)
       integer, intent(in)     :: N
       real(wp), intent(in)    :: xi, eta
       real(wp), dimension(N)  :: row
-    end function getArow
+    end function getArow2D
   end interface getArow
 
   public :: getAlpha2D

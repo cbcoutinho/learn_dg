@@ -65,9 +65,9 @@ contains
     !     http://www.mathworks.com/matlabcentral/fileexchange/4540
 
     ! Variables in/out
-    integer, intent(in)                 :: num_pts
-    real(wp), intent(in)                :: a, b
-    real(wp), intent(out), dimension(:) :: x, w
+    integer, intent(in)   :: num_pts
+    real(wp), intent(in)  :: a, b
+    real(wp), intent(out) :: x(:), w(:)
 
     ! Local variables
     integer:: ii, jj, N, N1, N2
@@ -84,15 +84,17 @@ contains
     ! Allocate and initialize arrays
     allocate(xu(N1), array1(N1), y(N1), y0(N1))
     allocate(L(N1, N2), Lp(N1, N2), Lpp(N1))
+
     L = 0.0_wp
     Lp = 0.0_wp
+
     call linspace(-1.0_wp, 1.0_wp, xu)
 
     array1 = [ (ii, ii = 0, N) ]
     ! Initial guess of the roots of the Legendre polynomial of order N
-    y = cos((2.0_wp * real(array1,wp) + 1.0_wp) * &
-            pi / (2.0_wp * real(N,wp) + 2.0_wp)) + &
-            (0.27_wp/real(N1,wp)) * sin(pi*xu*real(N,wp)/real(N2,wp))
+    y = cos((2.0_wp * dble(array1) + 1.0_wp) * &
+            pi / (2.0_wp * dble(N) + 2.0_wp)) + &
+            (0.27_wp/dble(N1)) * sin(pi*xu*dble(N)/dble(N2))
 
     y0 = 2.0_wp
 
@@ -104,11 +106,11 @@ contains
       Lp(:, 2) = 1.0_wp
 
       inner: do jj = 2, N1
-        L(:, jj+1) = ( (2.0_wp*real(jj,wp)-1.0_wp) * y * L(:, jj) - &
-                      real(jj-1, wp) * L(:, jj-1)) / real(jj, wp)
+        L(:, jj+1) = ( (2.0_wp*dble(jj)-1.0_wp) * y * L(:, jj) - &
+                      dble(jj-1) * L(:, jj-1)) / dble(jj)
       enddo inner
 
-      Lpp = real(N2,wp) * (L(:,N1) - y * L(:,N2)) / (1.0_wp - y**2.0_wp)
+      Lpp = dble(N2) * (L(:,N1) - y * L(:,N2)) / (1.0_wp - y**2.0_wp)
 
       y0 = y
       y = y0 - L(:,N2)/Lpp
@@ -120,7 +122,7 @@ contains
 
     x = ( a*(1.0_wp-y) + b*(1.0_wp+y) ) / 2.0_wp
     w = ( b-a ) / ((1.0_wp - y**2.0_wp)*Lpp**2.0_wp) * &
-        (real(N2,wp) / real(N1,wp))**2.0_wp
+        (dble(N2) / dble(N1))**2.0_wp
 
     return
   end subroutine lgwt
@@ -136,9 +138,9 @@ contains
     integer:: ii
     real(wp), parameter:: pi = 4._wp*datan(1._wp)
 
-    x = cos( (real(2*[( ii, ii=1,num_pts )]-1, wp) )/real(2*num_pts, wp) * pi)
+    x = cos( (dble(2*[( ii, ii=1,num_pts )]-1) )/dble(2*num_pts) * pi)
 
-    w = pi/real(num_pts,wp) / ((1.0_wp - x**2._wp)**(-0.5_wp))
+    w = pi/dble(num_pts) / ((1.0_wp - x**2._wp)**(-0.5_wp))
 
     ! print*, x
     ! print*, w

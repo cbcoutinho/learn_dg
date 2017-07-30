@@ -84,7 +84,6 @@ plot: cmake tests
 	$(RM) data.out
 
 
-
 # Other
 
 .PHONY: docs

@@ -28,7 +28,7 @@ submodule (mod_legendre) smod_legendre_1D
 
 contains
 
-  pure module function getArow_(N, xi) result(row)
+  pure module function getArow1D(N, xi) result(row)
     integer, intent(in)     :: N
     real(wp), intent(in)    :: xi
     real(wp), dimension(N)  :: row
@@ -36,7 +36,7 @@ contains
     row = pascal_row(N-1, xi)
 
     return
-  end function getArow_
+  end function getArow1D
 
   module function getx(N) result(x)
     integer,  intent(in)      :: N
@@ -74,7 +74,7 @@ contains
       x = getx(N)
 
       do ii = 1,N
-        A(ii,:) = getArow_(N, x(ii))
+        A(ii,:) = getArow1D(N, x(ii))
       enddo
 
       return
@@ -109,24 +109,20 @@ contains
     ! Local variables
     integer :: ii, N
 
-    allocate(y(size(x)), yx(size(x)))
+    allocate(y, mold=x)
+    allocate(yx, mold=x)
+
     N = size(alpha)
     y = 0._wp
 
     do ii = 1+dx, N
 
-      if (dx == 0) then
-        yx = alpha(ii)*x**real(ii-1, wp)
-      elseif (dx == 1) then
-        yx = real(ii-1, wp) * alpha(ii)*(x)**(real(ii-1-dx, wp))
-      else
-        ! NOTE: Can't print because pure function
-        ! print*, 'dx is neither 0 or 1 in basis_1D: ', dx
-        ! print*, 'ERROR'
-      endif
+      yx = dble((ii-1)**dx) * alpha(ii) * x ** dble(ii-1-dx)
 
       y = y + yx
+
     enddo
+
     return
   end function basis_1D
 
