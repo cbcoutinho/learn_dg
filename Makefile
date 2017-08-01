@@ -15,7 +15,6 @@ FLIB_SRC_DIR=./src/fortranlib/src
 ##############################
 
 FC         ?= gfortran
-RM         := rm -rf
 
 BUILD_TYPE ?= Debug
 PROFILE    ?= OFF
@@ -31,8 +30,6 @@ CMFLAGS= -B$(BLD_DIR) -H. \
 ######## FORD options ########
 ##############################
 
-FORD := ford
-
 FORD_FLAGS := -d $(SRC_DIR) \
 	-p $(DOC_DIR)/user-guide \
 	-o $(DOC_DIR)/html
@@ -41,7 +38,7 @@ FORD_FLAGS := -d $(SRC_DIR) \
 ####### Build Recepies #######
 ##############################
 
-default: all
+.PHONY: clean docs
 
 all: cmake
 
@@ -68,36 +65,34 @@ cmake_win32: $(BLD_DIR)
 	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-i686-w64-mingw32.cmake
 	$(MAKE) -C $(BLD_DIR)
 
-test: cmake mesh
+driver: cmake $(BLD_DIR)
 	$(BLD_DIR)/bin/driver1D
 	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
+
+test: cmake mesh driver
 	pytest -vs --cache-clear -m 'not slowtest'
 
-test_all: cmake mesh
-	$(BLD_DIR)/bin/driver1D
-	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
+test_all: cmake mesh driver
 	pytest -vs --cache-clear
 
 # After running one of the tests, plot the output
 plot: cmake tests
 	python test/plotter.py
-	$(RM) data.out
-
+	@rm -rf data.out
 
 # Other
 
-.PHONY: docs
 docs: $(DOC_DIR)/learn_dg.md README.md
 	cp README.md $(DOC_DIR)/README.md
-	$(FORD) $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
-	$(RM) $(DOC_DIR)/README.md
+	@ford $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
+	@rm -rf $(DOC_DIR)/README.md
 
 .ONESHELL:
 $(BLD_DIR):
 	test -d $(BLD_DIR) || mkdir $(BLD_DIR)
 
 clean:
-	$(RM) data.out gmon.out
-	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
-	$(RM) .cache $(TEST_DIR)/__pycache__ $(TEST_DIR)/helpers.pyc
-	$(RM) $(BLD_DIR)
+	@rm -rf data.out gmon.out
+	@rm -rf $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
+	@rm -rf .cache $(TEST_DIR)/__pycache__ $(TEST_DIR)/helpers.pyc
+	@rm -rf $(BLD_DIR)
