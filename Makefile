@@ -15,6 +15,7 @@ FLIB_SRC_DIR=./src/fortranlib/src
 ##############################
 
 FC         ?= gfortran
+RM         := rm -rf
 
 BUILD_TYPE ?= Debug
 PROFILE    ?= OFF
@@ -78,21 +79,21 @@ test_all: cmake mesh driver
 # After running one of the tests, plot the output
 plot: cmake tests
 	python test/plotter.py
-	@rm -rf data.out
+	$(RM) data.out
 
 # Other
 
 docs: $(DOC_DIR)/learn_dg.md README.md
 	cp README.md $(DOC_DIR)/README.md
 	@ford $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
-	@rm -rf $(DOC_DIR)/README.md
+	$(RM) $(DOC_DIR)/README.md
 
 .ONESHELL:
 $(BLD_DIR):
 	test -d $(BLD_DIR) || mkdir $(BLD_DIR)
 
 clean:
-	@rm -rf data.out gmon.out
-	@rm -rf $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
-	@rm -rf .cache $(TEST_DIR)/__pycache__ $(TEST_DIR)/helpers.pyc
-	@rm -rf $(BLD_DIR)
+	$(RM) data.out gmon.out
+	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
+	$(RM) .cache $(TEST_DIR)/__pycache__ $(TEST_DIR)/helpers.pyc
+	$(RM) $(BLD_DIR)
