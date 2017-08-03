@@ -148,8 +148,16 @@ add_subdirectory(src)
 set(LIB_NAME "core")
 message(STATUS " ")
 
-add_library(core-static STATIC ${LIB_SRCS}) # Static library
-add_library(core-shared SHARED ${LIB_SRCS}) # Shared library
+add_library(core-obj OBJECT ${LIB_SRCS}) # Compile object files only once
+set_target_properties( core-obj
+    PROPERTIES
+    COMPILE_FLAGS   "${CMAKE_Fortran_FLAGS}"
+    LINK_FLAGS      "${CMAKE_Fortran_LINK_FLAGS}"
+    POSITION_INDEPENDENT_CODE ON
+)
+
+add_library(core-static STATIC $<TARGET_OBJECTS:core-obj>) # Static library
+add_library(core-shared SHARED $<TARGET_OBJECTS:core-obj>) # Shared library
 
 foreach( mylib core-shared core-static )
     target_link_libraries( ${mylib}
@@ -160,10 +168,7 @@ foreach( mylib core-shared core-static )
     set_target_properties( ${mylib}
         PROPERTIES
         OUTPUT_NAME     ${LIB_NAME}
-        COMPILE_FLAGS   "${CMAKE_Fortran_FLAGS}"
-        LINK_FLAGS      "${CMAKE_Fortran_LINK_FLAGS}"
         Fortran_MODULE_DIRECTORY ${mylib}
-        POSITION_INDEPENDENT_CODE ON
     )
 endforeach()
 
