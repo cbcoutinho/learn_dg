@@ -21,8 +21,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 #                               Set default options
 #-----------------------------------------------------------------------------------
 
-# Set default options
-
 # Default release build
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build. Options are: Debug Release" FORCE)
@@ -52,8 +50,6 @@ message(STATUS "    OpenMP: ${USE_OPENMP}")
 #-----------------------------------------------------------------------------------
 #                               Set compiler flags
 #-----------------------------------------------------------------------------------
-
-SET(FFLAGS "-fPIC")
 
 if (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
     if (CMAKE_Fortran_COMPILER_VERSION VERSION_LESS 6.3)
@@ -167,6 +163,7 @@ foreach( mylib core-shared core-static )
         COMPILE_FLAGS   "${CMAKE_Fortran_FLAGS}"
         LINK_FLAGS      "${CMAKE_Fortran_LINK_FLAGS}"
         Fortran_MODULE_DIRECTORY ${mylib}
+        POSITION_INDEPENDENT_CODE ON
     )
 endforeach()
 
@@ -190,6 +187,7 @@ foreach( SOURCE_FILE ${EXE_SRCS} )
         PROPERTIES
         COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
         LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
+        POSITION_INDEPENDENT_CODE ON
         # Fortran_MODULE_DIRECTORY ${lib_name}
     )
 endforeach( SOURCE_FILE ${EXE_SRCS} )
