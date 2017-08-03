@@ -151,6 +151,7 @@ message(STATUS " ")
 add_library(core-obj OBJECT ${LIB_SRCS}) # Compile object files only once
 set_target_properties( core-obj
     PROPERTIES
+    Fortran_MODULE_DIRECTORY     core-obj
     COMPILE_FLAGS   "${CMAKE_Fortran_FLAGS}"
     LINK_FLAGS      "${CMAKE_Fortran_LINK_FLAGS}"
     POSITION_INDEPENDENT_CODE ON
@@ -168,7 +169,7 @@ foreach( mylib core-shared core-static )
     set_target_properties( ${mylib}
         PROPERTIES
         OUTPUT_NAME     ${LIB_NAME}
-        Fortran_MODULE_DIRECTORY ${mylib}
+        Fortran_MODULE_DIRECTORY core-obj
     )
 endforeach()
 
@@ -186,13 +187,11 @@ foreach( SOURCE_FILE ${EXE_SRCS} )
     string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME} )
     add_executable( ${SOURCE_NAME} ${SOURCE_FILE} )
     target_link_libraries( ${SOURCE_NAME} ${lib_name} )
-    target_include_directories(${SOURCE_NAME} PUBLIC ${CMAKE_BINARY_DIR}/${lib_name})
-    # include_directories(${SOURCE_NAME} ${CMAKE_BINARY_DIR}/${lib_name})
     set_target_properties( ${SOURCE_NAME}
         PROPERTIES
         COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
         LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
         POSITION_INDEPENDENT_CODE ON
-        # Fortran_MODULE_DIRECTORY ${lib_name}
+        Fortran_MODULE_DIRECTORY core-obj
     )
 endforeach( SOURCE_FILE ${EXE_SRCS} )
