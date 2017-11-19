@@ -6,7 +6,8 @@ cmake_minimum_required(VERSION 3.7)
 #-----------------------------------------------------------------------------------
 
 # Includes the cmake_dependent_option macro used in profiling setting below
-include( CMakeDependentOption )
+include(CMakeDependentOption)
+# include(GNUInstallDirs)
 
 include(cmake/macros/add_exe_sources.txt)
 include(cmake/macros/add_lib_sources.txt)
@@ -175,7 +176,7 @@ endforeach()
 
 
 #----------------------------------------------------------------------------------------------
-#                                       Build Interfaces
+#                                       Build Executables
 #----------------------------------------------------------------------------------------------
 # Add driver executable linked to core library
 # add_executable(main ${EXE_SRCS})
