@@ -66,7 +66,7 @@ cmake_win32: $(BLD_DIR)
 	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-i686-w64-mingw32.cmake
 	$(MAKE) -C $(BLD_DIR)
 
-driver: cmake $(BLD_DIR)
+driver: cmake mesh $(BLD_DIR)
 	$(BLD_DIR)/bin/driver1D
 	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
 
