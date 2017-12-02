@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.5% of total for procedures.">19 statements</a>
+	  title=" 2.4% of total for procedures.">18 statements</a>
      </li> 
      
      
@@ -223,11 +223,11 @@
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -237,8 +237,6 @@
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -247,7 +245,9 @@
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -284,8 +284,6 @@
       <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
-      
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
@@ -366,7 +364,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E22"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E21"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -386,7 +384,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>xi</strong></td><td></td>
+  <td><strong>xi</strong></td><td><p>Value of xi coordinate in isoparametric element</p></td>
   
 </tr>
 
@@ -401,7 +399,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>eta</strong></td><td></td>
+  <td><strong>eta</strong></td><td><p>Value of eta coordinate in isoparametric element</p></td>
   
 </tr>
 
@@ -411,12 +409,12 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
   
 <tr>
   
-  <td><span class="anchor" id="variable-xy%7E6"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-xy%7E7"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
   <td>dimension(N,2)</td><td>::</td>
-  <td><strong>xy</strong></td><td></td>
+  <td><strong>xy</strong></td><td><p>Array of x and y coordinates for the element</p></td>
   
 </tr>
 
@@ -431,7 +429,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
   <td></td>
   
   <td>dimension(N,N)</td><td>::</td>
-  <td><strong>alpha</strong></td><td></td>
+  <td><strong>alpha</strong></td><td><p>Array of coefficients used to define basis functions</p></td>
   
 </tr>
 
@@ -447,7 +445,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
     
 	 <h3>Return Value <small><span class="anchor" id="variable-j%7E2"></span>real(kind=wp),
   dimension(2,2)</small></h3>
-    
+    <p>Jacobian of the isoparametric element at (xi,eta)</p>
     
     
      <h3>Calls</h3>
@@ -655,23 +653,20 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
     <span class="c">! * \( x_i \) : X-coordinate of node \(i\)</span>
     <span class="c">! * \( y_i \) : Y-coordinate of node \(i\)</span>
 
-
     <span class="kt">integer</span><span class="p">,</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span>      <span class="c">!! Number of points in element</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xi</span>     <span class="c">!!</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">eta</span>    <span class="c">!!</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xy</span>     <span class="c">!!</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">alpha</span>  <span class="c">!!</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">J</span>      <span class="c">!!</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xi</span>     <span class="c">!! Value of xi coordinate in isoparametric element</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">eta</span>    <span class="c">!! Value of eta coordinate in isoparametric element</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xy</span>     <span class="c">!! Array of x and y coordinates for the element</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">alpha</span>  <span class="c">!! Array of coefficients used to define basis functions</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">J</span>      <span class="c">!! Jacobian of the isoparametric element at (xi,eta)</span>
 
-    <span class="kt">integer</span>                               <span class="kd">::</span> <span class="n">ii</span>     <span class="c">!!</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span>                   <span class="kd">::</span> <span class="n">eps</span> <span class="o">=</span> <span class="nb">epsilon</span><span class="p">(</span><span class="err">0</span><span class="n">e0</span><span class="p">)</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">P</span>      <span class="c">!! Array of</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">P</span>      <span class="c">!! Array of derivatives of each basis function at (xi,eta)</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! Row in element coefficient matrix</span>
 
     <span class="c">! P is a matrix containing derivatives of each basis function at (xi,eta)</span>
     <span class="c">! P = [dN_1/dxi, dN_2/dxi, dN_3/dxi, ...</span>
     <span class="c">!      dN_1/deta, dN_2/deta, dN_3/deta, ...]</span>
-
 
     <span class="n">P</span> <span class="o">=</span> <span class="mf">0._wp</span>
     <span class="n">P</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="o">=</span> <span class="p">[</span><span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="o">+</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span>    <span class="p">)</span> <span class="o">-</span> <span class="p">&amp;</span>
@@ -729,11 +724,11 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -743,8 +738,6 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -753,7 +746,9 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -791,8 +786,6 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -812,7 +805,7 @@ function getJacobian(N, xi, eta, xy, alpha) result(J)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-11-03 21:59  
+             on 2017-12-02 23:20  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

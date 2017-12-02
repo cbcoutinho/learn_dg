@@ -223,11 +223,11 @@
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -237,8 +237,6 @@
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -247,7 +245,9 @@
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -284,8 +284,6 @@
       <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
-      
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
@@ -344,7 +342,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-a%7E4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-a%7E3"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -374,7 +372,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-b%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-b%7E2"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -389,7 +387,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E10"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-x%7E9"></span>real(kind=wp),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -435,23 +433,23 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <path fill="none" stroke="#ff0000" d="M79.7604,-33C88.3822,-33 97.4872,-33 105.993,-33"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="105.998,-36.5001 115.998,-33 105.998,-29.5001 105.998,-36.5001"/>
 </g>
-<!-- dgetrf -->
-<g id="proc~~linsolve_quick~~CallsGraph_node3" class="node"><title>dgetrf</title>
+<!-- dgetrs -->
+<g id="proc~~linsolve_quick~~CallsGraph_node3" class="node"><title>dgetrs</title>
 <polygon fill="#777777" stroke="#777777" points="260,-66 206,-66 206,-42 260,-42 260,-66"/>
-<text text-anchor="middle" x="233" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+<text text-anchor="middle" x="233" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrf -->
-<g id="proc~~linsolve_quick~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<!-- proc~linsolve&#45;&gt;dgetrs -->
+<g id="proc~~linsolve_quick~~CallsGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
 <path fill="none" stroke="#ff0000" d="M170.403,-39.3007C178.481,-41.2284 187.507,-43.3823 196.105,-45.4341"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="195.38,-48.8593 205.919,-47.7761 197.005,-42.0505 195.38,-48.8593"/>
 </g>
-<!-- dgetrs -->
-<g id="proc~~linsolve_quick~~CallsGraph_node4" class="node"><title>dgetrs</title>
+<!-- dgetrf -->
+<g id="proc~~linsolve_quick~~CallsGraph_node4" class="node"><title>dgetrf</title>
 <polygon fill="#777777" stroke="#777777" points="260,-24 206,-24 206,-0 260,-0 260,-24"/>
-<text text-anchor="middle" x="233" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+<text text-anchor="middle" x="233" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
 </g>
-<!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="proc~~linsolve_quick~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
+<!-- proc~linsolve&#45;&gt;dgetrf -->
+<g id="proc~~linsolve_quick~~CallsGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
 <path fill="none" stroke="#ff0000" d="M170.403,-26.6993C178.481,-24.7716 187.507,-22.6177 196.105,-20.5659"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="197.005,-23.9495 205.919,-18.2239 195.38,-17.1407 197.005,-23.9495"/>
 </g>
@@ -545,16 +543,16 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <polygon fill="none" stroke="black" points="183.5,-87 104.5,-87 104.5,-63 183.5,-63 183.5,-87"/>
 <text text-anchor="middle" x="144" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">linsolve_quick</text>
 </g>
-<!-- program~driver2d -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node2" class="node"><title>program~driver2d</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node2"><a xlink:href="../program/driver2d.html" xlink:title="driver2D">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-150 7,-150 7,-126 61,-126 61,-150"/>
-<text text-anchor="middle" x="34" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2D</text>
+<!-- proc~getalpha2d -->
+<g id="proc~~linsolve_quick~~CalledByGraph_node2" class="node"><title>proc~getalpha2d</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node2"><a xlink:href="../proc/getalpha2d.html" xlink:title="getAlpha2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-150 0,-150 0,-126 68,-126 68,-150"/>
+<text text-anchor="middle" x="34" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
 </a>
 </g>
 </g>
-<!-- program~driver2d&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge1" class="edge"><title>program~driver2d&#45;&gt;proc~linsolve_quick</title>
+<!-- proc~getalpha2d&#45;&gt;proc~linsolve_quick -->
+<g id="proc~~linsolve_quick~~CalledByGraph_edge1" class="edge"><title>proc~getalpha2d&#45;&gt;proc~linsolve_quick</title>
 <path fill="none" stroke="#ff0000" d="M55.8235,-125.853C72.1838,-116.309 95.1774,-102.896 113.443,-92.2419"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="115.366,-95.1717 122.24,-87.1097 111.839,-89.1253 115.366,-95.1717"/>
 </g>
@@ -571,29 +569,29 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
 <path fill="none" stroke="#ff0000" d="M68.2848,-89.528C76.5706,-87.9168 85.6232,-86.1566 94.4775,-84.4349"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="95.1903,-87.862 104.338,-82.5175 93.8542,-80.9907 95.1903,-87.862"/>
 </g>
-<!-- proc~getalpha2d -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node4" class="node"><title>proc~getalpha2d</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node4"><a xlink:href="../proc/getalpha2d.html" xlink:title="getAlpha2D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="68,-66 0,-66 0,-42 68,-42 68,-66"/>
-<text text-anchor="middle" x="34" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha2d&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge3" class="edge"><title>proc~getalpha2d&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M68.2848,-60.472C76.5706,-62.0832 85.6232,-63.8434 94.4775,-65.5651"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="93.8542,-69.0093 104.338,-67.4825 95.1903,-62.138 93.8542,-69.0093"/>
-</g>
 <!-- program~driver1d -->
-<g id="proc~~linsolve_quick~~CalledByGraph_node5" class="node"><title>program~driver1d</title>
-<g id="a_proc~~linsolve_quick~~CalledByGraph_node5"><a xlink:href="../program/driver1d.html" xlink:title="driver1D">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-24 7,-24 7,-0 61,-0 61,-24"/>
-<text text-anchor="middle" x="34" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver1D</text>
+<g id="proc~~linsolve_quick~~CalledByGraph_node4" class="node"><title>program~driver1d</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node4"><a xlink:href="../program/driver1d.html" xlink:title="driver1D">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-66 7,-66 7,-42 61,-42 61,-66"/>
+<text text-anchor="middle" x="34" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver1D</text>
 </a>
 </g>
 </g>
 <!-- program~driver1d&#45;&gt;proc~linsolve_quick -->
-<g id="proc~~linsolve_quick~~CalledByGraph_edge4" class="edge"><title>program~driver1d&#45;&gt;proc~linsolve_quick</title>
+<g id="proc~~linsolve_quick~~CalledByGraph_edge3" class="edge"><title>program~driver1d&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M61.1438,-59.0835C71.1868,-61.0363 83.0001,-63.3333 94.4796,-65.5655"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="93.9446,-69.0269 104.429,-67.5001 95.2808,-62.1556 93.9446,-69.0269"/>
+</g>
+<!-- program~driver2d -->
+<g id="proc~~linsolve_quick~~CalledByGraph_node5" class="node"><title>program~driver2d</title>
+<g id="a_proc~~linsolve_quick~~CalledByGraph_node5"><a xlink:href="../program/driver2d.html" xlink:title="driver2D">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="61,-24 7,-24 7,-0 61,-0 61,-24"/>
+<text text-anchor="middle" x="34" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2D</text>
+</a>
+</g>
+</g>
+<!-- program~driver2d&#45;&gt;proc~linsolve_quick -->
+<g id="proc~~linsolve_quick~~CalledByGraph_edge4" class="edge"><title>program~driver2d&#45;&gt;proc~linsolve_quick</title>
 <path fill="none" stroke="#ff0000" d="M55.8235,-24.147C72.1838,-33.6905 95.1774,-47.1035 113.443,-57.7581"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="111.839,-60.8747 122.24,-62.8903 115.366,-54.8283 111.839,-60.8747"/>
 </g>
@@ -724,9 +722,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">linsolve_quick</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-
     <span class="c">! Quick wrapper around linsolve</span>
-
     <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">a</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nrhs</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">b</span>
@@ -780,11 +776,11 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -794,8 +790,6 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -804,7 +798,9 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -842,8 +838,6 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -863,7 +857,7 @@ public subroutine linsolve_quick(n, a, nrhs, b, x)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-11-03 21:59  
+             on 2017-12-02 23:20  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

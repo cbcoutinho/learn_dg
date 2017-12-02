@@ -13,45 +13,35 @@ submodule (mod_assembly) smod_assemble_1D
 contains
 
   module function assembleElementalMatrix1D(N, d1, d2, xy) result(Ie)
-    integer,                  intent(in)  :: N, d1, d2
-    real(wp), dimension(N),   intent(in)  :: xy
-    real(wp), dimension(N,N)              :: Ie
-
-    integer                               :: node1, node2
-    real(wp), dimension(:,:), allocatable :: alpha
-
-    Ie = 0._wp
-
-    call getIe(d1, d2, xy, Ie)
-
-    return
-  end function assembleElementalMatrix1D
-
-  subroutine getIe(dii, djj, points, Ie)
     !*  Routine to calculate the elemental mass/stiffness matrix based on the
     !   derivatives of the basis functions.
     !
     !   Currently only zero-th and first order derivatives are supported. Second
     !   order derivatives need to be reduced to first order derivatives in the
-    !   problem formulation using Green's Theorem
+    !   problem formulation using Green's Theorem (i.e. derivation by parts)
 
-    integer,  intent(in)                    :: dii      !! Derivative of the first basis function
-    integer,  intent(in)                    :: djj      !! Derivative of the second basis function
-    real(wp), intent(in),   dimension(:)    :: points  !! Coordinates of the 1D line element
-    real(wp), intent(out),  dimension(:,:)  :: Ie       !! Output elemental matrix
+    integer,  intent(in)                    :: N        !! Number of nodes in basis function
+    integer,  intent(in)                    :: d1       !! Derivative of the first basis function
+    integer,  intent(in)                    :: d2       !! Derivative of the second basis function
+    real(wp), intent(in),   dimension(N)    :: xy       !! Coordinates of the 1D line element
+    real(wp),               dimension(N,N)  :: Ie       !! Output elemental matrix
 
     integer :: ii, jj, order
-    order = size(points)-1
 
-    do ii = 1, size(points)
-      Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, dii, djj, points), jj = 1, order+1 )]
+    Ie = 0._wp
+
+    order = size(xy)-1
+
+    do ii = 1, size(xy)
+      Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, d1, d2, xy), jj = 1, order+1 )]
     enddo
-    return
-  end subroutine getIe
 
-  function integrate_basis_1d_Ie(N, ii, jj, dii, djj, points) result(integral)
+    return
+  end function assembleElementalMatrix1D
+
+  function integrate_basis_1d_Ie(N, ii, jj, dii, djj, xy) result(integral)
     integer, intent(in)                     :: N, ii, jj, dii, djj
-    real(wp), intent(in), dimension(:)      :: points
+    real(wp), intent(in), dimension(:)      :: xy
     real(wp)                                :: integral
 
     integer :: kk
@@ -64,18 +54,42 @@ contains
 
     Vinv = getAlpha(order+1)
 
-    ! Check to make sure points is an array of size (N+1)
-    if ( size(points) /=  order+1 ) then
-      write(*,*) 'The shape of `points` is outside the acceptable range for a'
+    ! Check to make sure xy is an array of size (N+1)
+    if ( size(xy) /=  order+1 ) then
+      write(*,*) 'The shape of `xy` is outside the acceptable range for a'
       write(*,*) '1D basis function.'
-      write(*,*) 'Shape(points) should be [', 2, order+1, '], not ', shape(points)
+      write(*,*) 'Shape(xy) should be [', 2, order+1, '], not ', shape(xy)
     endif
 
-    call integrate(local_wrapper, -1.0_wp, 1.0_wp, integral)
+    ! call integrate(local_wrapper, [-1.0_wp, 1.0_wp], integral)
+    integral = integrate(local_wrapper, [-1._wp, 1._wp])
 
     return
   contains
-    subroutine XorJ(s, dx, out)
+    pure function local_wrapper(s) result(y)
+      real(wp), intent(in)  :: s(:)
+      real(wp), allocatable :: y(:)
+
+      real(wp), allocatable :: J(:)
+
+      allocate(J, mold=s)
+      allocate(y, mold=s)
+      call XorJ(s, 1, J)
+
+      y = 1.0_wp
+
+      ! Here we have to be careful because J is not always needed in the first
+      ! two function calls. Instead of using if statements, we can use an exponent so that when dx_ == 0, J is 1
+      y = y * basis_1D(s, Vinv(:, basis_num1), dii) / (J**dble(dii))
+      y = y * basis_1D(s, Vinv(:, basis_num2), djj) / (J**dble(djj))
+      y = y * J
+
+      deallocate(J)
+
+      return
+    end function local_wrapper
+
+    pure subroutine XorJ(s, dx, out)
       integer, intent(in)                  :: dx
       real(wp), intent(in),   dimension(:) :: s
       real(wp), intent(out),  dimension(:) :: out
@@ -83,35 +97,12 @@ contains
       integer                              :: ii
 
       out = 0.0_wp
-      do ii = 1, size(points)
-        out = out + basis_1D(s, Vinv(:, ii), dx) * points(ii)
+      do ii = 1, size(xy)
+        out = out + basis_1D(s, Vinv(:, ii), dx) * xy(ii)
       enddo
 
-    end subroutine XorJ
-
-    subroutine local_wrapper(s, y)
-      real(wp), intent(in),   dimension(:)  :: s
-      real(wp), intent(out),  dimension(:)  :: y
-
-      real(wp), dimension(:), allocatable   :: J
-
-      allocate(J(size(s)))
-      call XorJ(s, 1, J)
-
-      ! write(*,*) dii, djj
-
-      y = 1.0_wp
-
-      ! Here we have to be careful because J is not always needed in the first
-      ! two function calls. Instead of using if statements, we can use an exponent so that when dx_ == 0, J is 1
-      y = y * basis_1D(s, Vinv(:, basis_num1), dii) / (J**real(dii,wp))
-      y = y * basis_1D(s, Vinv(:, basis_num2), djj) / (J**real(djj,wp))
-      y = y * J
-
-      deallocate(J)
-
       return
-    end subroutine local_wrapper
+    end subroutine XorJ
   end function integrate_basis_1d_Ie
 
 
@@ -159,7 +150,7 @@ contains
     real(wp), intent(out),  dimension(:,:)  :: GlobalA  !! Global Stiffness matrix
 
     integer               :: ii, num_cells, num_pts
-    real, parameter       :: eps = epsilon(1e0)
+    real(wp), parameter   :: eps = epsilon(1e0)
     real(wp), allocatable :: xy(:), Ie(:,:)
 
     GlobalA   = 0._wp
@@ -177,14 +168,14 @@ contains
 
       xy = points(cells(ii,:))
 
-      call getIe(1, 1, xy, Ie)
+      Ie = assembleElementalMatrix1D(num_pts, 1, 1, xy)
       ! call r8mat_print(num_pts, num_pts, Ie, 'Elemental Stiffness Matrix:')
 
       GlobalA(cells(ii,:), cells(ii,:)) = &
           GlobalA(cells(ii,:), cells(ii,:)) - diff*Ie
 
       if ( abs(vel) .gt. eps ) then
-        call getIe(0, 1, xy, Ie)
+        Ie = assembleElementalMatrix1D(num_pts, 0, 1, xy)
         ! call r8mat_print(num_pts, num_pts, Ie, 'Elemental Stiffness Matrix:')
 
         GlobalA(cells(ii,:), cells(ii,:)) = &

@@ -229,11 +229,11 @@
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -243,8 +243,6 @@
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -253,7 +251,9 @@
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -291,8 +291,6 @@
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -327,16 +325,16 @@
 <polygon fill="none" stroke="black" points="178,-87 120,-87 120,-63 178,-63 178,-87"/>
 <text text-anchor="middle" x="149" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">assemble</text>
 </g>
-<!-- program~driver2d -->
-<g id="interface~~assemble~~CalledByGraph_node2" class="node"><title>program~driver2d</title>
-<g id="a_interface~~assemble~~CalledByGraph_node2"><a xlink:href="../program/driver2d.html" xlink:title="driver2D">
+<!-- program~driver1d -->
+<g id="interface~~assemble~~CalledByGraph_node2" class="node"><title>program~driver1d</title>
+<g id="a_interface~~assemble~~CalledByGraph_node2"><a xlink:href="../program/driver1d.html" xlink:title="driver1D">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="69,-150 15,-150 15,-126 69,-126 69,-150"/>
-<text text-anchor="middle" x="42" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2D</text>
+<text text-anchor="middle" x="42" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver1D</text>
 </a>
 </g>
 </g>
-<!-- program~driver2d&#45;&gt;interface~assemble -->
-<g id="interface~~assemble~~CalledByGraph_edge1" class="edge"><title>program~driver2d&#45;&gt;interface~assemble</title>
+<!-- program~driver1d&#45;&gt;interface~assemble -->
+<g id="interface~~assemble~~CalledByGraph_edge1" class="edge"><title>program~driver1d&#45;&gt;interface~assemble</title>
 <path fill="none" stroke="#ff0000" d="M67.5136,-125.988C72.9992,-123.15 78.7468,-120.057 84,-117 96.9061,-109.489 110.812,-100.481 122.354,-92.7359"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="124.348,-95.6125 130.663,-87.1056 120.421,-89.8175 124.348,-95.6125"/>
 </g>
@@ -366,16 +364,16 @@
 <path fill="none" stroke="#ff0000" d="M83.5957,-62.1191C92.2115,-63.8423 101.279,-65.6558 109.802,-67.3603"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="109.369,-70.843 119.861,-69.3722 110.741,-63.9789 109.369,-70.843"/>
 </g>
-<!-- program~driver1d -->
-<g id="interface~~assemble~~CalledByGraph_node5" class="node"><title>program~driver1d</title>
-<g id="a_interface~~assemble~~CalledByGraph_node5"><a xlink:href="../program/driver1d.html" xlink:title="driver1D">
+<!-- program~driver2d -->
+<g id="interface~~assemble~~CalledByGraph_node5" class="node"><title>program~driver2d</title>
+<g id="a_interface~~assemble~~CalledByGraph_node5"><a xlink:href="../program/driver2d.html" xlink:title="driver2D">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="69,-24 15,-24 15,-0 69,-0 69,-24"/>
-<text text-anchor="middle" x="42" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver1D</text>
+<text text-anchor="middle" x="42" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2D</text>
 </a>
 </g>
 </g>
-<!-- program~driver1d&#45;&gt;interface~assemble -->
-<g id="interface~~assemble~~CalledByGraph_edge4" class="edge"><title>program~driver1d&#45;&gt;interface~assemble</title>
+<!-- program~driver2d&#45;&gt;interface~assemble -->
+<g id="interface~~assemble~~CalledByGraph_edge4" class="edge"><title>program~driver2d&#45;&gt;interface~assemble</title>
 <path fill="none" stroke="#ff0000" d="M67.5136,-24.0121C72.9992,-26.85 78.7468,-29.9428 84,-33 96.9061,-40.511 110.812,-49.5195 122.354,-57.2641"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="120.421,-60.1825 130.663,-62.8944 124.348,-54.3875 120.421,-60.1825"/>
 </g>
@@ -758,11 +756,11 @@ public subroutine assemble2D(points, cells, diff, vel, GlobalA)
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -772,8 +770,6 @@ public subroutine assemble2D(points, cells, diff, vel, GlobalA)
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -782,7 +778,9 @@ public subroutine assemble2D(points, cells, diff, vel, GlobalA)
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -820,8 +818,6 @@ public subroutine assemble2D(points, cells, diff, vel, GlobalA)
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -841,7 +837,7 @@ public subroutine assemble2D(points, cells, diff, vel, GlobalA)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-11-03 21:59  
+             on 2017-12-02 23:20  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

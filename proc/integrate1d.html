@@ -10,7 +10,7 @@
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
 
-    <title>getIe &ndash; learn_dg</title>
+    <title>integrate1D &ndash; learn_dg</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -114,8 +114,8 @@
     
   
   <div class="row">
-    <h1>getIe
-      <small>Subroutine</small>
+    <h1>integrate1D
+      <small>Module Function</small>
     
     </h1>
     
@@ -132,20 +132,20 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.6% of total for procedures.">12 statements</a>
+	  title=" 3.8% of total for procedures.">28 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/smod_assemble_1D.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/mod_integration.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/smod_assemble_1d.f90.html'>smod_assemble_1D.f90</a></li>
+     <li><a href='../sourcefile/mod_integration.f90.html'>mod_integration.f90</a></li>
   
-     <li><a href='../module/smod_assemble_1d.html'>smod_assemble_1D</a></li>
+     <li><a href='../module/mod_integration.html'>mod_integration</a></li>
   
-     <li class="active">getIe</li>
+     <li class="active">integrate1D</li>
   </ol>
 </div>
 </div>
@@ -186,7 +186,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/getie.html#src">getIe</a>
+    <a class="list-group-item" href="../proc/integrate1d.html#src">integrate1D</a>
   </div>
 </div>
 
@@ -223,11 +223,11 @@
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -237,8 +237,6 @@
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -247,7 +245,9 @@
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -285,8 +285,6 @@
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -300,7 +298,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-subroutine getIe(dii, djj, points, Ie)
+private function integrate1D(fun, xbnds) result(result)
     
     
 	 
@@ -309,12 +307,6 @@ subroutine getIe(dii, djj, points, Ie)
   
 
 
-    
-    <p>Routine to calculate the elemental mass/stiffness matrix based on the
-   derivatives of the basis functions.</p>
-<p>Currently only zero-th and first order derivatives are supported. Second
-   order derivatives need to be reduced to first order derivatives in the
-   problem formulation using Green's Theorem</p>
     
 
     <h3>Arguments</h3>
@@ -335,63 +327,42 @@ subroutine getIe(dii, djj, points, Ie)
   
 <tr>
   
-  <td><span class="anchor" id="variable-dii%7E2"></span>integer,</td>
+  <td><span class="anchor" id="variable-fun"></span>procedure(<a href='../interface/fun1d_interf.html'>fun1d_interf</a>)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>fun</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-xbnds"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>dii</strong></td><td><p>Derivative of the first basis function</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-djj%7E2"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>djj</strong></td><td><p>Derivative of the second basis function</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-points%7E4"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>points</strong></td><td><p>Coordinates of the 1D line element</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-ie%7E3"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
-  <td><strong>Ie</strong></td><td><p>Output elemental matrix</p></td>
+  <td><strong>xbnds</strong>(2)</td><td></td>
   
 </tr>
 
 </tbody>
 </table>
 
+    
+    
+    
+    
+    
+    
+    
+	 <h3>Return Value <small><span class="anchor" id="variable-result"></span>real(kind=wp)
+  </small></h3>
     
     
     
@@ -402,101 +373,59 @@ subroutine getIe(dii, djj, points, Ie)
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
-<!-- Title: proc~~getie~~CallsGraph Pages: 1 -->
-<svg id="procgetieCallsGraph" width="641pt" height="73pt"
- viewBox="0.00 0.00 641.00 72.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~getie~~CallsGraph" class="graph" transform="scale(0.983129 0.983129) rotate(0) translate(4 70)">
-<title>proc~~getie~~CallsGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-70 648,-70 648,4 -4,4"/>
-<!-- proc~getie -->
-<g id="proc~~getie~~CallsGraph_node1" class="node"><title>proc~getie</title>
-<polygon fill="none" stroke="black" points="54,-45 0,-45 0,-21 54,-21 54,-45"/>
-<text text-anchor="middle" x="27" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">getIe</text>
-</g>
-<!-- proc~integrate_basis_1d_ie -->
-<g id="proc~~getie~~CallsGraph_node2" class="node"><title>proc~integrate_basis_1d_ie</title>
-<g id="a_proc~~getie~~CallsGraph_node2"><a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="208,-45 90,-45 90,-21 208,-21 208,-45"/>
-<text text-anchor="middle" x="149" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
-</a>
-</g>
-</g>
-<!-- proc~getie&#45;&gt;proc~integrate_basis_1d_ie -->
-<g id="proc~~getie~~CallsGraph_edge6" class="edge"><title>proc~getie&#45;&gt;proc~integrate_basis_1d_ie</title>
-<path fill="none" stroke="#ff0000" d="M54.0382,-33C61.8339,-33 70.7702,-33 79.9628,-33"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="79.9965,-36.5001 89.9964,-33 79.9964,-29.5001 79.9965,-36.5001"/>
-</g>
-<!-- getalpha -->
-<g id="proc~~getie~~CallsGraph_node3" class="node"><title>getalpha</title>
-<polygon fill="#777777" stroke="#777777" points="299,-66 245,-66 245,-42 299,-42 299,-66"/>
-<text text-anchor="middle" x="272" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getalpha</text>
-</g>
-<!-- proc~integrate_basis_1d_ie&#45;&gt;getalpha -->
-<g id="proc~~getie~~CallsGraph_edge4" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;getalpha</title>
-<path fill="none" stroke="#ff0000" d="M208.019,-43.0694C217.161,-44.656 226.378,-46.2556 234.834,-47.7232"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="234.263,-51.1764 244.715,-49.4381 235.46,-44.2795 234.263,-51.1764"/>
-</g>
-<!-- proc~integrate -->
-<g id="proc~~getie~~CallsGraph_node4" class="node"><title>proc~integrate</title>
-<g id="a_proc~~getie~~CallsGraph_node4"><a xlink:href="../proc/integrate.html" xlink:title="integrate">
-<polygon fill="#d9534f" stroke="#d9534f" points="299.5,-24 244.5,-24 244.5,-0 299.5,-0 299.5,-24"/>
-<text text-anchor="middle" x="272" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate</text>
-</a>
-</g>
-</g>
-<!-- proc~integrate_basis_1d_ie&#45;&gt;proc~integrate -->
-<g id="proc~~getie~~CallsGraph_edge5" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;proc~integrate</title>
-<path fill="none" stroke="#ff0000" d="M208.019,-22.9306C216.975,-21.3763 226.003,-19.8094 234.317,-18.3664"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="235.153,-21.7737 244.407,-16.6152 233.956,-14.8768 235.153,-21.7737"/>
+<!-- Title: proc~~integrate1d~~CallsGraph Pages: 1 -->
+<svg id="procintegrate1dCallsGraph" width="420pt" height="32pt"
+ viewBox="0.00 0.00 420.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~integrate1d~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~integrate1d~~CallsGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 416,-28 416,4 -4,4"/>
+<!-- proc~integrate1d -->
+<g id="proc~~integrate1d~~CallsGraph_node1" class="node"><title>proc~integrate1d</title>
+<polygon fill="none" stroke="black" points="68,-24 0,-24 0,-0 68,-0 68,-24"/>
+<text text-anchor="middle" x="34" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">integrate1D</text>
 </g>
 <!-- interface~gaussquad -->
-<g id="proc~~getie~~CallsGraph_node5" class="node"><title>interface~gaussquad</title>
-<g id="a_proc~~getie~~CallsGraph_node5"><a xlink:href="../interface/gaussquad.html" xlink:title="gaussquad">
-<polygon fill="#a7506f" stroke="#a7506f" points="401.5,-24 336.5,-24 336.5,-0 401.5,-0 401.5,-24"/>
-<text text-anchor="middle" x="369" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
+<g id="proc~~integrate1d~~CallsGraph_node2" class="node"><title>interface~gaussquad</title>
+<g id="a_proc~~integrate1d~~CallsGraph_node2"><a xlink:href="../interface/gaussquad.html" xlink:title="gaussquad">
+<polygon fill="#a7506f" stroke="#a7506f" points="169.5,-24 104.5,-24 104.5,-0 169.5,-0 169.5,-24"/>
+<text text-anchor="middle" x="137" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
 </a>
 </g>
 </g>
-<!-- proc~integrate&#45;&gt;interface~gaussquad -->
-<g id="proc~~getie~~CallsGraph_edge3" class="edge"><title>proc~integrate&#45;&gt;interface~gaussquad</title>
-<path fill="none" stroke="#00ffff" d="M299.716,-12C308.009,-12 317.356,-12 326.412,-12"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="326.441,-15.5001 336.441,-12 326.441,-8.5001 326.441,-15.5001"/>
+<!-- proc~integrate1d&#45;&gt;interface~gaussquad -->
+<g id="proc~~integrate1d~~CallsGraph_edge3" class="edge"><title>proc~integrate1d&#45;&gt;interface~gaussquad</title>
+<path fill="none" stroke="#ff0000" d="M68.0712,-12C76.424,-12 85.5018,-12 94.2219,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="94.2293,-15.5001 104.229,-12 94.2292,-8.5001 94.2293,-15.5001"/>
 </g>
 <!-- proc~gaussquad -->
-<g id="proc~~getie~~CallsGraph_node6" class="node"><title>proc~gaussquad</title>
-<g id="a_proc~~getie~~CallsGraph_node6"><a xlink:href="../proc/gaussquad.html" xlink:title="gaussquad">
-<polygon fill="#d9534f" stroke="#d9534f" points="503.5,-24 438.5,-24 438.5,-0 503.5,-0 503.5,-24"/>
-<text text-anchor="middle" x="471" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
+<g id="proc~~integrate1d~~CallsGraph_node3" class="node"><title>proc~gaussquad</title>
+<g id="a_proc~~integrate1d~~CallsGraph_node3"><a xlink:href="../proc/gaussquad.html" xlink:title="gaussquad">
+<polygon fill="#d9534f" stroke="#d9534f" points="271.5,-24 206.5,-24 206.5,-0 271.5,-0 271.5,-24"/>
+<text text-anchor="middle" x="239" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
 </a>
 </g>
 </g>
 <!-- interface~gaussquad&#45;&gt;proc~gaussquad -->
-<g id="proc~~getie~~CallsGraph_edge2" class="edge"><title>interface~gaussquad&#45;&gt;proc~gaussquad</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M401.641,-12C410.031,-12 419.221,-12 428.066,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="428.222,-15.5001 438.222,-12 428.222,-8.5001 428.222,-15.5001"/>
+<g id="proc~~integrate1d~~CallsGraph_edge2" class="edge"><title>interface~gaussquad&#45;&gt;proc~gaussquad</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M169.641,-12C178.031,-12 187.221,-12 196.066,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="196.222,-15.5001 206.222,-12 196.222,-8.5001 196.222,-15.5001"/>
 </g>
 <!-- proc~gaussquad_rosetta -->
-<g id="proc~~getie~~CallsGraph_node7" class="node"><title>proc~gaussquad_rosetta</title>
-<g id="a_proc~~getie~~CallsGraph_node7"><a xlink:href="../proc/gaussquad_rosetta.html" xlink:title="gaussquad_rosetta">
-<polygon fill="#d9534f" stroke="#d9534f" points="644,-24 540,-24 540,-0 644,-0 644,-24"/>
-<text text-anchor="middle" x="592" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad_rosetta</text>
+<g id="proc~~integrate1d~~CallsGraph_node4" class="node"><title>proc~gaussquad_rosetta</title>
+<g id="a_proc~~integrate1d~~CallsGraph_node4"><a xlink:href="../proc/gaussquad_rosetta.html" xlink:title="gaussquad_rosetta">
+<polygon fill="#d9534f" stroke="#d9534f" points="412,-24 308,-24 308,-0 412,-0 412,-24"/>
+<text text-anchor="middle" x="360" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad_rosetta</text>
 </a>
 </g>
 </g>
 <!-- proc~gaussquad&#45;&gt;proc~gaussquad_rosetta -->
-<g id="proc~~getie~~CallsGraph_edge1" class="edge"><title>proc~gaussquad&#45;&gt;proc~gaussquad_rosetta</title>
-<path fill="none" stroke="#ff0000" d="M503.577,-12C511.682,-12 520.68,-12 529.733,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="529.933,-15.5001 539.933,-12 529.933,-8.5001 529.933,-15.5001"/>
+<g id="proc~~integrate1d~~CallsGraph_edge1" class="edge"><title>proc~gaussquad&#45;&gt;proc~gaussquad_rosetta</title>
+<path fill="none" stroke="#ff0000" d="M271.577,-12C279.682,-12 288.68,-12 297.733,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="297.933,-15.5001 307.933,-12 297.933,-8.5001 297.933,-15.5001"/>
 </g>
 </g>
 </svg>
 </div>
-                <script>var panprocgetieCallsGraph = svgPanZoom('#procgetieCallsGraph', {
-                    zoomEnabled: true,
-                    controlIconsEnabled: true,
-                    fit: true,
-                    center: true,});
-                    </script>
                 <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
                 <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg" role="document">
@@ -573,46 +502,91 @@ subroutine getIe(dii, djj, points, Ie)
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
-<!-- Title: proc~~getie~~CalledByGraph Pages: 1 -->
-<svg id="procgetieCalledByGraph" width="246pt" height="74pt"
- viewBox="0.00 0.00 246.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~getie~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
-<title>proc~~getie~~CalledByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-70 242,-70 242,4 -4,4"/>
-<!-- proc~getie -->
-<g id="proc~~getie~~CalledByGraph_node1" class="node"><title>proc~getie</title>
-<polygon fill="none" stroke="black" points="238,-45 184,-45 184,-21 238,-21 238,-45"/>
-<text text-anchor="middle" x="211" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">getIe</text>
+<!-- Title: proc~~integrate1d~~CalledByGraph Pages: 1 -->
+<svg id="procintegrate1dCalledByGraph" width="641pt" height="74pt"
+ viewBox="0.00 0.00 641.00 73.66" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~integrate1d~~CalledByGraph" class="graph" transform="scale(0.995342 0.995342) rotate(0) translate(4 70)">
+<title>proc~~integrate1d~~CalledByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-70 640,-70 640,4 -4,4"/>
+<!-- proc~integrate1d -->
+<g id="proc~~integrate1d~~CalledByGraph_node1" class="node"><title>proc~integrate1d</title>
+<polygon fill="none" stroke="black" points="636,-45 568,-45 568,-21 636,-21 636,-45"/>
+<text text-anchor="middle" x="602" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">integrate1D</text>
+</g>
+<!-- interface~integrate -->
+<g id="proc~~integrate1d~~CalledByGraph_node2" class="node"><title>interface~integrate</title>
+<g id="a_proc~~integrate1d~~CalledByGraph_node2"><a xlink:href="../interface/integrate.html" xlink:title="integrate">
+<polygon fill="#a7506f" stroke="#a7506f" points="531.5,-45 476.5,-45 476.5,-21 531.5,-21 531.5,-45"/>
+<text text-anchor="middle" x="504" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate</text>
+</a>
+</g>
+</g>
+<!-- interface~integrate&#45;&gt;proc~integrate1d -->
+<g id="proc~~integrate1d~~CalledByGraph_edge5" class="edge"><title>interface~integrate&#45;&gt;proc~integrate1d</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M531.741,-33C539.796,-33 548.852,-33 557.694,-33"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="557.901,-36.5001 567.901,-33 557.901,-29.5001 557.901,-36.5001"/>
+</g>
+<!-- proc~integrate_basis_1d_ie -->
+<g id="proc~~integrate1d~~CalledByGraph_node3" class="node"><title>proc~integrate_basis_1d_ie</title>
+<g id="a_proc~~integrate1d~~CalledByGraph_node3"><a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="425,-66 307,-66 307,-42 425,-42 425,-66"/>
+<text text-anchor="middle" x="366" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
+</a>
+</g>
+</g>
+<!-- proc~integrate_basis_1d_ie&#45;&gt;interface~integrate -->
+<g id="proc~~integrate1d~~CalledByGraph_edge3" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;interface~integrate</title>
+<path fill="none" stroke="#ff0000" d="M425.071,-45.0332C439.059,-42.8733 453.62,-40.6249 466.317,-38.6643"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="467.142,-42.0785 476.49,-37.0934 466.073,-35.1605 467.142,-42.0785"/>
+</g>
+<!-- proc~assembleelementalmatrix2d -->
+<g id="proc~~integrate1d~~CalledByGraph_node4" class="node"><title>proc~assembleelementalmatrix2d</title>
+<g id="a_proc~~integrate1d~~CalledByGraph_node4"><a xlink:href="../proc/assembleelementalmatrix2d.html" xlink:title="assembleElementalMatrix2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="440,-24 292,-24 292,-0 440,-0 440,-24"/>
+<text text-anchor="middle" x="366" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix2D</text>
+</a>
+</g>
+</g>
+<!-- proc~assembleelementalmatrix2d&#45;&gt;interface~integrate -->
+<g id="proc~~integrate1d~~CalledByGraph_edge4" class="edge"><title>proc~assembleelementalmatrix2d&#45;&gt;interface~integrate</title>
+<path fill="none" stroke="#ff0000" d="M440.175,-23.2991C449.282,-24.7053 458.264,-26.0922 466.463,-27.3583"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="465.963,-30.8225 476.38,-28.8896 467.032,-23.9045 465.963,-30.8225"/>
 </g>
 <!-- proc~assembleelementalmatrix1d -->
-<g id="proc~~getie~~CalledByGraph_node2" class="node"><title>proc~assembleelementalmatrix1d</title>
-<g id="a_proc~~getie~~CalledByGraph_node2"><a xlink:href="../proc/assembleelementalmatrix1d.html" xlink:title="assembleElementalMatrix1D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="148,-66 0,-66 0,-42 148,-42 148,-66"/>
-<text text-anchor="middle" x="74" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix1D</text>
+<g id="proc~~integrate1d~~CalledByGraph_node5" class="node"><title>proc~assembleelementalmatrix1d</title>
+<g id="a_proc~~integrate1d~~CalledByGraph_node5"><a xlink:href="../proc/assembleelementalmatrix1d.html" xlink:title="assembleElementalMatrix1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="256,-66 108,-66 108,-42 256,-42 256,-66"/>
+<text text-anchor="middle" x="182" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix1D</text>
 </a>
 </g>
 </g>
-<!-- proc~assembleelementalmatrix1d&#45;&gt;proc~getie -->
-<g id="proc~~getie~~CalledByGraph_edge1" class="edge"><title>proc~assembleelementalmatrix1d&#45;&gt;proc~getie</title>
-<path fill="none" stroke="#ff0000" d="M148.032,-42.6395C156.93,-41.2553 165.7,-39.8911 173.716,-38.6442"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="174.425,-42.0761 183.768,-37.0805 173.349,-35.1593 174.425,-42.0761"/>
+<!-- proc~assembleelementalmatrix1d&#45;&gt;proc~integrate_basis_1d_ie -->
+<g id="proc~~integrate1d~~CalledByGraph_edge2" class="edge"><title>proc~assembleelementalmatrix1d&#45;&gt;proc~integrate_basis_1d_ie</title>
+<path fill="none" stroke="#ff0000" d="M256.24,-54C269.489,-54 283.262,-54 296.374,-54"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="296.725,-57.5001 306.725,-54 296.725,-50.5001 296.725,-57.5001"/>
 </g>
 <!-- proc~assemble1d -->
-<g id="proc~~getie~~CalledByGraph_node3" class="node"><title>proc~assemble1d</title>
-<g id="a_proc~~getie~~CalledByGraph_node3"><a xlink:href="../proc/assemble1d.html" xlink:title="assemble1D">
-<polygon fill="#d9534f" stroke="#d9534f" points="110,-24 38,-24 38,-0 110,-0 110,-24"/>
-<text text-anchor="middle" x="74" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble1D</text>
+<g id="proc~~integrate1d~~CalledByGraph_node6" class="node"><title>proc~assemble1d</title>
+<g id="a_proc~~integrate1d~~CalledByGraph_node6"><a xlink:href="../proc/assemble1d.html" xlink:title="assemble1D">
+<polygon fill="#d9534f" stroke="#d9534f" points="72,-66 0,-66 0,-42 72,-42 72,-66"/>
+<text text-anchor="middle" x="36" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble1D</text>
 </a>
 </g>
 </g>
-<!-- proc~assemble1d&#45;&gt;proc~getie -->
-<g id="proc~~getie~~CalledByGraph_edge2" class="edge"><title>proc~assemble1d&#45;&gt;proc~getie</title>
-<path fill="none" stroke="#ff0000" d="M110.117,-17.4627C129.587,-20.4913 153.767,-24.2526 173.459,-27.3159"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="173.169,-30.8128 183.589,-28.8916 174.246,-23.896 173.169,-30.8128"/>
+<!-- proc~assemble1d&#45;&gt;proc~assembleelementalmatrix1d -->
+<g id="proc~~integrate1d~~CalledByGraph_edge1" class="edge"><title>proc~assemble1d&#45;&gt;proc~assembleelementalmatrix1d</title>
+<path fill="none" stroke="#ff0000" d="M72.2264,-54C80.0909,-54 88.7555,-54 97.6575,-54"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="97.779,-57.5001 107.779,-54 97.7789,-50.5001 97.779,-57.5001"/>
 </g>
 </g>
 </svg>
 </div>
+                <script>var panprocintegrate1dCalledByGraph = svgPanZoom('#procintegrate1dCalledByGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
                 <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
                 <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg" role="document">
@@ -708,7 +682,7 @@ subroutine getIe(dii, djj, points, Ie)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/getie.html#src">getIe</a>
+    <a class="list-group-item" href="../proc/integrate1d.html#src">integrate1D</a>
   </div>
 </div>
 
@@ -736,27 +710,56 @@ subroutine getIe(dii, djj, points, Ie)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">getIe</span><span class="p">(</span><span class="n">dii</span><span class="p">,</span> <span class="n">djj</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">Ie</span><span class="p">)</span>
-    <span class="c">!*  Routine to calculate the elemental mass/stiffness matrix based on the</span>
-    <span class="c">!   derivatives of the basis functions.</span>
-    <span class="c">!</span>
-    <span class="c">!   Currently only zero-th and first order derivatives are supported. Second</span>
-    <span class="c">!   order derivatives need to be reduced to first order derivatives in the</span>
-    <span class="c">!   problem formulation using Green&#39;s Theorem</span>
+    <div class="highlight"><pre><span></span>  <span class="k">module function </span><span class="n">integrate1D</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">xbnds</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="k">result</span><span class="p">)</span>
+    <span class="c">! This routine uses gauss-legendre quadrature to integrate a 1D line function</span>
 
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">dii</span>      <span class="c">!! Derivative of the first basis function</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">djj</span>      <span class="c">!! Derivative of the second basis function</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>   <span class="k">dimension</span><span class="p">(:)</span>    <span class="kd">::</span> <span class="n">points</span>  <span class="c">!! Coordinates of the 1D line element</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:,:)</span>  <span class="kd">::</span> <span class="n">Ie</span>       <span class="c">!! Output elemental matrix</span>
+    <span class="c">! Input/Output dummy variables</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">xbnds</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>                <span class="kd">::</span> <span class="k">result</span>
+<span class="k">    procedure</span><span class="p">(</span><span class="n">fun1d_interf</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fun</span>
 
-    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">order</span>
-    <span class="n">order</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">points</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="c">! Local variables</span>
+    <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span>    <span class="kd">::</span> <span class="n">N_start</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="kt">integer</span>               <span class="kd">::</span> <span class="n">N</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">result_old</span><span class="p">,</span> <span class="n">error</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span>   <span class="kd">::</span> <span class="n">eps</span> <span class="o">=</span> <span class="nb">epsilon</span><span class="p">(</span><span class="err">0</span><span class="n">e0</span><span class="p">)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">x</span><span class="p">(:),</span> <span class="n">w</span><span class="p">(:),</span> <span class="n">y</span><span class="p">(:)</span>
 
-    <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
-      <span class="n">Ie</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="p">:)</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">integrate_basis_1d_Ie</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">dii</span><span class="p">,</span> <span class="n">djj</span><span class="p">,</span> <span class="n">points</span><span class="p">),</span> <span class="n">jj</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">order</span><span class="o">+</span><span class="mi">1</span> <span class="p">)]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">N_start</span>
+    <span class="k">result</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
+
+    <span class="k">do</span>
+<span class="k">      </span><span class="n">result_old</span> <span class="o">=</span> <span class="k">result</span>
+
+<span class="k">      allocate</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">w</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+
+      <span class="k">call </span><span class="n">gaussquad</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+
+      <span class="n">y</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="k">result</span> <span class="o">=</span> <span class="nb">dot_product</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+
+      <span class="k">deallocate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+      <span class="c">! error = norm2([result, result_old])</span>
+      <span class="n">error</span> <span class="o">=</span> <span class="nb">sqrt</span><span class="p">((</span><span class="k">result</span><span class="o">-</span><span class="n">result_old</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0_wp</span><span class="p">)</span>
+      <span class="c">! error = abs((result-result_old)/(result_old+eps))</span>
+      <span class="c">! print*, N, result, error</span>
+      <span class="c">! print*, N, result, result_old, error, eps</span>
+
+      <span class="c">! Check if error is acceptable, as well as whether the loop was gone</span>
+      <span class="c">! through at least twice (N = 3, 4, 5...)</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="n">N_start</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">&amp;</span>
+            <span class="nb">norm2</span><span class="p">(</span> <span class="p">[</span> <span class="n">error</span> <span class="p">]</span> <span class="p">)</span> <span class="o">&lt;=</span> <span class="n">eps</span> <span class="p">)</span> <span class="k">then</span>
+        <span class="c">! print&#39;(a,i3,a,e13.5)&#39;,  &#39;Fun integrated in &#39;, N, &amp;</span>
+        <span class="c">!                         &#39; iterations. Error = &#39;, error</span>
+        <span class="k">exit</span>
+<span class="k">      else</span>
+<span class="k">        </span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">endif</span>
     <span class="n">enddo</span>
     <span class="k">return</span>
-<span class="k">  end subroutine </span><span class="n">getIe</span>
+<span class="k">  end function </span><span class="n">integrate1D</span>
 </pre></div>
 
     </section>
@@ -799,11 +802,11 @@ subroutine getIe(dii, djj, points, Ie)
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -813,8 +816,6 @@ subroutine getIe(dii, djj, points, Ie)
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -823,7 +824,9 @@ subroutine getIe(dii, djj, points, Ie)
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -861,8 +864,6 @@ subroutine getIe(dii, djj, points, Ie)
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -882,7 +883,7 @@ subroutine getIe(dii, djj, points, Ie)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-11-03 21:59  
+             on 2017-12-02 23:20  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

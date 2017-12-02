@@ -14,17 +14,21 @@ module mod_linalg
 contains
 
   pure function eye(N)
+    ! Generates an identity matrix of size (N,N)
     integer, intent(in)       :: N
     real(wp), dimension(N,N)  :: eye
 
     integer                   :: ii
 
-    eye = 0._wp; forall(ii = 1:N) eye(ii,ii) = 1._wp
+    eye = 0._wp
+
+    forall(ii = 1:N) eye(ii,ii) = 1._wp
 
     return
   end function eye
 
   pure function inv2(J) result(invJ)
+    ! Computes the inverse of a 2x2 matrix
     real(wp), dimension(2,2), intent(in)  :: J
     real(wp), dimension(2,2)              :: invJ
 
@@ -45,9 +49,7 @@ contains
   end function det2
 
   subroutine linsolve_quick(n, a, nrhs, b, x)
-
     ! Quick wrapper around linsolve
-
     integer,  intent(in)                          :: n, nrhs
     real(wp), intent(in),     dimension(n, n)     :: a
     real(wp), intent(in),     dimension(n, nrhs)  :: b
@@ -61,7 +63,8 @@ contains
   end subroutine linsolve_quick
 
   subroutine linsolve (n, a, nrhs, b, x, LU, P, toggle)
-    ! This routine is a wrapper of dgesv, splitting it into its two primary
+    ! Linsolve is a wrapper of dgesv, the main linear solver routine for general
+    ! dense matrices in LAPACK. This routine splits dgesv into its two primary
     ! components:
     !             dgetrf - Decomposes A into P*L*U
     !             dgetrs - Uses P*L*U to solve for x (Ax=b => (P*L*U)x=b)
@@ -74,8 +77,8 @@ contains
     ! Dummy variables
     integer,  intent(in)                          :: n, nrhs
     integer,  intent(inout),  dimension(n)        :: P
-    real(wp), intent(in),     dimension(n, nrhs)  :: b
     real(wp), intent(in),     dimension(n, n)     :: a
+    real(wp), intent(in),     dimension(n, nrhs)  :: b
     real(wp), intent(out),    dimension(n, nrhs)  :: x
     real(wp), intent(inout),  dimension(n, n)     :: LU
     logical,  intent(in)                          :: toggle

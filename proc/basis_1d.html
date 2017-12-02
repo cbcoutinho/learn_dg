@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.7% of total for procedures.">20 statements</a>
+	  title=" 2.1% of total for procedures.">16 statements</a>
      </li> 
      
      
@@ -223,11 +223,11 @@
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -237,8 +237,6 @@
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -247,7 +245,9 @@
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -284,8 +284,6 @@
       <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
-      
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
@@ -329,7 +327,7 @@ pure function basis_1D(x, alpha, dx) result(y)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E15"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-x%7E14"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -449,24 +447,20 @@ pure function basis_1D(x, alpha, dx) result(y)
     <span class="c">! Local variables</span>
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">N</span>
 
-    <span class="k">allocate</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">yx</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">mold</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">yx</span><span class="p">,</span> <span class="n">mold</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+
     <span class="n">N</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="mf">0._wp</span>
 
     <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span> <span class="n">N</span>
 
-      <span class="k">if</span> <span class="p">(</span><span class="n">dx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">        </span><span class="n">yx</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="kt">real</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span>
-      <span class="n">elseif</span> <span class="p">(</span><span class="n">dx</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">        </span><span class="n">yx</span> <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span> <span class="n">wp</span><span class="p">))</span>
-      <span class="k">else</span>
-        <span class="c">! NOTE: Can&#39;t print because pure function</span>
-        <span class="c">! print*, &#39;dx is neither 0 or 1 in basis_1D: &#39;, dx</span>
-        <span class="c">! print*, &#39;ERROR&#39;</span>
-      <span class="n">endif</span>
+      <span class="n">yx</span> <span class="o">=</span> <span class="nb">dble</span><span class="p">((</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">dx</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="nb">dble</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">dx</span><span class="p">)</span>
 
       <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">yx</span>
+
     <span class="n">enddo</span>
+
     <span class="k">return</span>
 <span class="k">  end function </span><span class="n">basis_1D</span>
 </pre></div>
@@ -511,11 +505,11 @@ pure function basis_1D(x, alpha, dx) result(y)
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -525,8 +519,6 @@ pure function basis_1D(x, alpha, dx) result(y)
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -535,7 +527,9 @@ pure function basis_1D(x, alpha, dx) result(y)
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -573,8 +567,6 @@ pure function basis_1D(x, alpha, dx) result(y)
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -594,7 +586,7 @@ pure function basis_1D(x, alpha, dx) result(y)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-11-03 21:59  
+             on 2017-12-02 23:20  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

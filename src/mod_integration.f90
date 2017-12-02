@@ -5,39 +5,43 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 module mod_integration
-  use, intrinsic :: iso_fortran_env, only: wp=>real64
-  use :: lib_array, only: linspace
+  use, intrinsic  :: iso_fortran_env, only: wp=>real64
+  use             :: lib_array,       only: linspace
   implicit none
 
   private
-  public :: integrate, integrate2D
+  public :: integrate
+  interface integrate
+    module procedure integrate1D
+    module procedure integrate2D
+  end interface integrate
 
   interface
     module function fun2d_interf(x, y) result(z)
-      real(wp), intent(in), dimension(:,:)  :: x, y
-      real(wp), dimension(:,:), allocatable :: z
+      real(wp), intent(in)  :: x(:,:), y(:,:)
+      real(wp), allocatable :: z(:,:)
     end function
 
-    module subroutine sub1d_interf(xx, yy)
-      real(wp), intent(in),   dimension(:) :: xx
-      real(wp), intent(out),  dimension(:) :: yy
-    end subroutine sub1d_interf
+    module function fun1d_interf(xx) result(yy)
+      real(wp), intent(in)  :: xx(:)
+      real(wp), allocatable :: yy(:)
+    end function fun1d_interf
 
     module subroutine gaussquad(N, x, w)
-      integer,  intent(in)                :: N
-      real(wp), intent(out), dimension(N) :: x, w
+      integer,  intent(in)  :: N
+      real(wp), intent(out) :: x(N), w(N)
     end subroutine gaussquad
   end interface
 
 contains
 
-  subroutine integrate(sub, a, b, result)
+  module function integrate1D(fun, xbnds) result(result)
     ! This routine uses gauss-legendre quadrature to integrate a 1D line function
 
-    ! Input/Output variables
-    real(wp), intent(in)    :: a, b
-    real(wp), intent(out)   :: result
-    procedure(sub1d_interf) :: sub
+    ! Input/Output dummy variables
+    real(wp), intent(in)    :: xbnds(2)
+    real(wp)                :: result
+    procedure(fun1d_interf) :: fun
 
     ! Local variables
     integer, parameter    :: N_start = 2
@@ -57,8 +61,8 @@ contains
 
       call gaussquad(N, x, w)
 
-      call sub(x, y)
-      result = sum(y * w)
+      y = fun(x)
+      result = dot_product(y, w)
 
       deallocate(x, w, y)
 
@@ -80,10 +84,11 @@ contains
       endif
     enddo
     return
-  end subroutine integrate
+  end function integrate1D
 
-  function integrate2D(fun) result(out)
+  module function integrate2D(fun, xbnds, ybnds) result(out)
     procedure(fun2d_interf) :: fun
+    real(wp), intent(in)    :: xbnds(2), ybnds(2)
     real(wp)                :: out
 
     integer, parameter                    :: N_start = 4

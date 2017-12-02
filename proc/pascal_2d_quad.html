@@ -223,11 +223,11 @@
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -237,8 +237,6 @@
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -247,7 +245,9 @@
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -285,8 +285,6 @@
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -300,7 +298,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-function pascal_2D_quad(N, x, y) result(row)
+pure function pascal_2D_quad(N, x, y) result(row)
     
     
 	 
@@ -340,7 +338,7 @@ function pascal_2D_quad(N, x, y) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E21"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E20"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -355,7 +353,7 @@ function pascal_2D_quad(N, x, y) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E16"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-x%7E15"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -552,7 +550,7 @@ function pascal_2D_quad(N, x, y) result(row)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">module function </span><span class="n">pascal_2D_quad</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span>  <span class="k">pure module function </span><span class="n">pascal_2D_quad</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
     <span class="c">!*</span>
     <span class="c">! Generates an array of points related to a quadrilateral using Pascal&#39;s</span>
     <span class="c">! triangle in 2D, where rows are 0-indexed</span>
@@ -643,11 +641,11 @@ function pascal_2D_quad(N, x, y) result(row)
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -657,8 +655,6 @@ function pascal_2D_quad(N, x, y) result(row)
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -667,7 +663,9 @@ function pascal_2D_quad(N, x, y) result(row)
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -705,8 +703,6 @@ function pascal_2D_quad(N, x, y) result(row)
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -726,7 +722,7 @@ function pascal_2D_quad(N, x, y) result(row)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-11-03 21:59  
+             on 2017-12-02 23:20  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

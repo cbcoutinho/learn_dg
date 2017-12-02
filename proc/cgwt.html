@@ -223,11 +223,11 @@
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -237,8 +237,6 @@
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -247,7 +245,9 @@
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -284,8 +284,6 @@
       <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
-      
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
@@ -441,9 +439,9 @@ subroutine cgwt(num_pts, x, w)
     <span class="kt">integer</span><span class="kd">::</span> <span class="n">ii</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span><span class="kd">::</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">4._wp</span><span class="o">*</span><span class="nb">datan</span><span class="p">(</span><span class="mf">1._wp</span><span class="p">)</span>
 
-    <span class="n">x</span> <span class="o">=</span> <span class="nb">cos</span><span class="p">(</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">[(</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ii</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">num_pts</span> <span class="p">)]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span> <span class="p">)</span><span class="o">/</span><span class="kt">real</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">num_pts</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">cos</span><span class="p">(</span> <span class="p">(</span><span class="nb">dble</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">[(</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ii</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">num_pts</span> <span class="p">)]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span><span class="o">/</span><span class="nb">dble</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">num_pts</span><span class="p">)</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
 
-    <span class="n">w</span> <span class="o">=</span> <span class="n">pi</span><span class="o">/</span><span class="kt">real</span><span class="p">(</span><span class="n">num_pts</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="mf">1.0_wp</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mf">2._wp</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5_wp</span><span class="p">))</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">pi</span><span class="o">/</span><span class="nb">dble</span><span class="p">(</span><span class="n">num_pts</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="mf">1.0_wp</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mf">2._wp</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5_wp</span><span class="p">))</span>
 
     <span class="c">! print*, x</span>
     <span class="c">! print*, w</span>
@@ -492,11 +490,11 @@ subroutine cgwt(num_pts, x, w)
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -506,8 +504,6 @@ subroutine cgwt(num_pts, x, w)
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -516,7 +512,9 @@ subroutine cgwt(num_pts, x, w)
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -554,8 +552,6 @@ subroutine cgwt(num_pts, x, w)
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -575,7 +571,7 @@ subroutine cgwt(num_pts, x, w)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-11-03 21:59  
+             on 2017-12-02 23:20  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>

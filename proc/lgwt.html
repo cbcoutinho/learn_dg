@@ -223,11 +223,11 @@
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -237,8 +237,6 @@
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -247,7 +245,9 @@
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -284,8 +284,6 @@
       <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
-      
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
       
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
@@ -333,7 +331,7 @@ subroutine lgwt(a, b, num_pts, x, w)
   
 <tr>
   
-  <td><span class="anchor" id="variable-a%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-a%7E2"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -348,7 +346,7 @@ subroutine lgwt(a, b, num_pts, x, w)
   
 <tr>
   
-  <td><span class="anchor" id="variable-b%7E2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-b"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -379,11 +377,11 @@ subroutine lgwt(a, b, num_pts, x, w)
 <tr>
   
   <td><span class="anchor" id="variable-x%7E3"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
+  <td>intent(out)</td>
   <td></td>
   
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td></td>
+  <td></td><td>::</td>
+  <td><strong>x</strong>(:)</td><td></td>
   
 </tr>
 
@@ -394,11 +392,11 @@ subroutine lgwt(a, b, num_pts, x, w)
 <tr>
   
   <td><span class="anchor" id="variable-w%7E2"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
+  <td>intent(out)</td>
   <td></td>
   
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>w</strong></td><td></td>
+  <td></td><td>::</td>
+  <td><strong>w</strong>(:)</td><td></td>
   
 </tr>
 
@@ -569,9 +567,9 @@ subroutine lgwt(a, b, num_pts, x, w)
     <span class="c">!     http://www.mathworks.com/matlabcentral/fileexchange/4540</span>
 
     <span class="c">! Variables in/out</span>
-    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">num_pts</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">x</span><span class="p">,</span> <span class="n">w</span>
+    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">num_pts</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span><span class="p">(:),</span> <span class="n">w</span><span class="p">(:)</span>
 
     <span class="c">! Local variables</span>
     <span class="kt">integer</span><span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">N1</span><span class="p">,</span> <span class="n">N2</span>
@@ -588,15 +586,17 @@ subroutine lgwt(a, b, num_pts, x, w)
     <span class="c">! Allocate and initialize arrays</span>
     <span class="k">allocate</span><span class="p">(</span><span class="n">xu</span><span class="p">(</span><span class="n">N1</span><span class="p">),</span> <span class="n">array1</span><span class="p">(</span><span class="n">N1</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">N1</span><span class="p">),</span> <span class="n">y0</span><span class="p">(</span><span class="n">N1</span><span class="p">))</span>
     <span class="k">allocate</span><span class="p">(</span><span class="n">L</span><span class="p">(</span><span class="n">N1</span><span class="p">,</span> <span class="n">N2</span><span class="p">),</span> <span class="n">Lp</span><span class="p">(</span><span class="n">N1</span><span class="p">,</span> <span class="n">N2</span><span class="p">),</span> <span class="n">Lpp</span><span class="p">(</span><span class="n">N1</span><span class="p">))</span>
+
     <span class="n">L</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
     <span class="n">Lp</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+
     <span class="k">call </span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">xu</span><span class="p">)</span>
 
     <span class="n">array1</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="p">]</span>
     <span class="c">! Initial guess of the roots of the Legendre polynomial of order N</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="nb">cos</span><span class="p">((</span><span class="mf">2.0_wp</span> <span class="o">*</span> <span class="kt">real</span><span class="p">(</span><span class="n">array1</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0_wp</span><span class="p">)</span> <span class="o">*</span> <span class="p">&amp;</span>
-            <span class="n">pi</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0_wp</span> <span class="o">*</span> <span class="kt">real</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.0_wp</span><span class="p">))</span> <span class="o">+</span> <span class="p">&amp;</span>
-            <span class="p">(</span><span class="mf">0.27_wp</span><span class="o">/</span><span class="kt">real</span><span class="p">(</span><span class="n">N1</span><span class="p">,</span><span class="n">wp</span><span class="p">))</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">xu</span><span class="o">*</span><span class="kt">real</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span><span class="o">/</span><span class="kt">real</span><span class="p">(</span><span class="n">N2</span><span class="p">,</span><span class="n">wp</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">cos</span><span class="p">((</span><span class="mf">2.0_wp</span> <span class="o">*</span> <span class="nb">dble</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0_wp</span><span class="p">)</span> <span class="o">*</span> <span class="p">&amp;</span>
+            <span class="n">pi</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0_wp</span> <span class="o">*</span> <span class="nb">dble</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.0_wp</span><span class="p">))</span> <span class="o">+</span> <span class="p">&amp;</span>
+            <span class="p">(</span><span class="mf">0.27_wp</span><span class="o">/</span><span class="nb">dble</span><span class="p">(</span><span class="n">N1</span><span class="p">))</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">xu</span><span class="o">*</span><span class="nb">dble</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">/</span><span class="nb">dble</span><span class="p">(</span><span class="n">N2</span><span class="p">))</span>
 
     <span class="n">y0</span> <span class="o">=</span> <span class="mf">2.0_wp</span>
 
@@ -608,11 +608,11 @@ subroutine lgwt(a, b, num_pts, x, w)
       <span class="n">Lp</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
 
       <span class="n">inner</span><span class="p">:</span> <span class="k">do </span><span class="n">jj</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N1</span>
-        <span class="n">L</span><span class="p">(:,</span> <span class="n">jj</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="mf">2.0_wp</span><span class="o">*</span><span class="kt">real</span><span class="p">(</span><span class="n">jj</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span><span class="o">-</span><span class="mf">1.0_wp</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">L</span><span class="p">(:,</span> <span class="n">jj</span><span class="p">)</span> <span class="o">-</span> <span class="p">&amp;</span>
-                      <span class="kt">real</span><span class="p">(</span><span class="n">jj</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span> <span class="o">*</span> <span class="n">L</span><span class="p">(:,</span> <span class="n">jj</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="kt">real</span><span class="p">(</span><span class="n">jj</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span>
+        <span class="n">L</span><span class="p">(:,</span> <span class="n">jj</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="mf">2.0_wp</span><span class="o">*</span><span class="nb">dble</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="mf">1.0_wp</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">L</span><span class="p">(:,</span> <span class="n">jj</span><span class="p">)</span> <span class="o">-</span> <span class="p">&amp;</span>
+                      <span class="nb">dble</span><span class="p">(</span><span class="n">jj</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">L</span><span class="p">(:,</span> <span class="n">jj</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="nb">dble</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span>
       <span class="n">enddo</span> <span class="n">inner</span>
 
-      <span class="n">Lpp</span> <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">N2</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">L</span><span class="p">(:,</span><span class="n">N1</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span> <span class="o">*</span> <span class="n">L</span><span class="p">(:,</span><span class="n">N2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0_wp</span> <span class="o">-</span> <span class="n">y</span><span class="o">**</span><span class="mf">2.0_wp</span><span class="p">)</span>
+      <span class="n">Lpp</span> <span class="o">=</span> <span class="nb">dble</span><span class="p">(</span><span class="n">N2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">L</span><span class="p">(:,</span><span class="n">N1</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span> <span class="o">*</span> <span class="n">L</span><span class="p">(:,</span><span class="n">N2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0_wp</span> <span class="o">-</span> <span class="n">y</span><span class="o">**</span><span class="mf">2.0_wp</span><span class="p">)</span>
 
       <span class="n">y0</span> <span class="o">=</span> <span class="n">y</span>
       <span class="n">y</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">-</span> <span class="n">L</span><span class="p">(:,</span><span class="n">N2</span><span class="p">)</span><span class="o">/</span><span class="n">Lpp</span>
@@ -624,7 +624,7 @@ subroutine lgwt(a, b, num_pts, x, w)
 
     <span class="n">x</span> <span class="o">=</span> <span class="p">(</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="o">-</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="o">+</span><span class="n">y</span><span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="mf">2.0_wp</span>
     <span class="n">w</span> <span class="o">=</span> <span class="p">(</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span> <span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="mf">1.0_wp</span> <span class="o">-</span> <span class="n">y</span><span class="o">**</span><span class="mf">2.0_wp</span><span class="p">)</span><span class="o">*</span><span class="n">Lpp</span><span class="o">**</span><span class="mf">2.0_wp</span><span class="p">)</span> <span class="o">*</span> <span class="p">&amp;</span>
-        <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">N2</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span> <span class="o">/</span> <span class="kt">real</span><span class="p">(</span><span class="n">N1</span><span class="p">,</span><span class="n">wp</span><span class="p">))</span><span class="o">**</span><span class="mf">2.0_wp</span>
+        <span class="p">(</span><span class="nb">dble</span><span class="p">(</span><span class="n">N2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">dble</span><span class="p">(</span><span class="n">N1</span><span class="p">))</span><span class="o">**</span><span class="mf">2.0_wp</span>
 
     <span class="k">return</span>
 <span class="k">  end subroutine </span><span class="n">lgwt</span>
@@ -670,11 +670,11 @@ subroutine lgwt(a, b, num_pts, x, w)
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
       
+      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
+      
       <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
       
       <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad%7E2.html">gaussquad</a>
       
       <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
       
@@ -684,8 +684,6 @@ subroutine lgwt(a, b, num_pts, x, w)
       
       <a class="list-group-item" href="../interface/getarow.html">getArow</a>
       
-      <a class="list-group-item" href="../proc/getie.html">getIe</a>
-      
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
@@ -694,7 +692,9 @@ subroutine lgwt(a, b, num_pts, x, w)
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
-      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
       
       <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
       
@@ -732,8 +732,6 @@ subroutine lgwt(a, b, num_pts, x, w)
       
       <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
       
-      <a class="list-group-item" href="../interface/sub1d_interf.html">sub1d_interf</a>
-      
       <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
       
     </div>
@@ -753,7 +751,7 @@ subroutine lgwt(a, b, num_pts, x, w)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-11-03 21:59  
+             on 2017-12-02 23:20  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
