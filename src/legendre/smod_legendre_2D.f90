@@ -61,8 +61,8 @@ contains
 
     case default
 
-      ! I should probably changed this to a subroutine and include an output
-      ! error variable
+      ! TODO: I should probably changed this to a subroutine and include an
+      ! output error variable
       xy = 0.d0
 
     end select
