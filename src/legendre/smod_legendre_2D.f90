@@ -5,7 +5,6 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 submodule (mod_legendre) smod_legendre_2D
-  use, intrinsic  :: iso_fortran_env, only: wp=>real64
   use             :: mod_linalg, only: linsolve_quick, eye
   use             :: mod_misc, only: r8mat_print
   implicit none
@@ -62,8 +61,8 @@ contains
 
     case default
 
-      ! I should probably changed this to a subroutine and include an output
-      ! error variable
+      ! TODO: I should probably changed this to a subroutine and include an
+      ! output error variable
       xy = 0.d0
 
     end select
@@ -71,27 +70,24 @@ contains
     return
   end function getXY
 
-  module function getArow(N, xi, eta) result(row)
+  pure module function getArow2D(N, xi, eta) result(row)
     integer, intent(in)     :: N
     real(wp), intent(in)    :: xi, eta
     real(wp), dimension(N)  :: row
 
     select case (N)
     case (4)
-      ! row = pascal_2D_quad(1, xi, eta)
       row = pascal_row(1, xi, eta)
     case (9)
-      ! row = pascal_2D_quad(2, xi, eta)
       row = pascal_row(2, xi, eta)
     case (16)
-      ! row = pascal_2D_quad(3, xi, eta)
       row = pascal_row(3, xi, eta)
     case default
       row = 0.d0
     end select
 
     return
-  end function getArow
+  end function getArow2D
 
   module function getAlpha2D(N) result(alpha)
     integer, intent(in)       :: N
@@ -125,7 +121,7 @@ contains
   end function getAlpha2D
 
   ! module procedure pascal_2D_quad
-  module function pascal_2D_quad(N, x, y) result(row)
+  pure module function pascal_2D_quad(N, x, y) result(row)
     !*
     ! Generates an array of points related to a quadrilateral using Pascal's
     ! triangle in 2D, where rows are 0-indexed
@@ -251,23 +247,20 @@ contains
     ! * \( x_i \) : X-coordinate of node \(i\)
     ! * \( y_i \) : Y-coordinate of node \(i\)
 
-
     integer,                  intent(in)  :: N      !! Number of points in element
-    real(wp),                 intent(in)  :: xi     !!
-    real(wp),                 intent(in)  :: eta    !!
-    real(wp), dimension(N,2), intent(in)  :: xy     !!
-    real(wp), dimension(N,N), intent(in)  :: alpha  !!
-    real(wp), dimension(2,2)              :: J      !!
+    real(wp),                 intent(in)  :: xi     !! Value of xi coordinate in isoparametric element
+    real(wp),                 intent(in)  :: eta    !! Value of eta coordinate in isoparametric element
+    real(wp), dimension(N,2), intent(in)  :: xy     !! Array of x and y coordinates for the element
+    real(wp), dimension(N,N), intent(in)  :: alpha  !! Array of coefficients used to define basis functions
+    real(wp), dimension(2,2)              :: J      !! Jacobian of the isoparametric element at (xi,eta)
 
-    integer                               :: ii     !!
     real(wp), parameter                   :: eps = epsilon(0e0)
-    real(wp), dimension(2,N)              :: P      !! Array of
+    real(wp), dimension(2,N)              :: P      !! Array of derivatives of each basis function at (xi,eta)
     real(wp), dimension(N)                :: x      !! Row in element coefficient matrix
 
     ! P is a matrix containing derivatives of each basis function at (xi,eta)
     ! P = [dN_1/dxi, dN_2/dxi, dN_3/dxi, ...
     !      dN_1/deta, dN_2/deta, dN_3/deta, ...]
-
 
     P = 0._wp
     P(1,:) = [getArow(N, xi+eps, eta    ) - &

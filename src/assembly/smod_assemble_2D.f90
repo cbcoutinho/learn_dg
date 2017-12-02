@@ -5,12 +5,11 @@
 ! Licensed under the BSD-2 clause license. See LICENSE for details.
 
 submodule (mod_assembly) smod_assemble_2D
-  use, intrinsic  :: iso_fortran_env, only: wp=>real64
-  use             :: mod_linalg, only: inv2, det2
-  use             :: mod_misc, only: r8mat_print
-  use             :: mod_legendre, only: getAlpha => getAlpha2D
-  use             :: mod_integration, only: integrate2D
-  use             :: lib_array, only: linspace
+  use, intrinsic  :: iso_fortran_env, only: wp => real64
+  use             :: mod_linalg,      only: inv2, det2
+  use             :: mod_legendre,    only: getAlpha => getAlpha2D
+  use             :: mod_integration, only: integrate
+  use             :: lib_array,       only: linspace
   implicit none
 
 contains
@@ -38,7 +37,7 @@ contains
       inner: do node2 = 1, N
 
         ! fun is now implicitly defined using the following: node1, node2, d1, and d2
-        Ie(node1,node2) = Ie(node1,node2) + integrate2D(fun)
+        Ie(node1,node2) = Ie(node1,node2) + integrate(fun, [-1._wp, 1._wp], [-1._wp, 1._wp])
 
       enddo inner
     enddo outer

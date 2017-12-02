@@ -6,7 +6,8 @@ cmake_minimum_required(VERSION 3.7)
 #-----------------------------------------------------------------------------------
 
 # Includes the cmake_dependent_option macro used in profiling setting below
-include( CMakeDependentOption )
+include(CMakeDependentOption)
+# include(GNUInstallDirs)
 
 include(cmake/macros/add_exe_sources.txt)
 include(cmake/macros/add_lib_sources.txt)
@@ -20,8 +21,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 #-----------------------------------------------------------------------------------
 #                               Set default options
 #-----------------------------------------------------------------------------------
-
-# Set default options
 
 # Default release build
 if(NOT CMAKE_BUILD_TYPE)
@@ -43,42 +42,27 @@ cmake_dependent_option(PROFILE
 )
 
 message(STATUS " ")
+message(STATUS "    Compiler: ${CMAKE_Fortran_COMPILER_ID}")
 message(STATUS "    Build Type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "    Profiling: ${PROFILE}")
 message(STATUS "    OpenMP: ${USE_OPENMP}")
+
 
 #-----------------------------------------------------------------------------------
 #                               Set compiler flags
 #-----------------------------------------------------------------------------------
 
-SET(FFLAGS "-std=f2008 -fPIC -fmax-errors=1")
-
-if (CMAKE_Fortran_COMPILER_ID MATCHES Intel)
-    set (USER_COMPILE_FLAGS_DEBUG
-        "-O0 -fpp -assume realloc_lhs -debug -g \
-        -traceback -check all -mcmodel=medium \
-        -fp-stack-check -heap-arrays 1600"
-    )
-    set (USER_COMPILE_FLAGS_RELEASE "-O3 -fpp -assume realloc_lhs -mcmodel=medium \
-        -align array32byte -traceback"
-    )
-    set (CMAKE_Fortran_LINK_FLAGS_DEBUG "")
-    set (CMAKE_Fortran_LINK_FLAGS_RELEASE "")
-
-    set (PROFILE_FLAGS "-p")
-
-    #set (CMAKE_AR xiar)        # for -ipo
-    #set (CMAKE_LINKER xild)    # for -ipo
-
-elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
+if (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
     if (CMAKE_Fortran_COMPILER_VERSION VERSION_LESS 6.3)
         message (FATAL_ERROR "Minimum required gfortran version is 6.3")
     endif()
 
-    set (USER_COMPILE_FLAGS_DEBUG   "-O0 -cpp --coverage -ffree-form"
-        "-ffree-line-length-none -fbacktrace"
-        "-fstack-protector -fcheck=bounds"
-        "-g"
+    set (FFLAGS "-std=f2008 -fmax-errors=1 ${FFLAGS}")
+
+    set (USER_COMPILE_FLAGS_DEBUG   "-O0 -cpp --coverage -ffree-form "
+        "-ffree-line-length-none -fbacktrace "
+        "-fstack-protector -fcheck=bounds "
+        "-g "
     )
     string(REPLACE ";" " " USER_COMPILE_FLAGS_DEBUG "${USER_COMPILE_FLAGS_DEBUG}")
 
@@ -91,7 +75,21 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
     set (CMAKE_Fortran_LINK_FLAGS_DEBUG "-O0 --coverage ")
     set (CMAKE_Fortran_LINK_FLAGS_RELEASE "-O3 ")
 
-    set (PROFILE_FLAGS "-p")
+    set (PROFILE_FLAGS "-p ")
+
+elseif (CMAKE_Fortran_COMPILER_ID MATCHES PGI)
+
+    set (USER_COMPILE_FLAGS_DEBUG   "-O0 -g ")
+    string(REPLACE ";" " " USER_COMPILE_FLAGS_DEBUG "${USER_COMPILE_FLAGS_DEBUG}")
+
+    set (USER_COMPILE_FLAGS_RELEASE "-O4 "
+    )
+    string(REPLACE ";" " " USER_COMPILE_FLAGS_RELEASE "${USER_COMPILE_FLAGS_RELEASE}")
+
+    set (CMAKE_Fortran_LINK_FLAGS_DEBUG "-O0 -g ")
+    set (CMAKE_Fortran_LINK_FLAGS_RELEASE "-O4 ")
+
+    set (PROFILE_FLAGS "-p ")
 
 endif()
 
@@ -107,7 +105,6 @@ if (PROFILE)
 endif()
 
 
-
 #----------------------------------------------------------------------------------------------
 #                                         Find Lapack
 #----------------------------------------------------------------------------------------------
@@ -119,6 +116,7 @@ message(STATUS "    LAPACK Libraries: ")
 foreach (lib ${LAPACK_LIBRARIES})
     message(STATUS "        " ${lib})
 endforeach()
+
 
 #----------------------------------------------------------------------------------------------
 #                                         Find OpenMP
@@ -137,6 +135,7 @@ if (USE_OPENMP)
     endif()
 endif()
 
+
 #----------------------------------------------------------------------------------------------
 #                                   Add source tree and includes
 #----------------------------------------------------------------------------------------------
@@ -150,8 +149,17 @@ add_subdirectory(src)
 set(LIB_NAME "core")
 message(STATUS " ")
 
-add_library(core-static STATIC ${LIB_SRCS}) # Static library
-add_library(core-shared SHARED ${LIB_SRCS}) # Shared library
+add_library(core-obj OBJECT ${LIB_SRCS}) # Compile object files only once
+set_target_properties( core-obj
+    PROPERTIES
+    Fortran_MODULE_DIRECTORY     core-obj
+    COMPILE_FLAGS   "${CMAKE_Fortran_FLAGS}"
+    LINK_FLAGS      "${CMAKE_Fortran_LINK_FLAGS}"
+    POSITION_INDEPENDENT_CODE ON
+)
+
+add_library(core-static STATIC $<TARGET_OBJECTS:core-obj>) # Static library
+add_library(core-shared SHARED $<TARGET_OBJECTS:core-obj>) # Shared library
 
 foreach( mylib core-shared core-static )
     target_link_libraries( ${mylib}
@@ -162,31 +170,29 @@ foreach( mylib core-shared core-static )
     set_target_properties( ${mylib}
         PROPERTIES
         OUTPUT_NAME     ${LIB_NAME}
-        COMPILE_FLAGS   "${CMAKE_Fortran_FLAGS}"
-        LINK_FLAGS      "${CMAKE_Fortran_LINK_FLAGS}"
-        Fortran_MODULE_DIRECTORY ${mylib}
+        Fortran_MODULE_DIRECTORY core-obj
     )
 endforeach()
 
+
 #----------------------------------------------------------------------------------------------
-#                                       Build Interfaces
+#                                       Build Executables
 #----------------------------------------------------------------------------------------------
 # Add driver executable linked to core library
 # add_executable(main ${EXE_SRCS})
 
-# set (lib_name core-static)
-set (lib_name core-shared)
+set (lib_name core-static)
+# set (lib_name core-shared)
 foreach( SOURCE_FILE ${EXE_SRCS} )
     string( REPLACE ".f90" "" SOURCE_NAME ${SOURCE_FILE} )
     string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME} )
     add_executable( ${SOURCE_NAME} ${SOURCE_FILE} )
     target_link_libraries( ${SOURCE_NAME} ${lib_name} )
-    target_include_directories(${SOURCE_NAME} PUBLIC ${CMAKE_BINARY_DIR}/${lib_name})
-    # include_directories(${SOURCE_NAME} ${CMAKE_BINARY_DIR}/${lib_name})
     set_target_properties( ${SOURCE_NAME}
         PROPERTIES
         COMPILE_FLAGS "${CMAKE_Fortran_FLAGS}"
         LINK_FLAGS    "${CMAKE_Fortran_LINK_FLAGS}"
-        # Fortran_MODULE_DIRECTORY ${lib_name}
+        POSITION_INDEPENDENT_CODE ON
+        Fortran_MODULE_DIRECTORY core-obj
     )
 endforeach( SOURCE_FILE ${EXE_SRCS} )
