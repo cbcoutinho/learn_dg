@@ -87,8 +87,8 @@ install:
   - mkdir -p $TRAVIS_BUILD_DIR/bin
   - which "gfortran-$GCC_VERSION"
   - ln -sf "$(which gfortran-$GCC_VERSION)" $TRAVIS_BUILD_DIR/bin/gfortran
-  - which gfortran
   - export PATH=$TRAVIS_BUILD_DIR/bin:$PATH
+  - which gfortran
   - export FC=gfortran
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir -p "${DEPS_DIR}" && cd "${DEPS_DIR}"
