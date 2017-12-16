@@ -33,4 +33,6 @@ gmon.out
 # CMake-related files/directories
 build
 test/venv
+
+# Ctags file
 tags
