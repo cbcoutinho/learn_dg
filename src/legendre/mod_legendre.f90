@@ -23,20 +23,20 @@ module mod_legendre
 
   public :: getXY
   interface getXY
-    pure module function getXY(N) result(xy)
+    pure module function getXY_2D(N) result(xy)
       integer,  intent(in)          :: N
       real(wp), dimension(N,2)      :: xy
-    end function
+    end function getXY_2D
   end interface getXY
 
   public :: pascal_single_row
   interface pascal_single_row
-    pure module function pascal_2D_row(N, x, y) result(row)
+    pure module function pascal_row_2D(N, x, y) result(row)
       integer,  intent(in)      :: N
       real(wp), intent(in)      :: x
       real(wp), intent(in)      :: y
       real(wp), dimension(N+1)  :: row
-    end function pascal_2D_row
+    end function pascal_row_2D
   end interface pascal_single_row
 
   public :: pascal_row
