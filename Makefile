@@ -77,9 +77,8 @@ test_all: cmake mesh driver
 	pytest -vs --cache-clear
 
 # After running one of the tests, plot the output
-plot: cmake tests
-	python test/plotter.py
-	$(RM) data.out
+plot: cmake driver
+	python3 test/plotter.py
 
 # Other
 
