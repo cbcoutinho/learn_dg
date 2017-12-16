@@ -11,7 +11,7 @@ submodule (mod_legendre) smod_legendre_2D
 
 contains
 
-    pure function getXY_2D(N) result(xy)
+    pure module function getXY_2D(N) result(xy)
         integer,  intent(in)      :: N
         real(wp), dimension(N,2)  :: xy
 

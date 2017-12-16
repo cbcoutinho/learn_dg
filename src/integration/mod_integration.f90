@@ -73,8 +73,8 @@ contains
             ! print*, N, result, error
             ! print*, N, result, result_old, error, eps
 
-            ! Check if error is acceptable, as well as whether the loop was gone
-            ! through at least twice (N = 3, 4, 5...)
+            ! Check if error is acceptable, as well as whether the loop
+            ! was gone through at least twice (N = 3, 4, 5...)
             if ( N > N_start .and. &
                 norm2( [ error ] ) <= eps ) then
                 ! print'(a,i3,a,e13.5)',  'Fun integrated in ', N, &
