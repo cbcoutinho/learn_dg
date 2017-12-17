@@ -124,12 +124,12 @@ contains
             wx = spread(w, dim=1, ncopies=N)
             wy = spread(w, dim=2, ncopies=N)
 
-            ! Calculate the function at the xx and yy nodes, and multiply the result
-            ! with the weights: wx and wy
+            ! Calculate the function at the xx and yy nodes, and
+            ! multiply the result with the weights: wx and wy
             out_spread = fun(xx, yy) * wx * wy
 
             ! Sum up the resulting array into a single scalar output
-            out = sum(reshape(out_spread, [N*N,1] ))
+            out = sum(reshape( out_spread, [N*N,1] ))
             ! print*, out
 
             ! Set error if ii > 1

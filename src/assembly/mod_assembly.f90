@@ -28,7 +28,8 @@ module mod_assembly
 
     public :: initialize_global_mats
     interface initialize_global_mats
-        module subroutine initialize_global_mats(num_nodes, &
+        module subroutine initialize_global_mats( &
+                num_nodes, &
                 GlobalA, &
                 GlobalB, &
                 GlobalX)
