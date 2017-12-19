@@ -33,7 +33,7 @@ env:
   - BUILD_TYPE=Debug GCC_VERSION=7 USE_OPENMP=ON OMP_NUM_THREADS=4
   - BUILD_TYPE=Release GCC_VERSION=7 USE_OPENMP=ON OMP_NUM_THREADS=4
 
-addon: &gfortran7
+addons: &gfortran7
   apt:
     packages:
       - gfortran7
