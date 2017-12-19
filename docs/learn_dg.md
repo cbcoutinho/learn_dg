@@ -2,9 +2,9 @@
 project: learn_dg
 summary: A small project to learn the Discontinuous Galerkin finite element method
 author: Chris Coutinho
-exclude_dir: ./src/fortranlib
-             ./src/fortranlib/src
-             ./src/fortranlib/templates
+exclude_dir: ../src/fortranlib
+             ../src/fortranlib/src
+             ../src/fortranlib/templates
 project_github: https://github.com/cbcoutinho/learn_dg
 github: https://github.com/cbcoutinho
 linkedin: https://www.linkedin.com/in/cbcoutinho

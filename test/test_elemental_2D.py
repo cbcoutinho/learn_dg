@@ -76,26 +76,30 @@ def generate_Single2D_quad(request):
         Ie
     )
 
-    left_list = np.unique(
-        cells[line_type][
-            cell_data[line_type]['physical'] == field_data['left'][0]
-        ]).tolist()
-    right_list = np.unique(
-        cells[line_type][
-            cell_data[line_type]['physical'] == field_data['right'][0]
-        ]).tolist()
+    mydict = {}
+    for side in ['left', 'right']:
+        if type(field_data[side]) is list:
+            query = field_data[side][0]
+        else:
+            query = field_data[side]
 
-    assert len(left_list) > 0, "Left List has length 0!"
-    assert len(right_list) > 0, "Right List has length 0!"
+        mydict[side] = np.unique(
+            cells[line_type][
+                cell_data[line_type]['physical'] == query
+            ]
+        ).tolist()
+
+    assert len(mydict['left']) > 0, "Left List has length 0!"
+    assert len(mydict['right']) > 0, "Right List has length 0!"
 
     # Set boundary condtions in Ie matrix
     # for ii in [0, 1, 2, 3, 5, 7]:
-    for ii in left_list + right_list:
+    for ii in mydict['left'] + mydict['right']:
         Ie[ii,:] = 0.; Ie[ii,ii] = 1.
 
     # Set boundary condtions in RHS vector
     b = np.zeros((num_pts,))
-    for ii in left_list:
+    for ii in mydict['left']:
         b[ii] = 1.
 
     # Calculate condition number

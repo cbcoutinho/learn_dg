@@ -1,0 +1,7 @@
+pytest
+git+git://github.com/cbcoutinho/ford@fix_relpath_abspath
+meshio==1.9.4
+graphviz
+
+# matplotlib because test/test_*.py imports it
+matplotlib

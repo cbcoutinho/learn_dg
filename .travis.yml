@@ -14,9 +14,9 @@ notifications:
 
 cache:
   apt: true
-  pip: true
-    - $HOME/.cache/pip
-    - $HOME/.local
+  pip: false
+    #- $HOME/.cache/pip
+    #- $HOME/.local
   directories:
     - ${TRAVIS_BUILD_DIR}/deps/cmake
 
@@ -79,11 +79,12 @@ before_install:
   - chmod 600 .deploy_key
 
 install:
-  - pip install --upgrade graphviz
-  - pip install --upgrade meshio
-  - pip install --upgrade ford
-  - pip install --upgrade pytest
-  - pip install --upgrade matplotlib
+  #- pip install --upgrade graphviz
+  #- pip install --upgrade meshio
+  #- pip install --upgrade ford
+  #- pip install --upgrade pytest
+  #- pip install --upgrade matplotlib
+  - pip install -r requirements.txt
   - mkdir -p $TRAVIS_BUILD_DIR/bin
   - which "gfortran-$GCC_VERSION"
   - ln -sf "$(which gfortran-$GCC_VERSION)" $TRAVIS_BUILD_DIR/bin/gfortran
