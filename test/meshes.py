@@ -1,8 +1,21 @@
+"""
+All of these meshes were created using either the test1D.geo or
+test2D.geo files in the test directory. To create a mesh using
+`gmsh`, calculate the following from the main source dir:
+
+    $ gmsh test/test2D.geo -order 5 -2
+
+This will create a test/test2D.msh file. Steps are similar for
+other orders of quadrilaterals, etc.
+"""
+
 import textwrap
+
+""" Global 1D meshes """
 
 def mesh_Linear1DAdvDiffEqual():
 
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -119,7 +132,7 @@ def mesh_Linear1DAdvDiffEqual():
     53 1 2 0 1 52 53
     54 1 2 0 1 53 2
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -127,7 +140,7 @@ def mesh_Linear1DAdvDiffEqual():
 
 def mesh_Quad1DAdvDiffEqual():
 
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -218,7 +231,7 @@ def mesh_Quad1DAdvDiffEqual():
     27 8 2 0 1 26 27 52
     28 8 2 0 1 27 2 53
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -226,7 +239,7 @@ def mesh_Quad1DAdvDiffEqual():
 
 def mesh_Cub1DAdvDiffEqual():
 
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -343,15 +356,225 @@ def mesh_Cub1DAdvDiffEqual():
     27 26 2 0 1 26 27 76 77
     28 26 2 0 1 27 2 78 79
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
     return gmsh_buffer
 
+""" Single 2D meshes """
+
+def mesh_Single2D_quadquad():
+
+    gmsh_buffer = """\
+    $MeshFormat
+    2.2 0 8
+    $EndMeshFormat
+    $PhysicalNames
+    5
+    1 1 "lower"
+    1 2 "right"
+    1 3 "upper"
+    1 4 "left"
+    2 5 "domain"
+    $EndPhysicalNames
+    $Nodes
+    9
+    1 0 0 0
+    2 1 0 0
+    3 1 1 0
+    4 0 1 0
+    5 0.5 0 0
+    6 1 0.5 0
+    7 0.5 1 0
+    8 0 0.5 0
+    9 0.5 0.5 0
+    $EndNodes
+    $Elements
+    5
+    1 8 2 1 1 1 2 5
+    2 8 2 2 2 2 3 6
+    3 8 2 3 3 3 4 7
+    4 8 2 4 4 4 1 8
+    7 10 2 5 1 1 2 3 4 5 6 7 8 9
+    $EndElements
+    """
+
+    gmsh_buffer = textwrap.dedent(gmsh_buffer)
+
+    return gmsh_buffer
+
+def mesh_Single2D_cubquad():
+
+    gmsh_buffer = """\
+    $MeshFormat
+    2.2 0 8
+    $EndMeshFormat
+    $PhysicalNames
+    5
+    1 1 "lower"
+    1 2 "right"
+    1 3 "upper"
+    1 4 "left"
+    2 5 "domain"
+    $EndPhysicalNames
+    $Nodes
+    16
+    1 0 0 0
+    2 1 0 0
+    3 1 1 0
+    4 0 1 0
+    5 0.3333333333333333 0 0
+    6 0.6666666666666667 0 0
+    7 1 0.3333333333333333 0
+    8 1 0.6666666666666667 0
+    9 0.6666666666666667 1 0
+    10 0.3333333333333333 1 0
+    11 0 0.6666666666666667 0
+    12 0 0.3333333333333333 0
+    13 0.3333333333333333 0.3333333333333333 0
+    14 0.6666666666666667 0.3333333333333333 0
+    15 0.6666666666666667 0.6666666666666667 0
+    16 0.3333333333333333 0.6666666666666667 0
+    $EndNodes
+    $Elements
+    5
+    1 26 2 1 1 1 2 5 6
+    2 26 2 2 2 2 3 7 8
+    3 26 2 3 3 3 4 9 10
+    4 26 2 4 4 4 1 11 12
+    7 36 2 5 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+    $EndElements
+    """
+
+    gmsh_buffer = textwrap.dedent(gmsh_buffer)
+
+    return gmsh_buffer
+
+def mesh_Single2D_quarquad():
+
+    gmsh_buffer="""\
+    $MeshFormat
+    2.2 0 8
+    $EndMeshFormat
+    $PhysicalNames
+    5
+    1 1 "lower"
+    1 2 "right"
+    1 3 "upper"
+    1 4 "left"
+    2 5 "domain"
+    $EndPhysicalNames
+    $Nodes
+    81
+    1 0 0 0
+    2 1 0 0
+    3 1 1 0
+    4 0 1 0
+    5 0.499999999998694 0 0
+    6 0.124999999999778 0 0
+    7 0.2499999999994167 0 0
+    8 0.3749999999990553 0 0
+    9 0.6249999999990205 0 0
+    10 0.749999999999347 0 0
+    11 0.8749999999996735 0 0
+    12 1 0.499999999998694 0
+    13 1 0.124999999999778 0
+    14 1 0.2499999999994167 0
+    15 1 0.3749999999990553 0
+    16 1 0.6249999999990205 0
+    17 1 0.749999999999347 0
+    18 1 0.8749999999996735 0
+    19 0.5000000000020591 1 0
+    20 0.8750000000003566 1 0
+    21 0.7500000000008733 1 0
+    22 0.6250000000015228 1 0
+    23 0.3750000000015443 1 0
+    24 0.2500000000010296 1 0
+    25 0.1250000000005148 1 0
+    26 0 0.5000000000020591 0
+    27 0 0.8750000000003566 0
+    28 0 0.7500000000008733 0
+    29 0 0.6250000000015228 0
+    30 0 0.3750000000015443 0
+    31 0 0.2500000000010296 0
+    32 0 0.1250000000005148 0
+    33 0.5000000000003766 0.5000000000003766 0
+    34 0.4999999999991147 0.1250000000000941 0
+    35 0.4999999999995353 0.2500000000001883 0
+    36 0.4999999999999559 0.3750000000002824 0
+    37 0.3750000000002824 0.5000000000007973 0
+    38 0.2500000000001883 0.5000000000012179 0
+    39 0.1250000000000941 0.5000000000016385 0
+    40 0.1249999999998568 0.1250000000004091 0
+    41 0.374999999999362 0.1250000000001989 0
+    42 0.3749999999999754 0.3750000000005972 0
+    43 0.1250000000000152 0.3750000000012285 0
+    44 0.2499999999996095 0.1250000000003041 0
+    45 0.3749999999996689 0.2500000000003982 0
+    46 0.2499999999999954 0.375000000000913 0
+    47 0.124999999999936 0.2500000000008189 0
+    48 0.2499999999998024 0.2500000000006086 0
+    49 0.5000000000007973 0.6250000000002824 0
+    50 0.5000000000012179 0.7500000000001883 0
+    51 0.5000000000016385 0.8750000000000941 0
+    52 0.1250000000001991 0.6250000000012115 0
+    53 0.3750000000005979 0.6250000000005911 0
+    54 0.3750000000012286 0.875000000000158 0
+    55 0.1250000000004097 0.8750000000002901 0
+    56 0.2500000000003986 0.6250000000009015 0
+    57 0.3750000000009135 0.7500000000003584 0
+    58 0.2500000000008193 0.8750000000002242 0
+    59 0.1250000000003044 0.750000000000701 0
+    60 0.250000000000609 0.7500000000005298 0
+    61 0.8750000000000941 0.4999999999991147 0
+    62 0.7500000000001883 0.4999999999995353 0
+    63 0.6250000000002824 0.4999999999999559 0
+    64 0.6249999999993349 0.1250000000000147 0
+    65 0.8749999999997776 0.1249999999998566 0
+    66 0.8749999999999873 0.3749999999993615 0
+    67 0.6249999999999665 0.3749999999999752 0
+    68 0.7499999999995564 0.1249999999999357 0
+    69 0.8749999999998831 0.2499999999996092 0
+    70 0.7499999999999771 0.3749999999996685 0
+    71 0.6249999999996507 0.249999999999995 0
+    72 0.7499999999997669 0.2499999999998022 0
+    73 0.6250000000005915 0.6249999999999656 0
+    74 0.8750000000001588 0.6249999999993346 0
+    75 0.8750000000002894 0.8749999999997766 0
+    76 0.6250000000012124 0.874999999999988 0
+    77 0.7500000000003588 0.6249999999996503 0
+    78 0.8750000000002246 0.7499999999995559 0
+    79 0.7500000000007013 0.8749999999998826 0
+    80 0.6250000000009021 0.749999999999977 0
+    81 0.7500000000005302 0.7499999999997666 0
+    $EndNodes
+    $Elements
+    12
+    1 27 2 1 1 1 5 6 7 8
+    2 27 2 1 1 5 2 9 10 11
+    3 27 2 2 2 2 12 13 14 15
+    4 27 2 2 2 12 3 16 17 18
+    5 27 2 3 3 3 19 20 21 22
+    6 27 2 3 3 19 4 23 24 25
+    7 27 2 4 4 4 26 27 28 29
+    8 27 2 4 4 26 1 30 31 32
+    9 37 2 5 1 1 5 33 26 6 7 8 34 35 36 37 38 39 30 31 32 40 41 42 43 44 45 46 47 48
+    10 37 2 5 1 26 33 19 4 39 38 37 49 50 51 23 24 25 27 28 29 52 53 54 55 56 57 58 59 60
+    11 37 2 5 1 5 2 12 33 9 10 11 13 14 15 61 62 63 36 35 34 64 65 66 67 68 69 70 71 72
+    12 37 2 5 1 33 12 3 19 63 62 61 16 17 18 20 21 22 51 50 49 73 74 75 76 77 78 79 80 81
+    $EndElements
+    """
+
+    gmsh_buffer = textwrap.dedent(gmsh_buffer)
+
+    return gmsh_buffer
+
+""" Global 2D meshes """
+
 def mesh_Multiple2D_biquad():
 
-    gmsh_buffer = '''\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -390,47 +613,7 @@ def mesh_Multiple2D_biquad():
     11 3 2 5 1 5 2 6 9
     12 3 2 5 1 9 6 3 7
     $EndElements
-    '''
-
-    gmsh_buffer = textwrap.dedent(gmsh_buffer)
-
-    return gmsh_buffer
-
-def mesh_Single2D_quadquad():
-
-    gmsh_buffer = '''\
-    $MeshFormat
-    2.2 0 8
-    $EndMeshFormat
-    $PhysicalNames
-    5
-    1 1 "lower"
-    1 2 "right"
-    1 3 "upper"
-    1 4 "left"
-    2 5 "domain"
-    $EndPhysicalNames
-    $Nodes
-    9
-    1 0 0 0
-    2 1 0 0
-    3 1 1 0
-    4 0 1 0
-    5 0.5 0 0
-    6 1 0.5 0
-    7 0.5 1 0
-    8 0 0.5 0
-    9 0.5 0.5 0
-    $EndNodes
-    $Elements
-    5
-    1 8 2 1 1 1 2 5
-    2 8 2 2 2 2 3 6
-    3 8 2 3 3 3 4 7
-    4 8 2 4 4 4 1 8
-    7 10 2 5 1 1 2 3 4 5 6 7 8 9
-    $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -438,7 +621,7 @@ def mesh_Single2D_quadquad():
 
 def mesh_Multiple2D_quadquad():
 
-    gmsh_buffer = '''\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -479,62 +662,15 @@ def mesh_Multiple2D_quadquad():
     7 10 2 5 1 1 2 6 10 5 7 13 12 14
     8 10 2 5 1 10 6 3 4 13 8 9 11 15
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
     return gmsh_buffer
 
-def mesh_Single2D_cubquad():
+def mesh_Multiple2D_cubquad():
 
-    gmsh_buffer = '''\
-    $MeshFormat
-    2.2 0 8
-    $EndMeshFormat
-    $PhysicalNames
-    5
-    1 1 "lower"
-    1 2 "right"
-    1 3 "upper"
-    1 4 "left"
-    2 5 "domain"
-    $EndPhysicalNames
-    $Nodes
-    16
-    1 0 0 0
-    2 1 0 0
-    3 1 1 0
-    4 0 1 0
-    5 0.3333333333333333 0 0
-    6 0.6666666666666667 0 0
-    7 1 0.3333333333333333 0
-    8 1 0.6666666666666667 0
-    9 0.6666666666666667 1 0
-    10 0.3333333333333333 1 0
-    11 0 0.6666666666666667 0
-    12 0 0.3333333333333333 0
-    13 0.3333333333333333 0.3333333333333333 0
-    14 0.6666666666666667 0.3333333333333333 0
-    15 0.6666666666666667 0.6666666666666667 0
-    16 0.3333333333333333 0.6666666666666667 0
-    $EndNodes
-    $Elements
-    5
-    1 26 2 1 1 1 2 5 6
-    2 26 2 2 2 2 3 7 8
-    3 26 2 3 3 3 4 9 10
-    4 26 2 4 4 4 1 11 12
-    7 36 2 5 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
-    $EndElements
-    '''
-
-    gmsh_buffer = textwrap.dedent(gmsh_buffer)
-
-    return gmsh_buffer
-
-def mesh_Multiple2D_cubquad1():
-
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -588,15 +724,15 @@ def mesh_Multiple2D_cubquad1():
     7 36 2 5 1 1 5 12 4 6 7 19 20 15 16 17 18 21 22 23 24
     8 36 2 5 1 5 2 3 12 8 9 10 11 13 14 20 19 25 26 27 28
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
     return gmsh_buffer
 
-def mesh_Multiple2D_cubquad2():
+def mesh_Multiple2D_cubquad_BIG():
 
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -875,7 +1011,7 @@ def mesh_Multiple2D_cubquad2():
     43 36 2 5 1 13 2 34 81 32 33 35 36 208 209 195 194 210 211 212 213
     44 36 2 5 1 81 34 3 39 209 208 37 38 48 49 203 202 214 215 216 217
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 

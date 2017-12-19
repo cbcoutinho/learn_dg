@@ -4,11 +4,11 @@
 #### Project Directories #####
 ##############################
 
-SRC_DIR=./src
-DOC_DIR=./docs
-TEST_DIR=./test
-BLD_DIR=./build
-FLIB_SRC_DIR=./src/fortranlib/src
+SRC_DIR=src
+DOC_DIR=docs
+TEST_DIR=test
+BLD_DIR=build
+FLIB_SRC_DIR=src/fortranlib/src
 
 ##############################
 ###### Compiler options ######
@@ -48,23 +48,23 @@ mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test2D.geo -order 2 -2 -o $(TEST_DIR)/test2D.msh
 
 cleantest: clean
-	$(MAKE) test
+	@make test
 
 cleantest_all: clean
-	$(MAKE) test_all
+	@make test_all
 
 # Build and test the project
 cmake: $(BLD_DIR)
 	cmake $(CMFLAGS)
-	$(MAKE) -C $(BLD_DIR)
+	@make -C $(BLD_DIR)
 
 cmake_win: $(BLD_DIR)
-	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-x86_64-w64-mingw32.cmake
-	$(MAKE) -C $(BLD_DIR)
+	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-x86_64-w64-mingw32.cmake
+	@make -C $(BLD_DIR)
 
 cmake_win32: $(BLD_DIR)
-	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=./cmake/Toolchain-i686-w64-mingw32.cmake
-	$(MAKE) -C $(BLD_DIR)
+	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-i686-w64-mingw32.cmake
+	@make -C $(BLD_DIR)
 
 driver: cmake mesh $(BLD_DIR)
 	$(BLD_DIR)/bin/driver1D
@@ -77,9 +77,8 @@ test_all: cmake mesh driver
 	pytest -vs --cache-clear
 
 # After running one of the tests, plot the output
-plot: cmake tests
-	python test/plotter.py
-	$(RM) data.out
+plot: cmake driver
+	python3 test/plotter.py
 
 # Other
 
@@ -97,3 +96,4 @@ clean:
 	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
 	$(RM) .cache $(TEST_DIR)/__pycache__ $(TEST_DIR)/helpers.pyc
 	$(RM) $(BLD_DIR)
+	$(RM) docs/html

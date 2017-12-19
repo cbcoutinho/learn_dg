@@ -24,7 +24,9 @@ df.reset_index(drop=True, inplace=True)
 #df.plot('x', ['FEM', 'analytical'], marker='o')
 # df.plot('x', 'analytical', marker='s')
 
-r = -5.0/0.1
+vel=-5.0
+diff=0.1
+r = vel/diff
 x = np.linspace(0, 1, 100)
 
 def analytical(x):
