@@ -80,8 +80,9 @@ jobs:
       - GCC_VERSION=7
       - USE_OPENMP=ON
       - OMP_NUM_THREADS=4
-      script:
+      install:
       - pip install -r requirements.txt
+      script:
       - make docs
       - cd $TRAVIS_BUILD_DIR
       - git config --global user.name "TRAVIS-CI-for-$(git --no-pager show -s --format='%cn' $TRAVIS_COMMIT)"
@@ -97,11 +98,6 @@ before_install:
   - chmod 600 .deploy_key
 
 install:
-  #- pip install --upgrade graphviz
-  #- pip install --upgrade meshio
-  #- pip install --upgrade ford
-  #- pip install --upgrade pytest
-  #- pip install --upgrade matplotlib
   - pip install -r requirements.txt
   - mkdir -p $TRAVIS_BUILD_DIR/bin
   - which "gfortran-$GCC_VERSION"
@@ -126,20 +122,4 @@ before_script:
   - echo "Wow we installed everything!"
 
 script:
-  - make clean
-  - make cmake
-  - make test
-  - |
-    if [ "$TRAVIS_BRANCH" == "master" ]; then
-      make docs
-    fi
-
-################################################################################
-#########################     Deploy if Successful     #########################
-################################################################################
-
-#after_success:
-  #- cd $TRAVIS_BUILD_DIR
-  #- git config --global user.name "TRAVIS-CI-for-$(git --no-pager show -s --format='%cn' $TRAVIS_COMMIT)"
-  #- git config --global user.email "$(git --no-pager show -s --format='%ce' $TRAVIS_COMMIT)"
-  #- bash ./deploy.sh
+  - make cleantest
