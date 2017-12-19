@@ -15,26 +15,6 @@ module mod_assembly_c
 
 contains
 
-    subroutine create_simple_array_c(a) &
-            bind(c, name='create_simple_array_c')
-        real(c_double), intent(inout) :: a(2,2)
-
-        integer         :: ii
-        real(c_double)  :: temp(4)
-
-        temp = [1, 2, 3, 4]
-        a = reshape(temp, [2,2])
-
-        ! print*, temp
-        ! print*, shape(temp), shape(a)
-        !
-        ! do ii = 1,2
-        !   print*, a(ii,:)
-        ! enddo
-
-        return
-    end subroutine create_simple_array_c
-
     subroutine assembleElementalMatrix1D_c(N, d1, d2, xy, Ie) &
             bind(c, name='assembleElementalMatrix1D_c')
         integer(c_int), intent(in), value :: N, d1, d2
