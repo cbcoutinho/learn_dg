@@ -29,6 +29,7 @@ contains
         !   Bi-linear quadrilaterals (N=4)
         !   Bi-quadratic quadrilaterals (N=9)
         !   Bi-cubic quadrilaterals (N=16)
+        !   Bi-quartic quadrilaterals (N=25)
         alpha = getAlpha(N)
 
         Ie = 0._wp

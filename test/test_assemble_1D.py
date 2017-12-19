@@ -34,14 +34,14 @@ def generate_global_matrix_1D(request):
         temp.flush()
         points, cells, point_data, cell_data, field_data = meshio.read(temp.name)
 
-    points_ = np.array(points[:, 0], dtype='double', order='F')
-    cells_ = np.array(cells[cell_type] + 1, dtype='int32', order='F')
+    _points = np.array(points[:, 0], dtype='double', order='F')
+    _cells = np.array(cells[cell_type] + 1, dtype='int32', order='F')
     # NOTE: Always change 0-based to 1-based indexing
 
     num_cells, num_pts_per_cell, num_pts = (
-        cells_.shape[0],
-        cells_.shape[1],
-        points_.shape[0]
+        _cells.shape[0],
+        _cells.shape[1],
+        _points.shape[0]
     )
 
     # NOTE: Can't do this anymore because fixture is parametrized
@@ -63,15 +63,15 @@ def generate_global_matrix_1D(request):
         num_pts_per_cell,
         num_pts
     )
-    print('\nCalling: ', f.__name__, '\n  With N  = ', num_pts)
 
+    print('\nCalling: ', f.__name__, '\n  With N  = ', num_pts)
     # Calculate Global stiffness matrix `A`
     f(
         num_cells,
         num_pts_per_cell,
         num_pts,
-        points_,
-        cells_,
+        _points,
+        _cells,
         np.float64(diff),
         np.float(vel),
         A
@@ -95,28 +95,28 @@ def generate_global_matrix_1D(request):
 
     x = np.linalg.solve(A, b)
 
-    return x, r, points_
+    return x, r, _points
 
 def test_Linear1DAdvDiffEqual(generate_global_matrix_1D):
 
-    x, r, points_ = generate_global_matrix_1D
+    x, r, _points = generate_global_matrix_1D
 
 
     # Calculate the analytical solution to Adv.Diff. problem
     def analytical(xx):
         return ( 1.0 - np.exp( r * xx )) / ( 1.0 - np.exp( r ))
 
-    indx = np.argsort(points_)
+    indx = np.argsort(_points)
 
     # fig = plt.figure()
-    # plt.plot(points_[indx], x[indx], 'o', label='simulation')
-    # plt.plot(points_[indx], analytical(points_[indx]), '-', label='analytical')
+    # plt.plot(_points[indx], x[indx], 'o', label='simulation')
+    # plt.plot(_points[indx], analytical(_points[indx]), '-', label='analytical')
     # plt.legend()
     # plt.show()
     # fig.savefig('sample.png')
 
-    # if not np.allclose(x, analytical(points_), rtol=1e-2):
-    b = analytical(points_)
+    # if not np.allclose(x, analytical(_points), rtol=1e-2):
+    b = analytical(_points)
     # print(
     #     max((abs(x - b) - 1e-3 * abs(b)))
     # )

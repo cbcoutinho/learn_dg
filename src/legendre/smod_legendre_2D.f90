@@ -16,54 +16,85 @@ contains
         real(wp), dimension(N,2)  :: xy
 
         ! Keep a copy of 0, 1, and 1/3 handy so no need to retype it all the time
-        real(wp), parameter :: zero = 0._wp
-        real(wp), parameter :: one = 1._wp
-        real(wp), parameter :: third = 1._wp/3._wp
+        real(wp), parameter :: zero   = 0._wp
+        real(wp), parameter :: one    = 1._wp
+        real(wp), parameter :: half   = 1._wp/2._wp
+        real(wp), parameter :: third  = 1._wp/3._wp
 
         select case (N)
         case (4)
 
-            xy(1,:)   = [   -one,   -one]  ! Node 1
-            xy(2,:)   = [    one,   -one]  ! Node 2
-            xy(3,:)   = [    one,    one]  ! Node 3
-            xy(4,:)   = [   -one,    one]  ! Node 4
+            xy(1,:)   = [   -one,   -one]   ! Node 1
+            xy(2,:)   = [    one,   -one]   ! Node 2
+            xy(3,:)   = [    one,    one]   ! Node 3
+            xy(4,:)   = [   -one,    one]   ! Node 4
 
         case (9)
 
-            xy(1,:)   = [   -one,   -one]  ! Node 1
-            xy(2,:)   = [    one,   -one]  ! Node 2
-            xy(3,:)   = [    one,    one]  ! Node 3
-            xy(4,:)   = [   -one,    one]  ! Node 4
-            xy(5,:)   = [   zero,   -one]  ! Node 5
-            xy(6,:)   = [    one,   zero]  ! Node 6
-            xy(7,:)   = [   zero,    one]  ! Node 7
-            xy(8,:)   = [   -one,   zero]  ! Node 8
-            xy(9,:)   = [   zero,   zero]  ! Node 9
+            xy(1,:)   = [   -one,   -one]   ! Node 1
+            xy(2,:)   = [    one,   -one]   ! Node 2
+            xy(3,:)   = [    one,    one]   ! Node 3
+            xy(4,:)   = [   -one,    one]   ! Node 4
+            xy(5,:)   = [   zero,   -one]   ! Node 5
+            xy(6,:)   = [    one,   zero]   ! Node 6
+            xy(7,:)   = [   zero,    one]   ! Node 7
+            xy(8,:)   = [   -one,   zero]   ! Node 8
+            xy(9,:)   = [   zero,   zero]   ! Node 9
 
         case (16)
 
-            xy(1,:)   = [   -one,   -one]  ! Node 1
-            xy(2,:)   = [    one,   -one]  ! Node 2
-            xy(3,:)   = [    one,    one]  ! Node 3
-            xy(4,:)   = [   -one,    one]  ! Node 4
-            xy(5,:)   = [ -third,   -one]  ! Node 5
-            xy(6,:)   = [  third,   -one]  ! Node 6
-            xy(7,:)   = [    one, -third]  ! Node 7
-            xy(8,:)   = [    one,  third]  ! Node 8
-            xy(9,:)   = [  third,    one]  ! Node 9
-            xy(10,:)  = [ -third,    one]  ! Node 10
-            xy(11,:)  = [   -one,  third]  ! Node 11
-            xy(12,:)  = [   -one, -third]  ! Node 12
-            xy(13,:)  = [ -third, -third]  ! Node 13
-            xy(14,:)  = [  third, -third]  ! Node 14
-            xy(15,:)  = [  third,  third]  ! Node 15
-            xy(16,:)  = [ -third,  third]  ! Node 16
+            xy(1,:)   = [   -one,   -one]   ! Node 1
+            xy(2,:)   = [    one,   -one]   ! Node 2
+            xy(3,:)   = [    one,    one]   ! Node 3
+            xy(4,:)   = [   -one,    one]   ! Node 4
+            xy(5,:)   = [ -third,   -one]   ! Node 5
+            xy(6,:)   = [  third,   -one]   ! Node 6
+            xy(7,:)   = [    one, -third]   ! Node 7
+            xy(8,:)   = [    one,  third]   ! Node 8
+            xy(9,:)   = [  third,    one]   ! Node 9
+            xy(10,:)  = [ -third,    one]   ! Node 10
+            xy(11,:)  = [   -one,  third]   ! Node 11
+            xy(12,:)  = [   -one, -third]   ! Node 12
+            xy(13,:)  = [ -third, -third]   ! Node 13
+            xy(14,:)  = [  third, -third]   ! Node 14
+            xy(15,:)  = [  third,  third]   ! Node 15
+            xy(16,:)  = [ -third,  third]   ! Node 16
+
+        case (25)
+
+            xy(1,:)   = [   -one,   -one]   ! Node 1
+            xy(2,:)   = [    one,   -one]   ! Node 2
+            xy(3,:)   = [    one,    one]   ! Node 3
+            xy(4,:)   = [   -one,    one]   ! Node 4
+            xy(5,:)   = [  -half,   -one]   ! Node 5
+            xy(6,:)   = [   zero,   -one]   ! Node 6
+            xy(7,:)   = [   half,   -one]   ! Node 7
+            xy(8,:)   = [    one,  -half]   ! Node 8
+            xy(9,:)   = [    one,   zero]   ! Node 9
+            xy(10,:)  = [    one,   half]   ! Node 10
+            xy(11,:)  = [   half,    one]   ! Node 11
+            xy(12,:)  = [   zero,    one]   ! Node 12
+            xy(13,:)  = [  -half,    one]   ! Node 13
+            xy(14,:)  = [   -one,   half]   ! Node 14
+            xy(15,:)  = [   -one,   zero]   ! Node 15
+            xy(16,:)  = [   -one,  -half]   ! Node 16
+            xy(17,:)  = [  -half,  -half]   ! Node 17
+            xy(18,:)  = [   half,  -half]   ! Node 18
+            xy(19,:)  = [   half,   half]   ! Node 19
+            xy(20,:)  = [  -half,   half]   ! Node 20
+            xy(21,:)  = [   zero,  -half]   ! Node 21
+            xy(22,:)  = [   half,   zero]   ! Node 22
+            xy(23,:)  = [   zero,   half]   ! Node 23
+            xy(24,:)  = [  -half,   zero]   ! Node 24
+            xy(25,:)  = [   zero,   zero]   ! Node 25
 
         case default
 
-            ! TODO: I should probably changed this to a subroutine and
-            ! include an output error variable
+            ! TODO: I need to change this to a subroutine and
+            ! include an output error variable - Pure can't print output
             xy = 0.d0
+            ! print*, 'getXY_2D called with N = ', N
+            ! print*, 'That`s not implemented'
 
         end select
 
@@ -82,8 +113,12 @@ contains
         row = pascal_row(2, xi, eta)
     case (16)
         row = pascal_row(3, xi, eta)
+    case (25)
+        row = pascal_row(4, xi, eta)
     case default
         row = 0.d0
+        ! print*, 'getArow2D called with N = ', N
+        ! print*, 'That N is not yet implemented'
     end select
 
     return

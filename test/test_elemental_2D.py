@@ -11,15 +11,15 @@ import meshes
 @pytest.fixture(params=[
     (meshes.mesh_Single2D_quadquad(), 'quad9', 'line3'),
     (meshes.mesh_Single2D_cubquad(), 'quad16', 'line4'),
-    # (meshes.mesh_Single2D_quarquad(), 'quad25', 'line5') # Hopefully?
+    pytest.mark.slowtest((meshes.mesh_Single2D_quarquad(), 'quad25', 'line5'))
 ])
 def generate_Single2D_quad(request):
     """
-    Test the average of a single bi-(quadratic|cubic) quadrilateral
-    to see if the diffusion equation works properly.
+    Test the average of a single bi-(quadratic|cubic|quartic)
+    quadrilateral to see if the diffusion equation works properly.
 
     This pytest fixture generates the elemental stiffness matrix of a
-    single bi-(quadratic|cubic) quadrilateral.
+    single bi-(quadratic|cubic|quartic) quadrilateral.
 
     ._._.
     | . |       <- Quadratic
@@ -30,6 +30,12 @@ def generate_Single2D_quad(request):
     | . . |     <- Cubic
     |_._._|
 
+    ._._._._.
+    | . . . |
+    | . . . |   <- Quartic
+    | . . . |
+    |_._._._|
+
     """
 
     gmsh_buffer, quad_type, line_type = request.param
@@ -39,14 +45,14 @@ def generate_Single2D_quad(request):
         temp.flush()
         points, cells, point_data, cell_data, field_data = meshio.read(temp.name)
 
-    points_ = np.array(points[:, 0:2], dtype='double', order='F')
-    cells_ = np.array(cells[quad_type] + 1, dtype='int32', order='F')
+    _points = np.array(points[:, 0:2], dtype='double', order='F')
+    _cells = np.array(cells[quad_type] + 1, dtype='int32', order='F')
     # NOTE: Always change 0-based to 1-based indexing
 
     num_cells, num_pts_per_cell, num_pts = (
-        cells_.shape[0],
-        cells_.shape[1],
-        points_.shape[0]
+        _cells.shape[0],
+        _cells.shape[1],
+        _points.shape[0]
     )
 
     # Zero Ie array
@@ -58,12 +64,13 @@ def generate_Single2D_quad(request):
         num_pts
     )
 
+    print('\nCalling: ', f.__name__, '\n  With N  = ', num_pts)
     f(
         num_cells,
         num_pts_per_cell,
         num_pts,
-        points_,
-        cells_,
+        _points,
+        _cells,
         np.float64(1.0),
         np.zeros((2,), dtype='double', order='F'),
         Ie

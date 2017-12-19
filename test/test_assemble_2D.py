@@ -69,6 +69,7 @@ def generate_multiple2D_biquad(request):
         num_pts
     )
 
+    print('\nCalling: ', f.__name__, '\n  With N  = ', num_pts)
     f(
         num_cells,
         num_pts_per_cell,
