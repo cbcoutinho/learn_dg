@@ -80,7 +80,8 @@ jobs:
       - GCC_VERSION=7
       - USE_OPENMP=ON
       - OMP_NUM_THREADS=4
-      install: skip
+      addons: true
+      install: true
       script:
       - pip install -r requirements.txt
       - make docs
