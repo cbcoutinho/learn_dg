@@ -36,7 +36,7 @@ env:
 addons: &gfortran7
   apt:
     packages:
-      - gfortran7
+      - gfortran-7
       - graphviz
       - libblas-dev
       - liblapack-dev
