@@ -80,9 +80,9 @@ jobs:
       - GCC_VERSION=7
       - USE_OPENMP=ON
       - OMP_NUM_THREADS=4
-      install:
-      - pip install -r requirements.txt
+      install: true     # True means skip
       script:
+      - pip install -r requirements.txt
       - make docs
       - cd $TRAVIS_BUILD_DIR
       - git config --global user.name "TRAVIS-CI-for-$(git --no-pager show -s --format='%cn' $TRAVIS_COMMIT)"
