@@ -81,22 +81,26 @@ def generate_multiple2D_biquad(request):
         A
     )
 
-    left_list = np.unique(
-        cells[line_type][
-            cell_data[line_type]['physical'] == field_data['left'][0]
-        ]).tolist()
-    right_list = np.unique(
-        cells[line_type][
-            cell_data[line_type]['physical'] == field_data['right'][0]
-        ]).tolist()
+    mydict = {}
+    for side in ['left', 'right']:
+        if type(field_data[side]) is list:
+            query = field_data[side][0]
+        else:
+            query = field_data[side]
+
+        mydict[side] = np.unique(
+            cells[line_type][
+                cell_data[line_type]['physical'] == query
+            ]
+        ).tolist()
 
     # Set boundary condtions in A matrix
-    for ii in left_list + right_list:
+    for ii in mydict['left'] + mydict['right']:
         A[ii,:] = 0.; A[ii,ii] = 1.
 
     # Set boundary condtions in RHS vector
     b = np.zeros((num_pts,))
-    for ii in left_list:
+    for ii in mydict['left']:
         b[ii] = 1.
 
     # Calculate condition number
