@@ -60,8 +60,8 @@ class myTestCase(unittest.TestCase):
         f(num_cells, num_pts_per_cell, num_pts,
           points_, cells_, np.float64(1.0), np.zeros((2,), dtype='double', order='F'), A)
 
-        left_list = np.unique(cells['line'][cell_data['line']['physical'] == field_data['left']]).tolist()
-        right_list = np.unique(cells['line'][cell_data['line']['physical'] == field_data['right']]).tolist()
+        left_list = np.unique(cells['line'][cell_data['line']['physical'] == field_data['left'][0]]).tolist()
+        right_list = np.unique(cells['line'][cell_data['line']['physical'] == field_data['right'][0]]).tolist()
 
         # Set boundary condtions in Ie matrix
         for ii in left_list + right_list:
@@ -112,8 +112,8 @@ class myTestCase(unittest.TestCase):
         f(num_cells, num_pts_per_cell, num_pts,
           points_, cells_, np.float64(1.0), np.zeros((2,), dtype='double', order='F'), A)
 
-        left_list = np.unique(cells['line3'][cell_data['line3']['physical'] == field_data['left']]).tolist()
-        right_list = np.unique(cells['line3'][cell_data['line3']['physical'] == field_data['right']]).tolist()
+        left_list = np.unique(cells['line3'][cell_data['line3']['physical'] == field_data['left'][0]]).tolist()
+        right_list = np.unique(cells['line3'][cell_data['line3']['physical'] == field_data['right'][0]]).tolist()
 
         # Set boundary condtions in Ie matrix
         # for ii in [0, 1, 2, 3, 5, 7]:
@@ -171,8 +171,8 @@ class myTestCase(unittest.TestCase):
         f(num_cells, num_pts_per_cell, num_pts,
           points_, cells_, np.float64(1.0), np.zeros((2,), dtype='double', order='F'), A)
 
-        left_list = np.unique(cells['line3'][cell_data['line3']['physical'] == field_data['left']]).tolist()
-        right_list = np.unique(cells['line3'][cell_data['line3']['physical'] == field_data['right']]).tolist()
+        left_list = np.unique(cells['line3'][cell_data['line3']['physical'] == field_data['left'][0]]).tolist()
+        right_list = np.unique(cells['line3'][cell_data['line3']['physical'] == field_data['right'][0]]).tolist()
 
         # Set boundary condtions in Ie matrix
         # for ii in [0, 1, 2, 3, 5, 7]:
@@ -228,8 +228,8 @@ class myTestCase(unittest.TestCase):
 
         # True
 
-        left_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['left']]).tolist()
-        right_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['right']]).tolist()
+        left_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['left'][0]]).tolist()
+        right_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['right'][0]]).tolist()
 
         # Set boundary condtions in Ie matrix
         # for ii in [0, 1, 2, 3, 5, 7]:
@@ -287,8 +287,8 @@ class myTestCase(unittest.TestCase):
 
         # True
 
-        left_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['left']]).tolist()
-        right_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['right']]).tolist()
+        left_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['left'][0]]).tolist()
+        right_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['right'][0]]).tolist()
 
         # Set boundary condtions in Ie matrix
         # for ii in [0, 1, 2, 3, 5, 7]:
@@ -351,8 +351,8 @@ class myTestCase(unittest.TestCase):
 
         # True
 
-        left_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['left']]).tolist()
-        right_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['right']]).tolist()
+        left_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['left'][0]]).tolist()
+        right_list = np.unique(cells['line4'][cell_data['line4']['physical'] == field_data['right'][0]]).tolist()
 
         # Set boundary condtions in Ie matrix
         # for ii in [0, 1, 2, 3, 5, 7]:
