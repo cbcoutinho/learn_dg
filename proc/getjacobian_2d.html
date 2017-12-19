@@ -10,7 +10,7 @@
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
 
-    <title>pascal_2D_row &ndash; learn_dg</title>
+    <title>getJacobian_2D &ndash; learn_dg</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -26,13 +26,6 @@
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -114,8 +107,8 @@
     
   
   <div class="row">
-    <h1>pascal_2D_row
-      <small>Function</small>
+    <h1>getJacobian_2D
+      <small>Module Function</small>
     
     </h1>
     
@@ -132,7 +125,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.2% of total for procedures.">9 statements</a>
+	  title=" 2.6% of total for procedures.">18 statements</a>
      </li> 
      
      
@@ -145,7 +138,7 @@
   
      <li><a href='../module/smod_legendre_2d.html'>smod_legendre_2D</a></li>
   
-     <li class="active">pascal_2D_row</li>
+     <li class="active">getJacobian_2D</li>
   </ol>
 </div>
 </div>
@@ -186,7 +179,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/pascal_2d_row.html#src">pascal_2D_row</a>
+    <a class="list-group-item" href="../proc/getjacobian_2d.html#src">getJacobian_2D</a>
   </div>
 </div>
 
@@ -217,8 +210,6 @@
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
-      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
-      
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
@@ -240,8 +231,6 @@
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
-      
-      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
@@ -265,9 +254,9 @@
       
       <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
       
-      <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
-      
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_row_2d.html">pascal_row_2D</a>
       
       <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
       
@@ -298,7 +287,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-pure function pascal_2D_row(N, x, y) result(row)
+function getJacobian_2D(N, xi, eta, xy, alpha) result(J)
     
     
 	 
@@ -308,16 +297,9 @@ pure function pascal_2D_row(N, x, y) result(row)
 
 
     
-    <p>Generates a row of Pascal's triangle in 2D</p>
-<p>Pascal's triangle in 2D looks like this:
-   \[ [1] \]
-   \[ [x,~ y] \]
-   \[ [x^2,~ x y,~ y^2] \]
-   \[ [x^3,~ x^2y,~ xy^2,~ y^3] \]
-   \[ [x^4,~ x^3y,~ x^2y^2,~ xy^3, y^4] \]
-   \[ \vdots \]
-   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]</p>
-<p>The rows are zero-indexed, therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]</p>
+    <p>Calculates the Jacobian of a quadrilateral element at a point</p>
+<p>The Jacobian of an element is defined as:
+ \[ \boldsymbol{J} = \boldsymbol{P} \boldsymbol{X} \]</p>
     
 
     <h3>Arguments</h3>
@@ -338,12 +320,12 @@ pure function pascal_2D_row(N, x, y) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E9"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E21"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>N</strong></td><td><p>Row number of pascal's 2D triange (0-indexed)</p></td>
+  <td><strong>N</strong></td><td><p>Number of points in element</p></td>
   
 </tr>
 
@@ -353,12 +335,12 @@ pure function pascal_2D_row(N, x, y) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-xi%7E3"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>x</strong></td><td><p>X-value used in triange</p></td>
+  <td><strong>xi</strong></td><td><p>Value of xi coordinate in isoparametric element</p></td>
   
 </tr>
 
@@ -368,12 +350,42 @@ pure function pascal_2D_row(N, x, y) result(row)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y%7E4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-eta%7E2"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>y</strong></td><td><p>Y-Value used in triange</p></td>
+  <td><strong>eta</strong></td><td><p>Value of eta coordinate in isoparametric element</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-xy%7E7"></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(N,2)</td><td>::</td>
+  <td><strong>xy</strong></td><td><p>Array of x and y coordinates for the element</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-alpha%7E4"></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(N,N)</td><td>::</td>
+  <td><strong>alpha</strong></td><td><p>Array of coefficients used to define basis functions</p></td>
   
 </tr>
 
@@ -387,56 +399,44 @@ pure function pascal_2D_row(N, x, y) result(row)
     
     
     
-	 <h3>Return Value <small><span class="anchor" id="variable-row%7E4"></span>real(kind=wp),
-  dimension(N+1)</small></h3>
-    <p>Output row of triange</p>
+	 <h3>Return Value <small><span class="anchor" id="variable-j%7E2"></span>real(kind=wp),
+  dimension(2,2)</small></h3>
+    <p>Jacobian of the isoparametric element at (xi,eta)</p>
     
     
-     
-     <h3>Called By</h3>
-     
-                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     <h3>Calls</h3>
+     <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
-<!-- Title: proc~~pascal_2d_row~~CalledByGraph Pages: 1 -->
-<svg id="procpascal_2d_rowCalledByGraph" width="224pt" height="32pt"
- viewBox="0.00 0.00 224.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~pascal_2d_row~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>proc~~pascal_2d_row~~CalledByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28 220,-28 220,4 -4,4"/>
-<!-- proc~pascal_2d_row -->
-<g id="proc~~pascal_2d_row~~CalledByGraph_node1" class="node"><title>proc~pascal_2d_row</title>
-<polygon fill="none" stroke="black" points="216,-24 130,-24 130,-0 216,-0 216,-24"/>
-<text text-anchor="middle" x="173" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">pascal_2D_row</text>
+<!-- Title: proc~~getjacobian_2d~~CallsGraph Pages: 1 -->
+<svg id="procgetjacobian_2dCallsGraph" width="188pt" height="32pt"
+ viewBox="0.00 0.00 188.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~getjacobian_2d~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~getjacobian_2d~~CallsGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 184,-28 184,4 -4,4"/>
+<!-- proc~getjacobian_2d -->
+<g id="proc~~getjacobian_2d~~CallsGraph_node1" class="node"><title>proc~getjacobian_2d</title>
+<polygon fill="none" stroke="black" points="90,-24 0,-24 0,-0 90,-0 90,-24"/>
+<text text-anchor="middle" x="45" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">getJacobian_2D</text>
 </g>
-<!-- proc~pascal_2d_quad -->
-<g id="proc~~pascal_2d_row~~CalledByGraph_node2" class="node"><title>proc~pascal_2d_quad</title>
-<g id="a_proc~~pascal_2d_row~~CalledByGraph_node2"><a xlink:href="../proc/pascal_2d_quad.html" xlink:title="pascal_2D_quad">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="93.5,-24 0.5,-24 0.5,-0 93.5,-0 93.5,-24"/>
-<text text-anchor="middle" x="47" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_quad</text>
+<!-- interface~getarow -->
+<g id="proc~~getjacobian_2d~~CallsGraph_node2" class="node"><title>interface~getarow</title>
+<g id="a_proc~~getjacobian_2d~~CallsGraph_node2"><a xlink:href=".././interface/getarow.html" xlink:title="getArow">
+<polygon fill="#a7506f" stroke="#a7506f" points="180,-24 126,-24 126,-0 180,-0 180,-24"/>
+<text text-anchor="middle" x="153" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow</text>
 </a>
 </g>
 </g>
-<!-- proc~pascal_2d_quad&#45;&gt;proc~pascal_2d_row -->
-<g id="proc~~pascal_2d_row~~CalledByGraph_edge1" class="edge"><title>proc~pascal_2d_quad&#45;&gt;proc~pascal_2d_row</title>
-<path fill="none" stroke="#ff0000" d="M93.8207,-12C102.159,-12 110.917,-12 119.432,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="119.653,-15.5001 129.653,-12 119.653,-8.5001 119.653,-15.5001"/>
+<!-- proc~getjacobian_2d&#45;&gt;interface~getarow -->
+<g id="proc~~getjacobian_2d~~CallsGraph_edge1" class="edge"><title>proc~getjacobian_2d&#45;&gt;interface~getarow</title>
+<path fill="none" stroke="#ff0000" d="M90.0327,-12C98.5916,-12 107.472,-12 115.745,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="115.831,-15.5001 125.831,-12 115.831,-8.5001 115.831,-15.5001"/>
 </g>
 </g>
 </svg>
-</div>
-                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
-                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
-                      </div>
-                      <div class="modal-body">
-                        
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
     <p>Nodes of different colours represent the following: </p>
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -488,12 +488,8 @@ pure function pascal_2D_row(N, x, y) result(row)
     This could include the module procedures in a generic interface or the
     implementation in a submodule of an interface in a parent module. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
     </p>
-    
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
+    </div></div></div></div>
+     
      
     <br>
 
@@ -522,7 +518,7 @@ pure function pascal_2D_row(N, x, y) result(row)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/pascal_2d_row.html#src">pascal_2D_row</a>
+    <a class="list-group-item" href="../proc/getjacobian_2d.html#src">getJacobian_2D</a>
   </div>
 </div>
 
@@ -549,34 +545,84 @@ pure function pascal_2D_row(N, x, y) result(row)
     
     
     <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">pure function </span><span class="n">pascal_2D_row</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-    <span class="c">!*</span>
-    <span class="c">! Generates a row of Pascal&#39;s triangle in 2D</span>
-    <span class="c">!</span>
-    <span class="c">! Pascal&#39;s triangle in 2D looks like this:</span>
-    <span class="c">!   \[ [1] \]</span>
-    <span class="c">!   \[ [x,~ y] \]</span>
-    <span class="c">!   \[ [x^2,~ x y,~ y^2] \]</span>
-    <span class="c">!   \[ [x^3,~ x^2y,~ xy^2,~ y^3] \]</span>
-    <span class="c">!   \[ [x^4,~ x^3y,~ x^2y^2,~ xy^3, y^4] \]</span>
-    <span class="c">!   \[ \vdots \]</span>
-    <span class="c">!   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]</span>
-    <span class="c">!</span>
-    <span class="c">! The rows are zero-indexed, therefore, the third row (index=2) would be \[x^2, x\cdot y, y^2\]</span>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="highlight"><pre><span></span>  <span class="k">module function </span><span class="n">getJacobian_2D</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+      <span class="c">!*</span>
+      <span class="c">! Calculates the Jacobian of a quadrilateral element at a point</span>
+      <span class="c">!</span>
+      <span class="c">! The Jacobian of an element is defined as:</span>
+      <span class="c">! \[ \boldsymbol{J} = \boldsymbol{P} \boldsymbol{X} \]</span>
+      <span class="c">!</span>
 
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">N</span>    <span class="c">!! Row number of pascal&#39;s 2D triange (0-indexed)</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">x</span>    <span class="c">!! X-value used in triange</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">y</span>    <span class="c">!! Y-Value used in triange</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">row</span>  <span class="c">!! Output row of triange</span>
+      <span class="c">! Where:</span>
+      <span class="c">! \[ \boldsymbol{P} = \left[ \begin{array}{cc}</span>
+      <span class="c">!     \frac{\partial H_1}{\partial \xi} &amp; \frac{\partial H_2}{\partial \xi} \\</span>
+      <span class="c">!     \frac{\partial H_1}{\partial \eta} &amp; \frac{\partial H_2}{\partial \eta} \end{array}</span>
+      <span class="c">!       \cdots</span>
+      <span class="c">!     \begin{array}{cc}</span>
+      <span class="c">!     \frac{\partial H_{N-1}}{\partial \xi} &amp; \frac{\partial H_{N}}{\partial \xi} \\</span>
+      <span class="c">!     \frac{\partial H_{N-1}}{\partial \eta} &amp; \frac{\partial H_{N}}{\partial \eta} \end{array}</span>
+      <span class="c">! \right]\]</span>
+      <span class="c">!</span>
+      <span class="c">! \[ \boldsymbol{X} = \left[ \begin{array}{c}</span>
+      <span class="c">!      \begin{array}{cc}</span>
+      <span class="c">!        x_1 &amp; y_1 \\</span>
+      <span class="c">!        x_2 &amp; y_2</span>
+      <span class="c">!      \end{array} \\\\</span>
+      <span class="c">!      \vdots \\\\</span>
+      <span class="c">!      \begin{array}{cc}</span>
+      <span class="c">!        x_{N-1} &amp; y_{N-1} \\</span>
+      <span class="c">!        x_N &amp; y_N</span>
+      <span class="c">!      \end{array} \\</span>
+      <span class="c">!    \end{array} \right]\]</span>
+      <span class="c">!</span>
+      <span class="c">! Thus:</span>
+      <span class="c">!</span>
+      <span class="c">! \[ \boldsymbol{J} =  \left[ \begin{array}{cc}</span>
+      <span class="c">!           \boldsymbol{H}_{\xi} \cdot \boldsymbol{x} &amp; \boldsymbol{H}_{\xi} \cdot \boldsymbol{y} \\</span>
+      <span class="c">!           \boldsymbol{H}_{\eta} \cdot \boldsymbol{x} &amp; \boldsymbol{H}_{\eta} \cdot \boldsymbol{y} \\</span>
+      <span class="c">!         \end{array} \right] = \left[ \begin{array}{cc}</span>
+      <span class="c">!           \frac{\partial \xi}{\partial x} &amp; \frac{\partial \xi}{\partial y} \\</span>
+      <span class="c">!           \frac{\partial \eta}{\partial x} &amp; \frac{\partial \eta}{\partial y} \\</span>
+      <span class="c">!         \end{array} \right] \]</span>
+      <span class="c">!</span>
+      <span class="c">! * \( \boldsymbol{H} \) : Vector of basis functions</span>
+      <span class="c">! * \( \boldsymbol{x} \) : Vector of X-coordinates for all element nodes</span>
+      <span class="c">! * \( \boldsymbol{y} \) : Vector of Y-coordinates for all element nodes</span>
+      <span class="c">!</span>
+      <span class="c">! * \( H_i \) : Basis function \(i\)</span>
+      <span class="c">! * \( x_i \) : X-coordinate of node \(i\)</span>
+      <span class="c">! * \( y_i \) : Y-coordinate of node \(i\)</span>
 
-    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
+      <span class="kt">integer</span><span class="p">,</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">N</span>      <span class="c">!! Number of points in element</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xi</span>     <span class="c">!! Value of xi coordinate in isoparametric element</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">eta</span>    <span class="c">!! Value of eta coordinate in isoparametric element</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xy</span>     <span class="c">!! Array of x and y coordinates for the element</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">alpha</span>  <span class="c">!! Array of coefficients used to define basis functions</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">J</span>      <span class="c">!! Jacobian of the isoparametric element at (xi,eta)</span>
 
-    <span class="c">! Produces the elements of an array: [x^N, x^(N-1)*y, x^(N-2)*y^2, ..., y^N]</span>
-    <span class="n">row</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">ii</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span><span class="o">**</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">N</span> <span class="p">)]</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span>                   <span class="kd">::</span> <span class="n">eps</span> <span class="o">=</span> <span class="nb">epsilon</span><span class="p">(</span><span class="err">0</span><span class="n">e0</span><span class="p">)</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">P</span>      <span class="c">!! Array of derivatives of each basis function at (xi,eta)</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! Row in element coefficient matrix</span>
 
-    <span class="k">return</span>
-<span class="k">  end function </span><span class="n">pascal_2D_row</span>
+      <span class="c">! P is a matrix containing derivatives of each basis function at (xi,eta)</span>
+      <span class="c">! P = [dN_1/dxi, dN_2/dxi, dN_3/dxi, ...</span>
+      <span class="c">!      dN_1/deta, dN_2/deta, dN_3/deta, ...]</span>
+
+      <span class="n">P</span> <span class="o">=</span> <span class="mf">0._wp</span>
+      <span class="n">P</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="o">=</span> <span class="p">[</span><span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="o">+</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span>    <span class="p">)</span> <span class="o">-</span> <span class="p">&amp;</span>
+          <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span><span class="o">-</span><span class="n">eps</span><span class="p">,</span> <span class="n">eta</span>    <span class="p">)]</span>
+      <span class="n">P</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span> <span class="o">=</span> <span class="p">[</span><span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span>    <span class="p">,</span> <span class="n">eta</span><span class="o">+</span><span class="n">eps</span><span class="p">)</span> <span class="o">-</span> <span class="p">&amp;</span>
+          <span class="n">getArow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xi</span>    <span class="p">,</span> <span class="n">eta</span><span class="o">-</span><span class="n">eps</span><span class="p">)]</span>
+
+      <span class="n">P</span> <span class="o">=</span> <span class="n">P</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">eps</span> <span class="p">)</span>
+
+      <span class="n">P</span> <span class="o">=</span> <span class="nb">matmul</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>
+
+      <span class="n">J</span> <span class="o">=</span> <span class="nb">matmul</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">xy</span><span class="p">)</span>
+
+      <span class="k">return</span>
+<span class="k">  end function </span><span class="n">getJacobian_2D</span>
 </pre></div>
 
     </section>
@@ -613,8 +659,6 @@ pure function pascal_2D_row(N, x, y) result(row)
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
-      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
-      
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
@@ -636,8 +680,6 @@ pure function pascal_2D_row(N, x, y) result(row)
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
-      
-      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
@@ -661,9 +703,9 @@ pure function pascal_2D_row(N, x, y) result(row)
       
       <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
       
-      <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
-      
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_row_2d.html">pascal_row_2D</a>
       
       <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
       
@@ -695,12 +737,13 @@ pure function pascal_2D_row(N, x, y) result(row)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-12-03 21:56  
+             on 2017-12-19 22:02  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -732,6 +775,15 @@ pure function pascal_2D_row(N, x, y) result(row)
         }
       });
     </script>
+    
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>

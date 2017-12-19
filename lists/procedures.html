@@ -29,13 +29,6 @@ All Procedures &ndash; learn_dg
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
 
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
-
   </head>
 
   <body>
@@ -139,8 +132,6 @@ All Procedures &ndash; learn_dg
 			 
 			   <tr><td><a href='../proc/cgwt.html'>cgwt</a></td><td><a href='../module/smod_integration.html'>smod_integration</a></td><td>Subroutine</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/create_simple_array_c.html'>create_simple_array_c</a></td><td><a href='../module/mod_assembly_c.html'>mod_assembly_c</a></td><td>Subroutine</td><td></td></tr>
-			 
 			   <tr><td><a href='../proc/det2.html'>det2</a></td><td><a href='../module/mod_linalg.html'>mod_linalg</a></td><td>Function</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/eye.html'>eye</a></td><td><a href='../module/mod_linalg.html'>mod_linalg</a></td><td>Function</td><td></td></tr>
@@ -163,8 +154,6 @@ All Procedures &ndash; learn_dg
 			 
 			   <tr><td><a href='../interface/getxy.html'>getXY</a></td><td><a href='../module/mod_legendre.html'>mod_legendre</a></td><td>Interface</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/getxy.html'>getXY</a></td><td><a href='../module/smod_legendre_2d.html'>smod_legendre_2D</a></td><td>Function</td><td></td></tr>
-			 
 			   <tr><td><a href='../interface/initialize_global_mats.html'>initialize_global_mats</a></td><td><a href='../module/mod_assembly.html'>mod_assembly</a></td><td>Interface</td><td></td></tr>
 			 
 			   <tr><td><a href='../interface/integrate.html'>integrate</a></td><td><a href='../module/mod_integration.html'>mod_integration</a></td><td>Interface</td><td></td></tr>
@@ -177,9 +166,9 @@ All Procedures &ndash; learn_dg
 			 
 			   <tr><td><a href='../proc/inv2.html'>inv2</a></td><td><a href='../module/mod_linalg.html'>mod_linalg</a></td><td>Function</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/lgwt.html'>lgwt</a></td><td><a href='../module/smod_integration.html'>smod_integration</a></td><td>Subroutine</td><td><p>This function is a fortran90 port of the matlab function, lgwt.m
-   The source code of lgwt.m was originally found at:
-     http://www.mathworks.com/matlabcentral/fileexchange/4540</p></td></tr>
+			   <tr><td><a href='../proc/lgwt.html'>lgwt</a></td><td><a href='../module/smod_integration.html'>smod_integration</a></td><td>Subroutine</td><td><p>This function is a fortran90 port of the matlab function,
+   lgwt.m The source code of lgwt.m was originally found at:
+   http://www.mathworks.com/matlabcentral/fileexchange/4540</p></td></tr>
 			 
 			   <tr><td><a href='../proc/linsolve.html'>linsolve</a></td><td><a href='../module/mod_linalg.html'>mod_linalg</a></td><td>Subroutine</td><td></td></tr>
 			 
@@ -189,9 +178,9 @@ All Procedures &ndash; learn_dg
 			 
 			   <tr><td><a href='../proc/pascal_2d_quad_c.html'>pascal_2D_quad_c</a></td><td><a href='../module/mod_legendre_c.html'>mod_legendre_c</a></td><td>Subroutine</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/pascal_2d_row.html'>pascal_2D_row</a></td><td><a href='../module/smod_legendre_2d.html'>smod_legendre_2D</a></td><td>Function</td><td><p>Generates a row of Pascal's triangle in 2D</p></td></tr>
-			 
 			   <tr><td><a href='../interface/pascal_row.html'>pascal_row</a></td><td><a href='../module/mod_legendre.html'>mod_legendre</a></td><td>Interface</td><td></td></tr>
+			 
+			   <tr><td><a href='../proc/pascal_row_2d.html'>pascal_row_2D</a></td><td><a href='../module/smod_legendre_2d.html'>smod_legendre_2D</a></td><td>Function</td><td><p>Generates a row of Pascal's triangle in 2D</p></td></tr>
 			 
 			   <tr><td><a href='../interface/pascal_single_row.html'>pascal_single_row</a></td><td><a href='../module/mod_legendre.html'>mod_legendre</a></td><td>Interface</td><td></td></tr>
 			 
@@ -203,798 +192,759 @@ All Procedures &ndash; learn_dg
 			 
 			   <tr><td><a href='../proc/r8mat_print_some.html'>r8mat_print_some</a></td><td><a href='../module/mod_misc.html'>mod_misc</a></td><td>Subroutine</td><td><p>R8MAT_PRINT_SOME prints some of an R8MAT.</p></td></tr>
 			 
-			   <tr><td><a href='../proc/read_gmsh_file_1d.html'>read_gmsh_file_1D</a></td><td><a href='../module/mod_io.html'>mod_io</a></td><td>Subroutine</td><td><p>Reads the input mesh file (gmsh .msh format) and returns the number of
-   nodes, element connectivity, and the coordinates of the nodes in 1D</p></td></tr>
+			   <tr><td><a href='../proc/read_gmsh_file_1d.html'>read_gmsh_file_1D</a></td><td><a href='../module/mod_io.html'>mod_io</a></td><td>Subroutine</td><td><p>Reads the input mesh file (gmsh .msh format) and returns the
+   number of nodes, element connectivity, and the coordinates of
+   the nodes in 1D</p></td></tr>
 			 
 			   <tr><td><a href='../interface/set_bcs.html'>set_BCs</a></td><td><a href='../module/mod_assembly.html'>mod_assembly</a></td><td>Interface</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/set_bcs.html'>set_BCs</a></td><td><a href='../module/smod_assemble_1d.html'>smod_assemble_1D</a></td><td>Subroutine</td><td><p>Set boundary conditions in GlobalA and GlobalB using two Dirchlet
-   boundaries</p></td></tr>
+			   <tr><td><a href='../proc/set_bcs.html'>set_BCs</a></td><td><a href='../module/smod_assemble_1d.html'>smod_assemble_1D</a></td><td>Subroutine</td><td><p>Set boundary conditions in GlobalA and GlobalB using two
+   Dirchlet boundaries</p></td></tr>
 			 
 			   <tr><td><a href='../proc/write_out_solution.html'>write_out_solution</a></td><td><a href='../module/mod_io.html'>mod_io</a></td><td>Subroutine</td><td></td></tr>
 			 
 			 </tbody></table>
-             
-                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+             <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
 <!-- Title: call~~graph~~CallGraph Pages: 1 -->
-<svg id="callgraphCallGraph" width="855pt" height="1310pt"
- viewBox="0.00 0.00 855.00 1310.31" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="call~~graph~~CallGraph" class="graph" transform="scale(0.79461 0.79461) rotate(0) translate(4 1645)">
+<svg id="callgraphCallGraph" width="855pt" height="1160pt"
+ viewBox="0.00 0.00 855.00 1160.13" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="call~~graph~~CallGraph" class="graph" transform="scale(0.79461 0.79461) rotate(0) translate(4 1456)">
 <title>call~~graph~~CallGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-1645 1072,-1645 1072,4 -4,4"/>
-<!-- proc~getjacobian -->
-<g id="call~~graph~~CallGraph_node1" class="node"><title>proc~getjacobian</title>
-<g id="a_call~~graph~~CallGraph_node1"><a xlink:href="../proc/getjacobian.html" xlink:title="getJacobian">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="115,-24 45,-24 45,-0 115,-0 115,-24"/>
-<text text-anchor="middle" x="80" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getJacobian</text>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1456 1072,-1456 1072,4 -4,4"/>
+<!-- proc~gaussquad_rosetta -->
+<g id="call~~graph~~CallGraph_node1" class="node"><title>proc~gaussquad_rosetta</title>
+<g id="a_call~~graph~~CallGraph_node1"><a xlink:href=".././proc/gaussquad_rosetta.html" xlink:title="gaussquad_rosetta">
+<polygon fill="#d9534f" stroke="#d9534f" points="1068,-66 964,-66 964,-42 1068,-42 1068,-66"/>
+<text text-anchor="middle" x="1016" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad_rosetta</text>
 </a>
 </g>
 </g>
-<!-- interface~getarow -->
-<g id="call~~graph~~CallGraph_node30" class="node"><title>interface~getarow</title>
-<g id="a_call~~graph~~CallGraph_node30"><a xlink:href="../interface/getarow.html" xlink:title="getArow">
-<polygon fill="#a7506f" stroke="#a7506f" points="297,-24 243,-24 243,-0 297,-0 297,-24"/>
-<text text-anchor="middle" x="270" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow</text>
+<!-- interface~fun2d_interf -->
+<g id="call~~graph~~CallGraph_node2" class="node"><title>interface~fun2d_interf</title>
+<g id="a_call~~graph~~CallGraph_node2"><a xlink:href=".././interface/fun2d_interf.html" xlink:title="fun2d_interf">
+<polygon fill="#a7506f" stroke="#a7506f" points="115,-139 45,-139 45,-115 115,-115 115,-139"/>
+<text text-anchor="middle" x="80" y="-124.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fun2d_interf</text>
 </a>
 </g>
 </g>
-<!-- proc~getjacobian&#45;&gt;interface~getarow -->
-<g id="call~~graph~~CallGraph_edge1" class="edge"><title>proc~getjacobian&#45;&gt;interface~getarow</title>
-<path fill="none" stroke="#ff0000" d="M115.045,-12C148.177,-12 198.363,-12 232.354,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="232.778,-15.5001 242.778,-12 232.778,-8.5001 232.778,-15.5001"/>
-</g>
-<!-- proc~r8mat_print_some -->
-<g id="call~~graph~~CallGraph_node2" class="node"><title>proc~r8mat_print_some</title>
-<g id="a_call~~graph~~CallGraph_node2"><a xlink:href="../proc/r8mat_print_some.html" xlink:title="r8mat_print_some">
-<polygon fill="#d9534f" stroke="#d9534f" points="504,-318 404,-318 404,-294 504,-294 504,-318"/>
-<text text-anchor="middle" x="454" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">r8mat_print_some</text>
+<!-- proc~linsolve -->
+<g id="call~~graph~~CallGraph_node3" class="node"><title>proc~linsolve</title>
+<g id="a_call~~graph~~CallGraph_node3"><a xlink:href=".././proc/linsolve.html" xlink:title="linsolve">
+<polygon fill="#d9534f" stroke="#d9534f" points="481,-402 427,-402 427,-378 481,-378 481,-402"/>
+<text text-anchor="middle" x="454" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve</text>
 </a>
 </g>
 </g>
-<!-- interface~getjacobian -->
-<g id="call~~graph~~CallGraph_node3" class="node"><title>interface~getjacobian</title>
-<g id="a_call~~graph~~CallGraph_node3"><a xlink:href="../interface/getjacobian.html" xlink:title="getJacobian">
-<polygon fill="#a7506f" stroke="#a7506f" points="115,-423 45,-423 45,-399 115,-399 115,-423"/>
-<text text-anchor="middle" x="80" y="-408.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getJacobian</text>
+<!-- dgetrf -->
+<g id="call~~graph~~CallGraph_node60" class="node"><title>dgetrf</title>
+<polygon fill="#777777" stroke="#777777" points="619,-423 565,-423 565,-399 619,-399 619,-423"/>
+<text text-anchor="middle" x="592" y="-408.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+</g>
+<!-- proc~linsolve&#45;&gt;dgetrf -->
+<g id="call~~graph~~CallGraph_edge1" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<path fill="none" stroke="#ff3300" d="M481.222,-394.049C502.106,-397.274 531.574,-401.824 554.721,-405.398"/>
+<polygon fill="#ff3300" stroke="#ff3300" points="554.441,-408.896 564.858,-406.963 555.51,-401.978 554.441,-408.896"/>
+</g>
+<!-- dgetrs -->
+<g id="call~~graph~~CallGraph_node63" class="node"><title>dgetrs</title>
+<polygon fill="#777777" stroke="#777777" points="619,-381 565,-381 565,-357 619,-357 619,-381"/>
+<text text-anchor="middle" x="592" y="-366.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+</g>
+<!-- proc~linsolve&#45;&gt;dgetrs -->
+<g id="call~~graph~~CallGraph_edge2" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
+<path fill="none" stroke="#ff3300" d="M481.222,-385.951C502.106,-382.726 531.574,-378.176 554.721,-374.602"/>
+<polygon fill="#ff3300" stroke="#ff3300" points="555.51,-378.022 564.858,-373.037 554.441,-371.104 555.51,-378.022"/>
+</g>
+<!-- proc~integrate_basis_1d_ie -->
+<g id="call~~graph~~CallGraph_node4" class="node"><title>proc~integrate_basis_1d_ie</title>
+<g id="a_call~~graph~~CallGraph_node4"><a xlink:href=".././proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="513,-66 395,-66 395,-42 513,-42 513,-66"/>
+<text text-anchor="middle" x="454" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
 </a>
 </g>
 </g>
 <!-- interface~integrate -->
-<g id="call~~graph~~CallGraph_node4" class="node"><title>interface~integrate</title>
-<g id="a_call~~graph~~CallGraph_node4"><a xlink:href="../interface/integrate.html" xlink:title="integrate">
-<polygon fill="#a7506f" stroke="#a7506f" points="619.5,-507 564.5,-507 564.5,-483 619.5,-483 619.5,-507"/>
-<text text-anchor="middle" x="592" y="-492.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate</text>
+<g id="call~~graph~~CallGraph_node15" class="node"><title>interface~integrate</title>
+<g id="a_call~~graph~~CallGraph_node15"><a xlink:href=".././interface/integrate.html" xlink:title="integrate">
+<polygon fill="#a7506f" stroke="#a7506f" points="619.5,-66 564.5,-66 564.5,-42 619.5,-42 619.5,-66"/>
+<text text-anchor="middle" x="592" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate</text>
 </a>
 </g>
 </g>
-<!-- proc~integrate1d -->
-<g id="call~~graph~~CallGraph_node16" class="node"><title>proc~integrate1d</title>
-<g id="a_call~~graph~~CallGraph_node16"><a xlink:href="../proc/integrate1d.html" xlink:title="integrate1D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="724,-528 656,-528 656,-504 724,-504 724,-528"/>
-<text text-anchor="middle" x="690" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate1D</text>
-</a>
-</g>
-</g>
-<!-- interface~integrate&#45;&gt;proc~integrate1d -->
-<g id="call~~graph~~CallGraph_edge3" class="edge"><title>interface~integrate&#45;&gt;proc~integrate1d</title>
-<path fill="none" stroke="#ff4c00" stroke-dasharray="5,2" d="M619.741,-500.85C627.884,-502.631 637.049,-504.636 645.982,-506.59"/>
-<polygon fill="#ff4c00" stroke="#ff4c00" points="645.384,-510.042 655.901,-508.76 646.88,-503.203 645.384,-510.042"/>
-</g>
-<!-- proc~integrate2d -->
-<g id="call~~graph~~CallGraph_node33" class="node"><title>proc~integrate2d</title>
-<g id="a_call~~graph~~CallGraph_node33"><a xlink:href="../proc/integrate2d.html" xlink:title="integrate2D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="724,-486 656,-486 656,-462 724,-462 724,-486"/>
-<text text-anchor="middle" x="690" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate2D</text>
-</a>
-</g>
-</g>
-<!-- interface~integrate&#45;&gt;proc~integrate2d -->
-<g id="call~~graph~~CallGraph_edge2" class="edge"><title>interface~integrate&#45;&gt;proc~integrate2d</title>
-<path fill="none" stroke="#ff4c00" stroke-dasharray="5,2" d="M619.741,-489.15C627.884,-487.369 637.049,-485.364 645.982,-483.41"/>
-<polygon fill="#ff4c00" stroke="#ff4c00" points="646.88,-486.797 655.901,-481.24 645.384,-479.958 646.88,-486.797"/>
-</g>
-<!-- interface~basis_1d -->
-<g id="call~~graph~~CallGraph_node5" class="node"><title>interface~basis_1d</title>
-<g id="a_call~~graph~~CallGraph_node5"><a xlink:href="../interface/basis_1d.html" xlink:title="basis_1D">
-<polygon fill="#a7506f" stroke="#a7506f" points="108.5,-507 51.5,-507 51.5,-483 108.5,-483 108.5,-507"/>
-<text text-anchor="middle" x="80" y="-492.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">basis_1D</text>
-</a>
-</g>
-</g>
-<!-- proc~pascal_single_row_c -->
-<g id="call~~graph~~CallGraph_node6" class="node"><title>proc~pascal_single_row_c</title>
-<g id="a_call~~graph~~CallGraph_node6"><a xlink:href="../proc/pascal_single_row_c.html" xlink:title="pascal_single_row_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="136,-549 24,-549 24,-525 136,-525 136,-549"/>
-<text text-anchor="middle" x="80" y="-534.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_single_row_c</text>
-</a>
-</g>
-</g>
-<!-- interface~pascal_single_row -->
-<g id="call~~graph~~CallGraph_node34" class="node"><title>interface~pascal_single_row</title>
-<g id="a_call~~graph~~CallGraph_node34"><a xlink:href="../interface/pascal_single_row.html" xlink:title="pascal_single_row">
-<polygon fill="#a7506f" stroke="#a7506f" points="320,-549 220,-549 220,-525 320,-525 320,-549"/>
-<text text-anchor="middle" x="270" y="-534.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_single_row</text>
-</a>
-</g>
-</g>
-<!-- proc~pascal_single_row_c&#45;&gt;interface~pascal_single_row -->
-<g id="call~~graph~~CallGraph_edge4" class="edge"><title>proc~pascal_single_row_c&#45;&gt;interface~pascal_single_row</title>
-<path fill="none" stroke="#ff7f00" d="M136.136,-537C159.259,-537 186.19,-537 209.737,-537"/>
-<polygon fill="#ff7f00" stroke="#ff7f00" points="209.945,-540.5 219.945,-537 209.945,-533.5 209.945,-540.5"/>
-</g>
-<!-- proc~assemble1d -->
-<g id="call~~graph~~CallGraph_node7" class="node"><title>proc~assemble1d</title>
-<g id="a_call~~graph~~CallGraph_node7"><a xlink:href="../proc/assemble1d.html" xlink:title="assemble1D">
-<polygon fill="#d9534f" stroke="#d9534f" points="116,-465 44,-465 44,-441 116,-441 116,-465"/>
-<text text-anchor="middle" x="80" y="-450.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble1D</text>
-</a>
-</g>
-</g>
-<!-- proc~assembleelementalmatrix1d -->
-<g id="call~~graph~~CallGraph_node37" class="node"><title>proc~assembleelementalmatrix1d</title>
-<g id="a_call~~graph~~CallGraph_node37"><a xlink:href="../proc/assembleelementalmatrix1d.html" xlink:title="assembleElementalMatrix1D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="344,-465 196,-465 196,-441 344,-441 344,-465"/>
-<text text-anchor="middle" x="270" y="-450.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix1D</text>
-</a>
-</g>
-</g>
-<!-- proc~assemble1d&#45;&gt;proc~assembleelementalmatrix1d -->
-<g id="call~~graph~~CallGraph_edge5" class="edge"><title>proc~assemble1d&#45;&gt;proc~assembleelementalmatrix1d</title>
-<path fill="none" stroke="#ff9900" d="M116.361,-453C135.906,-453 161.082,-453 185.33,-453"/>
-<polygon fill="#ff9900" stroke="#ff9900" points="185.646,-456.5 195.645,-453 185.645,-449.5 185.646,-456.5"/>
-</g>
-<!-- proc~cgwt -->
-<g id="call~~graph~~CallGraph_node8" class="node"><title>proc~cgwt</title>
-<g id="a_call~~graph~~CallGraph_node8"><a xlink:href="../proc/cgwt.html" xlink:title="cgwt">
-<polygon fill="#d9534f" stroke="#d9534f" points="107,-591 53,-591 53,-567 107,-567 107,-591"/>
-<text text-anchor="middle" x="80" y="-576.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">cgwt</text>
-</a>
-</g>
-</g>
-<!-- proc~inv2 -->
-<g id="call~~graph~~CallGraph_node9" class="node"><title>proc~inv2</title>
-<g id="a_call~~graph~~CallGraph_node9"><a xlink:href="../proc/inv2.html" xlink:title="inv2">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="107,-633 53,-633 53,-609 107,-609 107,-633"/>
-<text text-anchor="middle" x="80" y="-618.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">inv2</text>
-</a>
-</g>
-</g>
-<!-- proc~det2 -->
-<g id="call~~graph~~CallGraph_node32" class="node"><title>proc~det2</title>
-<g id="a_call~~graph~~CallGraph_node32"><a xlink:href="../proc/det2.html" xlink:title="det2">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="297,-633 243,-633 243,-609 297,-609 297,-633"/>
-<text text-anchor="middle" x="270" y="-618.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">det2</text>
-</a>
-</g>
-</g>
-<!-- proc~inv2&#45;&gt;proc~det2 -->
-<g id="call~~graph~~CallGraph_edge6" class="edge"><title>proc~inv2&#45;&gt;proc~det2</title>
-<path fill="none" stroke="#ffcc00" d="M107.141,-621C139.74,-621 195.654,-621 232.474,-621"/>
-<polygon fill="#ffcc00" stroke="#ffcc00" points="232.779,-624.5 242.779,-621 232.779,-617.5 232.779,-624.5"/>
-</g>
-<!-- interface~assemble -->
-<g id="call~~graph~~CallGraph_node10" class="node"><title>interface~assemble</title>
-<g id="a_call~~graph~~CallGraph_node10"><a xlink:href="../interface/assemble.html" xlink:title="assemble">
-<polygon fill="#a7506f" stroke="#a7506f" points="299,-360 241,-360 241,-336 299,-336 299,-360"/>
-<text text-anchor="middle" x="270" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble</text>
-</a>
-</g>
-</g>
-<!-- proc~gaussquad_rosetta -->
-<g id="call~~graph~~CallGraph_node11" class="node"><title>proc~gaussquad_rosetta</title>
-<g id="a_call~~graph~~CallGraph_node11"><a xlink:href="../proc/gaussquad_rosetta.html" xlink:title="gaussquad_rosetta">
-<polygon fill="#d9534f" stroke="#d9534f" points="1068,-507 964,-507 964,-483 1068,-483 1068,-507"/>
-<text text-anchor="middle" x="1016" y="-492.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad_rosetta</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha2d -->
-<g id="call~~graph~~CallGraph_node12" class="node"><title>proc~getalpha2d</title>
-<g id="a_call~~graph~~CallGraph_node12"><a xlink:href="../proc/getalpha2d.html" xlink:title="getAlpha2D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="114,-234 46,-234 46,-210 114,-210 114,-234"/>
-<text text-anchor="middle" x="80" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
-</a>
-</g>
-</g>
-<!-- proc~linsolve_quick -->
-<g id="call~~graph~~CallGraph_node45" class="node"><title>proc~linsolve_quick</title>
-<g id="a_call~~graph~~CallGraph_node45"><a xlink:href="../proc/linsolve_quick.html" xlink:title="linsolve_quick">
-<polygon fill="#d9534f" stroke="#d9534f" points="309.5,-192 230.5,-192 230.5,-168 309.5,-168 309.5,-192"/>
-<text text-anchor="middle" x="270" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve_quick</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha2d&#45;&gt;proc~linsolve_quick -->
-<g id="call~~graph~~CallGraph_edge8" class="edge"><title>proc~getalpha2d&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#e5ff00" d="M114.178,-214.588C143.601,-208.015 186.957,-198.329 220.31,-190.878"/>
-<polygon fill="#e5ff00" stroke="#e5ff00" points="221.317,-194.239 230.313,-188.643 219.791,-187.407 221.317,-194.239"/>
-</g>
-<!-- proc~eye -->
-<g id="call~~graph~~CallGraph_node55" class="node"><title>proc~eye</title>
-<g id="a_call~~graph~~CallGraph_node55"><a xlink:href="../proc/eye.html" xlink:title="eye">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="297,-234 243,-234 243,-210 297,-210 297,-234"/>
-<text text-anchor="middle" x="270" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eye</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha2d&#45;&gt;proc~eye -->
-<g id="call~~graph~~CallGraph_edge7" class="edge"><title>proc~getalpha2d&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#e5ff00" d="M114.178,-222C147.422,-222 198.454,-222 232.746,-222"/>
-<polygon fill="#e5ff00" stroke="#e5ff00" points="232.813,-225.5 242.813,-222 232.813,-218.5 232.813,-225.5"/>
-</g>
-<!-- proc~gaussquad -->
-<g id="call~~graph~~CallGraph_node13" class="node"><title>proc~gaussquad</title>
-<g id="a_call~~graph~~CallGraph_node13"><a xlink:href="../proc/gaussquad.html" xlink:title="gaussquad">
-<polygon fill="#d9534f" stroke="#d9534f" points="927.5,-507 862.5,-507 862.5,-483 927.5,-483 927.5,-507"/>
-<text text-anchor="middle" x="895" y="-492.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
-</a>
-</g>
-</g>
-<!-- proc~gaussquad&#45;&gt;proc~gaussquad_rosetta -->
-<g id="call~~graph~~CallGraph_edge9" class="edge"><title>proc~gaussquad&#45;&gt;proc~gaussquad_rosetta</title>
-<path fill="none" stroke="#cbff00" d="M927.577,-495C935.682,-495 944.68,-495 953.733,-495"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="953.933,-498.5 963.933,-495 953.933,-491.5 953.933,-498.5"/>
-</g>
-<!-- interface~set_bcs -->
-<g id="call~~graph~~CallGraph_node14" class="node"><title>interface~set_bcs</title>
-<g id="a_call~~graph~~CallGraph_node14"><a xlink:href="../interface/set_bcs.html" xlink:title="set_BCs">
-<polygon fill="#a7506f" stroke="#a7506f" points="107,-675 53,-675 53,-651 107,-651 107,-675"/>
-<text text-anchor="middle" x="80" y="-660.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_BCs</text>
-</a>
-</g>
-</g>
-<!-- proc~assembleelementalmatrix2d_c -->
-<g id="call~~graph~~CallGraph_node15" class="node"><title>proc~assembleelementalmatrix2d_c</title>
-<g id="a_call~~graph~~CallGraph_node15"><a xlink:href="../proc/assembleelementalmatrix2d_c.html" xlink:title="assembleElementalMatrix2D_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="160,-759 0,-759 0,-735 160,-735 160,-759"/>
-<text text-anchor="middle" x="80" y="-744.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix2D_c</text>
-</a>
-</g>
-</g>
-<!-- assembleelementalmatrix -->
-<g id="call~~graph~~CallGraph_node61" class="node"><title>assembleelementalmatrix</title>
-<polygon fill="#777777" stroke="#777777" points="337,-738 203,-738 203,-714 337,-714 337,-738"/>
-<text text-anchor="middle" x="270" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleelementalmatrix</text>
-</g>
-<!-- proc~assembleelementalmatrix2d_c&#45;&gt;assembleelementalmatrix -->
-<g id="call~~graph~~CallGraph_edge10" class="edge"><title>proc~assembleelementalmatrix2d_c&#45;&gt;assembleelementalmatrix</title>
-<path fill="none" stroke="#99ff00" d="M160.184,-738.155C170.983,-736.949 182.049,-735.713 192.793,-734.512"/>
-<polygon fill="#99ff00" stroke="#99ff00" points="193.427,-737.964 202.976,-733.375 192.65,-731.007 193.427,-737.964"/>
-</g>
-<!-- interface~gaussquad -->
-<g id="call~~graph~~CallGraph_node51" class="node"><title>interface~gaussquad</title>
-<g id="a_call~~graph~~CallGraph_node51"><a xlink:href="../interface/gaussquad.html" xlink:title="gaussquad">
-<polygon fill="#a7506f" stroke="#a7506f" points="825.5,-507 760.5,-507 760.5,-483 825.5,-483 825.5,-507"/>
-<text text-anchor="middle" x="793" y="-492.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
-</a>
-</g>
-</g>
-<!-- proc~integrate1d&#45;&gt;interface~gaussquad -->
-<g id="call~~graph~~CallGraph_edge11" class="edge"><title>proc~integrate1d&#45;&gt;interface~gaussquad</title>
-<path fill="none" stroke="#7fff00" d="M724.071,-509.124C732.424,-507.387 741.502,-505.5 750.222,-503.687"/>
-<polygon fill="#7fff00" stroke="#7fff00" points="751.151,-507.068 760.229,-501.606 749.726,-500.215 751.151,-507.068"/>
-</g>
-<!-- interface~getxy -->
-<g id="call~~graph~~CallGraph_node17" class="node"><title>interface~getxy</title>
-<g id="a_call~~graph~~CallGraph_node17"><a xlink:href="../interface/getxy.html" xlink:title="getXY">
-<polygon fill="#a7506f" stroke="#a7506f" points="107,-801 53,-801 53,-777 107,-777 107,-801"/>
-<text text-anchor="middle" x="80" y="-786.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getXY</text>
-</a>
-</g>
-</g>
-<!-- proc~getxy -->
-<g id="call~~graph~~CallGraph_node18" class="node"><title>proc~getxy</title>
-<g id="a_call~~graph~~CallGraph_node18"><a xlink:href="../proc/getxy.html" xlink:title="getXY">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="107,-843 53,-843 53,-819 107,-819 107,-843"/>
-<text text-anchor="middle" x="80" y="-828.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getXY</text>
-</a>
-</g>
-</g>
-<!-- proc~assembleelementalmatrix2d -->
-<g id="call~~graph~~CallGraph_node19" class="node"><title>proc~assembleelementalmatrix2d</title>
-<g id="a_call~~graph~~CallGraph_node19"><a xlink:href="../proc/assembleelementalmatrix2d.html" xlink:title="assembleElementalMatrix2D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="528,-507 380,-507 380,-483 528,-483 528,-507"/>
-<text text-anchor="middle" x="454" y="-492.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix2D</text>
-</a>
-</g>
-</g>
-<!-- proc~assembleelementalmatrix2d&#45;&gt;interface~integrate -->
-<g id="call~~graph~~CallGraph_edge12" class="edge"><title>proc~assembleelementalmatrix2d&#45;&gt;interface~integrate</title>
-<path fill="none" stroke="#33ff00" d="M528.175,-495C537.181,-495 546.064,-495 554.189,-495"/>
-<polygon fill="#33ff00" stroke="#33ff00" points="554.38,-498.5 564.38,-495 554.38,-491.5 554.38,-498.5"/>
+<!-- proc~integrate_basis_1d_ie&#45;&gt;interface~integrate -->
+<g id="call~~graph~~CallGraph_edge3" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;interface~integrate</title>
+<path fill="none" stroke="#ff4d00" d="M513.071,-54C527.059,-54 541.62,-54 554.317,-54"/>
+<polygon fill="#ff4d00" stroke="#ff4d00" points="554.49,-57.5001 564.49,-54 554.49,-50.5001 554.49,-57.5001"/>
 </g>
 <!-- getalpha -->
-<g id="call~~graph~~CallGraph_node62" class="node"><title>getalpha</title>
-<polygon fill="#777777" stroke="#777777" points="619,-465 565,-465 565,-441 619,-441 619,-465"/>
-<text text-anchor="middle" x="592" y="-450.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getalpha</text>
+<g id="call~~graph~~CallGraph_node61" class="node"><title>getalpha</title>
+<polygon fill="#777777" stroke="#777777" points="619,-24 565,-24 565,-0 619,-0 619,-24"/>
+<text text-anchor="middle" x="592" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getalpha</text>
 </g>
-<!-- proc~assembleelementalmatrix2d&#45;&gt;getalpha -->
-<g id="call~~graph~~CallGraph_edge13" class="edge"><title>proc~assembleelementalmatrix2d&#45;&gt;getalpha</title>
-<path fill="none" stroke="#33ff00" d="M497.936,-482.971C507.834,-480.109 518.302,-477.01 528,-474 536.8,-471.269 546.246,-468.196 555.077,-465.261"/>
-<polygon fill="#33ff00" stroke="#33ff00" points="556.347,-468.527 564.718,-462.032 554.124,-461.889 556.347,-468.527"/>
-</g>
-<!-- proc~getalpha1d -->
-<g id="call~~graph~~CallGraph_node20" class="node"><title>proc~getalpha1d</title>
-<g id="a_call~~graph~~CallGraph_node20"><a xlink:href="../proc/getalpha1d.html" xlink:title="getAlpha1D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="114,-192 46,-192 46,-168 114,-168 114,-192"/>
-<text text-anchor="middle" x="80" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha1D</text>
-</a>
-</g>
-</g>
-<!-- proc~getalpha1d&#45;&gt;proc~linsolve_quick -->
-<g id="call~~graph~~CallGraph_edge15" class="edge"><title>proc~getalpha1d&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#19ff00" d="M114.178,-180C143.601,-180 186.957,-180 220.31,-180"/>
-<polygon fill="#19ff00" stroke="#19ff00" points="220.313,-183.5 230.313,-180 220.313,-176.5 220.313,-183.5"/>
-</g>
-<!-- proc~getalpha1d&#45;&gt;proc~eye -->
-<g id="call~~graph~~CallGraph_edge14" class="edge"><title>proc~getalpha1d&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#19ff00" d="M114.178,-187.412C147.422,-194.839 198.454,-206.24 232.746,-213.901"/>
-<polygon fill="#19ff00" stroke="#19ff00" points="232.291,-217.385 242.813,-216.15 233.817,-210.554 232.291,-217.385"/>
-</g>
-<!-- proc~pascal_1d_line_c -->
-<g id="call~~graph~~CallGraph_node21" class="node"><title>proc~pascal_1d_line_c</title>
-<g id="a_call~~graph~~CallGraph_node21"><a xlink:href="../proc/pascal_1d_line_c.html" xlink:title="pascal_1D_line_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="128.5,-1011 31.5,-1011 31.5,-987 128.5,-987 128.5,-1011"/>
-<text text-anchor="middle" x="80" y="-996.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_1D_line_c</text>
-</a>
-</g>
-</g>
-<!-- interface~pascal_row -->
-<g id="call~~graph~~CallGraph_node46" class="node"><title>interface~pascal_row</title>
-<g id="a_call~~graph~~CallGraph_node46"><a xlink:href="../interface/pascal_row.html" xlink:title="pascal_row">
-<polygon fill="#a7506f" stroke="#a7506f" points="303.5,-948 236.5,-948 236.5,-924 303.5,-924 303.5,-948"/>
-<text text-anchor="middle" x="270" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_row</text>
-</a>
-</g>
-</g>
-<!-- proc~pascal_1d_line_c&#45;&gt;interface~pascal_row -->
-<g id="call~~graph~~CallGraph_edge16" class="edge"><title>proc~pascal_1d_line_c&#45;&gt;interface~pascal_row</title>
-<path fill="none" stroke="#00ff00" d="M128.867,-987.165C139.196,-984.364 150.011,-981.242 160,-978 183.813,-970.272 210.006,-960.231 230.747,-951.904"/>
-<polygon fill="#00ff00" stroke="#00ff00" points="232.204,-955.09 240.16,-948.093 229.577,-948.602 232.204,-955.09"/>
+<!-- proc~integrate_basis_1d_ie&#45;&gt;getalpha -->
+<g id="call~~graph~~CallGraph_edge4" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;getalpha</title>
+<path fill="none" stroke="#ff4d00" d="M497.936,-41.9713C507.834,-39.109 518.302,-36.0099 528,-33 536.8,-30.2688 546.246,-27.1962 555.077,-24.2615"/>
+<polygon fill="#ff4d00" stroke="#ff4d00" points="556.347,-27.5271 564.718,-21.0323 554.124,-20.8895 556.347,-27.5271"/>
 </g>
 <!-- proc~lgwt -->
-<g id="call~~graph~~CallGraph_node22" class="node"><title>proc~lgwt</title>
-<g id="a_call~~graph~~CallGraph_node22"><a xlink:href="../proc/lgwt.html" xlink:title="lgwt">
-<polygon fill="#d9534f" stroke="#d9534f" points="107,-1095 53,-1095 53,-1071 107,-1071 107,-1095"/>
-<text text-anchor="middle" x="80" y="-1080.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lgwt</text>
+<g id="call~~graph~~CallGraph_node5" class="node"><title>proc~lgwt</title>
+<g id="a_call~~graph~~CallGraph_node5"><a xlink:href=".././proc/lgwt.html" xlink:title="lgwt">
+<polygon fill="#d9534f" stroke="#d9534f" points="107,-528 53,-528 53,-504 107,-504 107,-528"/>
+<text text-anchor="middle" x="80" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lgwt</text>
 </a>
 </g>
 </g>
 <!-- linspace -->
-<g id="call~~graph~~CallGraph_node63" class="node"><title>linspace</title>
-<polygon fill="#777777" stroke="#777777" points="297,-1074 243,-1074 243,-1050 297,-1050 297,-1074"/>
-<text text-anchor="middle" x="270" y="-1059.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linspace</text>
+<g id="call~~graph~~CallGraph_node62" class="node"><title>linspace</title>
+<polygon fill="#777777" stroke="#777777" points="297,-507 243,-507 243,-483 297,-483 297,-507"/>
+<text text-anchor="middle" x="270" y="-492.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linspace</text>
 </g>
 <!-- proc~lgwt&#45;&gt;linspace -->
-<g id="call~~graph~~CallGraph_edge17" class="edge"><title>proc~lgwt&#45;&gt;linspace</title>
-<path fill="none" stroke="#00ff19" d="M107.141,-1080.08C139.74,-1076.44 195.654,-1070.19 232.474,-1066.08"/>
-<polygon fill="#00ff19" stroke="#00ff19" points="233.229,-1069.52 242.779,-1064.93 232.452,-1062.56 233.229,-1069.52"/>
+<g id="call~~graph~~CallGraph_edge5" class="edge"><title>proc~lgwt&#45;&gt;linspace</title>
+<path fill="none" stroke="#ff6700" d="M107.141,-513.08C139.74,-509.439 195.654,-503.193 232.474,-499.08"/>
+<polygon fill="#ff6700" stroke="#ff6700" points="233.229,-502.518 242.779,-497.929 232.452,-495.561 233.229,-502.518"/>
 </g>
-<!-- proc~basis_1d -->
-<g id="call~~graph~~CallGraph_node23" class="node"><title>proc~basis_1d</title>
-<g id="a_call~~graph~~CallGraph_node23"><a xlink:href="../proc/basis_1d.html" xlink:title="basis_1D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="108.5,-1137 51.5,-1137 51.5,-1113 108.5,-1113 108.5,-1137"/>
-<text text-anchor="middle" x="80" y="-1122.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">basis_1D</text>
+<!-- proc~assemble2d -->
+<g id="call~~graph~~CallGraph_node6" class="node"><title>proc~assemble2d</title>
+<g id="a_call~~graph~~CallGraph_node6"><a xlink:href=".././proc/assemble2d.html" xlink:title="assemble2D">
+<polygon fill="#d9534f" stroke="#d9534f" points="116,-654 44,-654 44,-630 116,-630 116,-654"/>
+<text text-anchor="middle" x="80" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble2D</text>
 </a>
 </g>
 </g>
 <!-- interface~assembleelementalmatrix -->
-<g id="call~~graph~~CallGraph_node24" class="node"><title>interface~assembleelementalmatrix</title>
-<g id="a_call~~graph~~CallGraph_node24"><a xlink:href="../interface/assembleelementalmatrix.html" xlink:title="assembleElementalMatrix">
-<polygon fill="#a7506f" stroke="#a7506f" points="337.5,-1179 202.5,-1179 202.5,-1155 337.5,-1155 337.5,-1179"/>
-<text text-anchor="middle" x="270" y="-1164.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix</text>
+<g id="call~~graph~~CallGraph_node42" class="node"><title>interface~assembleelementalmatrix</title>
+<g id="a_call~~graph~~CallGraph_node42"><a xlink:href=".././interface/assembleelementalmatrix.html" xlink:title="assembleElementalMatrix">
+<polygon fill="#a7506f" stroke="#a7506f" points="337.5,-612 202.5,-612 202.5,-588 337.5,-588 337.5,-612"/>
+<text text-anchor="middle" x="270" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix</text>
 </a>
 </g>
 </g>
-<!-- proc~pascal_1d_line -->
-<g id="call~~graph~~CallGraph_node25" class="node"><title>proc~pascal_1d_line</title>
-<g id="a_call~~graph~~CallGraph_node25"><a xlink:href="../proc/pascal_1d_line.html" xlink:title="pascal_1D_line">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="122.5,-1221 37.5,-1221 37.5,-1197 122.5,-1197 122.5,-1221"/>
-<text text-anchor="middle" x="80" y="-1206.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_1D_line</text>
+<!-- proc~assemble2d&#45;&gt;interface~assembleelementalmatrix -->
+<g id="call~~graph~~CallGraph_edge6" class="edge"><title>proc~assemble2d&#45;&gt;interface~assembleelementalmatrix</title>
+<path fill="none" stroke="#ff8100" d="M116.361,-634.1C141.303,-628.528 175.416,-620.907 205.067,-614.283"/>
+<polygon fill="#ff8100" stroke="#ff8100" points="205.936,-617.675 214.932,-612.079 204.409,-610.844 205.936,-617.675"/>
+</g>
+<!-- proc~assembleelementalmatrix2d_c -->
+<g id="call~~graph~~CallGraph_node7" class="node"><title>proc~assembleelementalmatrix2d_c</title>
+<g id="a_call~~graph~~CallGraph_node7"><a xlink:href=".././proc/assembleelementalmatrix2d_c.html" xlink:title="assembleElementalMatrix2D_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="160,-612 0,-612 0,-588 160,-588 160,-612"/>
+<text text-anchor="middle" x="80" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix2D_c</text>
 </a>
 </g>
 </g>
-<!-- proc~getarow1d -->
-<g id="call~~graph~~CallGraph_node26" class="node"><title>proc~getarow1d</title>
-<g id="a_call~~graph~~CallGraph_node26"><a xlink:href="../proc/getarow1d.html" xlink:title="getArow1D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="112.5,-969 47.5,-969 47.5,-945 112.5,-945 112.5,-969"/>
-<text text-anchor="middle" x="80" y="-954.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow1D</text>
+<!-- proc~assembleelementalmatrix2d_c&#45;&gt;interface~assembleelementalmatrix -->
+<g id="call~~graph~~CallGraph_edge7" class="edge"><title>proc~assembleelementalmatrix2d_c&#45;&gt;interface~assembleelementalmatrix</title>
+<path fill="none" stroke="#ff9b00" d="M160.184,-600C170.831,-600 181.737,-600 192.339,-600"/>
+<polygon fill="#ff9b00" stroke="#ff9b00" points="192.392,-603.5 202.392,-600 192.392,-596.5 192.392,-603.5"/>
+</g>
+<!-- proc~assemble1d -->
+<g id="call~~graph~~CallGraph_node8" class="node"><title>proc~assemble1d</title>
+<g id="a_call~~graph~~CallGraph_node8"><a xlink:href=".././proc/assemble1d.html" xlink:title="assemble1D">
+<polygon fill="#d9534f" stroke="#d9534f" points="116,-66 44,-66 44,-42 116,-42 116,-66"/>
+<text text-anchor="middle" x="80" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble1D</text>
 </a>
 </g>
 </g>
-<!-- proc~getarow1d&#45;&gt;interface~pascal_row -->
-<g id="call~~graph~~CallGraph_edge18" class="edge"><title>proc~getarow1d&#45;&gt;interface~pascal_row</title>
-<path fill="none" stroke="#00ff7f" d="M112.892,-953.438C144.032,-949.959 191.631,-944.642 226.083,-940.794"/>
-<polygon fill="#00ff7f" stroke="#00ff7f" points="226.77,-944.239 236.32,-939.65 225.993,-937.282 226.77,-944.239"/>
-</g>
-<!-- proc~assemble2d_c -->
-<g id="call~~graph~~CallGraph_node27" class="node"><title>proc~assemble2d_c</title>
-<g id="a_call~~graph~~CallGraph_node27"><a xlink:href="../proc/assemble2d_c.html" xlink:title="assemble2D_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="121.5,-381 38.5,-381 38.5,-357 121.5,-357 121.5,-381"/>
-<text text-anchor="middle" x="80" y="-366.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble2D_c</text>
+<!-- proc~assembleelementalmatrix1d -->
+<g id="call~~graph~~CallGraph_node11" class="node"><title>proc~assembleelementalmatrix1d</title>
+<g id="a_call~~graph~~CallGraph_node11"><a xlink:href=".././proc/assembleelementalmatrix1d.html" xlink:title="assembleElementalMatrix1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="344,-66 196,-66 196,-42 344,-42 344,-66"/>
+<text text-anchor="middle" x="270" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix1D</text>
 </a>
 </g>
 </g>
-<!-- proc~assemble2d_c&#45;&gt;interface~assemble -->
-<g id="call~~graph~~CallGraph_edge19" class="edge"><title>proc~assemble2d_c&#45;&gt;interface~assemble</title>
-<path fill="none" stroke="#00ff99" d="M121.793,-364.443C154.102,-360.834 198.916,-355.829 230.589,-352.291"/>
-<polygon fill="#00ff99" stroke="#00ff99" points="231.24,-355.74 240.789,-351.151 230.463,-348.783 231.24,-355.74"/>
+<!-- proc~assemble1d&#45;&gt;proc~assembleelementalmatrix1d -->
+<g id="call~~graph~~CallGraph_edge8" class="edge"><title>proc~assemble1d&#45;&gt;proc~assembleelementalmatrix1d</title>
+<path fill="none" stroke="#ffb500" d="M116.361,-54C135.906,-54 161.082,-54 185.33,-54"/>
+<polygon fill="#ffb500" stroke="#ffb500" points="185.646,-57.5001 195.645,-54 185.645,-50.5001 185.646,-57.5001"/>
+</g>
+<!-- interface~gaussquad -->
+<g id="call~~graph~~CallGraph_node9" class="node"><title>interface~gaussquad</title>
+<g id="a_call~~graph~~CallGraph_node9"><a xlink:href=".././interface/gaussquad.html" xlink:title="gaussquad">
+<polygon fill="#a7506f" stroke="#a7506f" points="825.5,-66 760.5,-66 760.5,-42 825.5,-42 825.5,-66"/>
+<text text-anchor="middle" x="793" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
+</a>
+</g>
+</g>
+<!-- proc~gaussquad -->
+<g id="call~~graph~~CallGraph_node46" class="node"><title>proc~gaussquad</title>
+<g id="a_call~~graph~~CallGraph_node46"><a xlink:href=".././proc/gaussquad.html" xlink:title="gaussquad">
+<polygon fill="#d9534f" stroke="#d9534f" points="927.5,-66 862.5,-66 862.5,-42 927.5,-42 927.5,-66"/>
+<text text-anchor="middle" x="895" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gaussquad</text>
+</a>
+</g>
+</g>
+<!-- interface~gaussquad&#45;&gt;proc~gaussquad -->
+<g id="call~~graph~~CallGraph_edge9" class="edge"><title>interface~gaussquad&#45;&gt;proc~gaussquad</title>
+<path fill="none" stroke="#ffcf00" stroke-dasharray="5,2" d="M825.641,-54C834.031,-54 843.221,-54 852.066,-54"/>
+<polygon fill="#ffcf00" stroke="#ffcf00" points="852.222,-57.5001 862.222,-54 852.222,-50.5001 852.222,-57.5001"/>
 </g>
 <!-- proc~read_gmsh_file_1d -->
-<g id="call~~graph~~CallGraph_node28" class="node"><title>proc~read_gmsh_file_1d</title>
-<g id="a_call~~graph~~CallGraph_node28"><a xlink:href="../proc/read_gmsh_file_1d.html" xlink:title="read_gmsh_file_1D">
-<polygon fill="#d9534f" stroke="#d9534f" points="133,-1263 27,-1263 27,-1239 133,-1239 133,-1263"/>
-<text text-anchor="middle" x="80" y="-1248.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_gmsh_file_1D</text>
+<g id="call~~graph~~CallGraph_node10" class="node"><title>proc~read_gmsh_file_1d</title>
+<g id="a_call~~graph~~CallGraph_node10"><a xlink:href=".././proc/read_gmsh_file_1d.html" xlink:title="read_gmsh_file_1D">
+<polygon fill="#d9534f" stroke="#d9534f" points="323,-192 217,-192 217,-168 323,-168 323,-192"/>
+<text text-anchor="middle" x="270" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_gmsh_file_1D</text>
 </a>
 </g>
 </g>
 <!-- proc~print_header -->
-<g id="call~~graph~~CallGraph_node42" class="node"><title>proc~print_header</title>
-<g id="a_call~~graph~~CallGraph_node42"><a xlink:href="../proc/print_header.html" xlink:title="print_header">
-<polygon fill="#d9534f" stroke="#d9534f" points="306.5,-1263 233.5,-1263 233.5,-1239 306.5,-1239 306.5,-1263"/>
-<text text-anchor="middle" x="270" y="-1248.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_header</text>
+<g id="call~~graph~~CallGraph_node55" class="node"><title>proc~print_header</title>
+<g id="a_call~~graph~~CallGraph_node55"><a xlink:href=".././proc/print_header.html" xlink:title="print_header">
+<polygon fill="#d9534f" stroke="#d9534f" points="490.5,-192 417.5,-192 417.5,-168 490.5,-168 490.5,-192"/>
+<text text-anchor="middle" x="454" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_header</text>
 </a>
 </g>
 </g>
 <!-- proc~read_gmsh_file_1d&#45;&gt;proc~print_header -->
-<g id="call~~graph~~CallGraph_edge20" class="edge"><title>proc~read_gmsh_file_1d&#45;&gt;proc~print_header</title>
-<path fill="none" stroke="#00ffb2" d="M133.368,-1251C161.596,-1251 196.1,-1251 223.243,-1251"/>
-<polygon fill="#00ffb2" stroke="#00ffb2" points="223.257,-1254.5 233.257,-1251 223.257,-1247.5 223.257,-1254.5"/>
+<g id="call~~graph~~CallGraph_edge10" class="edge"><title>proc~read_gmsh_file_1d&#45;&gt;proc~print_header</title>
+<path fill="none" stroke="#ffe900" d="M323.154,-180C349.65,-180 381.555,-180 407.108,-180"/>
+<polygon fill="#ffe900" stroke="#ffe900" points="407.278,-183.5 417.278,-180 407.278,-176.5 407.278,-183.5"/>
+</g>
+<!-- proc~assembleelementalmatrix1d&#45;&gt;proc~integrate_basis_1d_ie -->
+<g id="call~~graph~~CallGraph_edge11" class="edge"><title>proc~assembleelementalmatrix1d&#45;&gt;proc~integrate_basis_1d_ie</title>
+<path fill="none" stroke="#faff00" d="M344.24,-54C357.489,-54 371.262,-54 384.374,-54"/>
+<polygon fill="#faff00" stroke="#faff00" points="384.725,-57.5001 394.725,-54 384.725,-50.5001 384.725,-57.5001"/>
+</g>
+<!-- interface~pascal_single_row -->
+<g id="call~~graph~~CallGraph_node12" class="node"><title>interface~pascal_single_row</title>
+<g id="a_call~~graph~~CallGraph_node12"><a xlink:href=".././interface/pascal_single_row.html" xlink:title="pascal_single_row">
+<polygon fill="#a7506f" stroke="#a7506f" points="320,-696 220,-696 220,-672 320,-672 320,-696"/>
+<text text-anchor="middle" x="270" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_single_row</text>
+</a>
+</g>
+</g>
+<!-- proc~pascal_1d_line_c -->
+<g id="call~~graph~~CallGraph_node13" class="node"><title>proc~pascal_1d_line_c</title>
+<g id="a_call~~graph~~CallGraph_node13"><a xlink:href=".././proc/pascal_1d_line_c.html" xlink:title="pascal_1D_line_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="128.5,-864 31.5,-864 31.5,-840 128.5,-840 128.5,-864"/>
+<text text-anchor="middle" x="80" y="-849.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_1D_line_c</text>
+</a>
+</g>
+</g>
+<!-- interface~pascal_row -->
+<g id="call~~graph~~CallGraph_node47" class="node"><title>interface~pascal_row</title>
+<g id="a_call~~graph~~CallGraph_node47"><a xlink:href=".././interface/pascal_row.html" xlink:title="pascal_row">
+<polygon fill="#a7506f" stroke="#a7506f" points="303.5,-801 236.5,-801 236.5,-777 303.5,-777 303.5,-801"/>
+<text text-anchor="middle" x="270" y="-786.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_row</text>
+</a>
+</g>
+</g>
+<!-- proc~pascal_1d_line_c&#45;&gt;interface~pascal_row -->
+<g id="call~~graph~~CallGraph_edge12" class="edge"><title>proc~pascal_1d_line_c&#45;&gt;interface~pascal_row</title>
+<path fill="none" stroke="#c6ff00" d="M128.867,-840.165C139.196,-837.364 150.011,-834.242 160,-831 183.813,-823.272 210.006,-813.231 230.747,-804.904"/>
+<polygon fill="#c6ff00" stroke="#c6ff00" points="232.204,-808.09 240.16,-801.093 229.577,-801.602 232.204,-808.09"/>
+</g>
+<!-- proc~assembleelementalmatrix2d -->
+<g id="call~~graph~~CallGraph_node14" class="node"><title>proc~assembleelementalmatrix2d</title>
+<g id="a_call~~graph~~CallGraph_node14"><a xlink:href=".././proc/assembleelementalmatrix2d.html" xlink:title="assembleElementalMatrix2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="528,-24 380,-24 380,-0 528,-0 528,-24"/>
+<text text-anchor="middle" x="454" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix2D</text>
+</a>
+</g>
+</g>
+<!-- proc~assembleelementalmatrix2d&#45;&gt;interface~integrate -->
+<g id="call~~graph~~CallGraph_edge13" class="edge"><title>proc~assembleelementalmatrix2d&#45;&gt;interface~integrate</title>
+<path fill="none" stroke="#acff00" d="M497.936,-24.0287C507.834,-26.891 518.302,-29.9901 528,-33 536.72,-35.7064 546.074,-38.748 554.836,-41.6585"/>
+<polygon fill="#acff00" stroke="#acff00" points="553.816,-45.0081 564.41,-44.8639 556.038,-38.3702 553.816,-45.0081"/>
+</g>
+<!-- proc~assembleelementalmatrix2d&#45;&gt;getalpha -->
+<g id="call~~graph~~CallGraph_edge14" class="edge"><title>proc~assembleelementalmatrix2d&#45;&gt;getalpha</title>
+<path fill="none" stroke="#acff00" d="M528.175,-12C537.459,-12 546.613,-12 554.94,-12"/>
+<polygon fill="#acff00" stroke="#acff00" points="554.993,-15.5001 564.993,-12 554.993,-8.5001 554.993,-15.5001"/>
+</g>
+<!-- proc~integrate1d -->
+<g id="call~~graph~~CallGraph_node51" class="node"><title>proc~integrate1d</title>
+<g id="a_call~~graph~~CallGraph_node51"><a xlink:href=".././proc/integrate1d.html" xlink:title="integrate1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="724,-87 656,-87 656,-63 724,-63 724,-87"/>
+<text text-anchor="middle" x="690" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate1D</text>
+</a>
+</g>
+</g>
+<!-- interface~integrate&#45;&gt;proc~integrate1d -->
+<g id="call~~graph~~CallGraph_edge16" class="edge"><title>interface~integrate&#45;&gt;proc~integrate1d</title>
+<path fill="none" stroke="#92ff00" stroke-dasharray="5,2" d="M619.741,-59.8497C627.884,-61.6308 637.049,-63.6358 645.982,-65.5898"/>
+<polygon fill="#92ff00" stroke="#92ff00" points="645.384,-69.0418 655.901,-67.7597 646.88,-62.2035 645.384,-69.0418"/>
+</g>
+<!-- proc~integrate2d -->
+<g id="call~~graph~~CallGraph_node54" class="node"><title>proc~integrate2d</title>
+<g id="a_call~~graph~~CallGraph_node54"><a xlink:href=".././proc/integrate2d.html" xlink:title="integrate2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="724,-45 656,-45 656,-21 724,-21 724,-45"/>
+<text text-anchor="middle" x="690" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate2D</text>
+</a>
+</g>
+</g>
+<!-- interface~integrate&#45;&gt;proc~integrate2d -->
+<g id="call~~graph~~CallGraph_edge15" class="edge"><title>interface~integrate&#45;&gt;proc~integrate2d</title>
+<path fill="none" stroke="#92ff00" stroke-dasharray="5,2" d="M619.741,-48.1503C627.884,-46.3692 637.049,-44.3642 645.982,-42.4102"/>
+<polygon fill="#92ff00" stroke="#92ff00" points="646.88,-45.7965 655.901,-40.2403 645.384,-38.9582 646.88,-45.7965"/>
+</g>
+<!-- proc~inv2 -->
+<g id="call~~graph~~CallGraph_node16" class="node"><title>proc~inv2</title>
+<g id="a_call~~graph~~CallGraph_node16"><a xlink:href=".././proc/inv2.html" xlink:title="inv2">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="107,-906 53,-906 53,-882 107,-882 107,-906"/>
+<text text-anchor="middle" x="80" y="-891.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">inv2</text>
+</a>
+</g>
+</g>
+<!-- proc~det2 -->
+<g id="call~~graph~~CallGraph_node39" class="node"><title>proc~det2</title>
+<g id="a_call~~graph~~CallGraph_node39"><a xlink:href=".././proc/det2.html" xlink:title="det2">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="297,-906 243,-906 243,-882 297,-882 297,-906"/>
+<text text-anchor="middle" x="270" y="-891.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">det2</text>
+</a>
+</g>
+</g>
+<!-- proc~inv2&#45;&gt;proc~det2 -->
+<g id="call~~graph~~CallGraph_edge17" class="edge"><title>proc~inv2&#45;&gt;proc~det2</title>
+<path fill="none" stroke="#79ff00" d="M107.141,-894C139.74,-894 195.654,-894 232.474,-894"/>
+<polygon fill="#79ff00" stroke="#79ff00" points="232.779,-897.5 242.779,-894 232.779,-890.5 232.779,-897.5"/>
+</g>
+<!-- proc~getalpha2d -->
+<g id="call~~graph~~CallGraph_node17" class="node"><title>proc~getalpha2d</title>
+<g id="a_call~~graph~~CallGraph_node17"><a xlink:href=".././proc/getalpha2d.html" xlink:title="getAlpha2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="114,-444 46,-444 46,-420 114,-420 114,-444"/>
+<text text-anchor="middle" x="80" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
+</a>
+</g>
+</g>
+<!-- proc~eye -->
+<g id="call~~graph~~CallGraph_node40" class="node"><title>proc~eye</title>
+<g id="a_call~~graph~~CallGraph_node40"><a xlink:href=".././proc/eye.html" xlink:title="eye">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="297,-444 243,-444 243,-420 297,-420 297,-444"/>
+<text text-anchor="middle" x="270" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eye</text>
+</a>
+</g>
+</g>
+<!-- proc~getalpha2d&#45;&gt;proc~eye -->
+<g id="call~~graph~~CallGraph_edge18" class="edge"><title>proc~getalpha2d&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#5fff00" d="M114.178,-432C147.422,-432 198.454,-432 232.746,-432"/>
+<polygon fill="#5fff00" stroke="#5fff00" points="232.813,-435.5 242.813,-432 232.813,-428.5 232.813,-435.5"/>
+</g>
+<!-- proc~linsolve_quick -->
+<g id="call~~graph~~CallGraph_node43" class="node"><title>proc~linsolve_quick</title>
+<g id="a_call~~graph~~CallGraph_node43"><a xlink:href=".././proc/linsolve_quick.html" xlink:title="linsolve_quick">
+<polygon fill="#d9534f" stroke="#d9534f" points="309.5,-402 230.5,-402 230.5,-378 309.5,-378 309.5,-402"/>
+<text text-anchor="middle" x="270" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve_quick</text>
+</a>
+</g>
+</g>
+<!-- proc~getalpha2d&#45;&gt;proc~linsolve_quick -->
+<g id="call~~graph~~CallGraph_edge19" class="edge"><title>proc~getalpha2d&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#5fff00" d="M114.178,-424.588C143.601,-418.015 186.957,-408.329 220.31,-400.878"/>
+<polygon fill="#5fff00" stroke="#5fff00" points="221.317,-404.239 230.313,-398.643 219.791,-397.407 221.317,-404.239"/>
+</g>
+<!-- proc~assemble2d_c -->
+<g id="call~~graph~~CallGraph_node18" class="node"><title>proc~assemble2d_c</title>
+<g id="a_call~~graph~~CallGraph_node18"><a xlink:href=".././proc/assemble2d_c.html" xlink:title="assemble2D_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="121.5,-297 38.5,-297 38.5,-273 121.5,-273 121.5,-297"/>
+<text text-anchor="middle" x="80" y="-282.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble2D_c</text>
+</a>
+</g>
+</g>
+<!-- interface~assemble -->
+<g id="call~~graph~~CallGraph_node53" class="node"><title>interface~assemble</title>
+<g id="a_call~~graph~~CallGraph_node53"><a xlink:href=".././interface/assemble.html" xlink:title="assemble">
+<polygon fill="#a7506f" stroke="#a7506f" points="299,-276 241,-276 241,-252 299,-252 299,-276"/>
+<text text-anchor="middle" x="270" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble</text>
+</a>
+</g>
+</g>
+<!-- proc~assemble2d_c&#45;&gt;interface~assemble -->
+<g id="call~~graph~~CallGraph_edge20" class="edge"><title>proc~assemble2d_c&#45;&gt;interface~assemble</title>
+<path fill="none" stroke="#45ff00" d="M121.793,-280.443C154.102,-276.834 198.916,-271.829 230.589,-268.291"/>
+<polygon fill="#45ff00" stroke="#45ff00" points="231.24,-271.74 240.789,-267.151 230.463,-264.783 231.24,-271.74"/>
+</g>
+<!-- proc~pascal_2d_quad_c -->
+<g id="call~~graph~~CallGraph_node19" class="node"><title>proc~pascal_2d_quad_c</title>
+<g id="a_call~~graph~~CallGraph_node19"><a xlink:href=".././proc/pascal_2d_quad_c.html" xlink:title="pascal_2D_quad_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="132,-822 28,-822 28,-798 132,-798 132,-822"/>
+<text text-anchor="middle" x="80" y="-807.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_quad_c</text>
+</a>
+</g>
+</g>
+<!-- proc~pascal_2d_quad_c&#45;&gt;interface~pascal_row -->
+<g id="call~~graph~~CallGraph_edge21" class="edge"><title>proc~pascal_2d_quad_c&#45;&gt;interface~pascal_row</title>
+<path fill="none" stroke="#2bff00" d="M132.372,-804.262C161.774,-800.977 198.236,-796.904 226.096,-793.792"/>
+<polygon fill="#2bff00" stroke="#2bff00" points="226.77,-797.239 236.32,-792.65 225.993,-790.282 226.77,-797.239"/>
+</g>
+<!-- interface~getalpha2d -->
+<g id="call~~graph~~CallGraph_node20" class="node"><title>interface~getalpha2d</title>
+<g id="a_call~~graph~~CallGraph_node20"><a xlink:href=".././interface/getalpha2d.html" xlink:title="getAlpha2D">
+<polygon fill="#a7506f" stroke="#a7506f" points="114,-948 46,-948 46,-924 114,-924 114,-948"/>
+<text text-anchor="middle" x="80" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
+</a>
+</g>
+</g>
+<!-- proc~getjacobian_2d -->
+<g id="call~~graph~~CallGraph_node21" class="node"><title>proc~getjacobian_2d</title>
+<g id="a_call~~graph~~CallGraph_node21"><a xlink:href=".././proc/getjacobian_2d.html" xlink:title="getJacobian_2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="125,-990 35,-990 35,-966 125,-966 125,-990"/>
+<text text-anchor="middle" x="80" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getJacobian_2D</text>
+</a>
+</g>
+</g>
+<!-- interface~getarow -->
+<g id="call~~graph~~CallGraph_node38" class="node"><title>interface~getarow</title>
+<g id="a_call~~graph~~CallGraph_node38"><a xlink:href=".././interface/getarow.html" xlink:title="getArow">
+<polygon fill="#a7506f" stroke="#a7506f" points="297,-990 243,-990 243,-966 297,-966 297,-990"/>
+<text text-anchor="middle" x="270" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow</text>
+</a>
+</g>
+</g>
+<!-- proc~getjacobian_2d&#45;&gt;interface~getarow -->
+<g id="call~~graph~~CallGraph_edge22" class="edge"><title>proc~getjacobian_2d&#45;&gt;interface~getarow</title>
+<path fill="none" stroke="#00ff08" d="M125.078,-978C157.795,-978 201.878,-978 232.601,-978"/>
+<polygon fill="#00ff08" stroke="#00ff08" points="232.871,-981.5 242.871,-978 232.871,-974.5 232.871,-981.5"/>
+</g>
+<!-- proc~assembleelementalmatrix1d_c -->
+<g id="call~~graph~~CallGraph_node22" class="node"><title>proc~assembleelementalmatrix1d_c</title>
+<g id="a_call~~graph~~CallGraph_node22"><a xlink:href=".././proc/assembleelementalmatrix1d_c.html" xlink:title="assembleElementalMatrix1D_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="160,-570 0,-570 0,-546 160,-546 160,-570"/>
+<text text-anchor="middle" x="80" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix1D_c</text>
+</a>
+</g>
+</g>
+<!-- proc~assembleelementalmatrix1d_c&#45;&gt;interface~assembleelementalmatrix -->
+<g id="call~~graph~~CallGraph_edge23" class="edge"><title>proc~assembleelementalmatrix1d_c&#45;&gt;interface~assembleelementalmatrix</title>
+<path fill="none" stroke="#00ff22" d="M134.873,-570.036C156.801,-574.934 182.315,-580.634 205.168,-585.74"/>
+<polygon fill="#00ff22" stroke="#00ff22" points="204.596,-589.198 215.119,-587.963 206.123,-582.367 204.596,-589.198"/>
+</g>
+<!-- interface~set_bcs -->
+<g id="call~~graph~~CallGraph_node23" class="node"><title>interface~set_bcs</title>
+<g id="a_call~~graph~~CallGraph_node23"><a xlink:href=".././interface/set_bcs.html" xlink:title="set_BCs">
+<polygon fill="#a7506f" stroke="#a7506f" points="297,-234 243,-234 243,-210 297,-210 297,-234"/>
+<text text-anchor="middle" x="270" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_BCs</text>
+</a>
+</g>
+</g>
+<!-- proc~getarow2d -->
+<g id="call~~graph~~CallGraph_node24" class="node"><title>proc~getarow2d</title>
+<g id="a_call~~graph~~CallGraph_node24"><a xlink:href=".././proc/getarow2d.html" xlink:title="getArow2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="112.5,-780 47.5,-780 47.5,-756 112.5,-756 112.5,-780"/>
+<text text-anchor="middle" x="80" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow2D</text>
+</a>
+</g>
+</g>
+<!-- proc~getarow2d&#45;&gt;interface~pascal_row -->
+<g id="call~~graph~~CallGraph_edge24" class="edge"><title>proc~getarow2d&#45;&gt;interface~pascal_row</title>
+<path fill="none" stroke="#00ff56" d="M112.892,-771.562C144.032,-775.041 191.631,-780.358 226.083,-784.206"/>
+<polygon fill="#00ff56" stroke="#00ff56" points="225.993,-787.718 236.32,-785.35 226.77,-780.761 225.993,-787.718"/>
+</g>
+<!-- proc~assemble1d_c -->
+<g id="call~~graph~~CallGraph_node25" class="node"><title>proc~assemble1d_c</title>
+<g id="a_call~~graph~~CallGraph_node25"><a xlink:href=".././proc/assemble1d_c.html" xlink:title="assemble1D_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="121.5,-255 38.5,-255 38.5,-231 121.5,-231 121.5,-255"/>
+<text text-anchor="middle" x="80" y="-240.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble1D_c</text>
+</a>
+</g>
+</g>
+<!-- proc~assemble1d_c&#45;&gt;interface~assemble -->
+<g id="call~~graph~~CallGraph_edge25" class="edge"><title>proc~assemble1d_c&#45;&gt;interface~assemble</title>
+<path fill="none" stroke="#00ff70" d="M121.793,-247.557C154.102,-251.166 198.916,-256.171 230.589,-259.709"/>
+<polygon fill="#00ff70" stroke="#00ff70" points="230.463,-263.217 240.789,-260.849 231.24,-256.26 230.463,-263.217"/>
+</g>
+<!-- proc~basis_1d -->
+<g id="call~~graph~~CallGraph_node26" class="node"><title>proc~basis_1d</title>
+<g id="a_call~~graph~~CallGraph_node26"><a xlink:href=".././proc/basis_1d.html" xlink:title="basis_1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="108.5,-1032 51.5,-1032 51.5,-1008 108.5,-1008 108.5,-1032"/>
+<text text-anchor="middle" x="80" y="-1017.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">basis_1D</text>
+</a>
+</g>
+</g>
+<!-- proc~pascal_single_row_c -->
+<g id="call~~graph~~CallGraph_node27" class="node"><title>proc~pascal_single_row_c</title>
+<g id="a_call~~graph~~CallGraph_node27"><a xlink:href=".././proc/pascal_single_row_c.html" xlink:title="pascal_single_row_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="136,-696 24,-696 24,-672 136,-672 136,-696"/>
+<text text-anchor="middle" x="80" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_single_row_c</text>
+</a>
+</g>
+</g>
+<!-- proc~pascal_single_row_c&#45;&gt;interface~pascal_single_row -->
+<g id="call~~graph~~CallGraph_edge26" class="edge"><title>proc~pascal_single_row_c&#45;&gt;interface~pascal_single_row</title>
+<path fill="none" stroke="#00ffa4" d="M136.136,-684C159.259,-684 186.19,-684 209.737,-684"/>
+<polygon fill="#00ffa4" stroke="#00ffa4" points="209.945,-687.5 219.945,-684 209.945,-680.5 209.945,-687.5"/>
+</g>
+<!-- proc~initialize_global_mats -->
+<g id="call~~graph~~CallGraph_node28" class="node"><title>proc~initialize_global_mats</title>
+<g id="a_call~~graph~~CallGraph_node28"><a xlink:href=".././proc/initialize_global_mats.html" xlink:title="initialize_global_mats">
+<polygon fill="#d9534f" stroke="#d9534f" points="137,-1074 23,-1074 23,-1050 137,-1050 137,-1074"/>
+<text text-anchor="middle" x="80" y="-1059.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initialize_global_mats</text>
+</a>
+</g>
+</g>
+<!-- proc~getxy_2d -->
+<g id="call~~graph~~CallGraph_node29" class="node"><title>proc~getxy_2d</title>
+<g id="a_call~~graph~~CallGraph_node29"><a xlink:href=".././proc/getxy_2d.html" xlink:title="getXY_2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="110.5,-1116 49.5,-1116 49.5,-1092 110.5,-1092 110.5,-1116"/>
+<text text-anchor="middle" x="80" y="-1101.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getXY_2D</text>
+</a>
+</g>
+</g>
+<!-- interface~fun1d_interf -->
+<g id="call~~graph~~CallGraph_node30" class="node"><title>interface~fun1d_interf</title>
+<g id="a_call~~graph~~CallGraph_node30"><a xlink:href=".././interface/fun1d_interf.html" xlink:title="fun1d_interf">
+<polygon fill="#a7506f" stroke="#a7506f" points="115,-1158 45,-1158 45,-1134 115,-1134 115,-1158"/>
+<text text-anchor="middle" x="80" y="-1143.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fun1d_interf</text>
+</a>
+</g>
+</g>
+<!-- proc~getalpha1d -->
+<g id="call~~graph~~CallGraph_node31" class="node"><title>proc~getalpha1d</title>
+<g id="a_call~~graph~~CallGraph_node31"><a xlink:href=".././proc/getalpha1d.html" xlink:title="getAlpha1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="114,-402 46,-402 46,-378 114,-378 114,-402"/>
+<text text-anchor="middle" x="80" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha1D</text>
+</a>
+</g>
+</g>
+<!-- proc~getalpha1d&#45;&gt;proc~eye -->
+<g id="call~~graph~~CallGraph_edge27" class="edge"><title>proc~getalpha1d&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#00f2ff" d="M114.178,-397.412C147.422,-404.839 198.454,-416.24 232.746,-423.901"/>
+<polygon fill="#00f2ff" stroke="#00f2ff" points="232.291,-427.385 242.813,-426.15 233.817,-420.554 232.291,-427.385"/>
+</g>
+<!-- proc~getalpha1d&#45;&gt;proc~linsolve_quick -->
+<g id="call~~graph~~CallGraph_edge28" class="edge"><title>proc~getalpha1d&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#00f2ff" d="M114.178,-390C143.601,-390 186.957,-390 220.31,-390"/>
+<polygon fill="#00f2ff" stroke="#00f2ff" points="220.313,-393.5 230.313,-390 220.313,-386.5 220.313,-393.5"/>
+</g>
+<!-- interface~basis_1d -->
+<g id="call~~graph~~CallGraph_node32" class="node"><title>interface~basis_1d</title>
+<g id="a_call~~graph~~CallGraph_node32"><a xlink:href=".././interface/basis_1d.html" xlink:title="basis_1D">
+<polygon fill="#a7506f" stroke="#a7506f" points="108.5,-1200 51.5,-1200 51.5,-1176 108.5,-1176 108.5,-1200"/>
+<text text-anchor="middle" x="80" y="-1185.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">basis_1D</text>
+</a>
+</g>
+</g>
+<!-- proc~cgwt -->
+<g id="call~~graph~~CallGraph_node33" class="node"><title>proc~cgwt</title>
+<g id="a_call~~graph~~CallGraph_node33"><a xlink:href=".././proc/cgwt.html" xlink:title="cgwt">
+<polygon fill="#d9534f" stroke="#d9534f" points="107,-1242 53,-1242 53,-1218 107,-1218 107,-1242"/>
+<text text-anchor="middle" x="80" y="-1227.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">cgwt</text>
+</a>
+</g>
 </g>
 <!-- interface~initialize_global_mats -->
-<g id="call~~graph~~CallGraph_node29" class="node"><title>interface~initialize_global_mats</title>
-<g id="a_call~~graph~~CallGraph_node29"><a xlink:href="../interface/initialize_global_mats.html" xlink:title="initialize_global_mats">
+<g id="call~~graph~~CallGraph_node34" class="node"><title>interface~initialize_global_mats</title>
+<g id="a_call~~graph~~CallGraph_node34"><a xlink:href=".././interface/initialize_global_mats.html" xlink:title="initialize_global_mats">
 <polygon fill="#a7506f" stroke="#a7506f" points="327,-150 213,-150 213,-126 327,-126 327,-150"/>
 <text text-anchor="middle" x="270" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initialize_global_mats</text>
 </a>
 </g>
 </g>
-<!-- proc~pascal_2d_row -->
-<g id="call~~graph~~CallGraph_node31" class="node"><title>proc~pascal_2d_row</title>
-<g id="a_call~~graph~~CallGraph_node31"><a xlink:href="../proc/pascal_2d_row.html" xlink:title="pascal_2D_row">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="313,-1305 227,-1305 227,-1281 313,-1281 313,-1305"/>
-<text text-anchor="middle" x="270" y="-1290.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_row</text>
+<!-- proc~getarow1d -->
+<g id="call~~graph~~CallGraph_node35" class="node"><title>proc~getarow1d</title>
+<g id="a_call~~graph~~CallGraph_node35"><a xlink:href=".././proc/getarow1d.html" xlink:title="getArow1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="112.5,-738 47.5,-738 47.5,-714 112.5,-714 112.5,-738"/>
+<text text-anchor="middle" x="80" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow1D</text>
 </a>
 </g>
 </g>
-<!-- proc~integrate2d&#45;&gt;interface~gaussquad -->
-<g id="call~~graph~~CallGraph_edge21" class="edge"><title>proc~integrate2d&#45;&gt;interface~gaussquad</title>
-<path fill="none" stroke="#00cbff" d="M724.071,-480.876C732.424,-482.613 741.502,-484.5 750.222,-486.313"/>
-<polygon fill="#00cbff" stroke="#00cbff" points="749.726,-489.785 760.229,-488.394 751.151,-482.932 749.726,-489.785"/>
+<!-- proc~getarow1d&#45;&gt;interface~pascal_row -->
+<g id="call~~graph~~CallGraph_edge29" class="edge"><title>proc~getarow1d&#45;&gt;interface~pascal_row</title>
+<path fill="none" stroke="#008aff" d="M112.751,-733.606C127.263,-737.296 144.612,-742.006 160,-747 183.813,-754.728 210.006,-764.769 230.747,-773.096"/>
+<polygon fill="#008aff" stroke="#008aff" points="229.577,-776.398 240.16,-776.907 232.204,-769.91 229.577,-776.398"/>
 </g>
-<!-- proc~assemble1d_c -->
-<g id="call~~graph~~CallGraph_node35" class="node"><title>proc~assemble1d_c</title>
-<g id="a_call~~graph~~CallGraph_node35"><a xlink:href="../proc/assemble1d_c.html" xlink:title="assemble1D_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="121.5,-339 38.5,-339 38.5,-315 121.5,-315 121.5,-339"/>
-<text text-anchor="middle" x="80" y="-324.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble1D_c</text>
+<!-- proc~pascal_1d_line -->
+<g id="call~~graph~~CallGraph_node36" class="node"><title>proc~pascal_1d_line</title>
+<g id="a_call~~graph~~CallGraph_node36"><a xlink:href=".././proc/pascal_1d_line.html" xlink:title="pascal_1D_line">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="122.5,-1284 37.5,-1284 37.5,-1260 122.5,-1260 122.5,-1284"/>
+<text text-anchor="middle" x="80" y="-1269.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_1D_line</text>
 </a>
 </g>
 </g>
-<!-- proc~assemble1d_c&#45;&gt;interface~assemble -->
-<g id="call~~graph~~CallGraph_edge22" class="edge"><title>proc~assemble1d_c&#45;&gt;interface~assemble</title>
-<path fill="none" stroke="#0099ff" d="M121.793,-331.557C154.102,-335.166 198.916,-340.171 230.589,-343.709"/>
-<polygon fill="#0099ff" stroke="#0099ff" points="230.463,-347.217 240.789,-344.849 231.24,-340.26 230.463,-347.217"/>
-</g>
-<!-- proc~pascal_2d_quad_c -->
-<g id="call~~graph~~CallGraph_node36" class="node"><title>proc~pascal_2d_quad_c</title>
-<g id="a_call~~graph~~CallGraph_node36"><a xlink:href="../proc/pascal_2d_quad_c.html" xlink:title="pascal_2D_quad_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="132,-927 28,-927 28,-903 132,-903 132,-927"/>
-<text text-anchor="middle" x="80" y="-912.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_quad_c</text>
+<!-- proc~pascal_row_2d -->
+<g id="call~~graph~~CallGraph_node37" class="node"><title>proc~pascal_row_2d</title>
+<g id="a_call~~graph~~CallGraph_node37"><a xlink:href=".././proc/pascal_row_2d.html" xlink:title="pascal_row_2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="313,-1326 227,-1326 227,-1302 313,-1302 313,-1326"/>
+<text text-anchor="middle" x="270" y="-1311.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_row_2D</text>
 </a>
 </g>
 </g>
-<!-- proc~pascal_2d_quad_c&#45;&gt;interface~pascal_row -->
-<g id="call~~graph~~CallGraph_edge23" class="edge"><title>proc~pascal_2d_quad_c&#45;&gt;interface~pascal_row</title>
-<path fill="none" stroke="#007fff" d="M132.372,-920.738C161.774,-924.023 198.236,-928.096 226.096,-931.208"/>
-<polygon fill="#007fff" stroke="#007fff" points="225.993,-934.718 236.32,-932.35 226.77,-927.761 225.993,-934.718"/>
-</g>
-<!-- proc~integrate_basis_1d_ie -->
-<g id="call~~graph~~CallGraph_node38" class="node"><title>proc~integrate_basis_1d_ie</title>
-<g id="a_call~~graph~~CallGraph_node38"><a xlink:href="../proc/integrate_basis_1d_ie.html" xlink:title="integrate_basis_1d_Ie">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="513,-465 395,-465 395,-441 513,-441 513,-465"/>
-<text text-anchor="middle" x="454" y="-450.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">integrate_basis_1d_Ie</text>
-</a>
-</g>
-</g>
-<!-- proc~assembleelementalmatrix1d&#45;&gt;proc~integrate_basis_1d_ie -->
-<g id="call~~graph~~CallGraph_edge24" class="edge"><title>proc~assembleelementalmatrix1d&#45;&gt;proc~integrate_basis_1d_ie</title>
-<path fill="none" stroke="#0066ff" d="M344.24,-453C357.489,-453 371.262,-453 384.374,-453"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="384.725,-456.5 394.725,-453 384.725,-449.5 384.725,-456.5"/>
-</g>
-<!-- proc~integrate_basis_1d_ie&#45;&gt;interface~integrate -->
-<g id="call~~graph~~CallGraph_edge25" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;interface~integrate</title>
-<path fill="none" stroke="#004cff" d="M497.936,-465.029C507.834,-467.891 518.302,-470.99 528,-474 536.72,-476.706 546.074,-479.748 554.836,-482.658"/>
-<polygon fill="#004cff" stroke="#004cff" points="553.816,-486.008 564.41,-485.864 556.038,-479.37 553.816,-486.008"/>
-</g>
-<!-- proc~integrate_basis_1d_ie&#45;&gt;getalpha -->
-<g id="call~~graph~~CallGraph_edge26" class="edge"><title>proc~integrate_basis_1d_ie&#45;&gt;getalpha</title>
-<path fill="none" stroke="#004cff" d="M513.071,-453C527.172,-453 541.854,-453 554.623,-453"/>
-<polygon fill="#004cff" stroke="#004cff" points="554.845,-456.5 564.845,-453 554.844,-449.5 554.845,-456.5"/>
-</g>
-<!-- interface~getalpha2d -->
-<g id="call~~graph~~CallGraph_node39" class="node"><title>interface~getalpha2d</title>
-<g id="a_call~~graph~~CallGraph_node39"><a xlink:href="../interface/getalpha2d.html" xlink:title="getAlpha2D">
-<polygon fill="#a7506f" stroke="#a7506f" points="114,-1347 46,-1347 46,-1323 114,-1323 114,-1347"/>
-<text text-anchor="middle" x="80" y="-1332.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha2D</text>
-</a>
-</g>
-</g>
-<!-- proc~linsolve -->
-<g id="call~~graph~~CallGraph_node40" class="node"><title>proc~linsolve</title>
-<g id="a_call~~graph~~CallGraph_node40"><a xlink:href="../proc/linsolve.html" xlink:title="linsolve">
-<polygon fill="#d9534f" stroke="#d9534f" points="481,-192 427,-192 427,-168 481,-168 481,-192"/>
-<text text-anchor="middle" x="454" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve</text>
-</a>
-</g>
-</g>
-<!-- dgetrf -->
-<g id="call~~graph~~CallGraph_node64" class="node"><title>dgetrf</title>
-<polygon fill="#777777" stroke="#777777" points="619,-213 565,-213 565,-189 619,-189 619,-213"/>
-<text text-anchor="middle" x="592" y="-198.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
-</g>
-<!-- proc~linsolve&#45;&gt;dgetrf -->
-<g id="call~~graph~~CallGraph_edge27" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
-<path fill="none" stroke="#0019ff" d="M481.222,-184.049C502.106,-187.274 531.574,-191.824 554.721,-195.398"/>
-<polygon fill="#0019ff" stroke="#0019ff" points="554.441,-198.896 564.858,-196.963 555.51,-191.978 554.441,-198.896"/>
-</g>
-<!-- dgetrs -->
-<g id="call~~graph~~CallGraph_node65" class="node"><title>dgetrs</title>
-<polygon fill="#777777" stroke="#777777" points="619,-171 565,-171 565,-147 619,-147 619,-171"/>
-<text text-anchor="middle" x="592" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
-</g>
-<!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="call~~graph~~CallGraph_edge28" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
-<path fill="none" stroke="#0019ff" d="M481.222,-175.951C502.106,-172.726 531.574,-168.176 554.721,-164.602"/>
-<polygon fill="#0019ff" stroke="#0019ff" points="555.51,-168.022 564.858,-163.037 554.441,-161.104 555.51,-168.022"/>
-</g>
-<!-- interface~fun1d_interf -->
-<g id="call~~graph~~CallGraph_node41" class="node"><title>interface~fun1d_interf</title>
-<g id="a_call~~graph~~CallGraph_node41"><a xlink:href="../interface/fun1d_interf.html" xlink:title="fun1d_interf">
-<polygon fill="#a7506f" stroke="#a7506f" points="115,-1389 45,-1389 45,-1365 115,-1365 115,-1389"/>
-<text text-anchor="middle" x="80" y="-1374.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fun1d_interf</text>
-</a>
-</g>
-</g>
-<!-- interface~getalpha1d -->
-<g id="call~~graph~~CallGraph_node43" class="node"><title>interface~getalpha1d</title>
-<g id="a_call~~graph~~CallGraph_node43"><a xlink:href="../interface/getalpha1d.html" xlink:title="getAlpha1D">
-<polygon fill="#a7506f" stroke="#a7506f" points="114,-1431 46,-1431 46,-1407 114,-1407 114,-1431"/>
-<text text-anchor="middle" x="80" y="-1416.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha1D</text>
-</a>
-</g>
-</g>
-<!-- proc~write_out_solution -->
-<g id="call~~graph~~CallGraph_node44" class="node"><title>proc~write_out_solution</title>
-<g id="a_call~~graph~~CallGraph_node44"><a xlink:href="../proc/write_out_solution.html" xlink:title="write_out_solution">
-<polygon fill="#d9534f" stroke="#d9534f" points="129.5,-1473 30.5,-1473 30.5,-1449 129.5,-1449 129.5,-1473"/>
-<text text-anchor="middle" x="80" y="-1458.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_out_solution</text>
+<!-- proc~r8mat_print_some -->
+<g id="call~~graph~~CallGraph_node41" class="node"><title>proc~r8mat_print_some</title>
+<g id="a_call~~graph~~CallGraph_node41"><a xlink:href=".././proc/r8mat_print_some.html" xlink:title="r8mat_print_some">
+<polygon fill="#d9534f" stroke="#d9534f" points="504,-360 404,-360 404,-336 504,-336 504,-360"/>
+<text text-anchor="middle" x="454" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">r8mat_print_some</text>
 </a>
 </g>
 </g>
 <!-- proc~linsolve_quick&#45;&gt;proc~linsolve -->
-<g id="call~~graph~~CallGraph_edge29" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
-<path fill="none" stroke="#6500ff" d="M309.598,-180C341.146,-180 385.442,-180 416.428,-180"/>
-<polygon fill="#6500ff" stroke="#6500ff" points="416.791,-183.5 426.791,-180 416.791,-176.5 416.791,-183.5"/>
+<g id="call~~graph~~CallGraph_edge30" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
+<path fill="none" stroke="#4500ff" d="M309.598,-390C341.146,-390 385.442,-390 416.428,-390"/>
+<polygon fill="#4500ff" stroke="#4500ff" points="416.791,-393.5 426.791,-390 416.791,-386.5 416.791,-393.5"/>
 </g>
-<!-- proc~initialize_global_mats -->
-<g id="call~~graph~~CallGraph_node47" class="node"><title>proc~initialize_global_mats</title>
-<g id="a_call~~graph~~CallGraph_node47"><a xlink:href="../proc/initialize_global_mats.html" xlink:title="initialize_global_mats">
-<polygon fill="#d9534f" stroke="#d9534f" points="137,-1515 23,-1515 23,-1491 137,-1491 137,-1515"/>
-<text text-anchor="middle" x="80" y="-1500.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initialize_global_mats</text>
+<!-- proc~write_out_solution -->
+<g id="call~~graph~~CallGraph_node44" class="node"><title>proc~write_out_solution</title>
+<g id="a_call~~graph~~CallGraph_node44"><a xlink:href=".././proc/write_out_solution.html" xlink:title="write_out_solution">
+<polygon fill="#d9534f" stroke="#d9534f" points="319.5,-108 220.5,-108 220.5,-84 319.5,-84 319.5,-108"/>
+<text text-anchor="middle" x="270" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_out_solution</text>
 </a>
 </g>
 </g>
-<!-- interface~fun2d_interf -->
-<g id="call~~graph~~CallGraph_node48" class="node"><title>interface~fun2d_interf</title>
-<g id="a_call~~graph~~CallGraph_node48"><a xlink:href="../interface/fun2d_interf.html" xlink:title="fun2d_interf">
-<polygon fill="#a7506f" stroke="#a7506f" points="115,-1557 45,-1557 45,-1533 115,-1533 115,-1557"/>
-<text text-anchor="middle" x="80" y="-1542.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fun2d_interf</text>
+<!-- interface~getalpha1d -->
+<g id="call~~graph~~CallGraph_node45" class="node"><title>interface~getalpha1d</title>
+<g id="a_call~~graph~~CallGraph_node45"><a xlink:href=".././interface/getalpha1d.html" xlink:title="getAlpha1D">
+<polygon fill="#a7506f" stroke="#a7506f" points="114,-1368 46,-1368 46,-1344 114,-1344 114,-1368"/>
+<text text-anchor="middle" x="80" y="-1353.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getAlpha1D</text>
 </a>
 </g>
 </g>
-<!-- proc~assemble2d -->
-<g id="call~~graph~~CallGraph_node49" class="node"><title>proc~assemble2d</title>
-<g id="a_call~~graph~~CallGraph_node49"><a xlink:href="../proc/assemble2d.html" xlink:title="assemble2D">
-<polygon fill="#d9534f" stroke="#d9534f" points="116,-1179 44,-1179 44,-1155 116,-1155 116,-1179"/>
-<text text-anchor="middle" x="80" y="-1164.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble2D</text>
+<!-- proc~gaussquad&#45;&gt;proc~gaussquad_rosetta -->
+<g id="call~~graph~~CallGraph_edge31" class="edge"><title>proc~gaussquad&#45;&gt;proc~gaussquad_rosetta</title>
+<path fill="none" stroke="#9200ff" d="M927.577,-54C935.682,-54 944.68,-54 953.733,-54"/>
+<polygon fill="#9200ff" stroke="#9200ff" points="953.933,-57.5001 963.933,-54 953.933,-50.5001 953.933,-57.5001"/>
+</g>
+<!-- interface~getxy -->
+<g id="call~~graph~~CallGraph_node48" class="node"><title>interface~getxy</title>
+<g id="a_call~~graph~~CallGraph_node48"><a xlink:href=".././interface/getxy.html" xlink:title="getXY">
+<polygon fill="#a7506f" stroke="#a7506f" points="297,-318 243,-318 243,-294 297,-294 297,-318"/>
+<text text-anchor="middle" x="270" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getXY</text>
 </a>
 </g>
 </g>
-<!-- proc~assemble2d&#45;&gt;interface~assembleelementalmatrix -->
-<g id="call~~graph~~CallGraph_edge30" class="edge"><title>proc~assemble2d&#45;&gt;interface~assembleelementalmatrix</title>
-<path fill="none" stroke="#cc00ff" d="M116.361,-1167C137.677,-1167 165.69,-1167 191.893,-1167"/>
-<polygon fill="#cc00ff" stroke="#cc00ff" points="192.212,-1170.5 202.212,-1167 192.212,-1163.5 192.212,-1170.5"/>
-</g>
-<!-- proc~getarow2d -->
-<g id="call~~graph~~CallGraph_node50" class="node"><title>proc~getarow2d</title>
-<g id="a_call~~graph~~CallGraph_node50"><a xlink:href="../proc/getarow2d.html" xlink:title="getArow2D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="112.5,-885 47.5,-885 47.5,-861 112.5,-861 112.5,-885"/>
-<text text-anchor="middle" x="80" y="-870.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getArow2D</text>
+<!-- proc~set_bcs -->
+<g id="call~~graph~~CallGraph_node49" class="node"><title>proc~set_bcs</title>
+<g id="a_call~~graph~~CallGraph_node49"><a xlink:href=".././proc/set_bcs.html" xlink:title="set_BCs">
+<polygon fill="#d9534f" stroke="#d9534f" points="107,-1410 53,-1410 53,-1386 107,-1386 107,-1410"/>
+<text text-anchor="middle" x="80" y="-1395.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_BCs</text>
 </a>
 </g>
-</g>
-<!-- proc~getarow2d&#45;&gt;interface~pascal_row -->
-<g id="call~~graph~~CallGraph_edge31" class="edge"><title>proc~getarow2d&#45;&gt;interface~pascal_row</title>
-<path fill="none" stroke="#e500ff" d="M112.751,-880.606C127.263,-884.296 144.612,-889.006 160,-894 183.813,-901.728 210.006,-911.769 230.747,-920.096"/>
-<polygon fill="#e500ff" stroke="#e500ff" points="229.577,-923.398 240.16,-923.907 232.204,-916.91 229.577,-923.398"/>
-</g>
-<!-- interface~gaussquad&#45;&gt;proc~gaussquad -->
-<g id="call~~graph~~CallGraph_edge32" class="edge"><title>interface~gaussquad&#45;&gt;proc~gaussquad</title>
-<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M825.641,-495C834.031,-495 843.221,-495 852.066,-495"/>
-<polygon fill="#ff00ff" stroke="#ff00ff" points="852.222,-498.5 862.222,-495 852.222,-491.5 852.222,-498.5"/>
 </g>
 <!-- proc~pascal_2d_quad -->
-<g id="call~~graph~~CallGraph_node52" class="node"><title>proc~pascal_2d_quad</title>
-<g id="a_call~~graph~~CallGraph_node52"><a xlink:href="../proc/pascal_2d_quad.html" xlink:title="pascal_2D_quad">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="126.5,-1305 33.5,-1305 33.5,-1281 126.5,-1281 126.5,-1305"/>
-<text text-anchor="middle" x="80" y="-1290.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_quad</text>
+<g id="call~~graph~~CallGraph_node50" class="node"><title>proc~pascal_2d_quad</title>
+<g id="a_call~~graph~~CallGraph_node50"><a xlink:href=".././proc/pascal_2d_quad.html" xlink:title="pascal_2D_quad">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="126.5,-1326 33.5,-1326 33.5,-1302 126.5,-1302 126.5,-1326"/>
+<text text-anchor="middle" x="80" y="-1311.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_quad</text>
 </a>
 </g>
 </g>
-<!-- proc~pascal_2d_quad&#45;&gt;proc~pascal_2d_row -->
-<g id="call~~graph~~CallGraph_edge33" class="edge"><title>proc~pascal_2d_quad&#45;&gt;proc~pascal_2d_row</title>
-<path fill="none" stroke="#ff00e5" d="M126.51,-1293C153.706,-1293 188.36,-1293 216.683,-1293"/>
-<polygon fill="#ff00e5" stroke="#ff00e5" points="216.806,-1296.5 226.805,-1293 216.805,-1289.5 216.806,-1296.5"/>
+<!-- proc~pascal_2d_quad&#45;&gt;proc~pascal_row_2d -->
+<g id="call~~graph~~CallGraph_edge32" class="edge"><title>proc~pascal_2d_quad&#45;&gt;proc~pascal_row_2d</title>
+<path fill="none" stroke="#fa00ff" d="M126.51,-1314C153.706,-1314 188.36,-1314 216.683,-1314"/>
+<polygon fill="#fa00ff" stroke="#fa00ff" points="216.806,-1317.5 226.805,-1314 216.805,-1310.5 216.806,-1317.5"/>
 </g>
-<!-- proc~create_simple_array_c -->
-<g id="call~~graph~~CallGraph_node53" class="node"><title>proc~create_simple_array_c</title>
-<g id="a_call~~graph~~CallGraph_node53"><a xlink:href="../proc/create_simple_array_c.html" xlink:title="create_simple_array_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="140.5,-1599 19.5,-1599 19.5,-1575 140.5,-1575 140.5,-1599"/>
-<text text-anchor="middle" x="80" y="-1584.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">create_simple_array_c</text>
+<!-- proc~integrate1d&#45;&gt;interface~gaussquad -->
+<g id="call~~graph~~CallGraph_edge33" class="edge"><title>proc~integrate1d&#45;&gt;interface~gaussquad</title>
+<path fill="none" stroke="#ff00e9" d="M724.071,-68.1238C732.424,-66.3871 741.502,-64.4996 750.222,-62.6865"/>
+<polygon fill="#ff00e9" stroke="#ff00e9" points="751.151,-66.0683 760.229,-60.6058 749.726,-59.2148 751.151,-66.0683"/>
+</g>
+<!-- interface~getjacobian -->
+<g id="call~~graph~~CallGraph_node52" class="node"><title>interface~getjacobian</title>
+<g id="a_call~~graph~~CallGraph_node52"><a xlink:href=".././interface/getjacobian.html" xlink:title="getJacobian">
+<polygon fill="#a7506f" stroke="#a7506f" points="115,-1452 45,-1452 45,-1428 115,-1428 115,-1452"/>
+<text text-anchor="middle" x="80" y="-1437.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getJacobian</text>
 </a>
 </g>
 </g>
-<!-- proc~assembleelementalmatrix1d_c -->
-<g id="call~~graph~~CallGraph_node54" class="node"><title>proc~assembleelementalmatrix1d_c</title>
-<g id="a_call~~graph~~CallGraph_node54"><a xlink:href="../proc/assembleelementalmatrix1d_c.html" xlink:title="assembleElementalMatrix1D_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="160,-717 0,-717 0,-693 160,-693 160,-717"/>
-<text text-anchor="middle" x="80" y="-702.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix1D_c</text>
-</a>
-</g>
-</g>
-<!-- proc~assembleelementalmatrix1d_c&#45;&gt;assembleelementalmatrix -->
-<g id="call~~graph~~CallGraph_edge34" class="edge"><title>proc~assembleelementalmatrix1d_c&#45;&gt;assembleelementalmatrix</title>
-<path fill="none" stroke="#ff00b2" d="M160.184,-713.845C170.983,-715.051 182.049,-716.287 192.793,-717.488"/>
-<polygon fill="#ff00b2" stroke="#ff00b2" points="192.65,-720.993 202.976,-718.625 193.427,-714.036 192.65,-720.993"/>
+<!-- proc~integrate2d&#45;&gt;interface~gaussquad -->
+<g id="call~~graph~~CallGraph_edge34" class="edge"><title>proc~integrate2d&#45;&gt;interface~gaussquad</title>
+<path fill="none" stroke="#ff009b" d="M724.071,-39.8762C732.424,-41.6129 741.502,-43.5004 750.222,-45.3135"/>
+<polygon fill="#ff009b" stroke="#ff009b" points="749.726,-48.7852 760.229,-47.3942 751.151,-41.9317 749.726,-48.7852"/>
 </g>
 <!-- proc~getx -->
 <g id="call~~graph~~CallGraph_node56" class="node"><title>proc~getx</title>
-<g id="a_call~~graph~~CallGraph_node56"><a xlink:href="../proc/getx.html" xlink:title="getx">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="107,-1053 53,-1053 53,-1029 107,-1029 107,-1053"/>
-<text text-anchor="middle" x="80" y="-1038.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getx</text>
+<g id="a_call~~graph~~CallGraph_node56"><a xlink:href=".././proc/getx.html" xlink:title="getx">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="107,-486 53,-486 53,-462 107,-462 107,-486"/>
+<text text-anchor="middle" x="80" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getx</text>
 </a>
 </g>
 </g>
 <!-- proc~getx&#45;&gt;linspace -->
 <g id="call~~graph~~CallGraph_edge35" class="edge"><title>proc~getx&#45;&gt;linspace</title>
-<path fill="none" stroke="#ff007f" d="M107.141,-1043.92C139.74,-1047.56 195.654,-1053.81 232.474,-1057.92"/>
-<polygon fill="#ff007f" stroke="#ff007f" points="232.452,-1061.44 242.779,-1059.07 233.229,-1054.48 232.452,-1061.44"/>
+<path fill="none" stroke="#ff0067" d="M107.141,-476.92C139.74,-480.561 195.654,-486.807 232.474,-490.92"/>
+<polygon fill="#ff0067" stroke="#ff0067" points="232.452,-494.439 242.779,-492.071 233.229,-487.482 232.452,-494.439"/>
 </g>
 <!-- proc~r8mat_print -->
 <g id="call~~graph~~CallGraph_node57" class="node"><title>proc~r8mat_print</title>
-<g id="a_call~~graph~~CallGraph_node57"><a xlink:href="../proc/r8mat_print.html" xlink:title="r8mat_print">
-<polygon fill="#d9534f" stroke="#d9534f" points="303.5,-318 236.5,-318 236.5,-294 303.5,-294 303.5,-318"/>
-<text text-anchor="middle" x="270" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">r8mat_print</text>
+<g id="a_call~~graph~~CallGraph_node57"><a xlink:href=".././proc/r8mat_print.html" xlink:title="r8mat_print">
+<polygon fill="#d9534f" stroke="#d9534f" points="303.5,-360 236.5,-360 236.5,-336 303.5,-336 303.5,-360"/>
+<text text-anchor="middle" x="270" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">r8mat_print</text>
 </a>
 </g>
 </g>
 <!-- proc~r8mat_print&#45;&gt;proc~r8mat_print_some -->
 <g id="call~~graph~~CallGraph_edge36" class="edge"><title>proc~r8mat_print&#45;&gt;proc~r8mat_print_some</title>
-<path fill="none" stroke="#ff0066" d="M303.538,-306C328.507,-306 363.659,-306 393.601,-306"/>
-<polygon fill="#ff0066" stroke="#ff0066" points="393.949,-309.5 403.949,-306 393.949,-302.5 393.949,-309.5"/>
-</g>
-<!-- proc~set_bcs -->
-<g id="call~~graph~~CallGraph_node58" class="node"><title>proc~set_bcs</title>
-<g id="a_call~~graph~~CallGraph_node58"><a xlink:href="../proc/set_bcs.html" xlink:title="set_BCs">
-<polygon fill="#d9534f" stroke="#d9534f" points="107,-1641 53,-1641 53,-1617 107,-1617 107,-1641"/>
-<text text-anchor="middle" x="80" y="-1626.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_BCs</text>
-</a>
-</g>
+<path fill="none" stroke="#ff004d" d="M303.538,-348C328.507,-348 363.659,-348 393.601,-348"/>
+<polygon fill="#ff004d" stroke="#ff004d" points="393.949,-351.5 403.949,-348 393.949,-344.5 393.949,-351.5"/>
 </g>
 <!-- program~driver1d -->
-<g id="call~~graph~~CallGraph_node59" class="node"><title>program~driver1d</title>
-<g id="a_call~~graph~~CallGraph_node59"><a xlink:href="../program/driver1d.html" xlink:title="driver1D">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="107,-150 53,-150 53,-126 107,-126 107,-150"/>
-<text text-anchor="middle" x="80" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver1D</text>
+<g id="call~~graph~~CallGraph_node58" class="node"><title>program~driver1d</title>
+<g id="a_call~~graph~~CallGraph_node58"><a xlink:href=".././program/driver1d.html" xlink:title="driver1D">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="107,-202 53,-202 53,-178 107,-178 107,-202"/>
+<text text-anchor="middle" x="80" y="-187.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver1D</text>
 </a>
 </g>
 </g>
-<!-- program~driver1d&#45;&gt;interface~assemble -->
-<g id="call~~graph~~CallGraph_edge37" class="edge"><title>program~driver1d&#45;&gt;interface~assemble</title>
-<path fill="none" stroke="#ff0033" d="M107.271,-138.233C124.592,-139.824 146.493,-144.819 160,-159 212.665,-214.295 143.899,-271.173 196,-327 205.017,-336.662 218.16,-341.977 230.818,-344.868"/>
-<polygon fill="#ff0033" stroke="#ff0033" points="230.308,-348.333 240.777,-346.704 231.577,-341.449 230.308,-348.333"/>
+<!-- program~driver1d&#45;&gt;proc~read_gmsh_file_1d -->
+<g id="call~~graph~~CallGraph_edge37" class="edge"><title>program~driver1d&#45;&gt;proc~read_gmsh_file_1d</title>
+<path fill="none" stroke="#ff0033" d="M107.141,-188.61C132.742,-187.248 172.724,-185.121 206.544,-183.322"/>
+<polygon fill="#ff0033" stroke="#ff0033" points="207.019,-186.802 216.819,-182.776 206.647,-179.812 207.019,-186.802"/>
+</g>
+<!-- program~driver1d&#45;&gt;interface~set_bcs -->
+<g id="call~~graph~~CallGraph_edge40" class="edge"><title>program~driver1d&#45;&gt;interface~set_bcs</title>
+<path fill="none" stroke="#ff0033" d="M107.141,-194.449C139.74,-199.998 195.654,-209.516 232.474,-215.783"/>
+<polygon fill="#ff0033" stroke="#ff0033" points="232.334,-219.309 242.779,-217.537 233.508,-212.408 232.334,-219.309"/>
 </g>
 <!-- program~driver1d&#45;&gt;interface~initialize_global_mats -->
 <g id="call~~graph~~CallGraph_edge41" class="edge"><title>program~driver1d&#45;&gt;interface~initialize_global_mats</title>
-<path fill="none" stroke="#ff0033" d="M107.141,-138C131.828,-138 169.886,-138 202.897,-138"/>
-<polygon fill="#ff0033" stroke="#ff0033" points="202.96,-141.5 212.96,-138 202.96,-134.5 202.96,-141.5"/>
+<path fill="none" stroke="#ff0033" d="M107.141,-182.77C135.084,-175.041 180.159,-162.573 215.654,-152.755"/>
+<polygon fill="#ff0033" stroke="#ff0033" points="216.684,-156.102 225.389,-150.063 214.818,-149.355 216.684,-156.102"/>
 </g>
 <!-- program~driver1d&#45;&gt;proc~linsolve_quick -->
-<g id="call~~graph~~CallGraph_edge39" class="edge"><title>program~driver1d&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0033" d="M107.141,-143.84C136.375,-150.371 184.36,-161.091 220.51,-169.167"/>
-<polygon fill="#ff0033" stroke="#ff0033" points="219.844,-172.605 230.367,-171.369 221.37,-165.773 219.844,-172.605"/>
+<g id="call~~graph~~CallGraph_edge42" class="edge"><title>program~driver1d&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0033" d="M107.366,-194.284C124.729,-198.462 146.642,-206.554 160,-222 204,-272.876 149.396,-320.497 196,-369 202.576,-375.844 211.224,-380.499 220.259,-383.656"/>
+<polygon fill="#ff0033" stroke="#ff0033" points="219.556,-387.096 230.135,-386.526 221.509,-380.374 219.556,-387.096"/>
 </g>
-<!-- set_bcs -->
-<g id="call~~graph~~CallGraph_node66" class="node"><title>set_bcs</title>
-<polygon fill="#777777" stroke="#777777" points="297,-108 243,-108 243,-84 297,-84 297,-108"/>
-<text text-anchor="middle" x="270" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_bcs</text>
+<!-- program~driver1d&#45;&gt;proc~write_out_solution -->
+<g id="call~~graph~~CallGraph_edge38" class="edge"><title>program~driver1d&#45;&gt;proc~write_out_solution</title>
+<path fill="none" stroke="#ff0033" d="M107.098,-177.953C122.91,-170.215 143.203,-159.486 160,-148 177.429,-136.082 177.425,-127.04 196,-117 200.595,-114.516 205.516,-112.298 210.552,-110.324"/>
+<polygon fill="#ff0033" stroke="#ff0033" points="212.091,-113.49 220.322,-106.82 209.727,-106.901 212.091,-113.49"/>
 </g>
-<!-- program~driver1d&#45;&gt;set_bcs -->
-<g id="call~~graph~~CallGraph_edge38" class="edge"><title>program~driver1d&#45;&gt;set_bcs</title>
-<path fill="none" stroke="#ff0033" d="M107.141,-132.16C139.88,-124.846 196.134,-112.279 232.947,-104.054"/>
-<polygon fill="#ff0033" stroke="#ff0033" points="233.783,-107.454 242.779,-101.858 232.257,-100.622 233.783,-107.454"/>
-</g>
-<!-- read_gmsh_file_1d -->
-<g id="call~~graph~~CallGraph_node67" class="node"><title>read_gmsh_file_1d</title>
-<polygon fill="#777777" stroke="#777777" points="322,-66 218,-66 218,-42 322,-42 322,-66"/>
-<text text-anchor="middle" x="270" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_gmsh_file_1d</text>
-</g>
-<!-- program~driver1d&#45;&gt;read_gmsh_file_1d -->
-<g id="call~~graph~~CallGraph_edge40" class="edge"><title>program~driver1d&#45;&gt;read_gmsh_file_1d</title>
-<path fill="none" stroke="#ff0033" d="M99.888,-125.947C122.161,-112.144 160.636,-89.563 196,-75 201.03,-72.9286 206.334,-70.9795 211.694,-69.1671"/>
-<polygon fill="#ff0033" stroke="#ff0033" points="212.909,-72.453 221.354,-66.0554 210.763,-65.7901 212.909,-72.453"/>
+<!-- program~driver1d&#45;&gt;interface~assemble -->
+<g id="call~~graph~~CallGraph_edge39" class="edge"><title>program~driver1d&#45;&gt;interface~assemble</title>
+<path fill="none" stroke="#ff0033" d="M107.025,-199.463C122.63,-205.401 142.733,-213.521 160,-222 176.627,-230.165 178.969,-235.717 196,-243 207.066,-247.732 219.52,-251.759 230.966,-254.983"/>
+<polygon fill="#ff0033" stroke="#ff0033" points="230.138,-258.384 240.705,-257.606 231.959,-251.625 230.138,-258.384"/>
 </g>
 <!-- program~driver2d -->
-<g id="call~~graph~~CallGraph_node60" class="node"><title>program~driver2d</title>
-<g id="a_call~~graph~~CallGraph_node60"><a xlink:href="../program/driver2d.html" xlink:title="driver2D">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="107,-276 53,-276 53,-252 107,-252 107,-276"/>
-<text text-anchor="middle" x="80" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2D</text>
+<g id="call~~graph~~CallGraph_node59" class="node"><title>program~driver2d</title>
+<g id="a_call~~graph~~CallGraph_node59"><a xlink:href=".././program/driver2d.html" xlink:title="driver2D">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="107,-360 53,-360 53,-336 107,-336 107,-360"/>
+<text text-anchor="middle" x="80" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">driver2D</text>
 </a>
 </g>
 </g>
-<!-- program~driver2d&#45;&gt;interface~assemble -->
-<g id="call~~graph~~CallGraph_edge45" class="edge"><title>program~driver2d&#45;&gt;interface~assemble</title>
-<path fill="none" stroke="#ff0019" d="M104.291,-276.074C120.093,-284.342 141.411,-295.642 160,-306 176.181,-315.016 178.969,-319.717 196,-327 207.066,-331.732 219.52,-335.759 230.966,-338.983"/>
-<polygon fill="#ff0019" stroke="#ff0019" points="230.138,-342.384 240.705,-341.606 231.959,-335.625 230.138,-342.384"/>
+<!-- program~driver2d&#45;&gt;proc~eye -->
+<g id="call~~graph~~CallGraph_edge46" class="edge"><title>program~driver2d&#45;&gt;proc~eye</title>
+<path fill="none" stroke="#ff0019" d="M107.119,-350.931C123.319,-353.682 144.018,-358.958 160,-369 180.817,-382.08 175.317,-397.709 196,-411 207.008,-418.073 220.449,-422.818 232.783,-425.977"/>
+<polygon fill="#ff0019" stroke="#ff0019" points="232.276,-429.452 242.806,-428.274 233.84,-422.629 232.276,-429.452"/>
 </g>
 <!-- program~driver2d&#45;&gt;proc~linsolve_quick -->
-<g id="call~~graph~~CallGraph_edge44" class="edge"><title>program~driver2d&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0019" d="M107.119,-261.069C123.319,-258.318 144.018,-253.042 160,-243 180.817,-229.92 175.317,-214.291 196,-201 203.497,-196.183 212.122,-192.446 220.757,-189.554"/>
-<polygon fill="#ff0019" stroke="#ff0019" points="221.885,-192.87 230.451,-186.636 219.867,-186.167 221.885,-192.87"/>
+<g id="call~~graph~~CallGraph_edge47" class="edge"><title>program~driver2d&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0019" d="M107.141,-353.84C136.375,-360.371 184.36,-371.091 220.51,-379.167"/>
+<polygon fill="#ff0019" stroke="#ff0019" points="219.844,-382.605 230.367,-381.369 221.37,-375.773 219.844,-382.605"/>
 </g>
-<!-- program~driver2d&#45;&gt;proc~eye -->
-<g id="call~~graph~~CallGraph_edge43" class="edge"><title>program~driver2d&#45;&gt;proc~eye</title>
-<path fill="none" stroke="#ff0019" d="M107.141,-258.16C139.88,-250.846 196.134,-238.279 232.947,-230.054"/>
-<polygon fill="#ff0019" stroke="#ff0019" points="233.783,-233.454 242.779,-227.858 232.257,-226.622 233.783,-233.454"/>
+<!-- program~driver2d&#45;&gt;interface~getxy -->
+<g id="call~~graph~~CallGraph_edge45" class="edge"><title>program~driver2d&#45;&gt;interface~getxy</title>
+<path fill="none" stroke="#ff0019" d="M107.141,-342.16C139.88,-334.846 196.134,-322.279 232.947,-314.054"/>
+<polygon fill="#ff0019" stroke="#ff0019" points="233.783,-317.454 242.779,-311.858 232.257,-310.622 233.783,-317.454"/>
+</g>
+<!-- program~driver2d&#45;&gt;interface~assemble -->
+<g id="call~~graph~~CallGraph_edge43" class="edge"><title>program~driver2d&#45;&gt;interface~assemble</title>
+<path fill="none" stroke="#ff0019" d="M104.291,-335.926C120.093,-327.658 141.411,-316.358 160,-306 176.181,-296.984 178.969,-292.283 196,-285 207.066,-280.268 219.52,-276.241 230.966,-273.017"/>
+<polygon fill="#ff0019" stroke="#ff0019" points="231.959,-276.375 240.705,-270.394 230.138,-269.616 231.959,-276.375"/>
 </g>
 <!-- program~driver2d&#45;&gt;proc~r8mat_print -->
-<g id="call~~graph~~CallGraph_edge46" class="edge"><title>program~driver2d&#45;&gt;proc~r8mat_print</title>
-<path fill="none" stroke="#ff0019" d="M107.141,-269.84C138.035,-276.742 189.87,-288.322 226.548,-296.516"/>
-<polygon fill="#ff0019" stroke="#ff0019" points="225.938,-299.966 236.461,-298.731 227.465,-293.134 225.938,-299.966"/>
-</g>
-<!-- getxy -->
-<g id="call~~graph~~CallGraph_node68" class="node"><title>getxy</title>
-<polygon fill="#777777" stroke="#777777" points="297,-276 243,-276 243,-252 297,-252 297,-276"/>
-<text text-anchor="middle" x="270" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getxy</text>
-</g>
-<!-- program~driver2d&#45;&gt;getxy -->
-<g id="call~~graph~~CallGraph_edge42" class="edge"><title>program~driver2d&#45;&gt;getxy</title>
-<path fill="none" stroke="#ff0019" d="M107.141,-264C139.74,-264 195.654,-264 232.474,-264"/>
-<polygon fill="#ff0019" stroke="#ff0019" points="232.779,-267.5 242.779,-264 232.779,-260.5 232.779,-267.5"/>
+<g id="call~~graph~~CallGraph_edge44" class="edge"><title>program~driver2d&#45;&gt;proc~r8mat_print</title>
+<path fill="none" stroke="#ff0019" d="M107.141,-348C137.903,-348 189.428,-348 226.077,-348"/>
+<polygon fill="#ff0019" stroke="#ff0019" points="226.461,-351.5 236.461,-348 226.461,-344.5 226.461,-351.5"/>
 </g>
 </g>
 </svg>
-</div>
-                <script>var pancallgraphCallGraph = svgPanZoom('#callgraphCallGraph', {
-                    zoomEnabled: true,
-                    controlIconsEnabled: true,
-                    fit: true,
-                    center: true,});
-                    </script>
-                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
-                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
-                      </div>
-                      <div class="modal-body">
-                        
+</div><script>var pancallgraphCallGraph = svgPanZoom('#callgraphCallGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
     <p>Nodes of different colours represent the following: </p>
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -1046,12 +996,7 @@ All Procedures &ndash; learn_dg
     This could include the module procedures in a generic interface or the
     implementation in a submodule of an interface in a parent module. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
     </p>
-    
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
+    </div></div></div></div>
         </div>
       </div>
 
@@ -1060,12 +1005,13 @@ All Procedures &ndash; learn_dg
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-12-03 21:56  
+             on 2017-12-19 22:02  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -1097,6 +1043,15 @@ All Procedures &ndash; learn_dg
         }
       });
     </script>
+    
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>

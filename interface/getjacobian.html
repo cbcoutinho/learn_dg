@@ -27,13 +27,6 @@
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
 
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
-
   </head>
 
   <body>
@@ -132,7 +125,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p> 1.3% of total for procedures.</p>Including implementation: 10 statements,  1.3% of total for procedures.">10 statements</a>
+	  title="<p> 1.4% of total for procedures.</p>Including implementation: 10 statements,  1.4% of total for procedures.">10 statements</a>
      </li> 
      
      
@@ -180,7 +173,7 @@
   <div id="funcs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../interface/getjacobian.html#proc-getjacobian">getJacobian</a>
+      <a class="list-group-item" href="../interface/getjacobian.html#proc-getjacobian_2d">getJacobian_2D</a>
       
     </div>
   </div>
@@ -221,8 +214,6 @@
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
-      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
-      
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
@@ -244,8 +235,6 @@
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
-      
-      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
@@ -269,9 +258,9 @@
       
       <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
       
-      <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
-      
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_row_2d.html">pascal_row_2D</a>
       
       <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
       
@@ -326,7 +315,7 @@
   <div id="funcs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../interface/getjacobian.html#proc-getjacobian">getJacobian</a>
+      <a class="list-group-item" href="../interface/getjacobian.html#proc-getjacobian_2d">getJacobian_2D</a>
       
     </div>
   </div>
@@ -349,8 +338,8 @@
 	 
     
   <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-getjacobian"></span><h3>
-public function getJacobian(N, xi, eta, xy, alpha) result(J)
+  <div class="panel-heading codesum"><span class="anchor" id="proc-getjacobian_2d"></span><h3>
+public function getJacobian_2D(N, xi, eta, xy, alpha) result(J)
     
     
 	 
@@ -503,8 +492,6 @@ public function getJacobian(N, xi, eta, xy, alpha) result(J)
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
-      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
-      
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
@@ -526,8 +513,6 @@ public function getJacobian(N, xi, eta, xy, alpha) result(J)
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
-      
-      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
@@ -551,9 +536,9 @@ public function getJacobian(N, xi, eta, xy, alpha) result(J)
       
       <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
       
-      <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
-      
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_row_2d.html">pascal_row_2D</a>
       
       <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
       
@@ -585,12 +570,13 @@ public function getJacobian(N, xi, eta, xy, alpha) result(J)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-12-03 21:56  
+             on 2017-12-19 22:02  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -622,6 +608,15 @@ public function getJacobian(N, xi, eta, xy, alpha) result(J)
         }
       });
     </script>
+    
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>

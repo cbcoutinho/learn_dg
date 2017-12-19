@@ -63,16 +63,18 @@ contains
   end subroutine linsolve_quick
 
   subroutine linsolve (n, a, nrhs, b, x, LU, P, toggle)
-    ! Linsolve is a wrapper of dgesv, the main linear solver routine for general
-    ! dense matrices in LAPACK. This routine splits dgesv into its two primary
-    ! components:
-    !             dgetrf - Decomposes A into P*L*U
-    !             dgetrs - Uses P*L*U to solve for x (Ax=b => (P*L*U)x=b)
+
+    ! Linsolve is a wrapper of dgesv, the main linear solver routine for
+    ! general dense matrices in LAPACK. This routine splits dgesv into
+    ! its two primary components:
+    !
+    !       dgetrf - Decomposes A into P*L*U
+    !       dgetrs - Uses P*L*U to solve for x (Ax=b => (P*L*U)x=b)
     !
     ! Splitting these two up like this allows you to save the decomposed
-    ! version of 'A' so that you don't have to do it again. If 'toggle' is
-    ! equal to true, then the decomposition has already occured and LU can be
-    ! trusted - OK to skip dgetrf
+    ! version of 'A' so that you don't have to do it again. If 'toggle'
+    ! is equal to true, then the decomposition has already occured and
+    ! LU can be trusted - OK to skip dgetrf
 
     ! Dummy variables
     integer,  intent(in)                          :: n, nrhs

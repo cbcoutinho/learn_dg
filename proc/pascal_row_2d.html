@@ -10,7 +10,7 @@
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
 
-    <title>getXY &ndash; learn_dg</title>
+    <title>pascal_row_2D &ndash; learn_dg</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -26,13 +26,6 @@
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -114,7 +107,7 @@
     
   
   <div class="row">
-    <h1>getXY
+    <h1>pascal_row_2D
       <small>Function</small>
     
     </h1>
@@ -132,7 +125,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 5.9% of total for procedures.">44 statements</a>
+	  title=" 1.3% of total for procedures.">9 statements</a>
      </li> 
      
      
@@ -145,7 +138,7 @@
   
      <li><a href='../module/smod_legendre_2d.html'>smod_legendre_2D</a></li>
   
-     <li class="active">getXY</li>
+     <li class="active">pascal_row_2D</li>
   </ol>
 </div>
 </div>
@@ -186,7 +179,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/getxy.html#src">getXY</a>
+    <a class="list-group-item" href="../proc/pascal_row_2d.html#src">pascal_row_2D</a>
   </div>
 </div>
 
@@ -217,8 +210,6 @@
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
-      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
-      
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
@@ -240,8 +231,6 @@
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
-      
-      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
@@ -265,9 +254,9 @@
       
       <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
       
-      <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
-      
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_row_2d.html">pascal_row_2D</a>
       
       <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
       
@@ -298,7 +287,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-pure function getXY(N) result(xy)
+pure function pascal_row_2D(N, x, y) result(row)
     
     
 	 
@@ -307,6 +296,18 @@ pure function getXY(N) result(xy)
   
 
 
+    
+    <p>Generates a row of Pascal's triangle in 2D</p>
+<p>Pascal's triangle in 2D looks like this:
+   \[ [1] \]
+   \[ [x,~ y] \]
+   \[ [x^2,~ x y,~ y^2] \]
+   \[ [x^3,~ x^2y,~ xy^2,~ y^3] \]
+   \[ [x^4,~ x^3y,~ x^2y^2,~ xy^3, y^4] \]
+   \[ \vdots \]
+   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]</p>
+<p>The rows are zero-indexed, therefore, the third row (index=2)
+ would be \[x^2, x\cdot y, y^2\]</p>
     
 
     <h3>Arguments</h3>
@@ -332,7 +333,37 @@ pure function getXY(N) result(xy)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>N</strong></td><td></td>
+  <td><strong>N</strong></td><td><p>Row number of pascal's 2D triange (0-indexed)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-x%7E8"></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td><p>X-value used in triange</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-y%7E4"></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>y</strong></td><td><p>Y-Value used in triange</p></td>
   
 </tr>
 
@@ -346,11 +377,97 @@ pure function getXY(N) result(xy)
     
     
     
-	 <h3>Return Value <small><span class="anchor" id="variable-xy%7E4"></span>real(kind=wp),
-  dimension(N,2)</small></h3>
+	 <h3>Return Value <small><span class="anchor" id="variable-row%7E4"></span>real(kind=wp),
+  dimension(N+1)</small></h3>
+    <p>Output row of triange</p>
     
     
+     
+     <h3>Called By</h3>
+     <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.36.0 (20140111.2315)
+ -->
+<!-- Title: proc~~pascal_row_2d~~CalledByGraph Pages: 1 -->
+<svg id="procpascal_row_2dCalledByGraph" width="224pt" height="32pt"
+ viewBox="0.00 0.00 224.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~pascal_row_2d~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~pascal_row_2d~~CalledByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 220,-28 220,4 -4,4"/>
+<!-- proc~pascal_row_2d -->
+<g id="proc~~pascal_row_2d~~CalledByGraph_node1" class="node"><title>proc~pascal_row_2d</title>
+<polygon fill="none" stroke="black" points="216,-24 130,-24 130,-0 216,-0 216,-24"/>
+<text text-anchor="middle" x="173" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">pascal_row_2D</text>
+</g>
+<!-- proc~pascal_2d_quad -->
+<g id="proc~~pascal_row_2d~~CalledByGraph_node2" class="node"><title>proc~pascal_2d_quad</title>
+<g id="a_proc~~pascal_row_2d~~CalledByGraph_node2"><a xlink:href=".././proc/pascal_2d_quad.html" xlink:title="pascal_2D_quad">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="93.5,-24 0.5,-24 0.5,-0 93.5,-0 93.5,-24"/>
+<text text-anchor="middle" x="47" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pascal_2D_quad</text>
+</a>
+</g>
+</g>
+<!-- proc~pascal_2d_quad&#45;&gt;proc~pascal_row_2d -->
+<g id="proc~~pascal_row_2d~~CalledByGraph_edge1" class="edge"><title>proc~pascal_2d_quad&#45;&gt;proc~pascal_row_2d</title>
+<path fill="none" stroke="#ff0000" d="M93.8207,-12C102.159,-12 110.917,-12 119.432,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="119.653,-15.5001 129.653,-12 119.653,-8.5001 119.653,-15.5001"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.36.0 (20140111.2315)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="559pt" height="32pt"
+ viewBox="0.00 0.00 559.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 555,-28 555,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node"><title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="64,-24 0,-24 0,-0 64,-0 64,-24"/>
+<text text-anchor="middle" x="32" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node"><title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 82,-24 82,-0 136,-0 136,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node"><title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="209.25,-24 154.75,-24 154.75,-0 209.25,-0 209.25,-24"/>
+<text text-anchor="middle" x="182" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node4" class="node"><title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="364,-24 228,-24 228,-0 364,-0 364,-24"/>
+<text text-anchor="middle" x="296" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node"><title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="436,-24 382,-24 382,-0 436,-0 436,-24"/>
+<text text-anchor="middle" x="409" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="551.25,-24 454.75,-24 454.75,-0 551.25,-0 551.25,-24"/>
+<text text-anchor="middle" x="503" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
     
+    <p>Solid arrows point from a procedure to one which it calls. Dashed 
+    arrows point from an interface to procedures which implement that interface.
+    This could include the module procedures in a generic interface or the
+    implementation in a submodule of an interface in a parent module. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    </p>
+    </div></div></div></div>
      
     <br>
 
@@ -379,7 +496,7 @@ pure function getXY(N) result(xy)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/getxy.html#src">getXY</a>
+    <a class="list-group-item" href="../proc/pascal_row_2d.html#src">pascal_row_2D</a>
   </div>
 </div>
 
@@ -406,65 +523,35 @@ pure function getXY(N) result(xy)
     
     
     <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">pure function </span><span class="n">getXY</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span>
-    <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">N</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xy</span>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="highlight"><pre><span></span>  <span class="k">pure function </span><span class="n">pascal_row_2D</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+      <span class="c">!*</span>
+      <span class="c">! Generates a row of Pascal&#39;s triangle in 2D</span>
+      <span class="c">!</span>
+      <span class="c">! Pascal&#39;s triangle in 2D looks like this:</span>
+      <span class="c">!   \[ [1] \]</span>
+      <span class="c">!   \[ [x,~ y] \]</span>
+      <span class="c">!   \[ [x^2,~ x y,~ y^2] \]</span>
+      <span class="c">!   \[ [x^3,~ x^2y,~ xy^2,~ y^3] \]</span>
+      <span class="c">!   \[ [x^4,~ x^3y,~ x^2y^2,~ xy^3, y^4] \]</span>
+      <span class="c">!   \[ \vdots \]</span>
+      <span class="c">!   \[ [x^N,~ x^{N-1}y,~ \cdots,~ xy^{N-1},~ y^N] \]</span>
+      <span class="c">!</span>
+      <span class="c">! The rows are zero-indexed, therefore, the third row (index=2)</span>
+      <span class="c">! would be \[x^2, x\cdot y, y^2\]</span>
 
-    <span class="c">! Keep a copy of 0, 1, and 1/3 handy so no need to retype it all the time</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">zero</span> <span class="o">=</span> <span class="mf">0._wp</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">one</span> <span class="o">=</span> <span class="mf">1._wp</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">third</span> <span class="o">=</span> <span class="mf">1._wp</span><span class="o">/</span><span class="mf">3._wp</span>
+      <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">N</span>    <span class="c">!! Row number of pascal&#39;s 2D triange (0-indexed)</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">x</span>    <span class="c">!! X-value used in triange</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">y</span>    <span class="c">!! Y-Value used in triange</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">row</span>  <span class="c">!! Output row of triange</span>
 
-    <span class="k">select case</span> <span class="p">(</span><span class="n">N</span><span class="p">)</span>
-    <span class="k">case</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
 
-      <span class="n">xy</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="o">-</span><span class="n">one</span><span class="p">,</span>   <span class="o">-</span><span class="n">one</span><span class="p">]</span>  <span class="c">! Node 1</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>    <span class="n">one</span><span class="p">,</span>   <span class="o">-</span><span class="n">one</span><span class="p">]</span>  <span class="c">! Node 2</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>    <span class="n">one</span><span class="p">,</span>    <span class="n">one</span><span class="p">]</span>  <span class="c">! Node 3</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">4</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="o">-</span><span class="n">one</span><span class="p">,</span>    <span class="n">one</span><span class="p">]</span>  <span class="c">! Node 4</span>
+      <span class="c">! Produces the elements of an array: [x^N, x^(N-1)*y, x^(N-2)*y^2, ..., y^N]</span>
+      <span class="n">row</span> <span class="o">=</span> <span class="p">[(</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">ii</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span><span class="o">**</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">N</span> <span class="p">)]</span>
 
-    <span class="k">case</span> <span class="p">(</span><span class="mi">9</span><span class="p">)</span>
-
-      <span class="n">xy</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="o">-</span><span class="n">one</span><span class="p">,</span>   <span class="o">-</span><span class="n">one</span><span class="p">]</span>  <span class="c">! Node 1</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>    <span class="n">one</span><span class="p">,</span>   <span class="o">-</span><span class="n">one</span><span class="p">]</span>  <span class="c">! Node 2</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>    <span class="n">one</span><span class="p">,</span>    <span class="n">one</span><span class="p">]</span>  <span class="c">! Node 3</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">4</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="o">-</span><span class="n">one</span><span class="p">,</span>    <span class="n">one</span><span class="p">]</span>  <span class="c">! Node 4</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">5</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="n">zero</span><span class="p">,</span>   <span class="o">-</span><span class="n">one</span><span class="p">]</span>  <span class="c">! Node 5</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">6</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>    <span class="n">one</span><span class="p">,</span>   <span class="n">zero</span><span class="p">]</span>  <span class="c">! Node 6</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">7</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="n">zero</span><span class="p">,</span>    <span class="n">one</span><span class="p">]</span>  <span class="c">! Node 7</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">8</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="o">-</span><span class="n">one</span><span class="p">,</span>   <span class="n">zero</span><span class="p">]</span>  <span class="c">! Node 8</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">9</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="n">zero</span><span class="p">,</span>   <span class="n">zero</span><span class="p">]</span>  <span class="c">! Node 9</span>
-
-    <span class="k">case</span> <span class="p">(</span><span class="mi">16</span><span class="p">)</span>
-
-      <span class="n">xy</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="o">-</span><span class="n">one</span><span class="p">,</span>   <span class="o">-</span><span class="n">one</span><span class="p">]</span>  <span class="c">! Node 1</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>    <span class="n">one</span><span class="p">,</span>   <span class="o">-</span><span class="n">one</span><span class="p">]</span>  <span class="c">! Node 2</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>    <span class="n">one</span><span class="p">,</span>    <span class="n">one</span><span class="p">]</span>  <span class="c">! Node 3</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">4</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>   <span class="o">-</span><span class="n">one</span><span class="p">,</span>    <span class="n">one</span><span class="p">]</span>  <span class="c">! Node 4</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">5</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span>   <span class="o">-</span><span class="n">one</span><span class="p">]</span>  <span class="c">! Node 5</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">6</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>  <span class="n">third</span><span class="p">,</span>   <span class="o">-</span><span class="n">one</span><span class="p">]</span>  <span class="c">! Node 6</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">7</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>    <span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">]</span>  <span class="c">! Node 7</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">8</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>    <span class="n">one</span><span class="p">,</span>  <span class="n">third</span><span class="p">]</span>  <span class="c">! Node 8</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">9</span><span class="p">,:)</span>   <span class="o">=</span> <span class="p">[</span>  <span class="n">third</span><span class="p">,</span>    <span class="n">one</span><span class="p">]</span>  <span class="c">! Node 9</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">10</span><span class="p">,:)</span>  <span class="o">=</span> <span class="p">[</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span>    <span class="n">one</span><span class="p">]</span>  <span class="c">! Node 10</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">11</span><span class="p">,:)</span>  <span class="o">=</span> <span class="p">[</span>   <span class="o">-</span><span class="n">one</span><span class="p">,</span>  <span class="n">third</span><span class="p">]</span>  <span class="c">! Node 11</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">12</span><span class="p">,:)</span>  <span class="o">=</span> <span class="p">[</span>   <span class="o">-</span><span class="n">one</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">]</span>  <span class="c">! Node 12</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">13</span><span class="p">,:)</span>  <span class="o">=</span> <span class="p">[</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">]</span>  <span class="c">! Node 13</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">14</span><span class="p">,:)</span>  <span class="o">=</span> <span class="p">[</span>  <span class="n">third</span><span class="p">,</span> <span class="o">-</span><span class="n">third</span><span class="p">]</span>  <span class="c">! Node 14</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">15</span><span class="p">,:)</span>  <span class="o">=</span> <span class="p">[</span>  <span class="n">third</span><span class="p">,</span>  <span class="n">third</span><span class="p">]</span>  <span class="c">! Node 15</span>
-      <span class="n">xy</span><span class="p">(</span><span class="mi">16</span><span class="p">,:)</span>  <span class="o">=</span> <span class="p">[</span> <span class="o">-</span><span class="n">third</span><span class="p">,</span>  <span class="n">third</span><span class="p">]</span>  <span class="c">! Node 16</span>
-
-    <span class="k">case </span><span class="n">default</span>
-
-      <span class="c">! TODO: I should probably changed this to a subroutine and include an</span>
-      <span class="c">! output error variable</span>
-      <span class="n">xy</span> <span class="o">=</span> <span class="mf">0.d0</span>
-
-    <span class="k">end select</span>
-
-<span class="k">    return</span>
-<span class="k">  end function </span><span class="n">getXY</span>
+      <span class="k">return</span>
+<span class="k">  end function </span><span class="n">pascal_row_2D</span>
 </pre></div>
 
     </section>
@@ -501,8 +588,6 @@ pure function getXY(N) result(xy)
       
       <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
       
-      <a class="list-group-item" href="../proc/create_simple_array_c.html">create_simple_array_c</a>
-      
       <a class="list-group-item" href="../proc/det2.html">det2</a>
       
       <a class="list-group-item" href="../proc/eye.html">eye</a>
@@ -524,8 +609,6 @@ pure function getXY(N) result(xy)
       <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
       
       <a class="list-group-item" href="../interface/getxy.html">getXY</a>
-      
-      <a class="list-group-item" href="../proc/getxy.html">getXY</a>
       
       <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
       
@@ -549,9 +632,9 @@ pure function getXY(N) result(xy)
       
       <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
       
-      <a class="list-group-item" href="../proc/pascal_2d_row.html">pascal_2D_row</a>
-      
       <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
+      
+      <a class="list-group-item" href="../proc/pascal_row_2d.html">pascal_row_2D</a>
       
       <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
       
@@ -583,12 +666,13 @@ pure function getXY(N) result(xy)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-12-03 21:56  
+             on 2017-12-19 22:02  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -620,6 +704,15 @@ pure function getXY(N) result(xy)
         }
       });
     </script>
+    
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>
