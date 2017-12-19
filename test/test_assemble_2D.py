@@ -8,27 +8,36 @@ import tempfile
 import helpers
 import meshes
 
+
 @pytest.fixture(params=[
-    (meshes.mesh_Single2D_quadquad(), 'quad9', 'line3'),
-    (meshes.mesh_Single2D_cubquad(), 'quad16', 'line4'),
-    # (meshes.mesh_Single2D_quarquad(), 'quad25', 'line5') # Hopefully?
+    (meshes.mesh_Multiple2D_biquad(), 'quad', 'line'),
+    (meshes.mesh_Multiple2D_quadquad(), 'quad9', 'line3'),
+    (meshes.mesh_Multiple2D_cubquad(), 'quad16', 'line4'),
 ])
-def generate_Single2D_quad(request):
+def generate_multiple2D_biquad(request):
     """
-    Test the average of a single bi-(quadratic|cubic) quadrilateral
-    to see if the diffusion equation works properly.
+    This is a replacement for the original Fortran program - 'driver2D'
 
-    This pytest fixture generates the elemental stiffness matrix of a
-    single bi-(quadratic|cubic) quadrilateral.
+    Test four bi-linear quadrilateral elements using the diffusion equation.
 
-    ._._.
-    | . |       <- Quadratic
-    |_._|
+    It essentially calculates what the value of the center point would be
+    using the diffusion equation with Dirichlet BCs (0 and 1). Middle point
+    should be 0.5
 
-    ._._._.
-    | . . |
-    | . . |     <- Cubic
-    |_._._|
+     __ __
+    |  |  |
+    |__|__|         <- Four bi-linear quadrilaterals
+    |  |  |
+    |__|__|
+
+    ._._._._.
+    | . | . |       <- Two adjacent bi-quadratic quadrilaterals
+    |_._|_._|
+
+    ._._._._._._.
+    | . . | . . |
+    | . . | . . |   <- Two adjacent bi-cubic quadrilaterals
+    |_._._|_._._|
 
     """
 
@@ -38,6 +47,8 @@ def generate_Single2D_quad(request):
         temp.write(gmsh_buffer.encode('utf-8'))
         temp.flush()
         points, cells, point_data, cell_data, field_data = meshio.read(temp.name)
+
+
 
     points_ = np.array(points[:, 0:2], dtype='double', order='F')
     cells_ = np.array(cells[quad_type] + 1, dtype='int32', order='F')
@@ -50,7 +61,7 @@ def generate_Single2D_quad(request):
     )
 
     # Zero Ie array
-    Ie = np.zeros((num_pts, num_pts), dtype='double', order='F')
+    A = np.zeros((num_pts, num_pts), dtype='double', order='F')
 
     f = helpers.set_assemble2D_c_args(
         num_cells,
@@ -66,7 +77,7 @@ def generate_Single2D_quad(request):
         cells_,
         np.float64(1.0),
         np.zeros((2,), dtype='double', order='F'),
-        Ie
+        A
     )
 
     left_list = np.unique(
@@ -78,13 +89,9 @@ def generate_Single2D_quad(request):
             cell_data[line_type]['physical'] == field_data['right'][0]
         ]).tolist()
 
-    assert len(left_list) > 0, "Left List has length 0!"
-    assert len(right_list) > 0, "Right List has length 0!"
-
-    # Set boundary condtions in Ie matrix
-    # for ii in [0, 1, 2, 3, 5, 7]:
+    # Set boundary condtions in A matrix
     for ii in left_list + right_list:
-        Ie[ii,:] = 0.; Ie[ii,ii] = 1.
+        A[ii,:] = 0.; A[ii,ii] = 1.
 
     # Set boundary condtions in RHS vector
     b = np.zeros((num_pts,))
@@ -92,12 +99,12 @@ def generate_Single2D_quad(request):
         b[ii] = 1.
 
     # Calculate condition number
-    print('\nCond(Ie): ', np.linalg.cond(Ie))
+    print('\nCond(A): ', np.linalg.cond(A))
 
-    return np.linalg.solve(Ie, b)
+    return np.linalg.solve(A, b)
 
-def test_Single2D_quad(generate_Single2D_quad):
+def test_Multiple2D_quad(generate_multiple2D_biquad):
 
-    x = generate_Single2D_quad.copy()
+    x = generate_multiple2D_biquad.copy()
 
     assert np.isclose( np.mean(x), 0.5 )

@@ -538,7 +538,7 @@ def mesh_Multiple2D_quadquad():
 
     return gmsh_buffer
 
-def mesh_Multiple2D_cubquad1():
+def mesh_Multiple2D_cubquad():
 
     gmsh_buffer="""\
     $MeshFormat
@@ -600,7 +600,7 @@ def mesh_Multiple2D_cubquad1():
 
     return gmsh_buffer
 
-def mesh_Multiple2D_cubquad2():
+def mesh_Multiple2D_cubquad_BIG():
 
     gmsh_buffer="""\
     $MeshFormat
