@@ -4,7 +4,6 @@ np.set_printoptions(precision=3)
 
 import meshio
 import tempfile
-# import textwrap
 
 import helpers
 import meshes

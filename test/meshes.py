@@ -1,5 +1,7 @@
 import textwrap
 
+""" Global 1D meshes """
+
 def mesh_Linear1DAdvDiffEqual():
 
     gmsh_buffer="""\
@@ -349,6 +351,97 @@ def mesh_Cub1DAdvDiffEqual():
 
     return gmsh_buffer
 
+""" Single 2D meshes """
+
+def mesh_Single2D_quadquad():
+
+    gmsh_buffer = """\
+    $MeshFormat
+    2.2 0 8
+    $EndMeshFormat
+    $PhysicalNames
+    5
+    1 1 "lower"
+    1 2 "right"
+    1 3 "upper"
+    1 4 "left"
+    2 5 "domain"
+    $EndPhysicalNames
+    $Nodes
+    9
+    1 0 0 0
+    2 1 0 0
+    3 1 1 0
+    4 0 1 0
+    5 0.5 0 0
+    6 1 0.5 0
+    7 0.5 1 0
+    8 0 0.5 0
+    9 0.5 0.5 0
+    $EndNodes
+    $Elements
+    5
+    1 8 2 1 1 1 2 5
+    2 8 2 2 2 2 3 6
+    3 8 2 3 3 3 4 7
+    4 8 2 4 4 4 1 8
+    7 10 2 5 1 1 2 3 4 5 6 7 8 9
+    $EndElements
+    """
+
+    gmsh_buffer = textwrap.dedent(gmsh_buffer)
+
+    return gmsh_buffer
+
+def mesh_Single2D_cubquad():
+
+    gmsh_buffer = """\
+    $MeshFormat
+    2.2 0 8
+    $EndMeshFormat
+    $PhysicalNames
+    5
+    1 1 "lower"
+    1 2 "right"
+    1 3 "upper"
+    1 4 "left"
+    2 5 "domain"
+    $EndPhysicalNames
+    $Nodes
+    16
+    1 0 0 0
+    2 1 0 0
+    3 1 1 0
+    4 0 1 0
+    5 0.3333333333333333 0 0
+    6 0.6666666666666667 0 0
+    7 1 0.3333333333333333 0
+    8 1 0.6666666666666667 0
+    9 0.6666666666666667 1 0
+    10 0.3333333333333333 1 0
+    11 0 0.6666666666666667 0
+    12 0 0.3333333333333333 0
+    13 0.3333333333333333 0.3333333333333333 0
+    14 0.6666666666666667 0.3333333333333333 0
+    15 0.6666666666666667 0.6666666666666667 0
+    16 0.3333333333333333 0.6666666666666667 0
+    $EndNodes
+    $Elements
+    5
+    1 26 2 1 1 1 2 5 6
+    2 26 2 2 2 2 3 7 8
+    3 26 2 3 3 3 4 9 10
+    4 26 2 4 4 4 1 11 12
+    7 36 2 5 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+    $EndElements
+    """
+
+    gmsh_buffer = textwrap.dedent(gmsh_buffer)
+
+    return gmsh_buffer
+
+""" Global 2D meshes """
+
 def mesh_Multiple2D_biquad():
 
     gmsh_buffer = """\
@@ -389,46 +482,6 @@ def mesh_Multiple2D_biquad():
     10 3 2 5 1 8 9 7 4
     11 3 2 5 1 5 2 6 9
     12 3 2 5 1 9 6 3 7
-    $EndElements
-    """
-
-    gmsh_buffer = textwrap.dedent(gmsh_buffer)
-
-    return gmsh_buffer
-
-def mesh_Single2D_quadquad():
-
-    gmsh_buffer = """\
-    $MeshFormat
-    2.2 0 8
-    $EndMeshFormat
-    $PhysicalNames
-    5
-    1 1 "lower"
-    1 2 "right"
-    1 3 "upper"
-    1 4 "left"
-    2 5 "domain"
-    $EndPhysicalNames
-    $Nodes
-    9
-    1 0 0 0
-    2 1 0 0
-    3 1 1 0
-    4 0 1 0
-    5 0.5 0 0
-    6 1 0.5 0
-    7 0.5 1 0
-    8 0 0.5 0
-    9 0.5 0.5 0
-    $EndNodes
-    $Elements
-    5
-    1 8 2 1 1 1 2 5
-    2 8 2 2 2 2 3 6
-    3 8 2 3 3 3 4 7
-    4 8 2 4 4 4 1 8
-    7 10 2 5 1 1 2 3 4 5 6 7 8 9
     $EndElements
     """
 
@@ -478,53 +531,6 @@ def mesh_Multiple2D_quadquad():
     6 8 2 4 4 10 1 12
     7 10 2 5 1 1 2 6 10 5 7 13 12 14
     8 10 2 5 1 10 6 3 4 13 8 9 11 15
-    $EndElements
-    """
-
-    gmsh_buffer = textwrap.dedent(gmsh_buffer)
-
-    return gmsh_buffer
-
-def mesh_Single2D_cubquad():
-
-    gmsh_buffer = """\
-    $MeshFormat
-    2.2 0 8
-    $EndMeshFormat
-    $PhysicalNames
-    5
-    1 1 "lower"
-    1 2 "right"
-    1 3 "upper"
-    1 4 "left"
-    2 5 "domain"
-    $EndPhysicalNames
-    $Nodes
-    16
-    1 0 0 0
-    2 1 0 0
-    3 1 1 0
-    4 0 1 0
-    5 0.3333333333333333 0 0
-    6 0.6666666666666667 0 0
-    7 1 0.3333333333333333 0
-    8 1 0.6666666666666667 0
-    9 0.6666666666666667 1 0
-    10 0.3333333333333333 1 0
-    11 0 0.6666666666666667 0
-    12 0 0.3333333333333333 0
-    13 0.3333333333333333 0.3333333333333333 0
-    14 0.6666666666666667 0.3333333333333333 0
-    15 0.6666666666666667 0.6666666666666667 0
-    16 0.3333333333333333 0.6666666666666667 0
-    $EndNodes
-    $Elements
-    5
-    1 26 2 1 1 1 2 5 6
-    2 26 2 2 2 2 3 7 8
-    3 26 2 3 3 3 4 9 10
-    4 26 2 4 4 4 1 11 12
-    7 36 2 5 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
     $EndElements
     """
 
