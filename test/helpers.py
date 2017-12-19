@@ -11,15 +11,14 @@ extension = {'darwin': '.dylib', 'win32': '.dll'}.get(sys.platform, '.so')
 
 dir_lib = {'win32': 'bin'}.get(sys.platform, 'lib')
 
-# libcore = CDLL('./build/lib/libcore.so')
 libcore = CDLL(os.path.join('build', dir_lib, prefix + 'core' + extension))
 
 def set_assembleElementalMatrix2D_c_args(N):
-    '''
+    """
     Assign function and set the input arguement types for a 2D elemental matrix
 
     (int, int, int, c_double(N), c_double(N,N))
-    '''
+    """
 
     f = libcore.assembleElementalMatrix2D_c
     f.argtypes=[c_int, c_int, c_int,
@@ -30,9 +29,9 @@ def set_assembleElementalMatrix2D_c_args(N):
     return f
 
 def set_create_simple_array_c_args(N):
-    '''
+    """
     Assign function and set arguement types of a simple array
-    '''
+    """
 
     f = libcore.create_simple_array_c
     f.argtypes=[ndpointer(shape=(N,N), dtype='double', flags='F')]
@@ -41,11 +40,11 @@ def set_create_simple_array_c_args(N):
     return f
 
 def set_assembleElementalMatrix1D_args(N):
-    '''
+    """
     Assign function and set the input arguement types for a 1D elemental matrix
 
     (int, int, int, c_double(N), c_double(N,N))
-    '''
+    """
 
     f = libcore.assembleElementalMatrix1D_c
     f.argtypes=[c_int, c_int, c_int,
@@ -56,12 +55,12 @@ def set_assembleElementalMatrix1D_args(N):
     return f
 
 def set_assemble1D_c_args(num_cells, num_pts_per_cell, num_pts):
-    '''
+    """
     Assign function and set the input arguement types for assembling a full 1D
     matrix
 
     (int, int, int, c_double(N), c_double(N1,N2), c_double, c_double, c_double(N,N))
-    '''
+    """
 
     f = libcore.assemble1D_c
     f.argtypes=[c_int, c_int, c_int,
@@ -75,12 +74,12 @@ def set_assemble1D_c_args(num_cells, num_pts_per_cell, num_pts):
     return f
 
 def set_assemble2D_c_args(num_cells, num_pts_per_cell, num_pts):
-    '''
+    """
     Assign function and set the input arguement types for assembling a full 2D
     matrix
 
     (int, int, int, c_double(N), c_double(N,N))
-    '''
+    """
 
     f = libcore.assemble2D_c
     f.argtypes=[c_int, c_int, c_int,
@@ -94,9 +93,9 @@ def set_assemble2D_c_args(num_cells, num_pts_per_cell, num_pts):
     return f
 
 def set_pascal_single_row_args(N):
-    '''
+    """
     Assign the arguments for arrays pascal rows
-    '''
+    """
 
     f = libcore.pascal_single_row_c
     f.argtypes=[c_int, c_double, c_double,
@@ -106,9 +105,9 @@ def set_pascal_single_row_args(N):
     return f
 
 def set_pascal_2D_quad_c_args(N):
-    '''
+    """
     Assign arguements for full (quadrilateral) pascal lines
-    '''
+    """
 
     f = libcore.pascal_2D_quad_c
     f.argtypes=[c_int, c_double, c_double,

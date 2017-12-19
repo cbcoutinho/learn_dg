@@ -15,7 +15,8 @@ module mod_assembly_c
 
 contains
 
-    subroutine create_simple_array_c(a) bind(c, name='create_simple_array_c')
+    subroutine create_simple_array_c(a) &
+            bind(c, name='create_simple_array_c')
         real(c_double), intent(inout) :: a(2,2)
 
         integer         :: ii
@@ -34,7 +35,8 @@ contains
         return
     end subroutine create_simple_array_c
 
-    subroutine assembleElementalMatrix1D_c(N, d1, d2, xy, Ie) bind(c, name='assembleElementalMatrix1D_c')
+    subroutine assembleElementalMatrix1D_c(N, d1, d2, xy, Ie) &
+            bind(c, name='assembleElementalMatrix1D_c')
         integer(c_int), intent(in), value :: N, d1, d2
         real(c_double), intent(in)        :: xy(N)
         real(c_double), intent(inout)     :: Ie(N,N)

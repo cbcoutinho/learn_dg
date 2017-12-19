@@ -32,9 +32,9 @@ contains
 
         Ie = 0._wp
 
-        order = size(xy)-1
+        order = N-1
 
-        do ii = 1, size(xy)
+        do ii = 1, N
             Ie(ii, :) = [( integrate_basis_1d_Ie(order, ii, jj, d1, d2, xy), jj = 1, order+1 )]
         enddo
 
@@ -42,11 +42,11 @@ contains
     end function assembleElementalMatrix1D
 
     function integrate_basis_1d_Ie(N, ii, jj, dii, djj, xy) result(integral)
-        integer, intent(in)                     :: N, ii, jj, dii, djj
+        integer,  intent(in)                    :: N, ii, jj, dii, djj
         real(wp), intent(in), dimension(:)      :: xy
         real(wp)                                :: integral
 
-        integer :: kk
+        integer                                 :: kk
         integer                                 :: order, basis_num1, basis_num2
         real(wp), dimension(N+1,N+1)            :: Vinv
 
