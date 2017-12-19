@@ -80,7 +80,7 @@ jobs:
       - GCC_VERSION=7
       - USE_OPENMP=ON
       - OMP_NUM_THREADS=4
-      install: true     # True means skip
+      install: skip
       script:
       - pip install -r requirements.txt
       - make docs
