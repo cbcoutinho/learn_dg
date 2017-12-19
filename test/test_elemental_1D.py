@@ -2,12 +2,7 @@ import pytest
 import numpy as np
 np.set_printoptions(precision=3)
 
-# import meshio
-# import tempfile
-# import textwrap
-
 import helpers
-# import meshes
 
 def reorder_array_gmsh(a, N):
     a = np.insert(
@@ -38,9 +33,10 @@ def generate_elemental_matrix_1D(request):
     Ie = np.zeros((N,N), order='F')
 
     # Call function
-    print('\nCalling: ', f.__name__, '\n  With N = ', N, '\n')
+    print('\nCalling: ', f.__name__, '\n  With N  = ', N, '\n')
     f(N, 1, 1, xy, Ie)
-    print('Calculate Ie(', N, '): \n', Ie)
+    print('Calculate Ie(', N, '):')
+    print(Ie, '\n')
 
     # Boundary conditions
     for ii in [0,1]:
@@ -50,11 +46,12 @@ def generate_elemental_matrix_1D(request):
     b = np.zeros((N,))
     b[1] = 1
 
-    # Solve for x and print
-    print('\nCond(Ie): ', np.linalg.cond(Ie))
-    print('Solve Ie\\b:')
+    # Calculate condition number
+    print('Cond(Ie): ', np.linalg.cond(Ie))
 
-    print(np.column_stack([Ie, b]))
+    # Solve for x and print
+    # print('Solve Ie\\b:')
+    # print(np.column_stack([Ie, b]))
 
     return np.linalg.solve(Ie, b)
 
