@@ -236,13 +236,14 @@ return
       return
   end function pascal_row_2D
 
-  module function getJacobian(N, xi, eta, xy, alpha) result(J)
+  module function getJacobian_2D(N, xi, eta, xy, alpha) result(J)
       !*
       ! Calculates the Jacobian of a quadrilateral element at a point
       !
       ! The Jacobian of an element is defined as:
       ! \[ \boldsymbol{J} = \boldsymbol{P} \boldsymbol{X} \]
       !
+
       ! Where:
       ! \[ \boldsymbol{P} = \left[ \begin{array}{cc}
       !     \frac{\partial H_1}{\partial \xi} & \frac{\partial H_2}{\partial \xi} \\
@@ -278,7 +279,7 @@ return
       ! * \( \boldsymbol{H} \) : Vector of basis functions
       ! * \( \boldsymbol{x} \) : Vector of X-coordinates for all element nodes
       ! * \( \boldsymbol{y} \) : Vector of Y-coordinates for all element nodes
-
+      !
       ! * \( H_i \) : Basis function \(i\)
       ! * \( x_i \) : X-coordinate of node \(i\)
       ! * \( y_i \) : Y-coordinate of node \(i\)
@@ -311,6 +312,6 @@ return
       J = matmul(P,xy)
 
       return
-  end function getJacobian
+  end function getJacobian_2D
 
 end submodule smod_legendre_2D
