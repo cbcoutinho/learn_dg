@@ -2,7 +2,7 @@ import textwrap
 
 def mesh_Linear1DAdvDiffEqual():
 
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -119,7 +119,7 @@ def mesh_Linear1DAdvDiffEqual():
     53 1 2 0 1 52 53
     54 1 2 0 1 53 2
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -127,7 +127,7 @@ def mesh_Linear1DAdvDiffEqual():
 
 def mesh_Quad1DAdvDiffEqual():
 
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -218,7 +218,7 @@ def mesh_Quad1DAdvDiffEqual():
     27 8 2 0 1 26 27 52
     28 8 2 0 1 27 2 53
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -226,7 +226,7 @@ def mesh_Quad1DAdvDiffEqual():
 
 def mesh_Cub1DAdvDiffEqual():
 
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -343,7 +343,7 @@ def mesh_Cub1DAdvDiffEqual():
     27 26 2 0 1 26 27 76 77
     28 26 2 0 1 27 2 78 79
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -351,7 +351,7 @@ def mesh_Cub1DAdvDiffEqual():
 
 def mesh_Multiple2D_biquad():
 
-    gmsh_buffer = '''\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -390,7 +390,7 @@ def mesh_Multiple2D_biquad():
     11 3 2 5 1 5 2 6 9
     12 3 2 5 1 9 6 3 7
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -398,7 +398,7 @@ def mesh_Multiple2D_biquad():
 
 def mesh_Single2D_quadquad():
 
-    gmsh_buffer = '''\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -430,7 +430,7 @@ def mesh_Single2D_quadquad():
     4 8 2 4 4 4 1 8
     7 10 2 5 1 1 2 3 4 5 6 7 8 9
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -438,7 +438,7 @@ def mesh_Single2D_quadquad():
 
 def mesh_Multiple2D_quadquad():
 
-    gmsh_buffer = '''\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -479,7 +479,7 @@ def mesh_Multiple2D_quadquad():
     7 10 2 5 1 1 2 6 10 5 7 13 12 14
     8 10 2 5 1 10 6 3 4 13 8 9 11 15
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -487,7 +487,7 @@ def mesh_Multiple2D_quadquad():
 
 def mesh_Single2D_cubquad():
 
-    gmsh_buffer = '''\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -526,7 +526,7 @@ def mesh_Single2D_cubquad():
     4 26 2 4 4 4 1 11 12
     7 36 2 5 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -534,7 +534,7 @@ def mesh_Single2D_cubquad():
 
 def mesh_Multiple2D_cubquad1():
 
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -588,7 +588,7 @@ def mesh_Multiple2D_cubquad1():
     7 36 2 5 1 1 5 12 4 6 7 19 20 15 16 17 18 21 22 23 24
     8 36 2 5 1 5 2 3 12 8 9 10 11 13 14 20 19 25 26 27 28
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
@@ -596,7 +596,7 @@ def mesh_Multiple2D_cubquad1():
 
 def mesh_Multiple2D_cubquad2():
 
-    gmsh_buffer='''\
+    gmsh_buffer="""\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -875,7 +875,7 @@ def mesh_Multiple2D_cubquad2():
     43 36 2 5 1 13 2 34 81 32 33 35 36 208 209 195 194 210 211 212 213
     44 36 2 5 1 81 34 3 39 209 208 37 38 48 49 203 202 214 215 216 217
     $EndElements
-    '''
+    """
 
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 

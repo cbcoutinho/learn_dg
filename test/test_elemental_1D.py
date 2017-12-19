@@ -5,6 +5,10 @@ np.set_printoptions(precision=3)
 import helpers
 
 def reorder_array_gmsh(a, N):
+    """
+    Insert the last element of an array to the 1st position. Due to
+    Gmsh numbering
+    """
     a = np.insert(
         a,      # Original array
         1,      # Position to insert
