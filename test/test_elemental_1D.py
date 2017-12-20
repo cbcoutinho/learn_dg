@@ -37,7 +37,7 @@ def generate_elemental_matrix_1D(request):
     Ie = np.zeros((N,N), order='F')
 
     # Call function
-    print('\nCalling: ', f.__name__, '\n  With N  = ', N, '\n')
+    print('\n  Calling = ', f.__name__, '\n  With N  = ', N, '\n')
     f(N, 1, 1, xy, Ie)
     print('Calculate Ie(', N, '):')
     print(Ie, '\n')

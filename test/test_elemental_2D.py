@@ -64,7 +64,7 @@ def generate_Single2D_quad(request):
         num_pts
     )
 
-    print('\nCalling: ', f.__name__, '\n  With N  = ', num_pts)
+    print('\n  Calling = ', f.__name__, '\n  With N  = ', num_pts)
     f(
         num_cells,
         num_pts_per_cell,
@@ -103,7 +103,7 @@ def generate_Single2D_quad(request):
         b[ii] = 1.
 
     # Calculate condition number
-    print('\nCond(Ie): ', np.linalg.cond(Ie))
+    print('  Cond(Ie) = ', np.linalg.cond(Ie), '\n')
 
     return np.linalg.solve(Ie, b)
 
