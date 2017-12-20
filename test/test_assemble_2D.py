@@ -8,11 +8,13 @@ import tempfile
 import helpers
 import meshes
 
-
 @pytest.fixture(params=[
     (meshes.mesh_Multiple2D_biquad(), 'quad', 'line'),
     (meshes.mesh_Multiple2D_quadquad(), 'quad9', 'line3'),
     (meshes.mesh_Multiple2D_cubquad(), 'quad16', 'line4'),
+    pytest.mark.slowtest(
+        (meshes.mesh_Multiple2D_cubquad_BIG(), 'quad16', 'line4')
+    )
 ])
 def generate_multiple2D_biquad(request):
     """
@@ -38,6 +40,16 @@ def generate_multiple2D_biquad(request):
     | . . | . . |
     | . . | . . |   <- Two adjacent bi-cubic quadrilaterals
     |_._._|_._._|
+
+
+    Just a bunch of bi-cubic quads for shits and giggles (slowtest)
+    ._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+    | . . | . . | . . | . . | . . | . . | . . | . . | . . | . . |
+    | . . | . . | . . | . . | . . | . . | . . | . . | . . | . . |
+    |_._._|_._._|_._._|_._._|_._._|_._._|_._._|_._._|_._._|_._._|
+    | . . | . . | . . | . . | . . | . . | . . | . . | . . | . . |
+    | . . | . . | . . | . . | . . | . . | . . | . . | . . | . . |
+    |_._._|_._._|_._._|_._._|_._._|_._._|_._._|_._._|_._._|_._._|
 
     """
 
@@ -69,7 +81,7 @@ def generate_multiple2D_biquad(request):
         num_pts
     )
 
-    print('\nCalling: ', f.__name__, '\n  With N  = ', num_pts)
+    print('\n  Calling = ', f.__name__, '\n  With N  = ', num_pts)
     f(
         num_cells,
         num_pts_per_cell,
@@ -104,7 +116,7 @@ def generate_multiple2D_biquad(request):
         b[ii] = 1.
 
     # Calculate condition number
-    print('\nCond(A): ', np.linalg.cond(A))
+    print('  Cond(A) = ', np.linalg.cond(A), '\n')
 
     return np.linalg.solve(A, b)
 

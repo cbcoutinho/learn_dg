@@ -5,3 +5,4 @@ graphviz
 
 # matplotlib because test/test_*.py imports it
 matplotlib
+pandas

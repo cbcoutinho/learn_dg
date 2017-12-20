@@ -34,7 +34,6 @@ addons: &gfortran7
   apt:
     packages:
       - gfortran-7
-      - graphviz
       - libblas-dev
       - liblapack-dev
       - gmsh
@@ -51,10 +50,15 @@ jobs:
       - GCC_VERSION=7
       - USE_OPENMP=ON
       - OMP_NUM_THREADS=4
-      addons: true      # Don't install anything
-      install: true     # Don't install anything
-      script:
+      addons:
+        apt:
+          packages:
+            - graphviz  # For FORD docs
+          sources: &sources
+            - ubuntu-toolchain-r-test
+      install:
       - pip install -r requirements.txt
+      script:
       - make docs
       - cd $TRAVIS_BUILD_DIR
       - git config --global user.name "TRAVIS-CI-for-$(git --no-pager show -s --format='%cn' $TRAVIS_COMMIT)"
