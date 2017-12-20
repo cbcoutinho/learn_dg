@@ -48,23 +48,23 @@ mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test2D.geo -order 2 -2 -o $(TEST_DIR)/test2D.msh
 
 cleantest: clean
-	@make test
+	${MAKE} test
 
 cleantest_all: clean
-	@make test_all
+	${MAKE} test_all
 
 # Build and test the project
 cmake: $(BLD_DIR)
 	cmake $(CMFLAGS)
-	@make -C $(BLD_DIR)
+	${MAKE} -C $(BLD_DIR)
 
 cmake_win: $(BLD_DIR)
 	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-x86_64-w64-mingw32.cmake
-	@make -C $(BLD_DIR)
+	${MAKE} -C $(BLD_DIR)
 
 cmake_win32: $(BLD_DIR)
 	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-i686-w64-mingw32.cmake
-	@make -C $(BLD_DIR)
+	${MAKE} -C $(BLD_DIR)
 
 driver: cmake mesh $(BLD_DIR)
 	$(BLD_DIR)/bin/driver1D
