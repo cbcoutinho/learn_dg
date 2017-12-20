@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import pytest
 import numpy as np
 np.set_printoptions(precision=3)
@@ -64,7 +66,7 @@ def generate_Single2D_quad(request):
         num_pts
     )
 
-    print('\n  Calling = ', f.__name__, '\n  With N  = ', num_pts)
+    print('\n  Calling  = ', f.__name__, '\n  With N   = ', num_pts)
     f(
         num_cells,
         num_pts_per_cell,

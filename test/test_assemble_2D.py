@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import pytest
 import numpy as np
 np.set_printoptions(precision=3)
@@ -81,7 +83,7 @@ def generate_multiple2D_biquad(request):
         num_pts
     )
 
-    print('\n  Calling = ', f.__name__, '\n  With N  = ', num_pts)
+    print('\n  Calling  = ', f.__name__, '\n  With N   = ', num_pts)
     f(
         num_cells,
         num_pts_per_cell,
@@ -116,7 +118,7 @@ def generate_multiple2D_biquad(request):
         b[ii] = 1.
 
     # Calculate condition number
-    print('  Cond(A) = ', np.linalg.cond(A), '\n')
+    print('  Cond(A)  = ', np.linalg.cond(A), '\n')
 
     return np.linalg.solve(A, b)
 

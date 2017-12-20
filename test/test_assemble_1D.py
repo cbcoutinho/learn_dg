@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import pytest
 import numpy as np
 np.set_printoptions(precision=3)
@@ -64,7 +66,7 @@ def generate_global_matrix_1D(request):
         num_pts
     )
 
-    print('\nCalling: ', f.__name__, '\n  With N  = ', num_pts)
+    print('\nCalling: ', f.__name__, '\n  With N   = ', num_pts)
     # Calculate Global stiffness matrix `A`
     f(
         num_cells,
@@ -86,7 +88,7 @@ def generate_global_matrix_1D(request):
         A[ii,:] = 0.; A[ii,ii] = 1.
 
     # Print condition number of `A`
-    print('  Cond(A) = ', np.linalg.cond(A), '\n')
+    print('  Cond(A)  = ', np.linalg.cond(A), '\n')
 
     # Set boundary condtions in RHS vector
     b = np.zeros((num_pts,))
