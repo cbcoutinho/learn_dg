@@ -90,4 +90,4 @@ before_script:
   - cd $TRAVIS_BUILD_DIR
 
 script:
-  - make cleantest
+  - make cleantest_all
