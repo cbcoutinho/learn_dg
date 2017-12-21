@@ -14,7 +14,7 @@ FLIB_SRC_DIR=src/fortranlib/src
 ###### Compiler options ######
 ##############################
 
-FC          = gfortran
+FC         ?= gfortran
 RM         := rm -rf
 
 BUILD_TYPE ?= Debug
@@ -48,40 +48,39 @@ mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
 	gmsh $(TEST_DIR)/test2D.geo -order 2 -2 -o $(TEST_DIR)/test2D.msh
 
 cleantest: clean
-	@make test
+	${MAKE} test
 
 cleantest_all: clean
-	@make test_all
+	${MAKE} test_all
 
 # Build and test the project
 cmake: $(BLD_DIR)
 	cmake $(CMFLAGS)
-	@make -C $(BLD_DIR)
+	${MAKE} -C $(BLD_DIR)
 
 cmake_win: $(BLD_DIR)
 	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-x86_64-w64-mingw32.cmake
-	@make -C $(BLD_DIR)
+	${MAKE} -C $(BLD_DIR)
 
 cmake_win32: $(BLD_DIR)
 	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-i686-w64-mingw32.cmake
-	@make -C $(BLD_DIR)
+	${MAKE} -C $(BLD_DIR)
 
 driver: cmake mesh $(BLD_DIR)
 	$(BLD_DIR)/bin/driver1D
 	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
 
 test: cmake mesh driver
-	pytest -vs --cache-clear -m 'not slowtest'
+	pytest -vs --cache-clear --duration=5 -m 'not slowtest'
 
 test_all: cmake mesh driver
-	pytest -vs --cache-clear
+	pytest -vs --cache-clear --duration=5
 
 # After running one of the tests, plot the output
 plot: cmake driver
 	python3 test/plotter.py
 
 # Other
-
 docs: $(DOC_DIR)/learn_dg.md README.md
 	cp README.md $(DOC_DIR)/README.md
 	@ford $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md

@@ -27,17 +27,20 @@ python:
   - 3.4
 
 env:
-  - BUILD_TYPE=Debug GCC_VERSION=7 USE_OPENMP=ON OMP_NUM_THREADS=4
-  - BUILD_TYPE=Release GCC_VERSION=7 USE_OPENMP=ON OMP_NUM_THREADS=4
+  - BUILD_TYPE=Debug FC=gfortran-6 USE_OPENMP=ON OMP_NUM_THREADS=4
+  - BUILD_TYPE=Release FC=gfortran-6 USE_OPENMP=ON OMP_NUM_THREADS=4
+  #- BUILD_TYPE=Debug FC=gfortran-7 USE_OPENMP=ON OMP_NUM_THREADS=4
+  #- BUILD_TYPE=Release FC=gfortran-7 USE_OPENMP=ON OMP_NUM_THREADS=4
 
-addons: &gfortran7
+addons:
   apt:
     packages:
-      - gfortran-7
+      - gfortran-6
+      #- gfortran-7
       - libblas-dev
       - liblapack-dev
       - gmsh
-    sources: &sources
+    sources:
       - ubuntu-toolchain-r-test
 
 jobs:
@@ -45,16 +48,11 @@ jobs:
     - stage: deploy
       if: branch = master
       python: 3.4
-      env:
-      - BUILD_TYPE=Release
-      - GCC_VERSION=7
-      - USE_OPENMP=ON
-      - OMP_NUM_THREADS=4
       addons:
         apt:
           packages:
             - graphviz  # For FORD docs
-          sources: &sources
+          sources:
             - ubuntu-toolchain-r-test
       install:
       - pip install -r requirements.txt
@@ -75,13 +73,8 @@ before_install:
 
 install:
   - pip install -r requirements.txt
-  - mkdir -p $TRAVIS_BUILD_DIR/bin
-  - which "gfortran-$GCC_VERSION"
-  - ln -sf "$(which gfortran-$GCC_VERSION)" $TRAVIS_BUILD_DIR/bin/gfortran
-  - export PATH=$TRAVIS_BUILD_DIR/bin:$PATH
-  - which gfortran
-  - export FC=gfortran
-  - gfortran -v
+  - echo 'Fortran compiler version:'
+  - $FC -v
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir -p "${DEPS_DIR}" && cd "${DEPS_DIR}"
   - |

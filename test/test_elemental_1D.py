@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import pytest
 import numpy as np
 np.set_printoptions(precision=3)
@@ -37,8 +39,14 @@ def generate_elemental_matrix_1D(request):
     Ie = np.zeros((N,N), order='F')
 
     # Call function
-    print('\n  Calling = ', f.__name__, '\n  With N  = ', N, '\n')
-    f(N, 1, 1, xy, Ie)
+    print('\n  Calling  = ', f.__name__, '\n  With N   = ', N, '\n')
+    f(
+        N,
+        1,
+        1,
+        xy,
+        Ie
+    )
     print('Calculate Ie(', N, '):')
     print(Ie, '\n')
 
