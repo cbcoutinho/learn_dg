@@ -55,7 +55,7 @@ jobs:
           sources:
             - ubuntu-toolchain-r-test
       install:
-      - pip install -r requirements.txt
+      - pip install git+git://github.com/cbcoutinho/ford@fix_relpath_abspath
       script:
       - make docs
       - cd $TRAVIS_BUILD_DIR

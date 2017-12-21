@@ -1,5 +1,5 @@
 pytest
-git+git://github.com/cbcoutinho/ford@fix_relpath_abspath
+# git+git://github.com/cbcoutinho/ford@fix_relpath_abspath
 meshio==1.10.7
 graphviz
 
