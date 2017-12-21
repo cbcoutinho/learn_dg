@@ -14,7 +14,7 @@ FLIB_SRC_DIR=src/fortranlib/src
 ###### Compiler options ######
 ##############################
 
-FC          = gfortran
+FC         ?= gfortran
 RM         := rm -rf
 
 BUILD_TYPE ?= Debug
@@ -71,10 +71,10 @@ driver: cmake mesh $(BLD_DIR)
 	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
 
 test: cmake mesh driver
-	pytest -vs --cache-clear -m 'not slowtest'
+	pytest -vs --cache-clear --duration=5 -m 'not slowtest'
 
 test_all: cmake mesh driver
-	pytest -vs --cache-clear
+	pytest -vs --cache-clear --duration=5
 
 # After running one of the tests, plot the output
 plot: cmake driver

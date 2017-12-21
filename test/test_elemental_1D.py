@@ -40,7 +40,13 @@ def generate_elemental_matrix_1D(request):
 
     # Call function
     print('\n  Calling  = ', f.__name__, '\n  With N   = ', N, '\n')
-    f(N, 1, 1, xy, Ie)
+    f(
+        N,
+        1,
+        1,
+        xy,
+        Ie
+    )
     print('Calculate Ie(', N, '):')
     print(Ie, '\n')
 

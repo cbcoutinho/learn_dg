@@ -13,7 +13,9 @@ import meshes
 @pytest.fixture(params=[
     (meshes.mesh_Single2D_quadquad(), 'quad9', 'line3'),
     (meshes.mesh_Single2D_cubquad(), 'quad16', 'line4'),
-    pytest.mark.slowtest((meshes.mesh_Single2D_quarquad(), 'quad25', 'line5'))
+    pytest.mark.slowtest(
+        (meshes.mesh_Single2D_quarquad(), 'quad25', 'line5')
+    )
 ])
 def generate_Single2D_quad(request):
     """
@@ -58,29 +60,38 @@ def generate_Single2D_quad(request):
     )
 
     # Zero Ie array
-    Ie = np.zeros((num_pts, num_pts), dtype='double', order='F')
+    Ie1 = np.zeros((num_pts, num_pts), dtype='double', order='F')
+    Ie2 = np.zeros((num_pts, num_pts), dtype='double', order='F')
 
-    f = helpers.set_assemble2D_c_args(
-        num_cells,
-        num_pts_per_cell,
-        num_pts
-    )
+    f = helpers.set_assembleElementalMatrix2D_c_args(num_pts)
 
-    print('\n  Calling  = ', f.__name__, '\n  With N   = ', num_pts)
+    print('\n  Calling  = ', f.__name__, '\n  With N   = ', num_pts, ', d = 1')
     f(
-        num_cells,
-        num_pts_per_cell,
         num_pts,
-        _points,
-        _cells,
-        np.float64(1.0),
-        np.zeros((2,), dtype='double', order='F'),
-        Ie
+        1,          # Partial basis function w.r.t x
+        1,          # Partial basis function w.r.t x
+        _points,    # xy coordinates
+        Ie1
     )
+
+    print('\n  Calling  = ', f.__name__, '\n  With N   = ', num_pts, ', d = 2')
+    f(
+        num_pts,
+        2,          # Partial basis function w.r.t x
+        2,          # Partial basis function w.r.t x
+        _points,    # xy coordinates
+        Ie2
+    )
+
+    Ie = - (Ie1 + Ie2)
 
     mydict = {}
     for side in ['left', 'right']:
-        if type(field_data[side]) is list:
+        if hasattr(field_data[side], '__getitem__'):
+            """
+            List-like objects have a `__getitem__` attribute. This would
+            help distinguish list-like objects from ints
+            """
             query = field_data[side][0]
         else:
             query = field_data[side]

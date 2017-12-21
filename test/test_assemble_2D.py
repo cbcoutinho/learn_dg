@@ -15,6 +15,9 @@ import meshes
     (meshes.mesh_Multiple2D_quadquad(), 'quad9', 'line3'),
     (meshes.mesh_Multiple2D_cubquad(), 'quad16', 'line4'),
     pytest.mark.slowtest(
+        (meshes.mesh_Multiple2D_quarquad(), 'quad25', 'line5')
+    ),
+    pytest.mark.slowtest(
         (meshes.mesh_Multiple2D_cubquad_BIG(), 'quad16', 'line4')
     )
 ])
@@ -43,6 +46,15 @@ def generate_multiple2D_biquad(request):
     | . . | . . |   <- Two adjacent bi-cubic quadrilaterals
     |_._._|_._._|
 
+    ._._._._._._._._.
+    | . . . | . . . |
+    | . . . | . . . |   <- Four bi-quartic quadrilaterals in a grid
+    | . . . | . . . |
+    ._._._._._._._._.
+    | . . . | . . . |
+    | . . . | . . . |
+    | . . . | . . . |
+    ._._._._._._._._.
 
     Just a bunch of bi-cubic quads for shits and giggles (slowtest)
     ._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
@@ -97,7 +109,11 @@ def generate_multiple2D_biquad(request):
 
     mydict = {}
     for side in ['left', 'right']:
-        if type(field_data[side]) is list:
+        if hasattr(field_data[side], '__getitem__'):
+            """
+            List-like objects have a `__getitem__` attribute. This would
+            help distinguish list-like objects from ints
+            """
             query = field_data[side][0]
         else:
             query = field_data[side]

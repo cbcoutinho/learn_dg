@@ -53,8 +53,8 @@ message(STATUS "    OpenMP: ${USE_OPENMP}")
 #-----------------------------------------------------------------------------------
 
 if (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
-    if (CMAKE_Fortran_COMPILER_VERSION VERSION_LESS 6.3)
-        message (FATAL_ERROR "Minimum required gfortran version is 6.3")
+    if (CMAKE_Fortran_COMPILER_VERSION VERSION_LESS 6.2)
+        message (FATAL_ERROR "Minimum required gfortran version is 6.2")
     endif()
 
     set (FFLAGS "-std=f2008 -fmax-errors=1 ${FFLAGS}")
