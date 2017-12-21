@@ -81,7 +81,6 @@ plot: cmake driver
 	python3 test/plotter.py
 
 # Other
-
 docs: $(DOC_DIR)/learn_dg.md README.md
 	cp README.md $(DOC_DIR)/README.md
 	@ford $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
