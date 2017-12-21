@@ -31,11 +31,11 @@ def generate_multiple2D_biquad(request):
     using the diffusion equation with Dirichlet BCs (0 and 1). Middle point
     should be 0.5
 
-     __ __
+    .__.__.
     |  |  |
-    |__|__|         <- Four bi-linear quadrilaterals
+    .__.__.         <- Four bi-linear quadrilaterals in a grid
     |  |  |
-    |__|__|
+    .__.__.
 
     ._._._._.
     | . | . |       <- Two adjacent bi-quadratic quadrilaterals
