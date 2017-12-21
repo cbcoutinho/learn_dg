@@ -28,8 +28,8 @@ python:
 
 env:
   - BUILD_TYPE=Debug FC=gfortran-7 USE_OPENMP=ON OMP_NUM_THREADS=4
-  - BUILD_TYPE=Debug FC=gfortran-7 USE_OPENMP=ON OMP_NUM_THREADS=4
-  - BUILD_TYPE=Release FC=gfortran-6 USE_OPENMP=ON OMP_NUM_THREADS=4
+  - BUILD_TYPE=Release FC=gfortran-7 USE_OPENMP=ON OMP_NUM_THREADS=4
+  - BUILD_TYPE=Debug FC=gfortran-6 USE_OPENMP=ON OMP_NUM_THREADS=4
   - BUILD_TYPE=Release FC=gfortran-6 USE_OPENMP=ON OMP_NUM_THREADS=4
 
 addons: &gfortran7
