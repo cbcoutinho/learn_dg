@@ -39,7 +39,7 @@ FORD_FLAGS := -d $(SRC_DIR) \
 ####### Build Recepies #######
 ##############################
 
-.PHONY: clean docs
+.PHONY: clean docs tags
 
 all: cmake
 
@@ -85,6 +85,10 @@ docs: $(DOC_DIR)/learn_dg.md README.md
 	cp README.md $(DOC_DIR)/README.md
 	@ford $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
 	$(RM) $(DOC_DIR)/README.md
+
+# Requires ctags
+tags:
+	ctags --exclude=build --exclude=templates --exclude=venv --exclude=.git -R .
 
 .ONESHELL:
 $(BLD_DIR):
