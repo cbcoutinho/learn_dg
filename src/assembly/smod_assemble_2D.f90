@@ -173,7 +173,7 @@ contains
                 endif
             enddo adv
         enddo outer
-        !$OMP END DO
+        !$OMP END DO NOWAIT
         !$OMP END PARALLEL
 
         deallocate(Ie, xy)
