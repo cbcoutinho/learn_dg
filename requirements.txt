@@ -1,8 +1,8 @@
 pytest
 # git+git://github.com/cbcoutinho/ford@fix_relpath_abspath
-meshio==1.10.7
+meshio==1.10.8
 graphviz
+pandas
 
 # matplotlib because test/test_*.py imports it
 matplotlib
-pandas
