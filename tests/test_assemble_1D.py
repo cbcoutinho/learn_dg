@@ -36,9 +36,11 @@ def generate_global_matrix_1D(request):
         temp.flush()
         points, cells, point_data, cell_data, field_data = meshio.read(temp.name)
 
+    # NOTE: Only store first column for 1D problem
     _points = np.array(points[:, 0], dtype='double', order='F')
+
+    # NOTE: Convert 0-based to 1-based indexing
     _cells = np.array(cells[cell_type] + 1, dtype='int32', order='F')
-    # NOTE: Always change 0-based to 1-based indexing
 
     num_cells, num_pts_per_cell, num_pts = (
         _cells.shape[0],
@@ -46,13 +48,7 @@ def generate_global_matrix_1D(request):
         _points.shape[0]
     )
 
-    # NOTE: Can't do this anymore because fixture is parametrized
-    # # Sanity checks on matrix sizes
-    # assert num_cells == 52
-    # assert num_pts_per_cell == 2
-    # assert num_pts == 53
-
-    # Zero Ie array
+    # Zero `A` array
     A = np.zeros(
         (num_pts, num_pts),
         dtype='double',
@@ -79,18 +75,18 @@ def generate_global_matrix_1D(request):
         A
     )
 
-    # A 1D line in Gmsh notation will always have end points as pt 0 and 1
+    # A 1D line in Gmsh notation will always have end points at pt 0 and 1
     left_list = [0]
     right_list = [1]
 
-    # Set boundary condtions in Ie matrix
+    # Set boundary conditions in `A` matrix
     for ii in left_list + right_list:
         A[ii,:] = 0.; A[ii,ii] = 1.
 
     # Print condition number of `A`
     print('  Cond(A)  = ', np.linalg.cond(A), '\n')
 
-    # Set boundary condtions in RHS vector
+    # Set boundary conditions in RHS vector
     b = np.zeros((num_pts,))
     for ii in right_list:
         b[ii] = 1.
@@ -110,18 +106,7 @@ def test_Linear1DAdvDiffEqual(generate_global_matrix_1D):
 
     indx = np.argsort(_points)
 
-    # fig = plt.figure()
-    # plt.plot(_points[indx], x[indx], 'o', label='simulation')
-    # plt.plot(_points[indx], analytical(_points[indx]), '-', label='analytical')
-    # plt.legend()
-    # plt.show()
-    # fig.savefig('sample.png')
-
-    # if not np.allclose(x, analytical(_points), rtol=1e-2):
     b = analytical(_points)
-    # print(
-    #     max((abs(x - b) - 1e-3 * abs(b)))
-    # )
 
     assert np.allclose(
         x,

@@ -6,7 +6,7 @@
 
 SRC_DIR=src
 DOC_DIR=docs
-TEST_DIR=test
+TEST_DIR=tests
 BLD_DIR=build
 FLIB_SRC_DIR=src/fortranlib/src
 
