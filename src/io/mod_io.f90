@@ -20,7 +20,7 @@ contains
             cells, &
             points, &
             dg)
-        
+
         !*  Reads the input mesh file (gmsh .msh format) and returns the
         !   number of nodes, element connectivity, and the coordinates of
         !   the nodes in 1D
@@ -175,18 +175,6 @@ contains
 
     subroutine print_header()
 
-        ! print*,
-        ! print*, '  _____  ______ _____      _             _     '
-        ! print*, ' |  __ \|  ____|  __ \    | |           | |    '
-        ! print*, ' | |__) | |__  | |  | |___| |_ __ _  ___| | __ '
-        ! print*, ' |  _  /|  __| | |  | / __| __/ _` |/ __| |/ / '
-        ! print*, ' | | \ \| |____| |__| \__ \ || (_| | (__|   <  '
-        ! print*, ' |_|  \_\______|_____/|___/\__\__,_|\___|_|\_\ '
-        ! print*,
-        ! print*,
-        ! print*, ' Developed by Chris Coutinho                   '
-        ! print*,
-
         print*,
         print*, '     ____  __________       __             __   '
         print*, '    / __ \/ ____/ __ \_____/ /_____ ______/ /__ '
@@ -198,10 +186,7 @@ contains
         print*, ' Developed by Chris Coutinho                   '
         print*,
 
-        print*, 'No Input file supplied'
-        print*,
-
-        stop
+        stop 'No Input file supplied'
 
     end subroutine print_header
 
