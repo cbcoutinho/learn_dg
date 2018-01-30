@@ -10,15 +10,23 @@ import tempfile
 import helpers
 import meshes
 
+m = [
+    meshes.mesh_Multiple2D_biquad(),
+    meshes.mesh_Multiple2D_quadquad(),
+    meshes.mesh_Multiple2D_cubquad(),
+    meshes.mesh_Multiple2D_quarquad(),
+    meshes.mesh_Multiple2D_cubquad_BIG(),
+]
+
 @pytest.fixture(params=[
-    (meshes.mesh_Multiple2D_biquad(), 'quad', 'line'),
-    (meshes.mesh_Multiple2D_quadquad(), 'quad9', 'line3'),
-    (meshes.mesh_Multiple2D_cubquad(), 'quad16', 'line4'),
+    (m[0], 'quad', 'line'),
+    (m[1], 'quad9', 'line3'),
+    (m[2], 'quad16', 'line4'),
     pytest.mark.slowtest(
-        (meshes.mesh_Multiple2D_quarquad(), 'quad25', 'line5')
+        (m[3], 'quad25', 'line5')
     ),
     pytest.mark.slowtest(
-        (meshes.mesh_Multiple2D_cubquad_BIG(), 'quad16', 'line4')
+        (m[4], 'quad16', 'line4')
     )
 ])
 def generate_multiple2D_biquad(request):
@@ -74,8 +82,6 @@ def generate_multiple2D_biquad(request):
         temp.flush()
         points, cells, point_data, cell_data, field_data = meshio.read(temp.name)
 
-
-
     points_ = np.array(points[:, 0:2], dtype='double', order='F')
     cells_ = np.array(cells[quad_type] + 1, dtype='int32', order='F')
     # NOTE: Always change 0-based to 1-based indexing
@@ -111,9 +117,14 @@ def generate_multiple2D_biquad(request):
     for side in ['left', 'right']:
         if hasattr(field_data[side], '__getitem__'):
             """
+            Some versions of meshio had returned multiple items in a
+            list instead of a single dictionary. This is a quick hack,
+            and is related to nschloe/meshio/issues/169.
+
             List-like objects have a `__getitem__` attribute. This would
             help distinguish list-like objects from ints
             """
+
             query = field_data[side][0]
         else:
             query = field_data[side]
