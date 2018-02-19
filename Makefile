@@ -98,5 +98,5 @@ clean:
 	$(RM) data.out gmon.out
 	$(RM) $(TEST_DIR)/test1D.msh $(TEST_DIR)/test2D.msh
 	$(RM) .cache $(TEST_DIR)/__pycache__ $(TEST_DIR)/helpers.pyc
-	$(RM) $(BLD_DIR)
+	$(RM) $(BLD_DIR) .pytest_cache
 	$(RM) docs/html
