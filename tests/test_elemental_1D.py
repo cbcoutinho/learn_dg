@@ -2,9 +2,11 @@ from __future__ import print_function
 
 import pytest
 import numpy as np
+
 np.set_printoptions(precision=3)
 
 import helpers
+
 
 def reorder_array_gmsh(a, N):
     """
@@ -12,14 +14,17 @@ def reorder_array_gmsh(a, N):
     Gmsh numbering
     """
     a = np.insert(
-        a,      # Original array
-        1,      # Position to insert
+        a,  # Original array
+        1,  # Position to insert
         a[-1],  # Value to insert, i.e. the last value
-    )[0:N]      # Only keep first N values
+    )[
+        0:N
+    ]  # Only keep first N values
 
     return a
 
-@pytest.fixture(params=range(3,9))
+
+@pytest.fixture(params=range(3, 9))
 def generate_elemental_matrix_1D(request):
     """
     Generates an elemental matrix for a single 1D polynomial for
@@ -30,42 +35,37 @@ def generate_elemental_matrix_1D(request):
     f = helpers.set_assembleElementalMatrix1D_args(N)
 
     x = np.array(range(N))
-    x = reorder_array_gmsh(x,N) #   NOTE: Gmsh node ordering
+    x = reorder_array_gmsh(x, N)  #   NOTE: Gmsh node ordering
 
     # Dummy xy array in Fortran ordering
-    xy = np.array(x, dtype='double', order='F')
+    xy = np.array(x, dtype="double", order="F")
 
     # Zero Ie array
-    Ie = np.zeros((N,N), order='F')
+    Ie = np.zeros((N, N), order="F")
 
     # Call function
-    print('\n  Calling  = ', f.__name__, '\n  With N   = ', N, '\n')
-    f(
-        N,
-        1,
-        1,
-        xy,
-        Ie
-    )
-    print('Calculate Ie(', N, '):')
-    print(Ie, '\n')
+    print("\n  Calling  = ", f.__name__, "\n  With N   = ", N, "\n")
+    f(N, 1, 1, xy, Ie)
+    print("Calculate Ie(", N, "):")
+    print(Ie, "\n")
 
     # Boundary conditions
-    for ii in [0,1]:
-        Ie[ii,:] = 0.
-        Ie[ii,ii] = 1.
+    for ii in [0, 1]:
+        Ie[ii, :] = 0.0
+        Ie[ii, ii] = 1.0
 
     b = np.zeros((N,))
     b[1] = 1
 
     # Calculate condition number
-    print('Cond(Ie): ', np.linalg.cond(Ie))
+    print("Cond(Ie): ", np.linalg.cond(Ie))
 
     # Solve for x and print
     # print('Solve Ie\\b:')
     # print(np.column_stack([Ie, b]))
 
     return np.linalg.solve(Ie, b)
+
 
 def test_elemental_matrix_1D(generate_elemental_matrix_1D):
     """
@@ -81,7 +81,7 @@ def test_elemental_matrix_1D(generate_elemental_matrix_1D):
 
     N = len(x)
 
-    expected = np.linspace(0,1,N)
+    expected = np.linspace(0, 1, N)
     expected = reorder_array_gmsh(expected, N)
 
     assert np.allclose(x, expected)

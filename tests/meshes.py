@@ -13,9 +13,10 @@ import textwrap
 
 """ Global 1D meshes """
 
+
 def mesh_Linear1DAdvDiffEqual():
 
-    gmsh_buffer="""\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -138,9 +139,10 @@ def mesh_Linear1DAdvDiffEqual():
 
     return gmsh_buffer
 
+
 def mesh_Quad1DAdvDiffEqual():
 
-    gmsh_buffer="""\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -237,9 +239,10 @@ def mesh_Quad1DAdvDiffEqual():
 
     return gmsh_buffer
 
+
 def mesh_Cub1DAdvDiffEqual():
 
-    gmsh_buffer="""\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -362,7 +365,9 @@ def mesh_Cub1DAdvDiffEqual():
 
     return gmsh_buffer
 
+
 """ Single 2D meshes """
+
 
 def mesh_Single2D_quadquad():
 
@@ -403,6 +408,7 @@ def mesh_Single2D_quadquad():
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
     return gmsh_buffer
+
 
 def mesh_Single2D_cubquad():
 
@@ -451,9 +457,10 @@ def mesh_Single2D_cubquad():
 
     return gmsh_buffer
 
+
 def mesh_Single2D_quarquad():
 
-    gmsh_buffer="""\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -507,7 +514,9 @@ def mesh_Single2D_quarquad():
 
     return gmsh_buffer
 
+
 """ Global 2D meshes """
+
 
 def mesh_Multiple2D_biquad():
 
@@ -555,6 +564,7 @@ def mesh_Multiple2D_biquad():
     gmsh_buffer = textwrap.dedent(gmsh_buffer)
 
     return gmsh_buffer
+
 
 def mesh_Multiple2D_quadquad():
 
@@ -605,9 +615,10 @@ def mesh_Multiple2D_quadquad():
 
     return gmsh_buffer
 
+
 def mesh_Multiple2D_cubquad():
 
-    gmsh_buffer="""\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -667,9 +678,10 @@ def mesh_Multiple2D_cubquad():
 
     return gmsh_buffer
 
+
 def mesh_Multiple2D_quarquad():
 
-    gmsh_buffer="""\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat
@@ -786,9 +798,10 @@ def mesh_Multiple2D_quarquad():
 
     return gmsh_buffer
 
+
 def mesh_Multiple2D_cubquad_BIG():
 
-    gmsh_buffer="""\
+    gmsh_buffer = """\
     $MeshFormat
     2.2 0 8
     $EndMeshFormat

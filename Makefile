@@ -31,9 +31,9 @@ CMFLAGS= -B$(BLD_DIR) -H. \
 ######## FORD options ########
 ##############################
 
-FORD_FLAGS := -d $(SRC_DIR) \
-	-p $(DOC_DIR)/user-guide \
-	-o $(DOC_DIR)/html
+FORD_FLAGS := -d ../$(SRC_DIR) \
+	-p ../$(DOC_DIR)/user-guide \
+	-o ../$(DOC_DIR)/html
 
 ##############################
 ####### Build Recepies #######
@@ -44,14 +44,14 @@ FORD_FLAGS := -d $(SRC_DIR) \
 all: cmake
 
 mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
-	gmsh -order 1 -1 -o $(TEST_DIR)/test1D.msh $(TEST_DIR)/test1D.geo
-	gmsh -order 2 -2 -o $(TEST_DIR)/test2D.msh $(TEST_DIR)/test2D.geo
+	gmsh -format msh2 -order 1 -1 -o $(TEST_DIR)/test1D.msh $(TEST_DIR)/test1D.geo
+	gmsh -format msh2 -order 2 -2 -o $(TEST_DIR)/test2D.msh $(TEST_DIR)/test2D.geo
 
 cleantest: clean
 	${MAKE} test
 
-cleantest_all: clean
-	${MAKE} test_all
+cleanslowtest: clean
+	${MAKE} slowtest
 
 # Build and test the project
 cmake: $(BLD_DIR)
@@ -73,7 +73,7 @@ driver: cmake mesh $(BLD_DIR)
 test: cmake mesh driver
 	pytest -vs --cache-clear --duration=5 -m 'not slowtest'
 
-test_all: cmake mesh driver
+slowtest: cmake mesh driver
 	pytest -vs --cache-clear --duration=5
 
 # After running one of the tests, plot the output

@@ -2,14 +2,12 @@ from __future__ import print_function
 
 import pytest
 import numpy as np
-np.set_printoptions(precision=3)
-
 import meshio
 import tempfile
-
 import helpers
 import meshes
 
+np.set_printoptions(precision=3)
 m = [
     meshes.mesh_Multiple2D_biquad(),
     meshes.mesh_Multiple2D_quadquad(),
@@ -18,17 +16,16 @@ m = [
     meshes.mesh_Multiple2D_cubquad_BIG(),
 ]
 
-@pytest.fixture(params=[
-    (m[0], 'quad', 'line'),
-    (m[1], 'quad9', 'line3'),
-    (m[2], 'quad16', 'line4'),
-    pytest.mark.slowtest(
-        (m[3], 'quad25', 'line5')
-    ),
-    pytest.mark.slowtest(
-        (m[4], 'quad16', 'line4')
-    )
-])
+
+@pytest.fixture(
+    params=[
+        (m[0], "quad", "line"),
+        (m[1], "quad9", "line3"),
+        (m[2], "quad16", "line4"),
+        pytest.param((m[3], "quad25", "line5"), marks=pytest.mark.slowtest),
+        pytest.param((m[4], "quad16", "line4"), marks=pytest.mark.slowtest),
+    ]
+)
 def generate_multiple2D_biquad(request):
     """
     This is a replacement for the original Fortran program - 'driver2D'
@@ -77,31 +74,27 @@ def generate_multiple2D_biquad(request):
 
     gmsh_buffer, quad_type, line_type = request.param
 
-    with tempfile.NamedTemporaryFile(suffix='.msh') as temp:
-        temp.write(gmsh_buffer.encode('utf-8'))
+    with tempfile.NamedTemporaryFile(suffix=".msh") as temp:
+        temp.write(gmsh_buffer.encode("utf-8"))
         temp.flush()
         points, cells, point_data, cell_data, field_data = meshio.read(temp.name)
 
-    points_ = np.array(points[:, 0:2], dtype='double', order='F')
-    cells_ = np.array(cells[quad_type] + 1, dtype='int32', order='F')
+    points_ = np.array(points[:, 0:2], dtype="double", order="F")
+    cells_ = np.array(cells[quad_type] + 1, dtype="int32", order="F")
     # NOTE: Always change 0-based to 1-based indexing
 
     num_cells, num_pts_per_cell, num_pts = (
         cells_.shape[0],
         cells_.shape[1],
-        points_.shape[0]
+        points_.shape[0],
     )
 
     # Zero Ie array
-    A = np.zeros((num_pts, num_pts), dtype='double', order='F')
+    A = np.zeros((num_pts, num_pts), dtype="double", order="F")
 
-    f = helpers.set_assemble2D_c_args(
-        num_cells,
-        num_pts_per_cell,
-        num_pts
-    )
+    f = helpers.set_assemble2D_c_args(num_cells, num_pts_per_cell, num_pts)
 
-    print('\n  Calling  = ', f.__name__, '\n  With N   = ', num_pts)
+    print("\n  Calling  = ", f.__name__, "\n  With N   = ", num_pts)
     f(
         num_cells,
         num_pts_per_cell,
@@ -109,13 +102,13 @@ def generate_multiple2D_biquad(request):
         points_,
         cells_,
         np.float64(1.0),
-        np.zeros((2,), dtype='double', order='F'),
-        A
+        np.zeros((2,), dtype="double", order="F"),
+        A,
     )
 
     mydict = {}
-    for side in ['left', 'right']:
-        if hasattr(field_data[side], '__getitem__'):
+    for side in ["left", "right"]:
+        if hasattr(field_data[side], "__getitem__"):
             """
             Some versions of meshio had returned multiple items in a
             list instead of a single dictionary. This is a quick hack,
@@ -130,27 +123,27 @@ def generate_multiple2D_biquad(request):
             query = field_data[side]
 
         mydict[side] = np.unique(
-            cells[line_type][
-                cell_data[line_type]['physical'] == query
-            ]
+            cells[line_type][cell_data[line_type]["physical"] == query]
         ).tolist()
 
     # Set boundary condtions in A matrix
-    for ii in mydict['left'] + mydict['right']:
-        A[ii,:] = 0.; A[ii,ii] = 1.
+    for ii in mydict["left"] + mydict["right"]:
+        A[ii, :] = 0.0
+        A[ii, ii] = 1.0
 
     # Set boundary condtions in RHS vector
     b = np.zeros((num_pts,))
-    for ii in mydict['left']:
-        b[ii] = 1.
+    for ii in mydict["left"]:
+        b[ii] = 1.0
 
     # Calculate condition number
-    print('  Cond(A)  = ', np.linalg.cond(A), '\n')
+    print("  Cond(A)  = ", np.linalg.cond(A), "\n")
 
     return np.linalg.solve(A, b)
+
 
 def test_Multiple2D_quad(generate_multiple2D_biquad):
 
     x = generate_multiple2D_biquad.copy()
 
-    assert np.isclose( np.mean(x), 0.5 )
+    assert np.isclose(np.mean(x), 0.5)

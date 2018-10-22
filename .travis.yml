@@ -24,7 +24,7 @@ branches:
 
 python:
   - 2.7
-  - 3.4
+  - 3.6
 
 env:
   - BUILD_TYPE=Debug FC=gfortran-6 USE_OPENMP=ON OMP_NUM_THREADS=4
@@ -47,7 +47,7 @@ jobs:
   include:
     - stage: deploy
       if: branch = master
-      python: 3.4
+      python: 3.6
       addons:
         apt:
           packages:
@@ -55,7 +55,8 @@ jobs:
           sources:
             - ubuntu-toolchain-r-test
       install:
-      - pip install git+git://github.com/cbcoutinho/ford@fix_relpath_abspath
+      - pip install pipenv
+      - pipenv sync
       script:
       - make docs
       - cd $TRAVIS_BUILD_DIR
@@ -72,7 +73,8 @@ before_install:
   - chmod 600 .deploy_key
 
 install:
-  - pip install -r requirements.txt
+  - pip install pipenv
+  - pipenv sync
   - echo 'Fortran compiler version:'
   - $FC -v
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
@@ -90,4 +92,4 @@ before_script:
   - cd $TRAVIS_BUILD_DIR
 
 script:
-  - make cleantest_all
+  - make cleanslowtest
