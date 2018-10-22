@@ -70,11 +70,14 @@ driver: cmake mesh $(BLD_DIR)
 	$(BLD_DIR)/bin/driver1D
 	$(BLD_DIR)/bin/driver1D $(TEST_DIR)/test1D.msh
 
-test: cmake mesh driver
-	pytest -vs --cache-clear --duration=5 -m 'not slowtest'
+sync: Pipfile.lock
+	pipenv sync
 
-slowtest: cmake mesh driver
-	pytest -vs --cache-clear --duration=5
+test: cmake mesh driver sync
+	pipenv run pytest -vs --cache-clear --duration=5 -m 'not slowtest'
+
+slowtest: cmake mesh driver sync
+	pipenv run pytest -vs --cache-clear --duration=5
 
 # After running one of the tests, plot the output
 plot: cmake driver
