@@ -56,15 +56,15 @@ cleantest_all: clean
 # Build and test the project
 cmake: $(BLD_DIR)
 	cmake $(CMFLAGS)
-	${MAKE} -C $(BLD_DIR)
+	cmake --build $(BLD_DIR)
 
 cmake_win: $(BLD_DIR)
 	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-x86_64-w64-mingw32.cmake
-	${MAKE} -C $(BLD_DIR)
+	cmake --build $(BLD_DIR)
 
 cmake_win32: $(BLD_DIR)
 	cmake $(CMFLAGS) -DCMAKE_TOOLCHAIN_FILE:STRING=cmake/Toolchain-i686-w64-mingw32.cmake
-	${MAKE} -C $(BLD_DIR)
+	cmake --build $(BLD_DIR)
 
 driver: cmake mesh $(BLD_DIR)
 	$(BLD_DIR)/bin/driver1D
