@@ -14,7 +14,7 @@ FLIB_SRC_DIR=src/fortranlib/src
 ###### Compiler options ######
 ##############################
 
-FC         ?= gfortran
+FC         := gfortran
 RM         := rm -rf
 
 BUILD_TYPE ?= Debug
@@ -44,8 +44,8 @@ FORD_FLAGS := -d $(SRC_DIR) \
 all: cmake
 
 mesh: $(TEST_DIR)/test1D.geo $(TEST_DIR)/test2D.geo
-	gmsh $(TEST_DIR)/test1D.geo -order 1 -1 -o $(TEST_DIR)/test1D.msh
-	gmsh $(TEST_DIR)/test2D.geo -order 2 -2 -o $(TEST_DIR)/test2D.msh
+	gmsh -order 1 -1 -o $(TEST_DIR)/test1D.msh $(TEST_DIR)/test1D.geo
+	gmsh -order 2 -2 -o $(TEST_DIR)/test2D.msh $(TEST_DIR)/test2D.geo
 
 cleantest: clean
 	${MAKE} test
