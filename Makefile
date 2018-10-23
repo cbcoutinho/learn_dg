@@ -73,25 +73,28 @@ driver: cmake mesh $(BLD_DIR)
 sync: Pipfile.lock
 	pipenv sync
 
-test: cmake mesh driver sync
+syncdev: Pipfile.lock
+	pipenv sync --dev
+
+test: cmake mesh driver syncdev
 	pipenv run pytest -vs --cache-clear --duration=5 -m 'not slowtest'
 
-slowtest: cmake mesh driver sync
+slowtest: cmake mesh driver syncdev
 	pipenv run pytest -vs --cache-clear --duration=5
 
 # After running one of the tests, plot the output
-plot: cmake driver
-	python3 test/plotter.py
+plot: cmake driver syncdev
+	pipenv run python tests/plotter.py
 
 # Other
 docs: $(DOC_DIR)/learn_dg.md README.md
 	cp README.md $(DOC_DIR)/README.md
-	@ford $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
+	pipenv run ford $(FORD_FLAGS) $(DOC_DIR)/learn_dg.md
 	$(RM) $(DOC_DIR)/README.md
 
 # Requires ctags
 tags:
-	ctags --exclude=build --exclude=templates --exclude=venv --exclude=.git -R .
+	ctags --exclude=build --exclude=templates --exclude=.git -R .
 
 .ONESHELL:
 $(BLD_DIR):
