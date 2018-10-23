@@ -3,15 +3,12 @@ from __future__ import print_function
 import pytest
 import numpy as np
 
-np.set_printoptions(precision=3)
-
 import meshio
 import tempfile
-
 import helpers
 import meshes
 
-import matplotlib.pyplot as plt
+np.set_printoptions(precision=3)
 
 
 @pytest.fixture(
@@ -100,8 +97,6 @@ def test_Linear1DAdvDiffEqual(generate_global_matrix_1D):
     # Calculate the analytical solution to Adv.Diff. problem
     def analytical(xx):
         return (1.0 - np.exp(r * xx)) / (1.0 - np.exp(r))
-
-    indx = np.argsort(_points)
 
     b = analytical(_points)
 

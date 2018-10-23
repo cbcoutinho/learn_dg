@@ -74,7 +74,7 @@ before_install:
 
 install:
   - pip install pipenv
-  - pipenv sync
+  - pipenv sync --dev
   - echo 'Fortran compiler version:'
   - $FC -v
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
