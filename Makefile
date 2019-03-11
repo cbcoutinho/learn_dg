@@ -25,7 +25,7 @@ CMFLAGS= -B$(BLD_DIR) -H. \
 	-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 	-DUSE_OPENMP=$(USE_OPENMP) \
 	-DPROFILE=$(PROFILE) \
-	-DCMAKE_Fortran_COMPILER=$(FC)
+	#-DCMAKE_Fortran_COMPILER=$(FC)
 
 ##############################
 ######## FORD options ########
