@@ -1,8 +1,0 @@
-pytest
-# git+git://github.com/cbcoutinho/ford@fix_relpath_abspath
-meshio==1.10.7
-graphviz
-
-# matplotlib because test/test_*.py imports it
-matplotlib
-pandas

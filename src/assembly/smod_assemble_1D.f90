@@ -189,7 +189,7 @@ contains
             deallocate(Ie, xy)
             ! stop
         enddo
-        !$OMP END DO
+        !$OMP END DO NOWAIT
         !$OMP END PARALLEL
 
         ! call r8mat_print(num_nodes, num_nodes, GlobalA, 'Global Stiffness Matrix:')

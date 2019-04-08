@@ -22,6 +22,7 @@ __pycache__
 octave-workspace
 gmon.out
 .cache
+.pytest_cache
 
 # GMSH-related files
 *.msh

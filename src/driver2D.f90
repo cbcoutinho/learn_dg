@@ -155,6 +155,9 @@ program driver2D
         size(GlobalB,1), GlobalB, &
         GlobalX)
     call r8mat_print( &
-        size(GlobalX,1), 1, GlobalX, "Solution Vector:")
+        size(GlobalX,1), &
+        1, &
+        GlobalX, &
+        "Solution Vector:")
 
 end program driver2D

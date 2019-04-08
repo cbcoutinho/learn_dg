@@ -20,7 +20,7 @@ contains
             cells, &
             points, &
             dg)
-        
+
         !*  Reads the input mesh file (gmsh .msh format) and returns the
         !   number of nodes, element connectivity, and the coordinates of
         !   the nodes in 1D
@@ -31,7 +31,7 @@ contains
         real(wp), intent(out),  dimension(:),   allocatable :: points       !! Array containing node coordinates
         logical,  intent(in)                                :: dg           !! Logical switch is continuous galerkin or discontinuous galerkin
 
-        integer         :: ii, ios, vertex, num_elements, num_vertexes, d_int
+        integer         :: ii, ios, vertex, num_elements, num_vertexes, d_int, myunit
         integer,  dimension(:,:), allocatable :: vertex_conn
         real(wp)        :: d_real
         character(80)   :: filename
@@ -43,7 +43,7 @@ contains
             call print_header()
         endif
 
-        open(unit=21, file=filename, iostat=ios, status="old", action="read")
+        open(newunit=myunit, file=filename, iostat=ios, status="old", action="read")
         if ( ios /= 0 ) then
             print*, filename
             print*, ios
@@ -52,12 +52,12 @@ contains
 
         ! Read initial header information - assuming file is in the correct format
         do
-            read(21,*) blank_string
+            read(myunit,*) blank_string
             if (trim(blank_string) == '$Nodes') exit
         enddo
 
         ! Read number of nodes
-        read(21,*) num_vertexes
+        read(myunit,*) num_vertexes
         allocate(points(num_vertexes))
 
         if ( .not. dg ) then
@@ -68,7 +68,7 @@ contains
 
         ! Read coordinate information for each vertex
         do ii = 1, num_vertexes
-            read(21,*) d_int, points(ii), d_real, d_real
+            read(myunit,*) d_int, points(ii), d_real, d_real
         enddo
 
 
@@ -100,21 +100,21 @@ contains
         ! Two dummy lines :
         !   $EndNodes
         !   $Elements
-        read(21,*)
-        read(21,*)
+        read(myunit,*)
+        read(myunit,*)
 
-        read(21,*) num_elements
+        read(myunit,*) num_elements
         num_elements = num_elements-2
 
         allocate(cells(num_elements, 2))
         allocate(vertex_conn(num_elements, 2))
 
         ! Two dummy lines - Associated with 'point' elements
-        read(21,*)
-        read(21,*)
+        read(myunit,*)
+        read(myunit,*)
 
         do ii = 1, num_elements
-            read(21,*) d_int, d_int, d_int, d_int, d_int, vertex_conn(ii,1:2)
+            read(myunit,*) d_int, d_int, d_int, d_int, d_int, vertex_conn(ii,1:2)
             ! print*, pack(vertex_conn, vertex_conn == nodes2vertex)
         enddo
         ! print*, pack([( ii, ii = 1, num_nodes )], &
@@ -141,8 +141,12 @@ contains
         ! enddo
         ! print*,
 
-        close(unit=21, iostat=ios)
-        if ( ios /= 0 ) stop "Error closing file unit 21"
+        close(unit=myunit, iostat=ios)
+        if ( ios /= 0 ) then
+            print*, filename
+            print*, ios
+            stop "Error closing file "
+        endif
 
         return
     end subroutine read_gmsh_file_1D
@@ -151,19 +155,19 @@ contains
         integer,  intent(in)                :: num_nodes
         real(wp), intent(in), dimension(:)  :: points, GlobalX
 
-        integer :: ii, ios
+        integer :: ii, ios, myunit
 
-        open(unit=21, file='data.out', iostat=ios, status="replace", action="write")
+        open(newunit=myunit, file='data.out', iostat=ios, status="replace", action="write")
         if ( ios /= 0 ) then
             print*, ios
             stop "Error opening file data.out"
         endif
 
         do ii = 1, num_nodes
-            write(21,*) points(ii), GlobalX(ii)
+            write(myunit,*) points(ii), GlobalX(ii)
         enddo
 
-        close(unit=21, iostat=ios)
+        close(unit=myunit, iostat=ios)
         if ( ios /= 0 ) then
             print*, ios
             stop "Error closing file unit data.out"
@@ -174,18 +178,6 @@ contains
     end subroutine write_out_solution
 
     subroutine print_header()
-
-        ! print*,
-        ! print*, '  _____  ______ _____      _             _     '
-        ! print*, ' |  __ \|  ____|  __ \    | |           | |    '
-        ! print*, ' | |__) | |__  | |  | |___| |_ __ _  ___| | __ '
-        ! print*, ' |  _  /|  __| | |  | / __| __/ _` |/ __| |/ / '
-        ! print*, ' | | \ \| |____| |__| \__ \ || (_| | (__|   <  '
-        ! print*, ' |_|  \_\______|_____/|___/\__\__,_|\___|_|\_\ '
-        ! print*,
-        ! print*,
-        ! print*, ' Developed by Chris Coutinho                   '
-        ! print*,
 
         print*,
         print*, '     ____  __________       __             __   '
@@ -198,10 +190,7 @@ contains
         print*, ' Developed by Chris Coutinho                   '
         print*,
 
-        print*, 'No Input file supplied'
-        print*,
-
-        stop
+        stop 'No Input file supplied'
 
     end subroutine print_header
 

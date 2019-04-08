@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+meshio = "==1.10.8"
+graphviz = "*"
+ford = "*"
+
+[dev-packages]
+pytest = "*"
+matplotlib = "*"
+
+[requires]
+python_version = "3.6"
