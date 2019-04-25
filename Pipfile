@@ -11,6 +11,3 @@ matplotlib = "*"
 meshio = "==1.10.8"
 graphviz = "*"
 ford = "*"
-
-[requires]
-python_version = "3.7"
