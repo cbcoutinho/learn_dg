@@ -181,8 +181,8 @@ endforeach()
 # Add driver executable linked to core library
 # add_executable(main ${EXE_SRCS})
 
-set (lib_name core-static)
-# set (lib_name core-shared)
+# set (lib_name core-static)
+set (lib_name core-shared)
 foreach( SOURCE_FILE ${EXE_SRCS} )
     string( REPLACE ".f90" "" SOURCE_NAME ${SOURCE_FILE} )
     string( REPLACE "src/" "" SOURCE_NAME ${SOURCE_NAME} )
