@@ -77,10 +77,10 @@ syncdev: Pipfile.lock
 	pipenv sync --dev
 
 test: cmake mesh driver syncdev
-	pipenv run pytest -vs --cache-clear --duration=5 -m 'not slowtest'
+	pipenv run pytest --cache-clear --duration=5 -m 'not slowtest'
 
 slowtest: cmake mesh driver syncdev
-	pipenv run pytest -vs --cache-clear --duration=5
+	pipenv run pytest --cache-clear --duration=5
 
 # After running one of the tests, plot the output
 plot: cmake driver syncdev
