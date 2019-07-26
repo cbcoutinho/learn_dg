@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
+   
+   <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
     
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
@@ -16,6 +16,9 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>User Guide</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -108,7 +115,7 @@
   
   <div class="row">
     <h1>assembleElementalMatrix
-	 <small>Interface</small>
+   <small>Interface</small>
     
     </h1>
     
@@ -124,19 +131,23 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title="<p> 1.7% of total for procedures.</p>Including implementation: 12 statements,  1.7% of total for procedures.">12 statements</a>
+    data-placement="bottom" data-html="true"
+    title="<p> 1.7% of total for procedures.</p>Including implementation: 12 statements,  1.7% of total for procedures.">12 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/mod_assembly.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/mod_assembly.f90.html'>mod_assembly.f90</a></li>
-  
+    
      <li><a href='../module/mod_assembly.html'>mod_assembly</a></li>
+    
   
      <li class="active">assembleElementalMatrix</li>
   </ol>
@@ -156,6 +167,9 @@
       
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -190,115 +204,19 @@
 
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprocs-0">All Procedures</a></h3></div>
-  <div id="allprocs-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
-      
-      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
-      
-      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
-      
-      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
-      
-      <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
-      
-      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
-      
-      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
-      
-      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
-      
-      <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
-      
-      <a class="list-group-item" href="../proc/det2.html">det2</a>
-      
-      <a class="list-group-item" href="../proc/eye.html">eye</a>
-      
-      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
-      
-      <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
-      
-      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
-      
-      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
-      
-      <a class="list-group-item" href="../interface/getarow.html">getArow</a>
-      
-      <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
-      
-      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
-      
-      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
-      
-      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
-      
-      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
-      
-      <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
-      
-      <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
-      
-      <a class="list-group-item" href="../proc/inv2.html">inv2</a>
-      
-      <a class="list-group-item" href="../proc/lgwt.html">lgwt</a>
-      
-      <a class="list-group-item" href="../proc/linsolve.html">linsolve</a>
-      
-      <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
-      
-      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
-      
-      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
-      
-      <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
-      
-      <a class="list-group-item" href="../proc/pascal_row_2d.html">pascal_row_2D</a>
-      
-      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
-      
-      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
-      
-      <a class="list-group-item" href="../proc/print_header.html">print_header</a>
-      
-      <a class="list-group-item" href="../proc/r8mat_print.html">r8mat_print</a>
-      
-      <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
-      
-      <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
-      
-      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
-      
-      <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
-      
-      <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
     <div class="col-md-9" id='text'>
       <h2>public interface assembleElementalMatrix</h2>
-	 
+   
      
      
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h3 class="panel-title">Called by</h3>
+  <h3 class="panel-title">Called by</h3>
       </div>
       <div class="panel-body">
      <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -317,42 +235,42 @@
 <polygon fill="none" stroke="black" points="331.5,-66 196.5,-66 196.5,-42 331.5,-42 331.5,-66"/>
 <text text-anchor="middle" x="264" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">assembleElementalMatrix</text>
 </g>
-<!-- proc~assembleelementalmatrix1d_c -->
-<g id="interface~~assembleelementalmatrix~~CalledByGraph_node2" class="node"><title>proc~assembleelementalmatrix1d_c</title>
-<g id="a_interface~~assembleelementalmatrix~~CalledByGraph_node2"><a xlink:href=".././proc/assembleelementalmatrix1d_c.html" xlink:title="assembleElementalMatrix1D_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="160,-108 0,-108 0,-84 160,-84 160,-108"/>
-<text text-anchor="middle" x="80" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix1D_c</text>
-</a>
-</g>
-</g>
-<!-- proc~assembleelementalmatrix1d_c&#45;&gt;interface~assembleelementalmatrix -->
-<g id="interface~~assembleelementalmatrix~~CalledByGraph_edge3" class="edge"><title>proc~assembleelementalmatrix1d_c&#45;&gt;interface~assembleelementalmatrix</title>
-<path fill="none" stroke="#ff0000" d="M133.154,-83.9645C154.287,-79.0877 178.86,-73.4168 200.908,-68.329"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="201.882,-71.6963 210.838,-66.0373 200.308,-64.8756 201.882,-71.6963"/>
-</g>
 <!-- proc~assemble2d -->
-<g id="interface~~assembleelementalmatrix~~CalledByGraph_node3" class="node"><title>proc~assemble2d</title>
-<g id="a_interface~~assembleelementalmatrix~~CalledByGraph_node3"><a xlink:href=".././proc/assemble2d.html" xlink:title="assemble2D">
-<polygon fill="#d9534f" stroke="#d9534f" points="116,-66 44,-66 44,-42 116,-42 116,-66"/>
-<text text-anchor="middle" x="80" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble2D</text>
+<g id="interface~~assembleelementalmatrix~~CalledByGraph_node2" class="node"><title>proc~assemble2d</title>
+<g id="a_interface~~assembleelementalmatrix~~CalledByGraph_node2"><a xlink:href=".././proc/assemble2d.html" xlink:title="assemble2D">
+<polygon fill="#d9534f" stroke="#d9534f" points="116,-108 44,-108 44,-84 116,-84 116,-108"/>
+<text text-anchor="middle" x="80" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble2D</text>
 </a>
 </g>
 </g>
 <!-- proc~assemble2d&#45;&gt;interface~assembleelementalmatrix -->
-<g id="interface~~assembleelementalmatrix~~CalledByGraph_edge2" class="edge"><title>proc~assemble2d&#45;&gt;interface~assembleelementalmatrix</title>
-<path fill="none" stroke="#ff0000" d="M116.091,-54C135.976,-54 161.675,-54 186.005,-54"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="186.328,-57.5001 196.328,-54 186.328,-50.5001 186.328,-57.5001"/>
+<g id="interface~~assembleelementalmatrix~~CalledByGraph_edge1" class="edge"><title>proc~assemble2d&#45;&gt;interface~assembleelementalmatrix</title>
+<path fill="none" stroke="#ff0000" d="M116.091,-87.902C140.116,-82.3579 172.628,-74.8551 200.959,-68.3171"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="201.828,-71.7086 210.785,-66.0496 200.254,-64.8879 201.828,-71.7086"/>
 </g>
 <!-- proc~assembleelementalmatrix2d_c -->
-<g id="interface~~assembleelementalmatrix~~CalledByGraph_node4" class="node"><title>proc~assembleelementalmatrix2d_c</title>
-<g id="a_interface~~assembleelementalmatrix~~CalledByGraph_node4"><a xlink:href=".././proc/assembleelementalmatrix2d_c.html" xlink:title="assembleElementalMatrix2D_c">
-<polygon fill="#d9534f" stroke="#d9534f" points="160,-24 0,-24 0,-0 160,-0 160,-24"/>
-<text text-anchor="middle" x="80" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix2D_c</text>
+<g id="interface~~assembleelementalmatrix~~CalledByGraph_node3" class="node"><title>proc~assembleelementalmatrix2d_c</title>
+<g id="a_interface~~assembleelementalmatrix~~CalledByGraph_node3"><a xlink:href=".././proc/assembleelementalmatrix2d_c.html" xlink:title="assembleElementalMatrix2D_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="160,-66 0,-66 0,-42 160,-42 160,-66"/>
+<text text-anchor="middle" x="80" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix2D_c</text>
 </a>
 </g>
 </g>
 <!-- proc~assembleelementalmatrix2d_c&#45;&gt;interface~assembleelementalmatrix -->
-<g id="interface~~assembleelementalmatrix~~CalledByGraph_edge1" class="edge"><title>proc~assembleelementalmatrix2d_c&#45;&gt;interface~assembleelementalmatrix</title>
+<g id="interface~~assembleelementalmatrix~~CalledByGraph_edge3" class="edge"><title>proc~assembleelementalmatrix2d_c&#45;&gt;interface~assembleelementalmatrix</title>
+<path fill="none" stroke="#ff0000" d="M160.034,-54C168.722,-54 177.557,-54 186.217,-54"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="186.283,-57.5001 196.283,-54 186.282,-50.5001 186.283,-57.5001"/>
+</g>
+<!-- proc~assembleelementalmatrix1d_c -->
+<g id="interface~~assembleelementalmatrix~~CalledByGraph_node4" class="node"><title>proc~assembleelementalmatrix1d_c</title>
+<g id="a_interface~~assembleelementalmatrix~~CalledByGraph_node4"><a xlink:href=".././proc/assembleelementalmatrix1d_c.html" xlink:title="assembleElementalMatrix1D_c">
+<polygon fill="#d9534f" stroke="#d9534f" points="160,-24 0,-24 0,-0 160,-0 160,-24"/>
+<text text-anchor="middle" x="80" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assembleElementalMatrix1D_c</text>
+</a>
+</g>
+</g>
+<!-- proc~assembleelementalmatrix1d_c&#45;&gt;interface~assembleelementalmatrix -->
+<g id="interface~~assembleelementalmatrix~~CalledByGraph_edge2" class="edge"><title>proc~assembleelementalmatrix1d_c&#45;&gt;interface~assembleelementalmatrix</title>
 <path fill="none" stroke="#ff0000" d="M133.154,-24.0355C154.287,-28.9123 178.86,-34.5832 200.908,-39.671"/>
 <polygon fill="#ff0000" stroke="#ff0000" points="200.308,-43.1244 210.838,-41.9627 201.882,-36.3037 200.308,-43.1244"/>
 </g>
@@ -418,6 +336,9 @@
 
      <section class="visible-xs visible-sm hidden-md">
        
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -452,19 +373,20 @@
 
 
 
+
      </section>
      <br class="visible-xs visible-sm hidden-md">
      
-	
-	 <h2>Functions</h2>
-	 
+  
+   <h2>Functions</h2>
+   
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assembleelementalmatrix1d"></span><h3>
 public function assembleElementalMatrix1D(N, d1, d2, xy) result(Ie)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -562,14 +484,14 @@ public function assembleElementalMatrix1D(N, d1, d2, xy) result(Ie)
   </div>
   </div>
 
- 	 
+   
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-assembleelementalmatrix2d"></span><h3>
 public function assembleElementalMatrix2D(N, d1, d2, xy) result(Ie)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -667,128 +589,29 @@ public function assembleElementalMatrix2D(N, d1, d2, xy) result(Ie)
   </div>
   </div>
 
- 	 
-  	 
+   
+     
 
-	
+  
 
-	
+  
 
  </div>
 </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprocs-1">All Procedures</a></h3></div>
-  <div id="allprocs-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../interface/assemble.html">assemble</a>
-      
-      <a class="list-group-item" href="../proc/assemble1d.html">assemble1D</a>
-      
-      <a class="list-group-item" href="../proc/assemble1d_c.html">assemble1D_c</a>
-      
-      <a class="list-group-item" href="../proc/assemble2d_c.html">assemble2D_c</a>
-      
-      <a class="list-group-item" href="../interface/assembleelementalmatrix.html">assembleElementalMatrix</a>
-      
-      <a class="list-group-item" href="../proc/assembleelementalmatrix1d_c.html">assembleElementalMatrix1D_c</a>
-      
-      <a class="list-group-item" href="../proc/assembleelementalmatrix2d_c.html">assembleElementalMatrix2D_c</a>
-      
-      <a class="list-group-item" href="../interface/basis_1d.html">basis_1D</a>
-      
-      <a class="list-group-item" href="../proc/cgwt.html">cgwt</a>
-      
-      <a class="list-group-item" href="../proc/det2.html">det2</a>
-      
-      <a class="list-group-item" href="../proc/eye.html">eye</a>
-      
-      <a class="list-group-item" href="../interface/fun1d_interf.html">fun1d_interf</a>
-      
-      <a class="list-group-item" href="../interface/fun2d_interf.html">fun2d_interf</a>
-      
-      <a class="list-group-item" href="../interface/gaussquad.html">gaussquad</a>
-      
-      <a class="list-group-item" href="../proc/gaussquad_rosetta.html">gaussquad_rosetta</a>
-      
-      <a class="list-group-item" href="../interface/getalpha1d.html">getAlpha1D</a>
-      
-      <a class="list-group-item" href="../interface/getalpha2d.html">getAlpha2D</a>
-      
-      <a class="list-group-item" href="../interface/getarow.html">getArow</a>
-      
-      <a class="list-group-item" href="../interface/getjacobian.html">getJacobian</a>
-      
-      <a class="list-group-item" href="../interface/getxy.html">getXY</a>
-      
-      <a class="list-group-item" href="../interface/initialize_global_mats.html">initialize_global_mats</a>
-      
-      <a class="list-group-item" href="../interface/integrate.html">integrate</a>
-      
-      <a class="list-group-item" href="../proc/integrate1d.html">integrate1D</a>
-      
-      <a class="list-group-item" href="../proc/integrate2d.html">integrate2D</a>
-      
-      <a class="list-group-item" href="../proc/integrate_basis_1d_ie.html">integrate_basis_1d_Ie</a>
-      
-      <a class="list-group-item" href="../proc/inv2.html">inv2</a>
-      
-      <a class="list-group-item" href="../proc/lgwt.html">lgwt</a>
-      
-      <a class="list-group-item" href="../proc/linsolve.html">linsolve</a>
-      
-      <a class="list-group-item" href="../proc/linsolve_quick.html">linsolve_quick</a>
-      
-      <a class="list-group-item" href="../proc/pascal_1d_line_c.html">pascal_1D_line_c</a>
-      
-      <a class="list-group-item" href="../proc/pascal_2d_quad_c.html">pascal_2D_quad_c</a>
-      
-      <a class="list-group-item" href="../interface/pascal_row.html">pascal_row</a>
-      
-      <a class="list-group-item" href="../proc/pascal_row_2d.html">pascal_row_2D</a>
-      
-      <a class="list-group-item" href="../interface/pascal_single_row.html">pascal_single_row</a>
-      
-      <a class="list-group-item" href="../proc/pascal_single_row_c.html">pascal_single_row_c</a>
-      
-      <a class="list-group-item" href="../proc/print_header.html">print_header</a>
-      
-      <a class="list-group-item" href="../proc/r8mat_print.html">r8mat_print</a>
-      
-      <a class="list-group-item" href="../proc/r8mat_print_some.html">r8mat_print_some</a>
-      
-      <a class="list-group-item" href="../proc/read_gmsh_file_1d.html">read_gmsh_file_1D</a>
-      
-      <a class="list-group-item" href="../interface/set_bcs.html">set_BCs</a>
-      
-      <a class="list-group-item" href="../proc/set_bcs.html">set_BCs</a>
-      
-      <a class="list-group-item" href="../proc/write_out_solution.html">write_out_solution</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
 
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2018-01-04 16:09  
+             on 2019-07-26 10:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -814,10 +637,7 @@ public function assembleElementalMatrix2D(N, d1, d2, xy) result(Ie)
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
     
@@ -825,7 +645,6 @@ public function assembleElementalMatrix2D(N, d1, d2, xy) result(Ie)
     
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
     

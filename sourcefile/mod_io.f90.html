@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
+   
+   <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
     
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
@@ -16,6 +16,9 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>User Guide</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -124,15 +131,19 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title=" 9.4% of total for source files.">111 statements</a>
+    data-placement="bottom" data-html="true"
+    title=" 9.6% of total for source files.">113 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/mod_io.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
+  
+    
   
      <li class="active">mod_io.f90</li>
   </ol>
@@ -151,6 +162,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -182,6 +196,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
@@ -190,52 +205,8 @@
 </div>
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-0">All Source Files</a></h3></div>
-  <div id="allfiles-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/driver1d.f90.html">driver1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/driver2d.f90.html">driver2D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_assembly.f90.html">mod_assembly.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_assembly_c.f90.html">mod_assembly_c.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_integration.f90.html">mod_integration.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_io.f90.html">mod_io.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_legendre.f90.html">mod_legendre.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_legendre_c.f90.html">mod_legendre_c.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_linalg.f90.html">mod_linalg.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_misc.f90.html">mod_misc.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_settings.f90.html">mod_settings.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_assemble_1d.f90.html">smod_assemble_1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_assemble_2d.f90.html">smod_assemble_2D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_integration.f90.html">smod_integration.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_legendre_1d.f90.html">smod_legendre_1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_legendre_2d.f90.html">smod_legendre_2D.f90</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     <div class="col-md-9" id='text'>
@@ -245,10 +216,10 @@
       
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h3 class="panel-title">Files dependent on this one</h3>
+  <h3 class="panel-title">Files dependent on this one</h3>
       </div>
       <div class="panel-body">
-	<div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
@@ -272,10 +243,10 @@
 </a>
 </g>
 </g>
-<!-- sourcefile~mod_io.f90&#45;&gt;sourcefile~driver1d.f90 -->
-<g id="sourcefile~~mod_io.f90~~AfferentGraph_edge1" class="edge"><title>sourcefile~mod_io.f90&#45;&gt;sourcefile~driver1d.f90</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M66.0252,-12C74.3445,-12 83.459,-12 92.3012,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="92.4922,-15.5001 102.492,-12 92.4921,-8.5001 92.4922,-15.5001"/>
+<!-- sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_io.f90 -->
+<g id="sourcefile~~mod_io.f90~~AfferentGraph_edge1" class="edge"><title>sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_io.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M102.416,-12C94.1062,-12 85.1354,-12 76.5116,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="76.2323,-8.5001 66.2323,-12 76.2322,-15.5001 76.2323,-8.5001"/>
 </g>
 </g>
 </svg>
@@ -306,7 +277,7 @@
 </svg>
 
     
-    <p>Solid arrows point from a file to a file which depends upon it. A file 
+    <p>Solid arrows point from a file to a file which it depends on. A file
     is dependent upon another if the latter must be compiled before the former
     can be. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
     </p>
@@ -318,6 +289,9 @@
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -349,12 +323,14 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
     <a class="list-group-item" href="../sourcefile/mod_io.f90.html#src">mod_io.f90</a>
   </div>
 </div>
+
 
 
     </section>
@@ -384,7 +360,7 @@
 <a name="ln-20"></a>            <span class="n">cells</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-21"></a>            <span class="n">points</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-22"></a>            <span class="n">dg</span><span class="p">)</span>
-<a name="ln-23"></a>        
+<a name="ln-23"></a>
 <a name="ln-24"></a>        <span class="c">!*  Reads the input mesh file (gmsh .msh format) and returns the</span>
 <a name="ln-25"></a>        <span class="c">!   number of nodes, element connectivity, and the coordinates of</span>
 <a name="ln-26"></a>        <span class="c">!   the nodes in 1D</span>
@@ -395,7 +371,7 @@
 <a name="ln-31"></a>        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">points</span>       <span class="c">!! Array containing node coordinates</span>
 <a name="ln-32"></a>        <span class="kt">logical</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">dg</span>           <span class="c">!! Logical switch is continuous galerkin or discontinuous galerkin</span>
 <a name="ln-33"></a>
-<a name="ln-34"></a>        <span class="kt">integer</span>         <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ios</span><span class="p">,</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">num_elements</span><span class="p">,</span> <span class="n">num_vertexes</span><span class="p">,</span> <span class="n">d_int</span>
+<a name="ln-34"></a>        <span class="kt">integer</span>         <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ios</span><span class="p">,</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">num_elements</span><span class="p">,</span> <span class="n">num_vertexes</span><span class="p">,</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">myunit</span>
 <a name="ln-35"></a>        <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">vertex_conn</span>
 <a name="ln-36"></a>        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">d_real</span>
 <a name="ln-37"></a>        <span class="kt">character</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">filename</span>
@@ -407,7 +383,7 @@
 <a name="ln-43"></a><span class="k">            call </span><span class="n">print_header</span><span class="p">()</span>
 <a name="ln-44"></a>        <span class="n">endif</span>
 <a name="ln-45"></a>
-<a name="ln-46"></a>        <span class="k">open</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;old&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;read&quot;</span><span class="p">)</span>
+<a name="ln-46"></a>        <span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">myunit</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;old&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;read&quot;</span><span class="p">)</span>
 <a name="ln-47"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
 <a name="ln-48"></a><span class="k">            print</span><span class="o">*</span><span class="p">,</span> <span class="n">filename</span>
 <a name="ln-49"></a>            <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="n">ios</span>
@@ -416,12 +392,12 @@
 <a name="ln-52"></a>
 <a name="ln-53"></a>        <span class="c">! Read initial header information - assuming file is in the correct format</span>
 <a name="ln-54"></a>        <span class="k">do</span>
-<a name="ln-55"></a><span class="k">            read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">blank_string</span>
+<a name="ln-55"></a><span class="k">            read</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">blank_string</span>
 <a name="ln-56"></a>            <span class="k">if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">blank_string</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;$Nodes&#39;</span><span class="p">)</span> <span class="k">exit</span>
 <a name="ln-57"></a><span class="k">        </span><span class="n">enddo</span>
 <a name="ln-58"></a>
 <a name="ln-59"></a>        <span class="c">! Read number of nodes</span>
-<a name="ln-60"></a>        <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">num_vertexes</span>
+<a name="ln-60"></a>        <span class="k">read</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">num_vertexes</span>
 <a name="ln-61"></a>        <span class="k">allocate</span><span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">num_vertexes</span><span class="p">))</span>
 <a name="ln-62"></a>
 <a name="ln-63"></a>        <span class="k">if</span> <span class="p">(</span> <span class="p">.</span><span class="nb">not</span><span class="p">.</span> <span class="n">dg</span> <span class="p">)</span> <span class="k">then</span>
@@ -432,7 +408,7 @@
 <a name="ln-68"></a>
 <a name="ln-69"></a>        <span class="c">! Read coordinate information for each vertex</span>
 <a name="ln-70"></a>        <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_vertexes</span>
-<a name="ln-71"></a>            <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">points</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">d_real</span><span class="p">,</span> <span class="n">d_real</span>
+<a name="ln-71"></a>            <span class="k">read</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">points</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">d_real</span><span class="p">,</span> <span class="n">d_real</span>
 <a name="ln-72"></a>        <span class="n">enddo</span>
 <a name="ln-73"></a>
 <a name="ln-74"></a>
@@ -464,21 +440,21 @@
 <a name="ln-100"></a>        <span class="c">! Two dummy lines :</span>
 <a name="ln-101"></a>        <span class="c">!   $EndNodes</span>
 <a name="ln-102"></a>        <span class="c">!   $Elements</span>
-<a name="ln-103"></a>        <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>
-<a name="ln-104"></a>        <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-103"></a>        <span class="k">read</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-104"></a>        <span class="k">read</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>
 <a name="ln-105"></a>
-<a name="ln-106"></a>        <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">num_elements</span>
+<a name="ln-106"></a>        <span class="k">read</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">num_elements</span>
 <a name="ln-107"></a>        <span class="n">num_elements</span> <span class="o">=</span> <span class="n">num_elements</span><span class="o">-</span><span class="mi">2</span>
 <a name="ln-108"></a>
 <a name="ln-109"></a>        <span class="k">allocate</span><span class="p">(</span><span class="n">cells</span><span class="p">(</span><span class="n">num_elements</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <a name="ln-110"></a>        <span class="k">allocate</span><span class="p">(</span><span class="n">vertex_conn</span><span class="p">(</span><span class="n">num_elements</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <a name="ln-111"></a>
 <a name="ln-112"></a>        <span class="c">! Two dummy lines - Associated with &#39;point&#39; elements</span>
-<a name="ln-113"></a>        <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>
-<a name="ln-114"></a>        <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-113"></a>        <span class="k">read</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-114"></a>        <span class="k">read</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>
 <a name="ln-115"></a>
 <a name="ln-116"></a>        <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_elements</span>
-<a name="ln-117"></a>            <span class="k">read</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">vertex_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span>
+<a name="ln-117"></a>            <span class="k">read</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">d_int</span><span class="p">,</span> <span class="n">vertex_conn</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span>
 <a name="ln-118"></a>            <span class="c">! print*, pack(vertex_conn, vertex_conn == nodes2vertex)</span>
 <a name="ln-119"></a>        <span class="n">enddo</span>
 <a name="ln-120"></a>        <span class="c">! print*, pack([( ii, ii = 1, num_nodes )], &amp;</span>
@@ -505,137 +481,79 @@
 <a name="ln-141"></a>        <span class="c">! enddo</span>
 <a name="ln-142"></a>        <span class="c">! print*,</span>
 <a name="ln-143"></a>
-<a name="ln-144"></a>        <span class="k">close</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
-<a name="ln-145"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">stop</span> <span class="s2">&quot;Error closing file unit 21&quot;</span>
-<a name="ln-146"></a>
-<a name="ln-147"></a>        <span class="k">return</span>
-<a name="ln-148"></a><span class="k">    end subroutine </span><span class="n">read_gmsh_file_1D</span>
-<a name="ln-149"></a>
-<a name="ln-150"></a>    <span class="k">subroutine </span><span class="n">write_out_solution</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">GlobalX</span><span class="p">)</span>
-<a name="ln-151"></a>        <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">num_nodes</span>
-<a name="ln-152"></a>        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:)</span>  <span class="kd">::</span> <span class="n">points</span><span class="p">,</span> <span class="n">GlobalX</span>
+<a name="ln-144"></a>        <span class="k">close</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">myunit</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
+<a name="ln-145"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-146"></a><span class="k">            print</span><span class="o">*</span><span class="p">,</span> <span class="n">filename</span>
+<a name="ln-147"></a>            <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="n">ios</span>
+<a name="ln-148"></a>            <span class="k">stop</span> <span class="s2">&quot;Error closing file &quot;</span>
+<a name="ln-149"></a>        <span class="n">endif</span>
+<a name="ln-150"></a>
+<a name="ln-151"></a>        <span class="k">return</span>
+<a name="ln-152"></a><span class="k">    end subroutine </span><span class="n">read_gmsh_file_1D</span>
 <a name="ln-153"></a>
-<a name="ln-154"></a>        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ios</span>
-<a name="ln-155"></a>
-<a name="ln-156"></a>        <span class="k">open</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="s1">&#39;data.out&#39;</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;write&quot;</span><span class="p">)</span>
-<a name="ln-157"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-158"></a><span class="k">            print</span><span class="o">*</span><span class="p">,</span> <span class="n">ios</span>
-<a name="ln-159"></a>            <span class="k">stop</span> <span class="s2">&quot;Error opening file data.out&quot;</span>
-<a name="ln-160"></a>        <span class="n">endif</span>
-<a name="ln-161"></a>
-<a name="ln-162"></a>        <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_nodes</span>
-<a name="ln-163"></a>            <span class="k">write</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">points</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">GlobalX</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
-<a name="ln-164"></a>        <span class="n">enddo</span>
+<a name="ln-154"></a>    <span class="k">subroutine </span><span class="n">write_out_solution</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">GlobalX</span><span class="p">)</span>
+<a name="ln-155"></a>        <span class="kt">integer</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">num_nodes</span>
+<a name="ln-156"></a>        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:)</span>  <span class="kd">::</span> <span class="n">points</span><span class="p">,</span> <span class="n">GlobalX</span>
+<a name="ln-157"></a>
+<a name="ln-158"></a>        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ios</span><span class="p">,</span> <span class="n">myunit</span>
+<a name="ln-159"></a>
+<a name="ln-160"></a>        <span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">myunit</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="s1">&#39;data.out&#39;</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;write&quot;</span><span class="p">)</span>
+<a name="ln-161"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-162"></a><span class="k">            print</span><span class="o">*</span><span class="p">,</span> <span class="n">ios</span>
+<a name="ln-163"></a>            <span class="k">stop</span> <span class="s2">&quot;Error opening file data.out&quot;</span>
+<a name="ln-164"></a>        <span class="n">endif</span>
 <a name="ln-165"></a>
-<a name="ln-166"></a>        <span class="k">close</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
-<a name="ln-167"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-168"></a><span class="k">            print</span><span class="o">*</span><span class="p">,</span> <span class="n">ios</span>
-<a name="ln-169"></a>            <span class="k">stop</span> <span class="s2">&quot;Error closing file unit data.out&quot;</span>
-<a name="ln-170"></a>        <span class="n">endif</span>
-<a name="ln-171"></a>
-<a name="ln-172"></a>
-<a name="ln-173"></a>        <span class="k">return</span>
-<a name="ln-174"></a><span class="k">    end subroutine </span><span class="n">write_out_solution</span>
+<a name="ln-166"></a>        <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_nodes</span>
+<a name="ln-167"></a>            <span class="k">write</span><span class="p">(</span><span class="n">myunit</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">points</span><span class="p">(</span><span class="n">ii</span><span class="p">),</span> <span class="n">GlobalX</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
+<a name="ln-168"></a>        <span class="n">enddo</span>
+<a name="ln-169"></a>
+<a name="ln-170"></a>        <span class="k">close</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">myunit</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
+<a name="ln-171"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">ios</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-172"></a><span class="k">            print</span><span class="o">*</span><span class="p">,</span> <span class="n">ios</span>
+<a name="ln-173"></a>            <span class="k">stop</span> <span class="s2">&quot;Error closing file unit data.out&quot;</span>
+<a name="ln-174"></a>        <span class="n">endif</span>
 <a name="ln-175"></a>
-<a name="ln-176"></a>    <span class="k">subroutine </span><span class="n">print_header</span><span class="p">()</span>
-<a name="ln-177"></a>
-<a name="ln-178"></a>        <span class="c">! print*,</span>
-<a name="ln-179"></a>        <span class="c">! print*, &#39;  _____  ______ _____      _             _     &#39;</span>
-<a name="ln-180"></a>        <span class="c">! print*, &#39; |  __ \|  ____|  __ \    | |           | |    &#39;</span>
-<a name="ln-181"></a>        <span class="c">! print*, &#39; | |__) | |__  | |  | |___| |_ __ _  ___| | __ &#39;</span>
-<a name="ln-182"></a>        <span class="c">! print*, &#39; |  _  /|  __| | |  | / __| __/ _` |/ __| |/ / &#39;</span>
-<a name="ln-183"></a>        <span class="c">! print*, &#39; | | \ \| |____| |__| \__ \ || (_| | (__|   &lt;  &#39;</span>
-<a name="ln-184"></a>        <span class="c">! print*, &#39; |_|  \_\______|_____/|___/\__\__,_|\___|_|\_\ &#39;</span>
-<a name="ln-185"></a>        <span class="c">! print*,</span>
-<a name="ln-186"></a>        <span class="c">! print*,</span>
-<a name="ln-187"></a>        <span class="c">! print*, &#39; Developed by Chris Coutinho                   &#39;</span>
-<a name="ln-188"></a>        <span class="c">! print*,</span>
-<a name="ln-189"></a>
-<a name="ln-190"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-<a name="ln-191"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;     ____  __________       __             __   &#39;</span>
-<a name="ln-192"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;    / __ \/ ____/ __ \_____/ /_____ ______/ /__ &#39;</span>
-<a name="ln-193"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;   / /_/ / __/ / / / / ___/ __/ __ `/ ___/ //_/ &#39;</span>
-<a name="ln-194"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;  / _, _/ /___/ /_/ (__  ) /_/ /_/ / /__/ ,&lt;    &#39;</span>
-<a name="ln-195"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; /_/ |_/_____/_____/____/\__/\__,_/\___/_/|_|   &#39;</span>
-<a name="ln-196"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-<a name="ln-197"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-<a name="ln-198"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; Developed by Chris Coutinho                   &#39;</span>
-<a name="ln-199"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-<a name="ln-200"></a>
-<a name="ln-201"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;No Input file supplied&#39;</span>
-<a name="ln-202"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
-<a name="ln-203"></a>
-<a name="ln-204"></a>        <span class="k">stop</span>
-<a name="ln-205"></a>
-<a name="ln-206"></a><span class="k">    end subroutine </span><span class="n">print_header</span>
-<a name="ln-207"></a>
-<a name="ln-208"></a><span class="k">end module </span><span class="n">mod_io</span>
+<a name="ln-176"></a>
+<a name="ln-177"></a>        <span class="k">return</span>
+<a name="ln-178"></a><span class="k">    end subroutine </span><span class="n">write_out_solution</span>
+<a name="ln-179"></a>
+<a name="ln-180"></a>    <span class="k">subroutine </span><span class="n">print_header</span><span class="p">()</span>
+<a name="ln-181"></a>
+<a name="ln-182"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+<a name="ln-183"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;     ____  __________       __             __   &#39;</span>
+<a name="ln-184"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;    / __ \/ ____/ __ \_____/ /_____ ______/ /__ &#39;</span>
+<a name="ln-185"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;   / /_/ / __/ / / / / ___/ __/ __ `/ ___/ //_/ &#39;</span>
+<a name="ln-186"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39;  / _, _/ /___/ /_/ (__  ) /_/ /_/ / /__/ ,&lt;    &#39;</span>
+<a name="ln-187"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; /_/ |_/_____/_____/____/\__/\__,_/\___/_/|_|   &#39;</span>
+<a name="ln-188"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+<a name="ln-189"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+<a name="ln-190"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="s1">&#39; Developed by Chris Coutinho                   &#39;</span>
+<a name="ln-191"></a>        <span class="k">print</span><span class="o">*</span><span class="p">,</span>
+<a name="ln-192"></a>
+<a name="ln-193"></a>        <span class="k">stop</span> <span class="s1">&#39;No Input file supplied&#39;</span>
+<a name="ln-194"></a>
+<a name="ln-195"></a>    <span class="k">end subroutine </span><span class="n">print_header</span>
+<a name="ln-196"></a>
+<a name="ln-197"></a><span class="k">end module </span><span class="n">mod_io</span>
 </pre></div>
 
     </section>
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-1">All Source Files</a></h3></div>
-  <div id="allfiles-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/driver1d.f90.html">driver1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/driver2d.f90.html">driver2D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_assembly.f90.html">mod_assembly.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_assembly_c.f90.html">mod_assembly_c.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_integration.f90.html">mod_integration.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_io.f90.html">mod_io.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_legendre.f90.html">mod_legendre.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_legendre_c.f90.html">mod_legendre_c.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_linalg.f90.html">mod_linalg.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_misc.f90.html">mod_misc.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_settings.f90.html">mod_settings.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_assemble_1d.f90.html">smod_assemble_1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_assemble_2d.f90.html">smod_assemble_2D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_integration.f90.html">smod_integration.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_legendre_1d.f90.html">smod_legendre_1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_legendre_2d.f90.html">smod_legendre_2D.f90</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2018-01-04 16:09  
+             on 2019-07-26 10:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -661,10 +579,7 @@
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
     
@@ -672,7 +587,6 @@
     
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
     

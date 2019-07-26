@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
+   
+   <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
     
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
@@ -16,6 +16,9 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>User Guide</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -124,17 +131,21 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title="40.0% of total for programs.">22 statements</a>
+    data-placement="bottom" data-html="true"
+    title="40.0% of total for programs.">22 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/driver1D.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/driver1d.f90.html'>driver1D.f90</a></li>
+    
   
      <li class="active">driver1D</li>
   </ol>
@@ -154,6 +165,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -171,19 +185,20 @@
       
       <a class="list-group-item" href="../program/driver1d.html#variable-cells%7E6">cells</a>
       
-      <a class="list-group-item" href="../program/driver1d.html#variable-points%7E8">points</a>
+      <a class="list-group-item" href="../program/driver1d.html#variable-points%7E9">points</a>
       
-      <a class="list-group-item" href="../program/driver1d.html#variable-globalb%7E3">GlobalB</a>
+      <a class="list-group-item" href="../program/driver1d.html#variable-globalb%7E4">GlobalB</a>
       
-      <a class="list-group-item" href="../program/driver1d.html#variable-globalx%7E3">GlobalX</a>
+      <a class="list-group-item" href="../program/driver1d.html#variable-globalx%7E4">GlobalX</a>
       
-      <a class="list-group-item" href="../program/driver1d.html#variable-globala%7E7">GlobalA</a>
+      <a class="list-group-item" href="../program/driver1d.html#variable-globala%7E8">GlobalA</a>
       
       <a class="list-group-item" href="../program/driver1d.html#variable-dg%7E2">dg</a>
       
     </div>
   </div>
 </div>
+
 
 
 
@@ -211,24 +226,8 @@
 </div>
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprogs-0">All Programs</a></h3></div>
-  <div id="allprogs-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../program/driver1d.html">driver1D</a>
-      
-      <a class="list-group-item" href="../program/driver2d.html">driver2D</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
@@ -237,158 +236,157 @@
   
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h3 class="panel-title">Uses</h3>
+  <h3 class="panel-title">Uses</h3>
       </div>
       <ul class="list-group">
       
       <li class="list-group-item">
-	<ul class="list-inline">
-	  
-	  <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
-	  
-	  <li><a href='../module/mod_linalg.html'>mod_linalg</a></li>
-	  
-	  <li><a href='../module/mod_misc.html'>mod_misc</a></li>
-	  
-	  <li><a href='../module/mod_io.html'>mod_io</a></li>
-	  
-	  <li><a href='../module/mod_assembly.html'>mod_assembly</a></li>
-	  
-	</ul>
+  <ul class="list-inline">
+    
+    <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+    
+    <li><a href='../module/mod_linalg.html'>mod_linalg</a></li>
+    
+    <li><a href='../module/mod_misc.html'>mod_misc</a></li>
+    
+    <li><a href='../module/mod_io.html'>mod_io</a></li>
+    
+    <li><a href='../module/mod_assembly.html'>mod_assembly</a></li>
+    
+  </ul>
       </li>
       
       
       
       <li class="list-group-item">
-	<div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
 <!-- Title: program~~driver1d~~UsesGraph Pages: 1 -->
-<svg id="programdriver1dUsesGraph" width="426pt" height="157pt"
- viewBox="0.00 0.00 426.00 157.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="program~~driver1d~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 153)">
+<svg id="programdriver1dUsesGraph" width="426pt" height="211pt"
+ viewBox="0.00 0.00 426.00 210.66" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="program~~driver1d~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 206.659)">
 <title>program~~driver1d~~UsesGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-153 422,-153 422,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-206.659 422,-206.659 422,4 -4,4"/>
 <!-- program~driver1d -->
 <g id="program~~driver1d~~UsesGraph_node1" class="node"><title>program~driver1d</title>
-<polygon fill="none" stroke="black" points="418,-87 364,-87 364,-63 418,-63 418,-87"/>
-<text text-anchor="middle" x="391" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">driver1D</text>
-</g>
-<!-- module~mod_misc -->
-<g id="program~~driver1d~~UsesGraph_node2" class="node"><title>module~mod_misc</title>
-<g id="a_program~~driver1d~~UsesGraph_node2"><a xlink:href=".././module/mod_misc.html" xlink:title="mod_misc">
-<polygon fill="#337ab7" stroke="#337ab7" points="315.5,-108 254.5,-108 254.5,-84 315.5,-84 315.5,-108"/>
-<text text-anchor="middle" x="285" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_misc</text>
-</a>
-</g>
-</g>
-<!-- module~mod_misc&#45;&gt;program~driver1d -->
-<g id="program~~driver1d~~UsesGraph_edge5" class="edge"><title>module~mod_misc&#45;&gt;program~driver1d</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M315.524,-90.0384C327.441,-87.6322 341.308,-84.8321 353.823,-82.305"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="354.836,-85.6712 363.945,-80.2611 353.45,-78.8097 354.836,-85.6712"/>
-</g>
-<!-- iso_fortran_env -->
-<g id="program~~driver1d~~UsesGraph_node3" class="node"><title>iso_fortran_env</title>
-<g id="a_program~~driver1d~~UsesGraph_node3"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
-<polygon fill="#337ab7" stroke="#337ab7" points="87.5,-107 0.5,-107 0.5,-83 87.5,-83 87.5,-107"/>
-<text text-anchor="middle" x="44" y="-92.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
-</a>
-</g>
-</g>
-<!-- iso_fortran_env&#45;&gt;program~driver1d -->
-<g id="program~~driver1d~~UsesGraph_edge2" class="edge"><title>iso_fortran_env&#45;&gt;program~driver1d</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M166,-96C221.178,-91.3257 229.504,-145.833 284,-136"/>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M286,-136C317.723,-130.276 348.915,-109.364 368.734,-93.6087"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="370.993,-96.2824 376.501,-87.2314 366.551,-90.8726 370.993,-96.2824"/>
-</g>
-<!-- iso_fortran_env&#45;&gt;module~mod_misc -->
-<g id="program~~driver1d~~UsesGraph_edge6" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_misc</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M166,-96C192.022,-93.7956 221.387,-93.7866 244.314,-94.3332"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="244.265,-97.8331 254.36,-94.6175 244.463,-90.8359 244.265,-97.8331"/>
-</g>
-<!-- module~mod_io -->
-<g id="program~~driver1d~~UsesGraph_node4" class="node"><title>module~mod_io</title>
-<g id="a_program~~driver1d~~UsesGraph_node4"><a xlink:href=".././module/mod_io.html" xlink:title="mod_io">
-<polygon fill="#337ab7" stroke="#337ab7" points="192,-148 138,-148 138,-124 192,-124 192,-148"/>
-<text text-anchor="middle" x="165" y="-133.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_io</text>
-</a>
-</g>
-</g>
-<!-- iso_fortran_env&#45;&gt;module~mod_io -->
-<g id="program~~driver1d~~UsesGraph_edge7" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_io</title>
-<path fill="none" stroke="#00ff66" stroke-dasharray="5,2" d="M80.0603,-107.08C95.245,-112.311 113,-118.429 128.26,-123.686"/>
-<polygon fill="#00ff66" stroke="#00ff66" points="127.281,-127.051 137.876,-126.999 129.561,-120.433 127.281,-127.051"/>
+<polygon fill="none" stroke="black" points="418,-104.542 364,-104.542 364,-80.5418 418,-80.5418 418,-104.542"/>
+<text text-anchor="middle" x="391" y="-90.1418" font-family="Helvetica,sans-Serif" font-size="10.50">driver1D</text>
 </g>
 <!-- module~mod_assembly -->
-<g id="program~~driver1d~~UsesGraph_node5" class="node"><title>module~mod_assembly</title>
-<g id="a_program~~driver1d~~UsesGraph_node5"><a xlink:href=".././module/mod_assembly.html" xlink:title="mod_assembly">
-<polygon fill="#337ab7" stroke="#337ab7" points="327.5,-24 242.5,-24 242.5,-0 327.5,-0 327.5,-24"/>
-<text text-anchor="middle" x="285" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_assembly</text>
+<g id="program~~driver1d~~UsesGraph_node2" class="node"><title>module~mod_assembly</title>
+<g id="a_program~~driver1d~~UsesGraph_node2"><a xlink:href=".././module/mod_assembly.html" xlink:title="mod_assembly">
+<polygon fill="#337ab7" stroke="#337ab7" points="327.5,-186.542 242.5,-186.542 242.5,-162.542 327.5,-162.542 327.5,-186.542"/>
+<text text-anchor="middle" x="285" y="-172.142" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_assembly</text>
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_assembly -->
-<g id="program~~driver1d~~UsesGraph_edge10" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_assembly</title>
-<path fill="none" stroke="#0066ff" stroke-dasharray="5,2" d="M87.7582,-97.2751C110.449,-97.9992 138.781,-98.1363 164,-96"/>
-<path fill="none" stroke="#0066ff" stroke-dasharray="5,2" d="M166,-96C209.718,-92.2966 205.25,-56.9668 242,-33 243.942,-31.7336 245.971,-30.4894 248.043,-29.2781"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="250.191,-32.0915 257.273,-24.2114 246.823,-25.9551 250.191,-32.0915"/>
+<!-- program~driver1d&#45;&gt;module~mod_assembly -->
+<g id="program~~driver1d~~UsesGraph_edge1" class="edge"><title>program~driver1d&#45;&gt;module~mod_assembly</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M379.54,-104.935C367.927,-118.159 348.149,-139.144 328,-153.542 326.168,-154.851 324.242,-156.123 322.264,-157.349"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="320.337,-154.418 313.387,-162.414 323.807,-160.498 320.337,-154.418"/>
+</g>
+<!-- module~mod_io -->
+<g id="program~~driver1d~~UsesGraph_node3" class="node"><title>module~mod_io</title>
+<g id="a_program~~driver1d~~UsesGraph_node3"><a xlink:href=".././module/mod_io.html" xlink:title="mod_io">
+<polygon fill="#337ab7" stroke="#337ab7" points="312,-144.542 258,-144.542 258,-120.542 312,-120.542 312,-144.542"/>
+<text text-anchor="middle" x="285" y="-130.142" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_io</text>
+</a>
+</g>
+</g>
+<!-- program~driver1d&#45;&gt;module~mod_io -->
+<g id="program~~driver1d~~UsesGraph_edge2" class="edge"><title>program~driver1d&#45;&gt;module~mod_io</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M363.756,-102.636C351.07,-107.515 335.647,-113.447 321.893,-118.737"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="320.312,-115.595 312.235,-122.451 322.825,-122.128 320.312,-115.595"/>
+</g>
+<!-- module~mod_misc -->
+<g id="program~~driver1d~~UsesGraph_node4" class="node"><title>module~mod_misc</title>
+<g id="a_program~~driver1d~~UsesGraph_node4"><a xlink:href=".././module/mod_misc.html" xlink:title="mod_misc">
+<polygon fill="#337ab7" stroke="#337ab7" points="195.5,-64.5418 134.5,-64.5418 134.5,-40.5418 195.5,-40.5418 195.5,-64.5418"/>
+<text text-anchor="middle" x="165" y="-50.1418" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_misc</text>
+</a>
+</g>
+</g>
+<!-- program~driver1d&#45;&gt;module~mod_misc -->
+<g id="program~~driver1d~~UsesGraph_edge3" class="edge"><title>program~driver1d&#45;&gt;module~mod_misc</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M363.885,-90.3196C334.171,-87.5303 284.284,-82.0532 242,-73.5418 230.064,-71.1392 217.247,-67.8711 205.603,-64.6289"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="206.301,-61.1883 195.724,-61.8088 204.379,-67.9194 206.301,-61.1883"/>
 </g>
 <!-- module~mod_linalg -->
-<g id="program~~driver1d~~UsesGraph_node6" class="node"><title>module~mod_linalg</title>
-<g id="a_program~~driver1d~~UsesGraph_node6"><a xlink:href=".././module/mod_linalg.html" xlink:title="mod_linalg">
-<polygon fill="#337ab7" stroke="#337ab7" points="317,-66 253,-66 253,-42 317,-42 317,-66"/>
-<text text-anchor="middle" x="285" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_linalg</text>
+<g id="program~~driver1d~~UsesGraph_node5" class="node"><title>module~mod_linalg</title>
+<g id="a_program~~driver1d~~UsesGraph_node5"><a xlink:href=".././module/mod_linalg.html" xlink:title="mod_linalg">
+<polygon fill="#337ab7" stroke="#337ab7" points="317,-64.5418 253,-64.5418 253,-40.5418 317,-40.5418 317,-64.5418"/>
+<text text-anchor="middle" x="285" y="-50.1418" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_linalg</text>
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_linalg -->
-<g id="program~~driver1d~~UsesGraph_edge11" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_linalg</title>
-<path fill="none" stroke="#cc00ff" stroke-dasharray="5,2" d="M166,-96C196.334,-93.4303 228.781,-81.1102 251.958,-70.4727"/>
-<polygon fill="#cc00ff" stroke="#cc00ff" points="253.752,-73.4955 261.29,-66.0501 250.754,-67.1699 253.752,-73.4955"/>
+<!-- program~driver1d&#45;&gt;module~mod_linalg -->
+<g id="program~~driver1d~~UsesGraph_edge4" class="edge"><title>program~driver1d&#45;&gt;module~mod_linalg</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M363.756,-82.4481C352.44,-78.0956 338.946,-72.9057 326.401,-68.0808"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="327.635,-64.8053 317.045,-64.4822 325.122,-71.3388 327.635,-64.8053"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="program~~driver1d~~UsesGraph_node6" class="node"><title>iso_fortran_env</title>
+<g id="a_program~~driver1d~~UsesGraph_node6"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="87.5,-146.542 0.5,-146.542 0.5,-122.542 87.5,-122.542 87.5,-146.542"/>
+<text text-anchor="middle" x="44" y="-132.142" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- program~driver1d&#45;&gt;iso_fortran_env -->
+<g id="program~~driver1d~~UsesGraph_edge5" class="edge"><title>program~driver1d&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M381.734,-80.5244C371.125,-66.1711 351.284,-42.7036 328,-31.5418 262.629,-0.205006 234.99,9.72355 166,-12.5418"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M164,-12.5418C145.222,-18.4351 139.304,-19.1666 124,-31.5418 95.1735,-54.8517 70.7739,-90.7341 57.0147,-113.407"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="53.8683,-111.851 51.7874,-122.239 59.8925,-115.416 53.8683,-111.851"/>
+</g>
+<!-- module~mod_assembly&#45;&gt;iso_fortran_env -->
+<g id="program~~driver1d~~UsesGraph_edge6" class="edge"><title>module~mod_assembly&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M253.408,-186.578C220.594,-197.664 167.353,-210.331 124,-195.542 99.8394,-187.3 77.3241,-168.343 62.5616,-153.732"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="65.0665,-151.288 55.5809,-146.568 60.0529,-156.173 65.0665,-151.288"/>
 </g>
 <!-- module~mod_legendre -->
-<g id="program~~driver1d~~UsesGraph_node7" class="node"><title>module~mod_legendre</title>
-<g id="a_program~~driver1d~~UsesGraph_node7"><a xlink:href=".././module/mod_legendre.html" xlink:title="mod_legendre">
-<polygon fill="#337ab7" stroke="#337ab7" points="206,-46 124,-46 124,-22 206,-22 206,-46"/>
-<text text-anchor="middle" x="165" y="-31.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_legendre</text>
+<g id="program~~driver1d~~UsesGraph_node8" class="node"><title>module~mod_legendre</title>
+<g id="a_program~~driver1d~~UsesGraph_node8"><a xlink:href=".././module/mod_legendre.html" xlink:title="mod_legendre">
+<polygon fill="#337ab7" stroke="#337ab7" points="206,-186.542 124,-186.542 124,-162.542 206,-162.542 206,-186.542"/>
+<text text-anchor="middle" x="165" y="-172.142" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_legendre</text>
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_legendre -->
-<g id="program~~driver1d~~UsesGraph_edge12" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_legendre</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M68.5106,-82.9484C86.5206,-73.7163 111.577,-60.8721 131.505,-50.6572"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="133.236,-53.7029 140.538,-46.0266 130.043,-47.4737 133.236,-53.7029"/>
+<!-- module~mod_assembly&#45;&gt;module~mod_legendre -->
+<g id="program~~driver1d~~UsesGraph_edge7" class="edge"><title>module~mod_assembly&#45;&gt;module~mod_legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M242.398,-174.542C233.909,-174.542 224.892,-174.542 216.141,-174.542"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="216.038,-171.042 206.038,-174.542 216.038,-178.042 216.038,-171.042"/>
 </g>
-<!-- module~mod_io&#45;&gt;program~driver1d -->
-<g id="program~~driver1d~~UsesGraph_edge3" class="edge"><title>module~mod_io&#45;&gt;program~driver1d</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M192.017,-138.633C216.085,-140.449 252.751,-141.639 284,-136"/>
-</g>
-<!-- module~mod_assembly&#45;&gt;program~driver1d -->
-<g id="program~~driver1d~~UsesGraph_edge1" class="edge"><title>module~mod_assembly&#45;&gt;program~driver1d</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M311.606,-24.1297C317.088,-26.9124 322.793,-29.9527 328,-33 340.572,-40.3584 354.016,-49.3213 365.161,-57.0745"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="363.353,-60.0826 373.544,-62.9794 367.384,-54.3596 363.353,-60.0826"/>
-</g>
-<!-- module~mod_linalg&#45;&gt;program~driver1d -->
-<g id="program~~driver1d~~UsesGraph_edge4" class="edge"><title>module~mod_linalg&#45;&gt;program~driver1d</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M317.203,-60.3007C328.68,-62.6181 341.774,-65.2622 353.664,-67.6629"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="353.236,-71.1471 363.731,-69.6957 354.622,-64.2856 353.236,-71.1471"/>
-</g>
-<!-- module~mod_legendre&#45;&gt;module~mod_assembly -->
-<g id="program~~driver1d~~UsesGraph_edge9" class="edge"><title>module~mod_legendre&#45;&gt;module~mod_assembly</title>
-<path fill="none" stroke="#0066ff" stroke-dasharray="5,2" d="M206.279,-26.4904C214.629,-24.9336 223.537,-23.2728 232.232,-21.6517"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="233.106,-25.0491 242.295,-19.7755 231.823,-18.1677 233.106,-25.0491"/>
+<!-- module~mod_io&#45;&gt;iso_fortran_env -->
+<g id="program~~driver1d~~UsesGraph_edge8" class="edge"><title>module~mod_io&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#cbff00" stroke-dasharray="5,2" d="M257.968,-132.76C219.791,-133.079 147.777,-133.682 98.136,-134.097"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="97.8733,-130.599 87.903,-134.183 97.932,-137.599 97.8733,-130.599"/>
 </g>
 <!-- lib_array -->
-<g id="program~~driver1d~~UsesGraph_node8" class="node"><title>lib_array</title>
-<polygon fill="#337ab7" stroke="#337ab7" points="71,-149 17,-149 17,-125 71,-125 71,-149"/>
-<text text-anchor="middle" x="44" y="-134.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lib_array</text>
+<g id="program~~driver1d~~UsesGraph_node7" class="node"><title>lib_array</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="192,-106.542 138,-106.542 138,-82.5418 192,-82.5418 192,-106.542"/>
+<text text-anchor="middle" x="165" y="-92.1418" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lib_array</text>
 </g>
-<!-- lib_array&#45;&gt;module~mod_io -->
-<g id="program~~driver1d~~UsesGraph_edge8" class="edge"><title>lib_array&#45;&gt;module~mod_io</title>
-<path fill="none" stroke="#00ff66" stroke-dasharray="5,2" d="M71.1151,-136.781C87.7784,-136.641 109.607,-136.457 127.916,-136.303"/>
-<polygon fill="#00ff66" stroke="#00ff66" points="127.976,-139.803 137.946,-136.219 127.917,-132.803 127.976,-139.803"/>
+<!-- module~mod_io&#45;&gt;lib_array -->
+<g id="program~~driver1d~~UsesGraph_edge9" class="edge"><title>module~mod_io&#45;&gt;lib_array</title>
+<path fill="none" stroke="#cbff00" stroke-dasharray="5,2" d="M257.812,-124.108C241.313,-118.795 219.794,-111.865 201.737,-106.05"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="202.706,-102.686 192.115,-102.952 200.561,-109.349 202.706,-102.686"/>
+</g>
+<!-- module~mod_misc&#45;&gt;iso_fortran_env -->
+<g id="program~~driver1d~~UsesGraph_edge10" class="edge"><title>module~mod_misc&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ff66" stroke-dasharray="5,2" d="M139.078,-64.7664C133.996,-67.4967 128.753,-70.4921 124,-73.5418 103.819,-86.4908 82.3737,-103.264 66.9268,-115.943"/>
+<polygon fill="#00ff66" stroke="#00ff66" points="64.4675,-113.436 59.0084,-122.516 68.9384,-118.822 64.4675,-113.436"/>
+</g>
+<!-- module~mod_linalg&#45;&gt;iso_fortran_env -->
+<g id="program~~driver1d~~UsesGraph_edge11" class="edge"><title>module~mod_linalg&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#0066ff" stroke-dasharray="5,2" d="M259.688,-40.4826C230.611,-26.7327 183.652,-6.84485 166,-12.5418"/>
+</g>
+<!-- module~mod_legendre&#45;&gt;iso_fortran_env -->
+<g id="program~~driver1d~~UsesGraph_edge12" class="edge"><title>module~mod_legendre&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M128.296,-162.541C116.52,-158.582 103.254,-154.123 90.8296,-149.947"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="91.684,-146.542 81.09,-146.673 89.4537,-153.177 91.684,-146.542"/>
 </g>
 </g>
 </svg>
@@ -439,9 +437,9 @@
 </svg>
 
     
-    <p>Solid arrows point from a parent (sub)module to the submodule which is
-    descended from it. Dashed arrows point from a module being used to the
-    module or program unit using it. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
     </p>
     </div></div></div></div>
       </li>
@@ -455,148 +453,122 @@
     <br>
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h3 class="panel-title">Calls</h3>
+  <h3 class="panel-title">Calls</h3>
       </div>
       <div class="panel-body">
-	<div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
 <!-- Title: program~~driver1d~~CallsGraph Pages: 1 -->
-<svg id="programdriver1dCallsGraph" width="412pt" height="242pt"
- viewBox="0.00 0.00 412.00 242.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="program~~driver1d~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 238)">
+<svg id="programdriver1dCallsGraph" width="404pt" height="158pt"
+ viewBox="0.00 0.00 404.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="program~~driver1d~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
 <title>program~~driver1d~~CallsGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-238 408,-238 408,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-154 400,-154 400,4 -4,4"/>
 <!-- program~driver1d -->
 <g id="program~~driver1d~~CallsGraph_node1" class="node"><title>program~driver1d</title>
-<polygon fill="none" stroke="black" points="54,-129 0,-129 0,-105 54,-105 54,-129"/>
-<text text-anchor="middle" x="27" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50">driver1D</text>
-</g>
-<!-- interface~set_bcs -->
-<g id="program~~driver1d~~CallsGraph_node2" class="node"><title>interface~set_bcs</title>
-<g id="a_program~~driver1d~~CallsGraph_node2"><a xlink:href=".././interface/set_bcs.html" xlink:title="set_BCs">
-<polygon fill="#a7506f" stroke="#a7506f" points="174,-234 120,-234 120,-210 174,-210 174,-234"/>
-<text text-anchor="middle" x="147" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_BCs</text>
-</a>
-</g>
-</g>
-<!-- program~driver1d&#45;&gt;interface~set_bcs -->
-<g id="program~~driver1d~~CallsGraph_edge1" class="edge"><title>program~driver1d&#45;&gt;interface~set_bcs</title>
-<path fill="none" stroke="#ff0000" d="M33.9479,-129.015C43.4446,-147.05 63.6759,-181.118 90,-201 96.0382,-205.56 103.177,-209.226 110.3,-212.137"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="109.305,-215.5 119.898,-215.652 111.711,-208.927 109.305,-215.5"/>
+<polygon fill="none" stroke="black" points="54,-87 0,-87 0,-63 54,-63 54,-87"/>
+<text text-anchor="middle" x="27" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">driver1D</text>
 </g>
 <!-- proc~write_out_solution -->
-<g id="program~~driver1d~~CallsGraph_node3" class="node"><title>proc~write_out_solution</title>
-<g id="a_program~~driver1d~~CallsGraph_node3"><a xlink:href=".././proc/write_out_solution.html" xlink:title="write_out_solution">
-<polygon fill="#d9534f" stroke="#d9534f" points="196.5,-192 97.5,-192 97.5,-168 196.5,-168 196.5,-192"/>
-<text text-anchor="middle" x="147" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_out_solution</text>
+<g id="program~~driver1d~~CallsGraph_node2" class="node"><title>proc~write_out_solution</title>
+<g id="a_program~~driver1d~~CallsGraph_node2"><a xlink:href=".././proc/write_out_solution.html" xlink:title="write_out_solution">
+<polygon fill="#d9534f" stroke="#d9534f" points="192.5,-150 93.5,-150 93.5,-126 192.5,-126 192.5,-150"/>
+<text text-anchor="middle" x="143" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">write_out_solution</text>
 </a>
 </g>
 </g>
 <!-- program~driver1d&#45;&gt;proc~write_out_solution -->
-<g id="program~~driver1d~~CallsGraph_edge2" class="edge"><title>program~driver1d&#45;&gt;proc~write_out_solution</title>
-<path fill="none" stroke="#ff0000" d="M43.6679,-129.147C55.8306,-138.189 73.3689,-150.403 90,-159 93.3321,-160.722 96.839,-162.377 100.405,-163.948"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="99.3254,-167.29 109.902,-167.904 102.017,-160.828 99.3254,-167.29"/>
-</g>
-<!-- interface~initialize_global_mats -->
-<g id="program~~driver1d~~CallsGraph_node4" class="node"><title>interface~initialize_global_mats</title>
-<g id="a_program~~driver1d~~CallsGraph_node4"><a xlink:href=".././interface/initialize_global_mats.html" xlink:title="initialize_global_mats">
-<polygon fill="#a7506f" stroke="#a7506f" points="204,-150 90,-150 90,-126 204,-126 204,-150"/>
-<text text-anchor="middle" x="147" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initialize_global_mats</text>
-</a>
-</g>
-</g>
-<!-- program~driver1d&#45;&gt;interface~initialize_global_mats -->
-<g id="program~~driver1d~~CallsGraph_edge3" class="edge"><title>program~driver1d&#45;&gt;interface~initialize_global_mats</title>
-<path fill="none" stroke="#ff0000" d="M54.188,-121.661C61.9666,-123.045 70.8608,-124.628 79.9821,-126.251"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="79.468,-129.714 89.9266,-128.021 80.6946,-122.823 79.468,-129.714"/>
+<g id="program~~driver1d~~CallsGraph_edge1" class="edge"><title>program~driver1d&#45;&gt;proc~write_out_solution</title>
+<path fill="none" stroke="#ff0000" d="M43.7305,-87.0273C55.926,-96.007 73.4779,-108.195 90,-117 93.1013,-118.653 96.3617,-120.257 99.6748,-121.793"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="98.5003,-125.1 109.063,-125.928 101.322,-118.694 98.5003,-125.1"/>
 </g>
 <!-- proc~read_gmsh_file_1d -->
-<g id="program~~driver1d~~CallsGraph_node5" class="node"><title>proc~read_gmsh_file_1d</title>
-<g id="a_program~~driver1d~~CallsGraph_node5"><a xlink:href=".././proc/read_gmsh_file_1d.html" xlink:title="read_gmsh_file_1D">
-<polygon fill="#d9534f" stroke="#d9534f" points="200,-108 94,-108 94,-84 200,-84 200,-108"/>
-<text text-anchor="middle" x="147" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_gmsh_file_1D</text>
+<g id="program~~driver1d~~CallsGraph_node3" class="node"><title>proc~read_gmsh_file_1d</title>
+<g id="a_program~~driver1d~~CallsGraph_node3"><a xlink:href=".././proc/read_gmsh_file_1d.html" xlink:title="read_gmsh_file_1D">
+<polygon fill="#d9534f" stroke="#d9534f" points="196,-108 90,-108 90,-84 196,-84 196,-108"/>
+<text text-anchor="middle" x="143" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">read_gmsh_file_1D</text>
 </a>
 </g>
 </g>
 <!-- program~driver1d&#45;&gt;proc~read_gmsh_file_1d -->
-<g id="program~~driver1d~~CallsGraph_edge4" class="edge"><title>program~driver1d&#45;&gt;proc~read_gmsh_file_1d</title>
-<path fill="none" stroke="#ff0000" d="M54.188,-112.339C63.0381,-110.764 73.3324,-108.932 83.7621,-107.076"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="84.5284,-110.495 93.7604,-105.297 83.3018,-103.603 84.5284,-110.495"/>
+<g id="program~~driver1d~~CallsGraph_edge2" class="edge"><title>program~driver1d&#45;&gt;proc~read_gmsh_file_1d</title>
+<path fill="none" stroke="#ff0000" d="M54.1539,-79.8178C61.9744,-81.2584 70.9035,-82.9033 80.0037,-84.5796"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="79.4327,-88.0333 89.9013,-86.4029 80.7009,-81.1491 79.4327,-88.0333"/>
 </g>
 <!-- proc~linsolve_quick -->
-<g id="program~~driver1d~~CallsGraph_node6" class="node"><title>proc~linsolve_quick</title>
-<g id="a_program~~driver1d~~CallsGraph_node6"><a xlink:href=".././proc/linsolve_quick.html" xlink:title="linsolve_quick">
-<polygon fill="#d9534f" stroke="#d9534f" points="186.5,-66 107.5,-66 107.5,-42 186.5,-42 186.5,-66"/>
-<text text-anchor="middle" x="147" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve_quick</text>
+<g id="program~~driver1d~~CallsGraph_node4" class="node"><title>proc~linsolve_quick</title>
+<g id="a_program~~driver1d~~CallsGraph_node4"><a xlink:href=".././proc/linsolve_quick.html" xlink:title="linsolve_quick">
+<polygon fill="#d9534f" stroke="#d9534f" points="182.5,-66 103.5,-66 103.5,-42 182.5,-42 182.5,-66"/>
+<text text-anchor="middle" x="143" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve_quick</text>
 </a>
 </g>
 </g>
 <!-- program~driver1d&#45;&gt;proc~linsolve_quick -->
-<g id="program~~driver1d~~CallsGraph_edge5" class="edge"><title>program~driver1d&#45;&gt;proc~linsolve_quick</title>
-<path fill="none" stroke="#ff0000" d="M43.6679,-104.853C55.8306,-95.8114 73.3689,-83.5969 90,-75 93.3321,-73.2776 96.839,-71.6231 100.405,-70.0516"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="102.017,-73.1719 109.902,-66.0964 99.3254,-66.7099 102.017,-73.1719"/>
+<g id="program~~driver1d~~CallsGraph_edge3" class="edge"><title>program~driver1d&#45;&gt;proc~linsolve_quick</title>
+<path fill="none" stroke="#ff0000" d="M54.1539,-70.1822C65.783,-68.04 79.8633,-65.4462 93.3127,-62.9687"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="94.223,-66.36 103.423,-61.1062 92.9548,-59.4758 94.223,-66.36"/>
 </g>
 <!-- interface~assemble -->
-<g id="program~~driver1d~~CallsGraph_node7" class="node"><title>interface~assemble</title>
-<g id="a_program~~driver1d~~CallsGraph_node7"><a xlink:href=".././interface/assemble.html" xlink:title="assemble">
-<polygon fill="#a7506f" stroke="#a7506f" points="176,-24 118,-24 118,-0 176,-0 176,-24"/>
-<text text-anchor="middle" x="147" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble</text>
+<g id="program~~driver1d~~CallsGraph_node5" class="node"><title>interface~assemble</title>
+<g id="a_program~~driver1d~~CallsGraph_node5"><a xlink:href=".././interface/assemble.html" xlink:title="assemble">
+<polygon fill="#a7506f" stroke="#a7506f" points="172,-24 114,-24 114,-0 172,-0 172,-24"/>
+<text text-anchor="middle" x="143" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">assemble</text>
 </a>
 </g>
 </g>
 <!-- program~driver1d&#45;&gt;interface~assemble -->
-<g id="program~~driver1d~~CallsGraph_edge6" class="edge"><title>program~driver1d&#45;&gt;interface~assemble</title>
-<path fill="none" stroke="#ff0000" d="M33.9479,-104.985C43.4446,-86.9504 63.6759,-52.8817 90,-33 95.5113,-28.8375 101.939,-25.4204 108.435,-22.6423"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="109.816,-25.8616 117.903,-19.0169 107.312,-19.3244 109.816,-25.8616"/>
+<g id="program~~driver1d~~CallsGraph_edge4" class="edge"><title>program~driver1d&#45;&gt;interface~assemble</title>
+<path fill="none" stroke="#ff0000" d="M43.7305,-62.9727C55.926,-53.993 73.4779,-41.8045 90,-33 94.6076,-30.5446 99.5666,-28.1965 104.528,-26.0184"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="106.109,-29.1504 113.978,-22.0558 103.403,-22.6948 106.109,-29.1504"/>
 </g>
 <!-- proc~print_header -->
-<g id="program~~driver1d~~CallsGraph_node8" class="node"><title>proc~print_header</title>
-<g id="a_program~~driver1d~~CallsGraph_node8"><a xlink:href=".././proc/print_header.html" xlink:title="print_header">
-<polygon fill="#d9534f" stroke="#d9534f" points="313.5,-108 240.5,-108 240.5,-84 313.5,-84 313.5,-108"/>
-<text text-anchor="middle" x="277" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_header</text>
+<g id="program~~driver1d~~CallsGraph_node6" class="node"><title>proc~print_header</title>
+<g id="a_program~~driver1d~~CallsGraph_node6"><a xlink:href=".././proc/print_header.html" xlink:title="print_header">
+<polygon fill="#d9534f" stroke="#d9534f" points="305.5,-108 232.5,-108 232.5,-84 305.5,-84 305.5,-108"/>
+<text text-anchor="middle" x="269" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_header</text>
 </a>
 </g>
 </g>
 <!-- proc~read_gmsh_file_1d&#45;&gt;proc~print_header -->
-<g id="program~~driver1d~~CallsGraph_edge7" class="edge"><title>proc~read_gmsh_file_1d&#45;&gt;proc~print_header</title>
-<path fill="none" stroke="#00ffff" d="M200.062,-96C210.025,-96 220.388,-96 230.138,-96"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="230.43,-99.5001 240.43,-96 230.43,-92.5001 230.43,-99.5001"/>
+<g id="program~~driver1d~~CallsGraph_edge5" class="edge"><title>proc~read_gmsh_file_1d&#45;&gt;proc~print_header</title>
+<path fill="none" stroke="#7fff00" d="M196.228,-96C204.886,-96 213.805,-96 222.286,-96"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="222.368,-99.5001 232.368,-96 222.368,-92.5001 222.368,-99.5001"/>
 </g>
 <!-- proc~linsolve -->
-<g id="program~~driver1d~~CallsGraph_node9" class="node"><title>proc~linsolve</title>
-<g id="a_program~~driver1d~~CallsGraph_node9"><a xlink:href=".././proc/linsolve.html" xlink:title="linsolve">
-<polygon fill="#d9534f" stroke="#d9534f" points="304,-66 250,-66 250,-42 304,-42 304,-66"/>
-<text text-anchor="middle" x="277" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve</text>
+<g id="program~~driver1d~~CallsGraph_node7" class="node"><title>proc~linsolve</title>
+<g id="a_program~~driver1d~~CallsGraph_node7"><a xlink:href=".././proc/linsolve.html" xlink:title="linsolve">
+<polygon fill="#d9534f" stroke="#d9534f" points="296,-66 242,-66 242,-42 296,-42 296,-66"/>
+<text text-anchor="middle" x="269" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">linsolve</text>
 </a>
 </g>
 </g>
 <!-- proc~linsolve_quick&#45;&gt;proc~linsolve -->
-<g id="program~~driver1d~~CallsGraph_edge8" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
-<path fill="none" stroke="#0000ff" d="M186.752,-54C203.532,-54 223.069,-54 239.579,-54"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="239.932,-57.5001 249.932,-54 239.932,-50.5001 239.932,-57.5001"/>
-</g>
-<!-- dgetrf -->
-<g id="program~~driver1d~~CallsGraph_node10" class="node"><title>dgetrf</title>
-<polygon fill="#777777" stroke="#777777" points="404,-87 350,-87 350,-63 404,-63 404,-87"/>
-<text text-anchor="middle" x="377" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
-</g>
-<!-- proc~linsolve&#45;&gt;dgetrf -->
-<g id="program~~driver1d~~CallsGraph_edge9" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
-<path fill="none" stroke="#00ffff" d="M304.005,-59.5725C314.969,-61.922 327.92,-64.6972 339.794,-67.2415"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="339.362,-70.7284 349.874,-69.4015 340.829,-63.8838 339.362,-70.7284"/>
+<g id="program~~driver1d~~CallsGraph_edge6" class="edge"><title>proc~linsolve_quick&#45;&gt;proc~linsolve</title>
+<path fill="none" stroke="#00ffff" d="M182.555,-54C198.151,-54 216.069,-54 231.455,-54"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="231.644,-57.5001 241.644,-54 231.643,-50.5001 231.644,-57.5001"/>
 </g>
 <!-- dgetrs -->
-<g id="program~~driver1d~~CallsGraph_node11" class="node"><title>dgetrs</title>
-<polygon fill="#777777" stroke="#777777" points="404,-45 350,-45 350,-21 404,-21 404,-45"/>
-<text text-anchor="middle" x="377" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
+<g id="program~~driver1d~~CallsGraph_node8" class="node"><title>dgetrs</title>
+<polygon fill="#777777" stroke="#777777" points="396,-87 342,-87 342,-63 396,-63 396,-87"/>
+<text text-anchor="middle" x="369" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrs</text>
 </g>
 <!-- proc~linsolve&#45;&gt;dgetrs -->
-<g id="program~~driver1d~~CallsGraph_edge10" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
-<path fill="none" stroke="#00ffff" d="M304.005,-48.4275C314.969,-46.078 327.92,-43.3028 339.794,-40.7585"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="340.829,-44.1162 349.874,-38.5985 339.362,-37.2716 340.829,-44.1162"/>
+<g id="program~~driver1d~~CallsGraph_edge7" class="edge"><title>proc~linsolve&#45;&gt;dgetrs</title>
+<path fill="none" stroke="#00ffff" d="M296.005,-59.5725C306.969,-61.922 319.92,-64.6972 331.794,-67.2415"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="331.362,-70.7284 341.874,-69.4015 332.829,-63.8838 331.362,-70.7284"/>
+</g>
+<!-- dgetrf -->
+<g id="program~~driver1d~~CallsGraph_node9" class="node"><title>dgetrf</title>
+<polygon fill="#777777" stroke="#777777" points="396,-45 342,-45 342,-21 396,-21 396,-45"/>
+<text text-anchor="middle" x="369" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dgetrf</text>
+</g>
+<!-- proc~linsolve&#45;&gt;dgetrf -->
+<g id="program~~driver1d~~CallsGraph_edge8" class="edge"><title>proc~linsolve&#45;&gt;dgetrf</title>
+<path fill="none" stroke="#00ffff" d="M296.005,-48.4275C306.969,-46.078 319.92,-43.3028 331.794,-40.7585"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="332.829,-44.1162 341.874,-38.5985 331.362,-37.2716 332.829,-44.1162"/>
 </g>
 </g>
 </svg>
@@ -660,6 +632,9 @@
 
      <section class="visible-xs visible-sm hidden-md">
        
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -677,13 +652,13 @@
       
       <a class="list-group-item" href="../program/driver1d.html#variable-cells%7E6">cells</a>
       
-      <a class="list-group-item" href="../program/driver1d.html#variable-points%7E8">points</a>
+      <a class="list-group-item" href="../program/driver1d.html#variable-points%7E9">points</a>
       
-      <a class="list-group-item" href="../program/driver1d.html#variable-globalb%7E3">GlobalB</a>
+      <a class="list-group-item" href="../program/driver1d.html#variable-globalb%7E4">GlobalB</a>
       
-      <a class="list-group-item" href="../program/driver1d.html#variable-globalx%7E3">GlobalX</a>
+      <a class="list-group-item" href="../program/driver1d.html#variable-globalx%7E4">GlobalX</a>
       
-      <a class="list-group-item" href="../program/driver1d.html#variable-globala%7E7">GlobalA</a>
+      <a class="list-group-item" href="../program/driver1d.html#variable-globala%7E8">GlobalA</a>
       
       <a class="list-group-item" href="../program/driver1d.html#variable-dg%7E2">dg</a>
       
@@ -709,12 +684,14 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
     <a class="list-group-item" href="../program/driver1d.html#src">driver1D</a>
   </div>
 </div>
+
 
 
      </section>
@@ -811,7 +788,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-points%7E8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-points%7E9"></span>real(kind=wp),</td>
   
   
   <td>dimension(:), allocatable</td><td>::</td>
@@ -825,7 +802,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-globalb%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-globalb%7E4"></span>real(kind=wp),</td>
   
   
   <td>dimension(:), allocatable</td><td>::</td>
@@ -839,7 +816,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-globalx%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-globalx%7E4"></span>real(kind=wp),</td>
   
   
   <td>dimension(:), allocatable</td><td>::</td>
@@ -853,7 +830,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-globala%7E7"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-globala%7E8"></span>real(kind=wp),</td>
   
   
   <td>dimension(:,:), allocatable</td><td>::</td>
@@ -946,38 +923,19 @@
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprogs-1">All Programs</a></h3></div>
-  <div id="allprogs-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../program/driver1d.html">driver1D</a>
-      
-      <a class="list-group-item" href="../program/driver2d.html">driver2D</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2018-01-04 16:09  
+             on 2019-07-26 10:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -1003,10 +961,7 @@
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
     
@@ -1014,7 +969,6 @@
     
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
     

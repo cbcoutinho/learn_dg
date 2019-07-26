@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
+   
+   <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
     
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
@@ -16,6 +16,9 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>User Guide</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -124,15 +131,19 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title=" 1.9% of total for source files.">22 statements</a>
+    data-placement="bottom" data-html="true"
+    title=" 1.9% of total for source files.">22 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/driver1D.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
+  
+    
   
      <li class="active">driver1D.f90</li>
   </ol>
@@ -151,6 +162,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -182,6 +196,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
@@ -190,52 +205,8 @@
 </div>
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-0">All Source Files</a></h3></div>
-  <div id="allfiles-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/driver1d.f90.html">driver1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/driver2d.f90.html">driver2D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_assembly.f90.html">mod_assembly.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_assembly_c.f90.html">mod_assembly_c.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_integration.f90.html">mod_integration.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_io.f90.html">mod_io.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_legendre.f90.html">mod_legendre.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_legendre_c.f90.html">mod_legendre_c.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_linalg.f90.html">mod_linalg.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_misc.f90.html">mod_misc.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_settings.f90.html">mod_settings.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_assemble_1d.f90.html">smod_assemble_1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_assemble_2d.f90.html">smod_assemble_2D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_integration.f90.html">smod_integration.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_legendre_1d.f90.html">smod_legendre_1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_legendre_2d.f90.html">smod_legendre_2D.f90</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     <div class="col-md-9" id='text'>
@@ -244,10 +215,10 @@
     
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h3 class="panel-title">This file depends on</h3>
+  <h3 class="panel-title">This file depends on</h3>
       </div>
       <div class="panel-body">
-	<div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
@@ -263,18 +234,18 @@
 <polygon fill="none" stroke="black" points="347.5,-87 276.5,-87 276.5,-63 347.5,-63 347.5,-87"/>
 <text text-anchor="middle" x="312" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">driver1D.f90</text>
 </g>
-<!-- sourcefile~mod_linalg.f90 -->
-<g id="sourcefile~~driver1d.f90~~EfferentGraph_node2" class="node"><title>sourcefile~mod_linalg.f90</title>
-<g id="a_sourcefile~~driver1d.f90~~EfferentGraph_node2"><a xlink:href=".././sourcefile/mod_linalg.f90.html" xlink:title="mod_linalg.f90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="229,-150 147,-150 147,-126 229,-126 229,-150"/>
-<text text-anchor="middle" x="188" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_linalg.f90</text>
+<!-- sourcefile~mod_assembly.f90 -->
+<g id="sourcefile~~driver1d.f90~~EfferentGraph_node2" class="node"><title>sourcefile~mod_assembly.f90</title>
+<g id="a_sourcefile~~driver1d.f90~~EfferentGraph_node2"><a xlink:href=".././sourcefile/mod_assembly.f90.html" xlink:title="mod_assembly.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="239.5,-150 136.5,-150 136.5,-126 239.5,-126 239.5,-150"/>
+<text text-anchor="middle" x="188" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_assembly.f90</text>
 </a>
 </g>
 </g>
-<!-- sourcefile~mod_linalg.f90&#45;&gt;sourcefile~driver1d.f90 -->
-<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge4" class="edge"><title>sourcefile~mod_linalg.f90&#45;&gt;sourcefile~driver1d.f90</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M220.334,-125.929C226.909,-123.166 233.744,-120.118 240,-117 254.646,-109.7 270.363,-100.549 283.277,-92.6539"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="285.47,-95.4122 292.129,-87.1714 281.785,-89.4611 285.47,-95.4122"/>
+<!-- sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_assembly.f90 -->
+<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge1" class="edge"><title>sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_assembly.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M292.129,-87.1714C278.055,-95.9977 258.201,-107.928 240,-117 236.677,-118.657 233.19,-120.293 229.665,-121.878"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="228.112,-118.736 220.334,-125.929 230.9,-125.157 228.112,-118.736"/>
 </g>
 <!-- sourcefile~mod_io.f90 -->
 <g id="sourcefile~~driver1d.f90~~EfferentGraph_node3" class="node"><title>sourcefile~mod_io.f90</title>
@@ -284,49 +255,49 @@
 </a>
 </g>
 </g>
-<!-- sourcefile~mod_io.f90&#45;&gt;sourcefile~driver1d.f90 -->
-<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge2" class="edge"><title>sourcefile~mod_io.f90&#45;&gt;sourcefile~driver1d.f90</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M221.054,-90.4825C234.821,-88.1128 251.148,-85.3024 266.089,-82.7306"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="266.901,-86.1424 276.162,-80.9967 265.713,-79.2438 266.901,-86.1424"/>
+<!-- sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_io.f90 -->
+<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge2" class="edge"><title>sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_io.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M276.366,-80.9616C262.286,-83.3853 245.884,-86.2085 231.12,-88.7498"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="230.47,-85.3102 221.209,-90.4559 231.657,-92.2087 230.47,-85.3102"/>
+</g>
+<!-- sourcefile~mod_linalg.f90 -->
+<g id="sourcefile~~driver1d.f90~~EfferentGraph_node4" class="node"><title>sourcefile~mod_linalg.f90</title>
+<g id="a_sourcefile~~driver1d.f90~~EfferentGraph_node4"><a xlink:href=".././sourcefile/mod_linalg.f90.html" xlink:title="mod_linalg.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="229,-66 147,-66 147,-42 229,-42 229,-66"/>
+<text text-anchor="middle" x="188" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_linalg.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_linalg.f90 -->
+<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge3" class="edge"><title>sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_linalg.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M276.366,-69.0384C264.918,-67.0679 251.937,-64.8334 239.548,-62.7009"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="239.777,-59.1888 229.328,-60.9417 238.589,-66.0874 239.777,-59.1888"/>
 </g>
 <!-- sourcefile~mod_misc.f90 -->
-<g id="sourcefile~~driver1d.f90~~EfferentGraph_node4" class="node"><title>sourcefile~mod_misc.f90</title>
-<g id="a_sourcefile~~driver1d.f90~~EfferentGraph_node4"><a xlink:href=".././sourcefile/mod_misc.f90.html" xlink:title="mod_misc.f90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="227.5,-66 148.5,-66 148.5,-42 227.5,-42 227.5,-66"/>
-<text text-anchor="middle" x="188" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_misc.f90</text>
+<g id="sourcefile~~driver1d.f90~~EfferentGraph_node5" class="node"><title>sourcefile~mod_misc.f90</title>
+<g id="a_sourcefile~~driver1d.f90~~EfferentGraph_node5"><a xlink:href=".././sourcefile/mod_misc.f90.html" xlink:title="mod_misc.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="227.5,-24 148.5,-24 148.5,-0 227.5,-0 227.5,-24"/>
+<text text-anchor="middle" x="188" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_misc.f90</text>
 </a>
 </g>
 </g>
-<!-- sourcefile~mod_misc.f90&#45;&gt;sourcefile~driver1d.f90 -->
-<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge3" class="edge"><title>sourcefile~mod_misc.f90&#45;&gt;sourcefile~driver1d.f90</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M227.602,-60.6445C239.94,-62.7684 253.699,-65.1367 266.427,-67.3275"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="265.917,-70.7912 276.366,-69.0384 267.105,-63.8927 265.917,-70.7912"/>
-</g>
-<!-- sourcefile~mod_assembly.f90 -->
-<g id="sourcefile~~driver1d.f90~~EfferentGraph_node5" class="node"><title>sourcefile~mod_assembly.f90</title>
-<g id="a_sourcefile~~driver1d.f90~~EfferentGraph_node5"><a xlink:href=".././sourcefile/mod_assembly.f90.html" xlink:title="mod_assembly.f90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="239.5,-24 136.5,-24 136.5,-0 239.5,-0 239.5,-24"/>
-<text text-anchor="middle" x="188" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_assembly.f90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mod_assembly.f90&#45;&gt;sourcefile~driver1d.f90 -->
-<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge1" class="edge"><title>sourcefile~mod_assembly.f90&#45;&gt;sourcefile~driver1d.f90</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M220.334,-24.0708C226.909,-26.8343 233.744,-29.8818 240,-33 254.646,-40.3002 270.363,-49.4511 283.277,-57.3461"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="281.785,-60.5389 292.129,-62.8286 285.47,-54.5878 281.785,-60.5389"/>
+<!-- sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_misc.f90 -->
+<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge4" class="edge"><title>sourcefile~driver1d.f90&#45;&gt;sourcefile~mod_misc.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M292.129,-62.8286C278.055,-54.0023 258.201,-42.072 240,-33 236.677,-31.3435 233.19,-29.7069 229.665,-28.1222"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="230.9,-24.843 220.334,-24.0708 228.112,-31.2639 230.9,-24.843"/>
 </g>
 <!-- sourcefile~mod_legendre.f90 -->
 <g id="sourcefile~~driver1d.f90~~EfferentGraph_node6" class="node"><title>sourcefile~mod_legendre.f90</title>
 <g id="a_sourcefile~~driver1d.f90~~EfferentGraph_node6"><a xlink:href=".././sourcefile/mod_legendre.f90.html" xlink:title="mod_legendre.f90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="100,-24 0,-24 0,-0 100,-0 100,-24"/>
-<text text-anchor="middle" x="50" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_legendre.f90</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="100,-150 0,-150 0,-126 100,-126 100,-150"/>
+<text text-anchor="middle" x="50" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_legendre.f90</text>
 </a>
 </g>
 </g>
-<!-- sourcefile~mod_legendre.f90&#45;&gt;sourcefile~mod_assembly.f90 -->
-<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge5" class="edge"><title>sourcefile~mod_legendre.f90&#45;&gt;sourcefile~mod_assembly.f90</title>
-<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M100.099,-12C108.521,-12 117.363,-12 126.049,-12"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="126.141,-15.5001 136.141,-12 126.141,-8.5001 126.141,-15.5001"/>
+<!-- sourcefile~mod_assembly.f90&#45;&gt;sourcefile~mod_legendre.f90 -->
+<g id="sourcefile~~driver1d.f90~~EfferentGraph_edge5" class="edge"><title>sourcefile~mod_assembly.f90&#45;&gt;sourcefile~mod_legendre.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M136.359,-138C127.891,-138 119.038,-138 110.375,-138"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="110.328,-134.5 100.327,-138 110.327,-141.5 110.328,-134.5"/>
 </g>
 </g>
 </svg>
@@ -357,7 +328,7 @@
 </svg>
 
     
-    <p>Solid arrows point from a file to a file which depends upon it. A file 
+    <p>Solid arrows point from a file to a file which it depends on. A file
     is dependent upon another if the latter must be compiled before the former
     can be. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
     </p>
@@ -370,6 +341,9 @@
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -401,12 +375,14 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
     <a class="list-group-item" href="../sourcefile/driver1d.f90.html#src">driver1D.f90</a>
   </div>
 </div>
+
 
 
     </section>
@@ -466,66 +442,19 @@
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-1">All Source Files</a></h3></div>
-  <div id="allfiles-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/driver1d.f90.html">driver1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/driver2d.f90.html">driver2D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_assembly.f90.html">mod_assembly.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_assembly_c.f90.html">mod_assembly_c.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_integration.f90.html">mod_integration.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_io.f90.html">mod_io.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_legendre.f90.html">mod_legendre.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_legendre_c.f90.html">mod_legendre_c.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_linalg.f90.html">mod_linalg.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_misc.f90.html">mod_misc.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/mod_settings.f90.html">mod_settings.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_assemble_1d.f90.html">smod_assemble_1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_assemble_2d.f90.html">smod_assemble_2D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_integration.f90.html">smod_integration.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_legendre_1d.f90.html">smod_legendre_1D.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/smod_legendre_2d.f90.html">smod_legendre_2D.f90</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2018-01-04 16:09  
+             on 2019-07-26 10:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -551,10 +480,7 @@
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
     
@@ -562,7 +488,6 @@
     
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
     

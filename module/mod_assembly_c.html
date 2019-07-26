@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
+   
+   <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
     
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
@@ -16,6 +16,9 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>User Guide</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -124,17 +131,21 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title=" 3.8% of total for modules and submodules.">43 statements</a>
+    data-placement="bottom" data-html="true"
+    title=" 3.8% of total for modules and submodules.">43 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/mod_assembly_c.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/mod_assembly_c.f90.html'>mod_assembly_c.f90</a></li>
+    
   
      <li class="active">mod_assembly_c</li>
   </ol>
@@ -154,6 +165,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -192,38 +206,8 @@
 
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-0">All Modules</a></h3></div>
-  <div id="allmods-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/mod_assembly.html">mod_assembly</a>
-      
-      <a class="list-group-item" href="../module/mod_assembly_c.html">mod_assembly_c</a>
-      
-      <a class="list-group-item" href="../module/mod_integration.html">mod_integration</a>
-      
-      <a class="list-group-item" href="../module/mod_io.html">mod_io</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre.html">mod_legendre</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre_c.html">mod_legendre_c</a>
-      
-      <a class="list-group-item" href="../module/mod_linalg.html">mod_linalg</a>
-      
-      <a class="list-group-item" href="../module/mod_misc.html">mod_misc</a>
-      
-      <a class="list-group-item" href="../module/mod_settings.html">mod_settings</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
@@ -234,82 +218,81 @@
   
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h3 class="panel-title">Uses</h3>
+  <h3 class="panel-title">Uses</h3>
       </div>
       <ul class="list-group">
       
       <li class="list-group-item">
-	<ul class="list-inline">
-	  
-	  <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
-	  
-	  <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html">iso_c_binding</a></li>
-	  
-	  <li><a href='../module/mod_assembly.html'>mod_assembly</a></li>
-	  
-	  <li><a href='../module/mod_misc.html'>mod_misc</a></li>
-	  
-	</ul>
+  <ul class="list-inline">
+    
+    <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+    
+    <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html">iso_c_binding</a></li>
+    
+    <li><a href='../module/mod_assembly.html'>mod_assembly</a></li>
+    
+    <li><a href='../module/mod_misc.html'>mod_misc</a></li>
+    
+  </ul>
       </li>
       
       
       
       <li class="list-group-item">
-	<div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
 <!-- Title: module~~mod_assembly_c~~UsesGraph Pages: 1 -->
-<svg id="modulemod_assembly_cUsesGraph" width="468pt" height="154pt"
- viewBox="0.00 0.00 468.00 154.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~mod_assembly_c~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 150)">
+<svg id="modulemod_assembly_cUsesGraph" width="468pt" height="146pt"
+ viewBox="0.00 0.00 468.00 145.64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mod_assembly_c~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 141.639)">
 <title>module~~mod_assembly_c~~UsesGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-150 464,-150 464,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-141.639 464,-141.639 464,4 -4,4"/>
 <!-- module~mod_assembly_c -->
 <g id="module~~mod_assembly_c~~UsesGraph_node1" class="node"><title>module~mod_assembly_c</title>
-<polygon fill="none" stroke="black" points="460,-86 364,-86 364,-62 460,-62 460,-86"/>
-<text text-anchor="middle" x="412" y="-71.6" font-family="Helvetica,sans-Serif" font-size="10.50">mod_assembly_c</text>
+<polygon fill="none" stroke="black" points="460,-64 364,-64 364,-40 460,-40 460,-64"/>
+<text text-anchor="middle" x="412" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50">mod_assembly_c</text>
 </g>
-<!-- iso_c_binding -->
-<g id="module~~mod_assembly_c~~UsesGraph_node2" class="node"><title>iso_c_binding</title>
-<g id="a_module~~mod_assembly_c~~UsesGraph_node2"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html" xlink:title="iso_c_binding">
-<polygon fill="#337ab7" stroke="#337ab7" points="324,-146 246,-146 246,-122 324,-122 324,-146"/>
-<text text-anchor="middle" x="285" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_c_binding</text>
+<!-- module~mod_assembly -->
+<g id="module~~mod_assembly_c~~UsesGraph_node2" class="node"><title>module~mod_assembly</title>
+<g id="a_module~~mod_assembly_c~~UsesGraph_node2"><a xlink:href=".././module/mod_assembly.html" xlink:title="mod_assembly">
+<polygon fill="#337ab7" stroke="#337ab7" points="327.5,-124 242.5,-124 242.5,-100 327.5,-100 327.5,-124"/>
+<text text-anchor="middle" x="285" y="-109.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_assembly</text>
 </a>
 </g>
 </g>
-<!-- iso_c_binding&#45;&gt;module~mod_assembly_c -->
-<g id="module~~mod_assembly_c~~UsesGraph_edge1" class="edge"><title>iso_c_binding&#45;&gt;module~mod_assembly_c</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M311.296,-121.858C330.102,-112.831 355.975,-100.412 376.652,-90.4872"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="378.241,-93.6065 385.742,-86.1238 375.212,-87.2959 378.241,-93.6065"/>
+<!-- module~mod_assembly_c&#45;&gt;module~mod_assembly -->
+<g id="module~~mod_assembly_c~~UsesGraph_edge1" class="edge"><title>module~mod_assembly_c&#45;&gt;module~mod_assembly</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M385.704,-64.1419C366.898,-73.1691 341.025,-85.5881 320.348,-95.5128"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="318.759,-92.3935 311.258,-99.8762 321.788,-98.7041 318.759,-92.3935"/>
 </g>
 <!-- iso_fortran_env -->
 <g id="module~~mod_assembly_c~~UsesGraph_node3" class="node"><title>iso_fortran_env</title>
 <g id="a_module~~mod_assembly_c~~UsesGraph_node3"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
-<polygon fill="#337ab7" stroke="#337ab7" points="87.5,-66 0.5,-66 0.5,-42 87.5,-42 87.5,-66"/>
-<text text-anchor="middle" x="44" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="87.5,-104 0.5,-104 0.5,-80 87.5,-80 87.5,-104"/>
+<text text-anchor="middle" x="44" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_assembly_c -->
-<g id="module~~mod_assembly_c~~UsesGraph_edge2" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_assembly_c</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M166,-94C230.288,-98.9639 304.033,-91.1018 353.678,-83.8243"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="354.217,-87.2827 363.584,-82.3329 353.175,-80.3607 354.217,-87.2827"/>
+<!-- module~mod_assembly_c&#45;&gt;iso_fortran_env -->
+<g id="module~~mod_assembly_c~~UsesGraph_edge2" class="edge"><title>module~mod_assembly_c&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M363.901,-57.1474C295.539,-64.6187 169.209,-78.4252 97.7858,-86.2311"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="97.2203,-82.7719 87.6598,-87.3377 97.9808,-89.7305 97.2203,-82.7719"/>
 </g>
-<!-- module~mod_assembly -->
-<g id="module~~mod_assembly_c~~UsesGraph_node4" class="node"><title>module~mod_assembly</title>
-<g id="a_module~~mod_assembly_c~~UsesGraph_node4"><a xlink:href=".././module/mod_assembly.html" xlink:title="mod_assembly">
-<polygon fill="#337ab7" stroke="#337ab7" points="327.5,-66 242.5,-66 242.5,-42 327.5,-42 327.5,-66"/>
-<text text-anchor="middle" x="285" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_assembly</text>
+<!-- iso_c_binding -->
+<g id="module~~mod_assembly_c~~UsesGraph_node4" class="node"><title>iso_c_binding</title>
+<g id="a_module~~mod_assembly_c~~UsesGraph_node4"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html" xlink:title="iso_c_binding">
+<polygon fill="#337ab7" stroke="#337ab7" points="324,-44 246,-44 246,-20 324,-20 324,-44"/>
+<text text-anchor="middle" x="285" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_c_binding</text>
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_assembly -->
-<g id="module~~mod_assembly_c~~UsesGraph_edge6" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_assembly</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M69.3183,-66.1375C92.8546,-76.918 129.882,-91.3657 164,-94"/>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M166,-94C197.655,-96.4442 231.802,-82.9365 255.176,-70.9654"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="257.019,-73.9495 264.19,-66.1506 253.72,-67.7752 257.019,-73.9495"/>
+<!-- module~mod_assembly_c&#45;&gt;iso_c_binding -->
+<g id="module~~mod_assembly_c~~UsesGraph_edge3" class="edge"><title>module~mod_assembly_c&#45;&gt;iso_c_binding</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M363.743,-44.4389C354.198,-42.9116 344.147,-41.3036 334.558,-39.7694"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="334.808,-36.2648 324.38,-38.1408 333.702,-43.1769 334.808,-36.2648"/>
 </g>
 <!-- module~mod_misc -->
 <g id="module~~mod_assembly_c~~UsesGraph_node5" class="node"><title>module~mod_misc</title>
@@ -319,38 +302,38 @@
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_misc -->
-<g id="module~~mod_assembly_c~~UsesGraph_edge7" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_misc</title>
-<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M79.1006,-41.9645C93.2745,-36.9619 109.816,-31.1239 124.513,-25.9366"/>
-<polygon fill="#7f00ff" stroke="#7f00ff" points="126.077,-29.0964 134.342,-22.4676 123.747,-22.4954 126.077,-29.0964"/>
+<!-- module~mod_assembly_c&#45;&gt;module~mod_misc -->
+<g id="module~~mod_assembly_c~~UsesGraph_edge4" class="edge"><title>module~mod_assembly_c&#45;&gt;module~mod_misc</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M392.814,-39.9486C376.59,-29.9678 351.789,-16.5553 328,-11 287.222,-1.47752 239.08,-3.36962 205.933,-6.62005"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="205.298,-3.1679 195.726,-7.71037 206.041,-10.1283 205.298,-3.1679"/>
+</g>
+<!-- module~mod_assembly&#45;&gt;iso_fortran_env -->
+<g id="module~~mod_assembly_c~~UsesGraph_edge5" class="edge"><title>module~mod_assembly&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M248.637,-124.035C215.943,-133.425 166.187,-143.295 124,-133 105.104,-128.389 85.6905,-118.4 70.837,-109.436"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="72.5568,-106.384 62.2233,-104.045 68.843,-112.317 72.5568,-106.384"/>
 </g>
 <!-- module~mod_legendre -->
 <g id="module~~mod_assembly_c~~UsesGraph_node6" class="node"><title>module~mod_legendre</title>
 <g id="a_module~~mod_assembly_c~~UsesGraph_node6"><a xlink:href=".././module/mod_legendre.html" xlink:title="mod_legendre">
-<polygon fill="#337ab7" stroke="#337ab7" points="206,-66 124,-66 124,-42 206,-42 206,-66"/>
-<text text-anchor="middle" x="165" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_legendre</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="206,-124 124,-124 124,-100 206,-100 206,-124"/>
+<text text-anchor="middle" x="165" y="-109.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_legendre</text>
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_legendre -->
-<g id="module~~mod_assembly_c~~UsesGraph_edge8" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_legendre</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M87.6256,-54C96.062,-54 104.992,-54 113.656,-54"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="113.66,-57.5001 123.66,-54 113.66,-50.5001 113.66,-57.5001"/>
+<!-- module~mod_assembly&#45;&gt;module~mod_legendre -->
+<g id="module~~mod_assembly_c~~UsesGraph_edge6" class="edge"><title>module~mod_assembly&#45;&gt;module~mod_legendre</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M242.398,-112C233.909,-112 224.892,-112 216.141,-112"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="216.038,-108.5 206.038,-112 216.038,-115.5 216.038,-108.5"/>
 </g>
-<!-- module~mod_assembly&#45;&gt;module~mod_assembly_c -->
-<g id="module~~mod_assembly_c~~UsesGraph_edge3" class="edge"><title>module~mod_assembly&#45;&gt;module~mod_assembly_c</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M327.623,-60.6597C336.086,-62.0137 345.125,-63.46 354.015,-64.8824"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="353.521,-68.3479 363.949,-66.4718 354.627,-61.4358 353.521,-68.3479"/>
+<!-- module~mod_misc&#45;&gt;iso_fortran_env -->
+<g id="module~~mod_assembly_c~~UsesGraph_edge7" class="edge"><title>module~mod_misc&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M145.926,-24.1503C126.066,-37.5018 93.9812,-59.0715 71.3264,-74.3016"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="69.2,-71.5137 62.8537,-79.9975 73.1054,-77.323 69.2,-71.5137"/>
 </g>
-<!-- module~mod_misc&#45;&gt;module~mod_assembly_c -->
-<g id="module~~mod_assembly_c~~UsesGraph_edge4" class="edge"><title>module~mod_misc&#45;&gt;module~mod_assembly_c</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M195.58,-12.9206C228.531,-14.611 283.076,-19.4048 328,-33 346.854,-38.7056 366.679,-48.3456 382.224,-56.845"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="380.871,-60.0989 391.303,-61.9443 384.298,-53.9956 380.871,-60.0989"/>
-</g>
-<!-- module~mod_legendre&#45;&gt;module~mod_assembly -->
-<g id="module~~mod_assembly_c~~UsesGraph_edge5" class="edge"><title>module~mod_legendre&#45;&gt;module~mod_assembly</title>
-<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M206.279,-54C214.629,-54 223.537,-54 232.232,-54"/>
-<polygon fill="#00ffff" stroke="#00ffff" points="232.295,-57.5001 242.295,-54 232.295,-50.5001 232.295,-57.5001"/>
+<!-- module~mod_legendre&#45;&gt;iso_fortran_env -->
+<g id="module~~mod_assembly_c~~UsesGraph_edge8" class="edge"><title>module~mod_legendre&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M123.712,-105.229C115.376,-103.828 106.477,-102.332 97.7724,-100.869"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="98.1304,-97.3805 87.6886,-99.1746 96.9702,-104.284 98.1304,-97.3805"/>
 </g>
 </g>
 </svg>
@@ -401,9 +384,9 @@
 </svg>
 
     
-    <p>Solid arrows point from a parent (sub)module to the submodule which is
-    descended from it. Dashed arrows point from a module being used to the
-    module or program unit using it. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
     </p>
     </div></div></div></div>
       </li>
@@ -419,6 +402,9 @@
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -457,6 +443,7 @@
 
 
 
+
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
@@ -484,7 +471,7 @@
 private subroutine <a href='../proc/assembleelementalmatrix1d_c.html'>assembleElementalMatrix1D_c</a>(N, d1, d2, xy, Ie) bind(c, name="0")
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -595,7 +582,7 @@ private subroutine <a href='../proc/assembleelementalmatrix1d_c.html'>assembleEl
 private subroutine <a href='../proc/assembleelementalmatrix2d_c.html'>assembleElementalMatrix2D_c</a>(N, d1, d2, xy, Ie) bind(c, name="0")
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -706,7 +693,7 @@ private subroutine <a href='../proc/assembleelementalmatrix2d_c.html'>assembleEl
 private subroutine <a href='../proc/assemble1d_c.html'>assemble1D_c</a>(num_cells, num_pts_per_cell, num_pts, points, cells, diff, vel, GlobalA) bind(c, name="0")
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -862,7 +849,7 @@ private subroutine <a href='../proc/assemble1d_c.html'>assemble1D_c</a>(num_cell
 private subroutine <a href='../proc/assemble2d_c.html'>assemble2D_c</a>(num_cells, num_pts_per_cell, num_pts, points, cells, diff, vel, GlobalA) bind(c, name="0")
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1020,52 +1007,19 @@ private subroutine <a href='../proc/assemble2d_c.html'>assemble2D_c</a>(num_cell
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-1">All Modules</a></h3></div>
-  <div id="allmods-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/mod_assembly.html">mod_assembly</a>
-      
-      <a class="list-group-item" href="../module/mod_assembly_c.html">mod_assembly_c</a>
-      
-      <a class="list-group-item" href="../module/mod_integration.html">mod_integration</a>
-      
-      <a class="list-group-item" href="../module/mod_io.html">mod_io</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre.html">mod_legendre</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre_c.html">mod_legendre_c</a>
-      
-      <a class="list-group-item" href="../module/mod_linalg.html">mod_linalg</a>
-      
-      <a class="list-group-item" href="../module/mod_misc.html">mod_misc</a>
-      
-      <a class="list-group-item" href="../module/mod_settings.html">mod_settings</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2018-01-04 16:09  
+             on 2019-07-26 10:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -1091,10 +1045,7 @@ private subroutine <a href='../proc/assemble2d_c.html'>assemble2D_c</a>(num_cell
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
     
@@ -1102,7 +1053,6 @@ private subroutine <a href='../proc/assemble2d_c.html'>assemble2D_c</a>(num_cell
     
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
     

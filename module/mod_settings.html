@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
+   
+   <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
     
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
@@ -16,6 +16,9 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>User Guide</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -124,17 +131,21 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title=" 0.9% of total for modules and submodules.">10 statements</a>
+    data-placement="bottom" data-html="true"
+    title=" 0.9% of total for modules and submodules.">10 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/mod_settings.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/mod_settings.f90.html'>mod_settings.f90</a></li>
+    
   
      <li class="active">mod_settings</li>
   </ol>
@@ -154,6 +165,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -186,38 +200,8 @@
 
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-0">All Modules</a></h3></div>
-  <div id="allmods-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/mod_assembly.html">mod_assembly</a>
-      
-      <a class="list-group-item" href="../module/mod_assembly_c.html">mod_assembly_c</a>
-      
-      <a class="list-group-item" href="../module/mod_integration.html">mod_integration</a>
-      
-      <a class="list-group-item" href="../module/mod_io.html">mod_io</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre.html">mod_legendre</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre_c.html">mod_legendre_c</a>
-      
-      <a class="list-group-item" href="../module/mod_linalg.html">mod_linalg</a>
-      
-      <a class="list-group-item" href="../module/mod_misc.html">mod_misc</a>
-      
-      <a class="list-group-item" href="../module/mod_settings.html">mod_settings</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
@@ -228,22 +212,22 @@
   
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h3 class="panel-title">Uses</h3>
+  <h3 class="panel-title">Uses</h3>
       </div>
       <ul class="list-group">
       
       <li class="list-group-item">
-	<ul class="list-inline">
-	  
-	  <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
-	  
-	</ul>
+  <ul class="list-inline">
+    
+    <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+    
+  </ul>
       </li>
       
       
       
       <li class="list-group-item">
-	<div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
@@ -267,10 +251,10 @@
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_settings -->
-<g id="module~~mod_settings~~UsesGraph_edge1" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_settings</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M87.5354,-12C96.0868,-12 105.122,-12 113.821,-12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="113.828,-15.5001 123.828,-12 113.828,-8.5001 113.828,-15.5001"/>
+<!-- module~mod_settings&#45;&gt;iso_fortran_env -->
+<g id="module~~mod_settings~~UsesGraph_edge1" class="edge"><title>module~mod_settings&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M123.978,-12C115.686,-12 106.732,-12 97.9353,-12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="97.7295,-8.5001 87.7295,-12 97.7295,-15.5001 97.7295,-8.5001"/>
 </g>
 </g>
 </svg>
@@ -321,9 +305,9 @@
 </svg>
 
     
-    <p>Solid arrows point from a parent (sub)module to the submodule which is
-    descended from it. Dashed arrows point from a module being used to the
-    module or program unit using it. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
     </p>
     </div></div></div></div>
       </li>
@@ -339,6 +323,9 @@
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -371,6 +358,7 @@
 
 
 
+
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
@@ -387,8 +375,8 @@
     
     <section>
      <h2>Derived Types</h2>
-	 
-	   
+   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-t_settings"></span><h3>type, public :: <a href='../type/t_settings.html'>t_settings</a>
     
@@ -447,7 +435,7 @@
 
      
     </section>
-	<br>
+  <br>
     
     
     
@@ -458,52 +446,19 @@
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-1">All Modules</a></h3></div>
-  <div id="allmods-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/mod_assembly.html">mod_assembly</a>
-      
-      <a class="list-group-item" href="../module/mod_assembly_c.html">mod_assembly_c</a>
-      
-      <a class="list-group-item" href="../module/mod_integration.html">mod_integration</a>
-      
-      <a class="list-group-item" href="../module/mod_io.html">mod_io</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre.html">mod_legendre</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre_c.html">mod_legendre_c</a>
-      
-      <a class="list-group-item" href="../module/mod_linalg.html">mod_linalg</a>
-      
-      <a class="list-group-item" href="../module/mod_misc.html">mod_misc</a>
-      
-      <a class="list-group-item" href="../module/mod_settings.html">mod_settings</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2018-01-04 16:09  
+             on 2019-07-26 10:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -529,10 +484,7 @@
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
     
@@ -540,7 +492,6 @@
     
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
     

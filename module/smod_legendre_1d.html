@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
+   
+   <meta name="description" content="A small project to learn the Discontinuous Galerkin finite element method">
     
     <meta name="author" content="Chris Coutinho" >
     <link rel="icon" href="../favicon.png">
@@ -16,6 +16,9 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>User Guide</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -124,17 +131,21 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title=" 5.8% of total for modules and submodules.">65 statements</a>
+    data-placement="bottom" data-html="true"
+    title=" 5.8% of total for modules and submodules.">65 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/smod_legendre_1D.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/smod_legendre_1d.f90.html'>smod_legendre_1D.f90</a></li>
+    
   
      <li class="active">smod_legendre_1D</li>
   </ol>
@@ -154,6 +165,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -194,38 +208,8 @@
 
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-0">All Modules</a></h3></div>
-  <div id="allmods-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/mod_assembly.html">mod_assembly</a>
-      
-      <a class="list-group-item" href="../module/mod_assembly_c.html">mod_assembly_c</a>
-      
-      <a class="list-group-item" href="../module/mod_integration.html">mod_integration</a>
-      
-      <a class="list-group-item" href="../module/mod_io.html">mod_io</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre.html">mod_legendre</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre_c.html">mod_legendre_c</a>
-      
-      <a class="list-group-item" href="../module/mod_linalg.html">mod_linalg</a>
-      
-      <a class="list-group-item" href="../module/mod_misc.html">mod_misc</a>
-      
-      <a class="list-group-item" href="../module/mod_settings.html">mod_settings</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
@@ -235,7 +219,9 @@
  functions are defined at internal nodes and used to iterpolate some value
  between those nodes.</p>
 <p>calculate the coeffiecents associated with a univarate Lagrangian polynomial</p>
-<p>\[ 1, x, x^2, ..., x^N \]</p>
+<p>
+<script type="math/tex; mode=display"> 1, x, x^2, ..., x^N </script>
+</p>
 <p>In the end you end up with a group of basis functions similar to this:</p>
 <p style="text-align: center"><img alt="Quadratic Basis Functions catption" src="../media/quadratic_basis.png" title="Quadratic Basis Functions" width="500"></p>
       <br>
@@ -243,34 +229,34 @@
   
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h3 class="panel-title">Uses</h3>
+  <h3 class="panel-title">Uses</h3>
       </div>
       <ul class="list-group">
       
       <li class="list-group-item">
-	<ul class="list-inline">
-	  
-	  <li><a href='../module/mod_linalg.html'>mod_linalg</a></li>
-	  
-	  <li>lib_array</li>
-	  
-	</ul>
+  <ul class="list-inline">
+    
+    <li><a href='../module/mod_linalg.html'>mod_linalg</a></li>
+    
+    <li>lib_array</li>
+    
+  </ul>
       </li>
       
       
       <li class="list-group-item">
-	<ul class="list-inline">
-	  <li><h5>Ancestors:</h5></li>
-	  
-	  <li><a href='../module/mod_legendre.html'>mod_legendre</a></li>
-	  
-	  
-	</ul>
+  <ul class="list-inline">
+    <li><h5>Ancestors:</h5></li>
+    
+    <li><a href='../module/mod_legendre.html'>mod_legendre</a></li>
+    
+    
+  </ul>
       </li>
       
       
       <li class="list-group-item">
-	<div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
@@ -286,59 +272,59 @@
 <polygon fill="none" stroke="black" points="348,-66 242,-66 242,-42 348,-42 348,-66"/>
 <text text-anchor="middle" x="295" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">smod_legendre_1D</text>
 </g>
+<!-- lib_array -->
+<g id="module~~smod_legendre_1d~~UsesGraph_node2" class="node"><title>lib_array</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="192,-108 138,-108 138,-84 192,-84 192,-108"/>
+<text text-anchor="middle" x="165" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lib_array</text>
+</g>
+<!-- module~smod_legendre_1d&#45;&gt;lib_array -->
+<g id="module~~smod_legendre_1d~~UsesGraph_edge1" class="edge"><title>module~smod_legendre_1d&#45;&gt;lib_array</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M257.32,-66.0355C239.906,-71.7497 219.168,-78.5541 201.86,-84.2335"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="200.526,-80.9873 192.116,-87.4306 202.709,-87.6384 200.526,-80.9873"/>
+</g>
 <!-- module~mod_legendre -->
-<g id="module~~smod_legendre_1d~~UsesGraph_node2" class="node"><title>module~mod_legendre</title>
-<g id="a_module~~smod_legendre_1d~~UsesGraph_node2"><a xlink:href=".././module/mod_legendre.html" xlink:title="mod_legendre">
-<polygon fill="#337ab7" stroke="#337ab7" points="206,-108 124,-108 124,-84 206,-84 206,-108"/>
-<text text-anchor="middle" x="165" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_legendre</text>
+<g id="module~~smod_legendre_1d~~UsesGraph_node3" class="node"><title>module~mod_legendre</title>
+<g id="a_module~~smod_legendre_1d~~UsesGraph_node3"><a xlink:href=".././module/mod_legendre.html" xlink:title="mod_legendre">
+<polygon fill="#337ab7" stroke="#337ab7" points="206,-66 124,-66 124,-42 206,-42 206,-66"/>
+<text text-anchor="middle" x="165" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_legendre</text>
 </a>
 </g>
 </g>
-<!-- module~mod_legendre&#45;&gt;module~smod_legendre_1d -->
-<g id="module~~smod_legendre_1d~~UsesGraph_edge3" class="edge"><title>module~mod_legendre&#45;&gt;module~smod_legendre_1d</title>
-<path fill="none" stroke="#ff0000" d="M202.68,-83.9645C216.739,-79.3513 232.964,-74.0276 247.801,-69.1589"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="248.905,-72.4806 257.315,-66.0373 246.722,-65.8295 248.905,-72.4806"/>
-</g>
-<!-- lib_array -->
-<g id="module~~smod_legendre_1d~~UsesGraph_node3" class="node"><title>lib_array</title>
-<polygon fill="#337ab7" stroke="#337ab7" points="192,-24 138,-24 138,-0 192,-0 192,-24"/>
-<text text-anchor="middle" x="165" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lib_array</text>
-</g>
-<!-- lib_array&#45;&gt;module~smod_legendre_1d -->
-<g id="module~~smod_legendre_1d~~UsesGraph_edge1" class="edge"><title>lib_array&#45;&gt;module~smod_legendre_1d</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M192.212,-20.6007C208.156,-25.8325 228.976,-32.6641 247.629,-38.7846"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="246.556,-42.116 257.149,-41.9082 248.738,-35.4649 246.556,-42.116"/>
+<!-- module~smod_legendre_1d&#45;&gt;module~mod_legendre -->
+<g id="module~~smod_legendre_1d~~UsesGraph_edge3" class="edge"><title>module~smod_legendre_1d&#45;&gt;module~mod_legendre</title>
+<path fill="none" stroke="#ff0000" d="M241.938,-54C233.474,-54 224.722,-54 216.301,-54"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="216.237,-50.5001 206.237,-54 216.237,-57.5001 216.237,-50.5001"/>
 </g>
 <!-- module~mod_linalg -->
 <g id="module~~smod_legendre_1d~~UsesGraph_node4" class="node"><title>module~mod_linalg</title>
 <g id="a_module~~smod_legendre_1d~~UsesGraph_node4"><a xlink:href=".././module/mod_linalg.html" xlink:title="mod_linalg">
-<polygon fill="#337ab7" stroke="#337ab7" points="197,-66 133,-66 133,-42 197,-42 197,-66"/>
-<text text-anchor="middle" x="165" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_linalg</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="197,-24 133,-24 133,-0 197,-0 197,-24"/>
+<text text-anchor="middle" x="165" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mod_linalg</text>
 </a>
 </g>
 </g>
-<!-- module~mod_linalg&#45;&gt;module~smod_legendre_1d -->
-<g id="module~~smod_legendre_1d~~UsesGraph_edge2" class="edge"><title>module~mod_linalg&#45;&gt;module~smod_legendre_1d</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M197.312,-54C207.778,-54 219.838,-54 231.813,-54"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="231.816,-57.5001 241.816,-54 231.816,-50.5001 231.816,-57.5001"/>
+<!-- module~smod_legendre_1d&#45;&gt;module~mod_linalg -->
+<g id="module~~smod_legendre_1d~~UsesGraph_edge2" class="edge"><title>module~smod_legendre_1d&#45;&gt;module~mod_linalg</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M257.32,-41.9645C241.537,-36.7854 223.024,-30.7109 206.808,-25.39"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="207.646,-21.9814 197.053,-22.1892 205.463,-28.6325 207.646,-21.9814"/>
 </g>
 <!-- iso_fortran_env -->
 <g id="module~~smod_legendre_1d~~UsesGraph_node5" class="node"><title>iso_fortran_env</title>
 <g id="a_module~~smod_legendre_1d~~UsesGraph_node5"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
-<polygon fill="#337ab7" stroke="#337ab7" points="87.5,-87 0.5,-87 0.5,-63 87.5,-63 87.5,-87"/>
-<text text-anchor="middle" x="44" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="87.5,-45 0.5,-45 0.5,-21 87.5,-21 87.5,-45"/>
+<text text-anchor="middle" x="44" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_legendre -->
-<g id="module~~smod_legendre_1d~~UsesGraph_edge4" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_legendre</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M87.6256,-82.5222C96.062,-84.0109 104.992,-85.5868 113.656,-87.1158"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="113.204,-90.59 123.66,-88.8812 114.421,-83.6965 113.204,-90.59"/>
+<!-- module~mod_legendre&#45;&gt;iso_fortran_env -->
+<g id="module~~smod_legendre_1d~~UsesGraph_edge4" class="edge"><title>module~mod_legendre&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M123.712,-46.8904C115.376,-45.4194 106.477,-43.8489 97.7724,-42.3128"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="98.1447,-38.8245 87.6886,-40.5333 96.9282,-45.718 98.1447,-38.8245"/>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~mod_linalg -->
-<g id="module~~smod_legendre_1d~~UsesGraph_edge5" class="edge"><title>iso_fortran_env&#45;&gt;module~mod_linalg</title>
-<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M87.6256,-67.4778C99.0631,-65.4595 111.408,-63.281 122.768,-61.2762"/>
-<polygon fill="#0000ff" stroke="#0000ff" points="123.631,-64.6782 132.87,-59.4935 122.414,-57.7847 123.631,-64.6782"/>
+<!-- module~mod_linalg&#45;&gt;iso_fortran_env -->
+<g id="module~~smod_legendre_1d~~UsesGraph_edge5" class="edge"><title>module~mod_linalg&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M132.734,-17.5175C121.974,-19.4163 109.611,-21.5981 97.6248,-23.7133"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="96.9282,-20.282 87.6886,-25.4667 98.1447,-27.1755 96.9282,-20.282"/>
 </g>
 </g>
 </svg>
@@ -389,9 +375,9 @@
 </svg>
 
     
-    <p>Solid arrows point from a parent (sub)module to the submodule which is
-    descended from it. Dashed arrows point from a module being used to the
-    module or program unit using it. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses. Where possible, edges connecting nodes are given different colours to make them easier to distinguish in large graphs.
     </p>
     </div></div></div></div>
       </li>
@@ -407,6 +393,9 @@
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -447,6 +436,7 @@
 
 
 
+
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
@@ -478,7 +468,7 @@
 pure function <a href='../proc/getarow1d.html'>getArow1D</a>(N, xi) result(row)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -553,7 +543,7 @@ pure function <a href='../proc/getarow1d.html'>getArow1D</a>(N, xi) result(row)
 function <a href='../proc/getx.html'>getx</a>(N) result(x)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -613,7 +603,7 @@ function <a href='../proc/getx.html'>getx</a>(N) result(x)
 function <a href='../proc/getalpha1d.html'>getAlpha1D</a>(N) result(alpha)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -673,7 +663,7 @@ function <a href='../proc/getalpha1d.html'>getAlpha1D</a>(N) result(alpha)
 pure function <a href='../proc/pascal_1d_line.html'>pascal_1D_line</a>(N, x) result(row)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -757,7 +747,7 @@ pure function <a href='../proc/pascal_1d_line.html'>pascal_1D_line</a>(N, x) res
 pure function <a href='../proc/basis_1d.html'>basis_1D</a>(x, alpha, dx) result(y)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -853,52 +843,19 @@ pure function <a href='../proc/basis_1d.html'>basis_1D</a>(x, alpha, dx) result(
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-1">All Modules</a></h3></div>
-  <div id="allmods-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/mod_assembly.html">mod_assembly</a>
-      
-      <a class="list-group-item" href="../module/mod_assembly_c.html">mod_assembly_c</a>
-      
-      <a class="list-group-item" href="../module/mod_integration.html">mod_integration</a>
-      
-      <a class="list-group-item" href="../module/mod_io.html">mod_io</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre.html">mod_legendre</a>
-      
-      <a class="list-group-item" href="../module/mod_legendre_c.html">mod_legendre_c</a>
-      
-      <a class="list-group-item" href="../module/mod_linalg.html">mod_linalg</a>
-      
-      <a class="list-group-item" href="../module/mod_misc.html">mod_misc</a>
-      
-      <a class="list-group-item" href="../module/mod_settings.html">mod_settings</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2018-01-04 16:09  
+             on 2019-07-26 10:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> learn_dg was developed by Chris Coutinho</p></div>
@@ -924,10 +881,7 @@ pure function <a href='../proc/basis_1d.html'>basis_1D</a>(x, alpha, dx) result(
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
     
@@ -935,7 +889,6 @@ pure function <a href='../proc/basis_1d.html'>basis_1D</a>(x, alpha, dx) result(
     
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
     
